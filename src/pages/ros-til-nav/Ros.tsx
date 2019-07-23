@@ -10,6 +10,7 @@ import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link } from "react-router-dom";
 import Lenke from "nav-frontend-lenker";
 import { baseUrl } from "../../App";
+import InputNavn from "../../components/input-navn/InputNavn";
 
 const Ros = () => {
   document.title = "Ros til NAV - www.nav.no";
@@ -36,7 +37,7 @@ const Ros = () => {
           className="ros-til-nav__kolonne ros-til-nav__felt"
           style={{ paddingRight: "0.25rem" }}
         >
-          <Input label={"Navn *"} required={true} />
+          <InputNavn />
         </div>
         <div
           className="ros-til-nav__kolonne ros-til-nav__felt"

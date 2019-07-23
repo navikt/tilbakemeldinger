@@ -18,6 +18,7 @@ export type FetchAuthInfo =
 export const baseUrl = "/person/tilbakemeldinger";
 const App = () => {
   const [{ auth }, dispatch] = useStore();
+  console.log(auth);
 
   useEffect(() => {
     if (auth.status === "LOADING") {
