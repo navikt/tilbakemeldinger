@@ -9,6 +9,7 @@ import { fetchAuthInfo } from "./clients/apiClient";
 import { useStore } from "./providers/Provider";
 import { AuthInfo } from "./types/authInfo";
 import { HTTPError } from "./components/error/Error";
+import Takk from "./pages/takk/Takk";
 
 export type FetchAuthInfo =
   | { status: "LOADING" }
@@ -43,6 +44,11 @@ const App = () => {
             exact
             path={`${baseUrl}/feil-og-mangler`}
             component={FeilOgMangler}
+          />
+          <Route
+            exact
+            path={`(|${baseUrl})/(ros-til-nav)/takk`}
+            component={Takk}
           />
           <Route component={PageNotFound} />
         </Switch>

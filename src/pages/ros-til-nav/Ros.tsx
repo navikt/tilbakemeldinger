@@ -7,12 +7,12 @@ import {
   TextareaControlled
 } from "nav-frontend-skjema";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
-import { Link } from "react-router-dom";
+import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import Lenke from "nav-frontend-lenker";
 import { baseUrl } from "../../App";
 import InputNavn from "../../components/input-navn/InputNavn";
 
-const Ros = () => {
+const Ros = (props: RouteComponentProps) => {
   document.title = "Ros til NAV - www.nav.no";
   const [rosTilHvem, settRosTilHvem] = useState();
 
@@ -20,6 +20,11 @@ const Ros = () => {
     event: React.SyntheticEvent<EventTarget>,
     value: string
   ) => settRosTilHvem(value);
+
+  const send = () => {
+    console.log("Send");
+    props.history.push(`${props.location.pathname}/takk`);
+  };
 
   return (
     <>
@@ -66,7 +71,7 @@ const Ros = () => {
       </div>
       <div className="ros-til-nav__knapper">
         <div className="ros-til-nav__knapp">
-          <Hovedknapp>Send</Hovedknapp>
+          <Hovedknapp onClick={send}>Send</Hovedknapp>
         </div>
         <div className="ros-til-nav__knapp">
           <Link to={baseUrl}>
@@ -77,4 +82,4 @@ const Ros = () => {
     </>
   );
 };
-export default Ros;
+export default withRouter(Ros);
