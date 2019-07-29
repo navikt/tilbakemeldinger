@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter, RouteComponentProps } from "react-router";
-import { Element } from "nav-frontend-typografi";
+import { Undertittel } from "nav-frontend-typografi";
 import Veileder from "nav-frontend-veileder";
 import VeilederIcon from "../../assets/Veileder.svg";
 import { baseUrl } from "../../App";
@@ -19,7 +19,7 @@ const ColorBar = (props: RouteComponentProps) =>
     </div>
   ) : (
     <div className="header">
-      <Element>Tilbakemelding på service</Element>
+      <Undertittel>Tilbakemelding på service</Undertittel>
     </div>
   );
 export default withRouter(ColorBar);
