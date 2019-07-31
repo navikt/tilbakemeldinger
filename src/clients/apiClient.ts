@@ -41,7 +41,7 @@ const hentJson = (url: string) =>
     });
 
 const sendJson = (url: string, data: RosTilNav | FeilOgMangler) =>
-  fetch(`${apiUrl}/ros-til-nav`, {
+  fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
     headers: { "Content-Type": "application/json;charset=UTF-8" }
