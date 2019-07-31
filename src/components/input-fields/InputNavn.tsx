@@ -26,7 +26,7 @@ const InputNavn = (props: Props) => {
       label={"Navn *"}
       required={true}
       value={props.value}
-      onChange={event => event.currentTarget.value}
+      onChange={event => props.onChange(event.currentTarget.value)}
     />
   );
 };
