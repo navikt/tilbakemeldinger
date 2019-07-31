@@ -9,24 +9,37 @@ import { baseUrl } from "../../App";
 import InputNavn from "../../components/input-fields/InputNavn";
 import InputTelefon from "../../components/input-fields/InputTelefon";
 import InputMelding from "../../components/input-fields/InputMelding";
+import { postFeilOgMangler, postRosTilNav } from "../../clients/apiClient";
 
-const FeilOgMangler = (props: RouteComponentProps) => {
+export interface FeilOgMangler {
+  navn: string;
+  telefonnummer: string;
+  feiltype: string;
+  melding: string;
+}
+
+const FOM = (props: RouteComponentProps) => {
   document.title = "Feil og mangler - www.nav.no";
 
   const [navn, settNavn] = useState("");
-  const [tlfnr, settTlfnr] = useState("");
+  const [telefonnummer, settTlfnr] = useState("");
   const [melding, settMelding] = useState("");
-  const [rosTilHvem, settRosTilHvem] = useState();
+  const [feiltype, settFeiltype] = useState();
 
-  const onRosTilHvemClick = (
+  const onSettFeiltypeClick = (
     event: React.SyntheticEvent<EventTarget>,
     value: string
-  ) => settRosTilHvem(value);
+  ) => feiltype(value);
 
-  const send = () => {
-    console.log("Send");
-    props.history.push(`${props.location.pathname}/takk`);
-  };
+  const send = () =>
+    postFeilOgMangler({
+      navn,
+      telefonnummer,
+      feiltype,
+      melding
+    })
+      .then(() => props.history.push(`${props.location.pathname}/takk`))
+      .catch(console.error);
 
   return (
     <>
@@ -48,7 +61,7 @@ const FeilOgMangler = (props: RouteComponentProps) => {
           className="ros-til-nav__kolonne ros-til-nav__felt"
           style={{ paddingLeft: "0.25rem" }}
         >
-          <InputTelefon value={tlfnr} onChange={settTlfnr} />
+          <InputTelefon value={telefonnummer} onChange={settTlfnr} />
         </div>
       </div>
       <RadioPanelGruppe
@@ -60,10 +73,10 @@ const FeilOgMangler = (props: RouteComponentProps) => {
             value: "universell-utforming"
           }
         ]}
-        checked={rosTilHvem}
+        checked={feiltype}
         name={"type-feil"}
         legend={"Hva slags feil eller mangel fant du? *"}
-        onChange={onRosTilHvemClick}
+        onChange={onSettFeiltypeClick}
       />
       <div className="ros-til-nav__felt">
         <InputMelding onChange={settMelding} value={melding} />
@@ -81,4 +94,4 @@ const FeilOgMangler = (props: RouteComponentProps) => {
     </>
   );
 };
-export default withRouter(FeilOgMangler);
+export default withRouter(FOM);

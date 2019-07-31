@@ -2,6 +2,7 @@ import Environment from "../utils/Environments";
 import { HTTPError } from "../components/error/Error";
 import { logApiError } from "../utils/logger";
 import { RosTilNav } from "../pages/ros-til-nav/Ros";
+import { FeilOgMangler } from "../pages/feil-og-mangler/FeilOgMangler";
 
 const { loginUrl, baseUrl, apiUrl } = Environment();
 const parseJson = (data: any) => data.json();
@@ -61,3 +62,6 @@ export const fetchAuthInfo = () =>
 
 export const postRosTilNav = (data: RosTilNav) =>
   sendJson(`${apiUrl}/ros`, data);
+
+export const postFeilOgMangler = (data: FeilOgMangler) =>
+  sendJson(`${apiUrl}/feil-og-mangler`, data);
