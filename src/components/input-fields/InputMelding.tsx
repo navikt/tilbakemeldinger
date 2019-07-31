@@ -1,6 +1,5 @@
 import { Textarea } from "nav-frontend-skjema";
-import React, { ChangeEvent, SyntheticEvent } from "react";
-import { instanceOf } from "prop-types";
+import React, { SyntheticEvent } from "react";
 
 interface Props {
   onChange: (value: string) => void;
