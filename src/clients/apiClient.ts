@@ -1,19 +1,13 @@
 import Environment from "../utils/Environments";
 import { HTTPError } from "../components/error/Error";
 import { logApiError } from "../utils/logger";
+import { RosTilNav } from "../pages/ros-til-nav/Ros";
 
-const { loginUrl, baseUrl } = Environment();
+const { loginUrl, baseUrl, apiUrl } = Environment();
 const parseJson = (data: any) => data.json();
 
 export const sendTilLogin = () => {
   window.location.assign(`${loginUrl}?redirect=${window.location.href}`);
-};
-
-const sjekkAuth = (response: Response): any => {
-  if (response.status === 401 || response.status === 403) {
-    sendTilLogin();
-  }
-  return response;
 };
 
 const sjekkForFeil = (url: string, response: Response) => {
@@ -28,13 +22,29 @@ const sjekkForFeil = (url: string, response: Response) => {
   }
 };
 
-const hentJsonOgSjekkAuth = (url: string) =>
+const hentJson = (url: string) =>
   fetch(url, {
     method: "GET",
     headers: { "Content-Type": "application/json;charset=UTF-8" },
     credentials: "include"
   })
-    .then(sjekkAuth)
+    .then(response => sjekkForFeil(url, response))
+    .then(parseJson)
+    .catch((err: string & HTTPError) => {
+      const error = {
+        code: err.code || 404,
+        text: err.text || err
+      };
+      logApiError(url, error);
+      throw error;
+    });
+
+const sendJson = (url: string, data: RosTilNav) =>
+  fetch(`${apiUrl}/ros-til-nav`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json;charset=UTF-8" }
+  })
     .then(response => sjekkForFeil(url, response))
     .then(parseJson)
     .catch((err: string & HTTPError) => {
@@ -47,4 +57,7 @@ const hentJsonOgSjekkAuth = (url: string) =>
     });
 
 export const fetchAuthInfo = () =>
-  hentJsonOgSjekkAuth(`${baseUrl}/innloggingslinje-api/auth`);
+  hentJson(`${baseUrl}/innloggingslinje-api/auth`);
+
+export const postRosTilNav = (data: RosTilNav) =>
+  sendJson(`${apiUrl}/ros`, data);

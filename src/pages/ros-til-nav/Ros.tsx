@@ -1,30 +1,45 @@
 import React, { useState } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "../../assets/Veileder.svg";
-import {
-  Input,
-  RadioPanelGruppe,
-  TextareaControlled
-} from "nav-frontend-skjema";
+import { RadioPanelGruppe } from "nav-frontend-skjema";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import Lenke from "nav-frontend-lenker";
 import { baseUrl } from "../../App";
-import InputNavn from "../../components/input-navn/InputNavn";
+import InputNavn from "../../components/input-fields/InputNavn";
+import InputTelefon from "../../components/input-fields/InputTelefon";
+import InputMelding from "../../components/input-fields/InputMelding";
+import { postRosTilNav } from "../../clients/apiClient";
+
+export interface RosTilNav {
+  navn: string;
+  telefonnummer: string;
+  hvemRoses: string;
+  melding: string;
+}
 
 const Ros = (props: RouteComponentProps) => {
   document.title = "Ros til NAV - www.nav.no";
-  const [rosTilHvem, settRosTilHvem] = useState();
 
-  const onRosTilHvemClick = (
+  const [navn, settNavn] = useState("");
+  const [telefonnummer, settTlfnr] = useState("");
+  const [melding, settMelding] = useState("");
+  const [hvemRoses, settHvemRoses] = useState();
+
+  const onHvemRosesChange = (
     event: React.SyntheticEvent<EventTarget>,
     value: string
-  ) => settRosTilHvem(value);
+  ) => settHvemRoses(value);
 
-  const send = () => {
-    console.log("Send");
-    props.history.push(`${props.location.pathname}/takk`);
-  };
+  const send = () =>
+    postRosTilNav({
+      navn,
+      telefonnummer,
+      hvemRoses,
+      melding
+    })
+      .then(() => props.history.push(`${props.location.pathname}/takk`))
+      .catch(console.error);
 
   return (
     <>
@@ -42,13 +57,13 @@ const Ros = (props: RouteComponentProps) => {
           className="ros-til-nav__kolonne ros-til-nav__felt"
           style={{ paddingRight: "0.25rem" }}
         >
-          <InputNavn />
+          <InputNavn value={navn} onChange={settNavn} />
         </div>
         <div
           className="ros-til-nav__kolonne ros-til-nav__felt"
           style={{ paddingLeft: "0.25rem" }}
         >
-          <Input label={"Telefonnummer"} />
+          <InputTelefon value={telefonnummer} onChange={settTlfnr} />
         </div>
       </div>
       <RadioPanelGruppe
@@ -57,17 +72,13 @@ const Ros = (props: RouteComponentProps) => {
           { label: "NAVs digitale løsninger", value: "nav-digitale-losninger" },
           { label: "NAV-kontor", value: "nav-kontor" }
         ]}
-        checked={rosTilHvem}
+        checked={hvemRoses}
         name={"ros-til-hvem"}
         legend={"Hvem vil du gi ros til? *"}
-        onChange={onRosTilHvemClick}
+        onChange={onHvemRosesChange}
       />
       <div className="ros-til-nav__felt">
-        <TextareaControlled
-          defaultValue={""}
-          label={"Melding til NAV *"}
-          required={true}
-        />
+        <InputMelding onChange={settMelding} value={melding} />
       </div>
       <div className="ros-til-nav__knapper">
         <div className="ros-til-nav__knapp">

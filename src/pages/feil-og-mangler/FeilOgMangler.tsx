@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "../../assets/Veileder.svg";
-import {
-  Input,
-  RadioPanelGruppe,
-  TextareaControlled
-} from "nav-frontend-skjema";
+import { RadioPanelGruppe } from "nav-frontend-skjema";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import Lenke from "nav-frontend-lenker";
 import { baseUrl } from "../../App";
-import InputNavn from "../../components/input-navn/InputNavn";
+import InputNavn from "../../components/input-fields/InputNavn";
+import InputTelefon from "../../components/input-fields/InputTelefon";
+import InputMelding from "../../components/input-fields/InputMelding";
 
 const FeilOgMangler = (props: RouteComponentProps) => {
   document.title = "Feil og mangler - www.nav.no";
+
+  const [navn, settNavn] = useState("");
+  const [tlfnr, settTlfnr] = useState("");
+  const [melding, settMelding] = useState("");
   const [rosTilHvem, settRosTilHvem] = useState();
 
   const onRosTilHvemClick = (
@@ -40,13 +42,13 @@ const FeilOgMangler = (props: RouteComponentProps) => {
           className="ros-til-nav__kolonne ros-til-nav__felt"
           style={{ paddingRight: "0.25rem" }}
         >
-          <InputNavn />
+          <InputNavn value={navn} onChange={settNavn} />
         </div>
         <div
           className="ros-til-nav__kolonne ros-til-nav__felt"
           style={{ paddingLeft: "0.25rem" }}
         >
-          <Input label={"Telefonnummer"} />
+          <InputTelefon value={tlfnr} onChange={settTlfnr} />
         </div>
       </div>
       <RadioPanelGruppe
@@ -64,11 +66,7 @@ const FeilOgMangler = (props: RouteComponentProps) => {
         onChange={onRosTilHvemClick}
       />
       <div className="ros-til-nav__felt">
-        <TextareaControlled
-          defaultValue={""}
-          label={"Melding til NAV *"}
-          required={true}
-        />
+        <InputMelding onChange={settMelding} value={melding} />
       </div>
       <div className="ros-til-nav__knapper">
         <div className="ros-til-nav__knapp">
