@@ -40,7 +40,7 @@ const hentJson = (url: string) =>
       throw error;
     });
 
-const sendJson = (url: string, data: RosTilNav) =>
+const sendJson = (url: string, data: RosTilNav | FeilOgMangler) =>
   fetch(`${apiUrl}/ros-til-nav`, {
     method: "POST",
     body: JSON.stringify(data),

@@ -9,7 +9,7 @@ import { baseUrl } from "../../App";
 import InputNavn from "../../components/input-fields/InputNavn";
 import InputTelefon from "../../components/input-fields/InputTelefon";
 import InputMelding from "../../components/input-fields/InputMelding";
-import { postFeilOgMangler, postRosTilNav } from "../../clients/apiClient";
+import { postFeilOgMangler } from "../../clients/apiClient";
 
 export interface FeilOgMangler {
   navn: string;
@@ -29,7 +29,7 @@ const FOM = (props: RouteComponentProps) => {
   const onSettFeiltypeClick = (
     event: React.SyntheticEvent<EventTarget>,
     value: string
-  ) => feiltype(value);
+  ) => settFeiltype(value);
 
   const send = () =>
     postFeilOgMangler({
