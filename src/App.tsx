@@ -11,25 +11,17 @@ import { AuthInfo } from "./types/authInfo";
 import { HTTPError } from "./components/error/Error";
 import Takk from "./pages/takk/Takk";
 
-export type FetchAuthInfo =
-  | { status: "LOADING" }
-  | { status: "RESULT"; data: AuthInfo }
-  | { status: "ERROR"; error: HTTPError };
-
 export const baseUrl = "/person/tilbakemeldinger";
 const App = () => {
   const [{ auth }, dispatch] = useStore();
 
   useEffect(() => {
-    if (auth.status === "LOADING") {
+    if (!auth.authenticated)
       fetchAuthInfo()
         .then((authInfo: AuthInfo) =>
           dispatch({ type: "SETT_AUTH_RESULT", payload: authInfo })
         )
-        .catch((error: HTTPError) =>
-          dispatch({ type: "SETT_AUTH_ERROR", payload: error })
-        );
-    }
+        .catch((error: HTTPError) => console.error(error));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -47,7 +39,7 @@ const App = () => {
           />
           <Route
             exact
-            path={`(|${baseUrl})/(ros-til-nav)/takk`}
+            path={`(|${baseUrl})/(ros-til-nav|feil-og-mangler)/takk`}
             component={Takk}
           />
           <Route component={PageNotFound} />

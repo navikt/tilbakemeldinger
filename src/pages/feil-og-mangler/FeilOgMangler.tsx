@@ -1,30 +1,45 @@
 import React, { useState } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "../../assets/Veileder.svg";
-import {
-  Input,
-  RadioPanelGruppe,
-  TextareaControlled
-} from "nav-frontend-skjema";
+import { RadioPanelGruppe } from "nav-frontend-skjema";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import Lenke from "nav-frontend-lenker";
 import { baseUrl } from "../../App";
-import InputNavn from "../../components/input-navn/InputNavn";
+import InputNavn from "../../components/input-fields/InputNavn";
+import InputTelefon from "../../components/input-fields/InputTelefon";
+import InputMelding from "../../components/input-fields/InputMelding";
+import { postFeilOgMangler } from "../../clients/apiClient";
 
-const FeilOgMangler = (props: RouteComponentProps) => {
+export interface FeilOgMangler {
+  navn: string;
+  telefonnummer: string;
+  feiltype: string;
+  melding: string;
+}
+
+const FOM = (props: RouteComponentProps) => {
   document.title = "Feil og mangler - www.nav.no";
-  const [rosTilHvem, settRosTilHvem] = useState();
 
-  const onRosTilHvemClick = (
+  const [navn, settNavn] = useState("");
+  const [telefonnummer, settTlfnr] = useState("");
+  const [melding, settMelding] = useState("");
+  const [feiltype, settFeiltype] = useState();
+
+  const onSettFeiltypeClick = (
     event: React.SyntheticEvent<EventTarget>,
     value: string
-  ) => settRosTilHvem(value);
+  ) => settFeiltype(value);
 
-  const send = () => {
-    console.log("Send");
-    props.history.push(`${props.location.pathname}/takk`);
-  };
+  const send = () =>
+    postFeilOgMangler({
+      navn,
+      telefonnummer,
+      feiltype,
+      melding
+    })
+      .then(() => props.history.push(`${props.location.pathname}/takk`))
+      .catch(console.error);
 
   return (
     <>
@@ -40,13 +55,13 @@ const FeilOgMangler = (props: RouteComponentProps) => {
           className="ros-til-nav__kolonne ros-til-nav__felt"
           style={{ paddingRight: "0.25rem" }}
         >
-          <InputNavn />
+          <InputNavn value={navn} onChange={settNavn} />
         </div>
         <div
           className="ros-til-nav__kolonne ros-til-nav__felt"
           style={{ paddingLeft: "0.25rem" }}
         >
-          <Input label={"Telefonnummer"} />
+          <InputTelefon value={telefonnummer} onChange={settTlfnr} />
         </div>
       </div>
       <RadioPanelGruppe
@@ -58,17 +73,13 @@ const FeilOgMangler = (props: RouteComponentProps) => {
             value: "universell-utforming"
           }
         ]}
-        checked={rosTilHvem}
+        checked={feiltype}
         name={"type-feil"}
         legend={"Hva slags feil eller mangel fant du? *"}
-        onChange={onRosTilHvemClick}
+        onChange={onSettFeiltypeClick}
       />
       <div className="ros-til-nav__felt">
-        <TextareaControlled
-          defaultValue={""}
-          label={"Melding til NAV *"}
-          required={true}
-        />
+        <InputMelding onChange={settMelding} value={melding} />
       </div>
       <div className="ros-til-nav__knapper">
         <div className="ros-til-nav__knapp">
@@ -83,4 +94,4 @@ const FeilOgMangler = (props: RouteComponentProps) => {
     </>
   );
 };
-export default withRouter(FeilOgMangler);
+export default withRouter(FOM);
