@@ -4,7 +4,6 @@ import VeilederIcon from "../../assets/Veileder.svg";
 import { RadioPanelGruppe } from "nav-frontend-skjema";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import Lenke from "nav-frontend-lenker";
 import { baseUrl } from "../../App";
 import InputNavn from "../../components/input-fields/InputNavn";
 import InputTelefon from "../../components/input-fields/InputTelefon";

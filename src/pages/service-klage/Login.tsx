@@ -1,12 +1,11 @@
 import React from "react";
 import VeilederIcon from "../../assets/Veileder.svg";
-import Lenke from "nav-frontend-lenker";
 import { useStore } from "../../providers/Provider";
 import { baseUrl } from "../../App";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import { Undertittel } from "nav-frontend-typografi";
 import { Hovedknapp } from "nav-frontend-knapper";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Tilbake from "../../components/tilbake/Tilbake";
 import Environment from "../../utils/Environments";
 
@@ -18,7 +17,7 @@ const Login = () => {
   const [{ auth }] = useStore();
 
   if (auth.authenticated) {
-    // return <Redirect to={`${baseUrl}/service-klage`} />;
+    return <Redirect to={`${baseUrl}/service-klage`} />;
   }
 
   return (
