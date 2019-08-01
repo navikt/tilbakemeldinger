@@ -5,16 +5,24 @@ import Tilbake from "../../components/tilbake/Tilbake";
 import { useStore } from "../../providers/Provider";
 import { RadioPanelGruppe } from "nav-frontend-skjema";
 import InputMelding from "../../components/input-fields/InputMelding";
-import InputTelefon from "../../components/input-fields/InputTelefon";
 import InputNavn from "../../components/input-fields/InputNavn";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { baseUrl } from "../../App";
+import InputField from "../../components/input-fields/InputField";
+import { useCookies } from "react-cookie";
+import InputTelefon from "../../components/input-fields/InputTelefon";
 
 const ServiceKlage = (props: RouteComponentProps) => {
   document.title = "ServiceKlage - www.nav.no";
+
+  const [cookies] = useCookies();
+
+  console.log(cookies);
+
   const [{ auth }] = useStore();
   const [navn, settNavn] = useState("");
+  const [fodsensnummer, settFodselsnummer] = useState("");
   const [telefonnummer, settTlfnr] = useState("");
   const [hvaGjelder, settHvaGjelder] = useState();
   const [onskerKontakt, settOnskerKontakt] = useState();
@@ -59,7 +67,11 @@ const ServiceKlage = (props: RouteComponentProps) => {
             className="ros-til-nav__kolonne ros-til-nav__felt"
             style={{ paddingLeft: "0.25rem" }}
           >
-            <InputTelefon value={telefonnummer} onChange={settTlfnr} />
+            <InputField
+              label={"Fodsensnummer"}
+              value={fodsensnummer}
+              onChange={settFodselsnummer}
+            />
           </div>
         </div>
         <RadioPanelGruppe
@@ -99,6 +111,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
           legend={"Ønsker du at vi kontakter deg? *"}
           onChange={onOnskerKontaktChange}
         />
+        <InputTelefon onChange={settTlfnr} value={telefonnummer} />
         <InputMelding onChange={settMelding} value={melding} />
         <div className="ros-til-nav__knapper">
           <div className="ros-til-nav__knapp">
