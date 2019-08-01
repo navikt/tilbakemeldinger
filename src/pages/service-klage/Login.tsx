@@ -32,7 +32,7 @@ const Login = () => {
           Vi anbefaler at du logger inn, slik at trenger du ikke fylle inn like
           mye informasjon.
         </div>
-        <a href={loginUrl}>
+        <a href={`${loginUrl}?redirect=${window.location.href}`}>
           <Hovedknapp>Logg inn</Hovedknapp>
         </a>
         <div className="lenke">
