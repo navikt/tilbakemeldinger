@@ -11,6 +11,7 @@ import skiplinks from "./clients/apiMock/decorator/decorator-skiplinks";
 import styles from "./clients/apiMock/decorator/decorator-styles";
 import { StoreProvider } from "./providers/Provider";
 import { initialState, reducer } from "./providers/Store";
+import { CookiesProvider } from "react-cookie";
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
@@ -47,7 +48,9 @@ const init = async () => {
   }
   ReactDOM.render(
     <StoreProvider initialState={initialState} reducer={reducer}>
-      <App />
+      <CookiesProvider>
+        <App />
+      </CookiesProvider>
     </StoreProvider>,
     document.getElementById("app")
   );
