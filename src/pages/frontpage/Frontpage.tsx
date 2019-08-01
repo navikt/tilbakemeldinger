@@ -21,7 +21,11 @@ const Frontpage = () => {
             className="lenke__panel"
             href={lenke.lenke}
             linkCreator={props => {
-              return (
+              return lenke.external ? (
+                <a href={lenke.lenke} className={props.className}>
+                  {props.children}
+                </a>
+              ) : (
                 <Link to={lenke.lenke} className={props.className}>
                   {props.children}
                 </Link>

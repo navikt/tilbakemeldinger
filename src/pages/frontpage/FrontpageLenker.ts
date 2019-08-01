@@ -3,6 +3,7 @@ export interface Lenke {
   beskrivelse: string;
   lenke: string;
   lenkeTekst: string;
+  external?: boolean;
 }
 
 export const lenker: Lenke[] = [
@@ -12,7 +13,8 @@ export const lenker: Lenke[] = [
       "Har du fått helt eller delvis avslag på søknaden din, kan du klage på avslaget. Får du ikke medhold i klagen din i NAV, kan du med noen unntak anke til Trygderetten. ",
     lenke:
       "https://www.nav.no/no/Person/Skjemaer-for-privatpersoner/klage-pa-vedtak",
-    lenkeTekst: "Send klage eller anke på vedtak"
+    lenkeTekst: "Send klage eller anke på vedtak",
+    external: true
   },
   {
     tittel: "Tilbakemelding på service",
