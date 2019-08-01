@@ -16,7 +16,7 @@ import InputTelefon from "../../components/input-fields/InputTelefon";
 const ServiceKlage = (props: RouteComponentProps) => {
   document.title = "ServiceKlage - www.nav.no";
 
-  const [cookies] = useCookies();
+  const [cookies] = useCookies(["selvbetjening-idtoken"]);
 
   console.log(cookies);
 
