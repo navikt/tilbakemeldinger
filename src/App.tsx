@@ -17,6 +17,7 @@ import Takk from "./pages/takk/Takk";
 import ServiceKlage from "./pages/service-klage/ServiceKlage";
 import Login from "./pages/service-klage/Login";
 import { KontaktInfo } from "./types/kontaktInfo";
+import { Fodselsnr } from "./types/fodselsnr";
 
 export const baseUrl = "/person/tilbakemeldinger";
 const App = () => {
@@ -37,7 +38,7 @@ const App = () => {
               )
               .catch((error: HTTPError) => console.error(error));
             fetchFodselsnr()
-              .then((fodselsnr: string) =>
+              .then((fodselsnr: Fodselsnr) =>
                 dispatch({
                   type: "SETT_FODSELSNR",
                   payload: fodselsnr

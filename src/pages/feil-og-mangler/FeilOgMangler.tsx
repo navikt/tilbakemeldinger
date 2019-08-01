@@ -10,7 +10,6 @@ import InputTelefon from "../../components/input-fields/InputTelefon";
 import InputMelding from "../../components/input-fields/InputMelding";
 import { postFeilOgMangler } from "../../clients/apiClient";
 import Tilbake from "../../components/tilbake/Tilbake";
-import { useStore } from "../../providers/Provider";
 
 export interface FeilOgMangler {
   navn: string;
@@ -21,11 +20,8 @@ export interface FeilOgMangler {
 
 const FOM = (props: RouteComponentProps) => {
   document.title = "Feil og mangler - www.nav.no";
-  const [{ kontaktInfo }] = useStore();
   const [navn, settNavn] = useState("");
-  const [telefonnummer, settTlfnr] = useState(
-    kontaktInfo.mobiltelefonnummer || ""
-  );
+  const [telefonnummer, settTlfnr] = useState("");
   const [melding, settMelding] = useState("");
   const [feiltype, settFeiltype] = useState();
 

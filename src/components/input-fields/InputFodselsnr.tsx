@@ -10,18 +10,24 @@ interface Props {
 const InputFodselsnr = (props: Props) => {
   const [{ auth, fodselsnr }] = useStore();
 
+  if (auth.authenticated && fodselsnr !== props.value) {
+    props.onChange(fodselsnr);
+  }
+
+  const formattert = props.value.replace(/^(.{6})(.*)$/, "$1 $2");
+
   return auth.authenticated && fodselsnr ? (
     <Input
       label={"Fødselsnummer *"}
       required={true}
-      value={props.value}
+      value={formattert}
       disabled={true}
     />
   ) : (
     <Input
       label={"Fødselsnummer *"}
       required={true}
-      value={props.value}
+      value={formattert}
       onChange={event => props.onChange(event.currentTarget.value)}
     />
   );

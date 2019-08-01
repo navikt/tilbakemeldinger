@@ -24,7 +24,9 @@ export type Action =
     }
   | {
       type: "SETT_FODSELSNR";
-      payload: string;
+      payload: {
+        fodselsnr: string;
+      };
     }
   | {
       type: "SETT_KONTAKT_INFO_RESULT";
@@ -41,7 +43,7 @@ export const reducer = (state: Store, action: Action) => {
     case "SETT_FODSELSNR":
       return {
         ...state,
-        fodselsnr: action.payload
+        fodselsnr: action.payload.fodselsnr
       };
     case "SETT_KONTAKT_INFO_RESULT":
       return {
