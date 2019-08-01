@@ -1,7 +1,8 @@
 import React from "react";
 import { Normaltekst, Sidetittel, Undertittel } from "nav-frontend-typografi";
 import { lenker } from "./FrontpageLenker";
-import Lenkepanel from "nav-frontend-lenkepanel";
+import { LenkepanelBase } from "nav-frontend-lenkepanel";
+import { Link } from "react-router-dom";
 
 const Frontpage = () => {
   document.title = "Tilbakemeldinger - www.nav.no";
@@ -14,15 +15,24 @@ const Frontpage = () => {
       </header>
       <div className="frontpage__content">
         {lenker.map((lenke, key) => (
-          <Lenkepanel
+          <LenkepanelBase
             key={key}
-            href={lenke.lenke}
-            tittelProps="sidetittel"
             border
+            className="lenke__panel"
+            href={lenke.lenke}
+            linkCreator={props => {
+              return (
+                <Link to={lenke.lenke} className={props.className}>
+                  {props.children}
+                </Link>
+              );
+            }}
           >
             <div className="lenke__container">
               <div className="lenke__tittel">
-                <Undertittel>{lenke.tittel}</Undertittel>
+                <Undertittel className="lenkepanel__heading">
+                  {lenke.tittel}
+                </Undertittel>
               </div>
               <div className="lenke__beskrivelse">
                 <Normaltekst>{lenke.beskrivelse}</Normaltekst>
@@ -31,7 +41,7 @@ const Frontpage = () => {
                 <Normaltekst>{lenke.lenkeTekst}</Normaltekst>
               </div>
             </div>
-          </Lenkepanel>
+          </LenkepanelBase>
         ))}
       </div>
     </div>
