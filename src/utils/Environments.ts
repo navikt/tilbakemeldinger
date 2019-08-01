@@ -17,7 +17,7 @@ const Environment = () => {
       baseUrl: "https://www-q0.nav.no",
       appUrl: "https://www-q0.nav.no/person/tilbakemeldinger",
       apiUrl: "https://www-q0.nav.no/person/tilbakemeldinger-api",
-      personInfoApiUrl: "http://www-q0.nav.no/person/personopplysninger-api",
+      personInfoApiUrl: "https://www-q0.nav.no/person/personopplysninger-api",
       tjenesteUrl: "https://tjenester-q0.nav.no",
       loginUrl: "https://loginservice-q.nav.no/login",
       logoutUrl: "https://loginservice-q.nav.no/slo"
@@ -28,7 +28,7 @@ const Environment = () => {
     baseUrl: "https://www.nav.no",
     appUrl: "https://www.nav.no/person/tilbakemeldinger",
     apiUrl: "https://www.nav.no/person/tilbakemeldinger-api",
-    personInfoApiUrl: "http://www.nav.no/person/personopplysninger-api",
+    personInfoApiUrl: "https://www.nav.no/person/personopplysninger-api",
     tjenesteUrl: "https://tjenester.nav.no",
     loginUrl: "https://loginservice.nav.no/login",
     logoutUrl: "https://loginservice.nav.no/slo"
