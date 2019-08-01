@@ -10,15 +10,10 @@ import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { baseUrl } from "../../App";
 import InputField from "../../components/input-fields/InputField";
-import { useCookies } from "react-cookie";
 import InputTelefon from "../../components/input-fields/InputTelefon";
 
 const ServiceKlage = (props: RouteComponentProps) => {
   document.title = "ServiceKlage - www.nav.no";
-
-  const [cookies] = useCookies(["selvbetjening-idtoken"]);
-
-  console.log(cookies);
 
   const [{ auth }] = useStore();
   const [navn, settNavn] = useState("");
