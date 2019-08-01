@@ -5,6 +5,7 @@ const Environment = () => {
       baseUrl: "http://localhost:8080",
       appUrl: "http://localhost:8080/person/tilbakemeldinger",
       apiUrl: "http://localhost:8080/person/tilbakemeldinger-api",
+      personInfoApiUrl: "http://localhost:8080/person/personopplysninger-api",
       tjenesteUrl: "https://tjenester-q0.nav.no",
       loginUrl: "http://localhost:8080/personbruker-api/local/cookie",
       logoutUrl: "#"
@@ -16,6 +17,7 @@ const Environment = () => {
       baseUrl: "https://www-q0.nav.no",
       appUrl: "https://www-q0.nav.no/person/tilbakemeldinger",
       apiUrl: "https://www-q0.nav.no/person/tilbakemeldinger-api",
+      personInfoApiUrl: "https://www-q0.nav.no/person/personopplysninger-api",
       tjenesteUrl: "https://tjenester-q0.nav.no",
       loginUrl: "https://loginservice-q.nav.no/login",
       logoutUrl: "https://loginservice-q.nav.no/slo"
@@ -26,6 +28,7 @@ const Environment = () => {
     baseUrl: "https://www.nav.no",
     appUrl: "https://www.nav.no/person/tilbakemeldinger",
     apiUrl: "https://www.nav.no/person/tilbakemeldinger-api",
+    personInfoApiUrl: "https://www.nav.no/person/personopplysninger-api",
     tjenesteUrl: "https://tjenester.nav.no",
     loginUrl: "https://loginservice.nav.no/login",
     logoutUrl: "https://loginservice.nav.no/slo"
