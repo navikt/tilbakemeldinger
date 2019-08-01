@@ -60,7 +60,7 @@ const sendJson = (url: string, data: RosTilNav | FeilOgMangler) =>
 export const fetchAuthInfo = () =>
   hentJson(`${baseUrl}/innloggingslinje-api/auth`);
 
-export const fetchPersonnr = () => hentJson(`${apiUrl}/personnr`);
+export const fetchFodselsnr = () => hentJson(`${apiUrl}/fodselsnr`);
 
 export const fetchKontaktInfo = () =>
   hentJson(`${personInfoApiUrl}/kontaktinformasjon`);

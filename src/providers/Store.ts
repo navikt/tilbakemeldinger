@@ -5,7 +5,7 @@ export const initialState = {
   auth: {
     authenticated: false
   } as AuthInfo,
-  personnr: "",
+  fodselsnr: "",
   kontaktInfo: {
     mobiltelefonnummer: ""
   }
@@ -13,7 +13,7 @@ export const initialState = {
 
 export interface Store {
   auth: AuthInfo;
-  personnr: string;
+  fodselsnr: string;
   kontaktInfo: KontaktInfo;
 }
 
@@ -23,7 +23,7 @@ export type Action =
       payload: AuthInfo;
     }
   | {
-      type: "SETT_PERSONNR";
+      type: "SETT_FODSELSNR";
       payload: string;
     }
   | {
@@ -38,10 +38,10 @@ export const reducer = (state: Store, action: Action) => {
         ...state,
         auth: action.payload as AuthInfo
       };
-    case "SETT_PERSONNR":
+    case "SETT_FODSELSNR":
       return {
         ...state,
-        personnr: action.payload
+        fodselsnr: action.payload
       };
     case "SETT_KONTAKT_INFO_RESULT":
       return {

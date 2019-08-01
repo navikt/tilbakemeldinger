@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "../../assets/Veileder.svg";
-import { RadioPanelGruppe } from "nav-frontend-skjema";
+import RadioPanelGruppe from "../../components/input-fields/RadioPanelGruppe";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import { baseUrl } from "../../App";
@@ -28,11 +28,6 @@ const FOM = (props: RouteComponentProps) => {
   );
   const [melding, settMelding] = useState("");
   const [feiltype, settFeiltype] = useState();
-
-  const onSettFeiltypeClick = (
-    event: React.SyntheticEvent<EventTarget>,
-    value: string
-  ) => settFeiltype(value);
 
   const send = () =>
     postFeilOgMangler({
@@ -77,7 +72,7 @@ const FOM = (props: RouteComponentProps) => {
         checked={feiltype}
         name={"type-feil"}
         legend={"Hva slags feil eller mangel fant du? *"}
-        onChange={onSettFeiltypeClick}
+        onChange={settFeiltype}
       />
       <div className="ros-til-nav__felt">
         <InputMelding onChange={settMelding} value={melding} />

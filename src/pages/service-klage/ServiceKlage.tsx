@@ -3,41 +3,26 @@ import VeilederIcon from "../../assets/Veileder.svg";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import Tilbake from "../../components/tilbake/Tilbake";
 import { useStore } from "../../providers/Provider";
-import { RadioPanelGruppe } from "nav-frontend-skjema";
+import RadioPanelGruppe from "../../components/input-fields/RadioPanelGruppe";
 import InputMelding from "../../components/input-fields/InputMelding";
 import InputNavn from "../../components/input-fields/InputNavn";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { baseUrl } from "../../App";
-import InputField from "../../components/input-fields/InputField";
 import InputTelefon from "../../components/input-fields/InputTelefon";
+import InputFodselsnr from "../../components/input-fields/InputFodselsnr";
 
 const ServiceKlage = (props: RouteComponentProps) => {
   document.title = "ServiceKlage - www.nav.no";
 
-  const [{ auth }] = useStore();
+  const [{ auth, fodselsnr }] = useStore();
   const [navn, settNavn] = useState("");
-  const [fodsensnummer, settFodselsnummer] = useState("");
+  const [fodsensnummer, settFodselsnummer] = useState(fodselsnr || "");
   const [telefonnummer, settTlfnr] = useState("");
   const [hvaGjelder, settHvaGjelder] = useState();
   const [onskerKontakt, settOnskerKontakt] = useState();
   const [hvemFra, settHvemFra] = useState();
   const [melding, settMelding] = useState("");
-
-  const onHvaGjelderChange = (
-    event: React.SyntheticEvent<EventTarget>,
-    value: string
-  ) => settHvaGjelder(value);
-
-  const onHvemFrahange = (
-    event: React.SyntheticEvent<EventTarget>,
-    value: string
-  ) => settHvemFra(value);
-
-  const onOnskerKontaktChange = (
-    event: React.SyntheticEvent<EventTarget>,
-    value: string
-  ) => settOnskerKontakt(value);
 
   const send = () => console.log("Send");
 
@@ -62,10 +47,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
             className="ros-til-nav__kolonne ros-til-nav__felt"
             style={{ paddingLeft: "0.25rem" }}
           >
-            <InputField
-              label={"Fodsensnummer"}
-              value={fodsensnummer}
+            <InputFodselsnr
               onChange={settFodselsnummer}
+              value={fodsensnummer}
             />
           </div>
         </div>
@@ -80,7 +64,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
           checked={hvaGjelder}
           name={"hva-gjelder-tilbakemeldingen"}
           legend={"Hva gjelder tilbakemeldingen? *"}
-          onChange={onHvaGjelderChange}
+          onChange={settHvaGjelder}
         />
         <RadioPanelGruppe
           radios={[
@@ -91,7 +75,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
           checked={hvemFra}
           name={"hvem-fra"}
           legend={"Hvem skriver du på vegne av? *"}
-          onChange={onHvemFrahange}
+          onChange={settHvemFra}
         />
         <RadioPanelGruppe
           radios={[
@@ -104,7 +88,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
           checked={onskerKontakt}
           name={"onsker-kontakt"}
           legend={"Ønsker du at vi kontakter deg? *"}
-          onChange={onOnskerKontaktChange}
+          onChange={settOnskerKontakt}
         />
         <InputTelefon onChange={settTlfnr} value={telefonnummer} />
         <InputMelding onChange={settMelding} value={melding} />

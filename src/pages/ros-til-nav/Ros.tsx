@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "../../assets/Veileder.svg";
-import { RadioPanelGruppe } from "nav-frontend-skjema";
+import RadioPanelGruppe from "../../components/input-fields/RadioPanelGruppe";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import { baseUrl } from "../../App";
@@ -25,11 +25,6 @@ const Ros = (props: RouteComponentProps) => {
   const [telefonnummer, settTlfnr] = useState("");
   const [melding, settMelding] = useState("");
   const [hvemRoses, settHvemRoses] = useState();
-
-  const onHvemRosesChange = (
-    event: React.SyntheticEvent<EventTarget>,
-    value: string
-  ) => settHvemRoses(value);
 
   const send = () =>
     postRosTilNav({
@@ -73,7 +68,7 @@ const Ros = (props: RouteComponentProps) => {
         checked={hvemRoses}
         name={"ros-til-hvem"}
         legend={"Hvem vil du gi ros til? *"}
-        onChange={onHvemRosesChange}
+        onChange={settHvemRoses}
       />
       <div className="ros-til-nav__felt">
         <InputMelding onChange={settMelding} value={melding} />

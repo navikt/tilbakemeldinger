@@ -8,7 +8,7 @@ import FeilOgMangler from "./pages/feil-og-mangler/FeilOgMangler";
 import {
   fetchAuthInfo,
   fetchKontaktInfo,
-  fetchPersonnr
+  fetchFodselsnr
 } from "./clients/apiClient";
 import { useStore } from "./providers/Provider";
 import { AuthInfo } from "./types/authInfo";
@@ -36,11 +36,11 @@ const App = () => {
                 })
               )
               .catch((error: HTTPError) => console.error(error));
-            fetchPersonnr()
-              .then((personnr: string) =>
+            fetchFodselsnr()
+              .then((fodselsnr: string) =>
                 dispatch({
-                  type: "SETT_PERSONNR",
-                  payload: personnr
+                  type: "SETT_FODSELSNR",
+                  payload: fodselsnr
                 })
               )
               .catch((error: HTTPError) => console.error(error));
