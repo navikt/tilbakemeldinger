@@ -7,7 +7,7 @@ export const initialState = {
   } as AuthInfo,
   personnr: "",
   kontaktInfo: {
-    telefonnummer: ""
+    mobiltelefonnummer: ""
   }
 };
 
