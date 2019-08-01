@@ -5,7 +5,11 @@ import Header from "./components/header/Header";
 import Ros from "./pages/ros-til-nav/Ros";
 import PageNotFound from "./pages/404/404";
 import FeilOgMangler from "./pages/feil-og-mangler/FeilOgMangler";
-import { fetchAuthInfo, fetchKontaktInfo } from "./clients/apiClient";
+import {
+  fetchAuthInfo,
+  fetchKontaktInfo,
+  fetchPersonnr
+} from "./clients/apiClient";
 import { useStore } from "./providers/Provider";
 import { AuthInfo } from "./types/authInfo";
 import { HTTPError } from "./components/error/Error";
@@ -21,19 +25,28 @@ const App = () => {
   useEffect(() => {
     if (!auth.authenticated)
       fetchAuthInfo()
-        .then((authInfo: AuthInfo) =>
-          dispatch({ type: "SETT_AUTH_RESULT", payload: authInfo })
-        )
+        .then((authInfo: AuthInfo) => {
+          dispatch({ type: "SETT_AUTH_RESULT", payload: authInfo });
+          if (authInfo.authenticated) {
+            fetchKontaktInfo()
+              .then((kontaktInfo: KontaktInfo) =>
+                dispatch({
+                  type: "SETT_KONTAKT_INFO_RESULT",
+                  payload: kontaktInfo
+                })
+              )
+              .catch((error: HTTPError) => console.error(error));
+            fetchPersonnr()
+              .then((personnr: string) =>
+                dispatch({
+                  type: "SETT_PERSONNR",
+                  payload: personnr
+                })
+              )
+              .catch((error: HTTPError) => console.error(error));
+          }
+        })
         .catch((error: HTTPError) => console.error(error));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    fetchKontaktInfo()
-      .then((kontaktInfo: KontaktInfo) =>
-        dispatch({ type: "SETT_KONTAKT_INFO_RESULT", payload: kontaktInfo })
-      )
-      .catch((error: HTTPError) => console.error(error));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

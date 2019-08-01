@@ -5,6 +5,7 @@ export const initialState = {
   auth: {
     authenticated: false
   } as AuthInfo,
+  personnr: "",
   kontaktInfo: {
     telefonnummer: ""
   }
@@ -12,6 +13,7 @@ export const initialState = {
 
 export interface Store {
   auth: AuthInfo;
+  personnr: string;
   kontaktInfo: KontaktInfo;
 }
 
@@ -19,6 +21,10 @@ export type Action =
   | {
       type: "SETT_AUTH_RESULT";
       payload: AuthInfo;
+    }
+  | {
+      type: "SETT_PERSONNR";
+      payload: string;
     }
   | {
       type: "SETT_KONTAKT_INFO_RESULT";
@@ -31,6 +37,11 @@ export const reducer = (state: Store, action: Action) => {
       return {
         ...state,
         auth: action.payload as AuthInfo
+      };
+    case "SETT_PERSONNR":
+      return {
+        ...state,
+        personnr: action.payload
       };
     case "SETT_KONTAKT_INFO_RESULT":
       return {
