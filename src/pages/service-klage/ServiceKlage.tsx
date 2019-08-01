@@ -2,13 +2,15 @@ import React from "react";
 import VeilederIcon from "../../assets/Veileder.svg";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import Tilbake from "../../components/tilbake/Tilbake";
+import { useStore } from "../../providers/Provider";
 
 const ServiceKlage = () => {
   document.title = "ServiceKlage - www.nav.no";
+  const [{ auth }] = useStore();
 
   return (
     <>
-      <Tilbake to={"/service-klage/login"} />
+      <Tilbake to={auth.authenticated ? "" : "/service-klage/login"} />
       <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
         Takk for at du vil dele din opplevelse med oss! Vi sørger for at rosen
         kommer fram til riktig person. Unngå å nevne sensitive

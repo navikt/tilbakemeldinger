@@ -13,7 +13,6 @@ const { loginUrl } = Environment();
 
 const Login = () => {
   document.title = "Login - www.nav.no";
-
   const [{ auth }] = useStore();
 
   if (auth.authenticated) {
