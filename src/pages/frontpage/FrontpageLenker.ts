@@ -18,7 +18,7 @@ export const lenker: Lenke[] = [
     tittel: "Tilbakemelding på service",
     beskrivelse:
       "Har du blitt møtt på en dårlig måte? Eller hatt en annen negativ opplevelse i møte med NAV?",
-    lenke: "/person/tilbakemeldinger/service-klage",
+    lenke: "/person/tilbakemeldinger/service-klage/login",
     lenkeTekst: "Send tilbakemelding på service"
   },
   {

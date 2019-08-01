@@ -10,6 +10,7 @@ import InputNavn from "../../components/input-fields/InputNavn";
 import InputTelefon from "../../components/input-fields/InputTelefon";
 import InputMelding from "../../components/input-fields/InputMelding";
 import { postFeilOgMangler } from "../../clients/apiClient";
+import Tilbake from "../../components/tilbake/Tilbake";
 
 export interface FeilOgMangler {
   navn: string;
@@ -43,9 +44,7 @@ const FOM = (props: RouteComponentProps) => {
 
   return (
     <>
-      <div className="ros-til-nav__felt">
-        <Lenke href={baseUrl}>Tilbake</Lenke>
-      </div>
+      <Tilbake />
       <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
         Takk for at du sier ifra om feil og mangler. Vi sørger for at meldingen
         kommer fram til riktig person.

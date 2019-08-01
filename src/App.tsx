@@ -10,6 +10,8 @@ import { useStore } from "./providers/Provider";
 import { AuthInfo } from "./types/authInfo";
 import { HTTPError } from "./components/error/Error";
 import Takk from "./pages/takk/Takk";
+import ServiceKlage from "./pages/service-klage/ServiceKlage";
+import Login from "./pages/service-klage/Login";
 
 export const baseUrl = "/person/tilbakemeldinger";
 const App = () => {
@@ -31,6 +33,16 @@ const App = () => {
       <div className="pagecontent">
         <Switch>
           <Route exact path={`(|${baseUrl})`} component={Frontpage} />
+          <Route
+            exact
+            path={`${baseUrl}/service-klage/login`}
+            component={Login}
+          />
+          <Route
+            exact
+            path={`${baseUrl}/service-klage`}
+            component={ServiceKlage}
+          />
           <Route exact path={`${baseUrl}/ros-til-nav`} component={Ros} />
           <Route
             exact
