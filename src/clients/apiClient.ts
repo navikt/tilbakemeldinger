@@ -4,7 +4,7 @@ import { logApiError } from "../utils/logger";
 import { RosTilNav } from "../pages/ros-til-nav/Ros";
 import { FeilOgMangler } from "../pages/feil-og-mangler/FeilOgMangler";
 
-const { loginUrl, baseUrl, apiUrl } = Environment();
+const { loginUrl, baseUrl, apiUrl, personInfoApiUrl } = Environment();
 const parseJson = (data: any) => data.json();
 
 export const sendTilLogin = () => {
@@ -59,6 +59,9 @@ const sendJson = (url: string, data: RosTilNav | FeilOgMangler) =>
 
 export const fetchAuthInfo = () =>
   hentJson(`${baseUrl}/innloggingslinje-api/auth`);
+
+export const fetchKontaktInfo = () =>
+  hentJson(`${personInfoApiUrl}/kontaktinformasjon`);
 
 export const postRosTilNav = (data: RosTilNav) =>
   sendJson(`${apiUrl}/ros`, data);

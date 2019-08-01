@@ -5,13 +5,14 @@ import Header from "./components/header/Header";
 import Ros from "./pages/ros-til-nav/Ros";
 import PageNotFound from "./pages/404/404";
 import FeilOgMangler from "./pages/feil-og-mangler/FeilOgMangler";
-import { fetchAuthInfo } from "./clients/apiClient";
+import { fetchAuthInfo, fetchKontaktInfo } from "./clients/apiClient";
 import { useStore } from "./providers/Provider";
 import { AuthInfo } from "./types/authInfo";
 import { HTTPError } from "./components/error/Error";
 import Takk from "./pages/takk/Takk";
 import ServiceKlage from "./pages/service-klage/ServiceKlage";
 import Login from "./pages/service-klage/Login";
+import { KontaktInfo } from "./types/kontaktInfo";
 
 export const baseUrl = "/person/tilbakemeldinger";
 const App = () => {
@@ -24,6 +25,15 @@ const App = () => {
           dispatch({ type: "SETT_AUTH_RESULT", payload: authInfo })
         )
         .catch((error: HTTPError) => console.error(error));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    fetchKontaktInfo()
+      .then((kontaktInfo: KontaktInfo) =>
+        dispatch({ type: "SETT_KONTAKT_INFO_RESULT", payload: kontaktInfo })
+      )
+      .catch((error: HTTPError) => console.error(error));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
