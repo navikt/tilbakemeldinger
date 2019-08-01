@@ -15,10 +15,12 @@ import InputFodselsnr from "../../components/input-fields/InputFodselsnr";
 const ServiceKlage = (props: RouteComponentProps) => {
   document.title = "ServiceKlage - www.nav.no";
 
-  const [{ auth, fodselsnr }] = useStore();
+  const [{ auth, fodselsnr, kontaktInfo }] = useStore();
   const [navn, settNavn] = useState("");
   const [fodsensnummer, settFodselsnummer] = useState(fodselsnr || "");
-  const [telefonnummer, settTlfnr] = useState("");
+  const [telefonnummer, settTlfnr] = useState(
+    kontaktInfo.mobiltelefonnummer || ""
+  );
   const [hvaGjelder, settHvaGjelder] = useState();
   const [onskerKontakt, settOnskerKontakt] = useState();
   const [hvemFra, settHvemFra] = useState();

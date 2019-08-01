@@ -10,6 +10,7 @@ import InputTelefon from "../../components/input-fields/InputTelefon";
 import InputMelding from "../../components/input-fields/InputMelding";
 import { postRosTilNav } from "../../clients/apiClient";
 import Tilbake from "../../components/tilbake/Tilbake";
+import { useStore } from "../../providers/Provider";
 
 export interface RosTilNav {
   navn: string;
@@ -21,8 +22,11 @@ export interface RosTilNav {
 const Ros = (props: RouteComponentProps) => {
   document.title = "Ros til NAV - www.nav.no";
 
+  const [{ kontaktInfo }] = useStore();
   const [navn, settNavn] = useState("");
-  const [telefonnummer, settTlfnr] = useState("");
+  const [telefonnummer, settTlfnr] = useState(
+    kontaktInfo.mobiltelefonnummer || ""
+  );
   const [melding, settMelding] = useState("");
   const [hvemRoses, settHvemRoses] = useState();
 
