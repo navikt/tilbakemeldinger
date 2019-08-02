@@ -15,6 +15,8 @@ import InputFodselsnr from "../../components/input-fields/InputFodselsnr";
 import { Element } from "nav-frontend-typografi";
 import { postServiceKlage } from "../../clients/apiClient";
 import InputField from "../../components/input-fields/InputField";
+import { AlertStripeFeil } from "nav-frontend-alertstriper";
+import NavFrontendSpinner from "nav-frontend-spinner";
 
 export type ON_BEHALF_OF = "PRIVATPERSON" | "ANNEN_PERSON" | "BEDRIFT";
 
@@ -83,6 +85,8 @@ const ServiceKlage = (props: RouteComponentProps) => {
   const [orgNummer, settOrgNummer] = useState("");
   const [orgPostadr, settOrgPostadr] = useState("");
   const [orgTlfNr, settOrgTlfNr] = useState("");
+  const [loading, settLoading] = useState(false);
+  const [error, settError] = useState();
 
   const send = () => {
     if (hvemFra) {
@@ -138,9 +142,18 @@ const ServiceKlage = (props: RouteComponentProps) => {
       };
 
       console.log(outbound);
+      settLoading(true);
       postServiceKlage(outbound)
-        .then(() => props.history.push(`${props.location.pathname}/takk`))
-        .catch(console.error);
+        .then(() => {
+          props.history.push(`${props.location.pathname}/takk`);
+        })
+        .catch((error: string) => {
+          settError(error);
+          console.error(error);
+        })
+        .then(() => {
+          settLoading(false);
+        });
     }
   };
 
@@ -304,9 +317,12 @@ const ServiceKlage = (props: RouteComponentProps) => {
           <InputTelefon onChange={settTlfnr} value={telefonnummer} />
         )}
         <InputMelding onChange={settMelding} value={melding} />
+        {error && <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>}
         <div className="tb__knapper">
           <div className="tb__knapp">
-            <Hovedknapp onClick={send}>Send</Hovedknapp>
+            <Hovedknapp onClick={send} disabled={loading}>
+              {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
+            </Hovedknapp>
           </div>
           <div className="tb__knapp">
             <Link to={baseUrl}>
