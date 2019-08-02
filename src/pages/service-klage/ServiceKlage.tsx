@@ -79,6 +79,10 @@ const ServiceKlage = (props: RouteComponentProps) => {
   const [onskerKontakt, settOnskerKontakt] = useState();
   const [hvemFra, settHvemFra] = useState<ON_BEHALF_OF>();
   const [melding, settMelding] = useState("");
+  const [orgNavn, settOrgNavn] = useState("");
+  const [orgNummer, settOrgNummer] = useState("");
+  const [orgPostadr, settOrgPostadr] = useState("");
+  const [orgTlfNr, settOrgTlfNr] = useState("");
 
   const send = () => {
     if (hvemFra) {
@@ -120,10 +124,10 @@ const ServiceKlage = (props: RouteComponentProps) => {
             rolle: rolle
           },
           paaVegneAvBedrift: {
-            navn: "Test bedrift AS",
-            postadresse: "Kirkegata 38",
-            organisasjonsnummer: "94142142",
-            telefonnummer: "3456789"
+            navn: orgNavn,
+            postadresse: orgPostadr,
+            organisasjonsnummer: orgNummer,
+            telefonnummer: orgTlfNr
           }
         }
       };
@@ -245,31 +249,31 @@ const ServiceKlage = (props: RouteComponentProps) => {
                   <div className="flex__kolonne-left ">
                     <InputField
                       label={"Organisasjonsnavn *"}
-                      value={paaVegneAvNavn}
-                      onChange={settPaaVegneAvNavn}
+                      value={orgNavn}
+                      onChange={settOrgNavn}
                     />
                   </div>
                   <div className="flex__kolonne-right">
                     <InputField
                       label={"Organisasjonsnummer *"}
-                      value={paaVegneAvFodselsnr}
-                      onChange={settPaaVegneAvFodselsnr}
+                      value={orgNummer}
+                      onChange={settOrgNummer}
                     />
                   </div>
                 </div>
                 <div className="flex__rad">
                   <div className="flex__kolonne-left">
                     <InputField
-                      label={"Navn *"}
-                      value={paaVegneAvNavn}
-                      onChange={settPaaVegneAvNavn}
+                      label={"Postadresse *"}
+                      value={orgPostadr}
+                      onChange={settOrgPostadr}
                     />
                   </div>
                   <div className="flex__kolonne-right">
                     <InputField
-                      label={"Fødselsnummer *"}
-                      value={paaVegneAvFodselsnr}
-                      onChange={settPaaVegneAvFodselsnr}
+                      label={"Bedriftens telefonnummer *"}
+                      value={orgTlfNr}
+                      onChange={settOrgTlfNr}
                     />
                   </div>
                 </div>
