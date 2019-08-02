@@ -138,7 +138,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
       };
 
       console.log(outbound);
-      postServiceKlage(outbound);
+      postServiceKlage(outbound)
+        .then(() => props.history.push(`${props.location.pathname}/takk`))
+        .catch(console.error);
     }
   };
 

@@ -77,7 +77,7 @@ const App = () => {
             />
             <Route
               exact
-              path={`(|${baseUrl})/(ros-til-nav|feil-og-mangler)/takk`}
+              path={`(|${baseUrl})/(ros-til-nav|feil-og-mangler|service-klage)/takk`}
               component={Takk}
             />
             <Route component={PageNotFound} />
