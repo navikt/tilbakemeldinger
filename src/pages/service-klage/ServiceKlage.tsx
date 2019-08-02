@@ -147,9 +147,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
         .then(() => {
           props.history.push(`${props.location.pathname}/takk`);
         })
-        .catch((error: string) => {
-          settError(error);
-          console.error(error);
+        .catch((err: string) => {
+          settError(err);
+          console.error(err);
         })
         .then(() => {
           settLoading(false);
