@@ -11,7 +11,7 @@ import InputMelding from "../../components/input-fields/InputMelding";
 import { postFeilOgMangler } from "../../clients/apiClient";
 import Tilbake from "../../components/tilbake/Tilbake";
 
-export interface FeilOgMangler {
+export interface OutboundFeilOgMangler {
   navn: string;
   telefonnummer: string;
   feiltype: string;
@@ -42,17 +42,11 @@ const FOM = (props: RouteComponentProps) => {
         Takk for at du sier ifra om feil og mangler. Vi sørger for at meldingen
         kommer fram til riktig person.
       </Veilederpanel>
-      <div className="ros-til-nav__rad">
-        <div
-          className="ros-til-nav__kolonne ros-til-nav__felt"
-          style={{ paddingRight: "0.25rem" }}
-        >
+      <div className="flex__rad">
+        <div className="flex__kolonne-left">
           <InputNavn value={navn} onChange={settNavn} />
         </div>
-        <div
-          className="ros-til-nav__kolonne ros-til-nav__felt"
-          style={{ paddingLeft: "0.25rem" }}
-        >
+        <div className="flex__kolonne-right">
           <InputTelefon value={telefonnummer} onChange={settTlfnr} />
         </div>
       </div>
@@ -70,14 +64,14 @@ const FOM = (props: RouteComponentProps) => {
         legend={"Hva slags feil eller mangel fant du? *"}
         onChange={settFeiltype}
       />
-      <div className="ros-til-nav__felt">
+      <div className="flex__rad-mellomrom">
         <InputMelding onChange={settMelding} value={melding} />
       </div>
-      <div className="ros-til-nav__knapper">
-        <div className="ros-til-nav__knapp">
+      <div className="tb__knapper">
+        <div className="tb__knapp">
           <Hovedknapp onClick={send}>Send</Hovedknapp>
         </div>
-        <div className="ros-til-nav__knapp">
+        <div className="tb__knapp">
           <Link to={baseUrl}>
             <Knapp>Tilbake</Knapp>
           </Link>

@@ -11,6 +11,11 @@ import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { baseUrl } from "../../App";
 import InputTelefon from "../../components/input-fields/InputTelefon";
 import InputFodselsnr from "../../components/input-fields/InputFodselsnr";
+import { Element } from "nav-frontend-typografi";
+import { postServiceKlage } from "../../clients/apiClient";
+import InputField from "../../components/input-fields/InputField";
+
+export type ON_BEHALF_OF = "PRIVATPERSON" | "ANNEN_PERSON" | "BEDRIFT";
 
 type OutboundServiceKlageBase = {
   klagetype: string;
@@ -18,8 +23,8 @@ type OutboundServiceKlageBase = {
   oenskerAaKontaktes: string;
 };
 
-export type OutboundServiceKlage =
-  | OutboundServiceKlageBase & {
+type OutboundServiceKlageExtend =
+  | {
       paaVegneAv: "PRIVATPERSON";
       innmelder: {
         navn: string;
@@ -47,7 +52,7 @@ export type OutboundServiceKlage =
         telefonnummer: string;
         rolle: string;
       };
-      paaVegneABedrift: {
+      paaVegneAvBedrift: {
         navn: string;
         organisasjonsnummer: string;
         postadresse: string;
@@ -55,19 +60,96 @@ export type OutboundServiceKlage =
       };
     };
 
+export type OutboundServiceKlage = OutboundServiceKlageBase &
+  OutboundServiceKlageExtend;
+
 const ServiceKlage = (props: RouteComponentProps) => {
   document.title = "ServiceKlage - www.nav.no";
 
   const [{ auth }] = useStore();
-  const [navn, settNavn] = useState("");
+  const [innsenderNavn, settInnsenderNavn] = useState("");
+  const [paaVegneAvNavn, settPaaVegneAvNavn] = useState("");
+  const [paaVegneAvFodselsnr, settPaaVegneAvFodselsnr] = useState("");
   const [fodsensnummer, settFodselsnummer] = useState("");
+  const [rolle, settRolle] = useState("");
+  const [fullmakt, settFullmakt] = useState("");
   const [telefonnummer, settTlfnr] = useState("");
   const [hvaGjelder, settHvaGjelder] = useState();
   const [onskerKontakt, settOnskerKontakt] = useState();
-  const [hvemFra, settHvemFra] = useState();
+  const [hvemFra, settHvemFra] = useState<ON_BEHALF_OF>();
   const [melding, settMelding] = useState("");
 
-  const send = () => console.log("Send");
+  const send = () => {
+    if (hvemFra) {
+      const outboundBase: OutboundServiceKlageBase = {
+        klagetype: hvaGjelder,
+        klagetekst: melding,
+        oenskerAaKontaktes: onskerKontakt
+      };
+
+      const outboundExtend: {
+        [key in ON_BEHALF_OF]: OutboundServiceKlageExtend;
+      } = {
+        PRIVATPERSON: {
+          paaVegneAv: "PRIVATPERSON",
+          innmelder: {
+            navn: innsenderNavn,
+            telefonnummer: telefonnummer,
+            personnummer: fodsensnummer
+          }
+        },
+        ANNEN_PERSON: {
+          paaVegneAv: "ANNEN_PERSON",
+          innmelder: {
+            navn: innsenderNavn,
+            telefonnummer: telefonnummer,
+            harFullmakt: fullmakt,
+            rolle: rolle
+          },
+          paaVegneAvPerson: {
+            navn: paaVegneAvNavn,
+            personnummer: paaVegneAvFodselsnr
+          }
+        },
+        BEDRIFT: {
+          paaVegneAv: "BEDRIFT",
+          innmelder: {
+            navn: innsenderNavn,
+            telefonnummer: telefonnummer,
+            rolle: rolle
+          },
+          paaVegneAvBedrift: {
+            navn: "Test bedrift AS",
+            postadresse: "Kirkegata 38",
+            organisasjonsnummer: "94142142",
+            telefonnummer: "3456789"
+          }
+        }
+      };
+
+      const outbound = {
+        ...outboundBase,
+        ...outboundExtend[hvemFra]
+      };
+
+      console.log(outbound);
+      postServiceKlage(outbound);
+    }
+  };
+
+  const Navn = () => (
+    <div>
+      <Element>Innsender</Element>
+      <div className="flex__rad">
+        <div className="flex__kolonne-left">
+          <InputNavn value={innsenderNavn} onChange={settInnsenderNavn} />
+        </div>
+        <div className="flex__kolonne-right">
+          <InputFodselsnr onChange={settFodselsnummer} value={fodsensnummer} />
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -94,32 +176,64 @@ const ServiceKlage = (props: RouteComponentProps) => {
         />
         <RadioPanelGruppe
           radios={[
-            { label: "Meg selv som privatperson", value: "PRIVATPERSON" },
-            { label: "Annen privatperson", value: "ANNEN_PERSON" },
-            { label: "Bedrift", value: "BEDRIFT" }
+            {
+              label: "Meg selv som privatperson",
+              value: "PRIVATPERSON" as ON_BEHALF_OF
+            },
+            {
+              label: "Annen privatperson",
+              value: "ANNEN_PERSON" as ON_BEHALF_OF
+            },
+            { label: "Bedrift", value: "BEDRIFT" as ON_BEHALF_OF }
           ]}
           checked={hvemFra}
           name={"hvem-fra"}
           legend={"Hvem skriver du på vegne av? *"}
           onChange={settHvemFra}
         />
-        <div className="ros-til-nav__rad">
-          <div
-            className="ros-til-nav__kolonne ros-til-nav__felt"
-            style={{ paddingRight: "0.25rem" }}
-          >
-            <InputNavn value={navn} onChange={settNavn} />
-          </div>
-          <div
-            className="ros-til-nav__kolonne ros-til-nav__felt"
-            style={{ paddingLeft: "0.25rem" }}
-          >
-            <InputFodselsnr
-              onChange={settFodselsnummer}
-              value={fodsensnummer}
-            />
-          </div>
-        </div>
+        {hvemFra &&
+          {
+            PRIVATPERSON: <Navn />,
+            ANNEN_PERSON: (
+              <div>
+                <Navn />
+                <Element>På vegne av:</Element>
+                <div className="flex__rad">
+                  <div className="flex__kolonne-left ">
+                    <InputField
+                      label={"Navn *"}
+                      value={paaVegneAvNavn}
+                      onChange={settPaaVegneAvNavn}
+                    />
+                  </div>
+                  <div className="flex__kolonne-right">
+                    <InputField
+                      label={"Fødselsnummer *"}
+                      value={paaVegneAvFodselsnr}
+                      onChange={settPaaVegneAvFodselsnr}
+                    />
+                  </div>
+                </div>
+                <div className="flex__rad">
+                  <div className="flex__kolonne-left ">
+                    <InputField
+                      label={"Har fullmakt *"}
+                      value={fullmakt}
+                      onChange={settFullmakt}
+                    />
+                  </div>
+                  <div className="flex__kolonne-right ">
+                    <InputField
+                      label={"Rolle *"}
+                      value={rolle}
+                      onChange={settRolle}
+                    />
+                  </div>
+                </div>
+              </div>
+            ),
+            BEDRIFT: <div>fsafsa</div>
+          }[hvemFra]}
         <RadioPanelGruppe
           radios={[
             {
@@ -136,13 +250,16 @@ const ServiceKlage = (props: RouteComponentProps) => {
           legend={"Ønsker du at vi kontakter deg? *"}
           onChange={settOnskerKontakt}
         />
-        <InputTelefon onChange={settTlfnr} value={telefonnummer} />
+
+        {onskerKontakt === "true" && (
+          <InputTelefon onChange={settTlfnr} value={telefonnummer} />
+        )}
         <InputMelding onChange={settMelding} value={melding} />
-        <div className="ros-til-nav__knapper">
-          <div className="ros-til-nav__knapp">
+        <div className="tb__knapper">
+          <div className="tb__knapp">
             <Hovedknapp onClick={send}>Send</Hovedknapp>
           </div>
-          <div className="ros-til-nav__knapp">
+          <div className="tb__knapp">
             <Link to={baseUrl}>
               <Knapp>Tilbake</Knapp>
             </Link>

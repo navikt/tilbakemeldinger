@@ -11,7 +11,7 @@ import InputMelding from "../../components/input-fields/InputMelding";
 import { postRosTilNav } from "../../clients/apiClient";
 import Tilbake from "../../components/tilbake/Tilbake";
 
-export interface RosTilNav {
+export interface OutboundRosTilNav {
   navn: string;
   telefonnummer: string;
   hvemRoses: string;
@@ -45,17 +45,11 @@ const Ros = (props: RouteComponentProps) => {
         personopplysninger, som for eksempel opplysninger om helseforhold eller
         diagnoser.
       </Veilederpanel>
-      <div className="ros-til-nav__rad">
-        <div
-          className="ros-til-nav__kolonne ros-til-nav__felt"
-          style={{ paddingRight: "0.25rem" }}
-        >
+      <div className="flex__rad">
+        <div className="flex__kolonne-left">
           <InputNavn value={navn} onChange={settNavn} />
         </div>
-        <div
-          className="ros-til-nav__kolonne ros-til-nav__felt"
-          style={{ paddingLeft: "0.25rem" }}
-        >
+        <div className="flex__kolonne-right">
           <InputTelefon value={telefonnummer} onChange={settTlfnr} />
         </div>
       </div>
@@ -70,14 +64,14 @@ const Ros = (props: RouteComponentProps) => {
         legend={"Hvem vil du gi ros til? *"}
         onChange={settHvemRoses}
       />
-      <div className="ros-til-nav__felt">
+      <div className="mellomrom">
         <InputMelding onChange={settMelding} value={melding} />
       </div>
-      <div className="ros-til-nav__knapper">
-        <div className="ros-til-nav__knapp">
+      <div className="tb__knapper">
+        <div className="tb__knapp">
           <Hovedknapp onClick={send}>Send</Hovedknapp>
         </div>
-        <div className="ros-til-nav__knapp">
+        <div className="tb__knapp">
           <Link to={baseUrl}>
             <Knapp>Tilbake</Knapp>
           </Link>

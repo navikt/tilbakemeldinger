@@ -1,8 +1,9 @@
 import Environment from "../utils/Environments";
 import { HTTPError } from "../components/error/Error";
 import { logApiError } from "../utils/logger";
-import { RosTilNav } from "../pages/ros-til-nav/Ros";
-import { FeilOgMangler } from "../pages/feil-og-mangler/FeilOgMangler";
+import { OutboundRosTilNav } from "../pages/ros-til-nav/Ros";
+import { OutboundFeilOgMangler } from "../pages/feil-og-mangler/FeilOgMangler";
+import { OutboundServiceKlage } from "../pages/service-klage/ServiceKlage";
 
 const { loginUrl, baseUrl, apiUrl, personInfoApiUrl } = Environment();
 const parseJson = (data: any) => data.json();
@@ -40,7 +41,10 @@ const hentJson = (url: string) =>
       throw error;
     });
 
-const sendJson = (url: string, data: RosTilNav | FeilOgMangler) =>
+const sendJson = (
+  url: string,
+  data: OutboundRosTilNav | OutboundFeilOgMangler | OutboundServiceKlage
+) =>
   fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
@@ -65,8 +69,11 @@ export const fetchFodselsnr = () => hentJson(`${apiUrl}/fodselsnr`);
 export const fetchKontaktInfo = () =>
   hentJson(`${personInfoApiUrl}/kontaktinformasjon`);
 
-export const postRosTilNav = (data: RosTilNav) =>
+export const postRosTilNav = (data: OutboundRosTilNav) =>
   sendJson(`${apiUrl}/ros`, data);
 
-export const postFeilOgMangler = (data: FeilOgMangler) =>
+export const postServiceKlage = (data: OutboundServiceKlage) =>
+  sendJson(`${apiUrl}/serviceklage`, data);
+
+export const postFeilOgMangler = (data: OutboundFeilOgMangler) =>
   sendJson(`${apiUrl}/feil-og-mangler`, data);

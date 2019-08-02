@@ -2,7 +2,7 @@ import { RadioPanelGruppe, RadioPanelGruppeProps } from "nav-frontend-skjema";
 import React from "react";
 
 interface Props extends Omit<RadioPanelGruppeProps, "onChange"> {
-  onChange: (value: string) => void;
+  onChange: (value: any) => void;
 }
 
 const InputField = (props: Props) => {

@@ -7,7 +7,7 @@ interface Props {
 }
 
 const Tilbake = (props: Props) => (
-  <div className="ros-til-nav__felt lenke">
+  <div className="mellomrom lenke">
     <Link to={`${baseUrl}${props.to || ""}`}>Tilbake</Link>
   </div>
 );
