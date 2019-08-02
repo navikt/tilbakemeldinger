@@ -45,7 +45,7 @@ const Ros = (props: RouteComponentProps) => {
         personopplysninger, som for eksempel opplysninger om helseforhold eller
         diagnoser.
       </Veilederpanel>
-      <div className="flex__rad">
+      <div className="flex__rad mellomrom">
         <div className="flex__kolonne-left">
           <InputNavn value={navn} onChange={settNavn} />
         </div>

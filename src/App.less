@@ -19,7 +19,6 @@
 
 .flex__rad {
   display: flex;
-  margin: 1rem 0;
 }
 
 .flex__kolonne-left,
@@ -48,4 +47,21 @@
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
+}
+
+.radioPanel {
+  &__bool {
+    .inputPanelGruppe__inner {
+      display: flex;
+      :first-child {
+        margin-right: 0.25rem;
+      }
+      :last-child {
+        margin-left: 0.25rem;
+      }
+      > * {
+        width: 100%;
+      }
+    }
+  }
 }

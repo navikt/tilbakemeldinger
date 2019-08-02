@@ -42,7 +42,7 @@ const FOM = (props: RouteComponentProps) => {
         Takk for at du sier ifra om feil og mangler. Vi sørger for at meldingen
         kommer fram til riktig person.
       </Veilederpanel>
-      <div className="flex__rad">
+      <div className="flex__rad mellomrom">
         <div className="flex__kolonne-left">
           <InputNavn value={navn} onChange={settNavn} />
         </div>
@@ -64,7 +64,7 @@ const FOM = (props: RouteComponentProps) => {
         legend={"Hva slags feil eller mangel fant du? *"}
         onChange={settFeiltype}
       />
-      <div className="flex__rad-mellomrom">
+      <div className="mellomrom">
         <InputMelding onChange={settMelding} value={melding} />
       </div>
       <div className="tb__knapper">

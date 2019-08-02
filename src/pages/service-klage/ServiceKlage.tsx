@@ -11,6 +11,7 @@ import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { baseUrl } from "../../App";
 import InputTelefon from "../../components/input-fields/InputTelefon";
 import InputFodselsnr from "../../components/input-fields/InputFodselsnr";
+
 import { Element } from "nav-frontend-typografi";
 import { postServiceKlage } from "../../clients/apiClient";
 import InputField from "../../components/input-fields/InputField";
@@ -214,27 +215,34 @@ const ServiceKlage = (props: RouteComponentProps) => {
                     />
                   </div>
                 </div>
-                <div className="flex__rad">
-                  <div className="flex__kolonne-left ">
-                    <InputField
-                      label={"Har fullmakt *"}
-                      value={fullmakt}
-                      onChange={settFullmakt}
-                    />
-                  </div>
-                  <div className="flex__kolonne-right ">
-                    <InputField
-                      label={"Rolle *"}
-                      value={rolle}
-                      onChange={settRolle}
-                    />
-                  </div>
-                </div>
+                <InputField
+                  label={"Rolle *"}
+                  value={rolle}
+                  onChange={settRolle}
+                />
+                <RadioPanelGruppe
+                  className="radioPanel__bool"
+                  radios={[
+                    {
+                      label: "Ja, jeg har fullmakt",
+                      value: "true"
+                    },
+                    {
+                      label: "Nei, jeg har ikke fullmakt",
+                      value: "false"
+                    }
+                  ]}
+                  checked={fullmakt}
+                  name={"fullmakt"}
+                  legend={"Har du fullmakt? *"}
+                  onChange={settFullmakt}
+                />
               </div>
             ),
             BEDRIFT: <div>fsafsa</div>
           }[hvemFra]}
         <RadioPanelGruppe
+          className="radioPanel__bool"
           radios={[
             {
               label: "Ja, jeg ønsker å kontaktes",
