@@ -12,6 +12,49 @@ import { baseUrl } from "../../App";
 import InputTelefon from "../../components/input-fields/InputTelefon";
 import InputFodselsnr from "../../components/input-fields/InputFodselsnr";
 
+type OutboundServiceKlageBase = {
+  klagetype: string;
+  klagetekst: string;
+  oenskerAaKontaktes: string;
+};
+
+export type OutboundServiceKlage =
+  | OutboundServiceKlageBase & {
+      paaVegneAv: "PRIVATPERSON";
+      innmelder: {
+        navn: string;
+        telefonnummer: string;
+        personnummer: string;
+      };
+    }
+  | {
+      paaVegneAv: "ANNEN_PERSON";
+      innmelder: {
+        navn: string;
+        telefonnummer: string;
+        harFullmakt: string;
+        rolle: string;
+      };
+      paaVegneAvPerson: {
+        navn: string;
+        personnummer: string;
+      };
+    }
+  | {
+      paaVegneAv: "BEDRIFT";
+      innmelder: {
+        navn: string;
+        telefonnummer: string;
+        rolle: string;
+      };
+      paaVegneABedrift: {
+        navn: string;
+        organisasjonsnummer: string;
+        postadresse: string;
+        telefonnummer: string;
+      };
+    };
+
 const ServiceKlage = (props: RouteComponentProps) => {
   document.title = "ServiceKlage - www.nav.no";
 
@@ -36,6 +79,30 @@ const ServiceKlage = (props: RouteComponentProps) => {
         diagnoser.
       </Veilederpanel>
       <div className="serviceKlage__content">
+        <RadioPanelGruppe
+          radios={[
+            { label: "Saksbehandling av søknad", value: "SAKSBEHANDLING" },
+            { label: "NAV-kontor", value: "NAV_KONTOR" },
+            { label: "Telefon", value: "TELEFON" },
+            { label: "nav.no", value: "NAVNO" },
+            { label: "Annet", value: "ANNET" }
+          ]}
+          checked={hvaGjelder}
+          name={"hva-gjelder-tilbakemeldingen"}
+          legend={"Hva gjelder tilbakemeldingen? *"}
+          onChange={settHvaGjelder}
+        />
+        <RadioPanelGruppe
+          radios={[
+            { label: "Meg selv som privatperson", value: "PRIVATPERSON" },
+            { label: "Annen privatperson", value: "ANNEN_PERSON" },
+            { label: "Bedrift", value: "BEDRIFT" }
+          ]}
+          checked={hvemFra}
+          name={"hvem-fra"}
+          legend={"Hvem skriver du på vegne av? *"}
+          onChange={settHvemFra}
+        />
         <div className="ros-til-nav__rad">
           <div
             className="ros-til-nav__kolonne ros-til-nav__felt"
@@ -55,34 +122,13 @@ const ServiceKlage = (props: RouteComponentProps) => {
         </div>
         <RadioPanelGruppe
           radios={[
-            { label: "Saksbehandling av søknad", value: "saksbehandling" },
-            { label: "NAV-kontor", value: "nav-kontor" },
-            { label: "Telefon", value: "telefon" },
-            { label: "nav.no", value: "nettside" },
-            { label: "Annet", value: "annet" }
-          ]}
-          checked={hvaGjelder}
-          name={"hva-gjelder-tilbakemeldingen"}
-          legend={"Hva gjelder tilbakemeldingen? *"}
-          onChange={settHvaGjelder}
-        />
-        <RadioPanelGruppe
-          radios={[
-            { label: "Meg selv som privatperson", value: "meg-selv" },
-            { label: "Annen privatperson", value: "annen-privatperson" },
-            { label: "Bedrift", value: "bedrift" }
-          ]}
-          checked={hvemFra}
-          name={"hvem-fra"}
-          legend={"Hvem skriver du på vegne av? *"}
-          onChange={settHvemFra}
-        />
-        <RadioPanelGruppe
-          radios={[
-            { label: "Ja, jeg ønsker å kontaktes", value: "onsker-kontakt" },
+            {
+              label: "Ja, jeg ønsker å kontaktes",
+              value: "true"
+            },
             {
               label: "Nei, jeg ville bare si ifra",
-              value: "onsker-ikke-kontakt"
+              value: "false"
             }
           ]}
           checked={onskerKontakt}
