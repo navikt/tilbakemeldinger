@@ -21,7 +21,7 @@ export type ON_BEHALF_OF = "PRIVATPERSON" | "ANNEN_PERSON" | "BEDRIFT";
 type OutboundServiceKlageBase = {
   klagetype: string;
   klagetekst: string;
-  oenskerAaKontaktes: string;
+  oenskerAaKontaktes: boolean;
 };
 
 type OutboundServiceKlageExtend =
@@ -38,7 +38,7 @@ type OutboundServiceKlageExtend =
       innmelder: {
         navn: string;
         telefonnummer: string;
-        harFullmakt: string;
+        harFullmakt: boolean;
         rolle: string;
       };
       paaVegneAvPerson: {
@@ -85,7 +85,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
       const outboundBase: OutboundServiceKlageBase = {
         klagetype: hvaGjelder,
         klagetekst: melding,
-        oenskerAaKontaktes: onskerKontakt
+        oenskerAaKontaktes: onskerKontakt === "true" ? true : false
       };
 
       const outboundExtend: {
@@ -104,7 +104,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
           innmelder: {
             navn: innsenderNavn,
             telefonnummer: telefonnummer,
-            harFullmakt: fullmakt,
+            harFullmakt: fullmakt === "true" ? true : false,
             rolle: rolle
           },
           paaVegneAvPerson: {
@@ -200,7 +200,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                 <Navn />
                 <Element>På vegne av:</Element>
                 <div className="flex__rad">
-                  <div className="flex__kolonne-left ">
+                  <div className="flex__kolonne-left">
                     <InputField
                       label={"Navn *"}
                       value={paaVegneAvNavn}
@@ -239,7 +239,42 @@ const ServiceKlage = (props: RouteComponentProps) => {
                 />
               </div>
             ),
-            BEDRIFT: <div>fsafsa</div>
+            BEDRIFT: (
+              <>
+                <div className="flex__rad">
+                  <div className="flex__kolonne-left ">
+                    <InputField
+                      label={"Organisasjonsnavn *"}
+                      value={paaVegneAvNavn}
+                      onChange={settPaaVegneAvNavn}
+                    />
+                  </div>
+                  <div className="flex__kolonne-right">
+                    <InputField
+                      label={"Organisasjonsnummer *"}
+                      value={paaVegneAvFodselsnr}
+                      onChange={settPaaVegneAvFodselsnr}
+                    />
+                  </div>
+                </div>
+                <div className="flex__rad">
+                  <div className="flex__kolonne-left">
+                    <InputField
+                      label={"Navn *"}
+                      value={paaVegneAvNavn}
+                      onChange={settPaaVegneAvNavn}
+                    />
+                  </div>
+                  <div className="flex__kolonne-right">
+                    <InputField
+                      label={"Fødselsnummer *"}
+                      value={paaVegneAvFodselsnr}
+                      onChange={settPaaVegneAvFodselsnr}
+                    />
+                  </div>
+                </div>
+              </>
+            )
           }[hvemFra]}
         <RadioPanelGruppe
           className="radioPanel__bool"
