@@ -17,6 +17,7 @@ import InputField from "../../components/input-fields/InputField";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { HTTPError } from "../../components/error/Error";
+import { Input } from "nav-frontend-skjema";
 
 export type ON_BEHALF_OF = "PRIVATPERSON" | "ANNEN_PERSON" | "BEDRIFT";
 
@@ -232,6 +233,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                   <div className="flex__kolonne-left">
                     <InputField
                       label={"Navn *"}
+                      required={true}
                       value={paaVegneAvNavn}
                       onChange={settPaaVegneAvNavn}
                       submitted={submitted}
@@ -240,6 +242,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                   <div className="flex__kolonne-right">
                     <InputField
                       label={"Fødselsnummer *"}
+                      required={true}
                       value={paaVegneAvFodselsnr}
                       onChange={settPaaVegneAvFodselsnr}
                       submitted={submitted}
@@ -248,6 +251,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                 </div>
                 <InputField
                   label={"Rolle *"}
+                  required={true}
                   value={rolle}
                   onChange={settRolle}
                   submitted={submitted}
@@ -279,6 +283,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                   <div className="flex__kolonne-left ">
                     <InputField
                       label={"Organisasjonsnavn *"}
+                      required={true}
                       value={orgNavn}
                       onChange={settOrgNavn}
                       submitted={submitted}
@@ -287,6 +292,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                   <div className="flex__kolonne-right">
                     <InputField
                       label={"Organisasjonsnummer *"}
+                      required={true}
                       value={orgNummer}
                       onChange={settOrgNummer}
                       submitted={submitted}
@@ -297,6 +303,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                   <div className="flex__kolonne-left">
                     <InputField
                       label={"Postadresse *"}
+                      required={true}
                       value={orgPostadr}
                       onChange={settOrgPostadr}
                       submitted={submitted}
@@ -305,6 +312,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                   <div className="flex__kolonne-right">
                     <InputField
                       label={"Bedriftens telefonnummer *"}
+                      required={true}
                       value={orgTlfNr}
                       onChange={settOrgTlfNr}
                       submitted={submitted}

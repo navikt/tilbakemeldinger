@@ -28,6 +28,7 @@ const InputTelefon = (props: Props) => {
   ) : (
     <Input
       label={"Telefonnummer"}
+      required={true}
       value={formattert}
       onChange={event => {
         props.onChange(event.currentTarget.value);
