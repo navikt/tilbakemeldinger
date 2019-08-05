@@ -171,7 +171,11 @@ const ServiceKlage = (props: RouteComponentProps) => {
           />
         </div>
         <div className="flex__kolonne-right">
-          <InputFodselsnr onChange={settFodselsnummer} value={fodsensnummer} />
+          <InputFodselsnr
+            onChange={settFodselsnummer}
+            value={fodsensnummer}
+            submitted={submitted}
+          />
         </div>
       </div>
     </div>

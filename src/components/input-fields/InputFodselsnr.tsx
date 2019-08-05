@@ -1,5 +1,5 @@
 import { Input } from "nav-frontend-skjema";
-import React from "react";
+import React, { useState } from "react";
 import { useStore } from "../../providers/Provider";
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
 
 const InputFodselsnr = (props: Props) => {
   const [{ auth, fodselsnr }] = useStore();
+  const [blur, settBlur] = useState(false);
 
   if (auth.authenticated && fodselsnr !== props.value) {
     props.onChange(fodselsnr);
@@ -30,6 +31,7 @@ const InputFodselsnr = (props: Props) => {
       required={true}
       value={formattert}
       onChange={event => props.onChange(event.currentTarget.value)}
+      onBlur={() => settBlur(true)}
       feil={
         (props.submitted || blur) &&
         (!/^\d+$/.test(props.value) || props.value.length !== 11)
