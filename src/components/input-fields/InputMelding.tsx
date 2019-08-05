@@ -24,10 +24,7 @@ const InputMelding = (props: Props) => {
           ? { feilmelding: "Meldingen må bestå av minimum 2 tegn" }
           : undefined
       }
-      onBlur={() => {
-        console.log("Blur");
-        settBlur(true);
-      }}
+      onBlur={() => settBlur(true)}
     />
   );
 };

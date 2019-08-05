@@ -14,7 +14,7 @@ const InputFodselsnr = (props: Props) => {
     props.onChange(fodselsnr);
   }
 
-  const formattert = props.value.replace(/^(.{6})(.*)$/, "$1 $2");
+  const formattert = props.value;
 
   return auth.authenticated && fodselsnr ? (
     <Input

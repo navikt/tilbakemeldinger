@@ -11,7 +11,6 @@ import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { baseUrl } from "../../App";
 import InputTelefon from "../../components/input-fields/InputTelefon";
 import InputFodselsnr from "../../components/input-fields/InputFodselsnr";
-
 import { Element } from "nav-frontend-typografi";
 import { postServiceKlage } from "../../clients/apiClient";
 import InputField from "../../components/input-fields/InputField";
