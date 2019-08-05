@@ -10,6 +10,9 @@ import InputTelefon from "../../components/input-fields/InputTelefon";
 import InputMelding from "../../components/input-fields/InputMelding";
 import { postRosTilNav } from "../../clients/apiClient";
 import Tilbake from "../../components/tilbake/Tilbake";
+import { HTTPError } from "../../components/error/Error";
+import { AlertStripeFeil } from "nav-frontend-alertstriper";
+import NavFrontendSpinner from "nav-frontend-spinner";
 
 export interface OutboundRosTilNav {
   navn: string;
@@ -25,16 +28,27 @@ const Ros = (props: RouteComponentProps) => {
   const [telefonnummer, settTlfnr] = useState("");
   const [melding, settMelding] = useState("");
   const [hvemRoses, settHvemRoses] = useState();
+  const [loading, settLoading] = useState(false);
+  const [error, settError] = useState();
 
-  const send = () =>
+  const send = () => {
+    settLoading(true);
     postRosTilNav({
       navn,
       telefonnummer,
       hvemRoses,
       melding
     })
-      .then(() => props.history.push(`${props.location.pathname}/takk`))
-      .catch(console.error);
+      .then(() => {
+        props.history.push(`${props.location.pathname}/takk`);
+      })
+      .catch((error: HTTPError) => {
+        settError(`${error.code} - ${error.text}`);
+      })
+      .then(() => {
+        settLoading(false);
+      });
+  };
 
   return (
     <>
@@ -67,9 +81,12 @@ const Ros = (props: RouteComponentProps) => {
       <div className="mellomrom">
         <InputMelding onChange={settMelding} value={melding} />
       </div>
+      {error && <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>}
       <div className="tb__knapper">
         <div className="tb__knapp">
-          <Hovedknapp onClick={send}>Send</Hovedknapp>
+          <Hovedknapp onClick={send} disabled={loading}>
+            {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
+          </Hovedknapp>
         </div>
         <div className="tb__knapp">
           <Link to={baseUrl}>
