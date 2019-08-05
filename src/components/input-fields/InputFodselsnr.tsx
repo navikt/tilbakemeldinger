@@ -4,6 +4,7 @@ import { useStore } from "../../providers/Provider";
 
 interface Props {
   onChange: (value: string) => void;
+  submitted: boolean;
   value: string;
 }
 
@@ -29,6 +30,12 @@ const InputFodselsnr = (props: Props) => {
       required={true}
       value={formattert}
       onChange={event => props.onChange(event.currentTarget.value)}
+      feil={
+        (props.submitted || blur) &&
+        (!/^\d+$/.test(props.value) || props.value.length !== 11)
+          ? { feilmelding: "Fødselsnummer må være 11 siffer" }
+          : undefined
+      }
     />
   );
 };
