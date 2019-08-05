@@ -17,6 +17,7 @@ import { postServiceKlage } from "../../clients/apiClient";
 import InputField from "../../components/input-fields/InputField";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
+import { HTTPError } from "../../components/error/Error";
 
 export type ON_BEHALF_OF = "PRIVATPERSON" | "ANNEN_PERSON" | "BEDRIFT";
 
@@ -147,13 +148,8 @@ const ServiceKlage = (props: RouteComponentProps) => {
         .then(() => {
           props.history.push(`${props.location.pathname}/takk`);
         })
-        .catch((err: string) => {
-          if (err) {
-            console.error(err);
-            settError(err);
-          } else {
-            settError("Ukjent feil");
-          }
+        .catch((error: HTTPError) => {
+          settError(`${error.code} - ${error.text}`);
         })
         .then(() => {
           settLoading(false);
