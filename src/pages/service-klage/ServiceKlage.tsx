@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import VeilederIcon from "../../assets/Veileder.svg";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import Tilbake from "../../components/tilbake/Tilbake";
@@ -89,7 +89,8 @@ const ServiceKlage = (props: RouteComponentProps) => {
   const [submitted, settSubmitted] = useState(false);
   const [error, settError] = useState();
 
-  const send = () => {
+  const send = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     settSubmitted(true);
     if (hvemFra) {
       const outboundBase: OutboundServiceKlageBase = {
@@ -177,7 +178,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
   );
 
   return (
-    <>
+    <form onSubmit={send}>
       <Tilbake to={auth.authenticated ? "" : "/service-klage/login"} />
       <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
         Takk for at du vil dele din opplevelse med oss! Vi sørger for at rosen
@@ -352,7 +353,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
         </div>
         <div className="tb__knapper">
           <div className="tb__knapp">
-            <Hovedknapp onClick={send} disabled={loading}>
+            <Hovedknapp disabled={loading}>
               {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
             </Hovedknapp>
           </div>
@@ -363,7 +364,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
           </div>
         </div>
       </div>
-    </>
+    </form>
   );
 };
 

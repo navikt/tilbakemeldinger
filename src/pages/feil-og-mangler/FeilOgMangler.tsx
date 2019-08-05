@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FormEvent } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "../../assets/Veileder.svg";
 import RadioPanelGruppe from "../../components/input-fields/RadioPanelGruppe";
@@ -31,7 +31,8 @@ const FOM = (props: RouteComponentProps) => {
   const [error, settError] = useState();
   const [submitted, settSubmitted] = useState(false);
 
-  const send = () => {
+  const send = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     settLoading(true);
     settSubmitted(true);
     postFeilOgMangler({
@@ -52,7 +53,7 @@ const FOM = (props: RouteComponentProps) => {
   };
 
   return (
-    <>
+    <form onSubmit={send}>
       <Tilbake />
       <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
         Takk for at du sier ifra om feil og mangler. Vi sørger for at meldingen
@@ -98,7 +99,7 @@ const FOM = (props: RouteComponentProps) => {
       </div>
       <div className="tb__knapper">
         <div className="tb__knapp">
-          <Hovedknapp onClick={send} disabled={loading}>
+          <Hovedknapp disabled={loading}>
             {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
           </Hovedknapp>
         </div>
@@ -108,7 +109,7 @@ const FOM = (props: RouteComponentProps) => {
           </Link>
         </div>
       </div>
-    </>
+    </form>
   );
 };
 export default withRouter(FOM);

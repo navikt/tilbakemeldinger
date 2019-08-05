@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "../../assets/Veileder.svg";
 import RadioPanelGruppe from "../../components/input-fields/RadioPanelGruppe";
@@ -32,7 +32,8 @@ const Ros = (props: RouteComponentProps) => {
   const [submitted, settSubmitted] = useState(false);
   const [error, settError] = useState();
 
-  const send = () => {
+  const send = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     settLoading(true);
     settSubmitted(true);
     postRosTilNav({
@@ -53,7 +54,7 @@ const Ros = (props: RouteComponentProps) => {
   };
 
   return (
-    <>
+    <form onSubmit={send}>
       <Tilbake />
       <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
         Takk for at du vil dele din opplevelse med oss! Vi sørger for at rosen
@@ -98,7 +99,7 @@ const Ros = (props: RouteComponentProps) => {
       </div>
       <div className="tb__knapper">
         <div className="tb__knapp">
-          <Hovedknapp onClick={send} disabled={loading}>
+          <Hovedknapp disabled={loading}>
             {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
           </Hovedknapp>
         </div>
@@ -108,7 +109,7 @@ const Ros = (props: RouteComponentProps) => {
           </Link>
         </div>
       </div>
-    </>
+    </form>
   );
 };
 export default withRouter(Ros);
