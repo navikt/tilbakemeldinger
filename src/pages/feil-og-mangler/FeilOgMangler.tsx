@@ -60,7 +60,7 @@ const FOM = (props: RouteComponentProps) => {
       </Veilederpanel>
       <div className="flex__rad mellomrom">
         <div className="flex__kolonne-left">
-          <InputNavn value={navn} onChange={settNavn} />
+          <InputNavn value={navn} onChange={settNavn} submitted={submitted} />
         </div>
         <div className="flex__kolonne-right">
           <InputTelefon

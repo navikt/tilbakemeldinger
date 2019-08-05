@@ -163,7 +163,11 @@ const ServiceKlage = (props: RouteComponentProps) => {
       <Element>Innsender</Element>
       <div className="flex__rad">
         <div className="flex__kolonne-left">
-          <InputNavn value={innsenderNavn} onChange={settInnsenderNavn} />
+          <InputNavn
+            value={innsenderNavn}
+            onChange={settInnsenderNavn}
+            submitted={submitted}
+          />
         </div>
         <div className="flex__kolonne-right">
           <InputFodselsnr onChange={settFodselsnummer} value={fodsensnummer} />
