@@ -17,7 +17,6 @@ import InputField from "../../components/input-fields/InputField";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { HTTPError } from "../../components/error/Error";
-import { Input } from "nav-frontend-skjema";
 
 export type ON_BEHALF_OF = "PRIVATPERSON" | "ANNEN_PERSON" | "BEDRIFT";
 
