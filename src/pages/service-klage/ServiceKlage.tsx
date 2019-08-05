@@ -213,10 +213,10 @@ const ServiceKlage = (props: RouteComponentProps) => {
         />
         {hvemFra &&
           {
-            PRIVATPERSON: <Navn />,
+            PRIVATPERSON: Navn(),
             ANNEN_PERSON: (
               <div>
-                <Navn />
+                {Navn()}
                 <Element>På vegne av:</Element>
                 <div className="flex__rad">
                   <div className="flex__kolonne-left">
