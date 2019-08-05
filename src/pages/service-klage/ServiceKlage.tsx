@@ -342,7 +342,11 @@ const ServiceKlage = (props: RouteComponentProps) => {
           value={melding}
           submitted={submitted}
         />
-        {error && <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>}
+        <div>
+          {error && (
+            <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>
+          )}
+        </div>
         <div className="tb__knapper">
           <div className="tb__knapp">
             <Hovedknapp onClick={send} disabled={loading}>
