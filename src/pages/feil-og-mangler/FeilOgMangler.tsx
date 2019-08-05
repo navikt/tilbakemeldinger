@@ -29,9 +29,11 @@ const FOM = (props: RouteComponentProps) => {
   const [feiltype, settFeiltype] = useState();
   const [loading, settLoading] = useState(false);
   const [error, settError] = useState();
+  const [submitted, settSubmitted] = useState(false);
 
   const send = () => {
     settLoading(true);
+    settSubmitted(true);
     postFeilOgMangler({
       navn,
       telefonnummer,
@@ -61,7 +63,11 @@ const FOM = (props: RouteComponentProps) => {
           <InputNavn value={navn} onChange={settNavn} />
         </div>
         <div className="flex__kolonne-right">
-          <InputTelefon value={telefonnummer} onChange={settTlfnr} />
+          <InputTelefon
+            value={telefonnummer}
+            onChange={settTlfnr}
+            submitted={submitted}
+          />
         </div>
       </div>
       <RadioPanelGruppe

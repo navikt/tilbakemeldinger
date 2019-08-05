@@ -5,6 +5,7 @@ import kontaktInfo from "./data/kontaktInfo.json";
 import Environment from "../../utils/Environments";
 
 const { baseUrl, apiUrl, personInfoApiUrl } = Environment();
+fetchMock.config.fallbackToNetwork = true;
 
 const mockAuthInfo = true;
 const mockFodselsnr = true;

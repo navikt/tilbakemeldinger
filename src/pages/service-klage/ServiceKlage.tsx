@@ -87,9 +87,29 @@ const ServiceKlage = (props: RouteComponentProps) => {
   const [orgPostadr, settOrgPostadr] = useState("");
   const [orgTlfNr, settOrgTlfNr] = useState("");
   const [loading, settLoading] = useState(false);
+  const [submitted, settSubmitted] = useState(false);
   const [error, settError] = useState();
 
+  const hasEmptyFields = () => {
+    if (!hvaGjelder || !hvemFra || !melding || !innsenderNavn) {
+      return true;
+    }
+
+    if (!onskerKontakt || (onskerKontakt && !telefonnummer)) {
+      return true;
+    }
+
+    return {
+      PRIVATPERSON: !fodsensnummer,
+      ANNEN_PERSON:
+        !fullmakt || !rolle || !paaVegneAvNavn || !paaVegneAvFodselsnr,
+      BEDRIFT: !orgNavn || !orgPostadr || !orgNummer || !orgTlfNr
+    }[hvemFra]
+      ? true
+      : false;
+  };
   const send = () => {
+    settSubmitted(true);
     if (hvemFra) {
       const outboundBase: OutboundServiceKlageBase = {
         klagetype: hvaGjelder,
@@ -314,13 +334,17 @@ const ServiceKlage = (props: RouteComponentProps) => {
         />
 
         {onskerKontakt === "true" && (
-          <InputTelefon onChange={settTlfnr} value={telefonnummer} />
+          <InputTelefon
+            onChange={settTlfnr}
+            value={telefonnummer}
+            submitted={submitted}
+          />
         )}
         <InputMelding onChange={settMelding} value={melding} />
         {error && <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>}
         <div className="tb__knapper">
           <div className="tb__knapp">
-            <Hovedknapp onClick={send} disabled={loading}>
+            <Hovedknapp onClick={send} disabled={loading || hasEmptyFields()}>
               {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
             </Hovedknapp>
           </div>

@@ -29,10 +29,12 @@ const Ros = (props: RouteComponentProps) => {
   const [melding, settMelding] = useState("");
   const [hvemRoses, settHvemRoses] = useState();
   const [loading, settLoading] = useState(false);
+  const [submitted, settSubmitted] = useState(false);
   const [error, settError] = useState();
 
   const send = () => {
     settLoading(true);
+    settSubmitted(true);
     postRosTilNav({
       navn,
       telefonnummer,
@@ -64,7 +66,11 @@ const Ros = (props: RouteComponentProps) => {
           <InputNavn value={navn} onChange={settNavn} />
         </div>
         <div className="flex__kolonne-right">
-          <InputTelefon value={telefonnummer} onChange={settTlfnr} />
+          <InputTelefon
+            value={telefonnummer}
+            onChange={settTlfnr}
+            submitted={submitted}
+          />
         </div>
       </div>
       <RadioPanelGruppe

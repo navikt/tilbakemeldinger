@@ -1,15 +1,17 @@
 import { Input } from "nav-frontend-skjema";
-import React from "react";
+import React, { useState } from "react";
 import { useStore } from "../../providers/Provider";
 
 interface Props {
   onChange: (value: string) => void;
+  submitted: boolean;
   value: string;
 }
 
 const InputTelefon = (props: Props) => {
   const [{ auth, kontaktInfo }] = useStore();
   const { mobiltelefonnummer } = kontaktInfo;
+  const [blur, settBlur] = useState(false);
 
   if (
     auth.authenticated &&
@@ -32,7 +34,15 @@ const InputTelefon = (props: Props) => {
     <Input
       label={"Telefonnummer"}
       value={formattert}
-      onChange={event => props.onChange(event.currentTarget.value)}
+      onChange={event => {
+        props.onChange(event.currentTarget.value);
+      }}
+      feil={
+        props.submitted || blur
+          ? { feilmelding: "Telefonnummeret må være minst 2 tegn" }
+          : undefined
+      }
+      onBlur={() => settBlur(true)}
     />
   );
 };
