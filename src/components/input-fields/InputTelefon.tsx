@@ -21,12 +21,7 @@ const InputTelefon = (props: Props) => {
     props.onChange(mobiltelefonnummer);
   }
 
-  const formattert =
-    props.value.length === 8
-      ? props.value
-          .replace(/^(.{3})(.*)$/, "$1 $2")
-          .replace(/^(.{6})(.*)$/, "$1 $2")
-      : props.value;
+  const formattert = props.value;
 
   return kontaktInfo.mobiltelefonnummer ? (
     <Input label={"Telefonnummer"} value={formattert} disabled={true} />
@@ -38,8 +33,8 @@ const InputTelefon = (props: Props) => {
         props.onChange(event.currentTarget.value);
       }}
       feil={
-        props.submitted || blur
-          ? { feilmelding: "Telefonnummeret må være minst 2 tegn" }
+        props.value.length < 8 && (props.submitted || blur)
+          ? { feilmelding: "Telefonnummeret må være minst 8 tegn" }
           : undefined
       }
       onBlur={() => settBlur(true)}

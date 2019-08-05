@@ -79,13 +79,19 @@ const FOM = (props: RouteComponentProps) => {
             value: "universell-utforming"
           }
         ]}
+        feilmelding={"Du må velge hvilken type feil eller mangel du fant"}
         checked={feiltype}
         name={"type-feil"}
         legend={"Hva slags feil eller mangel fant du? *"}
         onChange={settFeiltype}
+        submitted={submitted}
       />
       <div className="mellomrom">
-        <InputMelding onChange={settMelding} value={melding} />
+        <InputMelding
+          onChange={settMelding}
+          value={melding}
+          submitted={submitted}
+        />
       </div>
       {error && <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>}
       <div className="tb__knapper">

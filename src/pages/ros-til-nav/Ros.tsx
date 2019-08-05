@@ -81,11 +81,17 @@ const Ros = (props: RouteComponentProps) => {
         ]}
         checked={hvemRoses}
         name={"ros-til-hvem"}
+        feilmelding={"Du må velge hvem du skal gi ros til"}
         legend={"Hvem vil du gi ros til? *"}
         onChange={settHvemRoses}
+        submitted={submitted}
       />
       <div className="mellomrom">
-        <InputMelding onChange={settMelding} value={melding} />
+        <InputMelding
+          onChange={settMelding}
+          value={melding}
+          submitted={submitted}
+        />
       </div>
       {error && <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>}
       <div className="tb__knapper">

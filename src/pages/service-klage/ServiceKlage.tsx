@@ -90,24 +90,6 @@ const ServiceKlage = (props: RouteComponentProps) => {
   const [submitted, settSubmitted] = useState(false);
   const [error, settError] = useState();
 
-  const hasEmptyFields = () => {
-    if (!hvaGjelder || !hvemFra || !melding || !innsenderNavn) {
-      return true;
-    }
-
-    if (!onskerKontakt || (onskerKontakt && !telefonnummer)) {
-      return true;
-    }
-
-    return {
-      PRIVATPERSON: !fodsensnummer,
-      ANNEN_PERSON:
-        !fullmakt || !rolle || !paaVegneAvNavn || !paaVegneAvFodselsnr,
-      BEDRIFT: !orgNavn || !orgPostadr || !orgNummer || !orgTlfNr
-    }[hvemFra]
-      ? true
-      : false;
-  };
   const send = () => {
     settSubmitted(true);
     if (hvemFra) {
@@ -209,10 +191,12 @@ const ServiceKlage = (props: RouteComponentProps) => {
             { label: "nav.no", value: "NAVNO" },
             { label: "Annet", value: "ANNET" }
           ]}
+          feilmelding={"Du må velge hva tilbakemeldingen gjelder"}
           checked={hvaGjelder}
           name={"hva-gjelder-tilbakemeldingen"}
           legend={"Hva gjelder tilbakemeldingen? *"}
           onChange={settHvaGjelder}
+          submitted={submitted}
         />
         <RadioPanelGruppe
           radios={[
@@ -226,10 +210,12 @@ const ServiceKlage = (props: RouteComponentProps) => {
             },
             { label: "Bedrift", value: "BEDRIFT" as ON_BEHALF_OF }
           ]}
+          feilmelding={"Du må velge hvem du klager på vegne av"}
           checked={hvemFra}
           name={"hvem-fra"}
           legend={"Hvem skriver du på vegne av? *"}
           onChange={settHvemFra}
+          submitted={submitted}
         />
         {hvemFra &&
           {
@@ -244,6 +230,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       label={"Navn *"}
                       value={paaVegneAvNavn}
                       onChange={settPaaVegneAvNavn}
+                      submitted={submitted}
                     />
                   </div>
                   <div className="flex__kolonne-right">
@@ -251,6 +238,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       label={"Fødselsnummer *"}
                       value={paaVegneAvFodselsnr}
                       onChange={settPaaVegneAvFodselsnr}
+                      submitted={submitted}
                     />
                   </div>
                 </div>
@@ -258,6 +246,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                   label={"Rolle *"}
                   value={rolle}
                   onChange={settRolle}
+                  submitted={submitted}
                 />
                 <RadioPanelGruppe
                   className="radioPanel__bool"
@@ -271,10 +260,12 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       value: "false"
                     }
                   ]}
+                  feilmelding={"Du må velge om du har fullmakt eller ikke"}
                   checked={fullmakt}
                   name={"fullmakt"}
                   legend={"Har du fullmakt? *"}
                   onChange={settFullmakt}
+                  submitted={submitted}
                 />
               </div>
             ),
@@ -286,6 +277,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       label={"Organisasjonsnavn *"}
                       value={orgNavn}
                       onChange={settOrgNavn}
+                      submitted={submitted}
                     />
                   </div>
                   <div className="flex__kolonne-right">
@@ -293,6 +285,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       label={"Organisasjonsnummer *"}
                       value={orgNummer}
                       onChange={settOrgNummer}
+                      submitted={submitted}
                     />
                   </div>
                 </div>
@@ -302,6 +295,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       label={"Postadresse *"}
                       value={orgPostadr}
                       onChange={settOrgPostadr}
+                      submitted={submitted}
                     />
                   </div>
                   <div className="flex__kolonne-right">
@@ -309,6 +303,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       label={"Bedriftens telefonnummer *"}
                       value={orgTlfNr}
                       onChange={settOrgTlfNr}
+                      submitted={submitted}
                     />
                   </div>
                 </div>
@@ -327,10 +322,12 @@ const ServiceKlage = (props: RouteComponentProps) => {
               value: "false"
             }
           ]}
+          feilmelding={"Du må velge om du ønsker at vi tar kontakt"}
           checked={onskerKontakt}
           name={"onsker-kontakt"}
           legend={"Ønsker du at vi kontakter deg? *"}
           onChange={settOnskerKontakt}
+          submitted={submitted}
         />
 
         {onskerKontakt === "true" && (
@@ -340,11 +337,15 @@ const ServiceKlage = (props: RouteComponentProps) => {
             submitted={submitted}
           />
         )}
-        <InputMelding onChange={settMelding} value={melding} />
+        <InputMelding
+          onChange={settMelding}
+          value={melding}
+          submitted={submitted}
+        />
         {error && <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>}
         <div className="tb__knapper">
           <div className="tb__knapp">
-            <Hovedknapp onClick={send} disabled={loading || hasEmptyFields()}>
+            <Hovedknapp onClick={send} disabled={loading}>
               {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
             </Hovedknapp>
           </div>
