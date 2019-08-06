@@ -26,7 +26,7 @@ import {
   tlfFormConfig
 } from "./config/form";
 
-export type ON_BEHALF_OF = "PRIVATPERSON" | "ANNEN_PERSON" | "BEDRIFT";
+type ON_BEHALF_OF = "PRIVATPERSON" | "ANNEN_PERSON" | "BEDRIFT";
 
 type OutboundServiceKlageBase = {
   klagetype: string;
@@ -132,11 +132,14 @@ const ServiceKlage = (props: RouteComponentProps) => {
         }
       };
 
-      settLoading(true);
-      postServiceKlage({
+      const outbound = {
         ...outboundBase,
         ...outboundExtend[hvemFra]
-      })
+      };
+
+      console.log(outbound);
+      settLoading(true);
+      postServiceKlage(outbound)
         .then(() => {
           props.history.push(`${props.location.pathname}/takk`);
         })

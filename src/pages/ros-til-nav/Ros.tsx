@@ -22,13 +22,13 @@ import { useStore } from "../../providers/Provider";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
 
-export interface OutboundRosTilNavBase {
+type OutboundRosTilNavBase = {
   navn: string;
   telefonnummer: string;
   melding: string;
-}
+};
 
-export type OutboundRosTilNavExtend =
+type OutboundRosTilNavExtend =
   | { hvemRoses: "NAV_KONTAKTSENTER" }
   | { hvemRoses: "NAV_DIGITALE_LOSNINGER" }
   | { hvemRoses: "NAV_KONTOR"; navKontor: string };
@@ -76,12 +76,11 @@ const Ros = (props: RouteComponentProps) => {
 
   const send = (e: FormContext) => {
     const { isValid, fields } = e;
-    const { navn, telefonnummer, navKontor, melding } = fields;
+    const { navn, telefonnummer, melding } = fields;
     const hvemRoses: HVEM_ROSES = fields.hvemRoses;
+    const navKontor = fields.navKontor.label;
 
     if (isValid) {
-      settLoading(true);
-
       const outboundBase = {
         navn,
         telefonnummer,
@@ -96,10 +95,14 @@ const Ros = (props: RouteComponentProps) => {
         NAV_KONTOR: { hvemRoses: "NAV_KONTOR", navKontor }
       };
 
-      postRosTilNav({
+      const outbound = {
         ...outboundBase,
         ...outboundExtend[hvemRoses]
-      })
+      };
+
+      console.log(outbound);
+      settLoading(true);
+      postRosTilNav(outbound)
         .then(() => {
           props.history.push(`${props.location.pathname}/takk`);
         })

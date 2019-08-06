@@ -47,13 +47,16 @@ const FOM = (props: RouteComponentProps) => {
     const { navn, telefonnummer, feiltype, melding } = fields;
 
     if (isValid) {
-      settLoading(true);
-      postFeilOgMangler({
+      const outbound = {
         navn,
         telefonnummer,
         feiltype,
         melding
-      })
+      };
+
+      console.log(outbound);
+      settLoading(true);
+      postFeilOgMangler(outbound)
         .then(() => {
           props.history.push(`${props.location.pathname}/takk`);
         })
