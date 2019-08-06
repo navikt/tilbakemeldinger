@@ -35,7 +35,7 @@ const FOM = (props: RouteComponentProps) => {
       isRequired: "Telefonnummer er påkrevd"
     },
     feiltype: {
-      isRequired: "Du må velge hvilken type feil eller mangel du fan"
+      isRequired: "Du må velge hvilken type feil eller mangel du fant"
     },
     melding: {
       isRequired: "Melding er påkrevd"

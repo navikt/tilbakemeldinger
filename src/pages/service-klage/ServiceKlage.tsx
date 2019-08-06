@@ -94,7 +94,11 @@ const ServiceKlage = (props: RouteComponentProps) => {
       isRequired: "Navn er påkrevd"
     },
     innmelderFnr: {
-      isRequired: "Fødselsnummer er påkrevd"
+      isRequired: "Fødselsnummer er påkrevd",
+      isExactLength: {
+        message: "Fødselsnummer må være 11 siffer",
+        length: 11
+      }
     }
   };
 
@@ -103,13 +107,21 @@ const ServiceKlage = (props: RouteComponentProps) => {
       isRequired: "Navn er påkrevd"
     },
     innmelderFnr: {
-      isRequired: "Fødselsnummer er påkrevd"
+      isRequired: "Fødselsnummer er påkrevd",
+      isExactLength: {
+        message: "Fødselsnummer må være 11 siffer",
+        length: 11
+      }
     },
     paaVegneAvNavn: {
       isRequired: "Navn er påkrevd"
     },
     paaVegneAvFodselsnr: {
-      isRequired: "Fødselsnummer er påkrevd"
+      isRequired: "Fødselsnummer er påkrevd",
+      isExactLength: {
+        message: "Fødselsnummer må være 11 siffer",
+        length: 11
+      }
     },
     fullmakt: {
       isRequired: "Fullmakt er påkrevd"
@@ -124,7 +136,11 @@ const ServiceKlage = (props: RouteComponentProps) => {
       isRequired: "Organisasjonsnavn er påkrevd"
     },
     orgNummer: {
-      isRequired: "Organisasjonsnummer er påkrevd"
+      isRequired: "Organisasjonsnummer er påkrevd",
+      isExactLength: {
+        message: "Organisasjonsnummer må ha 9 siffer",
+        length: 9
+      }
     },
     orgPostadr: {
       isRequired: "Postadresse er påkrevd"
