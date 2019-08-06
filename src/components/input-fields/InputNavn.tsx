@@ -5,25 +5,21 @@ import { useStore } from "../../providers/Provider";
 interface Props {
   onChange: (value: string) => void;
   error: string | null;
+  submitted: boolean;
   value: string;
 }
 
 const InputNavn = (props: Props) => {
   const [{ auth }] = useStore();
   const [blur, settBlur] = useState(false);
-  const { value, error, onChange } = props;
+  const { value, error, submitted, onChange } = props;
 
   if (auth.authenticated && auth.name !== props.value) {
     onChange(auth.name);
   }
 
   return auth.authenticated ? (
-    <Input
-      label={"Navn *"}
-      required={true}
-      value={props.value}
-      disabled={true}
-    />
+    <Input label={"Navn *"} required={true} value={value} disabled={true} />
   ) : (
     <Input
       label={"Navn *"}
@@ -31,7 +27,7 @@ const InputNavn = (props: Props) => {
       value={value}
       onChange={event => onChange(event.currentTarget.value)}
       onBlur={() => settBlur(true)}
-      feil={error && blur ? { feilmelding: props.error } : undefined}
+      feil={error && (blur || submitted) ? { feilmelding: error } : undefined}
     />
   );
 };

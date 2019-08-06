@@ -5,23 +5,25 @@ import { useStore } from "../../providers/Provider";
 interface Props {
   onChange: (value: string) => void;
   error: string | null;
+  submitted: boolean;
   value: string;
 }
 
 const InputTelefon = (props: Props) => {
   const [{ auth, kontaktInfo }] = useStore();
   const { mobiltelefonnummer } = kontaktInfo;
+  const { error, submitted, value, onChange } = props;
   const [blur, settBlur] = useState(false);
 
   if (
     auth.authenticated &&
     mobiltelefonnummer &&
-    mobiltelefonnummer !== props.value
+    mobiltelefonnummer !== value
   ) {
-    props.onChange(mobiltelefonnummer);
+    onChange(mobiltelefonnummer);
   }
 
-  const formattert = props.value;
+  const formattert = value;
 
   return kontaktInfo.mobiltelefonnummer ? (
     <Input label={"Telefonnummer"} value={formattert} disabled={true} />
@@ -30,10 +32,8 @@ const InputTelefon = (props: Props) => {
       label={"Telefonnummer"}
       required={true}
       value={formattert}
-      onChange={event => {
-        props.onChange(event.currentTarget.value);
-      }}
-      feil={props.error && blur ? { feilmelding: props.error } : undefined}
+      onChange={event => onChange(event.currentTarget.value)}
+      feil={error && (blur || submitted) ? { feilmelding: error } : undefined}
       onBlur={() => settBlur(true)}
     />
   );

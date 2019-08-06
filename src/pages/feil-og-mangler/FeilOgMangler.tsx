@@ -81,6 +81,7 @@ const FOM = (props: RouteComponentProps) => {
                 value={fields.navn}
                 error={errors.navn}
                 onChange={v => setField({ navn: v })}
+                submitted={submitted}
               />
             </div>
             <div className="flex__kolonne-right">
@@ -88,6 +89,7 @@ const FOM = (props: RouteComponentProps) => {
                 value={fields.telefonnummer}
                 error={errors.telefonnummer}
                 onChange={v => setField({ telefonnummer: v })}
+                submitted={submitted}
               />
             </div>
           </div>
