@@ -173,7 +173,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
         PRIVATPERSON: {
           paaVegneAv: "PRIVATPERSON",
           innmelder: {
-            navn: fields.nnmelderNavn,
+            navn: fields.innmelderNavn,
             telefonnummer: fields.innmelderTlfnr,
             personnummer: fields.innmelderFnr
           }
