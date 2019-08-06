@@ -18,6 +18,13 @@ import { FormContext, Form, Validation } from "calidation";
 import InputNavn from "../../components/input-fields/InputNavn";
 import InputMelding from "../../components/input-fields/InputMelding";
 import InputTelefon from "../../components/input-fields/InputTelefon";
+import {
+  annenPersFormConfig,
+  baseFormConfig,
+  bedriftFormConfig,
+  privPersFormConfig,
+  tlfFormConfig
+} from "./config/form";
 
 export type ON_BEHALF_OF = "PRIVATPERSON" | "ANNEN_PERSON" | "BEDRIFT";
 
@@ -73,88 +80,6 @@ const ServiceKlage = (props: RouteComponentProps) => {
   const [{ auth }] = useStore();
   const [loading, settLoading] = useState(false);
   const [error, settError] = useState();
-
-  const baseFormConfig = {
-    hvaGjelder: {
-      isRequired: "Du må velge hva tilbakemeldingen gjelder"
-    },
-    hvemFra: {
-      isRequired: "Du må velge hvem tilbakemeldingen er på vegne av"
-    },
-    onskerKontakt: {
-      isRequired: "Du må velge om du ønsker at vi tar kontakt"
-    },
-    melding: {
-      isRequired: "Melding er påkrevd"
-    }
-  };
-
-  const privPersFormConfig = {
-    innmelderNavn: {
-      isRequired: "Navn er påkrevd"
-    },
-    innmelderFnr: {
-      isRequired: "Fødselsnummer er påkrevd",
-      isExactLength: {
-        message: "Fødselsnummer må være 11 siffer",
-        length: 11
-      }
-    }
-  };
-
-  const annenPersFormConfig = {
-    innmelderNavn: {
-      isRequired: "Navn er påkrevd"
-    },
-    innmelderFnr: {
-      isRequired: "Fødselsnummer er påkrevd",
-      isExactLength: {
-        message: "Fødselsnummer må være 11 siffer",
-        length: 11
-      }
-    },
-    paaVegneAvNavn: {
-      isRequired: "Navn er påkrevd"
-    },
-    paaVegneAvFodselsnr: {
-      isRequired: "Fødselsnummer er påkrevd",
-      isExactLength: {
-        message: "Fødselsnummer må være 11 siffer",
-        length: 11
-      }
-    },
-    fullmakt: {
-      isRequired: "Fullmakt er påkrevd"
-    },
-    rolle: {
-      isRequired: "Rolle er påkrevd"
-    }
-  };
-
-  const bedriftFormConfig = {
-    orgNavn: {
-      isRequired: "Organisasjonsnavn er påkrevd"
-    },
-    orgNummer: {
-      isRequired: "Organisasjonsnummer er påkrevd",
-      isExactLength: {
-        message: "Organisasjonsnummer må ha 9 siffer",
-        length: 9
-      }
-    },
-    orgPostadr: {
-      isRequired: "Postadresse er påkrevd"
-    },
-    orgTlfNr: {
-      isRequired: "Telefonnummer er påkrevd"
-    }
-  };
-
-  const tlfFormConfig = {
-    innmelderTlfnr: {
-      isRequired: "Telefonnummer er påkrevd"
-    }
-  };
 
   const send = (e: FormContext) => {
     const { isValid, fields } = e;
