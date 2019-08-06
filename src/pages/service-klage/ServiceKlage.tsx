@@ -84,9 +84,6 @@ const ServiceKlage = (props: RouteComponentProps) => {
     onskerKontakt: {
       isRequired: "Du må velge om du ønsker at vi tar kontakt"
     },
-    innmelderTlfnr: {
-      isRequired: "Telefonnummer er påkrevd"
-    },
     melding: {
       isRequired: "Melding er påkrevd"
     }
@@ -133,6 +130,12 @@ const ServiceKlage = (props: RouteComponentProps) => {
       isRequired: "Postadresse er påkrevd"
     },
     orgTlfNr: {
+      isRequired: "Telefonnummer er påkrevd"
+    }
+  };
+
+  const tlfFormConfig = {
+    innmelderTlfnr: {
       isRequired: "Telefonnummer er påkrevd"
     }
   };
@@ -447,12 +450,16 @@ const ServiceKlage = (props: RouteComponentProps) => {
                   submitted={submitted}
                 />
                 {fields.onskerKontakt === "true" && (
-                  <InputTelefon
-                    value={fields.innmelderTlfnr}
-                    error={errors.innmelderTlfnr}
-                    onChange={v => setField({ innmelderTlfnr: v })}
-                    submitted={submitted}
-                  />
+                  <Validation key="kontakt" config={tlfFormConfig}>
+                    {() => (
+                      <InputTelefon
+                        value={fields.innmelderTlfnr}
+                        error={errors.innmelderTlfnr}
+                        onChange={v => setField({ innmelderTlfnr: v })}
+                        submitted={submitted}
+                      />
+                    )}
+                  </Validation>
                 )}
                 <InputMelding
                   label={"Melding til NAV *"}
