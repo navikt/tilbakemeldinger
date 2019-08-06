@@ -78,7 +78,6 @@ const Ros = (props: RouteComponentProps) => {
     const { isValid, fields } = e;
     const { navn, telefonnummer, melding } = fields;
     const hvemRoses: HVEM_ROSES = fields.hvemRoses;
-    let { navKontor } = fields;
 
     if (isValid) {
       const outboundBase = {
@@ -87,16 +86,15 @@ const Ros = (props: RouteComponentProps) => {
         melding
       };
 
-      if (hvemRoses === "NAV_KONTOR") {
-        navKontor = fields.navKontor.label;
-      }
-
       const outboundExtend: {
         [key in HVEM_ROSES]: OutboundRosTilNavExtend;
       } = {
         NAV_KONTAKTSENTER: { hvemRoses: "NAV_KONTAKTSENTER" },
         NAV_DIGITALE_LOSNINGER: { hvemRoses: "NAV_DIGITALE_LOSNINGER" },
-        NAV_KONTOR: { hvemRoses: "NAV_KONTOR", navKontor }
+        NAV_KONTOR: {
+          hvemRoses: "NAV_KONTOR",
+          navKontor: fields.navKontor.label
+        }
       };
 
       const outbound = {
