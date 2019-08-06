@@ -4,12 +4,9 @@ import Veilederpanel from "nav-frontend-veilederpanel";
 import Tilbake from "../../components/tilbake/Tilbake";
 import { useStore } from "../../providers/Provider";
 import RadioPanelGruppe from "../../components/input-fields/RadioPanelGruppe";
-import InputMelding from "../../components/input-fields/InputMelding";
-import InputNavn from "../../components/input-fields/InputNavn";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { baseUrl } from "../../App";
-import InputTelefon from "../../components/input-fields/InputTelefon";
 import InputFodselsnr from "../../components/input-fields/InputFodselsnr";
 import { Element } from "nav-frontend-typografi";
 import { postServiceKlage } from "../../clients/apiClient";
@@ -164,11 +161,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
       <Element>Innsender</Element>
       <div className="flex__rad">
         <div className="flex__kolonne-left">
-          <InputNavn
-            value={innsenderNavn}
-            onChange={settInnsenderNavn}
-            submitted={submitted}
-          />
+          <div>navn</div>
         </div>
         <div className="flex__kolonne-right">
           <InputFodselsnr
@@ -234,13 +227,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                 <Element>På vegne av:</Element>
                 <div className="flex__rad">
                   <div className="flex__kolonne-left">
-                    <InputField
-                      label={"Navn *"}
-                      required={true}
-                      value={paaVegneAvNavn}
-                      onChange={settPaaVegneAvNavn}
-                      submitted={submitted}
-                    />
+                    <div>navn</div>
                   </div>
                   <div className="flex__kolonne-right">
                     <InputField
@@ -345,18 +332,8 @@ const ServiceKlage = (props: RouteComponentProps) => {
           submitted={submitted}
         />
 
-        {onskerKontakt === "true" && (
-          <InputTelefon
-            onChange={settTlfnr}
-            value={telefonnummer}
-            submitted={submitted}
-          />
-        )}
-        <InputMelding
-          onChange={settMelding}
-          value={melding}
-          submitted={submitted}
-        />
+        {onskerKontakt === "true" && <div>telefon</div>}
+        <div>melding ...</div>
         <div>
           {error && (
             <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>

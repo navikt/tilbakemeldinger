@@ -1,29 +1,27 @@
-import { Textarea } from "nav-frontend-skjema";
+import { Textarea, TextareaProps } from "nav-frontend-skjema";
 import React, { SyntheticEvent, useState } from "react";
 
-interface Props {
+interface Props extends Omit<TextareaProps, "onChange"> {
   onChange: (value: string) => void;
+  error: string | null;
   submitted: boolean;
   value: string;
 }
 
 const InputMelding = (props: Props) => {
   const [blur, settBlur] = useState(false);
+  const { error, value, label, submitted } = props;
   return (
     <Textarea
-      label={"Melding til NAV *"}
+      label={label}
       required={true}
-      value={props.value}
+      value={value}
       onChange={(e: SyntheticEvent<EventTarget, Event>) => {
         if (e.target instanceof HTMLTextAreaElement) {
           props.onChange(e.target.value);
         }
       }}
-      feil={
-        props.value.length < 3 && (props.submitted || blur)
-          ? { feilmelding: "Meldingen må bestå av minimum 2 tegn" }
-          : undefined
-      }
+      feil={error && (blur || submitted) ? { feilmelding: error } : undefined}
       onBlur={() => settBlur(true)}
     />
   );

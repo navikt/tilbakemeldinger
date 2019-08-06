@@ -4,7 +4,7 @@ import { useStore } from "../../providers/Provider";
 
 interface Props {
   onChange: (value: string) => void;
-  submitted: boolean;
+  error: string | null;
   value: string;
 }
 
@@ -33,11 +33,7 @@ const InputTelefon = (props: Props) => {
       onChange={event => {
         props.onChange(event.currentTarget.value);
       }}
-      feil={
-        props.value.length < 8 && (props.submitted || blur)
-          ? { feilmelding: "Telefonnummeret må være minst 8 tegn" }
-          : undefined
-      }
+      feil={props.error && blur ? { feilmelding: props.error } : undefined}
       onBlur={() => settBlur(true)}
     />
   );

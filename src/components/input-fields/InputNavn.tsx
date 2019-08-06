@@ -4,16 +4,17 @@ import { useStore } from "../../providers/Provider";
 
 interface Props {
   onChange: (value: string) => void;
-  submitted: boolean;
+  error: string | null;
   value: string;
 }
 
 const InputNavn = (props: Props) => {
   const [{ auth }] = useStore();
   const [blur, settBlur] = useState(false);
+  const { value, error, onChange } = props;
 
   if (auth.authenticated && auth.name !== props.value) {
-    props.onChange(auth.name);
+    onChange(auth.name);
   }
 
   return auth.authenticated ? (
@@ -27,14 +28,10 @@ const InputNavn = (props: Props) => {
     <Input
       label={"Navn *"}
       required={true}
-      value={props.value}
-      onChange={event => props.onChange(event.currentTarget.value)}
+      value={value}
+      onChange={event => onChange(event.currentTarget.value)}
       onBlur={() => settBlur(true)}
-      feil={
-        props.value.length < 3 && (props.submitted || blur)
-          ? { feilmelding: "Navn må bestå av minst 2 tegn" }
-          : undefined
-      }
+      feil={error && blur ? { feilmelding: props.error } : undefined}
     />
   );
 };
