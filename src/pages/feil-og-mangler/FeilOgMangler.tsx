@@ -35,7 +35,7 @@ const FOM = (props: RouteComponentProps) => {
       isRequired: "Telefonnummer er påkrevd"
     },
     feiltype: {
-      isRequired: "Feiltype er påkrevd"
+      isRequired: "Du må velge hvilken type feil eller mangel du fan"
     },
     melding: {
       isRequired: "Melding er påkrevd"
@@ -92,6 +92,7 @@ const FOM = (props: RouteComponentProps) => {
             </div>
           </div>
           <RadioPanelGruppe
+            legend={"Hva slags feil eller mangel fant du? *"}
             radios={[
               { label: "Teknisk feil", value: "teknisk-feil" },
               { label: "Feil informasjon", value: "feil-informasjon" },
@@ -100,10 +101,9 @@ const FOM = (props: RouteComponentProps) => {
                 value: "universell-utforming"
               }
             ]}
-            feilmelding={"Du må velge hvilken type feil eller mangel du fant"}
-            checked={fields.feiltype}
             name={"type-feil"}
-            legend={"Hva slags feil eller mangel fant du? *"}
+            error={errors.feiltype}
+            checked={fields.feiltype}
             onChange={v => setField({ feiltype: v })}
             submitted={submitted}
           />

@@ -3,12 +3,12 @@ import React from "react";
 
 interface Props extends Omit<RadioPanelGruppeProps, "onChange"> {
   onChange: (value: any) => void;
-  feilmelding: string;
+  error: string | null;
   submitted: boolean;
 }
 
 const RPG = (props: Props) => {
-  const { onChange, submitted, feilmelding, ...newProps } = props;
+  const { onChange, submitted, error, ...newProps } = props;
 
   return (
     <div className="rpg__rad">
@@ -16,7 +16,7 @@ const RPG = (props: Props) => {
         onChange={(event: React.SyntheticEvent<EventTarget>, value: string) =>
           onChange(value)
         }
-        feil={submitted && !props.checked ? { feilmelding } : undefined}
+        feil={submitted && error ? { feilmelding: error } : undefined}
         {...newProps}
       />
     </div>

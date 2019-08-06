@@ -36,7 +36,7 @@ const Ros = (props: RouteComponentProps) => {
       isRequired: "Telefonnummer er påkrevd"
     },
     hvemRoses: {
-      isRequired: "Hvem roses er påkrevd"
+      isRequired: "Du må velge hvem du skal gi ros til"
     },
     melding: {
       isRequired: "Melding er påkrevd"
@@ -96,6 +96,7 @@ const Ros = (props: RouteComponentProps) => {
               </div>
             </div>
             <RadioPanelGruppe
+              legend={"Hvem vil du gi ros til? *"}
               radios={[
                 { label: "NAV Kontaktsenter", value: "nav-kontaktsenter" },
                 {
@@ -104,12 +105,11 @@ const Ros = (props: RouteComponentProps) => {
                 },
                 { label: "NAV-kontor", value: "nav-kontor" }
               ]}
-              checked={fields.hvemRoses}
-              submitted={submitted}
               name={"ros-til-hvem"}
-              feilmelding={"Du må velge hvem du skal gi ros til"}
-              legend={"Hvem vil du gi ros til? *"}
+              checked={fields.hvemRoses}
+              error={errors.hvemRoses}
               onChange={v => setField({ hvemRoses: v })}
+              submitted={submitted}
             />
             <div className="mellomrom">
               <InputMelding
