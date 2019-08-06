@@ -80,8 +80,6 @@ const Ros = (props: RouteComponentProps) => {
     <Form onSubmit={send}>
       <Validation config={formConfig}>
         {({ errors, fields, submitted, setField }) => {
-          console.log(errors);
-          console.log(fields);
           return (
             <>
               <Tilbake />
