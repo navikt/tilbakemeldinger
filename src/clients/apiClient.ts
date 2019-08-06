@@ -70,10 +70,10 @@ export const fetchKontaktInfo = () =>
   hentJson(`${personInfoApiUrl}/kontaktinformasjon`);
 
 export const postRosTilNav = (data: OutboundRosTilNav) =>
-  sendJson(`${apiUrl}/ros`, data);
+  sendJson(`${apiUrl}/mottak/ros`, data);
 
 export const postServiceKlage = (data: OutboundServiceKlage) =>
-  sendJson(`${apiUrl}/serviceklage`, data);
+  sendJson(`${apiUrl}/mottak/serviceklage`, data);
 
 export const postFeilOgMangler = (data: OutboundFeilOgMangler) =>
-  sendJson(`${apiUrl}/feil-og-mangler`, data);
+  sendJson(`${apiUrl}/mottak/feil-og-mangler`, data);
