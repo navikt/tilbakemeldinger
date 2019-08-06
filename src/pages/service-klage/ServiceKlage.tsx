@@ -132,14 +132,11 @@ const ServiceKlage = (props: RouteComponentProps) => {
         }
       };
 
-      const outbound = {
+      settLoading(true);
+      postServiceKlage({
         ...outboundBase,
         ...outboundExtend[hvemFra]
-      };
-
-      console.log(outbound);
-      settLoading(true);
-      postServiceKlage(outbound)
+      })
         .then(() => {
           props.history.push(`${props.location.pathname}/takk`);
         })

@@ -5,12 +5,8 @@ import { OutboundRosTilNav } from "../pages/ros-til-nav/Ros";
 import { OutboundFeilOgMangler } from "../pages/feil-og-mangler/FeilOgMangler";
 import { OutboundServiceKlage } from "../pages/service-klage/ServiceKlage";
 
-const { loginUrl, baseUrl, apiUrl, personInfoApiUrl } = Environment();
+const { baseUrl, apiUrl, personInfoApiUrl } = Environment();
 const parseJson = (data: any) => data.json();
-
-export const sendTilLogin = () => {
-  window.location.assign(`${loginUrl}?redirect=${window.location.href}`);
-};
 
 const sjekkForFeil = (url: string, response: Response) => {
   if (response.ok) {
@@ -61,10 +57,11 @@ const sendJson = (
       throw error;
     });
 
+export const fetchEnheter = () => hentJson(`${apiUrl}/enheter`);
+export const fetchFodselsnr = () => hentJson(`${apiUrl}/fodselsnr`);
+
 export const fetchAuthInfo = () =>
   hentJson(`${baseUrl}/innloggingslinje-api/auth`);
-
-export const fetchFodselsnr = () => hentJson(`${apiUrl}/fodselsnr`);
 
 export const fetchKontaktInfo = () =>
   hentJson(`${personInfoApiUrl}/kontaktinformasjon`);

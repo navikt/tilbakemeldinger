@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "../../assets/Veileder.svg";
 import RadioPanelGruppe from "../../components/input-fields/RadioPanelGruppe";
@@ -8,7 +8,7 @@ import { baseUrl } from "../../App";
 import InputNavn from "../../components/input-fields/InputNavn";
 import InputTelefon from "../../components/input-fields/InputTelefon";
 import InputMelding from "../../components/input-fields/InputMelding";
-import { postRosTilNav } from "../../clients/apiClient";
+import { fetchEnheter, postRosTilNav } from "../../clients/apiClient";
 import Tilbake from "../../components/tilbake/Tilbake";
 import { HTTPError } from "../../components/error/Error";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
@@ -17,19 +17,41 @@ import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, Form, Validation } from "calidation";
 import Select from "react-select";
 import { ValueType } from "react-select/src/types";
+import { Enheter } from "../../types/enheter";
+import { useStore } from "../../providers/Provider";
 
-export interface OutboundRosTilNav {
+type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
+
+export interface OutboundRosTilNavBase {
   navn: string;
   telefonnummer: string;
-  hvemRoses: string;
   melding: string;
 }
+
+export type OutboundRosTilNavExtend =
+  | { hvemRoses: "NAV_KONTAKTSENTER" }
+  | { hvemRoses: "NAV_DIGITALE_LOSNINGER" }
+  | { hvemRoses: "NAV_KONTOR"; navKontor: string };
+
+export type OutboundRosTilNav = OutboundRosTilNavBase & OutboundRosTilNavExtend;
 
 const Ros = (props: RouteComponentProps) => {
   document.title = "Ros til NAV - www.nav.no";
 
+  const [{ enheter }, dispatch] = useStore();
   const [loading, settLoading] = useState(false);
   const [error, settError] = useState();
+
+  useEffect(() => {
+    fetchEnheter()
+      .then((enheter: Enheter[]) => {
+        dispatch({ type: "SETT_ENHETER_RESULT", payload: enheter });
+      })
+      .catch((error: HTTPError) => {
+        dispatch({ type: "SETT_ENHETER_ERROR", payload: error });
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const formConfig = {
     navn: {
@@ -54,15 +76,29 @@ const Ros = (props: RouteComponentProps) => {
 
   const send = (e: FormContext) => {
     const { isValid, fields } = e;
-    const { navn, telefonnummer, hvemRoses, melding } = fields;
+    const { navn, telefonnummer, navKontor, melding } = fields;
+    const hvemRoses: HVEM_ROSES = fields.hvemRoses;
 
     if (isValid) {
       settLoading(true);
-      postRosTilNav({
+
+      const outboundBase = {
         navn,
         telefonnummer,
-        hvemRoses,
         melding
+      };
+
+      const outboundExtend: {
+        [key in HVEM_ROSES]: OutboundRosTilNavExtend;
+      } = {
+        NAV_KONTAKTSENTER: { hvemRoses: "NAV_KONTAKTSENTER" },
+        NAV_DIGITALE_LOSNINGER: { hvemRoses: "NAV_DIGITALE_LOSNINGER" },
+        NAV_KONTOR: { hvemRoses: "NAV_KONTOR", navKontor }
+      };
+
+      postRosTilNav({
+        ...outboundBase,
+        ...outboundExtend[hvemRoses]
       })
         .then(() => {
           props.history.push(`${props.location.pathname}/takk`);
@@ -131,22 +167,27 @@ const Ros = (props: RouteComponentProps) => {
                         <div className="ros-til-nav__label">
                           <Element>Velg NAV-kontor</Element>
                         </div>
-                        <Select
-                          classNamePrefix={
-                            submitted && errors.navKontor
-                              ? "ros-til-nav-feil"
-                              : "ros-til-nav"
-                          }
-                          value={fields.navKontor}
-                          onChange={(
-                            v: ValueType<{ value: string; label: string }>
-                          ) => setField({ navKontor: v })}
-                          options={[
-                            { value: "chocolate", label: "Chocolate" },
-                            { value: "strawberry", label: "Strawberry" },
-                            { value: "vanilla", label: "Vanilla" }
-                          ]}
-                        />
+                        {enheter.status === "RESULT" ? (
+                          <Select
+                            classNamePrefix={
+                              submitted && errors.navKontor
+                                ? "ros-til-nav-feil"
+                                : "ros-til-nav"
+                            }
+                            value={fields.navKontor}
+                            onChange={(
+                              v: ValueType<{ value: string; label: string }>
+                            ) => setField({ navKontor: v })}
+                            options={enheter.data.map(enhet => ({
+                              value: enhet.enhetsnummer,
+                              label: `${enhet.enhetsnavn} -  ${enhet.enhetsnummer}`
+                            }))}
+                          />
+                        ) : (
+                          <div className="ros-til-nav__spinner">
+                            <NavFrontendSpinner />
+                          </div>
+                        )}
                         {submitted && errors.navKontor && (
                           <div role="alert" aria-live="assertive">
                             <div className="skjemaelement__feilmelding">
