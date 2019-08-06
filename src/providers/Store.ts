@@ -1,7 +1,11 @@
 import { AuthInfo } from "../types/authInfo";
 import { KontaktInfo } from "../types/kontaktInfo";
+import { Sprak } from "../types/sprak";
+import sprak from "../language/provider";
 
 export const initialState = {
+  locale: "nb" as "nb",
+  language: sprak,
   auth: {
     authenticated: false
   } as AuthInfo,
@@ -12,6 +16,8 @@ export const initialState = {
 };
 
 export interface Store {
+  locale: "nb";
+  language: Sprak;
   auth: AuthInfo;
   fodselsnr: string;
   kontaktInfo: KontaktInfo;

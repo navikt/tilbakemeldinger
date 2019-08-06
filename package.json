@@ -57,6 +57,7 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "react-select": "^3.0.4",
     "typescript": "3.5.3"
   },
   "devDependencies": {
@@ -67,6 +68,7 @@
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
     "@types/react-router-dom": "^4.3.4",
+    "@types/react-select": "^3.0.2",
     "prettier": "^1.18.2",
     "tslint": "^5.18.0",
     "tslint-react": "^4.0.0"
