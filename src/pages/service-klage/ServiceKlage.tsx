@@ -258,11 +258,16 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                           />
                                         </div>
                                         <div className="flex__kolonne-right">
-                                          <InputFodselsnr
-                                            onChange={v =>
-                                              setField({ innmelderFnr: v })
+                                          <InputField
+                                            label={
+                                              "Din rolle (nær pårørende, behandler e.l.)"
                                             }
-                                            value={fields.innmelderFnr}
+                                            required={true}
+                                            value={fields.innmelderRolle}
+                                            error={errors.innmelderRolle}
+                                            onChange={v =>
+                                              setField({ innmelderRolle: v })
+                                            }
                                             submitted={submitted}
                                           />
                                         </div>
@@ -295,18 +300,6 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                         />
                                       </div>
                                     </div>
-                                    <InputField
-                                      label={
-                                        "Din rolle (nær pårørende, behandler e.l.)"
-                                      }
-                                      required={true}
-                                      value={fields.innmelderRolle}
-                                      error={errors.innmelderRolle}
-                                      onChange={v =>
-                                        setField({ innmelderRolle: v })
-                                      }
-                                      submitted={submitted}
-                                    />
                                     <RadioPanelGruppe
                                       legend={"Har du fullmakt?"}
                                       className="radioPanel__bool"
