@@ -8,6 +8,7 @@ import { Hovedknapp } from "nav-frontend-knapper";
 import { Link, Redirect } from "react-router-dom";
 import Tilbake from "../../components/tilbake/Tilbake";
 import Environment from "../../utils/Environments";
+import Header from "../../components/header/Header";
 
 const { loginUrl } = Environment();
 
@@ -21,22 +22,22 @@ const Login = () => {
 
   return (
     <>
-      <Tilbake />
-      <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-        Vi anbefaler at du logger inn. Da trenger du ikke fylle inn like mye
-        informasjon.
-      </Veilederpanel>
-      <div className="serviceKlage__login-content">
-        <Undertittel>Ønsker du å logge inn?</Undertittel>
-        <div>
-          Vi anbefaler at du logger inn, slik at trenger du ikke fylle inn like
-          mye informasjon.
-        </div>
-        <a href={`${loginUrl}?redirect=${window.location.href}`}>
-          <Hovedknapp>Logg inn</Hovedknapp>
-        </a>
-        <div className="lenke">
-          <Link to={`${baseUrl}/service-klage`}>Forsett uten logg inn</Link>
+      <Header title="Login - Tilbakemelding på service" />
+      <div className="pagecontent">
+        <Tilbake />
+        <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
+          Ønsker du å logge inn? <br /> Vi anbefaler at du logger inn, så
+          slipper du å fylle inn all informasjonen om deg selv.
+        </Veilederpanel>
+        <div className="serviceKlage__login-content">
+          <a href={`${loginUrl}?redirect=${window.location.href}`}>
+            <Hovedknapp>Logg inn</Hovedknapp>
+          </a>
+          <div className="lenke">
+            <Link to={`${baseUrl}/service-klage`}>
+              Fortsett uten å logge inn
+            </Link>
+          </div>
         </div>
       </div>
     </>

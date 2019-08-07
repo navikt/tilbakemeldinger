@@ -120,7 +120,7 @@ const Ros = (props: RouteComponentProps) => {
 
   return (
     <>
-      <Header title="Ros til nav" />
+      <Header title="Ros til NAV" />
       <div className="pagecontent">
         <Form onSubmit={send}>
           <Validation config={formConfig}>

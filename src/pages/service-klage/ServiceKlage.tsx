@@ -203,7 +203,10 @@ const ServiceKlage = (props: RouteComponentProps) => {
                           label: "På vegne av en annen privatperson",
                           value: "ANNEN_PERSON" as ON_BEHALF_OF
                         },
-                        { label: "Bedrift", value: "BEDRIFT" as ON_BEHALF_OF }
+                        {
+                          label: "På vegne av en bedrift",
+                          value: "BEDRIFT" as ON_BEHALF_OF
+                        }
                       ]}
                       name={"hvem-fra"}
                       error={errors.hvemFra}
@@ -305,7 +308,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                       </div>
                                     </div>
                                     <InputField
-                                      label={"Rolle *"}
+                                      label={
+                                        "Din rolle (nær pårørende, behandler e.l.) *"
+                                      }
                                       required={true}
                                       value={fields.rolle}
                                       error={errors.rolle}
