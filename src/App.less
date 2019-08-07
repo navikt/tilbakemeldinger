@@ -19,18 +19,33 @@
 
 .flex__rad {
   display: flex;
+  @media @tablet {
+    flex-direction: column;
+  }
+  @media @desktop {
+    flex-direction: row;
+  }
 }
 
 .flex__kolonne-left,
 .flex__kolonne-right {
-  width: 50%;
+  @media @mobile {
+    width: 100%;
+  }
+  @media @desktop {
+    width: 50%;
+  }
 }
 
 .flex__kolonne-left {
-  padding-right: 0.25rem;
+  @media @desktop {
+    padding-right: 0.25rem;
+  }
 }
 .flex__kolonne-right {
-  padding-left: 0.25rem;
+  @media @desktop {
+    padding-left: 0.25rem;
+  }
 }
 
 .mellomrom {
@@ -52,15 +67,19 @@
 .radioPanel {
   &__bool {
     .inputPanelGruppe__inner {
-      display: flex;
-      :first-child {
-        margin-right: 0.25rem;
-      }
-      :last-child {
-        margin-left: 0.25rem;
-      }
-      > * {
-        width: 100%;
+      @media @desktop {
+        display: flex;
+        :first-child {
+          margin-right: 0.25rem;
+        }
+
+        :last-child {
+          margin-left: 0.25rem;
+        }
+
+        > * {
+          width: 100%;
+        }
       }
     }
   }
