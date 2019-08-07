@@ -101,7 +101,7 @@ const FOM = (props: RouteComponentProps) => {
                 </div>
               </div>
               <RadioPanelGruppe
-                legend={"Hva slags feil eller mangel fant du? *"}
+                legend={"Hva slags feil eller mangel fant du?"}
                 radios={[
                   { label: "Teknisk feil", value: "teknisk-feil" },
                   { label: "Feil informasjon", value: "feil-informasjon" },
@@ -118,7 +118,7 @@ const FOM = (props: RouteComponentProps) => {
               />
               <div className="mellomrom">
                 <InputMelding
-                  label={"Melding til NAV *"}
+                  label={"Melding til NAV"}
                   submitted={submitted}
                   value={fields.melding}
                   error={errors.melding}

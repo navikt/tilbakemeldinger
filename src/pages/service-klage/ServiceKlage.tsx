@@ -175,7 +175,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                   </Veilederpanel>
                   <div className="serviceKlage__content">
                     <RadioPanelGruppe
-                      legend={"Hva gjelder tilbakemeldingen? *"}
+                      legend={"Hva gjelder tilbakemeldingen?"}
                       radios={[
                         {
                           label: "Saksbehandling av søknad",
@@ -193,7 +193,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       submitted={submitted}
                     />
                     <RadioPanelGruppe
-                      legend={"Hvem skriver du på vegne av? *"}
+                      legend={"Hvem skriver du på vegne av?"}
                       radios={[
                         {
                           label: "Meg selv som privatperson",
@@ -284,7 +284,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                     <div className="flex__rad">
                                       <div className="flex__kolonne-left">
                                         <InputField
-                                          label={"På vegne av *"}
+                                          label={"På vegne av"}
                                           required={true}
                                           value={fields.paaVegneAvNavn}
                                           error={errors.paaVegneAvNavn}
@@ -296,7 +296,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                       </div>
                                       <div className="flex__kolonne-right">
                                         <InputField
-                                          label={"Fødselsnummer *"}
+                                          label={"Fødselsnummer"}
                                           required={true}
                                           value={fields.paaVegneAvFodselsnr}
                                           error={errors.paaVegneAvFodselsnr}
@@ -309,7 +309,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                     </div>
                                     <InputField
                                       label={
-                                        "Din rolle (nær pårørende, behandler e.l.) *"
+                                        "Din rolle (nær pårørende, behandler e.l.)"
                                       }
                                       required={true}
                                       value={fields.innmelderRolle}
@@ -320,7 +320,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                       submitted={submitted}
                                     />
                                     <RadioPanelGruppe
-                                      legend={"Har du fullmakt? *"}
+                                      legend={"Har du fullmakt?"}
                                       className="radioPanel__bool"
                                       radios={[
                                         {
@@ -378,7 +378,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                     <div className="flex__rad">
                                       <div className="flex__kolonne-left ">
                                         <InputField
-                                          label={"Organisasjonsnavn *"}
+                                          label={"Organisasjonsnavn"}
                                           required={true}
                                           value={fields.orgNavn}
                                           error={errors.orgNavn}
@@ -390,7 +390,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                       </div>
                                       <div className="flex__kolonne-right">
                                         <InputField
-                                          label={"Organisasjonsnummer *"}
+                                          label={"Organisasjonsnummer"}
                                           required={true}
                                           value={fields.orgNummer}
                                           error={errors.orgNummer}
@@ -404,7 +404,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                     <div className="flex__rad">
                                       <div className="flex__kolonne-left">
                                         <InputField
-                                          label={"Bedriftens postadresse *"}
+                                          label={"Bedriftens postadresse"}
                                           required={true}
                                           value={fields.orgPostadr}
                                           error={errors.orgPostadr}
@@ -416,7 +416,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                       </div>
                                       <div className="flex__kolonne-right">
                                         <InputField
-                                          label={"Bedriftens telefonnummer *"}
+                                          label={"Bedriftens telefonnummer"}
                                           required={true}
                                           value={fields.orgTlfNr}
                                           error={errors.orgTlfNr}
@@ -429,7 +429,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                     </div>
                                     <InputField
                                       label={
-                                        "Din rolle (leder, HR-ansvarlig, tillitsvalgt osv.) *"
+                                        "Din rolle (leder, HR-ansvarlig, tillitsvalgt osv.)"
                                       }
                                       required={true}
                                       value={fields.innmelderRolle}
@@ -449,7 +449,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                     )}
                     <div className="serviceKlage__melding">
                       <InputMelding
-                        label={"Melding til NAV *"}
+                        label={"Melding til NAV"}
                         submitted={submitted}
                         value={fields.melding}
                         error={errors.melding}
@@ -457,7 +457,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       />
                     </div>
                     <RadioPanelGruppe
-                      legend={"Ønsker du at vi kontakter deg? *"}
+                      legend={"Ønsker du at vi kontakter deg?"}
                       className="radioPanel__bool"
                       radios={[
                         {

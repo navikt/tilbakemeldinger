@@ -23,6 +23,7 @@ const InputMelding = (props: Props) => {
       }}
       feil={error && (blur || submitted) ? { feilmelding: error } : undefined}
       onBlur={() => settBlur(true)}
+      maxLength={0}
     />
   );
 };

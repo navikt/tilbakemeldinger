@@ -20,14 +20,14 @@ const InputFodselsnr = (props: Props) => {
 
   return auth.authenticated && fodselsnr ? (
     <Input
-      label={"Fødselsnummer *"}
+      label={"Fødselsnummer"}
       required={true}
       value={formattert}
       disabled={true}
     />
   ) : (
     <Input
-      label={"Fødselsnummer *"}
+      label={"Fødselsnummer"}
       required={true}
       value={formattert}
       onChange={event => props.onChange(event.currentTarget.value)}

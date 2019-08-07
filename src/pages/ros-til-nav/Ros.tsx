@@ -132,9 +132,7 @@ const Ros = (props: RouteComponentProps) => {
                     svg={<img src={VeilederIcon} alt="Veileder" />}
                   >
                     Takk for at du vil dele din opplevelse med oss! Vi sørger
-                    for at rosen kommer fram til riktig person. Unngå å nevne
-                    sensitive personopplysninger, som for eksempel opplysninger
-                    om helseforhold eller diagnoser.
+                    for at rosen kommer fram til riktig person.
                   </Veilederpanel>
                   <div className="flex__rad mellomrom">
                     <div className="flex__kolonne-left">
@@ -155,14 +153,14 @@ const Ros = (props: RouteComponentProps) => {
                     </div>
                   </div>
                   <RadioPanelGruppe
-                    legend={"Hvem vil du gi ros til? *"}
+                    legend={"Hvem vil du gi ros til?"}
                     radios={[
                       {
                         label: "NAV Kontaktsenter",
                         value: "NAV_KONTAKTSENTER"
                       },
                       {
-                        label: "NAVs digitale løsninger",
+                        label: "NAVs digitale tjenester",
                         value: "NAV_DIGITALE_LOSNINGER"
                       },
                       { label: "NAV-kontor", value: "NAV_KONTOR" }
@@ -216,11 +214,12 @@ const Ros = (props: RouteComponentProps) => {
                   )}
                   <div className="mellomrom">
                     <InputMelding
-                      label={"Melding til NAV *"}
+                      label={"Melding til NAV"}
                       submitted={submitted}
                       value={fields.melding}
                       error={errors.melding}
                       onChange={v => setField({ melding: v })}
+                      maxLength={0}
                     />
                   </div>
                   <div>
