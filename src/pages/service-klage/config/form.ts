@@ -8,13 +8,6 @@ export const baseFormConfig = {
   innmelderNavn: {
     isRequired: "Navn er påkrevd"
   },
-  innmelderFnr: {
-    isRequired: "Fødselsnummer er påkrevd",
-    isExactLength: {
-      message: "Fødselsnummer må være 11 siffer",
-      length: 11
-    }
-  },
   onskerKontakt: {
     isRequired: "Du må velge om du ønsker at vi tar kontakt"
   },

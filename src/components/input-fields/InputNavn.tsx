@@ -19,16 +19,10 @@ const InputNavn = (props: Props) => {
   }
 
   return auth.authenticated ? (
-    <Input
-      label={"Innsenders navn"}
-      required={true}
-      value={value}
-      disabled={true}
-    />
+    <Input label={"Innsenders navn"} value={value} disabled={true} />
   ) : (
     <Input
       label={"Innsenders navn"}
-      required={true}
       value={value}
       onChange={event => onChange(event.currentTarget.value)}
       onBlur={() => settBlur(true)}

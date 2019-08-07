@@ -208,29 +208,30 @@ const ServiceKlage = (props: RouteComponentProps) => {
                           {
                             PRIVATPERSON: (
                               <Validation
-                                config={privPersFormConfig}
                                 key={hvemFra}
+                                config={privPersFormConfig}
                               >
                                 {() => (
                                   <>
                                     <div className="flex__rad">
                                       <div className="flex__kolonne-left">
                                         <InputNavn
+                                          submitted={submitted}
                                           value={fields.innmelderNavn}
                                           error={errors.innmelderNavn}
                                           onChange={v =>
                                             setField({ innmelderNavn: v })
                                           }
-                                          submitted={submitted}
                                         />
                                       </div>
                                       <div className="flex__kolonne-right">
                                         <InputFodselsnr
+                                          submitted={submitted}
+                                          error={errors.innmelderFnr}
+                                          value={fields.innmelderFnr}
                                           onChange={v =>
                                             setField({ innmelderFnr: v })
                                           }
-                                          value={fields.innmelderFnr}
-                                          submitted={submitted}
                                         />
                                       </div>
                                     </div>
@@ -249,16 +250,17 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                       <div className="flex__rad">
                                         <div className="flex__kolonne-left">
                                           <InputNavn
+                                            submitted={submitted}
                                             value={fields.innmelderNavn}
                                             error={errors.innmelderNavn}
                                             onChange={v =>
                                               setField({ innmelderNavn: v })
                                             }
-                                            submitted={submitted}
                                           />
                                         </div>
                                         <div className="flex__kolonne-right">
                                           <InputField
+                                            submitted={submitted}
                                             label={
                                               "Din rolle (nær pårørende, behandler e.l.)"
                                             }
@@ -268,7 +270,6 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                             onChange={v =>
                                               setField({ innmelderRolle: v })
                                             }
-                                            submitted={submitted}
                                           />
                                         </div>
                                       </div>
@@ -278,25 +279,23 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                       <div className="flex__kolonne-left">
                                         <InputField
                                           label={"På vegne av"}
-                                          required={true}
+                                          submitted={submitted}
                                           value={fields.paaVegneAvNavn}
                                           error={errors.paaVegneAvNavn}
                                           onChange={v =>
                                             setField({ paaVegneAvNavn: v })
                                           }
-                                          submitted={submitted}
                                         />
                                       </div>
                                       <div className="flex__kolonne-right">
                                         <InputField
                                           label={"Fødselsnummer"}
-                                          required={true}
+                                          submitted={submitted}
                                           value={fields.paaVegneAvFodselsnr}
                                           error={errors.paaVegneAvFodselsnr}
                                           onChange={v =>
                                             setField({ paaVegneAvFodselsnr: v })
                                           }
-                                          submitted={submitted}
                                         />
                                       </div>
                                     </div>
@@ -314,12 +313,12 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                         }
                                       ]}
                                       name={"fullmakt"}
+                                      submitted={submitted}
                                       checked={fields.innmelderHarFullmakt}
                                       error={errors.innmelderHarFullmakt}
                                       onChange={v =>
                                         setField({ innmelderHarFullmakt: v })
                                       }
-                                      submitted={submitted}
                                     />
                                   </div>
                                 )}
@@ -336,21 +335,25 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                       <div className="flex__rad">
                                         <div className="flex__kolonne-left">
                                           <InputNavn
+                                            submitted={submitted}
                                             value={fields.innmelderNavn}
                                             error={errors.innmelderNavn}
                                             onChange={v =>
                                               setField({ innmelderNavn: v })
                                             }
-                                            submitted={submitted}
                                           />
                                         </div>
                                         <div className="flex__kolonne-right">
-                                          <InputFodselsnr
-                                            onChange={v =>
-                                              setField({ innmelderFnr: v })
+                                          <InputField
+                                            label={
+                                              "Din rolle (leder, HR-ansvarlig, tillitsvalgt osv.)"
                                             }
-                                            value={fields.innmelderFnr}
                                             submitted={submitted}
+                                            value={fields.innmelderRolle}
+                                            error={errors.innmelderRolle}
+                                            onChange={v =>
+                                              setField({ innmelderRolle: v })
+                                            }
                                           />
                                         </div>
                                       </div>
@@ -360,25 +363,23 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                       <div className="flex__kolonne-left ">
                                         <InputField
                                           label={"Organisasjonsnavn"}
-                                          required={true}
+                                          submitted={submitted}
                                           value={fields.orgNavn}
                                           error={errors.orgNavn}
                                           onChange={v =>
                                             setField({ orgNavn: v })
                                           }
-                                          submitted={submitted}
                                         />
                                       </div>
                                       <div className="flex__kolonne-right">
                                         <InputField
                                           label={"Organisasjonsnummer"}
-                                          required={true}
+                                          submitted={submitted}
                                           value={fields.orgNummer}
                                           error={errors.orgNummer}
                                           onChange={v =>
                                             setField({ orgNummer: v })
                                           }
-                                          submitted={submitted}
                                         />
                                       </div>
                                     </div>
@@ -386,40 +387,26 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                       <div className="flex__kolonne-left">
                                         <InputField
                                           label={"Bedriftens postadresse"}
-                                          required={true}
+                                          submitted={submitted}
                                           value={fields.orgPostadr}
                                           error={errors.orgPostadr}
                                           onChange={v =>
                                             setField({ orgPostadr: v })
                                           }
-                                          submitted={submitted}
                                         />
                                       </div>
                                       <div className="flex__kolonne-right">
                                         <InputField
                                           label={"Bedriftens telefonnummer"}
-                                          required={true}
+                                          submitted={submitted}
                                           value={fields.orgTlfNr}
                                           error={errors.orgTlfNr}
                                           onChange={v =>
                                             setField({ orgTlfNr: v })
                                           }
-                                          submitted={submitted}
                                         />
                                       </div>
                                     </div>
-                                    <InputField
-                                      label={
-                                        "Din rolle (leder, HR-ansvarlig, tillitsvalgt osv.)"
-                                      }
-                                      required={true}
-                                      value={fields.innmelderRolle}
-                                      error={errors.innmelderRolle}
-                                      onChange={v =>
-                                        setField({ innmelderRolle: v })
-                                      }
-                                      submitted={submitted}
-                                    />
                                   </>
                                 )}
                               </Validation>
@@ -451,10 +438,10 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         }
                       ]}
                       name={"onsker-kontakt"}
+                      submitted={submitted}
                       error={errors.onskerKontakt}
                       checked={fields.onskerKontakt}
                       onChange={v => setField({ onskerKontakt: v })}
-                      submitted={submitted}
                     />
                     {fields.onskerKontakt === "true" && (
                       <Validation key="kontakt" config={tlfFormConfig}>
