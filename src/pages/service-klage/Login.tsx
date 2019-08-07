@@ -3,7 +3,6 @@ import VeilederIcon from "../../assets/Veileder.svg";
 import { useStore } from "../../providers/Provider";
 import { baseUrl } from "../../App";
 import Veilederpanel from "nav-frontend-veilederpanel";
-import { Undertittel } from "nav-frontend-typografi";
 import { Hovedknapp } from "nav-frontend-knapper";
 import { Link, Redirect } from "react-router-dom";
 import Tilbake from "../../components/tilbake/Tilbake";
