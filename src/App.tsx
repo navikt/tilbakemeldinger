@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Frontpage from "./pages/frontpage/Frontpage";
-import Header from "./components/header/Header";
 import Ros from "./pages/ros-til-nav/Ros";
 import PageNotFound from "./pages/404/404";
 import FeilOgMangler from "./pages/feil-og-mangler/FeilOgMangler";
@@ -55,34 +54,31 @@ const App = () => {
   return (
     <Router>
       <ScrollToTop>
-        <Header />
-        <div className="pagecontent">
-          <Switch>
-            <Route exact path={`(|${baseUrl})`} component={Frontpage} />
-            <Route
-              exact
-              path={`${baseUrl}/service-klage/login`}
-              component={Login}
-            />
-            <Route
-              exact
-              path={`${baseUrl}/service-klage`}
-              component={ServiceKlage}
-            />
-            <Route exact path={`${baseUrl}/ros-til-nav`} component={Ros} />
-            <Route
-              exact
-              path={`${baseUrl}/feil-og-mangler`}
-              component={FeilOgMangler}
-            />
-            <Route
-              exact
-              path={`(|${baseUrl})/(ros-til-nav|feil-og-mangler|service-klage)/takk`}
-              component={Takk}
-            />
-            <Route component={PageNotFound} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path={`(|${baseUrl})`} component={Frontpage} />
+          <Route
+            exact
+            path={`${baseUrl}/service-klage/login`}
+            component={Login}
+          />
+          <Route
+            exact
+            path={`${baseUrl}/service-klage`}
+            component={ServiceKlage}
+          />
+          <Route exact path={`${baseUrl}/ros-til-nav`} component={Ros} />
+          <Route
+            exact
+            path={`${baseUrl}/feil-og-mangler`}
+            component={FeilOgMangler}
+          />
+          <Route
+            exact
+            path={`(|${baseUrl})/(ros-til-nav|feil-og-mangler|service-klage)/takk`}
+            component={Takk}
+          />
+          <Route component={PageNotFound} />
+        </Switch>
       </ScrollToTop>
     </Router>
   );

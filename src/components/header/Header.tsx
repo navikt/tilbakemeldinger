@@ -5,7 +5,10 @@ import Veileder from "nav-frontend-veileder";
 import VeilederIcon from "../../assets/Veileder.svg";
 import { baseUrl } from "../../App";
 
-const ColorBar = (props: RouteComponentProps) =>
+interface Props {
+  title?: string;
+}
+const Header = (props: Props & RouteComponentProps) =>
   props.location.pathname === "/" || props.location.pathname === baseUrl ? (
     <div className="header header__frontpage">
       <div className="header__icon">
@@ -19,7 +22,8 @@ const ColorBar = (props: RouteComponentProps) =>
     </div>
   ) : (
     <div className="header">
-      <Undertittel>Tilbakemelding på service</Undertittel>
+      {props.title && <Undertittel>{props.title}</Undertittel>}
     </div>
   );
-export default withRouter(ColorBar);
+
+export default withRouter(Header);
