@@ -18,60 +18,23 @@ import InputNavn from "../../components/input-fields/InputNavn";
 import InputMelding from "../../components/input-fields/InputMelding";
 import InputTelefon from "../../components/input-fields/InputTelefon";
 import {
+  ON_BEHALF_OF,
+  OutboundServiceKlageBase,
+  OutboundServiceKlageType,
+  OutboundServiceKlageExtend
+} from "../../types/serviceklage";
+import {
   annenPersFormConfig,
   baseFormConfig,
   bedriftFormConfig,
   privPersFormConfig,
-  tlfFormConfig
+  tlfFormConfig,
+  ytelseTjenesteFormConfig
 } from "./config/form";
 import Header from "../../components/header/Header";
 
-type ON_BEHALF_OF = "PRIVATPERSON" | "ANNEN_PERSON" | "BEDRIFT";
-
-type OutboundServiceKlageBase = {
-  klagetype: string;
-  klagetekst: string;
-  oenskerAaKontaktes: boolean;
-};
-
-type OutboundServiceKlageExtend =
-  | {
-      paaVegneAv: "PRIVATPERSON";
-      innmelder: {
-        navn: string;
-        telefonnummer: string;
-        personnummer: string;
-      };
-    }
-  | {
-      paaVegneAv: "ANNEN_PERSON";
-      innmelder: {
-        navn: string;
-        telefonnummer: string;
-        harFullmakt: boolean;
-        rolle: string;
-      };
-      paaVegneAvPerson: {
-        navn: string;
-        personnummer: string;
-      };
-    }
-  | {
-      paaVegneAv: "BEDRIFT";
-      innmelder: {
-        navn: string;
-        telefonnummer: string;
-        rolle: string;
-      };
-      paaVegneAvBedrift: {
-        navn: string;
-        organisasjonsnummer: string;
-        postadresse: string;
-        telefonnummer: string;
-      };
-    };
-
 export type OutboundServiceKlage = OutboundServiceKlageBase &
+  OutboundServiceKlageType &
   OutboundServiceKlageExtend;
 
 const ServiceKlage = (props: RouteComponentProps) => {
@@ -85,12 +48,21 @@ const ServiceKlage = (props: RouteComponentProps) => {
     const { isValid, fields } = e;
     const hvemFra: ON_BEHALF_OF = fields.hvemFra;
 
-    if (isValid && hvemFra) {
+    if (isValid) {
       const outboundBase: OutboundServiceKlageBase = {
-        klagetype: fields.hvaGjelder,
         klagetekst: fields.melding,
         oenskerAaKontaktes: fields.onskerKontakt === "true" ? true : false
       };
+
+      const outboundType: OutboundServiceKlageType =
+        fields.klageType === "SAKSBEHANDLING"
+          ? {
+              klagetype: fields.klageType,
+              ytelseTjeneste: fields.ytelseTjeneste
+            }
+          : {
+              klagetype: fields.klageType
+            };
 
       const outboundExtend: {
         [key in ON_BEHALF_OF]: OutboundServiceKlageExtend;
@@ -134,6 +106,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
 
       const outbound = {
         ...outboundBase,
+        ...outboundType,
         ...outboundExtend[hvemFra]
       };
 
@@ -187,11 +160,26 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         { label: "Annet", value: "ANNET" }
                       ]}
                       name={"hva-gjelder-tilbakemeldingen"}
-                      error={errors.hvaGjelder}
-                      checked={fields.hvaGjelder}
-                      onChange={v => setField({ hvaGjelder: v })}
+                      error={errors.klageType}
+                      checked={fields.klageType}
+                      onChange={v => setField({ klageType: v })}
                       submitted={submitted}
                     />
+                    {fields.klageType === "SAKSBEHANDLING" && (
+                      <Validation key="yt" config={ytelseTjenesteFormConfig}>
+                        {() => (
+                          <div className="serviceKlage__ekspandert">
+                            <InputField
+                              label={"Ytelse eller tjeneste (valgfritt)"}
+                              value={fields.ytelseTjeneste}
+                              error={errors.ytelseTjeneste}
+                              onChange={v => setField({ ytelseTjeneste: v })}
+                              submitted={submitted}
+                            />
+                          </div>
+                        )}
+                      </Validation>
+                    )}
                     <RadioPanelGruppe
                       legend={"Hvem skriver du på vegne av?"}
                       radios={[

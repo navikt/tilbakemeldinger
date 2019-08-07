@@ -1,5 +1,5 @@
 export const baseFormConfig = {
-  hvaGjelder: {
+  klageType: {
     isRequired: "Du må velge hva tilbakemeldingen gjelder"
   },
   hvemFra: {
@@ -21,6 +21,10 @@ export const baseFormConfig = {
   melding: {
     isRequired: "Melding er påkrevd"
   }
+};
+
+export const ytelseTjenesteFormConfig = {
+  ytelseTjeneste: {}
 };
 
 export const privPersFormConfig = {
