@@ -94,7 +94,7 @@ const Ros = (props: RouteComponentProps) => {
         NAV_DIGITALE_LOSNINGER: { hvemRoses: "NAV_DIGITALE_LOSNINGER" },
         NAV_KONTOR: {
           hvemRoses: "NAV_KONTOR",
-          navKontor: fields.navKontor.label
+          navKontor: fields.navKontor ? fields.navKontor.label : undefined
         }
       };
 
