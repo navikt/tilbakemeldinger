@@ -61,7 +61,7 @@ type OutboundServiceKlageExtend =
       innmelder: {
         navn: string;
         telefonnummer: string;
-        rolle: string;
+        innmelderRolle: string;
       };
       paaVegneAvBedrift: {
         navn: string;
@@ -108,8 +108,8 @@ const ServiceKlage = (props: RouteComponentProps) => {
           innmelder: {
             navn: fields.innmelderNavn,
             telefonnummer: fields.innmelderTlfnr,
-            harFullmakt: fields.fullmakt === "true" ? true : false,
-            rolle: fields.rolle
+            harFullmakt: fields.innmelderHarFullmakt === "true" ? true : false,
+            rolle: fields.innmelderRolle
           },
           paaVegneAvPerson: {
             navn: fields.paaVegneAvNavn,
@@ -121,7 +121,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
           innmelder: {
             navn: fields.innmelderNavn,
             telefonnummer: fields.innmelderTlfnr,
-            rolle: fields.rolle
+            innmelderRolle: fields.innmelderRolle
           },
           paaVegneAvBedrift: {
             navn: fields.orgNavn,
@@ -312,9 +312,11 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                         "Din rolle (nær pårørende, behandler e.l.) *"
                                       }
                                       required={true}
-                                      value={fields.rolle}
-                                      error={errors.rolle}
-                                      onChange={v => setField({ rolle: v })}
+                                      value={fields.innmelderRolle}
+                                      error={errors.innmelderRolle}
+                                      onChange={v =>
+                                        setField({ innmelderRolle: v })
+                                      }
                                       submitted={submitted}
                                     />
                                     <RadioPanelGruppe
@@ -331,9 +333,11 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                         }
                                       ]}
                                       name={"fullmakt"}
-                                      checked={fields.fullmakt}
-                                      error={errors.fullmakt}
-                                      onChange={v => setField({ fullmakt: v })}
+                                      checked={fields.innmelderHarFullmakt}
+                                      error={errors.innmelderHarFullmakt}
+                                      onChange={v =>
+                                        setField({ innmelderHarFullmakt: v })
+                                      }
                                       submitted={submitted}
                                     />
                                   </div>
@@ -347,6 +351,30 @@ const ServiceKlage = (props: RouteComponentProps) => {
                               >
                                 {() => (
                                   <>
+                                    <div>
+                                      <div className="flex__rad">
+                                        <div className="flex__kolonne-left">
+                                          <InputNavn
+                                            value={fields.innmelderNavn}
+                                            error={errors.innmelderNavn}
+                                            onChange={v =>
+                                              setField({ innmelderNavn: v })
+                                            }
+                                            submitted={submitted}
+                                          />
+                                        </div>
+                                        <div className="flex__kolonne-right">
+                                          <InputFodselsnr
+                                            onChange={v =>
+                                              setField({ innmelderFnr: v })
+                                            }
+                                            value={fields.innmelderFnr}
+                                            submitted={submitted}
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div className="divider" />
                                     <div className="flex__rad">
                                       <div className="flex__kolonne-left ">
                                         <InputField
@@ -376,7 +404,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                     <div className="flex__rad">
                                       <div className="flex__kolonne-left">
                                         <InputField
-                                          label={"Postadresse *"}
+                                          label={"Bedriftens postadresse *"}
                                           required={true}
                                           value={fields.orgPostadr}
                                           error={errors.orgPostadr}
@@ -399,6 +427,18 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                         />
                                       </div>
                                     </div>
+                                    <InputField
+                                      label={
+                                        "Din rolle (leder, HR-ansvarlig, tillitsvalgt osv.) *"
+                                      }
+                                      required={true}
+                                      value={fields.innmelderRolle}
+                                      error={errors.innmelderRolle}
+                                      onChange={v =>
+                                        setField({ innmelderRolle: v })
+                                      }
+                                      submitted={submitted}
+                                    />
                                   </>
                                 )}
                               </Validation>

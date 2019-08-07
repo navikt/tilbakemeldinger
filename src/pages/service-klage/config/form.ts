@@ -5,6 +5,16 @@ export const baseFormConfig = {
   hvemFra: {
     isRequired: "Du må velge hvem tilbakemeldingen er på vegne av"
   },
+  innmelderNavn: {
+    isRequired: "Navn er påkrevd"
+  },
+  innmelderFnr: {
+    isRequired: "Fødselsnummer er påkrevd",
+    isExactLength: {
+      message: "Fødselsnummer må være 11 siffer",
+      length: 11
+    }
+  },
   onskerKontakt: {
     isRequired: "Du må velge om du ønsker at vi tar kontakt"
   },
@@ -14,9 +24,6 @@ export const baseFormConfig = {
 };
 
 export const privPersFormConfig = {
-  innmelderNavn: {
-    isRequired: "Navn er påkrevd"
-  },
   innmelderFnr: {
     isRequired: "Fødselsnummer er påkrevd",
     isExactLength: {
@@ -27,16 +34,6 @@ export const privPersFormConfig = {
 };
 
 export const annenPersFormConfig = {
-  innmelderNavn: {
-    isRequired: "Navn er påkrevd"
-  },
-  innmelderFnr: {
-    isRequired: "Fødselsnummer er påkrevd",
-    isExactLength: {
-      message: "Fødselsnummer må være 11 siffer",
-      length: 11
-    }
-  },
   paaVegneAvNavn: {
     isRequired: "Navn er påkrevd"
   },
@@ -47,10 +44,10 @@ export const annenPersFormConfig = {
       length: 11
     }
   },
-  fullmakt: {
+  innmelderHarFullmakt: {
     isRequired: "Fullmakt er påkrevd"
   },
-  rolle: {
+  innmelderRolle: {
     isRequired: "Rolle er påkrevd"
   }
 };
@@ -71,6 +68,9 @@ export const bedriftFormConfig = {
   },
   orgTlfNr: {
     isRequired: "Telefonnummer er påkrevd"
+  },
+  innmelderRolle: {
+    isRequired: "Rolle er påkrevd"
   }
 };
 
