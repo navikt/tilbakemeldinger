@@ -8,7 +8,6 @@ import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { baseUrl } from "../../App";
 import InputFodselsnr from "../../components/input-fields/InputFodselsnr";
-import { Element } from "nav-frontend-typografi";
 import { postServiceKlage } from "../../clients/apiClient";
 import InputField from "../../components/input-fields/InputField";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
@@ -193,7 +192,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       value: "PRIVATPERSON" as ON_BEHALF_OF
                     },
                     {
-                      label: "Annen privatperson",
+                      label: "På vegne av en annen privatperson",
                       value: "ANNEN_PERSON" as ON_BEHALF_OF
                     },
                     { label: "Bedrift", value: "BEDRIFT" as ON_BEHALF_OF }
@@ -204,173 +203,194 @@ const ServiceKlage = (props: RouteComponentProps) => {
                   onChange={v => setField({ hvemFra: v })}
                   submitted={submitted}
                 />
-                {hvemFra &&
-                  {
-                    PRIVATPERSON: (
-                      <Validation config={privPersFormConfig} key={hvemFra}>
-                        {() => (
-                          <>
-                            <Element>Innsender</Element>
-                            <div className="flex__rad">
-                              <div className="flex__kolonne-left">
-                                <InputNavn
-                                  value={fields.innmelderNavn}
-                                  error={errors.innmelderNavn}
-                                  onChange={v => setField({ innmelderNavn: v })}
-                                  submitted={submitted}
-                                />
-                              </div>
-                              <div className="flex__kolonne-right">
-                                <InputFodselsnr
-                                  onChange={v => setField({ innmelderFnr: v })}
-                                  value={fields.innmelderFnr}
-                                  submitted={submitted}
-                                />
-                              </div>
-                            </div>
-                          </>
-                        )}
-                      </Validation>
-                    ),
-                    ANNEN_PERSON: (
-                      <Validation key={hvemFra} config={annenPersFormConfig}>
-                        {() => (
-                          <div>
-                            <div>
-                              <Element>Innsender</Element>
-                              <div className="flex__rad">
-                                <div className="flex__kolonne-left">
-                                  <InputNavn
-                                    value={fields.innmelderNavn}
-                                    error={errors.innmelderNavn}
-                                    onChange={v =>
-                                      setField({ innmelderNavn: v })
-                                    }
-                                    submitted={submitted}
-                                  />
+                {hvemFra && (
+                  <div className="serviceKlage__ekspandert">
+                    {
+                      {
+                        PRIVATPERSON: (
+                          <Validation config={privPersFormConfig} key={hvemFra}>
+                            {() => (
+                              <>
+                                <div className="flex__rad">
+                                  <div className="flex__kolonne-left">
+                                    <InputNavn
+                                      value={fields.innmelderNavn}
+                                      error={errors.innmelderNavn}
+                                      onChange={v =>
+                                        setField({ innmelderNavn: v })
+                                      }
+                                      submitted={submitted}
+                                    />
+                                  </div>
+                                  <div className="flex__kolonne-right">
+                                    <InputFodselsnr
+                                      onChange={v =>
+                                        setField({ innmelderFnr: v })
+                                      }
+                                      value={fields.innmelderFnr}
+                                      submitted={submitted}
+                                    />
+                                  </div>
                                 </div>
-                                <div className="flex__kolonne-right">
-                                  <InputFodselsnr
-                                    onChange={v =>
-                                      setField({ innmelderFnr: v })
-                                    }
-                                    value={fields.innmelderFnr}
-                                    submitted={submitted}
-                                  />
+                              </>
+                            )}
+                          </Validation>
+                        ),
+                        ANNEN_PERSON: (
+                          <Validation
+                            key={hvemFra}
+                            config={annenPersFormConfig}
+                          >
+                            {() => (
+                              <div>
+                                <div>
+                                  <div className="flex__rad">
+                                    <div className="flex__kolonne-left">
+                                      <InputNavn
+                                        value={fields.innmelderNavn}
+                                        error={errors.innmelderNavn}
+                                        onChange={v =>
+                                          setField({ innmelderNavn: v })
+                                        }
+                                        submitted={submitted}
+                                      />
+                                    </div>
+                                    <div className="flex__kolonne-right">
+                                      <InputFodselsnr
+                                        onChange={v =>
+                                          setField({ innmelderFnr: v })
+                                        }
+                                        value={fields.innmelderFnr}
+                                        submitted={submitted}
+                                      />
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                            <Element>På vegne av:</Element>
-                            <div className="flex__rad">
-                              <div className="flex__kolonne-left">
+                                <div className="divider" />
+                                <div className="flex__rad">
+                                  <div className="flex__kolonne-left">
+                                    <InputField
+                                      label={"På vegne av *"}
+                                      required={true}
+                                      value={fields.paaVegneAvNavn}
+                                      error={errors.paaVegneAvNavn}
+                                      onChange={v =>
+                                        setField({ paaVegneAvNavn: v })
+                                      }
+                                      submitted={submitted}
+                                    />
+                                  </div>
+                                  <div className="flex__kolonne-right">
+                                    <InputField
+                                      label={"Fødselsnummer *"}
+                                      required={true}
+                                      value={fields.paaVegneAvFodselsnr}
+                                      error={errors.paaVegneAvFodselsnr}
+                                      onChange={v =>
+                                        setField({ paaVegneAvFodselsnr: v })
+                                      }
+                                      submitted={submitted}
+                                    />
+                                  </div>
+                                </div>
                                 <InputField
-                                  label={"Navn *"}
+                                  label={"Rolle *"}
                                   required={true}
-                                  value={fields.paaVegneAvNavn}
-                                  error={errors.paaVegneAvNavn}
-                                  onChange={v =>
-                                    setField({ paaVegneAvNavn: v })
-                                  }
+                                  value={fields.rolle}
+                                  error={errors.rolle}
+                                  onChange={v => setField({ rolle: v })}
+                                  submitted={submitted}
+                                />
+                                <RadioPanelGruppe
+                                  legend={"Har du fullmakt? *"}
+                                  className="radioPanel__bool"
+                                  radios={[
+                                    {
+                                      label: "Ja, jeg har fullmakt",
+                                      value: "true"
+                                    },
+                                    {
+                                      label: "Nei, jeg har ikke fullmakt",
+                                      value: "false"
+                                    }
+                                  ]}
+                                  name={"fullmakt"}
+                                  checked={fields.fullmakt}
+                                  error={errors.fullmakt}
+                                  onChange={v => setField({ fullmakt: v })}
                                   submitted={submitted}
                                 />
                               </div>
-                              <div className="flex__kolonne-right">
-                                <InputField
-                                  label={"Fødselsnummer *"}
-                                  required={true}
-                                  value={fields.paaVegneAvFodselsnr}
-                                  error={errors.paaVegneAvFodselsnr}
-                                  onChange={v =>
-                                    setField({ paaVegneAvFodselsnr: v })
-                                  }
-                                  submitted={submitted}
-                                />
-                              </div>
-                            </div>
-                            <InputField
-                              label={"Rolle *"}
-                              required={true}
-                              value={fields.rolle}
-                              error={errors.rolle}
-                              onChange={v => setField({ rolle: v })}
-                              submitted={submitted}
-                            />
-                            <RadioPanelGruppe
-                              legend={"Har du fullmakt? *"}
-                              className="radioPanel__bool"
-                              radios={[
-                                {
-                                  label: "Ja, jeg har fullmakt",
-                                  value: "true"
-                                },
-                                {
-                                  label: "Nei, jeg har ikke fullmakt",
-                                  value: "false"
-                                }
-                              ]}
-                              name={"fullmakt"}
-                              checked={fields.fullmakt}
-                              error={errors.fullmakt}
-                              onChange={v => setField({ fullmakt: v })}
-                              submitted={submitted}
-                            />
-                          </div>
-                        )}
-                      </Validation>
-                    ),
-                    BEDRIFT: (
-                      <Validation key={hvemFra} config={bedriftFormConfig}>
-                        {() => (
-                          <>
-                            <div className="flex__rad">
-                              <div className="flex__kolonne-left ">
-                                <InputField
-                                  label={"Organisasjonsnavn *"}
-                                  required={true}
-                                  value={fields.orgNavn}
-                                  error={errors.orgNavn}
-                                  onChange={v => setField({ orgNavn: v })}
-                                  submitted={submitted}
-                                />
-                              </div>
-                              <div className="flex__kolonne-right">
-                                <InputField
-                                  label={"Organisasjonsnummer *"}
-                                  required={true}
-                                  value={fields.orgNummer}
-                                  error={errors.orgNummer}
-                                  onChange={v => setField({ orgNummer: v })}
-                                  submitted={submitted}
-                                />
-                              </div>
-                            </div>
-                            <div className="flex__rad">
-                              <div className="flex__kolonne-left">
-                                <InputField
-                                  label={"Postadresse *"}
-                                  required={true}
-                                  value={fields.orgPostadr}
-                                  error={errors.orgPostadr}
-                                  onChange={v => setField({ orgPostadr: v })}
-                                  submitted={submitted}
-                                />
-                              </div>
-                              <div className="flex__kolonne-right">
-                                <InputField
-                                  label={"Bedriftens telefonnummer *"}
-                                  required={true}
-                                  value={fields.orgTlfNr}
-                                  error={errors.orgTlfNr}
-                                  onChange={v => setField({ orgTlfNr: v })}
-                                  submitted={submitted}
-                                />
-                              </div>
-                            </div>
-                          </>
-                        )}
-                      </Validation>
-                    )
-                  }[hvemFra]}
+                            )}
+                          </Validation>
+                        ),
+                        BEDRIFT: (
+                          <Validation key={hvemFra} config={bedriftFormConfig}>
+                            {() => (
+                              <>
+                                <div className="flex__rad">
+                                  <div className="flex__kolonne-left ">
+                                    <InputField
+                                      label={"Organisasjonsnavn *"}
+                                      required={true}
+                                      value={fields.orgNavn}
+                                      error={errors.orgNavn}
+                                      onChange={v => setField({ orgNavn: v })}
+                                      submitted={submitted}
+                                    />
+                                  </div>
+                                  <div className="flex__kolonne-right">
+                                    <InputField
+                                      label={"Organisasjonsnummer *"}
+                                      required={true}
+                                      value={fields.orgNummer}
+                                      error={errors.orgNummer}
+                                      onChange={v => setField({ orgNummer: v })}
+                                      submitted={submitted}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="flex__rad">
+                                  <div className="flex__kolonne-left">
+                                    <InputField
+                                      label={"Postadresse *"}
+                                      required={true}
+                                      value={fields.orgPostadr}
+                                      error={errors.orgPostadr}
+                                      onChange={v =>
+                                        setField({ orgPostadr: v })
+                                      }
+                                      submitted={submitted}
+                                    />
+                                  </div>
+                                  <div className="flex__kolonne-right">
+                                    <InputField
+                                      label={"Bedriftens telefonnummer *"}
+                                      required={true}
+                                      value={fields.orgTlfNr}
+                                      error={errors.orgTlfNr}
+                                      onChange={v => setField({ orgTlfNr: v })}
+                                      submitted={submitted}
+                                    />
+                                  </div>
+                                </div>
+                              </>
+                            )}
+                          </Validation>
+                        )
+                      }[hvemFra]
+                    }
+                  </div>
+                )}
+                <div className="serviceKlage__melding">
+                  <InputMelding
+                    label={"Melding til NAV *"}
+                    submitted={submitted}
+                    value={fields.melding}
+                    error={errors.melding}
+                    onChange={v => setField({ melding: v })}
+                  />
+                </div>
                 <RadioPanelGruppe
                   legend={"Ønsker du at vi kontakter deg? *"}
                   className="radioPanel__bool"
@@ -393,22 +413,17 @@ const ServiceKlage = (props: RouteComponentProps) => {
                 {fields.onskerKontakt === "true" && (
                   <Validation key="kontakt" config={tlfFormConfig}>
                     {() => (
-                      <InputTelefon
-                        value={fields.innmelderTlfnr}
-                        error={errors.innmelderTlfnr}
-                        onChange={v => setField({ innmelderTlfnr: v })}
-                        submitted={submitted}
-                      />
+                      <div className="serviceKlage__ekspandert">
+                        <InputTelefon
+                          value={fields.innmelderTlfnr}
+                          error={errors.innmelderTlfnr}
+                          onChange={v => setField({ innmelderTlfnr: v })}
+                          submitted={submitted}
+                        />
+                      </div>
                     )}
                   </Validation>
                 )}
-                <InputMelding
-                  label={"Melding til NAV *"}
-                  submitted={submitted}
-                  value={fields.melding}
-                  error={errors.melding}
-                  onChange={v => setField({ melding: v })}
-                />
                 <div>
                   {error && (
                     <AlertStripeFeil>

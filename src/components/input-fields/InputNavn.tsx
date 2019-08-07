@@ -19,10 +19,15 @@ const InputNavn = (props: Props) => {
   }
 
   return auth.authenticated ? (
-    <Input label={"Navn *"} required={true} value={value} disabled={true} />
+    <Input
+      label={"Innsenders navn *"}
+      required={true}
+      value={value}
+      disabled={true}
+    />
   ) : (
     <Input
-      label={"Navn *"}
+      label={"Innsenders navn *"}
       required={true}
       value={value}
       onChange={event => onChange(event.currentTarget.value)}
