@@ -61,7 +61,7 @@ type OutboundServiceKlageExtend =
       innmelder: {
         navn: string;
         telefonnummer: string;
-        innmelderRolle: string;
+        rolle: string;
       };
       paaVegneAvBedrift: {
         navn: string;
@@ -121,7 +121,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
           innmelder: {
             navn: fields.innmelderNavn,
             telefonnummer: fields.innmelderTlfnr,
-            innmelderRolle: fields.innmelderRolle
+            rolle: fields.innmelderRolle
           },
           paaVegneAvBedrift: {
             navn: fields.orgNavn,
