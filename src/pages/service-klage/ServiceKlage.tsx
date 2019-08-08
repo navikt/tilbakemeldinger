@@ -127,7 +127,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
 
   return (
     <>
-      <Header title="Tilbakemelding på service" />
+      <Header title="Klage på service" />
       <div className="pagecontent">
         <Form onSubmit={send}>
           <Validation config={baseFormConfig}>
