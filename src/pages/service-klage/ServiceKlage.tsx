@@ -141,10 +141,10 @@ const ServiceKlage = (props: RouteComponentProps) => {
                   <Veilederpanel
                     svg={<img src={VeilederIcon} alt="Veileder" />}
                   >
-                    Takk for at du vil dele din opplevelse med oss! Vi sørger
-                    for at rosen kommer fram til riktig person. Unngå å nevne
-                    sensitive personopplysninger, som for eksempel opplysninger
-                    om helseforhold eller diagnoser.
+                    Velg det alternativet som passer best.
+                    <br />
+                    Vi vil uansett sørge for at tilbakemeldingen kommer fram til
+                    riktig person.
                   </Veilederpanel>
                   <div className="serviceKlage__content">
                     <RadioPanelGruppe

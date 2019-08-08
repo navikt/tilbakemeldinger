@@ -79,8 +79,9 @@ const FOM = (props: RouteComponentProps) => {
             <>
               <Tilbake />
               <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-                Takk for at du sier ifra om feil og mangler. Vi sørger for at
-                meldingen kommer fram til riktig person.
+                Takk for at du sier ifra om feil og mangler.
+                <br />
+                Vi sørger for at meldingen kommer fram til riktig person.
               </Veilederpanel>
               <div className="flex__rad mellomrom">
                 <div className="flex__kolonne-left">

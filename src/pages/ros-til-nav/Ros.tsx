@@ -131,8 +131,9 @@ const Ros = (props: RouteComponentProps) => {
                   <Veilederpanel
                     svg={<img src={VeilederIcon} alt="Veileder" />}
                   >
-                    Takk for at du vil dele din opplevelse med oss! Vi sørger
-                    for at rosen kommer fram til riktig person.
+                    Takk for at du vil dele din opplevelse med oss!
+                    <br />
+                    Vi sørger for at rosen kommer fram til riktig person.
                   </Veilederpanel>
                   <div className="flex__rad mellomrom">
                     <div className="flex__kolonne-left">
