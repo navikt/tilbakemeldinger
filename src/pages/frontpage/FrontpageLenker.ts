@@ -24,17 +24,17 @@ export const lenker: Lenke[] = [
     lenkeTekst: "Send tilbakemelding på service"
   },
   {
-    tittel: "Ros til NAV",
-    beskrivelse:
-      "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
-    lenke: "/person/tilbakemeldinger/ros-til-nav",
-    lenkeTekst: "Gi ros til nav"
-  },
-  {
     tittel: "Feil og mangler på nav.no",
     beskrivelse:
       "Har du oppdaget en feil på nav.no? Kanskje en teknisk feil, feil informasjon eller for lav grad av universell utforming? Da vil vi gjerne høre fra deg. ",
     lenke: "/person/tilbakemeldinger/feil-og-mangler",
     lenkeTekst: "Meld fra om feil og mangler"
+  },
+  {
+    tittel: "Ros til NAV",
+    beskrivelse:
+      "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
+    lenke: "/person/tilbakemeldinger/ros-til-nav",
+    lenkeTekst: "Gi ros til nav"
   }
 ];
