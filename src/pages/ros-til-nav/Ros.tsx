@@ -230,7 +230,7 @@ const Ros = (props: RouteComponentProps) => {
                       </AlertStripeFeil>
                     )}
                   </div>
-                  <div className="tb__knapper">
+                  <div className="tb__knapper ros-til-nav__knapper">
                     <div className="tb__knapp">
                       <Hovedknapp disabled={loading}>
                         {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
