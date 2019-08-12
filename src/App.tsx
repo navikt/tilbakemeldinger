@@ -63,7 +63,7 @@ const App = () => {
           />
           <Route
             exact
-            path={`${baseUrl}/service-klage`}
+            path={`${baseUrl}/serviceklage`}
             component={ServiceKlage}
           />
           <Route exact path={`${baseUrl}/ros-til-nav`} component={Ros} />
