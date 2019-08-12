@@ -16,7 +16,7 @@ const Login = () => {
   const [{ auth }] = useStore();
 
   if (auth.authenticated) {
-    return <Redirect to={`${baseUrl}/service-klage`} />;
+    return <Redirect to={`${baseUrl}/serviceklage`} />;
   }
 
   return (
@@ -33,7 +33,7 @@ const Login = () => {
             <Hovedknapp>Logg inn</Hovedknapp>
           </a>
           <div className="lenke">
-            <Link to={`${baseUrl}/service-klage`}>
+            <Link to={`${baseUrl}/serviceklage`}>
               Fortsett uten å logge inn
             </Link>
           </div>

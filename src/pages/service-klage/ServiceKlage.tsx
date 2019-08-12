@@ -38,7 +38,7 @@ export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageExtend;
 
 const ServiceKlage = (props: RouteComponentProps) => {
-  document.title = "ServiceKlage - www.nav.no";
+  document.title = "Klage på service - www.nav.no";
 
   const [{ auth }] = useStore();
   const [loading, settLoading] = useState(false);
@@ -136,7 +136,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
               return (
                 <>
                   <Tilbake
-                    to={auth.authenticated ? "" : "/service-klage/login"}
+                    to={auth.authenticated ? "" : "/serviceklage/login"}
                   />
                   <Veilederpanel
                     svg={<img src={VeilederIcon} alt="Veileder" />}

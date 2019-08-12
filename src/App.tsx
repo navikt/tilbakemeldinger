@@ -58,7 +58,7 @@ const App = () => {
           <Route exact path={`(|${baseUrl})`} component={Frontpage} />
           <Route
             exact
-            path={`${baseUrl}/service-klage/login`}
+            path={`${baseUrl}/serviceklage/login`}
             component={Login}
           />
           <Route
@@ -74,7 +74,7 @@ const App = () => {
           />
           <Route
             exact
-            path={`(|${baseUrl})/(ros-til-nav|feil-og-mangler|service-klage)/takk`}
+            path={`(|${baseUrl})/(ros-til-nav|feil-og-mangler|serviceklage)/takk`}
             component={Takk}
           />
           <Route component={PageNotFound} />
