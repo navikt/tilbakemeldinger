@@ -104,11 +104,11 @@ const FOM = (props: RouteComponentProps) => {
               <RadioPanelGruppe
                 legend={"Hva slags feil eller mangel fant du?"}
                 radios={[
-                  { label: "Teknisk feil", value: "teknisk-feil" },
-                  { label: "Feil informasjon", value: "feil-informasjon" },
+                  { label: "Teknisk feil", value: "TEKNISK_FEIL" },
+                  { label: "Feil informasjon", value: "FEIL_INFO" },
                   {
                     label: "Lav grad av universell utforming",
-                    value: "universell-utforming"
+                    value: "UNIVERSELL_UTFORMING"
                   }
                 ]}
                 name={"type-feil"}
