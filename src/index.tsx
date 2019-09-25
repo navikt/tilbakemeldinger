@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-
+import NAVChatBot from "@navikt/nav-chatbot";
 import withMenu from "./clients/apiMock/decorator/decorator-header-withmenu";
 import megamenu from "./clients/apiMock/decorator/decorator-megamenu";
 import footer from "./clients/apiMock/decorator/decorator-footer";
@@ -48,6 +48,7 @@ const init = async () => {
   ReactDOM.render(
     <StoreProvider initialState={initialState} reducer={reducer}>
       <App />
+      <NAVChatBot customerKey="12345" queueKey="Q_CHAT_BOT" />
     </StoreProvider>,
     document.getElementById("app")
   );
