@@ -170,7 +170,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         {() => (
                           <div className="serviceKlage__ekspandert">
                             <InputField
-                              label={"Ytelse eller tjeneste (valgfritt)"}
+                              label={"Type søknad (valgfritt)"}
                               value={fields.ytelseTjeneste}
                               error={errors.ytelseTjeneste}
                               onChange={v => setField({ ytelseTjeneste: v })}
@@ -216,6 +216,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                     <div className="flex__rad">
                                       <div className="flex__kolonne-left">
                                         <InputNavn
+                                          label={"Navn"}
                                           submitted={submitted}
                                           value={fields.innmelderNavn}
                                           error={errors.innmelderNavn}
@@ -250,6 +251,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                       <div className="flex__rad">
                                         <div className="flex__kolonne-left">
                                           <InputNavn
+                                            label={"Innsenders navn"}
                                             submitted={submitted}
                                             value={fields.innmelderNavn}
                                             error={errors.innmelderNavn}
@@ -335,6 +337,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                       <div className="flex__rad">
                                         <div className="flex__kolonne-left">
                                           <InputNavn
+                                            label={"Innsenders navn"}
                                             submitted={submitted}
                                             value={fields.innmelderNavn}
                                             error={errors.innmelderNavn}

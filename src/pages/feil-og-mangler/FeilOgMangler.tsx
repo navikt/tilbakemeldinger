@@ -86,6 +86,7 @@ const FOM = (props: RouteComponentProps) => {
               <div className="flex__rad mellomrom">
                 <div className="flex__kolonne-left">
                   <InputNavn
+                    label={"Navn"}
                     value={fields.navn}
                     error={errors.navn}
                     onChange={v => setField({ navn: v })}
