@@ -195,10 +195,14 @@ const Ros = (props: RouteComponentProps) => {
                                 onChange={(
                                   v: ValueType<{ value: string; label: string }>
                                 ) => setField({ navKontor: v })}
-                                options={enheter.data.map(enhet => ({
-                                  value: enhet.enhetsnummer,
-                                  label: `${enhet.enhetsnavn} -  ${enhet.enhetsnummer}`
-                                }))}
+                                options={enheter.data
+                                  .sort((a, b) =>
+                                    a.enhetsnavn < b.enhetsnavn ? -1 : 1
+                                  )
+                                  .map(enhet => ({
+                                    value: enhet.enhetsnummer,
+                                    label: `${enhet.enhetsnavn} -  ${enhet.enhetsnummer}`
+                                  }))}
                               />
                             ) : (
                               <div className="ros-til-nav__spinner">
