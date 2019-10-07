@@ -251,7 +251,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                       <div className="flex__rad">
                                         <div className="flex__kolonne-left">
                                           <InputNavn
-                                            label={"Innsenders navn"}
+                                            label={"Ditt navn"}
                                             submitted={submitted}
                                             value={fields.innmelderNavn}
                                             error={errors.innmelderNavn}
@@ -276,11 +276,10 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="divider" />
                                     <div className="flex__rad">
                                       <div className="flex__kolonne-left">
                                         <InputField
-                                          label={"På vegne av"}
+                                          label={"Navn til den som klager"}
                                           submitted={submitted}
                                           value={fields.paaVegneAvNavn}
                                           error={errors.paaVegneAvNavn}
@@ -337,7 +336,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                       <div className="flex__rad">
                                         <div className="flex__kolonne-left">
                                           <InputNavn
-                                            label={"Innsenders navn"}
+                                            label={"Ditt navn"}
                                             submitted={submitted}
                                             value={fields.innmelderNavn}
                                             error={errors.innmelderNavn}
@@ -361,7 +360,6 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="divider" />
                                     <div className="flex__rad">
                                       <div className="flex__kolonne-left ">
                                         <InputField

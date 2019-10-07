@@ -183,6 +183,9 @@ const Ros = (props: RouteComponentProps) => {
                             </div>
                             {enheter.status === "RESULT" ? (
                               <Select
+                                placeholder={
+                                  "Skriv inn navnet eller velg med piltast"
+                                }
                                 classNamePrefix={
                                   submitted && errors.navKontor
                                     ? "ros-til-nav-feil"

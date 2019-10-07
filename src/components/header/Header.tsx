@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter, RouteComponentProps } from "react-router";
-import { Undertittel } from "nav-frontend-typografi";
+import { Innholdstittel } from "nav-frontend-typografi";
 import Veileder from "nav-frontend-veileder";
 import VeilederIcon from "../../assets/Veileder.svg";
 import { baseUrl } from "../../App";
@@ -22,7 +22,11 @@ const Header = (props: Props & RouteComponentProps) =>
     </div>
   ) : (
     <div className="header">
-      {props.title && <Undertittel>{props.title}</Undertittel>}
+      {props.title && (
+        <Innholdstittel className="header__tittel">
+          {props.title}
+        </Innholdstittel>
+      )}
     </div>
   );
 

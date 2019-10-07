@@ -55,25 +55,25 @@ const App = () => {
     <Router>
       <ScrollToTop>
         <Switch>
-          <Route exact path={`(|${baseUrl})`} component={Frontpage} />
+          <Route exact={true} path={`(|${baseUrl})`} component={Frontpage} />
           <Route
-            exact
+            exact={true}
             path={`${baseUrl}/serviceklage/login`}
             component={Login}
           />
           <Route
-            exact
+            exact={true}
             path={`${baseUrl}/serviceklage`}
             component={ServiceKlage}
           />
-          <Route exact path={`${baseUrl}/ros-til-nav`} component={Ros} />
+          <Route exact={true} path={`${baseUrl}/ros-til-nav`} component={Ros} />
           <Route
-            exact
+            exact={true}
             path={`${baseUrl}/feil-og-mangler`}
             component={FeilOgMangler}
           />
           <Route
-            exact
+            exact={true}
             path={`(|${baseUrl})/(ros-til-nav|feil-og-mangler|serviceklage)/takk`}
             component={Takk}
           />
