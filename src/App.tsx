@@ -14,6 +14,7 @@ import { AuthInfo } from "./types/authInfo";
 import { HTTPError } from "./components/error/Error";
 import Takk from "./pages/takk/Takk";
 import ServiceKlage from "./pages/service-klage/ServiceKlage";
+import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
 import Login from "./pages/service-klage/Login";
 import { KontaktInfo } from "./types/kontaktInfo";
 import { Fodselsnr } from "./types/fodselsnr";
@@ -71,6 +72,11 @@ const App = () => {
             exact={true}
             path={`${baseUrl}/feil-og-mangler`}
             component={FeilOgMangler}
+          />
+          <Route
+            exact={true}
+            path={`${baseUrl}/samegiella/bestilling-av-samtale`}
+            component={BestillingAvSamtale}
           />
           <Route
             exact={true}
