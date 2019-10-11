@@ -20,7 +20,7 @@
     "docker-stop": "docker stop tilbakemeldinger"
   },
   "dependencies": {
-    "@navikt/nav-chatbot": "^1.1.5",
+    "@navikt/nav-chatbot": "^1.1.6",
     "babel-polyfill": "^6.26.0",
     "calidation": "^1.16.2",
     "classnames": "^2.2.6",
