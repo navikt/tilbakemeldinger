@@ -20,21 +20,22 @@ export const lenker: Lenke[] = [
     tittel: "Klage på service",
     beskrivelse:
       "Har du blitt møtt på en dårlig måte? Eller hatt en annen negativ opplevelse i møte med NAV?",
-    lenke: "/person/tilbakemeldinger/serviceklage/login",
+    lenke: "/person/kontakt-oss/tilbakemeldinger/serviceklage/login",
     lenkeTekst: "Send tilbakemelding på service"
   },
   {
     tittel: "Feil og mangler på nav.no",
     beskrivelse:
-      "Har du oppdaget en feil på nav.no? Kanskje en teknisk feil, feil informasjon eller for lav grad av universell utforming? Da vil vi gjerne høre fra deg. ",
-    lenke: "/person/tilbakemeldinger/feil-og-mangler",
+      "Har du oppdaget en feil på nav.no? Kanskje en teknisk feil, feil informasjon eller for lav grad av universell utforming? " +
+        "Da vil vi gjerne høre fra deg. ",
+    lenke: "/person/kontakt-oss/tilbakemeldinger/feil-og-mangler",
     lenkeTekst: "Meld fra om feil og mangler"
   },
   {
     tittel: "Ros til NAV",
     beskrivelse:
       "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
-    lenke: "/person/tilbakemeldinger/ros-til-nav",
+    lenke: "/person/kontakt-oss/tilbakemeldinger/ros-til-nav",
     lenkeTekst: "Gi ros til nav"
   }
 ];
