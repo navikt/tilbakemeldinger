@@ -4,7 +4,6 @@ import VeilederIcon from "../../../assets/Veileder.svg";
 import RadioPanelGruppe from "../../../components/input-fields/RadioPanelGruppe";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import { tilbakemeldingerUrl } from "../../../App";
 import InputNavn from "../../../components/input-fields/InputNavn";
 import InputTelefon from "../../../components/input-fields/InputTelefon";
 import InputMelding from "../../../components/input-fields/InputMelding";
@@ -20,6 +19,7 @@ import { ValueType } from "react-select/src/types";
 import { Enheter } from "../../../types/enheter";
 import { useStore } from "../../../providers/Provider";
 import Header from "../../../components/header/Header";
+import { urls } from "Config";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
 
@@ -245,7 +245,7 @@ const Ros = (props: RouteComponentProps) => {
                       </Hovedknapp>
                     </div>
                     <div className="tb__knapp">
-                      <Link to={tilbakemeldingerUrl}>
+                      <Link to={urls.tilbakemeldinger}>
                         <Knapp>Tilbake</Knapp>
                       </Link>
                     </div>

@@ -5,8 +5,8 @@ import { Link, Redirect } from "react-router-dom";
 import Tilbake from "components/tilbake/Tilbake";
 import Environment from "Environments";
 import Header from "components/header/Header";
-import { tilbakemeldingerUrl } from "App";
 
+import { urls } from "Config";
 const { loginUrl } = Environment();
 
 const Login = () => {
@@ -14,7 +14,7 @@ const Login = () => {
   const [{ auth }] = useStore();
 
   if (auth.authenticated) {
-    return <Redirect to={`${tilbakemeldingerUrl}/serviceklage`} />;
+    return <Redirect to={`${urls.tilbakemeldinger}/serviceklage`} />;
   }
 
   return (
@@ -36,7 +36,7 @@ const Login = () => {
             <Hovedknapp>Logg inn</Hovedknapp>
           </a>
           <div className="lenke">
-            <Link to={`${tilbakemeldingerUrl}/serviceklage`}>
+            <Link to={`${urls.tilbakemeldinger}/serviceklage`}>
               Fortsett uten å logge inn
             </Link>
           </div>

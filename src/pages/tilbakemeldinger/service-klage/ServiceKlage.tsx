@@ -6,7 +6,6 @@ import { useStore } from "providers/Provider";
 import RadioPanelGruppe from "components/input-fields/RadioPanelGruppe";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
-import { baseUrl } from "App";
 import InputFodselsnr from "components/input-fields/InputFodselsnr";
 import { postServiceKlage } from "clients/apiClient";
 import InputField from "components/input-fields/InputField";
@@ -32,6 +31,7 @@ import {
   ytelseTjenesteFormConfig
 } from "./config/form";
 import Header from "components/header/Header";
+import { urls } from "Config";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageType &
@@ -476,7 +476,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         </Hovedknapp>
                       </div>
                       <div className="tb__knapp">
-                        <Link to={baseUrl}>
+                        <Link to={urls.forside}>
                           <Knapp>Tilbake</Knapp>
                         </Link>
                       </div>

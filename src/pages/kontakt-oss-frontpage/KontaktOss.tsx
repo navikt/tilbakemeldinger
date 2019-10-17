@@ -2,6 +2,7 @@ import React from "react";
 import { Sidetittel } from "nav-frontend-typografi";
 import FAQ from "./sections/FAQ";
 import LenkePanel from "./sections/lenkepanel/LenkePanel";
+import SkrivTilOss from "./sections/SkrivTilOss";
 
 const KontaktOssFrontpage = () => {
   document.title = "Kontakt oss - www.nav.no";
@@ -15,6 +16,7 @@ const KontaktOssFrontpage = () => {
         </header>
         <div className="frontpage__content">
           <FAQ />
+          <SkrivTilOss />
           <LenkePanel />
         </div>
       </div>
