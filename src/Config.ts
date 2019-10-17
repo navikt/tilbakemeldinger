@@ -1,31 +1,37 @@
 export const baseUrl = "/person/kontakt-oss";
 
 export const urls = {
-  "forside": baseUrl,
-  "tilbakemeldinger": `${baseUrl}/tilbakemeldinger`,
-  "skrivTilOss": {
-    "forside": `${baseUrl}/skriv-til-oss`,
-    "arbeidssoker": `${baseUrl}/skriv-til-oss/arbeidssoker`,
-    "familieogbarn": `${baseUrl}/skriv-til-oss/familieogbarn`,
-    "pensjonist": "#",
-    "syk": "#",
-    "hjelpemidler": `${baseUrl}/skriv-til-oss/hjelpemidler`,
+  forside: baseUrl,
+  tilbakemeldinger: {
+    forside: `${baseUrl}/tilbakemeldinger`,
+    serviceklage: {
+      form: `${baseUrl}/tilbakemeldinger/service-klage`,
+      login: `${baseUrl}/tilbakemeldinger/service-klage/login`
+    }
   },
-  "facebook": "#",
-  "snapchat": "#",
-  "temaArbeidssoker": {
-    "veileder": "#",
-    "chat": "#",
-    "skrivtiloss": "#",
+  skrivTilOss: {
+    forside: `${baseUrl}/skriv-til-oss`,
+    arbeidssoker: `${baseUrl}/skriv-til-oss/arbeidssoker`,
+    familieogbarn: `${baseUrl}/skriv-til-oss/familieogbarn`,
+    pensjonist: "#",
+    syk: "#",
+    hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`
   },
-  "temaFamilieOgBarn": {
-    "chat": "#",
-    "skrivtiloss": "#",
+  facebook: "#",
+  snapchat: "#",
+  temaArbeidssoker: {
+    veileder: "#",
+    chat: "#",
+    skrivtiloss: "#"
   },
-  "temaHjelpemidler": {
-    "generelt": "#",
-    "skrivtiloss": "#",
-    "bil": "#",
+  temaFamilieOgBarn: {
+    chat: "#",
+    skrivtiloss: "#"
+  },
+  temaHjelpemidler: {
+    generelt: "#",
+    skrivtiloss: "#",
+    bil: "#"
   }
 };
 

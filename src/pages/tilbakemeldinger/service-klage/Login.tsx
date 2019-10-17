@@ -36,7 +36,7 @@ const Login = () => {
             <Hovedknapp>Logg inn</Hovedknapp>
           </a>
           <div className="lenke">
-            <Link to={`${urls.tilbakemeldinger}/serviceklage`}>
+            <Link to={urls.tilbakemeldinger.serviceklage.form}>
               Fortsett uten å logge inn
             </Link>
           </div>

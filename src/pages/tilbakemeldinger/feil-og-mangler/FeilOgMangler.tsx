@@ -139,7 +139,7 @@ const FOM = (props: RouteComponentProps) => {
                   </Hovedknapp>
                 </div>
                 <div className="tb__knapp">
-                  <Link to={urls.tilbakemeldinger}>
+                  <Link to={urls.tilbakemeldinger.forside}>
                     <Knapp>Tilbake</Knapp>
                   </Link>
                 </div>
