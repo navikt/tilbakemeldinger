@@ -5,7 +5,7 @@ import { Link, Redirect } from "react-router-dom";
 import Tilbake from "components/tilbake/Tilbake";
 import Environment from "utils/Environments";
 import Header from "components/header/Header";
-import { baseUrl } from "App";
+import { baseUrl } from "Config";
 
 const { loginUrl } = Environment();
 

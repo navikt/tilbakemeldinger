@@ -3,7 +3,7 @@ import { withRouter, RouteComponentProps } from "react-router";
 import { Innholdstittel } from "nav-frontend-typografi";
 import Veileder from "nav-frontend-veileder";
 import VeilederIcon from "../../assets/Veileder.svg";
-import { baseUrl } from "../../App";
+import { baseUrl } from "../../Config";
 
 interface Props {
   title?: string;

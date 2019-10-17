@@ -1,6 +1,8 @@
 import React from "react";
 import { Sidetittel } from "nav-frontend-typografi";
 import Header from "../../components/header/Header";
+import Lenke from "nav-frontend-lenker";
+import { urls } from "../../Config";
 
 const KontaktOssFrontpage = () => {
   document.title = "Kontakt oss - www.nav.no";
@@ -15,7 +17,7 @@ const KontaktOssFrontpage = () => {
             </div>
           </header>
           <div className="frontpage__content">
-            {"Insert content here!"}
+            <Lenke href={urls.skrivTilOss.forside}>{"Skriv til oss."}</Lenke>
           </div>
         </div>
       </div>
