@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Frontpage from "./pages/frontpage/Frontpage";
+import Tilbakemeldinger from "./pages/tilbakemeldinger/Tilbakemeldinger";
 import Ros from "./pages/ros-til-nav/Ros";
 import PageNotFound from "./pages/404/404";
 import FeilOgMangler from "./pages/feil-og-mangler/FeilOgMangler";
@@ -18,13 +18,18 @@ import Login from "./pages/service-klage/Login";
 import { KontaktInfo } from "./types/kontaktInfo";
 import { Fodselsnr } from "./types/fodselsnr";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTopp";
+import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOssFrontpage";
 
-export const baseUrl = "/person/tilbakemeldinger";
+export const baseUrl = "/person/kontakt-oss";
+export const tilbakemeldingerUrl = `${baseUrl}/tilbakemeldinger`;
+
+// TODO: Implementer nested routing med separate filer/komponenter for hver hovedside
+
 const App = () => {
   const [{ auth }, dispatch] = useStore();
 
   useEffect(() => {
-    if (!auth.authenticated)
+    if (!auth.authenticated) {
       fetchAuthInfo()
         .then((authInfo: AuthInfo) => {
           dispatch({ type: "SETT_AUTH_RESULT", payload: authInfo });
@@ -48,6 +53,7 @@ const App = () => {
           }
         })
         .catch((error: HTTPError) => console.error(error));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -55,26 +61,39 @@ const App = () => {
     <Router>
       <ScrollToTop>
         <Switch>
-          <Route exact={true} path={`(|${baseUrl})`} component={Frontpage} />
           <Route
             exact={true}
-            path={`${baseUrl}/serviceklage/login`}
+            path={`(|${baseUrl})`}
+            component={KontaktOssFrontpage}
+          />
+          <Route
+            exact={true}
+            path={`${tilbakemeldingerUrl}`}
+            component={Tilbakemeldinger}
+          />
+          <Route
+            exact={true}
+            path={`${tilbakemeldingerUrl}/serviceklage/login`}
             component={Login}
           />
           <Route
             exact={true}
-            path={`${baseUrl}/serviceklage`}
+            path={`${tilbakemeldingerUrl}/serviceklage`}
             component={ServiceKlage}
           />
-          <Route exact={true} path={`${baseUrl}/ros-til-nav`} component={Ros} />
           <Route
             exact={true}
-            path={`${baseUrl}/feil-og-mangler`}
+            path={`${tilbakemeldingerUrl}/ros-til-nav`}
+            component={Ros}
+          />
+          <Route
+            exact={true}
+            path={`${tilbakemeldingerUrl}/feil-og-mangler`}
             component={FeilOgMangler}
           />
           <Route
             exact={true}
-            path={`(|${baseUrl})/(ros-til-nav|feil-og-mangler|serviceklage)/takk`}
+            path={`(|${tilbakemeldingerUrl})/(ros-til-nav|feil-og-mangler|serviceklage)/takk`}
             component={Takk}
           />
           <Route component={PageNotFound} />

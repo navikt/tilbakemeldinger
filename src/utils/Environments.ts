@@ -3,7 +3,7 @@ const Environment = () => {
     return {
       miljo: "LOCAL",
       baseUrl: "http://localhost:8080",
-      appUrl: "http://localhost:8080/person/tilbakemeldinger",
+      appUrl: "http://localhost:8080/person/kontakt-oss",
       apiUrl: "http://localhost:8080/person/tilbakemeldinger-api",
       personInfoApiUrl: "http://localhost:8080/person/personopplysninger-api",
       tjenesteUrl: "https://tjenester-q0.nav.no",
@@ -15,7 +15,7 @@ const Environment = () => {
     return {
       miljo: "DEV",
       baseUrl: "https://www-q0.nav.no",
-      appUrl: "https://www-q0.nav.no/person/tilbakemeldinger",
+      appUrl: "https://www-q0.nav.no/person/kontakt-oss",
       apiUrl: "https://www-q0.nav.no/person/tilbakemeldinger-api",
       personInfoApiUrl: "https://www-q0.nav.no/person/personopplysninger-api",
       tjenesteUrl: "https://tjenester-q0.nav.no",
@@ -26,7 +26,7 @@ const Environment = () => {
   return {
     miljo: "PROD",
     baseUrl: "https://www.nav.no",
-    appUrl: "https://www.nav.no/person/tilbakemeldinger",
+    appUrl: "https://www.nav.no/person/kontakt-oss",
     apiUrl: "https://www.nav.no/person/tilbakemeldinger-api",
     personInfoApiUrl: "https://www.nav.no/person/personopplysninger-api",
     tjenesteUrl: "https://tjenester.nav.no",
