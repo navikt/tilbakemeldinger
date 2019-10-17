@@ -4,7 +4,7 @@
   "private": true,
   "author": "NAV",
   "license": "MIT",
-  "homepage": "/person/tilbakemeldinger/",
+  "homepage": "/person/kontakt-oss/",
   "scripts": {
     "start": "npm-run-all -p start:*",
     "start:lint": "tslint src/**/*.ts*",
