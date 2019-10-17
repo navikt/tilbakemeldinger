@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { baseUrl } from "../../Config";
 
 interface Props {
   to: string;
