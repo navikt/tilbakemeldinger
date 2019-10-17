@@ -127,7 +127,7 @@ const Ros = (props: RouteComponentProps) => {
             {({ errors, fields, submitted, setField }) => {
               return (
                 <>
-                  <Tilbake />
+                  <Tilbake to={urls.tilbakemeldinger.forside} />
                   <Veilederpanel
                     svg={<img src={VeilederIcon} alt="Veileder" />}
                   >
@@ -245,7 +245,7 @@ const Ros = (props: RouteComponentProps) => {
                       </Hovedknapp>
                     </div>
                     <div className="tb__knapp">
-                      <Link to={urls.tilbakemeldinger}>
+                      <Link to={urls.tilbakemeldinger.forside}>
                         <Knapp>Tilbake</Knapp>
                       </Link>
                     </div>

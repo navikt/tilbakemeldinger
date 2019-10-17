@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { baseUrl } from "../../Config";
 
 interface Props {
-  to?: string;
+  to: string;
 }
 
 const Tilbake = (props: Props) => (
   <div className="mellomrom lenke">
-    <Link to={`${baseUrl}${props.to || ""}`}>Tilbake</Link>
+    <Link to={props.to}>Tilbake</Link>
   </div>
 );
 

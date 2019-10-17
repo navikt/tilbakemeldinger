@@ -21,7 +21,7 @@ const Login = () => {
     <>
       <Header title="Tilbakemelding på service" />
       <div className="pagecontent">
-        <Tilbake />
+        <Tilbake to={urls.tilbakemeldinger.forside} />
         <div className="serviceKlage__login-info">
           <h2>Ønsker du å logge inn?</h2>
           <div>
@@ -36,7 +36,7 @@ const Login = () => {
             <Hovedknapp>Logg inn</Hovedknapp>
           </a>
           <div className="lenke">
-            <Link to={`${urls.tilbakemeldinger}/serviceklage`}>
+            <Link to={urls.tilbakemeldinger.serviceklage.form}>
               Fortsett uten å logge inn
             </Link>
           </div>
