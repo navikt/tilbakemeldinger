@@ -3,10 +3,10 @@ import { useStore } from "providers/Provider";
 import { Hovedknapp } from "nav-frontend-knapper";
 import { Link, Redirect } from "react-router-dom";
 import Tilbake from "components/tilbake/Tilbake";
-import Environment from "utils/Environments";
+import Environment from "Environments";
 import Header from "components/header/Header";
-import { baseUrl } from "Config";
 
+import { urls } from "Config";
 const { loginUrl } = Environment();
 
 const Login = () => {
@@ -14,7 +14,7 @@ const Login = () => {
   const [{ auth }] = useStore();
 
   if (auth.authenticated) {
-    return <Redirect to={`${baseUrl}/serviceklage`} />;
+    return <Redirect to={`${urls.tilbakemeldinger}/serviceklage`} />;
   }
 
   return (
@@ -36,7 +36,7 @@ const Login = () => {
             <Hovedknapp>Logg inn</Hovedknapp>
           </a>
           <div className="lenke">
-            <Link to={`${baseUrl}/serviceklage`}>
+            <Link to={`${urls.tilbakemeldinger}/serviceklage`}>
               Fortsett uten å logge inn
             </Link>
           </div>

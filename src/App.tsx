@@ -21,7 +21,7 @@ import ScrollToTop from "./components/scroll-to-top/ScrollToTopp";
 
 import { urls } from "./Config";
 
-import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOssFrontpage";
+import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOss";
 import SkrivTilOssRouter from "./pages/skriv-til-oss/SkrivTilOssRouter";
 
 const App = () => {
