@@ -4,13 +4,14 @@ import { lenker } from "./TilbakemeldingerLenker";
 import { LenkepanelBase } from "nav-frontend-lenkepanel";
 import { Link } from "react-router-dom";
 import Tilbake from "../../components/tilbake/Tilbake";
+import { urls } from "../../Config";
 
 const Tilbakemeldinger = () => {
   document.title = "Tilbakemeldinger - www.nav.no";
   return (
     <>
       <div className="pagecontent">
-        <Tilbake />
+        <Tilbake to={urls.forside} />
         <div className="tilbakemeldinger">
           <header className="tilbakemeldinger__introduksjon">
             <div className="tilbakemeldinger__sidetittel">

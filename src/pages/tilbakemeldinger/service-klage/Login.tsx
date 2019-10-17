@@ -21,7 +21,7 @@ const Login = () => {
     <>
       <Header title="Tilbakemelding på service" />
       <div className="pagecontent">
-        <Tilbake />
+        <Tilbake to={urls.tilbakemeldinger.forside} />
         <div className="serviceKlage__login-info">
           <h2>Ønsker du å logge inn?</h2>
           <div>

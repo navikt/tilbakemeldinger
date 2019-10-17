@@ -77,7 +77,7 @@ const FOM = (props: RouteComponentProps) => {
         <FormValidation onSubmit={send} config={formConfig}>
           {({ errors, fields, submitted, setField }) => (
             <>
-              <Tilbake />
+              <Tilbake to={urls.tilbakemeldinger.forside} />
               <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
                 Takk for at du sier ifra om feil og mangler.
                 <br />

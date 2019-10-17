@@ -127,7 +127,7 @@ const Ros = (props: RouteComponentProps) => {
             {({ errors, fields, submitted, setField }) => {
               return (
                 <>
-                  <Tilbake />
+                  <Tilbake to={urls.tilbakemeldinger.forside} />
                   <Veilederpanel
                     svg={<img src={VeilederIcon} alt="Veileder" />}
                   >

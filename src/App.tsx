@@ -87,12 +87,12 @@ const App = () => {
           />
           <Route
             exact={true}
-            path={`${urls.tilbakemeldinger}/ros-til-nav`}
+            path={urls.tilbakemeldinger.rostilnav}
             component={Ros}
           />
           <Route
             exact={true}
-            path={`${urls.tilbakemeldinger}/feil-og-mangler`}
+            path={urls.tilbakemeldinger.feilogmangler}
             component={FeilOgMangler}
           />
           <Route

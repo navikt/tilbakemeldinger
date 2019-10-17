@@ -5,9 +5,11 @@ export const urls = {
   tilbakemeldinger: {
     forside: `${baseUrl}/tilbakemeldinger`,
     serviceklage: {
-      form: `${baseUrl}/tilbakemeldinger/service-klage`,
-      login: `${baseUrl}/tilbakemeldinger/service-klage/login`
-    }
+      form: `${baseUrl}/tilbakemeldinger/serviceklage`,
+      login: `${baseUrl}/tilbakemeldinger/serviceklage/login`
+    },
+    feilogmangler: `${baseUrl}/tilbakemeldinger/feil-og-mangler`,
+    rostilnav: `${baseUrl}/tilbakemeldinger/ros-til-nav`
   },
   skrivTilOss: {
     forside: `${baseUrl}/skriv-til-oss`,
