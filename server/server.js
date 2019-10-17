@@ -4,6 +4,8 @@ const express = require("express");
 const path = require("path");
 const mustacheExpress = require("mustache-express");
 const getDecorator = require("./dekorator");
+const buildPath = path.resolve(__dirname, "../build");
+const baseUrl = "/person/kontakt-oss";
 const server = express();
 
 server.set("views", `${__dirname}/../build`);
@@ -27,43 +29,19 @@ const renderApp = decoratorFragments =>
   );
 
 const startServer = html => {
-  server.use(
-    "/person/tilbakemeldinger/static/js",
-    express.static(path.resolve(`${__dirname}/..`, "build/static/js"))
-  );
+  // Static files
+  server.use(baseUrl, express.static(buildPath, { index: false }));
 
-  server.use(
-    "/person/tilbakemeldinger/static/css",
-    express.static(path.resolve(`${__dirname}/..`, "build/static/css"))
-  );
-
-  server.use(
-    "/person/tilbakemeldinger/static/media",
-    express.static(path.resolve(`${__dirname}/..`, "build/static/media"))
-  );
-
-  server.use(
-    "/person/tilbakemeldinger/index.css",
-    express.static(path.resolve(`${__dirname}/..`, "build/index.css"))
-  );
-
-  server.use(
-    "/person/tilbakemeldinger/manifest.json",
-    express.static(path.resolve(`${__dirname}/..`, "build/manifest.json"))
-  );
-
-  server.use(
-    "/person/tilbakemeldinger/favicon.ico",
-    express.static(path.resolve(`${__dirname}/..`, "build/favicon.ico"))
-  );
-
-  server.get("/person/tilbakemeldinger/internal/isAlive|isReady", (req, res) =>
+  // Nais functions
+  server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
     res.sendStatus(200)
   );
 
-  server.use("/person/tilbakemeldinger", (req, res) => {
-    res.send(html);
-  });
+  // Match everything except internal og static
+  server.use(
+    /\/(person\/personopplysninger)\/*(?:(?!static|internal).)*$/,
+    (req, res) => res.send(html)
+  );
 
   const port = process.env.PORT || 8080;
   server.listen(port, () => console.log(`App listening on port: ${port}`));
