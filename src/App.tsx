@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Tilbakemeldinger from "./pages/tilbakemeldinger/Tilbakemeldinger";
-import Ros from "./pages/ros-til-nav/Ros";
+import Ros from "./pages/tilbakemeldinger/ros-til-nav/Ros";
 import PageNotFound from "./pages/404/404";
-import FeilOgMangler from "./pages/feil-og-mangler/FeilOgMangler";
+import FeilOgMangler from "./pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
 import {
   fetchAuthInfo,
   fetchKontaktInfo,
@@ -12,9 +12,9 @@ import {
 import { useStore } from "./providers/Provider";
 import { AuthInfo } from "./types/authInfo";
 import { HTTPError } from "./components/error/Error";
-import Takk from "./pages/takk/Takk";
-import ServiceKlage from "./pages/service-klage/ServiceKlage";
-import Login from "./pages/service-klage/Login";
+import Takk from "./pages/tilbakemeldinger/takk/Takk";
+import ServiceKlage from "./pages/tilbakemeldinger/service-klage/ServiceKlage";
+import Login from "./pages/tilbakemeldinger/service-klage/Login";
 import { KontaktInfo } from "./types/kontaktInfo";
 import { Fodselsnr } from "./types/fodselsnr";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTopp";

@@ -1,28 +1,28 @@
 import React, { useState } from "react";
-import VeilederIcon from "../../assets/Veileder.svg";
+import VeilederIcon from "../../../assets/Veileder.svg";
 import Veilederpanel from "nav-frontend-veilederpanel";
-import Tilbake from "../../components/tilbake/Tilbake";
-import { useStore } from "../../providers/Provider";
-import RadioPanelGruppe from "../../components/input-fields/RadioPanelGruppe";
+import Tilbake from "../../../components/tilbake/Tilbake";
+import { useStore } from "../../../providers/Provider";
+import RadioPanelGruppe from "../../../components/input-fields/RadioPanelGruppe";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
-import { baseUrl } from "../../App";
-import InputFodselsnr from "../../components/input-fields/InputFodselsnr";
-import { postServiceKlage } from "../../clients/apiClient";
-import InputField from "../../components/input-fields/InputField";
+import { baseUrl } from "../../../App";
+import InputFodselsnr from "../../../components/input-fields/InputFodselsnr";
+import { postServiceKlage } from "../../../clients/apiClient";
+import InputField from "../../../components/input-fields/InputField";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
-import { HTTPError } from "../../components/error/Error";
+import { HTTPError } from "../../../components/error/Error";
 import { FormContext, Form, Validation } from "calidation";
-import InputNavn from "../../components/input-fields/InputNavn";
-import InputMelding from "../../components/input-fields/InputMelding";
-import InputTelefon from "../../components/input-fields/InputTelefon";
+import InputNavn from "../../../components/input-fields/InputNavn";
+import InputMelding from "../../../components/input-fields/InputMelding";
+import InputTelefon from "../../../components/input-fields/InputTelefon";
 import {
   ON_BEHALF_OF,
   OutboundServiceKlageBase,
   OutboundServiceKlageType,
   OutboundServiceKlageExtend
-} from "../../types/serviceklage";
+} from "../../../types/serviceklage";
 import {
   annenPersFormConfig,
   baseFormConfig,
@@ -31,7 +31,7 @@ import {
   tlfFormConfig,
   ytelseTjenesteFormConfig
 } from "./config/form";
-import Header from "../../components/header/Header";
+import Header from "../../../components/header/Header";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageType &
