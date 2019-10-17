@@ -6,7 +6,7 @@ import { useStore } from "../../providers/Provider";
 import RadioPanelGruppe from "../../components/input-fields/RadioPanelGruppe";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
-import { baseUrl } from "../../App";
+import { baseUrl } from "../../Config";
 import InputFodselsnr from "../../components/input-fields/InputFodselsnr";
 import { postServiceKlage } from "../../clients/apiClient";
 import InputField from "../../components/input-fields/InputField";

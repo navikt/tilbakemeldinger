@@ -18,12 +18,11 @@ import Login from "./pages/service-klage/Login";
 import { KontaktInfo } from "./types/kontaktInfo";
 import { Fodselsnr } from "./types/fodselsnr";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTopp";
+
+import { urls } from "./Config";
+
 import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOssFrontpage";
-
-export const baseUrl = "/person/kontakt-oss";
-export const tilbakemeldingerUrl = `${baseUrl}/tilbakemeldinger`;
-
-// TODO: Implementer nested routing med separate filer/komponenter for hver hovedside
+import SkrivTilOssRouter from "./pages/skriv-til-oss/SkrivTilOssRouter";
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
@@ -63,37 +62,42 @@ const App = () => {
         <Switch>
           <Route
             exact={true}
-            path={`(|${baseUrl})`}
+            path={`(|${urls.forside})`}
             component={KontaktOssFrontpage}
           />
           <Route
+            exact={false}
+            path={urls.skrivTilOss.forside}
+            component={SkrivTilOssRouter}
+          />
+          <Route
             exact={true}
-            path={`${tilbakemeldingerUrl}`}
+            path={urls.tilbakemeldinger}
             component={Tilbakemeldinger}
           />
           <Route
             exact={true}
-            path={`${tilbakemeldingerUrl}/serviceklage/login`}
+            path={`${urls.tilbakemeldinger}/serviceklage/login`}
             component={Login}
           />
           <Route
             exact={true}
-            path={`${tilbakemeldingerUrl}/serviceklage`}
+            path={`${urls.tilbakemeldinger}/serviceklage`}
             component={ServiceKlage}
           />
           <Route
             exact={true}
-            path={`${tilbakemeldingerUrl}/ros-til-nav`}
+            path={`${urls.tilbakemeldinger}/ros-til-nav`}
             component={Ros}
           />
           <Route
             exact={true}
-            path={`${tilbakemeldingerUrl}/feil-og-mangler`}
+            path={`${urls.tilbakemeldinger}/feil-og-mangler`}
             component={FeilOgMangler}
           />
           <Route
             exact={true}
-            path={`(|${tilbakemeldingerUrl})/(ros-til-nav|feil-og-mangler|serviceklage)/takk`}
+            path={`(|${urls.tilbakemeldinger})/(ros-til-nav|feil-og-mangler|serviceklage)/takk`}
             component={Takk}
           />
           <Route component={PageNotFound} />

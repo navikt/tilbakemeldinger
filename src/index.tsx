@@ -1,9 +1,11 @@
 import "./polyfills";
 import React from "react";
 import ReactDOM from "react-dom";
+import { IntlProvider } from "react-intl";
+
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import NAVChatBot from "@navikt/nav-chatbot";
+// import NAVChatBot from "@navikt/nav-chatbot";
 import withMenu from "./clients/apiMock/decorator/decorator-header-withmenu";
 import megamenu from "./clients/apiMock/decorator/decorator-megamenu";
 import footer from "./clients/apiMock/decorator/decorator-footer";
@@ -13,10 +15,16 @@ import styles from "./clients/apiMock/decorator/decorator-styles";
 import { StoreProvider } from "./providers/Provider";
 import { initialState, reducer } from "./providers/Store";
 
+import msgsNb from "./language/nb";
+import msgsEn from "./language/en";
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+const defaultLang = "nb";
+const messages = { nb: msgsNb, en: msgsEn };
 
 const init = async () => {
   if (process.env.NODE_ENV === "development") {
@@ -49,8 +57,10 @@ const init = async () => {
   ReactDOM.render(
     (
       <StoreProvider initialState={initialState} reducer={reducer}>
-        <App />
-        <NAVChatBot customerKey="12345" queueKey="Q_CHAT_BOT" />
+        <IntlProvider locale={defaultLang} messages={messages[defaultLang]}>
+          <App />
+        </IntlProvider>
+        {/*<NAVChatBot customerKey="12345" queueKey="Q_CHAT_BOT" />*/}
       </StoreProvider>
     ),
     document.getElementById("app")
