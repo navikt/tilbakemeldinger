@@ -4,7 +4,7 @@ import VeilederIcon from "../../../assets/Veileder.svg";
 import RadioPanelGruppe from "../../../components/input-fields/RadioPanelGruppe";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import { baseUrl } from "../../../App";
+import { tilbakemeldingerUrl } from "../../../App";
 import InputNavn from "../../../components/input-fields/InputNavn";
 import InputTelefon from "../../../components/input-fields/InputTelefon";
 import InputMelding from "../../../components/input-fields/InputMelding";
@@ -245,7 +245,7 @@ const Ros = (props: RouteComponentProps) => {
                       </Hovedknapp>
                     </div>
                     <div className="tb__knapp">
-                      <Link to={baseUrl}>
+                      <Link to={tilbakemeldingerUrl}>
                         <Knapp>Tilbake</Knapp>
                       </Link>
                     </div>

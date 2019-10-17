@@ -1,4 +1,4 @@
-import Environment from "../utils/Environments";
+import Environment from "../Environments";
 import { HTTPError } from "../components/error/Error";
 import { logApiError } from "../utils/logger";
 import { OutboundRosTilNav } from "../pages/tilbakemeldinger/ros-til-nav/Ros";

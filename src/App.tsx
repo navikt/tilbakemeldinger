@@ -1,24 +1,21 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Tilbakemeldinger from "./pages/tilbakemeldinger/Tilbakemeldinger";
-import Ros from "./pages/tilbakemeldinger/ros-til-nav/Ros";
-import PageNotFound from "./pages/404/404";
-import FeilOgMangler from "./pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
-import {
-  fetchAuthInfo,
-  fetchKontaktInfo,
-  fetchFodselsnr
-} from "./clients/apiClient";
-import { useStore } from "./providers/Provider";
-import { AuthInfo } from "./types/authInfo";
-import { HTTPError } from "./components/error/Error";
-import Takk from "./pages/tilbakemeldinger/takk/Takk";
-import ServiceKlage from "./pages/tilbakemeldinger/service-klage/ServiceKlage";
-import Login from "./pages/tilbakemeldinger/service-klage/Login";
-import { KontaktInfo } from "./types/kontaktInfo";
-import { Fodselsnr } from "./types/fodselsnr";
-import ScrollToTop from "./components/scroll-to-top/ScrollToTopp";
-import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOssFrontpage";
+import Tilbakemeldinger from "pages/tilbakemeldinger/Tilbakemeldinger";
+import Ros from "pages/tilbakemeldinger/ros-til-nav/Ros";
+import PageNotFound from "pages/404/404";
+import FeilOgMangler from "pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
+import { fetchFodselsnr } from "clients/apiClient";
+import { fetchAuthInfo, fetchKontaktInfo } from "clients/apiClient";
+import { useStore } from "providers/Provider";
+import { AuthInfo } from "types/authInfo";
+import { HTTPError } from "components/error/Error";
+import Takk from "pages/tilbakemeldinger/takk/Takk";
+import ServiceKlage from "pages/tilbakemeldinger/service-klage/ServiceKlage";
+import Login from "pages/tilbakemeldinger/service-klage/Login";
+import { KontaktInfo } from "types/kontaktInfo";
+import { Fodselsnr } from "types/fodselsnr";
+import ScrollToTop from "components/scroll-to-top/ScrollToTopp";
+import KontaktOss from "pages/kontakt-oss-frontpage/KontaktOss";
 
 export const baseUrl = "/person/kontakt-oss";
 export const tilbakemeldingerUrl = `${baseUrl}/tilbakemeldinger`;
@@ -61,11 +58,7 @@ const App = () => {
     <Router>
       <ScrollToTop>
         <Switch>
-          <Route
-            exact={true}
-            path={`(|${baseUrl})`}
-            component={KontaktOssFrontpage}
-          />
+          <Route exact={true} path={`(|${baseUrl})`} component={KontaktOss} />
           <Route
             exact={true}
             path={`${tilbakemeldingerUrl}`}

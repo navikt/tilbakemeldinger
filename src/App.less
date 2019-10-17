@@ -1,7 +1,3 @@
-body {
-  background-color: white !important;
-}
-
 .app {
   display: flex;
   justify-content: center;
@@ -23,31 +19,31 @@ body {
 
 .flex__rad {
   display: flex;
-  @media @tablet {
+  @media @maxTablet {
     flex-direction: column;
   }
-  @media @desktop {
+  @media @minDesktop {
     flex-direction: row;
   }
 }
 
 .flex__kolonne-left,
 .flex__kolonne-right {
-  @media @mobile {
+  @media @maxMobile {
     width: 100%;
   }
-  @media @desktop {
+  @media @minDesktop {
     width: 50%;
   }
 }
 
 .flex__kolonne-left {
-  @media @desktop {
+  @media @minDesktop {
     padding-right: 0.25rem;
   }
 }
 .flex__kolonne-right {
-  @media @desktop {
+  @media @minDesktop {
     padding-left: 0.25rem;
   }
 }
@@ -74,7 +70,7 @@ body {
 .radioPanel {
   &__bool {
     .inputPanelGruppe__inner {
-      @media @desktop {
+      @media @minDesktop {
         display: flex;
         :first-child {
           margin-right: 0.25rem;
@@ -104,4 +100,13 @@ label {
 .divider {
   margin: 1rem 0;
   border-top: 1px solid #78706a;
+}
+
+/*
+  Overridden CSS
+  TODO: finn alternative løsninger
+ */
+
+.box__wrapper .nav-veilederpanel {
+  border: 0;
 }
