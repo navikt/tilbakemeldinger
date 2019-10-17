@@ -39,7 +39,7 @@ const startServer = html => {
 
   // Match everything except internal og static
   server.use(
-    /\/(person\/personopplysninger)\/*(?:(?!static|internal).)*$/,
+    /\/(person\/kontakt-oss)\/*(?:(?!static|internal).)*$/,
     (req, res) => res.send(html)
   );
 
