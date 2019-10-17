@@ -2,7 +2,7 @@ import React from "react";
 import { AlertStripeSuksess } from "nav-frontend-alertstriper";
 import { Undertittel } from "nav-frontend-typografi";
 import { Knapp } from "nav-frontend-knapper";
-import VeilederIcon from "../../assets/Veileder.svg";
+import VeilederIcon from "../../../assets/Veileder.svg";
 import Lenke from "nav-frontend-lenker";
 
 const Takk = () => {

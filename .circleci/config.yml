@@ -39,8 +39,8 @@ jobs:
             docker push $IMAGE_NAME
       - deploy:
           til: dev-sbs
-          ingress1: https://$REPO_NAME.nais.oera-q.local
-          ingress2: https://www-q0.nav.no/person/$REPO_NAME
+          ingress1: https://$PROJECT_URL.nais.oera-q.local
+          ingress2: https://www-q0.nav.no/person/$PROJECT_URL
 
   deploy-til-prod:
     docker:
@@ -50,8 +50,8 @@ jobs:
       - sett-miljovariabler
       - deploy:
           til: prod-sbs
-          ingress1: https://$REPO_NAME.nais.oera.no
-          ingress2: https://www.nav.no/person/$REPO_NAME
+          ingress1: https://$PROJECT_URL.nais.oera.no
+          ingress2: https://www.nav.no/person/$PROJECT_URL
 
 commands:
   deploy:
@@ -69,10 +69,10 @@ commands:
             echo $GH_DEPLOY_KEY | base64 -d | dos2unix > gh_deploy_key.pem
             deployment-cli deploy create \
                 --team=personbruker \
-                --resource=nais.config.yaml \
+                --resource=.nais/config.yaml \
                 --cluster=<< parameters.til >> \
                 --repository=$CIRCLE_PROJECT_USERNAME/$REPO_NAME \
-                --var baseurl=/person/$REPO_NAME \
+                --var baseurl=/person/$PROJECT_URL \
                 --var ingress1=<< parameters.ingress1 >> \
                 --var ingress2=<< parameters.ingress2 >> \
                 --var reponame=$REPO_NAME \
@@ -84,11 +84,12 @@ commands:
   sett-miljovariabler:
     steps:
       - run:
-          name:  Definerer git-referanse, versjonsnummer og repo-navn
+          name: Definerer git-referanse, versjonsnummer og repo-navn
           command: |
             echo "export COMMIT_SHORT='$(git rev-parse --short HEAD)'" >> $BASH_ENV
             echo "export IMAGE_VERSION='$CIRCLE_WORKFLOW_ID-${CIRCLE_BRANCH////-}$CIRCLE_TAG'" >> $BASH_ENV
             echo "export REPO_NAME='$CIRCLE_PROJECT_REPONAME'" >> $BASH_ENV
+            echo "export PROJECT_URL='kontakt-oss'" >> $BASH_ENV
       - run:
           name: Definerer navn på docker-image
           command: |

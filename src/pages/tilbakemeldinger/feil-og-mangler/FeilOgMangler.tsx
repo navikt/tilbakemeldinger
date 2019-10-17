@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
-import VeilederIcon from "../../assets/Veileder.svg";
-import RadioPanelGruppe from "../../components/input-fields/RadioPanelGruppe";
+import VeilederIcon from "../../../assets/Veileder.svg";
+import RadioPanelGruppe from "../../../components/input-fields/RadioPanelGruppe";
 import { Hovedknapp, Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import { baseUrl } from "../../Config";
-import InputNavn from "../../components/input-fields/InputNavn";
-import InputTelefon from "../../components/input-fields/InputTelefon";
-import InputMelding from "../../components/input-fields/InputMelding";
-import { postFeilOgMangler } from "../../clients/apiClient";
-import Tilbake from "../../components/tilbake/Tilbake";
-import { HTTPError } from "../../components/error/Error";
+import { baseUrl } from "../../../Config";
+import InputNavn from "../../../components/input-fields/InputNavn";
+import InputTelefon from "../../../components/input-fields/InputTelefon";
+import InputMelding from "../../../components/input-fields/InputMelding";
+import { postFeilOgMangler } from "../../../clients/apiClient";
+import Tilbake from "../../../components/tilbake/Tilbake";
+import { HTTPError } from "../../../components/error/Error";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, FormValidation } from "calidation";
-import Header from "../../components/header/Header";
+import Header from "../../../components/header/Header";
 
 export interface OutboundFeilOgMangler {
   navn: string;
