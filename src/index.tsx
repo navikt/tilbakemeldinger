@@ -5,7 +5,7 @@ import { IntlProvider } from "react-intl";
 
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-// import NAVChatBot from "@navikt/nav-chatbot";
+import NAVChatBot from "@navikt/nav-chatbot";
 import withMenu from "./clients/apiMock/decorator/decorator-header-withmenu";
 import megamenu from "./clients/apiMock/decorator/decorator-megamenu";
 import footer from "./clients/apiMock/decorator/decorator-footer";
@@ -55,14 +55,17 @@ const init = async () => {
     );
   }
   ReactDOM.render(
-    (
-      <StoreProvider initialState={initialState} reducer={reducer}>
-        <IntlProvider locale={defaultLang} messages={messages[defaultLang]}>
-          <App />
-        </IntlProvider>
-        {/*<NAVChatBot customerKey="12345" queueKey="Q_CHAT_BOT" />*/}
-      </StoreProvider>
-    ),
+    <StoreProvider initialState={initialState} reducer={reducer}>
+      <IntlProvider locale={defaultLang} messages={messages[defaultLang]}>
+        <App />
+      </IntlProvider>
+      <NAVChatBot
+        customerKey="12345"
+        queueKey="Q_CHAT_BOT"
+        configId={"c34298fe-3ea4-4d88-9343-c2d4e7bb3e10"}
+        evaluationMessage={"Evaluering"}
+      />
+    </StoreProvider>,
     document.getElementById("app")
   );
   serviceWorker.unregister();
