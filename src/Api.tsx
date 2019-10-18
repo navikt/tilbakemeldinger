@@ -8,7 +8,7 @@ const fetchUnleashFeatures = (features: Array<string>) => {
       .then(r => r.json()),
     new Promise((res, rej) => setTimeout(() => {
       return rej(new Error("Unleash timed out."));
-    }, vars.unleashTimeout))
+    }, vars.unleash.timeout))
   ]);
 };
 

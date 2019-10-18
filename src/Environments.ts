@@ -9,7 +9,7 @@ const Environment = () => {
       tjenesteUrl: "https://tjenester-q0.nav.no",
       loginUrl: "http://localhost:8080/personbruker-api/local/cookie",
       logoutUrl: "#",
-      unleashUrl: "https://www.nav.no/person/dittnav/api/feature",
+      unleashUrl: "#",
     };
   }
   if (window.location.hostname.indexOf("www-q0") > -1) {

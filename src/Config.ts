@@ -40,6 +40,9 @@ export const urls = {
 
 export const vars = {
   svartidDager: 2,
-  unleashTimeout: 3000,
-  skrivTilOssToggleDefault: true,
+  unleash: {
+    timeout: 3000,
+    skrivTilOssDefault: true,
+    skrivTilOssName: "kontakt-oss.skriv-til-oss",
+  },
 };

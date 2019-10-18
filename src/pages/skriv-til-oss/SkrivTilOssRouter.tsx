@@ -10,13 +10,11 @@ import TemaHjelpemidler from "./pages/TemaHjelpemidler";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import AlertStripe from "nav-frontend-alertstriper";
 
-const featureToggleName = "kontakt-oss.skriv-til-oss";
-
 class SkrivTilOssRouter extends React.Component {
-  state = { isEnabled: vars.skrivTilOssToggleDefault, unleashResponded: false };
+  state = { isEnabled: vars.unleash.skrivTilOssDefault, unleashResponded: false };
 
   componentDidMount() {
-    fetchUnleashToggleStatus(featureToggleName, this.unleashCallback.bind(this));
+    fetchUnleashToggleStatus(vars.unleash.skrivTilOssName, this.unleashCallback.bind(this));
   }
 
   unleashCallback(isEnabled: boolean, error?: any) {
