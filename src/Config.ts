@@ -19,7 +19,7 @@ export const urls = {
     pensjonist: "#",
     syk: "#",
     hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`
-  }
+  },
   facebook: "#",
   snapchat: "#",
   temaArbeidssoker: {
