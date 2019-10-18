@@ -4,9 +4,16 @@ import { LenkepanelData } from "../../types/lenker";
 import { LenkepanelBase } from "nav-frontend-lenkepanel/lib";
 import { useIntl, FormattedMessage } from "react-intl";
 import { vars } from "../../Config";
-import { getFeatureToggleStatus } from "../../utils/unleash";
+import { Features, getFeatureToggleStatusMultiple } from "../../utils/unleash";
+import NavFrontendSpinner from "nav-frontend-spinner";
+import AlertStripe from "nav-frontend-alertstriper";
 
-type SkrivTilOssProps = {
+const enabledName = vars.unleash.skrivTilOssEnabledName;
+const svartidName = vars.unleash.langSvartidName;
+const enabledDefault = vars.unleash.skrivTilOssEnabledDefault;
+const svartidDefault = vars.unleash.langSvartidDefault;
+
+type SkrivTilOssBaseProps = {
   tittel: string,
   ingress: ReactNode,
   lenker?: Array<LenkepanelData>,
@@ -33,18 +40,44 @@ const makeLenkepanel = (lenkeData: LenkepanelData) => (
   </LenkepanelBase>
 );
 
-const SkrivTilOssBase = ({tittel, ingress, lenker}: SkrivTilOssProps) => {
-  const unleashSvartidCallback = (isSvartidLang: boolean) => {
-    setLangSvartid(isSvartidLang);
-  };
-
+const SkrivTilOssBase = ({tittel, ingress, lenker}: SkrivTilOssBaseProps) => {
   const documentTitle = `${useIntl().formatMessage({id: tittel})} - www.nav.no`;
-  const [langSvartid, setLangSvartid] = useState(vars.unleash.langSvartidDefault);
-
   useEffect(() => {
     document.title = documentTitle;
-    getFeatureToggleStatus(vars.unleash.langSvartidName, unleashSvartidCallback);
+  }, [documentTitle]);
+
+  const [unleashResponded, setUnleashResponded] = useState(false);
+  const [langSvartid, setLangSvartid] = useState(svartidDefault);
+  const [skrivTilOssEnabled, setSkrivTilOssEnabled] = useState(enabledDefault);
+
+  const unleashTogglesResponse = (unleashToggles: Features, error: any) => {
+    setUnleashResponded(true);
+    if (error) {
+      console.log(`Unleash error: ${error}`);
+      return;
+    }
+
+    setLangSvartid(unleashToggles[svartidName]);
+    setSkrivTilOssEnabled(unleashToggles[enabledName]);
+  };
+
+  useEffect(() => {
+    getFeatureToggleStatusMultiple(
+      [svartidName, enabledName],
+      unleashTogglesResponse);
   });
+
+  if (!unleashResponded) {
+    return(<NavFrontendSpinner negativ={true} />);
+  }
+
+  if (!skrivTilOssEnabled) {
+    return(
+      <AlertStripe type="advarsel">
+        {"Tjenesten er dessverre ikke tilgjengelig."}
+      </AlertStripe>
+    );
+  }
 
   return(
     <div className="skriv-til-oss pagecontent">
