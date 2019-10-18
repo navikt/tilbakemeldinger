@@ -1,6 +1,6 @@
 {
   "name": "tilbakemeldinger",
-  "version": "1.0.3",
+  "version": "1.0.7",
   "private": true,
   "author": "NAV",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "docker-stop": "docker stop tilbakemeldinger"
   },
   "dependencies": {
-    "@navikt/nav-chatbot": "^1.1.6",
+    "@navikt/nav-chatbot": "^1.1.7",
     "babel-polyfill": "^6.26.0",
     "calidation": "^1.16.2",
     "classnames": "^2.2.6",

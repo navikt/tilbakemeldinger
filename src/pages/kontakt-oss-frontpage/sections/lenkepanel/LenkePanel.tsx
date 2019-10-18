@@ -16,7 +16,7 @@ const LenkePanel = () => {
             beskrivelse={link.beskrivelse}
             lenkeTekst={link.lenkeTekst}
             to={link.url}
-            component={"a"}
+            component={link.type as "Link" | "a"}
           />
         ))}
       </div>

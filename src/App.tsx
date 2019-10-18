@@ -72,27 +72,27 @@ const App = () => {
           />
           <Route
             exact={true}
-            path={urls.tilbakemeldinger}
+            path={urls.tilbakemeldinger.forside}
             component={Tilbakemeldinger}
           />
           <Route
             exact={true}
-            path={`${urls.tilbakemeldinger}/serviceklage/login`}
+            path={urls.tilbakemeldinger.serviceklage.login}
             component={Login}
           />
           <Route
             exact={true}
-            path={`${urls.tilbakemeldinger}/serviceklage`}
+            path={urls.tilbakemeldinger.serviceklage.form}
             component={ServiceKlage}
           />
           <Route
             exact={true}
-            path={`${urls.tilbakemeldinger}/ros-til-nav`}
+            path={urls.tilbakemeldinger.rostilnav}
             component={Ros}
           />
           <Route
             exact={true}
-            path={`${urls.tilbakemeldinger}/feil-og-mangler`}
+            path={urls.tilbakemeldinger.feilogmangler}
             component={FeilOgMangler}
           />
           <Route

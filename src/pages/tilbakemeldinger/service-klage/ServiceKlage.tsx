@@ -138,8 +138,8 @@ const ServiceKlage = (props: RouteComponentProps) => {
                   <Tilbake
                     to={
                       auth.authenticated
-                        ? "/tilbakemeldinger"
-                        : "/tilbakemeldinger/serviceklage/login"
+                        ? urls.tilbakemeldinger.serviceklage.form
+                        : urls.tilbakemeldinger.serviceklage.login
                     }
                   />
                   <Veilederpanel
