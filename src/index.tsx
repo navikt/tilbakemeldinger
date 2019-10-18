@@ -55,17 +55,18 @@ const init = async () => {
     );
   }
   ReactDOM.render(
-    <StoreProvider initialState={initialState} reducer={reducer}>
-      <IntlProvider locale={defaultLang} messages={messages[defaultLang]}>
-        <App />
-      </IntlProvider>
-      <NAVChatBot
-        customerKey="12345"
-        queueKey="Q_CHAT_BOT"
-        configId={"c34298fe-3ea4-4d88-9343-c2d4e7bb3e10"}
-        evaluationMessage={"Evaluering"}
-      />
-    </StoreProvider>,
+    (
+      <StoreProvider initialState={initialState} reducer={reducer}>
+        <IntlProvider locale={defaultLang} messages={messages[defaultLang]}>
+          <App />
+        </IntlProvider>
+        <NAVChatBot
+          customerKey="41155"
+          queueKey="Q_CHAT_BOT"
+          configId={"c3372a51-6434-4770-a0aa-6e4edba3471e"}
+        />
+      </StoreProvider>
+    ),
     document.getElementById("app")
   );
   serviceWorker.unregister();
