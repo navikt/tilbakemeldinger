@@ -44,5 +44,7 @@ export const vars = {
     timeout: 3000,
     skrivTilOssDefault: true,
     skrivTilOssName: "kontakt-oss.skriv-til-oss",
+    langSvartidDefault: true,
+    langSvartidName: "kontakt-oss.skriv-til-oss.lang-svartid",
   },
 };

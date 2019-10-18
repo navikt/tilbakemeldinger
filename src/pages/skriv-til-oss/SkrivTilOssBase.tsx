@@ -1,8 +1,10 @@
-import React, { ReactNode } from "react";
-import { EtikettLiten, Sidetittel, Systemtittel, Undertekst } from "nav-frontend-typografi";
+import React, { ReactNode, useEffect, useState } from "react";
+import { EtikettLiten, Normaltekst, Sidetittel, Systemtittel, Undertekst } from "nav-frontend-typografi";
 import { LenkepanelData } from "../../types/lenker";
 import { LenkepanelBase } from "nav-frontend-lenkepanel/lib";
 import { useIntl, FormattedMessage } from "react-intl";
+import { vars } from "../../Config";
+import { getFeatureToggleStatus } from "../../utils/unleash";
 
 type SkrivTilOssProps = {
   tittel: string,
@@ -32,7 +34,17 @@ const makeLenkepanel = (lenkeData: LenkepanelData) => (
 );
 
 const SkrivTilOssBase = ({tittel, ingress, lenker}: SkrivTilOssProps) => {
-  document.title = `${useIntl().formatMessage({id: tittel})} - www.nav.no`;
+  const unleashSvartidCallback = (isSvartidLang: boolean) => {
+    setLangSvartid(isSvartidLang);
+  };
+
+  const documentTitle = `${useIntl().formatMessage({id: tittel})} - www.nav.no`;
+  const [langSvartid, setLangSvartid] = useState(vars.unleash.langSvartidDefault);
+
+  useEffect(() => {
+    document.title = documentTitle;
+    getFeatureToggleStatus(vars.unleash.langSvartidName, unleashSvartidCallback);
+  });
 
   return(
     <div className="skriv-til-oss pagecontent">
@@ -45,6 +57,10 @@ const SkrivTilOssBase = ({tittel, ingress, lenker}: SkrivTilOssProps) => {
         </Sidetittel>
       </div>
       <div className="skriv-til-oss__ingress">
+        <Normaltekst className="skriv-til-oss__svartid">
+          <FormattedMessage id={"skrivtiloss.svartid"} values={{numDager: vars.svartidDager}}/>
+          {langSvartid ? <FormattedMessage id={"skrivtiloss.svartid.lang"}/> : null}
+        </Normaltekst>
         {ingress}
       </div>
       { lenker ?

@@ -2,14 +2,11 @@ import React, { ReactNode } from "react";
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
-import { vars, urls } from "../../../Config";
+import { urls } from "../../../Config";
 import { FormattedMessage } from "react-intl";
 
 const ingress: ReactNode = (
   <>
-    <Normaltekst className="skriv-til-oss__svartid">
-      <FormattedMessage id="skrivtiloss.svartid" values={{numDager: vars.svartidDager}}/>
-    </Normaltekst>
     <Normaltekst className="skriv-til-oss__infotekst">
       <FormattedMessage id="skrivtiloss.ingress"/>
     </Normaltekst>

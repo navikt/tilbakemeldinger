@@ -1,6 +1,7 @@
 export default {
   "skrivtiloss.tittel": "Skriv til oss",
-  "skrivtiloss.svartid": "Hvis du har sendt beskjed til NAV, er forventet svartid nå {numDager} arbeidsdager.",
+  "skrivtiloss.svartid": "Hvis du har sendt beskjed til NAV, er normal svartid {numDager} arbeidsdager.",
+  "skrivtiloss.svartid.lang": " På grunn av stor pågang kan svartid for tiden være noe lengre. Vi beklager dette.",
   "skrivtiloss.ingress": "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Du kan for" +
     " eksempel sende beskjed om endringer i inntekt, familiesituasjon, jobbsituasjon eller opphold i utlandet som" +
     " kan ha betydning for beløpet du får utbetalt fra NAV.",

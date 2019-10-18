@@ -8,9 +8,6 @@ import { vars, urls } from "../../../Config";
 
 const ingress: ReactNode = (
   <>
-    <Normaltekst className="skriv-til-oss__svartid">
-      <FormattedMessage id={"skrivtiloss.svartid"} values={{numDager: vars.svartidDager}}/>
-    </Normaltekst>
     <Normaltekst className="skriv-til-oss__infotekst">
       <FormattedMessage id={"arbeidssoker.infotekst"}/>
     </Normaltekst>
