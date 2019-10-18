@@ -65,7 +65,7 @@ const SkrivTilOssBase = ({tittel, ingress, lenker}: SkrivTilOssBaseProps) => {
     getFeatureToggleStatusMultiple(
       [svartidName, enabledName],
       unleashTogglesResponse);
-  });
+  }, []);
 
   if (!unleashResponded) {
     return(<NavFrontendSpinner negativ={true} />);
