@@ -1,6 +1,7 @@
 export const baseUrl = "/person/kontakt-oss";
 
 export const urls = {
+  baseUrl: baseUrl,
   forside: baseUrl,
   tilbakemeldinger: {
     forside: `${baseUrl}/tilbakemeldinger`,
@@ -33,8 +34,17 @@ export const urls = {
   temaHjelpemidler: {
     generelt: "#",
     skrivtiloss: "#",
-    bil: "#"
-  }
+    bil: "#",
+  },
 };
 
-export const svartidDager = 2;
+export const vars = {
+  svartidDager: 2,
+  unleash: {
+    timeout: 3000,
+    skrivTilOssEnabledDefault: true,
+    skrivTilOssEnabledName: "kontakt-oss.skriv-til-oss",
+    langSvartidDefault: false,
+    langSvartidName: "kontakt-oss.skriv-til-oss.lang-svartid",
+  },
+};

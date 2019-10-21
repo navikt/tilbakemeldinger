@@ -8,7 +8,8 @@ const Environment = () => {
       personInfoApiUrl: "http://localhost:8080/person/personopplysninger-api",
       tjenesteUrl: "https://tjenester-q0.nav.no",
       loginUrl: "http://localhost:8080/personbruker-api/local/cookie",
-      logoutUrl: "#"
+      logoutUrl: "#",
+      unleashUrl: "#",
     };
   }
   if (window.location.hostname.indexOf("www-q0") > -1) {
@@ -20,7 +21,8 @@ const Environment = () => {
       personInfoApiUrl: "https://www-q0.nav.no/person/personopplysninger-api",
       tjenesteUrl: "https://tjenester-q0.nav.no",
       loginUrl: "https://loginservice-q.nav.no/login",
-      logoutUrl: "https://loginservice-q.nav.no/slo"
+      logoutUrl: "https://loginservice-q.nav.no/slo",
+      unleashUrl: "https://www-q0.nav.no/person/dittnav/api/feature",
     };
   }
   return {
@@ -31,7 +33,8 @@ const Environment = () => {
     personInfoApiUrl: "https://www.nav.no/person/personopplysninger-api",
     tjenesteUrl: "https://tjenester.nav.no",
     loginUrl: "https://loginservice.nav.no/login",
-    logoutUrl: "https://loginservice.nav.no/slo"
+    logoutUrl: "https://loginservice.nav.no/slo",
+    unleashUrl: "https://www.nav.no/person/dittnav/api/feature",
   };
 };
 

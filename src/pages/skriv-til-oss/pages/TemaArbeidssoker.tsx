@@ -4,13 +4,10 @@ import { FormattedMessage } from "react-intl";
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
-import { svartidDager, urls } from "../../../Config";
+import { vars, urls } from "../../../Config";
 
 const ingress: ReactNode = (
   <>
-    <Normaltekst className="skriv-til-oss__svartid">
-      <FormattedMessage id={"skrivtiloss.svartid"} values={{numDager: svartidDager}}/>
-    </Normaltekst>
     <Normaltekst className="skriv-til-oss__infotekst">
       <FormattedMessage id={"arbeidssoker.infotekst"}/>
     </Normaltekst>
@@ -32,7 +29,7 @@ const lenker: LenkepanelData[] = [
   },
   {
     tittel: "arbeidssoker.lenke.skrivtiloss.tittel",
-    ingress: <FormattedMessage id={"arbeidssoker.lenke.skrivtiloss.ingress"} values={{numDager: svartidDager}}/>,
+    ingress: <FormattedMessage id={"arbeidssoker.lenke.skrivtiloss.ingress"} values={{numDager: vars.svartidDager}}/>,
     url: urls.temaArbeidssoker.skrivtiloss,
     external: false
   },
