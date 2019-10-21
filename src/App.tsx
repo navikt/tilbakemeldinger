@@ -71,11 +71,11 @@ const App = () => {
   return (
     <>
       {
-        tekniskProblem ? (
+        tekniskProblem && (
           <AlertStripe type="feil" className="teknisk-problem-stripe">
             <FormattedMessage id="teknisk-problem" />
           </AlertStripe>
-        ) : null
+        )
       }
       <Router>
         <ScrollToTop>
