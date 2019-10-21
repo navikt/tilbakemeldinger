@@ -3,26 +3,32 @@ import { Undertittel } from "nav-frontend-typografi";
 import VeilederIcon from "assets/Veileder.svg";
 import Box from "components/box/Box";
 import { Link } from "react-router-dom";
-
-import { urls } from "Config";
+import { lenker } from "./SkrivTilOssLenker";
 
 const SkrivTilOss = () => (
   <Box icon={VeilederIcon}>
-    <div className={"box__section"}>
-      <div className={"box__section-title"}>
-        <Undertittel className="box__title">Skriv til oss</Undertittel>
+    {lenker.map(lenke => (
+      <div key={lenke.lenkeTekst} className={"box__section"}>
+        <div className={"box__section-title"}>
+          <Undertittel className="box__title">{lenke.lenkeTekst}</Undertittel>
+        </div>
+        <div
+          className={"box__section-description"}
+          dangerouslySetInnerHTML={{ __html: lenke.beskrivelse }}
+        />
+        <div className={"box__section-lenke"}>
+          {lenke.external ? (
+            <a className={"lenke"} href={lenke.lenke}>
+              {lenke.lenkeTekst}
+            </a>
+          ) : (
+            <Link className={"lenke"} to={lenke.lenke}>
+              {lenke.lenkeTekst}
+            </Link>
+          )}
+        </div>
       </div>
-      <div className={"box__section-description"}>
-        Du kan ikke sende e-post til oss, men du kan sende spørsmål om saken din
-        eller opplysninger til oss ved åå logge inn og skrive til oss. Du får
-        svar etter <b>omtrent 2 arbeidsdager</b>
-      </div>
-      <div className={"box__section-lenke"}>
-        <Link className={"lenke"} to={urls.skrivTilOss.forside}>
-          Skriv til oss
-        </Link>
-      </div>
-    </div>
+    ))}
   </Box>
 );
 

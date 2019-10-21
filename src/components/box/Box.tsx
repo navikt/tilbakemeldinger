@@ -1,6 +1,6 @@
 import React from "react";
-import Veilederpanel from "nav-frontend-veilederpanel";
 import { Systemtittel } from "nav-frontend-typografi";
+import PanelBase from "nav-frontend-paneler";
 
 interface Props {
   tittel?: string;
@@ -10,14 +10,16 @@ interface Props {
 }
 
 const Box = (props: Props) => {
-  const { icon, children, tittel } = props;
+  const { children, tittel } = props;
+  /*
   const iconImg = icon ? (
     <img src={icon} className="box__ikon" alt="Veileder" />
   ) : null;
+  */
 
   return (
     <div className="box__wrapper">
-      <Veilederpanel svg={iconImg} type={"plakat"} kompakt={true}>
+      <PanelBase>
         <div className="box__container">
           {tittel && (
             <div className="box__header">
@@ -29,7 +31,7 @@ const Box = (props: Props) => {
           )}
           <div className="box__content">{children}</div>
         </div>
-      </Veilederpanel>
+      </PanelBase>
     </div>
   );
 };

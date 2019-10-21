@@ -4,6 +4,7 @@ import FAQ from "./sections/FAQ";
 import LenkePanel from "./sections/lenkepanel/LenkePanel";
 import SkrivTilOss from "./sections/SkrivTilOss";
 import UnderUtvikling from "../../components/veiledere/UnderUtvikling";
+import RingOss from "./sections/RingOss";
 
 const KontaktOssFrontpage = () => {
   document.title = "Kontakt oss - www.nav.no";
@@ -19,6 +20,7 @@ const KontaktOssFrontpage = () => {
         <div className="frontpage__content">
           <FAQ />
           <SkrivTilOss />
+          <RingOss />
           <LenkePanel />
         </div>
       </div>

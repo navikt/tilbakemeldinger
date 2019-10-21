@@ -27,7 +27,9 @@ const Box = (props: Props) => {
               <Element>{props.tittel}</Element>
             </div>
           </div>
-          <Normaltekst>{props.beskrivelse}</Normaltekst>
+          <Normaltekst>
+            <div dangerouslySetInnerHTML={{ __html: props.beskrivelse }} />
+          </Normaltekst>
         </div>
       </div>
       <HoyreChevron />
