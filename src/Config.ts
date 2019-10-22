@@ -46,5 +46,7 @@ export const vars = {
     skrivTilOssEnabledName: "kontakt-oss.skriv-til-oss",
     langSvartidDefault: false,
     langSvartidName: "kontakt-oss.skriv-til-oss.lang-svartid",
+    tekniskProblemDefault: false,
+    tekniskProblemName: "kontakt-oss.teknisk-problem"
   },
 };

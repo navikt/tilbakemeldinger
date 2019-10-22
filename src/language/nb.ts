@@ -1,4 +1,6 @@
 export default {
+  "teknisk-problem": "Vi har for øyeblikket tekniske problemer med disse sidene.",
+
   "skrivtiloss.tittel": "Skriv til oss",
   "skrivtiloss.svartid": "Hvis du har sendt beskjed til NAV, er normal svartid {numDager} arbeidsdager.",
   "skrivtiloss.svartid.lang": " På grunn av stor pågang kan svartid for tiden være noe lengre. Vi beklager dette.",
