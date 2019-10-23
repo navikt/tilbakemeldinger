@@ -39,7 +39,7 @@ const TemaHjelpemidler = () => (
   <SkrivTilOssBase
     tittel={tittel}
     ingress={ingress}
-    lenke={lenker}
+    lenker={lenker}
   />
 );
 

@@ -51,7 +51,7 @@ const TemaArbeidssoker = () => (
   <SkrivTilOssBase
     tittel={tittel}
     ingress={ingress}
-    lenke={lenker}
+    lenker={lenker}
   />
 );
 

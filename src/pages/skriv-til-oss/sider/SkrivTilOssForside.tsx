@@ -31,13 +31,13 @@ const lenker: LenkepanelData[] = [
     tittel: "skrivtiloss.pensjonist.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.pensjonist.lenke.ingress"}/>,
     url: urls.skrivTilOss.pensjonist,
-    external: false
+    external: true
   },
   {
     tittel: "skrivtiloss.syk.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.syk.lenke.ingress"}/>,
     url: urls.skrivTilOss.syk,
-    external: false
+    external: true
   },
   {
     tittel: "skrivtiloss.hjelpemidler.lenke.tittel",
@@ -51,7 +51,7 @@ const SkrivTilOssForside = () => (
   <SkrivTilOssBase
     tittel={tittel}
     ingress={ingress}
-    lenke={lenker}
+    lenker={lenker}
   />
 );
 
