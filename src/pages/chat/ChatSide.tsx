@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { EtikettLiten, Normaltekst, Systemtittel } from "nav-frontend-typografi";
-import EkspanderendePanelGruppe, { EkspanderendePanelData } from "../../../components/ekspanderende-panel/EkspanderendePanelGruppe";
-import { ChatTemaData } from "../../../types/chatTema";
-import chatSideInnhold from "../ChatSideInnhold";
-import ChatKollapsetPanelInnhold from "../ChatKollapsetPanelInnhold";
-import ChatEkspandertPanelInnhold from "../ChatEkspandertPanelInnhold";
+import EkspanderendePanelGruppe, { EkspanderendePanelData } from "../../components/ekspanderende-panel/EkspanderendePanelGruppe";
+import { ChatTemaData } from "../../types/chatTema";
+import chatSideInnhold from "./ChatSideInnhold";
+import ChatKollapsetPanelInnhold from "./ChatKollapsetPanelInnhold";
+import ChatEkspandertPanelInnhold from "./ChatEkspandertPanelInnhold";
 
 import ChatValgtIkon from "assets/ChatValgtIkon.svg";
 import ChatIkkeValgtIkon from "assets/ChatUvalgtIkon.svg";
@@ -25,7 +25,7 @@ const chatDataTilPanelInnhold = (chatTema: ChatTemaData, index: number, intlForm
   }
 );
 
-const ChatForside = () => {
+const ChatSide = () => {
   const intlFormatMessage = useIntl().formatMessage;
   const documentTitle = `${intlFormatMessage({id: sideTittel})} - www.nav.no`;
   useEffect(() => {
@@ -57,4 +57,4 @@ const ChatForside = () => {
   );
 };
 
-export default ChatForside;
+export default ChatSide;

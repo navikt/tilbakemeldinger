@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router";
 import { urls } from "../../../Config";
 
 import NotFound from "../../404/404";
-import ChatForside from "../pages/ChatForside";
+import ChatSide from "../ChatSide";
 import ChatFamilie from "./ChatFamilie";
 
 const ChatRouter = () => {
@@ -13,7 +13,7 @@ const ChatRouter = () => {
         exact={true}
         path={urls.chat.forside}
       >
-        <ChatForside />
+        <ChatSide />
       </Route>
       <Route
         exact={true}

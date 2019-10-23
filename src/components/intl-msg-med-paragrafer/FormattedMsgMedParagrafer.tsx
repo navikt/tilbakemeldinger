@@ -1,5 +1,5 @@
 import { FormattedMessage } from "react-intl";
-import React, { JSXElementConstructor } from "react";
+import React from "react";
 
 type MsgIdProp = {
   msgId: string,

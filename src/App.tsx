@@ -29,7 +29,7 @@ import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOss";
 import SkrivTilOssRouter from "./pages/skriv-til-oss/SkrivTilOssRouter";
 
 import { getFeatureToggleStatus } from "./utils/unleash";
-import ChatForside from "./pages/chat/pages/ChatForside";
+import ChatSide from "./pages/chat/ChatSide";
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
@@ -95,7 +95,7 @@ const App = () => {
             <Route
               exact={true}
               path={urls.chat.forside}
-              component={ChatForside}
+              component={ChatSide}
             />
             <Route
               exact={true}
