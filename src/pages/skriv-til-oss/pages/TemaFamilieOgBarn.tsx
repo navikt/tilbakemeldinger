@@ -1,16 +1,17 @@
 import React, { ReactNode } from "react";
+import { FormattedMessage } from "react-intl";
+
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
 import { vars, urls } from "../../../Config";
-import { FormattedMessage } from "react-intl";
+
+const tittel: string = "familieogbarn.tittel";
 
 const ingress: ReactNode = (
-  <>
-    <Normaltekst className="skriv-til-oss__infotekst">
-      <FormattedMessage id={"familieogbarn.infotekst"}/>
-    </Normaltekst>
-  </>
+  <Normaltekst>
+    <FormattedMessage id={"familieogbarn.infotekst"}/>
+  </Normaltekst>
 );
 
 const lenker: LenkepanelData[] = [
@@ -36,9 +37,9 @@ const lenker: LenkepanelData[] = [
 
 const TemaFamilieOgBarn = () => (
   <SkrivTilOssBase
-    tittel={"familieogbarn.tittel"}
+    tittel={tittel}
     ingress={ingress}
-    lenker={lenker}
+    lenke={lenker}
   />
 );
 

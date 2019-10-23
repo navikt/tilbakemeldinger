@@ -6,12 +6,12 @@ import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
 import { vars, urls } from "../../../Config";
 
+const tittel: string = "arbeidssoker.tittel";
+
 const ingress: ReactNode = (
-  <>
-    <Normaltekst className="skriv-til-oss__infotekst">
-      <FormattedMessage id={"arbeidssoker.infotekst"}/>
-    </Normaltekst>
-  </>
+  <Normaltekst>
+    <FormattedMessage id={"arbeidssoker.infotekst"}/>
+  </Normaltekst>
 );
 
 const lenker: LenkepanelData[] = [
@@ -49,9 +49,9 @@ const lenker: LenkepanelData[] = [
 
 const TemaArbeidssoker = () => (
   <SkrivTilOssBase
-    tittel={"arbeidssoker.tittel"}
+    tittel={tittel}
     ingress={ingress}
-    lenker={lenker}
+    lenke={lenker}
   />
 );
 

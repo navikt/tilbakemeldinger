@@ -6,6 +6,7 @@ import SkrivTilOssForside from "./pages/SkrivTilOssForside";
 import TemaArbeidssoker from "./pages/TemaArbeidssoker";
 import TemaFamilieOgBarn from "./pages/TemaFamilieOgBarn";
 import TemaHjelpemidler from "./pages/TemaHjelpemidler";
+import NotFound from "../404/404";
 
 const SkrivTilOssRouter = () => {
   return (
@@ -33,6 +34,9 @@ const SkrivTilOssRouter = () => {
         path={urls.skrivTilOss.hjelpemidler}
       >
         <TemaHjelpemidler />
+      </Route>
+      <Route>
+        <NotFound/>
       </Route>
     </Switch>
   );

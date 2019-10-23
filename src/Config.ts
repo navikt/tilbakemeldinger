@@ -20,6 +20,13 @@ export const urls = {
     syk: "#",
     hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`
   },
+  chat: {
+    forside: `${baseUrl}/chat`,
+    familie: `${baseUrl}/chat/familie`,
+    aap: `${baseUrl}/chat/aap`,
+    sosialhjelp: `${baseUrl}/chat/sosialhjelp`,
+    okonomi: `${baseUrl}/chat/okonomi`,
+  },
   facebook: "#",
   snapchat: "#",
   temaArbeidssoker: {

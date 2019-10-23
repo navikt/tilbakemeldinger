@@ -1,0 +1,56 @@
+
+@paddingy: 1.5em;
+@paddingx: @paddingy * 1.62;
+
+.ekspanderende-panel {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  margin-bottom: 0.25em;
+
+  label {
+    padding: 0;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  &__panel {
+    padding: @paddingy @paddingx;
+  }
+
+  &__input {
+    position: fixed;
+    opacity: 0;
+    width: 0;
+
+    &:not(:checked) ~ .ekspanderende-panel__panel {
+      &:hover {
+        box-shadow: inset 1px 1px 1px 0 @navBla, inset -1px -1px 1px 0 @navBla;
+        .ekspanderende-panel__header {
+          color: @navBla;
+        }
+      }
+    }
+  }
+
+  &:focus,
+  &:focus-within
+  {
+    .ekspanderende-panel__panel {
+      box-shadow: inset 2px 2px @fokusFarge, inset -2px -2px @fokusFarge;
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__indicator {
+    margin-right: 0.5em;
+  }
+}
