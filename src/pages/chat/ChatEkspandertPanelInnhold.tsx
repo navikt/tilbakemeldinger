@@ -1,5 +1,5 @@
 import { Normaltekst } from "nav-frontend-typografi";
-import FormattedMsgMedParagrafer from "../../components/formattedMsgMedParagrafer/FormattedMsgMedParagrafer";
+import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
 import { Hovedknapp } from "nav-frontend-knapper";
 import { FormattedMessage } from "react-intl";
 import React from "react";
@@ -13,7 +13,7 @@ const ChatEkspandertPanelInnhold = ({msgId, cssPrefix}: Props) => {
   return(
     <div className={`${cssPrefix}__panel-innhold`}>
       <Normaltekst>
-        <FormattedMsgMedParagrafer msgId={msgId}/>
+        <FormattedMsgMedParagrafer msgId={msgId} Component={Normaltekst}/>
       </Normaltekst>
       <div className={`${cssPrefix}__panel-start-knapp`}>
         <Hovedknapp>

@@ -2,7 +2,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import React, { ReactNode, useEffect } from "react";
 
 import { EtikettLiten, Sidetittel, Systemtittel, Undertekst } from "nav-frontend-typografi";
-import { LenkepanelData } from "../types/lenker";
+import { LenkepanelData } from "../../types/lenker";
 import { LenkepanelBase } from "nav-frontend-lenkepanel/lib";
 
 export type ForsideMedLenkerBaseProps = {

@@ -79,43 +79,39 @@ export default {
     " til å gå inn i konkrete saker",
 
   "chat.familie.lenke.tittel": "Chat om familie og barn",
-  "chat.familie.lenke.ingress": "foreldrepenger, engangsstønad, kontantstøtte, barnebidrag og mye mer",
+  "chat.familie.lenke.ingress": "Foreldrepenger, engangsstønad, kontantstøtte, barnebidrag og mye mer.",
 
   "chat.aap.lenke.tittel": "Chat om arbeidsavklaringspenger (AAP)",
-  "chat.aap.lenke.ingress": "arbeidsavklaringspenger og overgangen fra sykepenger til arbeidsavklaringspenger",
+  "chat.aap.lenke.ingress": "Arbeidsavklaringspenger og overgangen fra sykepenger til arbeidsavklaringspenger.",
 
   "chat.sosialhjelp.lenke.tittel": "Chat om sosiale tjenester og økonomisk sosialhjelp",
-  "chat.sosialhjelp.lenke.ingress": "sosiale tjenester og økonomisk sosialhjelp",
+  "chat.sosialhjelp.lenke.ingress": "Aosiale tjenester og økonomisk sosialhjelp.",
 
   "chat.okonomi.lenke.tittel": "Chat om økonomi og gjeldsrådgivning",
-  "chat.okonomi.lenke.ingress": "budsjett, økonomi og gjeldsrådgivning",
+  "chat.okonomi.lenke.ingress": "Budsjett, økonomi og gjeldsrådgivning.",
 
   "chat.startknapp": "Start chat",
 
   "chat.familie.tittel": "Chat om familie og barn",
-  "chat.familie.ingressKort": "foreldrepenger, engangsstønad, kontantstøtte, barnebidrag og mye mer",
-  "chat.familie.ingress": "<p>foreldrepenger, engangsstønad, kontantstøtte, barnebidrag og mye mer</p>" +
-    "<p>Vi svarer på generelle spørsmål om foreldrepenger, engangsstønad, kontantstøtte," +
+  "chat.familie.ingressKort": "Foreldrepenger, engangsstønad, kontantstøtte, barnebidrag og mye mer.",
+  "chat.familie.ingress": "<p>Vi svarer på generelle spørsmål om foreldrepenger, engangsstønad, kontantstøtte," +
     " barnebidrag og mye mer. Chatbot svarer hele døgnet, og kl. 09.00 - 14.30 kan den sette deg over til en" +
     " veileder.</p>" +
     "<p>Alle samtaler blir lagret anonymt i 6 måneder.</p>" +
     "<p>Ikke oppgi navn, fødselsnummer eller sensitive opplysninger som helseforhold eller diagnoser.</p>",
 
   "chat.aap.tittel": "Chat om arbeidsavklaringspenger (AAP)",
-  "chat.aap.ingressKort": "arbeidsavklaringspenger og overgangen fra sykepenger til arbeidsavklaringspenger",
-  "chat.aap.ingress": "<p>arbeidsavklaringspenger og overgangen fra sykepenger til arbeidsavklaringspenger</p>" +
-    "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis convallis elit, sed ornare elit feugiat vel. Cras consectetur dictum viverra. Quisque a lacinia odio. Aliquam non ipsum eget diam lobortis posuere. Aliquam quis dignissim massa. Integer sit amet pretium nibh. Sed sodales fermentum suscipit. Proin non metus vitae risus consectetur rutrum. Cras mollis massa vitae quam mattis mattis. Etiam in arcu lacinia, consequat libero eu, bibendum diam.</p>" +
+  "chat.aap.ingressKort": "Arbeidsavklaringspenger og overgangen fra sykepenger til arbeidsavklaringspenger.",
+  "chat.aap.ingress": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis convallis elit, sed ornare elit feugiat vel. Cras consectetur dictum viverra. Quisque a lacinia odio. Aliquam non ipsum eget diam lobortis posuere. Aliquam quis dignissim massa. Integer sit amet pretium nibh. Sed sodales fermentum suscipit. Proin non metus vitae risus consectetur rutrum. Cras mollis massa vitae quam mattis mattis. Etiam in arcu lacinia, consequat libero eu, bibendum diam.</p>" +
     "<p>Maecenas eu porta enim, ut vulputate libero. Mauris consequat est nec leo commodo, egestas blandit sapien posuere. Ut tellus leo, volutpat eget commodo elementum, vulputate et tortor. Curabitur cursus dolor lectus, ut dictum metus pellentesque et. Mauris id pharetra libero. Suspendisse ipsum lectus, porttitor a nibh sit amet, dignissim imperdiet ante. Nunc a efficitur enim.</p>",
 
   "chat.sosialhjelp.tittel": "Chat om sosiale tjenester og økonomisk sosialhjelp",
-  "chat.sosialhjelp.ingressKort": "sosiale tjenester og økonomisk sosialhjelp",
-  "chat.sosialhjelp.ingress": "<p>sosiale tjenester og økonomisk sosialhjelp</p>" +
-    "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis convallis elit, sed ornare elit feugiat vel. Cras consectetur dictum viverra. Quisque a lacinia odio. Aliquam non ipsum eget diam lobortis posuere. Aliquam quis dignissim massa. Integer sit amet pretium nibh. Sed sodales fermentum suscipit. Proin non metus vitae risus consectetur rutrum. Cras mollis massa vitae quam mattis mattis. Etiam in arcu lacinia, consequat libero eu, bibendum diam.</p>" +
+  "chat.sosialhjelp.ingressKort": "Sosiale tjenester og økonomisk sosialhjelp.",
+  "chat.sosialhjelp.ingress": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis convallis elit, sed ornare elit feugiat vel. Cras consectetur dictum viverra. Quisque a lacinia odio. Aliquam non ipsum eget diam lobortis posuere. Aliquam quis dignissim massa. Integer sit amet pretium nibh. Sed sodales fermentum suscipit. Proin non metus vitae risus consectetur rutrum. Cras mollis massa vitae quam mattis mattis. Etiam in arcu lacinia, consequat libero eu, bibendum diam.</p>" +
     "<p>Maecenas eu porta enim, ut vulputate libero. Mauris consequat est nec leo commodo, egestas blandit sapien posuere. Ut tellus leo, volutpat eget commodo elementum, vulputate et tortor. Curabitur cursus dolor lectus, ut dictum metus pellentesque et. Mauris id pharetra libero. Suspendisse ipsum lectus, porttitor a nibh sit amet, dignissim imperdiet ante. Nunc a efficitur enim.</p>",
 
   "chat.okonomi.tittel": "Chat om økonomi og gjeldsrådgivning",
-  "chat.okonomi.ingressKort": "budsjett, økonomi og gjeldsrådgivning",
-  "chat.okonomi.ingress": "<p>budsjett, økonomi og gjeldsrådgivning</p>" +
-    "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis convallis elit, sed ornare elit feugiat vel. Cras consectetur dictum viverra. Quisque a lacinia odio. Aliquam non ipsum eget diam lobortis posuere. Aliquam quis dignissim massa. Integer sit amet pretium nibh. Sed sodales fermentum suscipit. Proin non metus vitae risus consectetur rutrum. Cras mollis massa vitae quam mattis mattis. Etiam in arcu lacinia, consequat libero eu, bibendum diam.</p>" +
+  "chat.okonomi.ingressKort": "Budsjett, økonomi og gjeldsrådgivning.",
+  "chat.okonomi.ingress": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis convallis elit, sed ornare elit feugiat vel. Cras consectetur dictum viverra. Quisque a lacinia odio. Aliquam non ipsum eget diam lobortis posuere. Aliquam quis dignissim massa. Integer sit amet pretium nibh. Sed sodales fermentum suscipit. Proin non metus vitae risus consectetur rutrum. Cras mollis massa vitae quam mattis mattis. Etiam in arcu lacinia, consequat libero eu, bibendum diam.</p>" +
     "<p>Maecenas eu porta enim, ut vulputate libero. Mauris consequat est nec leo commodo, egestas blandit sapien posuere. Ut tellus leo, volutpat eget commodo elementum, vulputate et tortor. Curabitur cursus dolor lectus, ut dictum metus pellentesque et. Mauris id pharetra libero. Suspendisse ipsum lectus, porttitor a nibh sit amet, dignissim imperdiet ante. Nunc a efficitur enim.</p>",
 };

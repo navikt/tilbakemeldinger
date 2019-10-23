@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { EtikettLiten, Normaltekst, Systemtittel } from "nav-frontend-typografi";
-import EkspanderendePanelGruppe, { EkspanderendePanelData } from "../../EkspanderendePanelGruppe/EkspanderendePanelGruppe";
+import EkspanderendePanelGruppe, { EkspanderendePanelData } from "../../../components/ekspanderende-panel/EkspanderendePanelGruppe";
 import { ChatTemaData } from "../../../types/chatTema";
 import chatSideInnhold from "../ChatSideInnhold";
 import ChatKollapsetPanelInnhold from "../ChatKollapsetPanelInnhold";

@@ -5,14 +5,14 @@ import { vars } from "../../Config";
 import { Features, getFeatureToggleStatusMultiple } from "../../utils/unleash";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import AlertStripe from "nav-frontend-alertstriper";
-import ForsideMedLenkerBase, { ForsideMedLenkerBaseProps } from "../ForsideMedLenkerBase";
+import ForsideMedLenkerBase, { ForsideMedLenkerBaseProps } from "./ForsideMedLenkerBase";
 
 const enabledName = vars.unleash.skrivTilOssEnabledName;
 const svartidName = vars.unleash.langSvartidName;
 const enabledDefault = vars.unleash.skrivTilOssEnabledDefault;
 const svartidDefault = vars.unleash.langSvartidDefault;
 
-type SkrivTilOssBaseProps = ForsideMedLenkerBaseProps;
+type Props = ForsideMedLenkerBaseProps;
 
 const ingressMedSvartid = (ingress: ReactNode, langSvartid: boolean) => (
   <>
@@ -24,7 +24,7 @@ const ingressMedSvartid = (ingress: ReactNode, langSvartid: boolean) => (
   </>
 );
 
-const SkrivTilOssBase = ({tittel, ingress, lenke}: SkrivTilOssBaseProps) => {
+const SkrivTilOssBase = ({tittel, ingress, lenke}: Props) => {
   const [unleashResponded, setUnleashResponded] = useState(false);
   const [langSvartid, setLangSvartid] = useState(svartidDefault);
   const [skrivTilOssEnabled, setSkrivTilOssEnabled] = useState(enabledDefault);
