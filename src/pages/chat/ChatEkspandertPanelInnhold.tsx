@@ -12,9 +12,7 @@ type Props = {
 const ChatEkspandertPanelInnhold = ({msgId, cssPrefix}: Props) => {
   return(
     <div className={`${cssPrefix}__panel-innhold`}>
-      <Normaltekst>
-        <FormattedMsgMedParagrafer msgId={msgId} Component={Normaltekst}/>
-      </Normaltekst>
+      <FormattedMsgMedParagrafer id={msgId} Component={Normaltekst}/>
       <div className={`${cssPrefix}__panel-start-knapp`}>
         <Hovedknapp>
           <FormattedMessage id={"chat.startknapp"}/>

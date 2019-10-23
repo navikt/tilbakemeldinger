@@ -1,14 +1,14 @@
 import { FormattedMessage } from "react-intl";
 import React from "react";
 
-type MsgIdProp = {
-  msgId: string,
+type Props = {
+  id: string,
   Component?: any,
 };
 
-const FormattedMsgMedParagrafer = ({msgId, Component}: MsgIdProp) => (
+const FormattedMsgMedParagrafer = ({id, Component}: Props) => (
   <FormattedMessage
-    id={msgId}
+    id={id}
     values={{ p: (paragraf: string) => (Component ? <Component>{paragraf}</Component> : <p>{paragraf}</p>)}}
   />
 );
