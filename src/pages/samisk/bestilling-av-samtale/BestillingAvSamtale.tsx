@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Flatknapp, Knapp } from "nav-frontend-knapper";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import InputNavn from "components/input-fields/InputNavn";
 import InputTelefon from "components/input-fields/InputTelefon";
 import { postSamiskBestillSamtale } from "clients/apiClient";
 import { HTTPError } from "components/error/Error";
@@ -11,6 +10,7 @@ import { FormContext, FormValidation } from "calidation";
 import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
 import { Checkbox, SkjemaGruppe } from "nav-frontend-skjema";
 import Box from "../../../components/box/Box";
+import InputField from "../../../components/input-fields/InputField";
 
 type TIDSROM = "FORMIDDAG" | "FORMIDDAG" | "BEGGE";
 export interface OutboundBestillingAvSamtale {
@@ -116,7 +116,7 @@ const BAS = (props: RouteComponentProps) => {
                   davvisámegielat galga riŋget.
                 </Normaltekst>
               </div>
-              <InputNavn
+              <InputField
                 bredde={"M"}
                 label={"Ovdanamma"}
                 value={fields.fornavn}
@@ -124,7 +124,7 @@ const BAS = (props: RouteComponentProps) => {
                 onChange={v => setField({ fornavn: v })}
                 submitted={submitted}
               />
-              <InputNavn
+              <InputField
                 bredde={"M"}
                 label={"Goargu"}
                 value={fields.etternavn}
