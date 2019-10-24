@@ -134,7 +134,7 @@ const Ros = (props: RouteComponentProps) => {
         <Validation config={formConfig}>
           {({ errors, fields, submitted, setField, isValid }) => {
             return (
-              <Box tittel={"Send inn ros"}>
+              <Box tittel={"Send inn ros til NAV"}>
                 <InputNavn
                   bredde={"L"}
                   label={"Navn"}

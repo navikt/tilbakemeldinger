@@ -84,7 +84,7 @@ const FOM = (props: RouteComponentProps) => {
       </div>
       <FormValidation onSubmit={send} config={formConfig}>
         {({ errors, fields, submitted, setField, isValid }) => (
-          <Box>
+          <Box tittel={"Send inn feil og mangler på nav.no"}>
             <InputNavn
               bredde={"M"}
               label={"Navn"}
