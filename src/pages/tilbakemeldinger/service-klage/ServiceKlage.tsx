@@ -138,21 +138,20 @@ const ServiceKlage = (props: RouteComponentProps) => {
           }
         />
         <Header title="Klage på service" />
+        <div className={"tb__veileder"}>
+          <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
+            Velg det alternativet som passer best.
+            <br />
+            Vi vil uansett sørge for at tilbakemeldingen kommer fram til riktig
+            person.
+          </Veilederpanel>
+        </div>
         <Form onSubmit={send}>
           <Validation config={baseFormConfig}>
             {({ errors, fields, submitted, setField }) => {
               const hvemFra: ON_BEHALF_OF = fields.hvemFra;
               return (
                 <Box>
-                  <Veilederpanel
-                    svg={<img src={VeilederIcon} alt="Veileder" />}
-                  >
-                    Velg det alternativet som passer best.
-                    <br />
-                    Vi vil uansett sørge for at tilbakemeldingen kommer fram til
-                    riktig person.
-                  </Veilederpanel>
-
                   <div className="serviceKlage__content">
                     <SkjemaGruppe title={"Hva gjelder tilbakemeldingen?"}>
                       <Radio
@@ -282,27 +281,29 @@ const ServiceKlage = (props: RouteComponentProps) => {
                                   setField({ paaVegneAvFodselsnr: v })
                                 }
                               />
-                              <RadioPanelGruppe
-                                legend={"Har du fullmakt?"}
-                                className="radioPanel__bool"
-                                radios={[
-                                  {
-                                    label: "Ja, jeg har fullmakt",
-                                    value: "true"
-                                  },
-                                  {
-                                    label: "Nei, jeg har ikke fullmakt",
-                                    value: "false"
+                              <div className={"serviceKlage__fullmakt"}>
+                                <RadioPanelGruppe
+                                  legend={"Har du fullmakt?"}
+                                  className="radioPanel__bool"
+                                  radios={[
+                                    {
+                                      label: "Ja, jeg har fullmakt",
+                                      value: "true"
+                                    },
+                                    {
+                                      label: "Nei, jeg har ikke fullmakt",
+                                      value: "false"
+                                    }
+                                  ]}
+                                  name={"fullmakt"}
+                                  submitted={submitted}
+                                  checked={fields.innmelderHarFullmakt}
+                                  error={errors.innmelderHarFullmakt}
+                                  onChange={v =>
+                                    setField({ innmelderHarFullmakt: v })
                                   }
-                                ]}
-                                name={"fullmakt"}
-                                submitted={submitted}
-                                checked={fields.innmelderHarFullmakt}
-                                error={errors.innmelderHarFullmakt}
-                                onChange={v =>
-                                  setField({ innmelderHarFullmakt: v })
-                                }
-                              />
+                                />
+                              </div>
                             </div>
                           )}
                         </Validation>
@@ -372,7 +373,6 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         </Validation>
                       )}
                     </SkjemaGruppe>
-
                     <div className="serviceKlage__melding">
                       <InputMelding
                         label={"Melding til NAV"}
@@ -382,49 +382,43 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         onChange={v => setField({ melding: v })}
                       />
                     </div>
-                    <RadioPanelGruppe
-                      legend={"Ønsker du at vi kontakter deg?"}
-                      className="radioPanel__bool"
-                      radios={[
-                        {
-                          label: "Ja, jeg ønsker å kontaktes",
-                          value: "true"
-                        },
-                        {
-                          label: "Nei, jeg ville bare si ifra",
-                          value: "false"
-                        }
-                      ]}
-                      name={"onsker-kontakt"}
-                      submitted={submitted}
-                      error={errors.onskerKontakt}
-                      checked={fields.onskerKontakt}
-                      onChange={v => setField({ onskerKontakt: v })}
-                    />
-                    {fields.onskerKontakt === "true" && (
-                      <Validation key="kontakt" config={tlfFormConfig}>
-                        {() => (
-                          <div className="serviceKlage__ekspandert">
-                            <InputTelefon
-                              label={"Telefon"}
-                              value={fields.innmelderTlfnr}
-                              error={errors.innmelderTlfnr}
-                              onChange={v => setField({ innmelderTlfnr: v })}
-                              submitted={submitted}
-                            />
-                          </div>
-                        )}
-                      </Validation>
-                    )}
-                    <div>
-                      {error && (
-                        <AlertStripeFeil>
-                          Oi! Noe gikk galt: {error}
-                        </AlertStripeFeil>
+                    <SkjemaGruppe title={"Ønsker du at vi kontakter deg?"}>
+                      <Radio
+                        label={"Ja, jeg ønsker å kontaktes"}
+                        name={"Ja, jeg ønsker å kontaktes"}
+                        checked={fields.onskerKontakt === "true"}
+                        onChange={() => setField({ onskerKontakt: "true" })}
+                      />
+                      {fields.onskerKontakt === "true" && (
+                        <Validation key="kontakt" config={tlfFormConfig}>
+                          {() => (
+                            <div className="serviceKlage__ekspandert">
+                              <InputTelefon
+                                bredde={"S"}
+                                label={"Telefon"}
+                                value={fields.innmelderTlfnr}
+                                error={errors.innmelderTlfnr}
+                                onChange={v => setField({ innmelderTlfnr: v })}
+                                submitted={submitted}
+                              />
+                            </div>
+                          )}
+                        </Validation>
                       )}
-                    </div>
-                    <div className="serviceKlage__knapper">
-                      <div className="serviceKlage__knapp">
+                      <Radio
+                        label={"Nei, jeg ville bare si ifra"}
+                        name={"Nei, jeg ville bare si ifra"}
+                        checked={fields.onskerKontakt === "false"}
+                        onChange={() => setField({ onskerKontakt: "false" })}
+                      />
+                    </SkjemaGruppe>
+                    {error && (
+                      <AlertStripeFeil>
+                        Oi! Noe gikk galt: {error}
+                      </AlertStripeFeil>
+                    )}
+                    <div className="tb__knapper">
+                      <div className="tb__knapp">
                         <Knapp
                           htmlType={"submit"}
                           type={"standard"}
@@ -433,7 +427,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                           {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
                         </Knapp>
                       </div>
-                      <div className="serviceKlage__knapp">
+                      <div className="tb__knapp">
                         <Link to={urls.forside}>
                           <Knapp type={"flat"}>Tilbake</Knapp>
                         </Link>

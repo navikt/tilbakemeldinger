@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "../../../assets/Veileder.svg";
-import RadioPanelGruppe from "../../../components/input-fields/RadioPanelGruppe";
-import { Hovedknapp, Knapp } from "nav-frontend-knapper";
+import { Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import InputNavn from "../../../components/input-fields/InputNavn";
 import InputTelefon from "../../../components/input-fields/InputTelefon";
@@ -16,6 +15,7 @@ import { FormContext, FormValidation } from "calidation";
 import Header from "../../../components/header/Header";
 import { urls } from "Config";
 import Box from "../../../components/box/Box";
+import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 
 export interface OutboundFeilOgMangler {
   navn: string;
@@ -75,53 +75,52 @@ const FOM = (props: RouteComponentProps) => {
     <div className="pagecontent">
       <Tilbake to={urls.tilbakemeldinger.forside} />
       <Header title="Feil og mangler" />
+      <div className={"tb__veileder"}>
+        <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
+          Takk for at du sier ifra om feil og mangler.
+          <br />
+          Vi sørger for at meldingen kommer fram til riktig person.
+        </Veilederpanel>
+      </div>
       <FormValidation onSubmit={send} config={formConfig}>
         {({ errors, fields, submitted, setField }) => (
           <Box>
-            <Veilederpanel
-              kompakt={true}
-              svg={<img src={VeilederIcon} alt="Veileder" />}
-            >
-              Takk for at du sier ifra om feil og mangler.
-              <br />
-              Vi sørger for at meldingen kommer fram til riktig person.
-            </Veilederpanel>
-            <div className="flex__rad mellomrom">
-              <div className="flex__kolonne-left">
-                <InputNavn
-                  label={"Navn"}
-                  value={fields.navn}
-                  error={errors.navn}
-                  onChange={v => setField({ navn: v })}
-                  submitted={submitted}
-                />
-              </div>
-              <div className="flex__kolonne-right">
-                <InputTelefon
-                  label={"Telefon"}
-                  value={fields.telefonnummer}
-                  error={errors.telefonnummer}
-                  onChange={v => setField({ telefonnummer: v })}
-                  submitted={submitted}
-                />
-              </div>
-            </div>
-            <RadioPanelGruppe
-              legend={"Hva slags feil eller mangel fant du?"}
-              radios={[
-                { label: "Teknisk feil", value: "TEKNISK_FEIL" },
-                { label: "Feil informasjon", value: "FEIL_INFO" },
-                {
-                  label: "Lav grad av universell utforming",
-                  value: "UNIVERSELL_UTFORMING"
-                }
-              ]}
-              name={"type-feil"}
-              error={errors.feiltype}
-              checked={fields.feiltype}
-              onChange={v => setField({ feiltype: v })}
+            <InputNavn
+              bredde={"M"}
+              label={"Navn"}
+              value={fields.navn}
+              error={errors.navn}
+              onChange={v => setField({ navn: v })}
               submitted={submitted}
             />
+            <InputTelefon
+              bredde={"S"}
+              label={"Telefon"}
+              value={fields.telefonnummer}
+              error={errors.telefonnummer}
+              onChange={v => setField({ telefonnummer: v })}
+              submitted={submitted}
+            />
+            <SkjemaGruppe title={"Hva slags feil eller mangel fant du?"}>
+              <Radio
+                label={"Teknisk feil"}
+                name={"TEKNISK_FEIL"}
+                checked={fields.feiltype === "TEKNISK_FEIL"}
+                onChange={() => setField({ feiltype: "TEKNISK_FEIL" })}
+              />
+              <Radio
+                label={"Feil informasjon"}
+                name={"FEIL_INFO"}
+                checked={fields.feiltype === "FEIL_INFO"}
+                onChange={() => setField({ feiltype: "FEIL_INFO" })}
+              />
+              <Radio
+                label={"Lav grad av universell utforming"}
+                name={"UNIVERSELL_UTFORMING"}
+                checked={fields.feiltype === "UNIVERSELL_UTFORMING"}
+                onChange={() => setField({ feiltype: "UNIVERSELL_UTFORMING" })}
+              />
+            </SkjemaGruppe>
             <div className="mellomrom">
               <InputMelding
                 label={"Melding til NAV"}
@@ -131,20 +130,18 @@ const FOM = (props: RouteComponentProps) => {
                 onChange={v => setField({ melding: v })}
               />
             </div>
-            <div>
-              {error && (
-                <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>
-              )}
-            </div>
+            {error && (
+              <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>
+            )}
             <div className="tb__knapper">
               <div className="tb__knapp">
-                <Hovedknapp disabled={loading}>
+                <Knapp htmlType={"submit"} type={"standard"} disabled={loading}>
                   {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
-                </Hovedknapp>
+                </Knapp>
               </div>
               <div className="tb__knapp">
                 <Link to={urls.tilbakemeldinger.forside}>
-                  <Knapp>Tilbake</Knapp>
+                  <Knapp type={"flat"}>Tilbake</Knapp>
                 </Link>
               </div>
             </div>

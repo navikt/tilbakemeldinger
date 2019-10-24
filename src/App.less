@@ -49,22 +49,27 @@
 }
 
 .mellomrom {
-  margin: 1rem 0;
+  padding: 0.5rem 0;
 }
 
-.tb__knapp {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0.25rem;
-  .knapp {
-    width: 12rem;
+.tb {
+  &__knapper {
+    display: flex;
+    flex-direction: row;
+    padding-top: 0.5rem;
   }
-}
-.tb__knapper {
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem;
+  &__knapp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.25rem;
+    .knapp {
+      width: 12rem;
+    }
+  }
+  &__veileder {
+    margin-top: 1rem;
+  }
 }
 
 .radioPanel {

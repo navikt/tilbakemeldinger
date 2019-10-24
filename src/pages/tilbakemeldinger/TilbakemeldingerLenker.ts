@@ -27,7 +27,7 @@ export const lenker: Lenke[] = [
     tittel: "Feil og mangler på nav.no",
     beskrivelse:
       "Har du oppdaget en feil på nav.no? Kanskje en teknisk feil, feil informasjon eller for lav grad av universell utforming? " +
-        "Da vil vi gjerne høre fra deg. ",
+      "Da vil vi gjerne høre fra deg. ",
     lenke: "/person/kontakt-oss/tilbakemeldinger/feil-og-mangler",
     lenkeTekst: "Meld fra om feil og mangler"
   },
