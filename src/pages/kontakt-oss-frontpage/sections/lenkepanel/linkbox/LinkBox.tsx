@@ -28,7 +28,7 @@ const Box = (props: Props) => {
             </div>
           </div>
           <Normaltekst>
-            <div dangerouslySetInnerHTML={{ __html: props.beskrivelse }} />
+            <span dangerouslySetInnerHTML={{ __html: props.beskrivelse }} />
           </Normaltekst>
         </div>
       </div>
