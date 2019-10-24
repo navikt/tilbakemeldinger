@@ -453,6 +453,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         {() => (
                           <div className="serviceKlage__ekspandert">
                             <InputTelefon
+                              label={"Telefon"}
                               value={fields.innmelderTlfnr}
                               error={errors.innmelderTlfnr}
                               onChange={v => setField({ innmelderTlfnr: v })}

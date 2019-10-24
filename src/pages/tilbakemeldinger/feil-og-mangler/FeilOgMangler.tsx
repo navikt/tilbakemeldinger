@@ -95,6 +95,7 @@ const FOM = (props: RouteComponentProps) => {
                 </div>
                 <div className="flex__kolonne-right">
                   <InputTelefon
+                    label={"Telefon"}
                     value={fields.telefonnummer}
                     error={errors.telefonnummer}
                     onChange={v => setField({ telefonnummer: v })}

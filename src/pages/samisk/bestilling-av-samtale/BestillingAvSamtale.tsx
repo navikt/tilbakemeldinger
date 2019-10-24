@@ -1,24 +1,23 @@
 import React, { useState } from "react";
-import Veilederpanel from "nav-frontend-veilederpanel";
-import VeilederIcon from "assets/Veileder.svg";
-import RadioPanelGruppe from "components/input-fields/RadioPanelGruppe";
 import { Hovedknapp } from "nav-frontend-knapper";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import InputNavn from "components/input-fields/InputNavn";
 import InputTelefon from "components/input-fields/InputTelefon";
-import InputMelding from "components/input-fields/InputMelding";
-import { postFeilOgMangler } from "clients/apiClient";
+import { postSamiskBestillSamtale } from "clients/apiClient";
 import { HTTPError } from "components/error/Error";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, FormValidation } from "calidation";
-import Header from "components/header/Header";
+import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
+import { FormattedHTMLMessage } from "react-intl";
+import { CheckboksPanelGruppe } from "nav-frontend-skjema";
 
+type TIDSROM = "FORMIDDAG" | "FORMIDDAG" | "BEGGE";
 export interface OutboundBestillingAvSamtale {
-  navn: string;
+  fornavn: string;
+  etternavn: string;
   telefonnummer: string;
-  feiltype: string;
-  melding: string;
+  tidsrom: TIDSROM;
 }
 
 const BAS = (props: RouteComponentProps) => {
@@ -27,35 +26,46 @@ const BAS = (props: RouteComponentProps) => {
   const [error, settError] = useState();
 
   const formConfig = {
-    navn: {
-      isRequired: "Navn er påkrevd"
+    fornavn: {
+      isRequired: "Fornavn er påkrevd"
+    },
+    etternavn: {
+      isRequired: "Etternavn er påkrevd"
     },
     telefonnummer: {
       isRequired: "Telefonnummer er påkrevd"
     },
-    feiltype: {
-      isRequired: "Du må velge hvilken type feil eller mangel du fant"
-    },
-    melding: {
-      isRequired: "Melding er påkrevd"
+    tidsrom: {
+      isRequired: "Tidsrom er påkrevd"
+    }
+  };
+
+  const initialValues = {
+    tidsrom: {
+      FORMIDDAG: false,
+      ETTERMIDDAG: false
     }
   };
 
   const send = (e: FormContext) => {
     const { isValid, fields } = e;
-    const { navn, telefonnummer, feiltype, melding } = fields;
+    const { fornavn, etternavn, telefonnummer, tidsrom } = fields;
 
     if (isValid) {
       const outbound = {
-        navn,
+        fornavn,
+        etternavn,
         telefonnummer,
-        feiltype,
-        melding
+        tidsrom: (tidsrom.FORMIDDAG && tidsrom.ETTERMIDDAG
+          ? "BEGGE"
+          : tidsrom.FORMIDDAG
+          ? "FORMIDDAG"
+          : "ETTERMIDDAG") as TIDSROM
       };
 
       console.log(outbound);
       settLoading(true);
-      postFeilOgMangler(outbound)
+      postSamiskBestillSamtale(outbound)
         .then(() => {
           props.history.push(`${props.location.pathname}/takk`);
         })
@@ -70,85 +80,91 @@ const BAS = (props: RouteComponentProps) => {
 
   return (
     <>
-      <Header title="Jearaldat bagadallama oažžut sámegillii telefovnnas" />
-      <div className="pagecontent">
-        <FormValidation onSubmit={send} config={formConfig}>
-          {({ errors, fields, submitted, setField }) => (
-            <>
-              <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-                <p>
-                  Diŋgo dás davvisámegilli bálvalusa mas vástiduvvo dutnje
-                  sámegillii buot NAV – bálvalusain ja oajuin. Mii veahkehit
-                  gávdnat mo du áššiin manná, ja veahkehit du dovdat rivttiid ja
-                  geatnegasvuođaid mat leat álbmotoadjolága njuolggadusain. Don
-                  gávnnat dieđuid iežat áššis neahttabálvalusas nav.no Ditt NAV.
-                  Don sáhtát iskat mii dutnje lea máksojuvvon dás:
-                </p>
-                <p>
-                  Don sáhtat ain riŋget NAV-bálvalussii 55 55 33 33 ja dáhtot
-                  ahte davvisámegielat bagadalli riŋge dutnje. Muite addit
-                  riegadan- ja persunnummara ja maid telefunnummara masa
-                  davvisámegielat galga riŋget.
-                </p>
-              </Veilederpanel>
-              <div className="flex__rad mellomrom">
-                <div className="flex__kolonne-left">
-                  <InputNavn
-                    label={"Navn"}
-                    value={fields.navn}
-                    error={errors.navn}
-                    onChange={v => setField({ navn: v })}
-                    submitted={submitted}
-                  />
+      <div className="bestilling-av-samtale pagecontent">
+        <FormValidation
+          onSubmit={send}
+          config={formConfig}
+          initialValues={initialValues}
+        >
+          {({ errors, fields, submitted, setField }) => {
+            console.log(fields);
+            return (
+              <>
+                <div className="bestilling-av-samtale__header">
+                  <div className="bestilling-av-samtale__tittel">
+                    <Sidetittel>
+                      <FormattedHTMLMessage id={"samisk.overskrift"} />
+                    </Sidetittel>
+                  </div>
+                  <div className="bestilling-av-samtale__ingress">
+                    <Normaltekst className="bestilling-av-samtale__svartid">
+                      <FormattedHTMLMessage id={"samisk.ingress"} />
+                    </Normaltekst>
+                  </div>
                 </div>
-                <div className="flex__kolonne-right">
-                  <InputTelefon
-                    value={fields.telefonnummer}
-                    error={errors.telefonnummer}
-                    onChange={v => setField({ telefonnummer: v })}
-                    submitted={submitted}
-                  />
-                </div>
-              </div>
-              <RadioPanelGruppe
-                legend={"Hva slags feil eller mangel fant du?"}
-                radios={[
-                  { label: "Teknisk feil", value: "TEKNISK_FEIL" },
-                  { label: "Feil informasjon", value: "FEIL_INFO" },
-                  {
-                    label: "Lav grad av universell utforming",
-                    value: "UNIVERSELL_UTFORMING"
-                  }
-                ]}
-                name={"type-feil"}
-                error={errors.feiltype}
-                checked={fields.feiltype}
-                onChange={v => setField({ feiltype: v })}
-                submitted={submitted}
-              />
-              <div className="mellomrom">
-                <InputMelding
-                  label={"Melding til NAV"}
+                <InputNavn
+                  label={"Ovdanamma"}
+                  value={fields.fornavn}
+                  error={errors.fornavn}
+                  onChange={v => setField({ fornavn: v })}
                   submitted={submitted}
-                  value={fields.melding}
-                  error={errors.melding}
-                  onChange={v => setField({ melding: v })}
                 />
-              </div>
-              <div>
-                {error && (
-                  <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>
-                )}
-              </div>
-              <div className="tb__knapper">
-                <div className="tb__knapp">
-                  <Hovedknapp disabled={loading}>
-                    {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
-                  </Hovedknapp>
+                <InputNavn
+                  label={"Goargu"}
+                  value={fields.etternavn}
+                  error={errors.etternavn}
+                  onChange={v => setField({ etternavn: v })}
+                  submitted={submitted}
+                />
+                <InputTelefon
+                  label={"Telefovdna*"}
+                  value={fields.telefonnummer}
+                  error={errors.telefonnummer}
+                  onChange={v => setField({ telefonnummer: v })}
+                  submitted={submitted}
+                />
+                <CheckboksPanelGruppe
+                  legend={"Goas heive duinna váldit oktavuođa?"}
+                  checkboxes={[
+                    {
+                      label: "08.00-10.00",
+                      value: "FORMIDDAG",
+                      checked: fields.tidsrom.FORMIDDAG
+                    },
+                    {
+                      label: "13.30-15.30",
+                      value: "ETTERMIDDAG",
+                      checked: fields.tidsrom.ETTERMIDDAG
+                    }
+                  ]}
+                  onChange={(e, value?: string) => {
+                    if (value) {
+                      setField({
+                        tidsrom: {
+                          ...fields.tidsrom,
+                          [value]: !fields.tidsrom[value]
+                        }
+                      });
+                    }
+                  }}
+                />
+                <div>
+                  {error && (
+                    <AlertStripeFeil>
+                      Oi! Noe gikk galt: {error}
+                    </AlertStripeFeil>
+                  )}
                 </div>
-              </div>
-            </>
-          )}
+                <div className="tb__knapper">
+                  <div className="tb__knapp">
+                    <Hovedknapp disabled={loading}>
+                      {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
+                    </Hovedknapp>
+                  </div>
+                </div>
+              </>
+            );
+          }}
         </FormValidation>
       </div>
     </>
