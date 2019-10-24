@@ -6,22 +6,29 @@ interface Props {
   onChange: (value: string) => void;
   submitted: boolean;
   error: string | null;
+  bredde?: "fullbredde" | "XXL" | "XL" | "L" | "M" | "S" | "XS" | "XXS";
   value: string;
 }
 
 const InputFodselsnr = (props: Props) => {
   const [{ auth, fodselsnr }] = useStore();
   const [blur, settBlur] = useState(false);
-  const { value, error, submitted } = props;
+  const { value, error, submitted, bredde } = props;
 
   if (auth.authenticated && fodselsnr !== value) {
     props.onChange(fodselsnr);
   }
 
   return auth.authenticated && fodselsnr ? (
-    <Input label={"Fødselsnummer"} value={value} disabled={true} />
+    <Input
+      bredde={bredde}
+      label={"Fødselsnummer"}
+      value={value}
+      disabled={true}
+    />
   ) : (
     <Input
+      bredde={bredde}
       label={"Fødselsnummer"}
       value={value}
       onChange={event => props.onChange(event.currentTarget.value)}

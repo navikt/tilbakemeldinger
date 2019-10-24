@@ -22,6 +22,7 @@ const Tilbakemeldinger = () => {
             {lenker.map((lenke, key) => (
               <LenkepanelBase
                 key={key}
+                border={true}
                 className="lenke__panel"
                 href={lenke.lenke}
                 linkCreator={props => {

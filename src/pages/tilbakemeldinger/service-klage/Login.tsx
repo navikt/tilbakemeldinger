@@ -4,7 +4,6 @@ import { Hovedknapp } from "nav-frontend-knapper";
 import { Link, Redirect } from "react-router-dom";
 import Tilbake from "components/tilbake/Tilbake";
 import Environment from "Environments";
-import Header from "components/header/Header";
 
 import { urls } from "Config";
 const { loginUrl } = Environment();
@@ -19,7 +18,6 @@ const Login = () => {
 
   return (
     <>
-      <Header title="Tilbakemelding på service" />
       <div className="pagecontent">
         <Tilbake to={urls.tilbakemeldinger.forside} />
         <div className="serviceKlage__login-info">

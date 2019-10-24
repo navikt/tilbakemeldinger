@@ -15,6 +15,7 @@ import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, FormValidation } from "calidation";
 import Header from "../../../components/header/Header";
 import { urls } from "Config";
+import Box from "../../../components/box/Box";
 
 export interface OutboundFeilOgMangler {
   navn: string;
@@ -71,85 +72,86 @@ const FOM = (props: RouteComponentProps) => {
   };
 
   return (
-    <>
+    <div className="pagecontent">
+      <Tilbake to={urls.tilbakemeldinger.forside} />
       <Header title="Feil og mangler" />
-      <div className="pagecontent">
-        <FormValidation onSubmit={send} config={formConfig}>
-          {({ errors, fields, submitted, setField }) => (
-            <>
-              <Tilbake to={urls.tilbakemeldinger.forside} />
-              <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-                Takk for at du sier ifra om feil og mangler.
-                <br />
-                Vi sørger for at meldingen kommer fram til riktig person.
-              </Veilederpanel>
-              <div className="flex__rad mellomrom">
-                <div className="flex__kolonne-left">
-                  <InputNavn
-                    label={"Navn"}
-                    value={fields.navn}
-                    error={errors.navn}
-                    onChange={v => setField({ navn: v })}
-                    submitted={submitted}
-                  />
-                </div>
-                <div className="flex__kolonne-right">
-                  <InputTelefon
-                    label={"Telefon"}
-                    value={fields.telefonnummer}
-                    error={errors.telefonnummer}
-                    onChange={v => setField({ telefonnummer: v })}
-                    submitted={submitted}
-                  />
-                </div>
-              </div>
-              <RadioPanelGruppe
-                legend={"Hva slags feil eller mangel fant du?"}
-                radios={[
-                  { label: "Teknisk feil", value: "TEKNISK_FEIL" },
-                  { label: "Feil informasjon", value: "FEIL_INFO" },
-                  {
-                    label: "Lav grad av universell utforming",
-                    value: "UNIVERSELL_UTFORMING"
-                  }
-                ]}
-                name={"type-feil"}
-                error={errors.feiltype}
-                checked={fields.feiltype}
-                onChange={v => setField({ feiltype: v })}
-                submitted={submitted}
-              />
-              <div className="mellomrom">
-                <InputMelding
-                  label={"Melding til NAV"}
+      <FormValidation onSubmit={send} config={formConfig}>
+        {({ errors, fields, submitted, setField }) => (
+          <Box>
+            <Veilederpanel
+              kompakt={true}
+              svg={<img src={VeilederIcon} alt="Veileder" />}
+            >
+              Takk for at du sier ifra om feil og mangler.
+              <br />
+              Vi sørger for at meldingen kommer fram til riktig person.
+            </Veilederpanel>
+            <div className="flex__rad mellomrom">
+              <div className="flex__kolonne-left">
+                <InputNavn
+                  label={"Navn"}
+                  value={fields.navn}
+                  error={errors.navn}
+                  onChange={v => setField({ navn: v })}
                   submitted={submitted}
-                  value={fields.melding}
-                  error={errors.melding}
-                  onChange={v => setField({ melding: v })}
                 />
               </div>
-              <div>
-                {error && (
-                  <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>
-                )}
+              <div className="flex__kolonne-right">
+                <InputTelefon
+                  label={"Telefon"}
+                  value={fields.telefonnummer}
+                  error={errors.telefonnummer}
+                  onChange={v => setField({ telefonnummer: v })}
+                  submitted={submitted}
+                />
               </div>
-              <div className="tb__knapper">
-                <div className="tb__knapp">
-                  <Hovedknapp disabled={loading}>
-                    {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
-                  </Hovedknapp>
-                </div>
-                <div className="tb__knapp">
-                  <Link to={urls.tilbakemeldinger.forside}>
-                    <Knapp>Tilbake</Knapp>
-                  </Link>
-                </div>
+            </div>
+            <RadioPanelGruppe
+              legend={"Hva slags feil eller mangel fant du?"}
+              radios={[
+                { label: "Teknisk feil", value: "TEKNISK_FEIL" },
+                { label: "Feil informasjon", value: "FEIL_INFO" },
+                {
+                  label: "Lav grad av universell utforming",
+                  value: "UNIVERSELL_UTFORMING"
+                }
+              ]}
+              name={"type-feil"}
+              error={errors.feiltype}
+              checked={fields.feiltype}
+              onChange={v => setField({ feiltype: v })}
+              submitted={submitted}
+            />
+            <div className="mellomrom">
+              <InputMelding
+                label={"Melding til NAV"}
+                submitted={submitted}
+                value={fields.melding}
+                error={errors.melding}
+                onChange={v => setField({ melding: v })}
+              />
+            </div>
+            <div>
+              {error && (
+                <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>
+              )}
+            </div>
+            <div className="tb__knapper">
+              <div className="tb__knapp">
+                <Hovedknapp disabled={loading}>
+                  {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
+                </Hovedknapp>
               </div>
-            </>
-          )}
-        </FormValidation>
-      </div>
-    </>
+              <div className="tb__knapp">
+                <Link to={urls.tilbakemeldinger.forside}>
+                  <Knapp>Tilbake</Knapp>
+                </Link>
+              </div>
+            </div>
+          </Box>
+        )}
+      </FormValidation>
+    </div>
   );
 };
 export default withRouter(FOM);

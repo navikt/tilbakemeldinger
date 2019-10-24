@@ -20,6 +20,7 @@ import { Enheter } from "../../../types/enheter";
 import { useStore } from "../../../providers/Provider";
 import Header from "../../../components/header/Header";
 import { urls } from "Config";
+import Box from "../../../components/box/Box";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
 
@@ -119,61 +120,62 @@ const Ros = (props: RouteComponentProps) => {
   };
 
   return (
-    <>
+    <div className="pagecontent">
+      <Tilbake to={urls.tilbakemeldinger.forside} />
       <Header title="Ros til NAV" />
-      <div className="pagecontent">
-        <Form onSubmit={send}>
-          <Validation config={formConfig}>
-            {({ errors, fields, submitted, setField }) => {
-              return (
-                <>
-                  <Tilbake to={urls.tilbakemeldinger.forside} />
-                  <Veilederpanel
-                    svg={<img src={VeilederIcon} alt="Veileder" />}
-                  >
-                    Takk for at du vil dele din opplevelse med oss!
-                    <br />
-                    Vi sørger for at rosen kommer fram til riktig person.
-                  </Veilederpanel>
-                  <div className="flex__rad mellomrom">
-                    <div className="flex__kolonne-left">
-                      <InputNavn
-                        label={"Navn"}
-                        value={fields.navn}
-                        error={errors.navn}
-                        onChange={v => setField({ navn: v })}
-                        submitted={submitted}
-                      />
-                    </div>
-                    <div className="flex__kolonne-right">
-                      <InputTelefon
-                        label={"Telefon"}
-                        value={fields.telefonnummer}
-                        error={errors.telefonnummer}
-                        onChange={v => setField({ telefonnummer: v })}
-                        submitted={submitted}
-                      />
-                    </div>
+      <Form onSubmit={send}>
+        <Validation config={formConfig}>
+          {({ errors, fields, submitted, setField }) => {
+            return (
+              <Box>
+                <Veilederpanel
+                  kompakt={true}
+                  svg={<img src={VeilederIcon} alt="Veileder" />}
+                >
+                  Takk for at du vil dele din opplevelse med oss!
+                  <br />
+                  Vi sørger for at rosen kommer fram til riktig person.
+                </Veilederpanel>
+                <div className="flex__rad mellomrom">
+                  <div className="flex__kolonne-left">
+                    <InputNavn
+                      label={"Navn"}
+                      value={fields.navn}
+                      error={errors.navn}
+                      onChange={v => setField({ navn: v })}
+                      submitted={submitted}
+                    />
                   </div>
-                  <RadioPanelGruppe
-                    legend={"Hvem vil du gi ros til?"}
-                    radios={[
-                      {
-                        label: "NAV Kontaktsenter",
-                        value: "NAV_KONTAKTSENTER"
-                      },
-                      {
-                        label: "NAVs digitale tjenester",
-                        value: "NAV_DIGITALE_LOSNINGER"
-                      },
-                      { label: "NAV-kontor", value: "NAV_KONTOR" }
-                    ]}
-                    name={"ros-til-hvem"}
-                    checked={fields.hvemRoses}
-                    error={errors.hvemRoses}
-                    onChange={v => setField({ hvemRoses: v })}
-                    submitted={submitted}
-                  />
+                  <div className="flex__kolonne-right">
+                    <InputTelefon
+                      label={"Telefon"}
+                      value={fields.telefonnummer}
+                      error={errors.telefonnummer}
+                      onChange={v => setField({ telefonnummer: v })}
+                      submitted={submitted}
+                    />
+                  </div>
+                </div>
+                <RadioPanelGruppe
+                  legend={"Hvem vil du gi ros til?"}
+                  radios={[
+                    {
+                      label: "NAV Kontaktsenter",
+                      value: "NAV_KONTAKTSENTER"
+                    },
+                    {
+                      label: "NAVs digitale tjenester",
+                      value: "NAV_DIGITALE_LOSNINGER"
+                    },
+                    { label: "NAV-kontor", value: "NAV_KONTOR" }
+                  ]}
+                  name={"ros-til-hvem"}
+                  checked={fields.hvemRoses}
+                  error={errors.hvemRoses}
+                  onChange={v => setField({ hvemRoses: v })}
+                  submitted={submitted}
+                />
+                <>
                   {fields.hvemRoses === "NAV_KONTOR" && (
                     <Validation config={navKontorConfig}>
                       {() => {
@@ -194,7 +196,10 @@ const Ros = (props: RouteComponentProps) => {
                                 }
                                 value={fields.navKontor}
                                 onChange={(
-                                  v: ValueType<{ value: string; label: string }>
+                                  v: ValueType<{
+                                    value: string;
+                                    label: string;
+                                  }>
                                 ) => setField({ navKontor: v })}
                                 options={enheter.data
                                   .sort((a, b) =>
@@ -222,42 +227,42 @@ const Ros = (props: RouteComponentProps) => {
                       }}
                     </Validation>
                   )}
-                  <div className="mellomrom">
-                    <InputMelding
-                      label={"Melding til NAV"}
-                      submitted={submitted}
-                      value={fields.melding}
-                      error={errors.melding}
-                      onChange={v => setField({ melding: v })}
-                      maxLength={0}
-                    />
-                  </div>
-                  <div>
-                    {error && (
-                      <AlertStripeFeil>
-                        Oi! Noe gikk galt: {error}
-                      </AlertStripeFeil>
-                    )}
-                  </div>
-                  <div className="tb__knapper">
-                    <div className="tb__knapp">
-                      <Hovedknapp disabled={loading}>
-                        {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
-                      </Hovedknapp>
-                    </div>
-                    <div className="tb__knapp">
-                      <Link to={urls.tilbakemeldinger.forside}>
-                        <Knapp>Tilbake</Knapp>
-                      </Link>
-                    </div>
-                  </div>
                 </>
-              );
-            }}
-          </Validation>
-        </Form>
-      </div>
-    </>
+                <div className="mellomrom">
+                  <InputMelding
+                    label={"Melding til NAV"}
+                    submitted={submitted}
+                    value={fields.melding}
+                    error={errors.melding}
+                    onChange={v => setField({ melding: v })}
+                    maxLength={0}
+                  />
+                </div>
+                <div>
+                  {error && (
+                    <AlertStripeFeil>
+                      Oi! Noe gikk galt: {error}
+                    </AlertStripeFeil>
+                  )}
+                </div>
+                <div className="tb__knapper">
+                  <div className="tb__knapp">
+                    <Hovedknapp disabled={loading}>
+                      {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
+                    </Hovedknapp>
+                  </div>
+                  <div className="tb__knapp">
+                    <Link to={urls.tilbakemeldinger.forside}>
+                      <Knapp>Tilbake</Knapp>
+                    </Link>
+                  </div>
+                </div>
+              </Box>
+            );
+          }}
+        </Validation>
+      </Form>
+    </div>
   );
 };
 export default withRouter(Ros);
