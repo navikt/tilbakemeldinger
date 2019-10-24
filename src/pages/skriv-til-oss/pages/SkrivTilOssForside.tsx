@@ -6,11 +6,9 @@ import { urls } from "../../../Config";
 import { FormattedMessage } from "react-intl";
 
 const ingress: ReactNode = (
-  <>
-    <Normaltekst className="skriv-til-oss__infotekst">
-      <FormattedMessage id="skrivtiloss.ingress"/>
-    </Normaltekst>
-  </>
+  <Normaltekst className="skriv-til-oss__infotekst">
+    <FormattedMessage id="skrivtiloss.ingress"/>
+  </Normaltekst>
 );
 
 const lenker: LenkepanelData[] = [
@@ -30,13 +28,13 @@ const lenker: LenkepanelData[] = [
     tittel: "skrivtiloss.pensjonist.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.pensjonist.lenke.ingress"}/>,
     url: urls.skrivTilOss.pensjonist,
-    external: false
+    external: true
   },
   {
     tittel: "skrivtiloss.syk.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.syk.lenke.ingress"}/>,
     url: urls.skrivTilOss.syk,
-    external: false
+    external: true
   },
   {
     tittel: "skrivtiloss.hjelpemidler.lenke.tittel",

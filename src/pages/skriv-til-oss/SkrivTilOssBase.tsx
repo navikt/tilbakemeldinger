@@ -1,46 +1,25 @@
 import React, { ReactNode, useEffect, useState } from "react";
-import { EtikettLiten, Normaltekst, Sidetittel, Systemtittel, Undertekst } from "nav-frontend-typografi";
+import { EtikettLiten, Normaltekst, Sidetittel } from "nav-frontend-typografi";
 import { LenkepanelData } from "../../types/lenker";
-import { LenkepanelBase } from "nav-frontend-lenkepanel/lib";
 import { useIntl, FormattedMessage } from "react-intl";
 import { vars } from "../../Config";
 import { Features, getFeatureToggleStatusMultiple } from "../../utils/unleash";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import AlertStripe from "nav-frontend-alertstriper";
+import SkrivTilOssLenkepanel from "./SkrivTilOssLenkepanel";
 
 const enabledName = vars.unleash.skrivTilOssEnabledName;
 const svartidName = vars.unleash.langSvartidName;
 const enabledDefault = vars.unleash.skrivTilOssEnabledDefault;
 const svartidDefault = vars.unleash.langSvartidDefault;
 
-type SkrivTilOssBaseProps = {
+type Props = {
   tittel: string,
   ingress: ReactNode,
   lenker?: Array<LenkepanelData>,
 };
 
-const makeLenkepanel = (lenkeData: LenkepanelData) => (
-  <LenkepanelBase
-    href={lenkeData.url}
-    border={true}
-    key={lenkeData.tittel}
-    className="skriv-til-oss__temalenke"
-  >
-    <div>
-      {lenkeData.ikon ? <div>{lenkeData.ikon}</div> : null}
-      <div>
-        <Systemtittel className="skriv-til-oss__temalenke-header lenkepanel__heading">
-          <FormattedMessage id={lenkeData.tittel}/>
-        </Systemtittel>
-        <Undertekst className="skriv-til-oss__temalenke-ingress">
-          {lenkeData.ingress}
-        </Undertekst>
-      </div>
-    </div>
-  </LenkepanelBase>
-);
-
-const SkrivTilOssBase = ({tittel, ingress, lenker}: SkrivTilOssBaseProps) => {
+const SkrivTilOssBase = ({tittel, ingress, lenker}: Props) => {
   const documentTitle = `${useIntl().formatMessage({id: tittel})} - www.nav.no`;
   useEffect(() => {
     document.title = documentTitle;
@@ -99,7 +78,7 @@ const SkrivTilOssBase = ({tittel, ingress, lenker}: SkrivTilOssBaseProps) => {
       { lenker ?
         (
           <div className="skriv-til-oss__lenker">
-          {lenker.map(makeLenkepanel)}
+          {lenker.map(lenke => <SkrivTilOssLenkepanel lenkePanelData={lenke} key={lenke.tittel}/>)}
         </div>
         )
         : null
