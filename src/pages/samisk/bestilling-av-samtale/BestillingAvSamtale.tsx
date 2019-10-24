@@ -133,7 +133,7 @@ const BAS = (props: RouteComponentProps) => {
                 submitted={submitted}
               />
               <InputTelefon
-                bredde={"M"}
+                bredde={"S"}
                 label={"Telefovdna*"}
                 value={fields.telefonnummer}
                 error={errors.telefonnummer}
