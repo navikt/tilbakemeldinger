@@ -57,12 +57,15 @@
     display: flex;
     flex-direction: row;
     padding-top: 0.5rem;
+    @media @maxMobile {
+      flex-direction: column;
+    }
   }
   &__knapp {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-right: 0.25rem;
+    @media @maxMobile {
+      margin-top: 1rem;
+    }
     .knapp {
       width: 12rem;
     }
