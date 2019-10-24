@@ -93,12 +93,26 @@ const BAS = (props: RouteComponentProps) => {
                 <div className="bestilling-av-samtale__header">
                   <div className="bestilling-av-samtale__tittel">
                     <Sidetittel>
-                      <FormattedHTMLMessage id={"samisk.overskrift"} />
+                      Jearaldat bagadallama oažžut sámegillii telefovnnas
                     </Sidetittel>
                   </div>
                   <div className="bestilling-av-samtale__ingress">
                     <Normaltekst className="bestilling-av-samtale__svartid">
-                      <FormattedHTMLMessage id={"samisk.ingress"} />
+                      <p>
+                        Diŋgo dás davvisámegilli bálvalusa mas vástiduvvo dutnje
+                        sámegillii buot NAV – bálvalusain ja oajuin. Mii
+                        veahkehit gávdnat mo du áššiin manná, ja veahkehit du
+                        dovdat rivttiid ja geatnegasvuođaid mat leat
+                        álbmotoadjolága njuolggadusain. Don gávnnat dieđuid
+                        iežat áššis neahttabálvalusas nav.no Ditt NAV. Don
+                        sáhtát iskat mii dutnje lea máksojuvvon dás:
+                      </p>
+                      <p>
+                        Don sáhtat ain riŋget NAV-bálvalussii 55 55 33 33 ja
+                        dáhtot ahte davvisámegielat bagadalli riŋge dutnje.
+                        Muite addit riegadan- ja persunnummara ja maid
+                        telefunnummara masa davvisámegielat galga riŋget.
+                      </p>
                     </Normaltekst>
                   </div>
                 </div>

@@ -92,22 +92,5 @@ export default {
     " spørsmål.",
   "skrivtiloss.temalenke.facebook.tittel": "Facebook",
   "skrivtiloss.temalenke.facebook.ingress":
-    "Våre veiledere svarer på generelle spørsmål innen 1 arbeidsdag.",
-
-  "samisk.overskrift": "Jearaldat bagadallama oažžut sámegillii telefovnnas",
-  "samisk.ingress": `<p>
-                      Diŋgo dás davvisámegilli bálvalusa mas vástiduvvo dutnje
-                      sámegillii buot NAV – bálvalusain ja oajuin. Mii veahkehit
-                      gávdnat mo du áššiin manná, ja veahkehit du dovdat
-                      rivttiid ja geatnegasvuođaid mat leat álbmotoadjolága
-                      njuolggadusain. Don gávnnat dieđuid iežat áššis
-                      neahttabálvalusas nav.no Ditt NAV. Don sáhtát iskat mii
-                      dutnje lea máksojuvvon dás:
-                    </p>
-                    <p>
-                      Don sáhtat ain riŋget NAV-bálvalussii 55 55 33 33 ja
-                      dáhtot ahte davvisámegielat bagadalli riŋge dutnje. Muite
-                      addit riegadan- ja persunnummara ja maid telefunnummara
-                      masa davvisámegielat galga riŋget.
-                    </p>`
+    "Våre veiledere svarer på generelle spørsmål innen 1 arbeidsdag."
 };
