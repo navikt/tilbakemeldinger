@@ -9,7 +9,6 @@ import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, FormValidation } from "calidation";
 import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
-import { FormattedHTMLMessage } from "react-intl";
 import { CheckboksPanelGruppe } from "nav-frontend-skjema";
 
 type TIDSROM = "FORMIDDAG" | "FORMIDDAG" | "BEGGE";
