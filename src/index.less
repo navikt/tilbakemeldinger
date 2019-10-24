@@ -1,11 +1,15 @@
-@desktop: ~"all and (min-width: 959px)";
-@tablet: ~"all and (max-width: 959px)";
-@mobile: ~"all and (max-width: 420px)";
+@minDesktop: ~"all and (min-width: 959px)";
+@maxTablet: ~"all and (max-width: 959px)";
+@minMobile: ~"all and (min-width: 420px)";
+@maxMobile: ~"all and (max-width: 420px)";
+
+@import (reference) "~nav-frontend-core/less/_variabler";
 
 @import "~nav-frontend-typografi-style";
 @import "~nav-frontend-paneler-style";
 @import "~nav-frontend-veileder-style";
 @import "~nav-frontend-veilederpanel-style";
+//@import "~nav-frontend-lesmerpanel-style";
 @import "~nav-frontend-knapper-style";
 @import "~nav-frontend-chevron-style";
 @import "~nav-frontend-lenkepanel-style";
@@ -15,11 +19,19 @@
 @import "~nav-frontend-alertstriper-style";
 
 @import "App.less";
-@import "pages/frontpage/Frontpage.less";
-@import "pages/ros-til-nav/Ros.less";
-@import "pages/takk/Takk.less";
-@import "pages/service-klage/ServiceKlage.less";
+@import "pages/kontakt-oss-frontpage/sections/FAQ.less";
+@import "pages/kontakt-oss-frontpage/KontaktOss.less";
+@import "pages/kontakt-oss-frontpage/sections/SkrivTilOss.less";
+@import "pages/kontakt-oss-frontpage/sections/lenkepanel/LenkePanel.less";
+@import "pages/kontakt-oss-frontpage/sections/lenkepanel/linkbox/LinkBox.less";
+@import "pages/tilbakemeldinger/Tilbakemeldinger.less";
+@import "pages/tilbakemeldinger/ros-til-nav/Ros.less";
+@import "pages/tilbakemeldinger/service-klage/ServiceKlage.less";
+@import "pages/tilbakemeldinger/takk/Takk.less";
 @import "pages/samisk/bestilling-av-samtale/BestillingAvSamtale.less";
 @import "pages/404/404.less";
+@import "pages/skriv-til-oss/SkrivTilOss.less";
 
 @import "components/header/Header.less";
+@import "components/box/Box.less";
+@import "components/icon/Icon.less";

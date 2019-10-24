@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "assets/Veileder.svg";
 import RadioPanelGruppe from "components/input-fields/RadioPanelGruppe";
-import { Hovedknapp, Knapp } from "nav-frontend-knapper";
-import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import { baseUrl } from "App";
+import { Hovedknapp } from "nav-frontend-knapper";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import InputNavn from "components/input-fields/InputNavn";
 import InputTelefon from "components/input-fields/InputTelefon";
 import InputMelding from "components/input-fields/InputMelding";
 import { postFeilOgMangler } from "clients/apiClient";
-import Tilbake from "components/tilbake/Tilbake";
 import { HTTPError } from "components/error/Error";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
@@ -77,7 +75,6 @@ const BAS = (props: RouteComponentProps) => {
         <FormValidation onSubmit={send} config={formConfig}>
           {({ errors, fields, submitted, setField }) => (
             <>
-              <Tilbake />
               <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
                 <p>
                   Diŋgo dás davvisámegilli bálvalusa mas vástiduvvo dutnje
@@ -148,11 +145,6 @@ const BAS = (props: RouteComponentProps) => {
                   <Hovedknapp disabled={loading}>
                     {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
                   </Hovedknapp>
-                </div>
-                <div className="tb__knapp">
-                  <Link to={baseUrl}>
-                    <Knapp>Tilbake</Knapp>
-                  </Link>
                 </div>
               </div>
             </>

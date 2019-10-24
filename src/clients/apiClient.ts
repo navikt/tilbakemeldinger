@@ -1,9 +1,9 @@
-import Environment from "../utils/Environments";
+import Environment from "../Environments";
 import { HTTPError } from "../components/error/Error";
 import { logApiError } from "../utils/logger";
-import { OutboundRosTilNav } from "../pages/ros-til-nav/Ros";
-import { OutboundFeilOgMangler } from "../pages/feil-og-mangler/FeilOgMangler";
-import { OutboundServiceKlage } from "../pages/service-klage/ServiceKlage";
+import { OutboundRosTilNav } from "../pages/tilbakemeldinger/ros-til-nav/Ros";
+import { OutboundFeilOgMangler } from "../pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
+import { OutboundServiceKlage } from "../pages/tilbakemeldinger/service-klage/ServiceKlage";
 
 const { baseUrl, apiUrl, personInfoApiUrl } = Environment();
 const parseJson = (data: any) => data.json();

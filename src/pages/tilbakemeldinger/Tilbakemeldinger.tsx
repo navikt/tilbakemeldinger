@@ -1,27 +1,27 @@
 import React from "react";
 import { Normaltekst, Sidetittel, Undertittel } from "nav-frontend-typografi";
-import { lenker } from "./FrontpageLenker";
+import { lenker } from "./TilbakemeldingerLenker";
 import { LenkepanelBase } from "nav-frontend-lenkepanel";
 import { Link } from "react-router-dom";
-import Header from "../../components/header/Header";
+import Tilbake from "../../components/tilbake/Tilbake";
+import { urls } from "../../Config";
 
-const Frontpage = () => {
+const Tilbakemeldinger = () => {
   document.title = "Tilbakemeldinger - www.nav.no";
   return (
     <>
-      <Header />
       <div className="pagecontent">
-        <div className="frontpage">
-          <header className="frontpage__introduksjon">
-            <div className="frontpage__sidetittel">
+        <Tilbake to={urls.forside} />
+        <div className="tilbakemeldinger">
+          <header className="tilbakemeldinger__introduksjon">
+            <div className="tilbakemeldinger__sidetittel">
               <Sidetittel>Tilbakemeldinger til NAV</Sidetittel>
             </div>
           </header>
-          <div className="frontpage__content">
+          <div className="tilbakemeldinger__content">
             {lenker.map((lenke, key) => (
               <LenkepanelBase
                 key={key}
-                border
                 className="lenke__panel"
                 href={lenke.lenke}
                 linkCreator={props => {
@@ -57,4 +57,4 @@ const Frontpage = () => {
     </>
   );
 };
-export default Frontpage;
+export default Tilbakemeldinger;

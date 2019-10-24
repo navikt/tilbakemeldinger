@@ -3,7 +3,7 @@ import authInfo from "./data/authInfo.json";
 import fodselsnr from "./data/fodselsnr.json";
 import kontaktInfo from "./data/kontaktInfo.json";
 import enheter from "./data/enheter.json";
-import Environment from "../../utils/Environments";
+import Environment from "../../Environments";
 
 const { baseUrl, apiUrl, personInfoApiUrl } = Environment();
 fetchMock.config.fallbackToNetwork = true;

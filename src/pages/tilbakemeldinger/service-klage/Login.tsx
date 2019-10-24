@@ -3,10 +3,10 @@ import { useStore } from "providers/Provider";
 import { Hovedknapp } from "nav-frontend-knapper";
 import { Link, Redirect } from "react-router-dom";
 import Tilbake from "components/tilbake/Tilbake";
-import Environment from "utils/Environments";
+import Environment from "Environments";
 import Header from "components/header/Header";
-import { baseUrl } from "App";
 
+import { urls } from "Config";
 const { loginUrl } = Environment();
 
 const Login = () => {
@@ -14,14 +14,14 @@ const Login = () => {
   const [{ auth }] = useStore();
 
   if (auth.authenticated) {
-    return <Redirect to={`${baseUrl}/serviceklage`} />;
+    return <Redirect to={`${urls.tilbakemeldinger}/serviceklage`} />;
   }
 
   return (
     <>
       <Header title="Tilbakemelding på service" />
       <div className="pagecontent">
-        <Tilbake />
+        <Tilbake to={urls.tilbakemeldinger.forside} />
         <div className="serviceKlage__login-info">
           <h2>Ønsker du å logge inn?</h2>
           <div>
@@ -36,7 +36,7 @@ const Login = () => {
             <Hovedknapp>Logg inn</Hovedknapp>
           </a>
           <div className="lenke">
-            <Link to={`${baseUrl}/serviceklage`}>
+            <Link to={urls.tilbakemeldinger.serviceklage.form}>
               Fortsett uten å logge inn
             </Link>
           </div>
