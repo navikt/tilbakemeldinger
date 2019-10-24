@@ -5,7 +5,7 @@ import InputNavn from "components/input-fields/InputNavn";
 import InputTelefon from "components/input-fields/InputTelefon";
 import { postSamiskBestillSamtale } from "clients/apiClient";
 import { HTTPError } from "components/error/Error";
-import { AlertStripeFeil, AlertStripeInfo } from "nav-frontend-alertstriper";
+import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, FormValidation } from "calidation";
 import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
@@ -100,23 +100,21 @@ const BAS = (props: RouteComponentProps) => {
           return (
             <Box>
               <div className="bestilling-av-samtale__ingress">
-                <AlertStripeInfo>
-                  <Normaltekst>
-                    Diŋgo dás davvisámegilli bálvalusa mas vástiduvvo dutnje
-                    sámegillii buot NAV – bálvalusain ja oajuin. Mii veahkehit
-                    gávdnat mo du áššiin manná, ja veahkehit du dovdat rivttiid
-                    ja geatnegasvuođaid mat leat álbmotoadjolága njuolggadusain.
-                    Don gávnnat dieđuid iežat áššis neahttabálvalusas nav.no
-                    Ditt NAV. Don sáhtát iskat mii dutnje lea máksojuvvon dás:
-                  </Normaltekst>
-                  <br />
-                  <Normaltekst>
-                    Don sáhtat ain riŋget NAV-bálvalussii 55 55 33 33 ja dáhtot
-                    ahte davvisámegielat bagadalli riŋge dutnje. Muite addit
-                    riegadan- ja persunnummara ja maid telefunnummara masa
-                    davvisámegielat galga riŋget.
-                  </Normaltekst>
-                </AlertStripeInfo>
+                <Normaltekst>
+                  Diŋgo dás davvisámegilli bálvalusa mas vástiduvvo dutnje
+                  sámegillii buot NAV – bálvalusain ja oajuin. Mii veahkehit
+                  gávdnat mo du áššiin manná, ja veahkehit du dovdat rivttiid ja
+                  geatnegasvuođaid mat leat álbmotoadjolága njuolggadusain. Don
+                  gávnnat dieđuid iežat áššis neahttabálvalusas nav.no Ditt NAV.
+                  Don sáhtát iskat mii dutnje lea máksojuvvon dás:
+                </Normaltekst>
+                <br />
+                <Normaltekst>
+                  Don sáhtat ain riŋget NAV-bálvalussii 55 55 33 33 ja dáhtot
+                  ahte davvisámegielat bagadalli riŋge dutnje. Muite addit
+                  riegadan- ja persunnummara ja maid telefunnummara masa
+                  davvisámegielat galga riŋget.
+                </Normaltekst>
               </div>
               <InputNavn
                 bredde={"M"}
