@@ -1,5 +1,5 @@
 import React from "react";
-import { Systemtittel } from "nav-frontend-typografi";
+import { Undertittel } from "nav-frontend-typografi";
 import PanelBase from "nav-frontend-paneler";
 
 interface Props {
@@ -24,7 +24,7 @@ const Box = (props: Props) => {
           {tittel && (
             <div className="box__header">
               <div className="box__title-container">
-                <Systemtittel className="box__title">{tittel}</Systemtittel>
+                <Undertittel className="box__title">{tittel}</Undertittel>
                 <div className="box__line" />
               </div>
             </div>

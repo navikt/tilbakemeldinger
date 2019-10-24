@@ -6,6 +6,8 @@ import Tilbake from "components/tilbake/Tilbake";
 import Environment from "Environments";
 
 import { urls } from "Config";
+import Box from "../../../components/box/Box";
+import Header from "../../../components/header/Header";
 const { loginUrl } = Environment();
 
 const Login = () => {
@@ -20,25 +22,29 @@ const Login = () => {
     <>
       <div className="pagecontent">
         <Tilbake to={urls.tilbakemeldinger.forside} />
-        <div className="serviceKlage__login-info">
-          <h2>Ønsker du å logge inn?</h2>
-          <div>
+        <Header title="Klage på service" />
+        <Box tittel={"Ønsker du å logge inn?"}>
+          <div className="serviceKlage__login-info">
             Vi anbefaler at du logger inn, så slipper du å fylle inn all
             informasjonen om deg selv.
             <br />
             Du må opppgi hvem du er uansett om du logger inn eller ikke.
           </div>
-        </div>
-        <div className="serviceKlage__login-content">
-          <a href={`${loginUrl}?redirect=${window.location.href}`}>
-            <Hovedknapp>Logg inn</Hovedknapp>
-          </a>
-          <div className="lenke">
-            <Link to={urls.tilbakemeldinger.serviceklage.form}>
-              Fortsett uten å logge inn
-            </Link>
+          <div className="tb__knapper">
+            <div className={"tb__knapp"}>
+              <a href={`${loginUrl}?redirect=${window.location.href}`}>
+                <Hovedknapp>Logg inn</Hovedknapp>
+              </a>
+            </div>
+            <div className={"tb__knapp serviceKlage__login-lenke"}>
+              <div className="lenke">
+                <Link to={urls.tilbakemeldinger.serviceklage.form}>
+                  Fortsett uten å logge inn
+                </Link>
+              </div>
+            </div>
           </div>
-        </div>
+        </Box>
       </div>
     </>
   );
