@@ -15,7 +15,7 @@ const Login = () => {
   const [{ auth }] = useStore();
 
   if (auth.authenticated) {
-    return <Redirect to={`${urls.tilbakemeldinger}/serviceklage`} />;
+    return <Redirect to={urls.tilbakemeldinger.serviceklage.form} />;
   }
 
   return (
