@@ -148,12 +148,19 @@ const ServiceKlage = (props: RouteComponentProps) => {
         </div>
         <Form onSubmit={send}>
           <Validation config={baseFormConfig}>
-            {({ errors, fields, submitted, setField }) => {
+            {({ errors, fields, submitted, setField, isValid }) => {
               const hvemFra: ON_BEHALF_OF = fields.hvemFra;
               return (
                 <Box>
                   <div className="serviceKlage__content">
-                    <SkjemaGruppe title={"Hva gjelder tilbakemeldingen?"}>
+                    <SkjemaGruppe
+                      title={"Hva gjelder tilbakemeldingen?"}
+                      feil={
+                        submitted && errors.klageType
+                          ? { feilmelding: errors.klageType }
+                          : undefined
+                      }
+                    >
                       <Radio
                         label={"Saksbehandling av søknad"}
                         name={"SAKSBEHANDLING"}
@@ -203,8 +210,14 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         onChange={() => setField({ klageType: "ANNET" })}
                       />
                     </SkjemaGruppe>
-
-                    <SkjemaGruppe title={"Hvem skriver du på vegne av?"}>
+                    <SkjemaGruppe
+                      title={"Hvem skriver du på vegne av?"}
+                      feil={
+                        submitted && errors.hvemFra
+                          ? { feilmelding: errors.hvemFra }
+                          : undefined
+                      }
+                    >
                       <Radio
                         label={"Meg selv som privatperson"}
                         name={"PRIVATPERSON"}
@@ -382,7 +395,14 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         onChange={v => setField({ melding: v })}
                       />
                     </div>
-                    <SkjemaGruppe title={"Ønsker du at vi kontakter deg?"}>
+                    <SkjemaGruppe
+                      title={"Ønsker du at vi kontakter deg?"}
+                      feil={
+                        submitted && errors.onskerKontakt
+                          ? { feilmelding: errors.onskerKontakt }
+                          : undefined
+                      }
+                    >
                       <Radio
                         label={"Ja, jeg ønsker å kontaktes"}
                         name={"Ja, jeg ønsker å kontaktes"}
@@ -422,7 +442,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         <Knapp
                           htmlType={"submit"}
                           type={"standard"}
-                          disabled={loading}
+                          disabled={loading || (submitted && !isValid)}
                         >
                           {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
                         </Knapp>

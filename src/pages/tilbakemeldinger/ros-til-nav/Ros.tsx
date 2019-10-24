@@ -132,7 +132,7 @@ const Ros = (props: RouteComponentProps) => {
       </div>
       <Form onSubmit={send}>
         <Validation config={formConfig}>
-          {({ errors, fields, submitted, setField }) => {
+          {({ errors, fields, submitted, setField, isValid }) => {
             return (
               <Box tittel={"Send inn ros"}>
                 <InputNavn
@@ -151,7 +151,14 @@ const Ros = (props: RouteComponentProps) => {
                   onChange={v => setField({ telefonnummer: v })}
                   submitted={submitted}
                 />
-                <SkjemaGruppe title={"Hvem vil du gi ros til?"}>
+                <SkjemaGruppe
+                  title={"Hvem vil du gi ros til?"}
+                  feil={
+                    submitted && errors.hvemRoses
+                      ? { feilmelding: errors.hvemRoses }
+                      : undefined
+                  }
+                >
                   <Radio
                     label={"NAV Kontaktsenter"}
                     name={"NAV_KONTAKTSENTER"}
@@ -244,7 +251,7 @@ const Ros = (props: RouteComponentProps) => {
                     <Knapp
                       htmlType={"submit"}
                       type={"standard"}
-                      disabled={loading}
+                      disabled={loading || (submitted && !isValid)}
                     >
                       {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
                     </Knapp>

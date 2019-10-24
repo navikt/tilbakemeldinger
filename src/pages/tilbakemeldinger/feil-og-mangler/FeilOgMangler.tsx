@@ -83,7 +83,7 @@ const FOM = (props: RouteComponentProps) => {
         </Veilederpanel>
       </div>
       <FormValidation onSubmit={send} config={formConfig}>
-        {({ errors, fields, submitted, setField }) => (
+        {({ errors, fields, submitted, setField, isValid }) => (
           <Box>
             <InputNavn
               bredde={"M"}
@@ -101,7 +101,14 @@ const FOM = (props: RouteComponentProps) => {
               onChange={v => setField({ telefonnummer: v })}
               submitted={submitted}
             />
-            <SkjemaGruppe title={"Hva slags feil eller mangel fant du?"}>
+            <SkjemaGruppe
+              title={"Hva slags feil eller mangel fant du?"}
+              feil={
+                submitted && errors.feiltype
+                  ? { feilmelding: errors.feiltype }
+                  : undefined
+              }
+            >
               <Radio
                 label={"Teknisk feil"}
                 name={"TEKNISK_FEIL"}
@@ -135,7 +142,11 @@ const FOM = (props: RouteComponentProps) => {
             )}
             <div className="tb__knapper">
               <div className="tb__knapp">
-                <Knapp htmlType={"submit"} type={"standard"} disabled={loading}>
+                <Knapp
+                  htmlType={"submit"}
+                  type={"standard"}
+                  disabled={loading || (submitted && !isValid)}
+                >
                   {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
                 </Knapp>
               </div>

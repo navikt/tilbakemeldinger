@@ -36,7 +36,8 @@ const BAS = (props: RouteComponentProps) => {
       isRequired: "Telefonnummer er påkrevd"
     },
     tidsrom: {
-      isRequired: "Tidsrom er påkrevd"
+      isRequired: "Telefonnummer er påkrevd",
+      isValidTidsrom: "Tidsrom er påkrevd"
     }
   };
 
@@ -93,7 +94,7 @@ const BAS = (props: RouteComponentProps) => {
           config={formConfig}
           initialValues={initialValues}
         >
-          {({ errors, fields, submitted, setField }) => {
+          {({ errors, fields, submitted, setField, isValid }) => {
             return (
               <>
                 <div className="bestilling-av-samtale__ingress">
@@ -146,7 +147,7 @@ const BAS = (props: RouteComponentProps) => {
                   </legend>
                   <SkjemaGruppe
                     feil={
-                      errors.tidsrom
+                      submitted && errors.tidsrom
                         ? { feilmelding: errors.tidsrom }
                         : undefined
                     }
@@ -191,7 +192,7 @@ const BAS = (props: RouteComponentProps) => {
                     <Knapp
                       type={"standard"}
                       htmlType={"submit"}
-                      disabled={loading}
+                      disabled={loading || (submitted && !isValid)}
                     >
                       {loading ? (
                         <NavFrontendSpinner type={"S"} />
