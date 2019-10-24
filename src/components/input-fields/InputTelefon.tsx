@@ -7,6 +7,7 @@ interface Props {
   error: string | null;
   label: string;
   submitted: boolean;
+  bredde?: "fullbredde" | "XXL" | "XL" | "L" | "M" | "S" | "XS" | "XXS";
   value: string;
 }
 
@@ -27,9 +28,15 @@ const InputTelefon = (props: Props) => {
   const formattert = value;
 
   return kontaktInfo.mobiltelefonnummer ? (
-    <Input label={props.label} value={formattert} disabled={true} />
+    <Input
+      bredde={props.bredde}
+      label={props.label}
+      value={formattert}
+      disabled={true}
+    />
   ) : (
     <Input
+      bredde={props.bredde}
       label={props.label}
       required={true}
       value={formattert}
