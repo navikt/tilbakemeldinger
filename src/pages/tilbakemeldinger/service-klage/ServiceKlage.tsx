@@ -133,7 +133,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
         <Tilbake
           to={
             auth.authenticated
-              ? urls.tilbakemeldinger.serviceklage.form
+              ? urls.tilbakemeldinger.forside
               : urls.tilbakemeldinger.serviceklage.login
           }
         />
