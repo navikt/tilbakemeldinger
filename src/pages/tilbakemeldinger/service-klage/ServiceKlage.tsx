@@ -127,16 +127,14 @@ const ServiceKlage = (props: RouteComponentProps) => {
     }
   };
 
+  const tilbakeTil = auth.authenticated
+    ? urls.tilbakemeldinger.forside
+    : urls.tilbakemeldinger.serviceklage.login;
+
   return (
     <>
       <div className="pagecontent">
-        <Tilbake
-          to={
-            auth.authenticated
-              ? urls.tilbakemeldinger.forside
-              : urls.tilbakemeldinger.serviceklage.login
-          }
-        />
+        <Tilbake to={tilbakeTil} />
         <Header title="Klage på service" />
         <div className={"tb__veileder"}>
           <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
@@ -448,7 +446,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         </Knapp>
                       </div>
                       <div className="tb__knapp">
-                        <Link to={urls.forside}>
+                        <Link to={tilbakeTil}>
                           <Knapp type={"flat"}>Tilbake</Knapp>
                         </Link>
                       </div>
