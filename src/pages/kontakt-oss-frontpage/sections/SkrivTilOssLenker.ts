@@ -15,8 +15,8 @@ export const lenker: Lenke[] = [
     beskrivelse: `På chat kan vi ikke svare på saken din, men vi hjelper deg gjerne med generelle spørsmål.`
   },
   {
-    lenke: urls.skrivTilOss.forside,
     lenkeTekst: ` Skriv til oss`,
+    lenke: urls.skrivTilOss.forside,
     beskrivelse: `Du kan ikke sende e-post til oss, men du kan sende spørsmål om saken din
         eller opplysninger til oss ved å logge inn og skrive til oss. Du får
         svar etter <b>omtrent 2 arbeidsdager</b>.`
