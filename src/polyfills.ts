@@ -1,5 +1,8 @@
 // Functions
-import "babel-polyfill";
+// @ts-ignore
+if (!global || !global._babelPolyfill) {
+  require("babel-polyfill");
+}
 
 // Browsers
 import "react-app-polyfill/ie9";
