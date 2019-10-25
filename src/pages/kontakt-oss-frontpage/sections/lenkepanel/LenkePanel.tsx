@@ -2,6 +2,7 @@ import React from "react";
 import eksterneLenker from "./LenkePanelData";
 import Box from "../../../../components/box/Box";
 import { Undertittel } from "nav-frontend-typografi";
+import { Link } from "react-router-dom";
 
 const LenkePanel = () => {
   return (
@@ -16,9 +17,17 @@ const LenkePanel = () => {
               <span dangerouslySetInnerHTML={{ __html: link.beskrivelse }} />
             </div>
             {link.url && link.lenkeTekst && (
-              <a className="lenke" href={link.url}>
-                {link.lenkeTekst}
-              </a>
+              <>
+                {link.external ? (
+                  <a className="lenke" href={link.url}>
+                    {link.lenkeTekst}
+                  </a>
+                ) : (
+                  <Link className="lenke" to={link.url}>
+                    {link.lenkeTekst}
+                  </Link>
+                )}
+              </>
             )}
           </>
         </Box>

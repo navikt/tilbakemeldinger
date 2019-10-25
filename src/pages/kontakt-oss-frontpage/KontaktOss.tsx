@@ -5,6 +5,8 @@ import LenkePanel from "./sections/lenkepanel/LenkePanel";
 import SkrivTilOss from "./sections/SkrivTilOss";
 import UnderUtvikling from "../../components/veiledere/UnderUtvikling";
 import RingOss from "./sections/RingOss";
+import FeilOgMangler from "./sections/FeilOgMangler";
+import SosialeMedier from "./sections/SosialeMedier";
 
 const KontaktOssFrontpage = () => {
   document.title = "Kontakt oss - www.nav.no";
@@ -22,6 +24,8 @@ const KontaktOssFrontpage = () => {
           <SkrivTilOss />
           <RingOss />
           <LenkePanel />
+          <FeilOgMangler />
+          <SosialeMedier />
         </div>
       </div>
     </div>
