@@ -8,7 +8,7 @@ const LenkePanel = () => {
   return (
     <>
       {eksterneLenker.map(link => (
-        <Box key={link.tittel} margin={"0.5rem 0 0 0"}>
+        <Box key={link.tittel} margin={"0.25rem 0 0 0"}>
           <>
             <div className={"box__section-title"}>
               <Undertittel className="box__title">{link.tittel}</Undertittel>
@@ -36,16 +36,4 @@ const LenkePanel = () => {
   );
 };
 
-/*
-  <LinkBox
-    id={link.id}
-    key={link.id}
-    icon={link.icon}
-    tittel={link.tittel}
-    beskrivelse={link.beskrivelse}
-    lenkeTekst={link.lenkeTekst}
-    to={link.url}
-    component={link.type as "Link" | "a"}
-  />
- */
 export default LenkePanel;
