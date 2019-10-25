@@ -4,6 +4,7 @@ import VeilederIcon from "assets/Veileder.svg";
 import Box from "components/box/Box";
 import Lenke from "nav-frontend-lenker";
 import { NedChevron, OppChevron } from "nav-frontend-chevron";
+import { spesialnr, tastevalg } from "./RingOssData";
 
 const RingOss = () => {
   const [visNummer, settVisNummer] = useState(false);
@@ -51,36 +52,12 @@ const RingOss = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Tast 1</td>
-                  <td>
-                    Økonomisk sosialhjelp, midlertidig botilbud eller andre
-                    sosiale tjenester
-                  </td>
-                </tr>
-                <tr>
-                  <td>Tast 2</td>
-                  <td>
-                    Arbeidssøker, dagpenger, arbeidsavklaringspenger eller
-                    sykemeldt
-                  </td>
-                </tr>
-                <tr>
-                  <td>Tast 3</td>
-                  <td>
-                    Foreldrepenger, engangsstønad, svangerskapspenger,
-                    barnebidrag, barnetrygd, kontantstøtte, enslig forsørger,
-                    pleiepenger og andre familieytelser
-                  </td>
-                </tr>
-                <tr>
-                  <td>Tast 4</td>
-                  <td>Uføretrygd og honnørkort</td>
-                </tr>
-                <tr>
-                  <td>Tast 5</td>
-                  <td>Andre henvendelser</td>
-                </tr>
+                {tastevalg.map(valg => (
+                  <tr key={valg.tastevalg}>
+                    <td>{valg.tastevalg}</td>
+                    <td>{valg.beskrivelse}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
             <table className="ringoss__tabell-spesialnr tabell">
@@ -91,26 +68,12 @@ const RingOss = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>55 55 33 34</td>
-                  <td>Pensjon</td>
-                </tr>
-                <tr>
-                  <td>55 55 33 35</td>
-                  <td>Hjelpemidler</td>
-                </tr>
-                <tr>
-                  <td>55 55 33 39</td>
-                  <td>Teknisk brukerstøtte / EURES / gjeldsrådgivning</td>
-                </tr>
-                <tr>
-                  <td>(+47) 21 07 37 00</td>
-                  <td>Internasjonalt</td>
-                </tr>
-                <tr>
-                  <td>22 82 20 00</td>
-                  <td>Lønnsgaranti</td>
-                </tr>
+                {spesialnr.map(valg => (
+                  <tr key={valg.nummer}>
+                    <td>{valg.nummer}</td>
+                    <td>{valg.beskrivelse}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
             <div className={"faq__lenke"}>
