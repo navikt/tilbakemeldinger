@@ -21,7 +21,7 @@ const getDecorator = () =>
 
         const data = {
           NAV_SKIPLINKS: document.getElementById("skiplinks")[prop],
-          NAV_SCRIPTS: document.getElementById("scripts")[prop],q
+          NAV_SCRIPTS: document.getElementById("scripts")[prop],
           NAV_STYLES: document.getElementById("styles")[prop],
           NAV_HEADING: document.getElementById("header-withmenu")[prop],
           NAV_FOOTER: document.getElementById("footer-withmenu")[prop],
