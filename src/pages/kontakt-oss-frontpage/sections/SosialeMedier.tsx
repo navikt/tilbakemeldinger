@@ -41,7 +41,6 @@ const SosialeMedier = () => (
         <img className="sm__ikon" src={youtubeIcon} alt="Youtube" />
       </a>
     </div>
-
     <div className="faq__lenke">
       <a className="lenke" href={urlSosialeMedier}>
         Flere sosiale medier
