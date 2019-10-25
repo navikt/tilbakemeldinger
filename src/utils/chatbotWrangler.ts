@@ -52,7 +52,7 @@ type SessionCreateResponse = {
 const sessionConfigApiUrl = urls.chatBotApi.sessionConfig;
 const queueKeyBot = vars.chatBot.queueKeyBot;
 const customerKey = vars.chatBot.customerKey;
-const configIdsForTema = vars.chatBot.configIds;
+// const configIdsForTema = vars.chatBot.configIds;
 
 const temaFilters: {[key in ChatTema]: string} = {
   [ChatTema.AAP]: "filter.AAP",
