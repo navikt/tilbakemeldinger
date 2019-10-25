@@ -1,3 +1,5 @@
+import { urls } from "../../Config";
+
 export interface Lenke {
   tittel: string;
   beskrivelse: string;
@@ -20,22 +22,22 @@ export const lenker: Lenke[] = [
     tittel: "Klage på service",
     beskrivelse:
       "Har du blitt møtt på en dårlig måte? Eller hatt en annen negativ opplevelse i møte med NAV?",
-    lenke: "/person/kontakt-oss/tilbakemeldinger/serviceklage/login",
+    lenke: urls.tilbakemeldinger.serviceklage.login,
     lenkeTekst: "Send tilbakemelding på service"
   },
   {
     tittel: "Feil og mangler på nav.no",
     beskrivelse:
       "Har du oppdaget en feil på nav.no? Kanskje en teknisk feil, feil informasjon eller for lav grad av universell utforming? " +
-        "Da vil vi gjerne høre fra deg. ",
-    lenke: "/person/kontakt-oss/tilbakemeldinger/feil-og-mangler",
+      "Da vil vi gjerne høre fra deg. ",
+    lenke: urls.tilbakemeldinger.feilogmangler,
     lenkeTekst: "Meld fra om feil og mangler"
   },
   {
     tittel: "Ros til NAV",
     beskrivelse:
       "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
-    lenke: "/person/kontakt-oss/tilbakemeldinger/ros-til-nav",
+    lenke: urls.tilbakemeldinger.rostilnav,
     lenkeTekst: "Gi ros til nav"
   }
 ];

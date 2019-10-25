@@ -5,7 +5,9 @@ import { useStore } from "../../providers/Provider";
 interface Props {
   onChange: (value: string) => void;
   error: string | null;
+  label: string;
   submitted: boolean;
+  bredde?: "fullbredde" | "XXL" | "XL" | "L" | "M" | "S" | "XS" | "XXS";
   value: string;
 }
 
@@ -26,10 +28,16 @@ const InputTelefon = (props: Props) => {
   const formattert = value;
 
   return kontaktInfo.mobiltelefonnummer ? (
-    <Input label={"Telefonnummer"} value={formattert} disabled={true} />
+    <Input
+      bredde={props.bredde}
+      label={props.label}
+      value={formattert}
+      disabled={true}
+    />
   ) : (
     <Input
-      label={"Telefonnummer"}
+      bredde={props.bredde}
+      label={props.label}
       required={true}
       value={formattert}
       onChange={event => onChange(event.currentTarget.value)}

@@ -49,22 +49,30 @@
 }
 
 .mellomrom {
-  margin: 1rem 0;
+  padding: 0.5rem 0;
 }
 
-.tb__knapp {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0.25rem;
-  .knapp {
-    width: 12rem;
+.tb {
+  &__knapper {
+    display: flex;
+    flex-direction: row;
+    padding-top: 0.5rem;
+    @media @maxMobile {
+      flex-direction: column;
+    }
   }
-}
-.tb__knapper {
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem;
+  &__knapp {
+    margin-right: 0.25rem;
+    @media @maxMobile {
+      margin-top: 1rem;
+    }
+    .knapp {
+      width: 12rem;
+    }
+  }
+  &__veileder {
+    margin-top: 1rem;
+  }
 }
 
 .radioPanel {
@@ -92,11 +100,6 @@
   max-height: 2.5rem;
 }
 
-label {
-  font-weight: bold;
-  padding-bottom: 8px;
-}
-
 .divider {
   margin: 1rem 0;
   border-top: 1px solid #78706a;
@@ -107,16 +110,12 @@ label {
   padding: 1em;
   width: 100%;
   max-width: 600px;
-};
+}
 
 /*
   Overridden CSS
   TODO: finn alternative løsninger
  */
-
-.box__wrapper .nav-veilederpanel {
-  border: 0;
-}
 
 .fokus-overstyring() {
   color: @navBla;
@@ -126,6 +125,11 @@ label {
 
 .lenkepanel:focus {
   .fokus-overstyring();
+}
+
+.radioknapp + .skjemaelement__label {
+  max-height: 0px;
+  line-height: 30px !important;
 }
 
 .btn-auth {

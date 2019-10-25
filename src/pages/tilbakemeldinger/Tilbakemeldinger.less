@@ -1,12 +1,14 @@
 .tilbakemeldinger {
-  margin: 2rem 0;
   &__content {
     display: flex;
     justify-content: center;
     flex-direction: column;
   }
+  &__header {
+    margin-bottom: 2rem;
+  }
   &__introduksjon {
-    margin: 2rem 0;
+    margin: 1rem;
   }
   &__sidetittel {
     padding: 1rem 0;
@@ -19,9 +21,12 @@
     cursor: pointer;
   }
   &__container {
-    margin: 1rem 0;
-  }
-  &__tittel {
+    @media @minMobile {
+      margin: 1rem 3rem;
+    }
+    @media @maxMobile {
+      margin: 1rem 0;
+    }
   }
   &__beskrivelse {
     margin: 1rem 1rem 1rem 0;

@@ -1,10 +1,11 @@
 import React from "react";
-import { Normaltekst, Sidetittel, Undertittel } from "nav-frontend-typografi";
+import { Normaltekst, Undertittel } from "nav-frontend-typografi";
 import { lenker } from "./TilbakemeldingerLenker";
 import { LenkepanelBase } from "nav-frontend-lenkepanel";
 import { Link } from "react-router-dom";
 import Tilbake from "../../components/tilbake/Tilbake";
 import { urls } from "../../Config";
+import Header from "../../components/header/Header";
 
 const Tilbakemeldinger = () => {
   document.title = "Tilbakemeldinger - www.nav.no";
@@ -12,16 +13,15 @@ const Tilbakemeldinger = () => {
     <>
       <div className="pagecontent">
         <Tilbake to={urls.forside} />
+        <div className={"tilbakemeldinger__header"}>
+          <Header title={"Tilbakemeldinger til NAV"} />
+        </div>
         <div className="tilbakemeldinger">
-          <header className="tilbakemeldinger__introduksjon">
-            <div className="tilbakemeldinger__sidetittel">
-              <Sidetittel>Tilbakemeldinger til NAV</Sidetittel>
-            </div>
-          </header>
           <div className="tilbakemeldinger__content">
             {lenker.map((lenke, key) => (
               <LenkepanelBase
                 key={key}
+                border={true}
                 className="lenke__panel"
                 href={lenke.lenke}
                 linkCreator={props => {

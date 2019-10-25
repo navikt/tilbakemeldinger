@@ -12,6 +12,7 @@ export const urls = {
     feilogmangler: `${baseUrl}/tilbakemeldinger/feil-og-mangler`,
     rostilnav: `${baseUrl}/tilbakemeldinger/ros-til-nav`
   },
+  samegiella: `${baseUrl}/samegiella/bestilling-av-samtale`,
   skrivTilOss: {
     forside: `${baseUrl}/skriv-til-oss`,
     arbeidssoker: `${baseUrl}/skriv-til-oss/arbeidssoker`,
@@ -34,8 +35,8 @@ export const urls = {
   temaHjelpemidler: {
     generelt: "#",
     skrivtiloss: "#",
-    bil: "#",
-  },
+    bil: "#"
+  }
 };
 
 export const vars = {
@@ -48,5 +49,5 @@ export const vars = {
     langSvartidName: "kontakt-oss.skriv-til-oss.lang-svartid",
     tekniskProblemDefault: false,
     tekniskProblemName: "kontakt-oss.teknisk-problem"
-  },
+  }
 };
