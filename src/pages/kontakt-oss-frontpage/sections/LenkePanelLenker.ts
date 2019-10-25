@@ -1,7 +1,7 @@
 import Environment from "Environments";
 import { urls } from "Config";
 
-const { tjenesteUrl, baseUrl } = Environment();
+const { baseUrl } = Environment();
 
 export default [
   {
@@ -10,7 +10,7 @@ export default [
     tittel: "Kontakt tolketjenesten",
     beskrivelse: `Tolketjenesten i NAV dekker tolkeoppdrag for døve, døvblinde og hørselshemmede`,
     lenkeTekst: "Kontaktinformasjon for tolketjenesten i NAV i ditt fylke",
-    url: `${tjenesteUrl}/utbetalingsoversikt`
+    url: `${baseUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Tolketjenesten`
   },
   {
     external: true,

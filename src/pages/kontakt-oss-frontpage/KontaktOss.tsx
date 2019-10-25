@@ -1,7 +1,7 @@
 import React from "react";
 import { Sidetittel } from "nav-frontend-typografi";
 import FAQ from "./sections/FAQ";
-import LenkePanel from "./sections/lenkepanel/LenkePanel";
+import LenkePanel from "./sections/LenkePanel";
 import SkrivTilOss from "./sections/SkrivTilOss";
 import UnderUtvikling from "../../components/veiledere/UnderUtvikling";
 import RingOss from "./sections/RingOss";

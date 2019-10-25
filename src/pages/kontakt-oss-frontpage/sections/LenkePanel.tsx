@@ -1,6 +1,6 @@
 import React from "react";
-import eksterneLenker from "./LenkePanelData";
-import Box from "../../../../components/box/Box";
+import eksterneLenker from "./LenkePanelLenker";
+import Box from "../../../components/box/Box";
 import { Undertittel } from "nav-frontend-typografi";
 import { Link } from "react-router-dom";
 
