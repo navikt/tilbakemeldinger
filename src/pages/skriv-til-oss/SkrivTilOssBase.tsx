@@ -16,12 +16,19 @@ const svartidDefault = vars.unleash.langSvartidDefault;
 const cssPrefix = "skriv-til-oss";
 
 type Props = {
-  tittel: string,
-  ingress: ReactNode,
-  lenker?: Array<LenkepanelData>,
+  tittel: string;
+  ingress: ReactNode;
+  lenker?: Array<LenkepanelData>;
 };
 
 const SkrivTilOssBase = ({tittel, ingress, lenker}: Props) => {
+  const documentTitle = `${useIntl().formatMessage({
+    id: tittel
+  })} - www.nav.no`;
+  useEffect(() => {
+    document.title = documentTitle;
+  }, [documentTitle]);
+
   const [unleashResponded, setUnleashResponded] = useState(false);
   const [langSvartid, setLangSvartid] = useState(svartidDefault);
   const [skrivTilOssEnabled, setSkrivTilOssEnabled] = useState(enabledDefault);
@@ -40,20 +47,16 @@ const SkrivTilOssBase = ({tittel, ingress, lenker}: Props) => {
   useEffect(() => {
     getFeatureToggleStatusMultiple(
       [svartidName, enabledName],
-      unleashTogglesResponse);
+      unleashTogglesResponse
+    );
   }, []);
 
-  const documentTitle = `${useIntl().formatMessage({id: tittel})} - www.nav.no`;
-  useEffect(() => {
-    document.title = documentTitle;
-  }, [documentTitle]);
-
   if (!unleashResponded) {
-    return(<NavFrontendSpinner negativ={true} />);
+    return <NavFrontendSpinner negativ={true} />;
   }
 
   if (!skrivTilOssEnabled) {
-    return(
+    return (
       <AlertStripe type="advarsel">
         <FormattedMessage id={"skrivtiloss.disabled"}/>
       </AlertStripe>
@@ -64,15 +67,18 @@ const SkrivTilOssBase = ({tittel, ingress, lenker}: Props) => {
     <div className={`${cssPrefix} pagecontent`}>
       <div className={`${cssPrefix}__header`}>
         <EtikettLiten>
-          <FormattedMessage id={"header.navperson"}/>
+          <FormattedMessage id={"header.navperson"} />
         </EtikettLiten>
         <Sidetittel>
-          <FormattedMessage id={tittel}/>
+          <FormattedMessage id={tittel} />
         </Sidetittel>
       </div>
       <div className={`${cssPrefix}__ingress`}>
         <Normaltekst>
-          <FormattedMessage id={"skrivtiloss.svartid"} values={{numDager: vars.svartidDager}}/>
+          <FormattedMessage
+            id={"skrivtiloss.svartid"}
+            values={{ numDager: vars.svartidDager }}
+          />
           {langSvartid && <FormattedMessage id={"skrivtiloss.svartid.lang"}/>}
         </Normaltekst>
         {ingress}

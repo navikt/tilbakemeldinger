@@ -14,6 +14,7 @@ export const urls = {
     feilogmangler: `${baseUrl}/tilbakemeldinger/feil-og-mangler`,
     rostilnav: `${baseUrl}/tilbakemeldinger/ros-til-nav`
   },
+  samegiella: `${baseUrl}/samegiella/bestilling-av-samtale`,
   skrivTilOss: {
     forside: `${baseUrl}/skriv-til-oss`,
     arbeidssoker: `${baseUrl}/skriv-til-oss/arbeidssoker`,
@@ -46,8 +47,8 @@ export const urls = {
   temaHjelpemidler: {
     generelt: "#",
     skrivtiloss: "#",
-    bil: "#",
-  },
+    bil: "#"
+  }
 };
 
 export const vars = {

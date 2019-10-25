@@ -30,10 +30,13 @@ import SkrivTilOssRouter from "./pages/skriv-til-oss/SkrivTilOssRouter";
 
 import { getFeatureToggleStatus } from "./utils/unleash";
 import ChatSide from "./pages/chat/ChatSide";
+import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
-  const [tekniskProblem, setTekniskProblem] = useState(vars.unleash.tekniskProblemDefault);
+  const [tekniskProblem, setTekniskProblem] = useState(
+    vars.unleash.tekniskProblemDefault
+  );
 
   useEffect(() => {
     if (!auth.authenticated) {
@@ -62,23 +65,24 @@ const App = () => {
         .catch((error: HTTPError) => console.error(error));
     }
 
-    getFeatureToggleStatus(vars.unleash.tekniskProblemName, (isEnabled: boolean, error: any) => {
-      if (!error) {
-        setTekniskProblem(isEnabled);
+    getFeatureToggleStatus(
+      vars.unleash.tekniskProblemName,
+      (isEnabled: boolean, error: any) => {
+        if (!error) {
+          setTekniskProblem(isEnabled);
+        }
       }
-    });
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      {
-        tekniskProblem && (
-          <AlertStripe type="feil" className="teknisk-problem-stripe">
-            <FormattedMessage id="teknisk-problem" />
-          </AlertStripe>
-        )
-      }
+      {tekniskProblem && (
+        <AlertStripe type="feil" className="teknisk-problem-stripe">
+          <FormattedMessage id="teknisk-problem" />
+        </AlertStripe>
+      )}
       <Router>
         <ScrollToTop>
           <Switch>
@@ -124,7 +128,15 @@ const App = () => {
             />
             <Route
               exact={true}
-              path={`(|${urls.tilbakemeldinger})/(ros-til-nav|feil-og-mangler|serviceklage)/takk`}
+              path={urls.samegiella}
+              component={BestillingAvSamtale}
+            />
+            <Route
+              exact={true}
+              path={`(${urls.tilbakemeldinger.rostilnav}
+                     |${urls.tilbakemeldinger.feilogmangler}
+                     |${urls.tilbakemeldinger.serviceklage.form}
+                     |${urls.samegiella})/takk`}
               component={Takk}
             />
             <Route component={PageNotFound} />

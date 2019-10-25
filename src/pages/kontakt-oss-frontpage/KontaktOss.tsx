@@ -1,10 +1,13 @@
 import React from "react";
 import { Sidetittel } from "nav-frontend-typografi";
 import FAQ from "./sections/FAQ";
-import LenkePanel from "./sections/lenkepanel/LenkePanel";
+import LenkePanel from "./sections/LenkePanel";
 import SkrivTilOss from "./sections/SkrivTilOss";
 import UnderUtvikling from "../../components/veiledere/UnderUtvikling";
 import RingOss from "./sections/RingOss";
+import FeilOgMangler from "./sections/FeilOgMangler";
+import SosialeMedier from "./sections/SosialeMedier";
+import Tolketjenesten from "./sections/Toketjenesten";
 
 const KontaktOssFrontpage = () => {
   document.title = "Kontakt oss - www.nav.no";
@@ -21,7 +24,10 @@ const KontaktOssFrontpage = () => {
           <FAQ />
           <SkrivTilOss />
           <RingOss />
+          <Tolketjenesten />
           <LenkePanel />
+          <FeilOgMangler />
+          <SosialeMedier />
         </div>
       </div>
     </div>

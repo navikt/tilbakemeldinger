@@ -4,21 +4,12 @@ import { logApiError } from "../utils/logger";
 import { OutboundRosTilNav } from "../pages/tilbakemeldinger/ros-til-nav/Ros";
 import { OutboundFeilOgMangler } from "../pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
 import { OutboundServiceKlage } from "../pages/tilbakemeldinger/service-klage/ServiceKlage";
-
+import { OutboundBestillingAvSamtale } from "../pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
 const { baseUrl, apiUrl, personInfoApiUrl } = Environment();
-const parseJson = (data: any) => data.json();
 
-const sjekkForFeil = (url: string, response: Response) => {
-  if (response.ok) {
-    return response;
-  } else {
-    const error = {
-      code: response.status,
-      text: response.statusText
-    };
-    throw error;
-  }
-};
+/*
+    GET
+ */
 
 const hentJson = (url: string) =>
   fetch(url, {
@@ -37,11 +28,22 @@ const hentJson = (url: string) =>
       throw error;
     });
 
-const sendJson = (
-  url: string,
-  data: OutboundRosTilNav | OutboundFeilOgMangler | OutboundServiceKlage
-) =>
-  fetch(url, {
+export const fetchEnheter = () => hentJson(`${apiUrl}/enheter`);
+export const fetchFodselsnr = () => hentJson(`${apiUrl}/fodselsnr`);
+
+/*
+    POST
+ */
+
+type Outbound =
+  | OutboundRosTilNav
+  | OutboundFeilOgMangler
+  | OutboundServiceKlage
+  | OutboundBestillingAvSamtale;
+
+const sendJson = (url: string, data: Outbound) => {
+  console.log(url, data);
+  return fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
     headers: { "Content-Type": "application/json;charset=UTF-8" }
@@ -56,9 +58,7 @@ const sendJson = (
       logApiError(url, error);
       throw error;
     });
-
-export const fetchEnheter = () => hentJson(`${apiUrl}/enheter`);
-export const fetchFodselsnr = () => hentJson(`${apiUrl}/fodselsnr`);
+};
 
 export const fetchAuthInfo = () =>
   hentJson(`${baseUrl}/innloggingslinje-api/auth`);
@@ -74,3 +74,23 @@ export const postServiceKlage = (data: OutboundServiceKlage) =>
 
 export const postFeilOgMangler = (data: OutboundFeilOgMangler) =>
   sendJson(`${apiUrl}/mottak/feil-og-mangler`, data);
+
+export const postSamiskBestillSamtale = (data: OutboundBestillingAvSamtale) =>
+  sendJson(`${apiUrl}/mottak/bestilling-av-samtale`, data);
+
+/*
+    Utils
+ */
+
+const parseJson = (data: any) => data.json();
+const sjekkForFeil = (url: string, response: Response) => {
+  if (response.ok) {
+    return response;
+  } else {
+    const error = {
+      code: response.status,
+      text: response.statusText
+    };
+    throw error;
+  }
+};

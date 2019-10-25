@@ -17,18 +17,20 @@ export interface Props {
 const Box = (props: Props) => {
   return (
     <>
-      <div className="linkbox__icon-container icon__container">
-        <Icon backgroundImage={props.icon} />
-      </div>
-      <div className="linkbox__content">
-        <div className="linkbox__seksjon">
-          <div className="linkbox__tittel">
+      {props.icon && (
+        <div className="linksection__icon-container icon__container">
+          <Icon backgroundImage={props.icon} />
+        </div>
+      )}
+      <div className="linksection__content">
+        <div className="linksection__seksjon">
+          <div className="linksection__tittel">
             <div className="lenke">
               <Element>{props.tittel}</Element>
             </div>
           </div>
           <Normaltekst>
-            <div dangerouslySetInnerHTML={{ __html: props.beskrivelse }} />
+            <span dangerouslySetInnerHTML={{ __html: props.beskrivelse }} />
           </Normaltekst>
         </div>
       </div>
@@ -37,17 +39,17 @@ const Box = (props: Props) => {
   );
 };
 
-const LinkBox = (props: Props) => {
+const LinkSection = (props: Props) => {
   switch (props.component) {
     case "Link":
       return (
-        <Link className="linkbox__rad" to={props.to}>
+        <Link className="linksection__rad" to={props.to}>
           <Box {...props} />
         </Link>
       );
     case "a":
       return (
-        <a className="linkbox__rad" href={props.to}>
+        <a className="linksection__rad" href={props.to}>
           <Box {...props} />
         </a>
       );
@@ -56,4 +58,4 @@ const LinkBox = (props: Props) => {
   }
 };
 
-export default LinkBox;
+export default LinkSection;

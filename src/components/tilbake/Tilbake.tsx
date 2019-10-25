@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Tilbake = (props: Props) => (
-  <div className="mellomrom lenke">
+  <div className="tilbake__lenke lenke">
     <Link to={props.to}>Tilbake</Link>
   </div>
 );

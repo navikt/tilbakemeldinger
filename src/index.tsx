@@ -14,9 +14,12 @@ import skiplinks from "./clients/apiMock/decorator/decorator-skiplinks";
 import styles from "./clients/apiMock/decorator/decorator-styles";
 import { StoreProvider } from "./providers/Provider";
 import { initialState, reducer } from "./providers/Store";
+// import NAVChatBot from "@navikt/nav-chatbot";
 
 import msgsNb from "./language/nb";
 import msgsEn from "./language/en";
+import { ValidatorsProvider } from "calidation";
+import { extraValidators, SimpleValidators } from "./utils/validators";
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
@@ -56,8 +59,8 @@ const init = async () => {
   }
 
   ReactDOM.render(
-    (
-      <StoreProvider initialState={initialState} reducer={reducer}>
+    <StoreProvider initialState={initialState} reducer={reducer}>
+      <ValidatorsProvider validators={extraValidators as SimpleValidators}>
         <IntlProvider locale={defaultLang} messages={messages[defaultLang]}>
           <App />
         </IntlProvider>
@@ -66,11 +69,19 @@ const init = async () => {
           customerKey="41155"
           configId={"c3372a51-6434-4770-a0aa-6e4edba3471e"}
         />
-      </StoreProvider>
-    ),
+      </ValidatorsProvider>
+    </StoreProvider>,
     document.getElementById("app")
   );
-
   serviceWorker.unregister();
 };
+
+/*
+ <NAVChatBot
+   customerKey="41155"
+   queueKey="Q_CHAT_BOT"
+   configId={"c3372a51-6434-4770-a0aa-6e4edba3471e"}
+ />
+*/
+
 init();
