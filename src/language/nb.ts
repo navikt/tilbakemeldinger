@@ -2,7 +2,7 @@ export default {
   "teknisk-problem": "Vi har for øyeblikket tekniske problemer med disse sidene.",
   "header.navperson": "NAV privatperson",
 
-  "skrivtiloss.disabled": "Tjenesten er dessverre ikke tilgjengelig.",
+  "skrivtiloss.disabled": "Tjenesten er dessverre ikke tilgjengelig for øyeblikket.",
   "skrivtiloss.tittel": "Skriv til oss",
   "skrivtiloss.svartid": "Hvis du har sendt beskjed til NAV, er normal svartid {numDager} arbeidsdager.",
   "skrivtiloss.svartid.lang": " På grunn av stor pågang kan svartid for tiden være noe lengre. Vi beklager dette.",
@@ -91,27 +91,30 @@ export default {
   "chat.okonomi.lenke.ingress": "Budsjett, økonomi og gjeldsrådgivning.",
 
   "chat.startknapp": "Start chat",
+  "chat.advarsel.personvern": "<p>Alle samtaler blir lagret anonymt i 6 måneder. Ikke oppgi navn, fødselsnummer eller" +
+    " sensitive opplysninger som helseforhold eller diagnoser.</p>",
 
   "chat.familie.tittel": "Chat om familie og barn",
   "chat.familie.ingressKort": "Foreldrepenger, engangsstønad, kontantstøtte, barnebidrag og mye mer.",
   "chat.familie.ingress": "<p>Vi svarer på generelle spørsmål om foreldrepenger, engangsstønad, kontantstøtte," +
-    " barnebidrag og mye mer. Chatbot svarer hele døgnet, og kl. 09.00 - 14.30 kan den sette deg over til en" +
-    " veileder.</p>" +
-    "<p>Alle samtaler blir lagret anonymt i 6 måneder.</p>" +
-    "<p>Ikke oppgi navn, fødselsnummer eller sensitive opplysninger som helseforhold eller diagnoser.</p>",
+    " barnebidrag og mye mer</p>" +
+    "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
 
   "chat.aap.tittel": "Chat om arbeidsavklaringspenger (AAP)",
   "chat.aap.ingressKort": "Arbeidsavklaringspenger og overgangen fra sykepenger til arbeidsavklaringspenger.",
-  "chat.aap.ingress": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis convallis elit, sed ornare elit feugiat vel. Cras consectetur dictum viverra. Quisque a lacinia odio. Aliquam non ipsum eget diam lobortis posuere. Aliquam quis dignissim massa. Integer sit amet pretium nibh. Sed sodales fermentum suscipit. Proin non metus vitae risus consectetur rutrum. Cras mollis massa vitae quam mattis mattis. Etiam in arcu lacinia, consequat libero eu, bibendum diam.</p>" +
-    "<p>Maecenas eu porta enim, ut vulputate libero. Mauris consequat est nec leo commodo, egestas blandit sapien posuere. Ut tellus leo, volutpat eget commodo elementum, vulputate et tortor. Curabitur cursus dolor lectus, ut dictum metus pellentesque et. Mauris id pharetra libero. Suspendisse ipsum lectus, porttitor a nibh sit amet, dignissim imperdiet ante. Nunc a efficitur enim.</p>",
+  "chat.aap.ingress": "<p>Vi svarer på generelle spørsmål om arbeidsavklaringspenger</p>",
 
   "chat.sosialhjelp.tittel": "Chat om sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.ingressKort": "Sosiale tjenester og økonomisk sosialhjelp.",
-  "chat.sosialhjelp.ingress": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis convallis elit, sed ornare elit feugiat vel. Cras consectetur dictum viverra. Quisque a lacinia odio. Aliquam non ipsum eget diam lobortis posuere. Aliquam quis dignissim massa. Integer sit amet pretium nibh. Sed sodales fermentum suscipit. Proin non metus vitae risus consectetur rutrum. Cras mollis massa vitae quam mattis mattis. Etiam in arcu lacinia, consequat libero eu, bibendum diam.</p>" +
-    "<p>Maecenas eu porta enim, ut vulputate libero. Mauris consequat est nec leo commodo, egestas blandit sapien posuere. Ut tellus leo, volutpat eget commodo elementum, vulputate et tortor. Curabitur cursus dolor lectus, ut dictum metus pellentesque et. Mauris id pharetra libero. Suspendisse ipsum lectus, porttitor a nibh sit amet, dignissim imperdiet ante. Nunc a efficitur enim.</p>",
+  "chat.sosialhjelp.ingress": "<p>Vi svarer på generelle spørsmål om sosiale tjenester og økonomisk sosialhjelp.</p>" +
+    "<p>Åpningstid: kl. 09.00 - 14.30 (mandag-fredag)</p>",
 
   "chat.okonomi.tittel": "Chat om økonomi og gjeldsrådgivning",
   "chat.okonomi.ingressKort": "Budsjett, økonomi og gjeldsrådgivning.",
-  "chat.okonomi.ingress": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis convallis elit, sed ornare elit feugiat vel. Cras consectetur dictum viverra. Quisque a lacinia odio. Aliquam non ipsum eget diam lobortis posuere. Aliquam quis dignissim massa. Integer sit amet pretium nibh. Sed sodales fermentum suscipit. Proin non metus vitae risus consectetur rutrum. Cras mollis massa vitae quam mattis mattis. Etiam in arcu lacinia, consequat libero eu, bibendum diam.</p>" +
-    "<p>Maecenas eu porta enim, ut vulputate libero. Mauris consequat est nec leo commodo, egestas blandit sapien posuere. Ut tellus leo, volutpat eget commodo elementum, vulputate et tortor. Curabitur cursus dolor lectus, ut dictum metus pellentesque et. Mauris id pharetra libero. Suspendisse ipsum lectus, porttitor a nibh sit amet, dignissim imperdiet ante. Nunc a efficitur enim.</p>",
+  "chat.okonomi.ingress": "<p>Vi svarer på generelle spørsmål om budsjett, økonomi og gjeldsrådgivning.</p>" +
+    "<p>Åpningstider:\n" +
+    "Mandag, tirsdag og onsdag kl. 10.00 - 15.00\n" +
+    "Torsdag kl. 10.00 - 14.30\n" +
+    "Fredag kl. 10.00 - 15.00</p>" +
+    "<p>Du kan også ringe NAV Gjeldsrådgivning på tlf. 55 55 33 39 alle hverdager mellom klokken 09.00 og 15.00</p>",
 };

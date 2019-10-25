@@ -9,7 +9,9 @@ type Props = {
 const FormattedMsgMedParagrafer = ({id, Component}: Props) => (
   <FormattedMessage
     id={id}
-    values={{ p: (paragraf: string) => (Component ? <Component>{paragraf}</Component> : <p>{paragraf}</p>)}}
+    values={{
+      p: (paragraf: string) => (Component ? <Component>{paragraf}</Component> : <p>{paragraf}</p>),
+    }}
   />
 );
 
