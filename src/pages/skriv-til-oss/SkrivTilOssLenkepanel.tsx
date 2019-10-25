@@ -6,10 +6,10 @@ import { FormattedMessage } from "react-intl";
 import React from "react";
 
 type Props = {
-  lenkePanelData: LenkepanelData,
+  lenkePanelData: LenkepanelData;
 };
 
-const SkrivTilOssLenkepanel = ({lenkePanelData}: Props) => (
+const SkrivTilOssLenkepanel = ({ lenkePanelData }: Props) => (
   <LenkepanelBase
     border={true}
     className="skriv-til-oss__temalenke"
@@ -29,7 +29,7 @@ const SkrivTilOssLenkepanel = ({lenkePanelData}: Props) => (
       {lenkePanelData.ikon ? <div>{lenkePanelData.ikon}</div> : null}
       <div>
         <Systemtittel className="skriv-til-oss__temalenke-header lenkepanel__heading">
-          <FormattedMessage id={lenkePanelData.tittel}/>
+          <FormattedMessage id={lenkePanelData.tittel} />
         </Systemtittel>
         <Undertekst className="skriv-til-oss__temalenke-ingress">
           {lenkePanelData.ingress}

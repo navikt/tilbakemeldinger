@@ -6,14 +6,6 @@ const { baseUrl } = Environment();
 export default [
   {
     external: true,
-    id: "tolketjenesten",
-    tittel: "Kontakt tolketjenesten",
-    beskrivelse: `Tolketjenesten i NAV dekker tolkeoppdrag for døve, døvblinde og hørselshemmede`,
-    lenkeTekst: "Kontaktinformasjon for tolketjenesten i NAV i ditt fylke",
-    url: `${baseUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Tolketjenesten`
-  },
-  {
-    external: true,
     id: "nav-kontor",
     tittel: "Finn ditt NAV-kontor",
     beskrivelse: `På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.`,

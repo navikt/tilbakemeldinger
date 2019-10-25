@@ -14,13 +14,15 @@ const enabledDefault = vars.unleash.skrivTilOssEnabledDefault;
 const svartidDefault = vars.unleash.langSvartidDefault;
 
 type Props = {
-  tittel: string,
-  ingress: ReactNode,
-  lenker?: Array<LenkepanelData>,
+  tittel: string;
+  ingress: ReactNode;
+  lenker?: Array<LenkepanelData>;
 };
 
-const SkrivTilOssBase = ({tittel, ingress, lenker}: Props) => {
-  const documentTitle = `${useIntl().formatMessage({id: tittel})} - www.nav.no`;
+const SkrivTilOssBase = ({ tittel, ingress, lenker }: Props) => {
+  const documentTitle = `${useIntl().formatMessage({
+    id: tittel
+  })} - www.nav.no`;
   useEffect(() => {
     document.title = documentTitle;
   }, [documentTitle]);
@@ -43,46 +45,49 @@ const SkrivTilOssBase = ({tittel, ingress, lenker}: Props) => {
   useEffect(() => {
     getFeatureToggleStatusMultiple(
       [svartidName, enabledName],
-      unleashTogglesResponse);
+      unleashTogglesResponse
+    );
   }, []);
 
   if (!unleashResponded) {
-    return(<NavFrontendSpinner negativ={true} />);
+    return <NavFrontendSpinner negativ={true} />;
   }
 
   if (!skrivTilOssEnabled) {
-    return(
+    return (
       <AlertStripe type="advarsel">
         {"Tjenesten er dessverre ikke tilgjengelig."}
       </AlertStripe>
     );
   }
 
-  return(
+  return (
     <div className="skriv-til-oss pagecontent">
       <div className="skriv-til-oss__header">
-        <EtikettLiten>
-          {"NAV privatperson"}
-        </EtikettLiten>
+        <EtikettLiten>{"NAV privatperson"}</EtikettLiten>
         <Sidetittel>
-          <FormattedMessage id={tittel}/>
+          <FormattedMessage id={tittel} />
         </Sidetittel>
       </div>
       <div className="skriv-til-oss__ingress">
         <Normaltekst className="skriv-til-oss__svartid">
-          <FormattedMessage id={"skrivtiloss.svartid"} values={{numDager: vars.svartidDager}}/>
-          {langSvartid ? <FormattedMessage id={"skrivtiloss.svartid.lang"}/> : null}
+          <FormattedMessage
+            id={"skrivtiloss.svartid"}
+            values={{ numDager: vars.svartidDager }}
+          />
+          {langSvartid ? (
+            <FormattedMessage id={"skrivtiloss.svartid.lang"} />
+          ) : null}
         </Normaltekst>
         {ingress}
       </div>
-      { lenker ?
-        (
-          <div className="skriv-til-oss__lenker">
-          {lenker.map(lenke => <SkrivTilOssLenkepanel lenkePanelData={lenke} key={lenke.tittel}/>)}
+      {lenker ? (
+        <div className="skriv-til-oss__lenker">
+          {lenker.map(lenke => (
+            <SkrivTilOssLenkepanel lenkePanelData={lenke} key={lenke.tittel} />
+          ))}
         </div>
-        )
-        : null
-      }
+      ) : null}
     </div>
   );
 };

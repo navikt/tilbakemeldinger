@@ -13,7 +13,7 @@ const externalUrls = {
 };
 
 const FeilOgMangler = () => (
-  <Box icon={VeilederIcon}>
+  <Box icon={VeilederIcon} margin={"0.25rem 0 0 0"}>
     <div className={"box__section-title"}>
       <Undertittel className="box__title">
         Feil og mangler på nav.no
@@ -32,7 +32,7 @@ const FeilOgMangler = () => (
       </div>
       <div className="faq__lenke">
         <a className="lenke" href={externalUrls.ring}>
-          Prøv å løse problemet selv
+          Ring teknisk brukerstøtte
         </a>
       </div>
     </div>

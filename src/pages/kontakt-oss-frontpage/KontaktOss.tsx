@@ -7,6 +7,7 @@ import UnderUtvikling from "../../components/veiledere/UnderUtvikling";
 import RingOss from "./sections/RingOss";
 import FeilOgMangler from "./sections/FeilOgMangler";
 import SosialeMedier from "./sections/SosialeMedier";
+import Tolketjenesten from "./sections/Toketjenesten";
 
 const KontaktOssFrontpage = () => {
   document.title = "Kontakt oss - www.nav.no";
@@ -23,6 +24,7 @@ const KontaktOssFrontpage = () => {
           <FAQ />
           <SkrivTilOss />
           <RingOss />
+          <Tolketjenesten />
           <LenkePanel />
           <FeilOgMangler />
           <SosialeMedier />
