@@ -13,7 +13,7 @@ const externalUrls = {
 };
 
 const FeilOgMangler = () => (
-  <Box icon={VeilederIcon}>
+  <Box icon={VeilederIcon} margin={"0.5rem 0 0 0"}>
     <div className={"box__section-title"}>
       <Undertittel className="box__title">
         Feil og mangler på nav.no

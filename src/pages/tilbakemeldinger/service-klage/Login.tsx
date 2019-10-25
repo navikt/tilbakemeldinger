@@ -19,34 +19,32 @@ const Login = () => {
   }
 
   return (
-    <>
-      <div className="pagecontent">
-        <Tilbake to={urls.tilbakemeldinger.forside} />
-        <Header title="Klage på service" />
-        <Box tittel={"Ønsker du å logge inn?"}>
-          <div className="serviceKlage__login-info">
-            Vi anbefaler at du logger inn, så slipper du å fylle inn all
-            informasjonen om deg selv.
-            <br />
-            Du må opppgi hvem du er uansett om du logger inn eller ikke.
+    <div className="pagecontent">
+      <Tilbake to={urls.tilbakemeldinger.forside} />
+      <Header title="Klage på service" />
+      <Box tittel={"Ønsker du å logge inn?"}>
+        <div className="serviceKlage__login-info">
+          Vi anbefaler at du logger inn, så slipper du å fylle inn all
+          informasjonen om deg selv.
+          <br />
+          Du må opppgi hvem du er uansett om du logger inn eller ikke.
+        </div>
+        <div className="tb__knapper">
+          <div className={"tb__knapp"}>
+            <a href={`${loginUrl}?redirect=${window.location.href}`}>
+              <Hovedknapp>Logg inn</Hovedknapp>
+            </a>
           </div>
-          <div className="tb__knapper">
-            <div className={"tb__knapp"}>
-              <a href={`${loginUrl}?redirect=${window.location.href}`}>
-                <Hovedknapp>Logg inn</Hovedknapp>
-              </a>
-            </div>
-            <div className={"tb__knapp serviceKlage__login-lenke"}>
-              <div className="lenke">
-                <Link to={urls.tilbakemeldinger.serviceklage.form}>
-                  Fortsett uten å logge inn
-                </Link>
-              </div>
+          <div className={"tb__knapp serviceKlage__login-lenke"}>
+            <div className="lenke">
+              <Link to={urls.tilbakemeldinger.serviceklage.form}>
+                Fortsett uten å logge inn
+              </Link>
             </div>
           </div>
-        </Box>
-      </div>
-    </>
+        </div>
+      </Box>
+    </div>
   );
 };
 

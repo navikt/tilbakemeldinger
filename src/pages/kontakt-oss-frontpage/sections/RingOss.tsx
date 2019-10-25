@@ -4,7 +4,7 @@ import VeilederIcon from "assets/Veileder.svg";
 import Box from "components/box/Box";
 
 const RingOss = () => (
-  <Box icon={VeilederIcon}>
+  <Box icon={VeilederIcon} margin={"2rem 0"}>
     <div className={"box__section"}>
       <div className={"box__section-title"}>
         <Undertittel className="box__title">Ring oss</Undertittel>

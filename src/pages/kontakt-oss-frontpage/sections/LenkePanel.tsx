@@ -8,7 +8,7 @@ const LenkePanel = () => {
   return (
     <>
       {eksterneLenker.map(link => (
-        <Box key={link.tittel}>
+        <Box key={link.tittel} margin={"0.5rem 0 0 0"}>
           <>
             <div className={"box__section-title"}>
               <Undertittel className="box__title">{link.tittel}</Undertittel>
