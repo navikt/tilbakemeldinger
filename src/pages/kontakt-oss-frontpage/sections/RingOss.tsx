@@ -3,6 +3,7 @@ import { Undertittel } from "nav-frontend-typografi";
 import VeilederIcon from "assets/Veileder.svg";
 import Box from "components/box/Box";
 import Lenke from "nav-frontend-lenker";
+import { NedChevron, OppChevron } from "nav-frontend-chevron";
 
 const RingOss = () => {
   const [visNummer, settVisNummer] = useState(false);
@@ -18,12 +19,20 @@ const RingOss = () => {
           10:00-13:00
         </div>
         <div
-          className={"box__section-lenke lenke"}
+          className={"ringoss__visnr box__section-lenke lenke "}
           onClick={() => settVisNummer(!visNummer)}
         >
-          {visNummer
-            ? "Skjul telefonnumre og tastevalg"
-            : "Vis telefonnumre og tastevalg"}
+          {visNummer ? (
+            <>
+              <span>Skjul telefonnumre og tastevalg</span>
+              <OppChevron />
+            </>
+          ) : (
+            <>
+              <span>Vis telefonnumre og tastevalg</span>
+              <NedChevron />
+            </>
+          )}
         </div>
         {visNummer && (
           <>
@@ -77,7 +86,7 @@ const RingOss = () => {
             <table className="ringoss__tabell-spesialnr tabell">
               <thead>
                 <tr>
-                  <th className="ringoss__kolonne">Spsialnumre</th>
+                  <th className="ringoss__kolonne">Spesialnumre</th>
                   <th />
                 </tr>
               </thead>
