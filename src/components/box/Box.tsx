@@ -6,19 +6,15 @@ interface Props {
   tittel?: string;
   beskrivelse?: string;
   icon?: string;
+  margin?: string;
   children: JSX.Element | JSX.Element[];
 }
 
 const Box = (props: Props) => {
   const { children, tittel } = props;
-  /*
-  const iconImg = icon ? (
-    <img src={icon} className="box__ikon" alt="Veileder" />
-  ) : null;
-  */
-
+  const styles = { margin: props.margin ? props.margin : "2rem 0 0 0" };
   return (
-    <div className="box__wrapper">
+    <div className="box__wrapper" style={styles}>
       <PanelBase>
         <div className="box__container">
           {tittel && (

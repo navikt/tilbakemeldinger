@@ -13,7 +13,7 @@ const { baseUrl } = Environment();
 const urlSosialeMedier = `${baseUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/kontakt-nav-p%C3%A5-facebook-eller-twitter`;
 
 const SosialeMedier = () => (
-  <Box icon={VeilederIcon}>
+  <Box icon={VeilederIcon} margin={"2rem 0 0 0"}>
     <div className={"box__section-title"}>
       <Undertittel className="box__title">NAV i sosiale medier</Undertittel>
     </div>
@@ -41,7 +41,6 @@ const SosialeMedier = () => (
         <img className="sm__ikon" src={youtubeIcon} alt="Youtube" />
       </a>
     </div>
-
     <div className="faq__lenke">
       <a className="lenke" href={urlSosialeMedier}>
         Flere sosiale medier

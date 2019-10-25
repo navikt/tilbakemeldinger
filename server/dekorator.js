@@ -10,7 +10,7 @@ const requestDecorator = callback =>
       process.env.NAIS_CLUSTER_NAME === "dev-sbs"
         ? "https://appres-q0.nav.no"
         : "https://appres.nav.no"
-    }/common-html/v4/navno?header-withmenu=true&styles=true&scripts=true&footer-withmenu=true&skiplinks=true&megamenu-resources=true`,
+    }`,
     callback
   );
 

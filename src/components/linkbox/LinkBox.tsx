@@ -1,7 +1,6 @@
 import React from "react";
-import { Element, Normaltekst } from "nav-frontend-typografi";
-import Icon from "components/icon/Icon";
-import { HoyreChevron } from "nav-frontend-chevron";
+import { Normaltekst, Undertittel } from "nav-frontend-typografi";
+import { LenkepanelBase } from "nav-frontend-lenkepanel";
 import { Link } from "react-router-dom";
 
 export interface Props {
@@ -9,51 +8,44 @@ export interface Props {
   tittel: string;
   beskrivelse: string;
   lenkeTekst: string;
-  icon?: string;
   to: string;
-  component: "a" | "Link";
+  external?: boolean;
+  icon?: string;
 }
 
-const Box = (props: Props) => {
+const LinkBox = (props: Props) => {
   return (
-    <>
-      <div className="linkbox__icon-container icon__container">
-        <Icon backgroundImage={props.icon} />
-      </div>
-      <div className="linkbox__content">
-        <div className="linkbox__seksjon">
-          <div className="linkbox__tittel">
-            <div className="lenke">
-              <Element>{props.tittel}</Element>
-            </div>
-          </div>
-          <Normaltekst>
-            <span dangerouslySetInnerHTML={{ __html: props.beskrivelse }} />
-          </Normaltekst>
+    <LenkepanelBase
+      key={props.id}
+      className="linkbox__container"
+      href={props.lenkeTekst}
+      linkCreator={p => {
+        return props.external ? (
+          <a href={props.to} className={p.className}>
+            {p.children}
+          </a>
+        ) : (
+          <Link to={props.to} className={p.className}>
+            {p.children}
+          </Link>
+        );
+      }}
+    >
+      <div className="linkbox__rad">
+        <div className="linbox__tittel">
+          <Undertittel className="lenkepanel__heading">
+            {props.tittel}
+          </Undertittel>
+        </div>
+        <div className="linkbox__beskrivelse">
+          <Normaltekst>{props.beskrivelse}</Normaltekst>
+        </div>
+        <div className="lenke">
+          <Normaltekst>{props.lenkeTekst}</Normaltekst>
         </div>
       </div>
-      <HoyreChevron />
-    </>
+    </LenkepanelBase>
   );
-};
-
-const LinkBox = (props: Props) => {
-  switch (props.component) {
-    case "Link":
-      return (
-        <Link className="linkbox__rad" to={props.to}>
-          <Box {...props} />
-        </Link>
-      );
-    case "a":
-      return (
-        <a className="linkbox__rad" href={props.to}>
-          <Box {...props} />
-        </a>
-      );
-    default:
-      return <Box {...props} />;
-  }
 };
 
 export default LinkBox;
