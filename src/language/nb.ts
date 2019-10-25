@@ -94,7 +94,7 @@ export default {
     " spørsmål.",
   "skrivtiloss.temalenke.facebook.tittel": "Facebook",
   "skrivtiloss.temalenke.facebook.ingress":
-    "Våre veiledere svarer på generelle spørsmål innen 1 arbeidsdag."
+    "Våre veiledere svarer på generelle spørsmål innen 1 arbeidsdag.",
 
   "chat.forside.tittel": "Chat med oss",
   "chat.forside.ingress": "NAV tilbyr chat på noen temaer. Vi svarer på generelle spørsmål, men vi har ikke mulighet" +
