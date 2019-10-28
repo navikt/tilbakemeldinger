@@ -24,7 +24,7 @@ export const lenker: Lenke[] = [
     external: true,
     lenke: "https://www.nav.no",
     lenkeTekst: `Kontakt din veileder via aktivitetsplanen`,
-    beskrivelse: `Du har en aktivietsplan dersom du er <a href="www.nav.no">registrert som arbeidssøker</a>. 
+    beskrivelse: `Du har en aktivietsplan dersom du er <a class="lenke" href="www.nav.no">registrert som arbeidssøker</a>. 
         Da kan du kontakte din veileder og be om et møte eller råd under jobbsøkerprosessen. 
         Svartiden varirerer.`
   }

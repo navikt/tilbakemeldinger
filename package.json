@@ -1,6 +1,6 @@
 {
   "name": "tilbakemeldinger",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "private": true,
   "author": "NAV",
   "license": "MIT",
@@ -51,6 +51,7 @@
     "nav-frontend-skjema-style": "^1.0.45",
     "nav-frontend-spinner": "^1.0.19",
     "nav-frontend-spinner-style": "^0.2.5",
+    "nav-frontend-tabell-style": "^0.2.17",
     "nav-frontend-typografi": "^2.0.15",
     "nav-frontend-typografi-style": "^1.0.16",
     "nav-frontend-veileder": "^2.0.12",

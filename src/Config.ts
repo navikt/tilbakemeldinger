@@ -1,6 +1,8 @@
+import Environment from "./Environments";
 import { ChatTema } from "./types/chat";
 
 export const baseUrl = "/person/kontakt-oss";
+const navUrl = Environment().baseUrl;
 
 export const urls = {
   baseUrl: baseUrl,
@@ -48,7 +50,8 @@ export const urls = {
     generelt: "#",
     skrivtiloss: "#",
     bil: "#"
-  }
+  },
+  sosialeMedier: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/kontakt-nav-p%C3%A5-facebook-eller-twitter`
 };
 
 export const vars = {

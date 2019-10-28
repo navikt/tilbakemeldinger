@@ -9,7 +9,7 @@ const tolketjenesten = `${baseUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter
 const spraktolk = `${baseUrl}/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Oppfolging+fra+NAV/trenger-du-spr%C3%A5ktolk`;
 
 const Tolketjenesten = () => (
-  <Box margin={"0"}>
+  <Box>
     <div className={"box__section-title"}>
       <Undertittel className="box__title">Kontakt tolketjenesten</Undertittel>
     </div>
