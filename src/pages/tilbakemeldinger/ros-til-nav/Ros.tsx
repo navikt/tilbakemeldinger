@@ -21,6 +21,8 @@ import Header from "../../../components/header/Header";
 import { urls } from "Config";
 import Box from "../../../components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
+import MetaTags from "react-meta-tags";
+import { useIntl } from "react-intl";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
 
@@ -38,11 +40,10 @@ type OutboundRosTilNavExtend =
 export type OutboundRosTilNav = OutboundRosTilNavBase & OutboundRosTilNavExtend;
 
 const Ros = (props: RouteComponentProps) => {
-  document.title = "Ros til NAV - www.nav.no";
-
   const [{ enheter }, dispatch] = useStore();
   const [loading, settLoading] = useState(false);
   const [error, settError] = useState();
+  const intl = useIntl();
 
   useEffect(() => {
     fetchEnheter()
@@ -121,6 +122,13 @@ const Ros = (props: RouteComponentProps) => {
 
   return (
     <div className="pagecontent">
+      <MetaTags>
+        <title>{intl.messages["rostilnav.tittel"]}</title>
+        <meta
+          name="description"
+          content={intl.messages["rostilnav.description"] as string}
+        />
+      </MetaTags>
       <Tilbake to={urls.tilbakemeldinger.forside} />
       <Header title="Ros til NAV" />
       <div className="tb__veileder">

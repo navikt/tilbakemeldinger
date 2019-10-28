@@ -3,6 +3,8 @@ export default {
     "Vi har for øyeblikket tekniske problemer med disse sidene.",
 
   "skrivtiloss.tittel": "Skriv til oss",
+  "skrivtiloss.description":
+    "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Normal svartid er 2 arbeidsdager.",
   "skrivtiloss.svartid":
     "Hvis du har sendt beskjed til NAV, er normal svartid {numDager} arbeidsdager.",
   "skrivtiloss.svartid.lang":
@@ -42,6 +44,9 @@ export default {
     " tilrettelegging og tilpasning.",
 
   "arbeidssoker.tittel": "Skriv til oss om arbeid",
+  "arbeidssoker.description":
+    "Gi beskjed om endringer i saken din om sykepenger, dagpenger, arbeidsavklaringspenger, tiltakspenger, yrkesskade/ménerstatning eller lignende. " +
+    "Har du aktivitetsplan så kan du stille spørsmål om oppfølging mot arbeid direkte til veilederen hos NAV.",
   "arbeidssoker.infotekst":
     "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Du kan for" +
     " eksempel sende beskjed om endringer i inntekt, familiesituasjon, jobbsituasjon eller opphold i utlandet som" +
@@ -60,6 +65,9 @@ export default {
     "Legg til navjobblyst på Snapchat og se hverdagen til unge som kommer i jobb.",
 
   "familieogbarn.tittel": "Skriv til oss om familie",
+  "familieogbarn.description":
+    "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. " +
+    "Du kan for eksempel sende beskjed om endringer i inntekt, familiesituasjon, jobbsituasjon eller opphold i utlandet som kan ha betydning for beløpet du får utbetalt fra NAV.",
   "familieogbarn.infotekst":
     "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Du kan for" +
     " eksempel sende beskjed om endringer i inntekt, familiesituasjon, jobbsituasjon eller opphold i utlandet som" +
@@ -69,6 +77,8 @@ export default {
     "Hvis du har spørsmål om saken din, så kan du skrive til oss. Du får svar etter omtrent {numDager} arbeidsdager.",
 
   "hjelpemidler.tittel": "Skriv til oss om hjelpemidler",
+  "hjelpemidler.description":
+    "Send spørsmål eller opplysninger om tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk, tilrettelegging og tilpasning.",
   "hjelpemidler.infotekst":
     "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Du kan for" +
     " eksempel sende beskjed om endringer i inntekt, familiesituasjon, jobbsituasjon eller opphold i utlandet som" +
@@ -92,5 +102,20 @@ export default {
     " spørsmål.",
   "skrivtiloss.temalenke.facebook.tittel": "Facebook",
   "skrivtiloss.temalenke.facebook.ingress":
-    "Våre veiledere svarer på generelle spørsmål innen 1 arbeidsdag."
+    "Våre veiledere svarer på generelle spørsmål innen 1 arbeidsdag.",
+
+  "kontaktoss.tittel": "Kontakt oss - www.nav.no",
+  "kontaktoss.description":
+    "Kontakt NAV via chat, skriv til oss, telefon eller sosiale medier. Finn ditt NAV-kontor, kontakt tolketjenesten, send klage eller tilbakemeldinger.",
+  "tilbakemeldinger.tittel": "Tilbakemeldinger til NAV - www.nav.no",
+  "tilbakemeldinger.description":
+    "Her kan du gi tilbakemeldinger til NAV, klage eller anke på vedtak, service og melde fra om feil og mangler på nav.no. Du kan også gi oss ros om våre tjenester og medarbeidere.",
+  "rostilnav.tittel": "Ros til NAV - www.nav.no",
+  "rostilnav.description":
+    "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
+  "feilogmangler.tittel": "Feil og mangler - www.nav.no",
+  "feilogmangler.description": "Meld fra om feil og mangler på nav.no",
+  "klagepaservice.tittel": "Klage på service - www.nav.no",
+  "klagepaservice.description":
+    "Send klage på service hos NAV. Hva gjelder tilbakemeldingen og hvem skriver du på vegne av?"
 };

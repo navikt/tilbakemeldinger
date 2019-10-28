@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { EtikettLiten, Normaltekst, Sidetittel } from "nav-frontend-typografi";
 import { LenkepanelData } from "../../types/lenker";
 import { useIntl, FormattedMessage } from "react-intl";
@@ -15,11 +15,11 @@ const svartidDefault = vars.unleash.langSvartidDefault;
 
 type Props = {
   tittel: string;
-  ingress: ReactNode;
+  children: JSX.Element;
   lenker?: Array<LenkepanelData>;
 };
 
-const SkrivTilOssBase = ({ tittel, ingress, lenker }: Props) => {
+const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
   const documentTitle = `${useIntl().formatMessage({
     id: tittel
   })} - www.nav.no`;
@@ -79,7 +79,7 @@ const SkrivTilOssBase = ({ tittel, ingress, lenker }: Props) => {
             <FormattedMessage id={"skrivtiloss.svartid.lang"} />
           ) : null}
         </Normaltekst>
-        {ingress}
+        {children}
       </div>
       {lenker ? (
         <div className="skriv-til-oss__lenker">

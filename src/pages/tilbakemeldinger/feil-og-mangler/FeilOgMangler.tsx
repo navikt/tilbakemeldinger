@@ -17,6 +17,8 @@ import { urls } from "Config";
 import Box from "../../../components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import InputField from "../../../components/input-fields/InputField";
+import { useIntl } from "react-intl";
+import MetaTags from "react-meta-tags";
 
 export interface OutboundFeilOgMangler {
   navn: string;
@@ -27,9 +29,9 @@ export interface OutboundFeilOgMangler {
 }
 
 const FOM = (props: RouteComponentProps) => {
-  document.title = "Feil og mangler - www.nav.no";
   const [loading, settLoading] = useState(false);
   const [error, settError] = useState();
+  const intl = useIntl();
 
   const formConfig = {
     navn: {
@@ -81,6 +83,13 @@ const FOM = (props: RouteComponentProps) => {
 
   return (
     <div className="pagecontent">
+      <MetaTags>
+        <title>{intl.messages["feilogmangler.tittel"]}</title>
+        <meta
+          name="description"
+          content={intl.messages["feilogmangler.description"] as string}
+        />
+      </MetaTags>
       <Tilbake to={urls.tilbakemeldinger.forside} />
       <Header title="Feil og mangler" />
       <div className={"tb__veileder"}>
