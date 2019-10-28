@@ -9,7 +9,7 @@ import { spesialnr, tastevalg } from "./RingOssData";
 const RingOss = () => {
   const [visNummer, settVisNummer] = useState(false);
   return (
-    <Box icon={VeilederIcon} margin={"2rem 0"}>
+    <Box icon={VeilederIcon}>
       <div className={"box__section"}>
         <div className={"box__section-title"}>
           <Undertittel className="box__title">Ring oss</Undertittel>
