@@ -12,7 +12,7 @@ interface Props {
 
 const Box = (props: Props) => {
   const { children, tittel } = props;
-  const styles = { margin: props.margin ? props.margin : "2rem 0 0 0" };
+  const styles = { margin: props.margin ? props.margin : "1rem 0 0 0" };
   return (
     <div className="box__wrapper" style={styles}>
       <PanelBase>
