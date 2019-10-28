@@ -92,5 +92,20 @@ export default {
     " spørsmål.",
   "skrivtiloss.temalenke.facebook.tittel": "Facebook",
   "skrivtiloss.temalenke.facebook.ingress":
-    "Våre veiledere svarer på generelle spørsmål innen 1 arbeidsdag."
+    "Våre veiledere svarer på generelle spørsmål innen 1 arbeidsdag.",
+
+  "kontaktoss.tittel": "Kontakt oss - www.nav.no",
+  "kontaktoss.description":
+    "Kontakt NAV via chat, skriv til oss, telefon eller sosiale medier. Finn ditt NAV-kontor, kontakt tolketjenesten, send klage eller tilbakemeldinger.",
+  "tilbakemeldinger.tittel": "Tilbakemeldinger til NAV - www.nav.no",
+  "tilbakemeldinger.description":
+    "Her kan du gi tilbakemeldinger til NAV, klage eller anke på vedtak, service og melde fra om feil og mangler på nav.no. Du kan også gi oss ros om våre tjenester og medarbeidere.",
+  "rostilnav.tittel": "Ros til NAV - www.nav.no",
+  "rostilnav.description":
+    "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
+  "feilogmangler.tittel": "Feil og mangler - www.nav.no",
+  "feilogmangler.description": "Meld fra om feil og mangler på nav.no",
+  "klagepaservice.tittel": "Klage på service - www.nav.no",
+  "klagepaservice.description":
+    "Send klage på service hos NAV. Hva gjelder tilbakemeldingen og hvem skriver du på vegne av?"
 };
