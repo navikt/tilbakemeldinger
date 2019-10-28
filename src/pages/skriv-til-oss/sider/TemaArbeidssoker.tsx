@@ -2,9 +2,9 @@ import React, { ReactNode } from "react";
 import { FormattedMessage } from "react-intl";
 
 import SkrivTilOssBase from "../SkrivTilOssBase";
-import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
 import { vars, urls } from "../../../Config";
+import { LenkepanelData } from "../SkrivTilOssLenkepanel";
 
 const tittel: string = "arbeidssoker.tittel";
 
@@ -17,32 +17,35 @@ const ingress: ReactNode = (
 const lenker: LenkepanelData[] = [
   {
     tittel: "arbeidssoker.lenke.veileder.tittel",
-    ingress: <FormattedMessage id={"arbeidssoker.lenke.veileder.ingress"}/>,
+    ingress: "arbeidssoker.lenke.veileder.ingress",
     url: urls.temaArbeidssoker.veileder,
-    external: false
+    lenkeTekst: "arbeidssoker.lenke.veileder.tittel",
   },
   {
     tittel: "skrivtiloss.temalenke.chat.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.temalenke.chat.ingress"}/>,
+    ingress: "skrivtiloss.temalenke.chat.ingress",
     url: urls.temaArbeidssoker.chat,
-    external: false
+    lenkeTekst: "skrivtiloss.temalenke.chat.tittel",
   },
   {
     tittel: "arbeidssoker.lenke.skrivtiloss.tittel",
-    ingress: <FormattedMessage id={"arbeidssoker.lenke.skrivtiloss.ingress"} values={{numDager: vars.svartidDager}}/>,
+    ingress: "arbeidssoker.lenke.skrivtiloss.ingress",
+    ingressValues: {numDager: vars.svartidDager.toString()},
     url: urls.temaArbeidssoker.skrivtiloss,
-    external: false
+    lenkeTekst: "arbeidssoker.lenke.skrivtiloss.tittel",
   },
   {
     tittel: "skrivtiloss.temalenke.facebook.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.temalenke.facebook.ingress"}/>,
+    ingress: "skrivtiloss.temalenke.facebook.ingress",
     url: urls.facebook,
+    lenkeTekst: "skrivtiloss.temalenke.facebook.tittel",
     external: true
   },
   {
     tittel: "arbeidssoker.lenke.snapchat.tittel",
-    ingress: <FormattedMessage id={"arbeidssoker.lenke.snapchat.ingress"}/>,
+    ingress: "arbeidssoker.lenke.snapchat.ingress",
     url: urls.snapchat,
+    lenkeTekst: "arbeidssoker.lenke.snapchat.tittel",
     external: true
   },
 ];

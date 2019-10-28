@@ -1,42 +1,34 @@
-import { LenkepanelData } from "../../types/lenker";
-import { LenkepanelBase } from "nav-frontend-lenkepanel/lib";
-import { Link } from "react-router-dom";
-import { Systemtittel, Undertekst } from "nav-frontend-typografi";
-import { FormattedMessage } from "react-intl";
+import { useIntl } from "react-intl";
 import React from "react";
+import LinkBox from "../../components/linkbox/LinkBox";
+
+export type LenkepanelData = {
+  tittel: string;
+  ingress: string;
+  ingressValues?: {[key: string]: string};
+  url: string;
+  lenkeTekst: string;
+  ikon?: any;
+  external?: boolean;
+};
 
 type Props = {
   lenkePanelData: LenkepanelData;
 };
 
-const SkrivTilOssLenkepanel = ({ lenkePanelData }: Props) => (
-  <LenkepanelBase
-    border={true}
-    className="skriv-til-oss__temalenke"
-    linkCreator={props => {
-      return lenkePanelData.external ? (
-        <a href={lenkePanelData.url} className={props.className}>
-          {props.children}
-        </a>
-      ) : (
-        <Link to={lenkePanelData.url} className={props.className}>
-          {props.children}
-        </Link>
-      );
-    }}
-  >
-    <div>
-      {lenkePanelData.ikon ? <div>{lenkePanelData.ikon}</div> : null}
-      <div>
-        <Systemtittel className="skriv-til-oss__temalenke-header lenkepanel__heading">
-          <FormattedMessage id={lenkePanelData.tittel} />
-        </Systemtittel>
-        <Undertekst className="skriv-til-oss__temalenke-ingress">
-          {lenkePanelData.ingress}
-        </Undertekst>
-      </div>
-    </div>
-  </LenkepanelBase>
-);
+const SkrivTilOssLenkepanel = ({ lenkePanelData }: Props) => {
+  const formatMsg = useIntl().formatMessage;
+
+  return(
+    <LinkBox
+      id={lenkePanelData.tittel}
+      tittel={formatMsg({id: lenkePanelData.tittel})}
+      beskrivelse={formatMsg({id: lenkePanelData.ingress}, lenkePanelData.ingressValues)}
+      lenkeTekst={formatMsg({id: lenkePanelData.lenkeTekst})}
+      to={lenkePanelData.url}
+      external={lenkePanelData.external}
+    />
+  );
+};
 
 export default SkrivTilOssLenkepanel;

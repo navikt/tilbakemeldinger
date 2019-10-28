@@ -2,9 +2,9 @@ import React, { ReactNode } from "react";
 import { FormattedMessage } from "react-intl";
 
 import SkrivTilOssBase from "../SkrivTilOssBase";
-import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
 import { vars, urls } from "../../../Config";
+import { LenkepanelData } from "../SkrivTilOssLenkepanel";
 
 const tittel: string = "familieogbarn.tittel";
 
@@ -17,21 +17,23 @@ const ingress: ReactNode = (
 const lenker: LenkepanelData[] = [
   {
     tittel: "skrivtiloss.temalenke.chat.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.temalenke.chat.ingress"}/>,
+    ingress: "skrivtiloss.temalenke.chat.ingress",
     url: urls.temaFamilieOgBarn.chat,
-    external: false
+    lenkeTekst: "skrivtiloss.temalenke.chat.tittel",
   },
   {
     tittel: "skrivtiloss.temalenke.facebook.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.temalenke.facebook.ingress"}/>,
+    ingress: "skrivtiloss.temalenke.facebook.ingress",
     url: urls.facebook,
+    lenkeTekst: "skrivtiloss.temalenke.chat.tittel",
     external: true
   },
   {
     tittel: "familieogbarn.lenke.skrivtiloss.tittel",
-    ingress: <FormattedMessage id={"familieogbarn.lenke.skrivtiloss.ingress"} values={{numDager: vars.svartidDager}}/>,
+    ingress: "familieogbarn.lenke.skrivtiloss.ingress", // values={{numDager: vars.svartidDager}}/>,
+    ingressValues: {numDager: vars.svartidDager.toString()},
     url: urls.temaFamilieOgBarn.skrivtiloss,
-    external: false
+    lenkeTekst: "skrivtiloss.temalenke.chat.tittel",
   },
 ];
 

@@ -2,9 +2,9 @@ import React, { ReactNode } from "react";
 import { FormattedMessage } from "react-intl";
 
 import SkrivTilOssBase from "../SkrivTilOssBase";
-import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
 import { urls } from "../../../Config";
+import { LenkepanelData } from "../SkrivTilOssLenkepanel";
 
 const tittel: string = "skrivtiloss.tittel";
 
@@ -17,33 +17,35 @@ const ingress: ReactNode = (
 const lenker: LenkepanelData[] = [
   {
     tittel: "skrivtiloss.arbeidssoker.lenke.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.arbeidssoker.lenke.ingress"}/>,
+    ingress: "skrivtiloss.arbeidssoker.lenke.ingress",
     url: urls.skrivTilOss.arbeidssoker,
-    external: false
+    lenkeTekst: "skrivtiloss.arbeidssoker.lenke.tittel",
   },
   {
     tittel: "skrivtiloss.familieogbarn.lenke.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.familieogbarn.lenke.ingress"}/>,
+    ingress: "skrivtiloss.familieogbarn.lenke.ingress",
     url: urls.skrivTilOss.familieogbarn,
-    external: false
+    lenkeTekst: "skrivtiloss.familieogbarn.lenke.tittel",
   },
   {
     tittel: "skrivtiloss.pensjonist.lenke.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.pensjonist.lenke.ingress"}/>,
+    ingress: "skrivtiloss.pensjonist.lenke.ingress",
     url: urls.skrivTilOss.pensjonist,
+    lenkeTekst: "skrivtiloss.pensjonist.lenke.tittel",
     external: true
   },
   {
     tittel: "skrivtiloss.syk.lenke.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.syk.lenke.ingress"}/>,
+    ingress: "skrivtiloss.syk.lenke.ingress",
     url: urls.skrivTilOss.syk,
+    lenkeTekst: "skrivtiloss.syk.lenke.tittel",
     external: true
   },
   {
     tittel: "skrivtiloss.hjelpemidler.lenke.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.hjelpemidler.lenke.ingress"}/>,
+    ingress: "skrivtiloss.hjelpemidler.lenke.ingress",
     url: urls.skrivTilOss.hjelpemidler,
-    external: false
+    lenkeTekst: "skrivtiloss.hjelpemidler.lenke.tittel",
   },
 ];
 

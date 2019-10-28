@@ -31,7 +31,7 @@ const LinkBox = (props: Props) => {
             <Normaltekst>{props.lenkeTekst}</Normaltekst>
           </Lenke>
         ) : (
-          <Link to={props.to}>
+          <Link to={props.to} className="lenke">
             <Normaltekst>{props.lenkeTekst}</Normaltekst>
           </Link>
         )}

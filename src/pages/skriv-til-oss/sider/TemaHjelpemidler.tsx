@@ -2,9 +2,9 @@ import React, { ReactNode } from "react";
 import { FormattedMessage } from "react-intl";
 
 import SkrivTilOssBase from "../SkrivTilOssBase";
-import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
 import { urls } from "../../../Config";
+import { LenkepanelData } from "../SkrivTilOssLenkepanel";
 
 const tittel: string = "hjelpemidler.tittel";
 
@@ -17,21 +17,21 @@ const ingress: ReactNode = (
 const lenker: LenkepanelData[] = [
   {
     tittel: "hjelpemidler.lenke.generelt.tittel",
-    ingress: <FormattedMessage id={"hjelpemidler.lenke.generelt.ingress"}/>,
+    ingress: "hjelpemidler.lenke.generelt.ingress",
     url: urls.temaHjelpemidler.generelt,
-    external: false
+    lenkeTekst: "hjelpemidler.lenke.generelt.tittel",
   },
   {
     tittel: "hjelpemidler.lenke.skrivtiloss.tittel",
-    ingress: <FormattedMessage id={"hjelpemidler.lenke.skrivtiloss.ingress"}/>,
+    ingress: "hjelpemidler.lenke.skrivtiloss.ingress",
     url: urls.temaHjelpemidler.skrivtiloss,
-    external: false
+    lenkeTekst: "hjelpemidler.lenke.skrivtiloss.tittel",
   },
   {
     tittel: "hjelpemidler.lenke.bil.tittel",
-    ingress: <FormattedMessage id={"hjelpemidler.lenke.bil.ingress"}/>,
+    ingress: "hjelpemidler.lenke.bil.ingress",
     url: urls.temaHjelpemidler.bil,
-    external: false
+    lenkeTekst: "hjelpemidler.lenke.bil.tittel",
   },
 ];
 
