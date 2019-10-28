@@ -126,10 +126,7 @@ const App = () => {
             />
             <Route
               exact={true}
-              path={`(${urls.tilbakemeldinger.rostilnav}
-                     |${urls.tilbakemeldinger.feilogmangler}
-                     |${urls.tilbakemeldinger.serviceklage.form}
-                     |${urls.samegiella})/takk`}
+              path={`(${urls.tilbakemeldinger.rostilnav}|${urls.tilbakemeldinger.feilogmangler}|${urls.tilbakemeldinger.serviceklage.form}|${urls.samegiella})/takk`}
               component={Takk}
             />
             <Route component={PageNotFound} />
