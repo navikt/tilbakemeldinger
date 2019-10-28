@@ -40,10 +40,6 @@ const RingOss = () => {
             <div className={"ringoss__tlf"}>
               <Undertittel>Personbruker: 55 55 33 33</Undertittel>
             </div>
-            <div className={"ringoss__apningstider"}>
-              Apent hverdager kl. 08.00 - 15.30. Åpningstidene kan endres, men
-              da får du beskjed på telefonen.
-            </div>
             <table className="ringoss__tabell-tastevalg tabell">
               <thead>
                 <tr>
@@ -54,7 +50,7 @@ const RingOss = () => {
               <tbody>
                 {tastevalg.map(valg => (
                   <tr key={valg.tastevalg}>
-                    <td>{valg.tastevalg}</td>
+                    <td className="ringoss__kolonne">{valg.tastevalg}</td>
                     <td>{valg.beskrivelse}</td>
                   </tr>
                 ))}
@@ -70,7 +66,7 @@ const RingOss = () => {
               <tbody>
                 {spesialnr.map(valg => (
                   <tr key={valg.nummer}>
-                    <td>{valg.nummer}</td>
+                    <td className="ringoss__kolonne">{valg.nummer}</td>
                     <td>{valg.beskrivelse}</td>
                   </tr>
                 ))}
