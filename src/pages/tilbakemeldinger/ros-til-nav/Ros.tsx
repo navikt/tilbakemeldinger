@@ -235,7 +235,7 @@ const Ros = (props: RouteComponentProps) => {
                 </SkjemaGruppe>
                 <div className="mellomrom">
                   <InputMelding
-                    label={"Melding til NAV"}
+                    label={"Skriv din tilbakemelding her"}
                     submitted={submitted}
                     value={fields.melding}
                     error={errors.melding}

@@ -386,7 +386,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                     </SkjemaGruppe>
                     <div className="serviceKlage__melding">
                       <InputMelding
-                        label={"Melding til NAV"}
+                        label={"Skriv din tilbakemelding her"}
                         submitted={submitted}
                         value={fields.melding}
                         error={errors.melding}
