@@ -320,7 +320,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         </Validation>
                       )}
                       <Radio
-                        label={"På vegne av en bedrift"}
+                        label={"På vegne av en virksomhet"}
                         name={"BEDRIFT"}
                         checked={fields.hvemFra === "BEDRIFT"}
                         onChange={() => setField({ hvemFra: "BEDRIFT" })}
