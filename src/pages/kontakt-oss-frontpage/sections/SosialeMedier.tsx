@@ -13,7 +13,7 @@ import youtubeIcon from "assets/icons/line/line-version-logo-youtube-clip.svg";
 */
 
 const SosialeMedier = () => (
-  <Box icon={VeilederIcon}>
+  <Box icon={VeilederIcon} margin={"1rem 0 1rem 0"}>
     <div className={"box__section-title"}>
       <Undertittel className="box__title">NAV i sosiale medier</Undertittel>
     </div>
