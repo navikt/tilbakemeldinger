@@ -8,29 +8,29 @@ export interface Lenke {
 export const lenkerFAQ: Lenke[] = [
   {
     lenke: urls.faq.utbetalinger,
-    lenkeTekst: "Når kommer neste utbetaling?"
+    lenkeTekst: "faq.nesteutbetaling"
   },
   {
     lenke: urls.faq.postTilAnnenAdresse,
-    lenkeTekst: "Hvordan kan jeg få post fra NAV til en annen adresse?"
+    lenkeTekst: "faq.posttilannenadresse"
   },
   {
     lenke: urls.faq.saksbehandlingstider,
-    lenkeTekst: "Hvilke saksbehandlingstider gjelder i mitt fylke?"
+    lenkeTekst: "faq.saksbehandlingstider"
   }
 ];
 
 export const lenkerMinSide: Lenke[] = [
   {
     lenke: urls.faq.endreKontonummer,
-    lenkeTekst: "Endre kontonummer"
+    lenkeTekst: "faq.endrekontonummer"
   },
   {
     lenke: urls.faq.utbetalingsoversikt,
-    lenkeTekst: "Se dine utbetalinger og skattetrekk"
+    lenkeTekst: "faq.utbetalingsoversikt"
   },
   {
     lenke: urls.faq.saksoversikt,
-    lenkeTekst: "Se status i saken min"
+    lenkeTekst: "faq.saksoversikt"
   }
 ];

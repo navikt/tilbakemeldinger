@@ -104,6 +104,15 @@ export default {
   "skrivtiloss.temalenke.facebook.ingress":
     "Våre veiledere svarer på generelle spørsmål innen 1 arbeidsdag.",
 
+  "faq.nesteutbetaling": "Når kommer neste utbetaling?",
+  "faq.posttilannenadresse":
+    "Hvordan kan jeg få post fra NAV til en annen adresse?",
+  "faq.saksbehandlingstider":
+    "Hvilke saksbehandlingstider gjelder i mitt fylke?",
+  "faq.endrekontonummer": "Endre kontonummer",
+  "faq.utbetalingsoversikt": "Se dine utbetalinger og skattetrekk",
+  "faq.saksoversikt": "Se status i saken min",
+
   "kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "kontaktoss.description":
     "Kontakt NAV via chat, skriv til oss, telefon eller sosiale medier. Finn ditt NAV-kontor, kontakt tolketjenesten, send klage eller tilbakemeldinger.",

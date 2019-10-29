@@ -4,6 +4,7 @@ import Box from "components/box/Box";
 import Lenke from "nav-frontend-lenker";
 import { lenkerFAQ, lenkerMinSide } from "./FAQLenker";
 import VisMer from "./FAQLenkerVisMer";
+import { FormattedMessage } from "react-intl";
 
 const FAQ = () => {
   const [visFlereFAQ, settVisFlereFAQ] = useState(false);
@@ -25,7 +26,9 @@ const FAQ = () => {
             .slice(0, visFlereFAQ ? lenkerFAQ.length : visElementer)
             .map(({ lenke, lenkeTekst }) => (
               <div key={lenkeTekst} className={"faq__lenke"}>
-                <Lenke href={lenke}>{lenkeTekst}</Lenke>
+                <Lenke href={lenke}>
+                  <FormattedMessage id={lenkeTekst} />
+                </Lenke>
               </div>
             ))}
           {lenkerFAQ.length > visElementer && (
@@ -44,7 +47,9 @@ const FAQ = () => {
             .slice(0, visFlereMinside ? lenkerMinSide.length : visElementer)
             .map(({ lenke, lenkeTekst }) => (
               <div key={lenkeTekst} className={"faq__lenke"}>
-                <Lenke href={lenke}>{lenkeTekst}</Lenke>
+                <Lenke href={lenke}>
+                  <FormattedMessage id={lenkeTekst} />
+                </Lenke>
               </div>
             ))}
           {lenkerFAQ.length > visElementer && (
