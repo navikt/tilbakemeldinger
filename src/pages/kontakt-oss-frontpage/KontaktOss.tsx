@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Sidetittel } from "nav-frontend-typografi";
 import FAQ from "./sections/FAQ";
 import LenkePanel from "./sections/LenkePanel";
-import KontaktOss from "./sections/SkrivTilOss";
+import KontaktOss from "./sections/KontaktOss";
 import UnderUtvikling from "../../components/veiledere/UnderUtvikling";
 import FeilOgMangler from "./sections/FeilOgMangler";
 import SosialeMedier from "./sections/SosialeMedier";

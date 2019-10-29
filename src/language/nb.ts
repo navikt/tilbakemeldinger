@@ -1,6 +1,4 @@
-import { Undertittel } from "nav-frontend-typografi";
-import React from "react";
-import Lenke from "nav-frontend-lenker";
+import { urls } from "../Config";
 
 export default {
   "teknisk-problem":
@@ -122,7 +120,7 @@ export default {
     "På chat kan vi ikke svare på saken din, men vi hjelper deg gjerne med generelle spørsmål.",
   "kontaktoss.chat.knapp": "Chat med oss",
 
-  "kontaktoss.ringoss.tittel": "Chat",
+  "kontaktoss.ringoss.tittel": "Ring oss",
   "kontaktoss.ringoss.beskrivelse":
     "Vi hjelper deg med generelle spørsmål og veiledning hverdager mellom " +
     "08:00 - 15:00. Svartiden varierer, men det er kortest ventetid mellom " +
@@ -158,10 +156,27 @@ export default {
     "Råd og veiledning for veteraner fra Forsvaret",
   "kontaktoss.ringoss.forandre": "Ringer du på vegne av en annen?",
 
+  "kontaktoss.skrivtiloss.tittel": "Skriv til oss",
+  "kontaktoss.skrivtiloss.beskrivelse":
+    "Du kan ikke sende e-post til oss, men du kan sende spørsmål om saken din " +
+    "eller opplysninger til oss ved å logge inn og skrive til oss. Du får " +
+    "svar etter <b>omtrent 2 arbeidsdager</b>.",
+  "kontaktoss.skrivtiloss.knapp": "Skriv til oss",
+
+  "kontaktoss.aktivitetsplan.tittel":
+    "Kontakt din veileder via aktivitetsplanen",
+  "kontaktoss.aktivitetsplan.beskrivelse":
+    " Du har en aktivietsplan dersom du er " +
+    `<a class='lenke' href="${urls.arbeidssoker}">registrert som arbeidssøker</a>. Da ` +
+    "kan du kontakte din veileder og be om et møte eller råd under  " +
+    "jobbsøkerprosessen. Svartiden varirerer.",
+  "kontaktoss.aktivitetsplan.knapp":
+    "Kontakt din veileder via aktivitetsplanen",
+
   "kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "kontaktoss.description":
     "Kontakt NAV via chat, skriv til oss, telefon eller sosiale medier. Finn ditt NAV-kontor, kontakt tolketjenesten, send klage eller tilbakemeldinger.",
-  "tilbakemeldinger.tittel": "Tilbakemeldinger til NAV - www.nav.no",
+  "tilbakemeldinger.tittel": "T`ilbakemeldinger til NAV - www.nav.no",
   "tilbakemeldinger.description":
     "Her kan du gi tilbakemeldinger til NAV, klage eller anke på vedtak, service og melde fra om feil og mangler på nav.no. Du kan også gi oss ros om våre tjenester og medarbeidere.",
   "rostilnav.tittel": "Ros til NAV - www.nav.no",
