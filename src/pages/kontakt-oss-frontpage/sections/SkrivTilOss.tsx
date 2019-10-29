@@ -6,19 +6,23 @@ import RingOss from "./RingOss";
 import { Link } from "react-router-dom";
 import { urls } from "../../../Config";
 import Lenke from "nav-frontend-lenker";
+import { FormattedMessage } from "react-intl";
 
 const SkrivTilOss = () => (
   <Box icon={VeilederIcon}>
     <div className={"box__section"}>
       <div className={"box__section-title"}>
-        <Undertittel className="box__title">Chat</Undertittel>
+        <Undertittel className="box__title">
+          <FormattedMessage id={"kontaktoss.chat.tittel"} />
+        </Undertittel>
       </div>
       <div className={"box__section-description"}>
-        På chat kan vi ikke svare på saken din, men vi hjelper deg gjerne med
-        generelle spørsmål.
+        <FormattedMessage id={"kontaktoss.chat.beskrivelse"} />
       </div>
       <div className={"box__section-lenke"}>
-        <Lenke href={urls.chat}>Chat</Lenke>
+        <Lenke href={urls.chat}>
+          <FormattedMessage id={"kontaktoss.chat.knapp"} />
+        </Lenke>
       </div>
     </div>
     <RingOss />

@@ -1,3 +1,7 @@
+import { Undertittel } from "nav-frontend-typografi";
+import React from "react";
+import Lenke from "nav-frontend-lenker";
+
 export default {
   "teknisk-problem":
     "Vi har for øyeblikket tekniske problemer med disse sidene.",
@@ -112,6 +116,47 @@ export default {
   "faq.endrekontonummer": "Endre kontonummer",
   "faq.utbetalingsoversikt": "Se dine utbetalinger og skattetrekk",
   "faq.saksoversikt": "Se status i saken min",
+
+  "kontaktoss.chat.tittel": "Chat",
+  "kontaktoss.chat.beskrivelse":
+    "På chat kan vi ikke svare på saken din, men vi hjelper deg gjerne med generelle spørsmål.",
+  "kontaktoss.chat.knapp": "Chat med oss",
+
+  "kontaktoss.ringoss.tittel": "Chat",
+  "kontaktoss.ringoss.beskrivelse":
+    "Vi hjelper deg med generelle spørsmål og veiledning hverdager mellom " +
+    "08:00 - 15:00. Svartiden varierer, men det er kortest ventetid mellom " +
+    "10:00-13:00",
+  "kontaktoss.ringoss.skjultlf": "Skjul telefonnumre og tastevalg",
+  "kontaktoss.ringoss.vistlf": "Vis telefonnumre og tastevalg",
+  "kontaktoss.ringoss.tlf": "Personbruker: 55 55 33 33",
+  "kontaktoss.ringoss.tastevalg": "Tastevalg",
+
+  "kontaktoss.ringoss.tastevalg.tast1.tittel": "Tast 1",
+  "kontaktoss.ringoss.tastevalg.tast1.beskrivelse":
+    "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester",
+  "kontaktoss.ringoss.tastevalg.tast2.tittel": "Tast 2",
+  "kontaktoss.ringoss.tastevalg.tast2.beskrivelse":
+    "Arbeidssøker, dagpenger, arbeidsavklaringspenger eller sykemeldt",
+  "kontaktoss.ringoss.tastevalg.tast3.tittel": "Tast 3",
+  "kontaktoss.ringoss.tastevalg.tast3.beskrivelse":
+    "Foreldrepenger, engangsstønad, svangerskapspenger, barnebidrag, barnetrygd, kontantstøtte, enslig forsørger, pleiepenger og andre familieytelser",
+  "kontaktoss.ringoss.tastevalg.tast4.tittel": "Tast 4",
+  "kontaktoss.ringoss.tastevalg.tast4.beskrivelse": "Uføretrygd og honnørkort",
+  "kontaktoss.ringoss.tastevalg.tast5.tittel": "Tast 5",
+  "kontaktoss.ringoss.tastevalg.tast45.beskrivelse": "Andre henvendelser",
+
+  "kontaktoss.ringoss.spesialnr": "Spesialnumre",
+  "kontaktoss.ringoss.spesialnr.pensjon": "Pensjon",
+  "kontaktoss.ringoss.spesialnr.hjelpemidler": "Hjelpemidler",
+  "kontaktoss.ringoss.spesialnr.teknisk":
+    "Teknisk brukerstøtte / EURES / gjeldsrådgivning",
+  "kontaktoss.ringoss.spesialnr.internasjonalt": "Internasjonalt",
+  "kontaktoss.ringoss.spesialnr.lonnsgaranti": "Lønnsgaranti",
+
+  "kontaktoss.ringoss.forsvaret":
+    "Råd og veiledning for veteraner fra Forsvaret",
+  "kontaktoss.ringoss.forandre": "Ringer du på vegne av en annen?",
 
   "kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "kontaktoss.description":
