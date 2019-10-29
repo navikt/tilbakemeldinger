@@ -42,7 +42,11 @@ export const urls = {
   },
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
   faq: {
+    utbetalinger: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Utbetalinger/Utbetalinger`,
+    utbetalingsoversikt: `${tjenesteUrl}/utbetalingsoversikt/`,
+    saksbehandlingstider: `${navUrl}/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV`,
     endreKontonummer: `${navUrl}/person/personopplysninger`,
+    saksoversikt: `${tjenesteUrl}/saksoversikt/`,
     postTilAnnenAdresse: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/vil-du-ha-post-fra-nav-til-en-annen-adresse`
   },
   veteraner: `${navUrl}/veteraner`,
