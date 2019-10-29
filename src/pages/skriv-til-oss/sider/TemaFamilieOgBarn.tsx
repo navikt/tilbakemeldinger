@@ -33,12 +33,6 @@ const lenker: LenkepanelData[] = [
     external: false
   },
   {
-    tittel: "skrivtiloss.temalenke.facebook.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.temalenke.facebook.ingress"} />,
-    url: urls.facebook,
-    external: true
-  },
-  {
     tittel: "familieogbarn.lenke.skrivtiloss.tittel",
     ingress: (
       <FormattedMessage
@@ -48,7 +42,13 @@ const lenker: LenkepanelData[] = [
     ),
     url: urls.temaFamilieOgBarn.skrivtiloss,
     external: false
-  }
+  },
+  {
+    tittel: "skrivtiloss.temalenke.facebook.tittel",
+    ingress: <FormattedMessage id={"skrivtiloss.temalenke.facebook.ingress"} />,
+    url: urls.facebook,
+    external: true
+  },
 ];
 
 const TemaFamilieOgBarn = () => (

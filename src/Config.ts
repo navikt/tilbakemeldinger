@@ -24,7 +24,9 @@ export const urls = {
     familieogbarn: `${baseUrl}/skriv-til-oss/familieogbarn`,
     pensjonist: "#",
     syk: "#",
-    hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`
+    hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`,
+    ufor: "#",
+    sosial: "#",
   },
   chat: {
     forside: `${baseUrl}/chat`,
@@ -50,7 +52,8 @@ export const urls = {
   temaHjelpemidler: {
     generelt: "#",
     skrivtiloss: "#",
-    bil: "#"
+    bil: "#",
+    tolk: "#",
   },
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
   faq: {
