@@ -173,6 +173,16 @@ export default {
   "kontaktoss.aktivitetsplan.knapp":
     "Kontakt din veileder via aktivitetsplanen",
 
+  "kontaktoss.navkontor.tittel": "Finn ditt NAV-kontor",
+  "kontaktoss.navkontor.beskrivelse":
+    "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
+  "kontaktoss.navkontor.knapp": "Finn adressen (du må logge inn)",
+
+  "kontaktoss.klage.tittel": "Klage og tilbakemeldinger",
+  "kontaktoss.klage.beskrivelse":
+    "Du kan klage hvis du har fått helt eller delvis avslag på søknaden din, og hvis du har hatt en negativ opplevelse i møte med NAV",
+  "kontaktoss.klage.knapp": "Slik går du frem for å klage",
+
   "kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "kontaktoss.description":
     "Kontakt NAV via chat, skriv til oss, telefon eller sosiale medier. Finn ditt NAV-kontor, kontakt tolketjenesten, send klage eller tilbakemeldinger.",
