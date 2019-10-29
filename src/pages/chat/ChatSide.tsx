@@ -11,6 +11,7 @@ import ChatbotWrangler from "../../utils/chatbotWrangler";
 
 import ChatValgtIkon from "assets/ChatValgtIkon.svg";
 import ChatIkkeValgtIkon from "assets/ChatUvalgtIkon.svg";
+import NAVChatBot from "@navikt/nav-chatbot";
 
 const cssPrefix = "chat-med-oss";
 const sideTittel = "chat.forside.tittel";
@@ -53,24 +54,32 @@ const ChatSide = () => {
     (chatTema) => chatDataTilPanelInnhold(chatTema, intlFormatMessage, buttonClickHandler));
 
   return(
-    <div className={`${cssPrefix} pagecontent`}>
-      <EtikettLiten>
-        <FormattedMessage id={"header.navperson"}/>
-      </EtikettLiten>
-      <div className={`${cssPrefix}__header`}>
-        <Systemtittel>
-          <FormattedMessage id={sideTittel}/>
-        </Systemtittel>
+    <>
+      <div className={`${cssPrefix} pagecontent`}>
+        <EtikettLiten>
+          <FormattedMessage id={"header.navperson"}/>
+        </EtikettLiten>
+        <div className={`${cssPrefix}__header`}>
+          <Systemtittel>
+            <FormattedMessage id={sideTittel}/>
+          </Systemtittel>
+        </div>
+        <div className={`${cssPrefix}__ingress`}>
+          <Normaltekst>
+            <FormattedMessage id="chat.forside.ingress"/>
+          </Normaltekst>
+        </div>
+        <div className={`${cssPrefix}__chat-valg-container`}>
+          {EkspanderendePanelGruppe(panelInnhold, "chatTemaVelger")}
+        </div>
       </div>
-      <div className={`${cssPrefix}__ingress`}>
-        <Normaltekst>
-          <FormattedMessage id="chat.forside.ingress"/>
-        </Normaltekst>
-      </div>
-      <div className={`${cssPrefix}__chat-valg-container`}>
-        {EkspanderendePanelGruppe(panelInnhold, "chatTemaVelger")}
-      </div>
-    </div>
+
+      <NAVChatBot
+        queueKey="Q_CHAT_BOT"
+        customerKey="41155"
+        configId={"c3372a51-6434-4770-a0aa-6e4edba3471e"}
+      />
+    </>
   );
 };
 

@@ -5,7 +5,6 @@ import { IntlProvider } from "react-intl";
 
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import NAVChatBot from "@navikt/nav-chatbot";
 import withMenu from "./clients/apiMock/decorator/decorator-header-withmenu";
 import megamenu from "./clients/apiMock/decorator/decorator-megamenu";
 import footer from "./clients/apiMock/decorator/decorator-footer";
@@ -14,7 +13,6 @@ import skiplinks from "./clients/apiMock/decorator/decorator-skiplinks";
 import styles from "./clients/apiMock/decorator/decorator-styles";
 import { StoreProvider } from "./providers/Provider";
 import { initialState, reducer } from "./providers/Store";
-// import NAVChatBot from "@navikt/nav-chatbot";
 
 import msgsNb from "./language/nb";
 import msgsEn from "./language/en";
@@ -65,11 +63,6 @@ const init = async () => {
           <IntlProvider locale={defaultLang} messages={messages[defaultLang]}>
             <App />
           </IntlProvider>
-          <NAVChatBot
-            queueKey="Q_CHAT_BOT"
-            customerKey="41155"
-            configId={"c3372a51-6434-4770-a0aa-6e4edba3471e"}
-          />
         </ValidatorsProvider>
       </StoreProvider>
     ),
