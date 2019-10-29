@@ -1,4 +1,6 @@
 import { urls } from "../Config";
+import { AlertStripeFeil } from "nav-frontend-alertstriper";
+import React from "react";
 
 export default {
   "teknisk-problem":
@@ -214,11 +216,39 @@ export default {
   "tilbakemeldinger.feilogmangler.beskrivelse":
     "Har du oppdaget en feil på nav.no? Kanskje en teknisk feil, feil informasjon eller for lav grad av universell utforming? Da vil vi gjerne høre fra deg.",
   "tilbakemeldinger.feilogmangler.link": "Meld fra om feil og mangler",
+  "tilbakemeldinger.feilogmangler.form.tittel": "Feil og mangler",
+  "tilbakemeldinger.feilogmangler.form.veileder":
+    "Takk for at du sier ifra om feil og mangler.<br />" +
+    " Vi sørger for at meldingen kommer fram til riktig person.",
+  "tilbakemeldinger.feilogmangler.form.overskrift":
+    "Send inn feil og mangler på nav.no",
 
   "tilbakemeldinger.ros.tittel": "Ros til NAV",
   "tilbakemeldinger.ros.beskrivelse":
     "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
   "tilbakemeldinger.ros.link": "Gi ros til nav",
+
+  "validering.navn.pakrevd": "Navn er nødvendig",
+  "validering.epost.pakrevd": "E-post er nødvendig",
+  "validering.epost.gyldig": "Må være en gyldig e-postadresse",
+  "validering.tlf.pakrevd": "Telefonnummer er nødvendig",
+  "validering.feiltype.pakrevd":
+    "Du må velge hvilken type feil eller mangel du fant",
+  "validering.melding.pakrevd": "Melding er nødvendig",
+
+  "felter.navn.tittel": "Navn",
+  "felter.epost.tittel": "E-post",
+  "felter.tlf.tittel": "Telefon",
+  "felter.typefeil.tittel": "Hva slags feil eller mangel fant du?",
+  "felter.typefeil.tekniskfeil": "Teknisk feil",
+  "felter.typefeil.feilinformasjon": "Feil informasjon",
+  "felter.typefeil.uu": "Lav grad av universell utforming",
+  "felter.melding.tittel": "Skriv din tilbakemelding her",
+  "felter.melding.beskrivelse":
+    "Unngå sensitive personopplysninger, som f.eks eksempel opplysninger om helseforhold eller diagnoser",
+  "felter.noegikkgalt": "Oi! Noe gikk galt:",
+  "felter.send": "Send",
+  "felter.tilbake": "Tilbake",
 
   "seo.kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "seo.kontaktoss.description":

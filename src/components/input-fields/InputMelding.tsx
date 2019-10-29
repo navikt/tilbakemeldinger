@@ -1,5 +1,6 @@
 import { Textarea, TextareaProps } from "nav-frontend-skjema";
 import React, { SyntheticEvent, useState } from "react";
+import { FormattedMessage } from "react-intl";
 
 interface Props extends Omit<TextareaProps, "onChange"> {
   onChange: (value: string) => void;
@@ -15,8 +16,7 @@ const InputMelding = (props: Props) => {
     <>
       <div className={"skjema__legend"}>{label}</div>
       <div>
-        Unngå sensitive personopplysninger, som f.eks eksempel opplysninger om
-        helseforhold eller diagnoser
+        <FormattedMessage id={"felter.melding.beskrivelse"} />
       </div>
       <Textarea
         label={""}
