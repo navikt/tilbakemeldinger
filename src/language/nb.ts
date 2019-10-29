@@ -1,6 +1,4 @@
 import { urls } from "../Config";
-import { AlertStripeFeil } from "nav-frontend-alertstriper";
-import React from "react";
 
 export default {
   "teknisk-problem":
@@ -227,6 +225,11 @@ export default {
   "tilbakemeldinger.ros.beskrivelse":
     "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
   "tilbakemeldinger.ros.link": "Gi ros til nav",
+  "tilbakemeldinger.ros.form.tittel": "Ros til NAV",
+  "tilbakemeldinger.ros.form.overskrift": "Send inn ros til NAV",
+  "tilbakemeldinger.ros.form.veileder":
+    "Takk for at du vil dele din opplevelse med oss!<br />" +
+    "Vi sørger for at rosen kommer fram til riktig person.",
 
   "validering.navn.pakrevd": "Navn er nødvendig",
   "validering.epost.pakrevd": "E-post er nødvendig",
@@ -235,6 +238,8 @@ export default {
   "validering.feiltype.pakrevd":
     "Du må velge hvilken type feil eller mangel du fant",
   "validering.melding.pakrevd": "Melding er nødvendig",
+  "validering.hvemroses.pakrevd": "Du må velge hvem du skal gi ros til",
+  "validering.navkontor.pakrevd": "Du må velge NAV-kontor",
 
   "felter.navn.tittel": "Navn",
   "felter.epost.tittel": "E-post",
@@ -249,6 +254,13 @@ export default {
   "felter.noegikkgalt": "Oi! Noe gikk galt:",
   "felter.send": "Send",
   "felter.tilbake": "Tilbake",
+  "felter.hvemroses.tittel": "Hvem vil du gi ros til?",
+  "felter.hvemroses.navkontaktsenter": "NAV Kontaktsenter",
+  "felter.hvemroses.digitaletjenester": "NAVs digitale tjenester",
+  "felter.hvemroses.navkontor": "NAV-kontor",
+  "felter.hvemroses.navkontor.velg": "Velg NAV-kontor",
+  "felter.hvemroses.navkontor.skrivinn":
+    "Skriv inn navnet eller velg med piltast",
 
   "seo.kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "seo.kontaktoss.description":

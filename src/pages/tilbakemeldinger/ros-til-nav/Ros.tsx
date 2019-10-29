@@ -22,7 +22,7 @@ import { urls } from "Config";
 import Box from "../../../components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import MetaTags from "react-meta-tags";
-import { useIntl } from "react-intl";
+import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
 
@@ -58,22 +58,32 @@ const Ros = (props: RouteComponentProps) => {
 
   const formConfig = {
     navn: {
-      isRequired: "Navn er påkrevd"
+      isRequired: intl.formatMessage({
+        id: "validering.navn.pakrevd"
+      })
     },
     telefonnummer: {
-      isRequired: "Telefonnummer er påkrevd"
+      isRequired: intl.formatMessage({
+        id: "validering.tlf.pakrevd"
+      })
     },
     hvemRoses: {
-      isRequired: "Du må velge hvem du skal gi ros til"
+      isRequired: intl.formatMessage({
+        id: "validering.hvemroses.pakrevd"
+      })
     },
     melding: {
-      isRequired: "Melding er påkrevd"
+      isRequired: intl.formatMessage({
+        id: "validering.melding.pakrevd"
+      })
     }
   };
 
   const navKontorConfig = {
     navKontor: {
-      isRequired: "NAV-kontor er påkrevd"
+      isRequired: intl.formatMessage({
+        id: "validering.navkontor.pakrevd"
+      })
     }
   };
 
@@ -130,22 +140,28 @@ const Ros = (props: RouteComponentProps) => {
         />
       </MetaTags>
       <Tilbake to={urls.tilbakemeldinger.forside} />
-      <Header title="Ros til NAV" />
+      <Header
+        title={intl.formatMessage({ id: "tilbakemeldinger.ros.form.tittel" })}
+      />
       <div className="tb__veileder">
         <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-          Takk for at du vil dele din opplevelse med oss!
-          <br />
-          Vi sørger for at rosen kommer fram til riktig person.
+          <FormattedHTMLMessage id={"tilbakemeldinger.ros.form.veileder"} />
         </Veilederpanel>
       </div>
       <Form onSubmit={send}>
         <Validation config={formConfig}>
           {({ errors, fields, submitted, setField, isValid }) => {
             return (
-              <Box tittel={"Send inn ros til NAV"}>
+              <Box
+                tittel={intl.formatMessage({
+                  id: "tilbakemeldinger.ros.form.overskrift"
+                })}
+              >
                 <InputNavn
                   bredde={"L"}
-                  label={"Navn"}
+                  label={intl.formatMessage({
+                    id: "felter.navn.tittel"
+                  })}
                   value={fields.navn}
                   error={errors.navn}
                   onChange={v => setField({ navn: v })}
@@ -153,14 +169,18 @@ const Ros = (props: RouteComponentProps) => {
                 />
                 <InputTelefon
                   bredde={"S"}
-                  label={"Telefon"}
+                  label={intl.formatMessage({
+                    id: "felter.tlf.tittel"
+                  })}
                   value={fields.telefonnummer}
                   error={errors.telefonnummer}
                   onChange={v => setField({ telefonnummer: v })}
                   submitted={submitted}
                 />
                 <SkjemaGruppe
-                  title={"Hvem vil du gi ros til?"}
+                  title={intl.formatMessage({
+                    id: "felter.hvemroses.tittel"
+                  })}
                   feil={
                     submitted && errors.hvemRoses
                       ? { feilmelding: errors.hvemRoses }
@@ -168,7 +188,9 @@ const Ros = (props: RouteComponentProps) => {
                   }
                 >
                   <Radio
-                    label={"NAV Kontaktsenter"}
+                    label={intl.formatMessage({
+                      id: "felter.hvemroses.navkontaktsenter"
+                    })}
                     name={"NAV_KONTAKTSENTER"}
                     checked={fields.hvemRoses === "NAV_KONTAKTSENTER"}
                     onChange={() =>
@@ -176,7 +198,9 @@ const Ros = (props: RouteComponentProps) => {
                     }
                   />
                   <Radio
-                    label={"NAVs digitale tjenester"}
+                    label={intl.formatMessage({
+                      id: "felter.hvemroses.digitaletjenester"
+                    })}
                     name={"NAV_DIGITALE_LOSNINGER"}
                     checked={fields.hvemRoses === "NAV_DIGITALE_LOSNINGER"}
                     onChange={() =>
@@ -184,7 +208,9 @@ const Ros = (props: RouteComponentProps) => {
                     }
                   />
                   <Radio
-                    label={"NAV-kontor"}
+                    label={intl.formatMessage({
+                      id: "felter.hvemroses.navkontor"
+                    })}
                     name={"NAV_KONTOR"}
                     checked={fields.hvemRoses === "NAV_KONTOR"}
                     onChange={() => setField({ hvemRoses: "NAV_KONTOR" })}
@@ -195,13 +221,17 @@ const Ros = (props: RouteComponentProps) => {
                         return (
                           <div className="ros-til-nav__navkontor">
                             <div className="ros-til-nav__label">
-                              <Element>Velg NAV-kontor</Element>
+                              <Element>
+                                <FormattedMessage
+                                  id={"felter.hvemroses.navkontor.velg"}
+                                />
+                              </Element>
                             </div>
                             {enheter.status === "RESULT" ? (
                               <Select
-                                placeholder={
-                                  "Skriv inn navnet eller velg med piltast"
-                                }
+                                placeholder={intl.formatMessage({
+                                  id: "felter.hvemroses.navkontor.skrivinn"
+                                })}
                                 classNamePrefix={
                                   submitted && errors.navKontor
                                     ? "ros-til-nav-feil"
@@ -243,7 +273,9 @@ const Ros = (props: RouteComponentProps) => {
                 </SkjemaGruppe>
                 <div className="mellomrom">
                   <InputMelding
-                    label={"Skriv din tilbakemelding her"}
+                    label={intl.formatMessage({
+                      id: "felter.melding.tittel"
+                    })}
                     submitted={submitted}
                     value={fields.melding}
                     error={errors.melding}
@@ -252,7 +284,9 @@ const Ros = (props: RouteComponentProps) => {
                   />
                 </div>
                 {error && (
-                  <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>
+                  <AlertStripeFeil>
+                    <FormattedMessage id={"felter.noegikkgalt"} /> {error}
+                  </AlertStripeFeil>
                 )}
                 <div className="tb__knapper">
                   <div className="tb__knapp">
@@ -261,12 +295,18 @@ const Ros = (props: RouteComponentProps) => {
                       type={"standard"}
                       disabled={loading || (submitted && !isValid)}
                     >
-                      {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
+                      {loading ? (
+                        <NavFrontendSpinner type={"S"} />
+                      ) : (
+                        <FormattedMessage id={"felter.send"} />
+                      )}
                     </Knapp>
                   </div>
                   <div className="tb__knapp">
                     <Link to={urls.tilbakemeldinger.forside}>
-                      <Knapp type={"flat"}>Tilbake</Knapp>
+                      <Knapp type={"flat"}>
+                        <FormattedMessage id={"felter.tilbake"} />
+                      </Knapp>
                     </Link>
                   </div>
                 </div>

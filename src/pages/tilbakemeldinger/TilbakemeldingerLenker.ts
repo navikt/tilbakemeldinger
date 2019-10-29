@@ -32,6 +32,6 @@ export const lenker: Lenke[] = [
     tittel: "tilbakemeldinger.ros.tittel",
     beskrivelse: "tilbakemeldinger.ros.beskrivelse",
     lenke: urls.tilbakemeldinger.rostilnav,
-    lenkeTekst: "tilbakemeldinger.feilogmangler.link"
+    lenkeTekst: "tilbakemeldinger.ros.link"
   }
 ];
