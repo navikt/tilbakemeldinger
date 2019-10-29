@@ -9,7 +9,7 @@ import SosialeMedier from "./sections/SosialeMedier";
 import Tolketjenesten from "./sections/Toketjenesten";
 import Schema from "assets/schema.json";
 import MetaTags from "react-meta-tags";
-import { useIntl } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
@@ -31,15 +31,17 @@ const KontaktOssFrontpage = () => {
     <div className="pagecontent">
       <div className="frontpage">
         <MetaTags>
-          <title>{intl.messages["kontaktoss.tittel"]}</title>
+          <title>{intl.messages["seo.kontaktoss.urltittel"]}</title>
           <meta
             name="description"
-            content={intl.messages["kontaktoss.description"] as string}
+            content={intl.messages["seo.kontaktoss.description"] as string}
           />
         </MetaTags>
         <header className="frontpage__introduksjon">
           <div className="frontpage__sidetittel">
-            <Sidetittel>Kontakt oss</Sidetittel>
+            <Sidetittel>
+              <FormattedMessage id={"kontaktoss.tittel"} />
+            </Sidetittel>
           </div>
         </header>
         <UnderUtvikling />

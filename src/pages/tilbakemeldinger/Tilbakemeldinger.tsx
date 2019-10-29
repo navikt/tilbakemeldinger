@@ -13,10 +13,12 @@ const Tilbakemeldinger = () => {
     <>
       <div className="pagecontent">
         <MetaTags>
-          <title>{intl.messages["tilbakemeldinger.tittel"]}</title>
+          <title>{intl.messages["seo.tilbakemeldinger.tittel"]}</title>
           <meta
             name="description"
-            content={intl.messages["tilbakemeldinger.description"] as string}
+            content={
+              intl.messages["seo.tilbakemeldinger.description"] as string
+            }
           />
         </MetaTags>
         <Tilbake to={urls.forside} />

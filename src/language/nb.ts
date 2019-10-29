@@ -115,6 +115,7 @@ export default {
   "faq.utbetalingsoversikt": "Se dine utbetalinger og skattetrekk",
   "faq.saksoversikt": "Se status i saken min",
 
+  "kontaktoss.tittel": "Kontakt oss",
   "kontaktoss.chat.tittel": "Chat",
   "kontaktoss.chat.beskrivelse":
     "På chat kan vi ikke svare på saken din, men vi hjelper deg gjerne med generelle spørsmål.",
@@ -199,18 +200,18 @@ export default {
     "Du treffer oss på Facebook. Twitter, Linkedin, Instagram, og Youtube",
   "kontaktoss.sosialemedier.link": "Se hvor du finner oss",
 
-  "kontaktoss.tittel": "Kontakt oss - www.nav.no",
-  "kontaktoss.description":
+  "seo.kontaktoss.tittel": "Kontakt oss - www.nav.no",
+  "seo.kontaktoss.description":
     "Kontakt NAV via chat, skriv til oss, telefon eller sosiale medier. Finn ditt NAV-kontor, kontakt tolketjenesten, send klage eller tilbakemeldinger.",
-  "tilbakemeldinger.tittel": "T`ilbakemeldinger til NAV - www.nav.no",
-  "tilbakemeldinger.description":
+  "seo.tilbakemeldinger.tittel": "Tilbakemeldinger til NAV - www.nav.no",
+  "seo.tilbakemeldinger.description":
     "Her kan du gi tilbakemeldinger til NAV, klage eller anke på vedtak, service og melde fra om feil og mangler på nav.no. Du kan også gi oss ros om våre tjenester og medarbeidere.",
-  "rostilnav.tittel": "Ros til NAV - www.nav.no",
-  "rostilnav.description":
+  "seo.rostilnav.tittel": "Ros til NAV - www.nav.no",
+  "seo.rostilnav.description":
     "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
-  "feilogmangler.tittel": "Feil og mangler - www.nav.no",
-  "feilogmangler.description": "Meld fra om feil og mangler på nav.no",
-  "klagepaservice.tittel": "Klage på service - www.nav.no",
-  "klagepaservice.description":
+  "seo.feilogmangler.tittel": "Feil og mangler - www.nav.no",
+  "seo.feilogmangler.description": "Meld fra om feil og mangler på nav.no",
+  "seo.klagepaservice.tittel": "Klage på service - www.nav.no",
+  "seo.klagepaservice.description":
     "Send klage på service hos NAV. Hva gjelder tilbakemeldingen og hvem skriver du på vegne av?"
 };

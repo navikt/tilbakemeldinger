@@ -123,10 +123,10 @@ const Ros = (props: RouteComponentProps) => {
   return (
     <div className="pagecontent">
       <MetaTags>
-        <title>{intl.messages["rostilnav.tittel"]}</title>
+        <title>{intl.messages["seo.rostilnav.tittel"]}</title>
         <meta
           name="description"
-          content={intl.messages["rostilnav.description"] as string}
+          content={intl.messages["seo.rostilnav.description"] as string}
         />
       </MetaTags>
       <Tilbake to={urls.tilbakemeldinger.forside} />

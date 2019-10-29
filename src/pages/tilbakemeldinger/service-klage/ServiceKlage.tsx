@@ -136,10 +136,10 @@ const ServiceKlage = (props: RouteComponentProps) => {
     <>
       <div className="pagecontent">
         <MetaTags>
-          <title>{intl.messages["klagepaservice.tittel"]}</title>
+          <title>{intl.messages["seo.klagepaservice.tittel"]}</title>
           <meta
             name="description"
-            content={intl.messages["klagepaservice.description"] as string}
+            content={intl.messages["seo.klagepaservice.description"] as string}
           />
         </MetaTags>
         <Tilbake to={tilbakeTil} />

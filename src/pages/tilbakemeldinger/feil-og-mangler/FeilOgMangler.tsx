@@ -84,10 +84,10 @@ const FOM = (props: RouteComponentProps) => {
   return (
     <div className="pagecontent">
       <MetaTags>
-        <title>{intl.messages["feilogmangler.tittel"]}</title>
+        <title>{intl.messages["seo.feilogmangler.tittel"]}</title>
         <meta
           name="description"
-          content={intl.messages["feilogmangler.description"] as string}
+          content={intl.messages["seo.feilogmangler.description"] as string}
         />
       </MetaTags>
       <Tilbake to={urls.tilbakemeldinger.forside} />
