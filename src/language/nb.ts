@@ -183,6 +183,22 @@ export default {
     "Du kan klage hvis du har fått helt eller delvis avslag på søknaden din, og hvis du har hatt en negativ opplevelse i møte med NAV",
   "kontaktoss.klage.knapp": "Slik går du frem for å klage",
 
+  "kontaktoss.tolketjenesten.tittel": "Kontakt tolketjenesten",
+  "kontaktoss.tolketjenesten.link":
+    "Kontakt tolketjenesten for døve, døvblinde og hørselshemmede",
+  "kontaktoss.tolketjenesten.link.spraktolk":
+    "Språktolk til veiledningssamtaler",
+
+  "kontaktoss.tekniskfeil.tittel": "Kontakt tolketjenesten",
+  "kontaktoss.tekniskfeil.link.losselv": "Prøv å løse problemet selv",
+  "kontaktoss.tekniskfeil.link.meldifra": "Meld ifra om feil og mangler",
+  "kontaktoss.tekniskfeil.link.ring": "Ring teknisk brukerstøtte",
+
+  "kontaktoss.sosialemedier.tittel": "NAV i sosiale medier",
+  "kontaktoss.sosialemedier.beskrivelse":
+    "Du treffer oss på Facebook. Twitter, Linkedin, Instagram, og Youtube",
+  "kontaktoss.sosialemedier.link": "Se hvor du finner oss",
+
   "kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "kontaktoss.description":
     "Kontakt NAV via chat, skriv til oss, telefon eller sosiale medier. Finn ditt NAV-kontor, kontakt tolketjenesten, send klage eller tilbakemeldinger.",

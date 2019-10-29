@@ -3,6 +3,7 @@ import { Undertittel } from "nav-frontend-typografi";
 import VeilederIcon from "assets/Veileder.svg";
 import Box from "components/box/Box";
 import { urls } from "../../../Config";
+import { FormattedMessage } from "react-intl";
 const urlSosialeMedier = urls.sosialeMedier;
 /*
 import facebookIcon from "assets/icons/line/line-version-logo-facebook.svg";
@@ -15,10 +16,12 @@ import youtubeIcon from "assets/icons/line/line-version-logo-youtube-clip.svg";
 const SosialeMedier = () => (
   <Box icon={VeilederIcon}>
     <div className={"box__section-title"}>
-      <Undertittel className="box__title">NAV i sosiale medier</Undertittel>
+      <Undertittel className="box__title">
+        <FormattedMessage id={"kontaktoss.sosialemedier.tittel"} />
+      </Undertittel>
     </div>
     <div className={"box__section-description"}>
-      Du treffer oss på Facebook. Twitter, Linkedin, Instagram, og Youtube
+      <FormattedMessage id={"kontaktoss.sosialemedier.beskrivelse"} />
     </div>
     {/*
     <div>
@@ -31,7 +34,7 @@ const SosialeMedier = () => (
     */}
     <div className="faq__lenke">
       <a className="lenke" href={urlSosialeMedier}>
-        Se hvor du finner oss
+        <FormattedMessage id={"kontaktoss.sosialemedier.link"} />
       </a>
     </div>
   </Box>
