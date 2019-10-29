@@ -4,7 +4,6 @@ import FAQ from "./sections/FAQ";
 import LenkePanel from "./sections/LenkePanel";
 import SkrivTilOss from "./sections/SkrivTilOss";
 import UnderUtvikling from "../../components/veiledere/UnderUtvikling";
-import RingOss from "./sections/RingOss";
 import FeilOgMangler from "./sections/FeilOgMangler";
 import SosialeMedier from "./sections/SosialeMedier";
 import Tolketjenesten from "./sections/Toketjenesten";
@@ -47,9 +46,8 @@ const KontaktOssFrontpage = () => {
         <div className="frontpage__content">
           <FAQ />
           <SkrivTilOss />
-          <RingOss />
-          <Tolketjenesten />
           <LenkePanel />
+          <Tolketjenesten />
           <FeilOgMangler />
           <SosialeMedier />
         </div>

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Undertittel } from "nav-frontend-typografi";
-import VeilederIcon from "assets/Veileder.svg";
-import Box from "components/box/Box";
 import Lenke from "nav-frontend-lenker";
 import { NedChevron, OppChevron } from "nav-frontend-chevron";
 import { spesialnr, tastevalg } from "./RingOssData";
@@ -9,7 +7,7 @@ import { spesialnr, tastevalg } from "./RingOssData";
 const RingOss = () => {
   const [visNummer, settVisNummer] = useState(false);
   return (
-    <Box icon={VeilederIcon}>
+    <>
       <div className={"box__section"}>
         <div className={"box__section-title"}>
           <Undertittel className="box__title">Ring oss</Undertittel>
@@ -82,28 +80,30 @@ const RingOss = () => {
                 Ringer du på vegne av en annen?
               </Lenke>
             </div>
-            <div className={"ringoss__andre"}>
-              <Undertittel>Andre</Undertittel>
-            </div>
-            <div className={"faq__lenke"}>
-              <Lenke href={"#"} className={"faq__lenke"}>
-                Kontaktinformasjon for arbeidsgivere
-              </Lenke>
-            </div>
-            <div className={"faq__lenke"}>
-              <Lenke href={"#"} className={"faq__lenke"}>
-                Lege-/Behandlertelefonen
-              </Lenke>
-            </div>
-            <div className={"faq__lenke"}>
-              <Lenke href={"#"} className={"faq__lenke"}>
-                Pressekontakt
-              </Lenke>
-            </div>
+            {/*
+              <div className={"ringoss__andre"}>
+                <Undertittel>Andre</Undertittel>
+              </div>
+              <div className={"faq__lenke"}>
+                <Lenke href={"#"} className={"faq__lenke"}>
+                  Kontaktinformasjon for arbeidsgivere
+                </Lenke>
+              </div>
+              <div className={"faq__lenke"}>
+                <Lenke href={"#"} className={"faq__lenke"}>
+                  Lege-/Behandlertelefonen
+                </Lenke>
+              </div>
+              <div className={"faq__lenke"}>
+                <Lenke href={"#"} className={"faq__lenke"}>
+                  Pressekontakt
+                </Lenke>
+              </div>
+               */}
           </>
         )}
       </div>
-    </Box>
+    </>
   );
 };
 
