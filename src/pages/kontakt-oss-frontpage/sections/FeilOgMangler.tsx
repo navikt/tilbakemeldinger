@@ -4,13 +4,6 @@ import VeilederIcon from "assets/Veileder.svg";
 import Box from "components/box/Box";
 import { Link } from "react-router-dom";
 import { urls } from "../../../Config";
-import Environment from "../../../Environments";
-const { baseUrl } = Environment();
-
-const externalUrls = {
-  selvhjelp: `${baseUrl}/no/NAV+og+samfunn/Kontakt+NAV/Teknisk+brukerstotte/hjelp-til-personbruker?kap=398749`,
-  ring: `${baseUrl}/no/NAV+og+samfunn/Kontakt+NAV/Relatert+informasjon/kontakt-teknisk-brukerst%C3%B8tte-nav.no`
-};
 
 const FeilOgMangler = () => (
   <Box icon={VeilederIcon}>
@@ -21,7 +14,7 @@ const FeilOgMangler = () => (
     </div>
     <div className={"box__section-description"}>
       <div className="faq__lenke">
-        <a className="lenke" href={externalUrls.selvhjelp}>
+        <a className="lenke" href={urls.tekniskBrukerstotte.selvhjelp}>
           Prøv å løse problemet selv
         </a>
       </div>
@@ -31,7 +24,7 @@ const FeilOgMangler = () => (
         </Link>
       </div>
       <div className="faq__lenke">
-        <a className="lenke" href={externalUrls.ring}>
+        <a className="lenke" href={urls.tekniskBrukerstotte.ring}>
           Ring teknisk brukerstøtte
         </a>
       </div>

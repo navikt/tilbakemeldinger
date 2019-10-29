@@ -1,3 +1,5 @@
+import { urls } from "../../../Config";
+
 export interface Lenke {
   lenke: string;
   lenkeTekst: string;
@@ -9,7 +11,7 @@ export const lenkerFAQ: Lenke[] = [
     lenkeTekst: "Når kommer neste utbetaling?"
   },
   {
-    lenke: `https://www.nav.no/`,
+    lenke: urls.faq.postTilAnnenAdresse,
     lenkeTekst: "Hvordan kan jeg få post fra NAV til en annen adresse?"
   },
   {
@@ -20,7 +22,7 @@ export const lenkerFAQ: Lenke[] = [
 
 export const lenkerMinSide: Lenke[] = [
   {
-    lenke: `https://www.nav.no/`,
+    lenke: urls.faq.endreKontonummer,
     lenkeTekst: "Endre kontonummer"
   },
   {

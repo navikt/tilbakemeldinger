@@ -3,6 +3,7 @@ import { Undertittel } from "nav-frontend-typografi";
 import Lenke from "nav-frontend-lenker";
 import { NedChevron, OppChevron } from "nav-frontend-chevron";
 import { spesialnr, tastevalg } from "./RingOssData";
+import { urls } from "../../../Config";
 
 const RingOss = () => {
   const [visNummer, settVisNummer] = useState(false);
@@ -71,7 +72,7 @@ const RingOss = () => {
               </tbody>
             </table>
             <div className={"faq__lenke"}>
-              <Lenke href={"#"}>
+              <Lenke href={urls.veteraner}>
                 Råd og veiledning for veteraner fra Forsvaret
               </Lenke>
             </div>

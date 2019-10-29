@@ -1,6 +1,8 @@
 import React from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "assets/Veileder.svg";
+import Lenke from "nav-frontend-lenker";
+import { urls } from "../../Config";
 
 const UnderUtvikling = () => (
   <Veilederpanel
@@ -9,7 +11,11 @@ const UnderUtvikling = () => (
   >
     <b>Denne siden er under utvikling.</b>
     <br />
-    Kom gjerne tilbake senere!
+    <div className={"faq__lenke"}>
+      <Lenke href={urls.gamleKontaktOss}>
+        Gå til gamle de gamle kontakt-oss sidene
+      </Lenke>
+    </div>
   </Veilederpanel>
 );
 

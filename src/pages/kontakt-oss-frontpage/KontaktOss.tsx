@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Sidetittel } from "nav-frontend-typografi";
 import FAQ from "./sections/FAQ";
 import LenkePanel from "./sections/LenkePanel";
-import SkrivTilOss from "./sections/SkrivTilOss";
+import KontaktOss from "./sections/SkrivTilOss";
 import UnderUtvikling from "../../components/veiledere/UnderUtvikling";
 import FeilOgMangler from "./sections/FeilOgMangler";
 import SosialeMedier from "./sections/SosialeMedier";
@@ -45,7 +45,7 @@ const KontaktOssFrontpage = () => {
         <UnderUtvikling />
         <div className="frontpage__content">
           <FAQ />
-          <SkrivTilOss />
+          <KontaktOss />
           <LenkePanel />
           <Tolketjenesten />
           <FeilOgMangler />

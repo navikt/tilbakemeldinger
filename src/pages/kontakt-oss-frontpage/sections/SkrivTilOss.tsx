@@ -18,7 +18,7 @@ const SkrivTilOss = () => (
         generelle spørsmål.
       </div>
       <div className={"box__section-lenke"}>
-        <Lenke href={"https://www.nav.no"}>Chat</Lenke>
+        <Lenke href={urls.chat}>Chat</Lenke>
       </div>
     </div>
     <RingOss />
@@ -45,14 +45,12 @@ const SkrivTilOss = () => (
       </div>
       <div className={"box__section-description"}>
         Du har en aktivietsplan dersom du er{" "}
-        <Lenke className="lenke" href="www.nav.no">
-          registrert som arbeidssøker
-        </Lenke>
-        . Da kan du kontakte din veileder og be om et møte eller råd under
+        <Lenke href={urls.arbeidssoker}>registrert som arbeidssøker</Lenke>. Da
+        kan du kontakte din veileder og be om et møte eller råd under
         jobbsøkerprosessen. Svartiden varirerer.
       </div>
       <div className={"box__section-lenke"}>
-        <Lenke href={"https://www.nav.no"}>
+        <Lenke href={urls.aktivitetsplan}>
           Kontakt din veileder via aktivitetsplanen
         </Lenke>
       </div>
