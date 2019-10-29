@@ -18,7 +18,7 @@ const SkrivTilOss = () => (
         generelle spørsmål.
       </div>
       <div className={"box__section-lenke"}>
-        <Lenke href={urls.chat}>Chat</Lenke>
+        <Lenke href={urls.chat.forside}>Chat</Lenke>
       </div>
     </div>
     <RingOss />

@@ -27,7 +27,9 @@ import { urls, vars } from "./Config";
 
 import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOss";
 import SkrivTilOssRouter from "./pages/skriv-til-oss/SkrivTilOssRouter";
+
 import { getFeatureToggleStatus } from "./utils/unleash";
+import ChatSide from "./pages/chat/ChatSide";
 import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
 
 const App = () => {
@@ -93,6 +95,11 @@ const App = () => {
               exact={false}
               path={urls.skrivTilOss.forside}
               component={SkrivTilOssRouter}
+            />
+            <Route
+              exact={true}
+              path={urls.chat.forside}
+              component={ChatSide}
             />
             <Route
               exact={true}

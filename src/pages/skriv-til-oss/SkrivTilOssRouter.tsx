@@ -2,10 +2,11 @@ import React from "react";
 import { Route, Switch } from "react-router";
 import { urls } from "../../Config";
 
-import SkrivTilOssForside from "./pages/SkrivTilOssForside";
-import TemaArbeidssoker from "./pages/TemaArbeidssoker";
-import TemaFamilieOgBarn from "./pages/TemaFamilieOgBarn";
-import TemaHjelpemidler from "./pages/TemaHjelpemidler";
+import SkrivTilOssForside from "./sider/SkrivTilOssForside";
+import TemaArbeidssoker from "./sider/TemaArbeidssoker";
+import TemaFamilieOgBarn from "./sider/TemaFamilieOgBarn";
+import TemaHjelpemidler from "./sider/TemaHjelpemidler";
+import NotFound from "../404/404";
 
 const SkrivTilOssRouter = () => {
   return (
@@ -33,6 +34,9 @@ const SkrivTilOssRouter = () => {
         path={urls.skrivTilOss.hjelpemidler}
       >
         <TemaHjelpemidler />
+      </Route>
+      <Route>
+        <NotFound/>
       </Route>
     </Switch>
   );

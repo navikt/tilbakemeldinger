@@ -1,4 +1,6 @@
 import Environment from "./Environments";
+import { ChatTema } from "./types/chat";
+
 export const baseUrl = "/person/kontakt-oss";
 const { tjenesteUrl } = Environment();
 const navUrl = Environment().baseUrl;
@@ -23,6 +25,16 @@ export const urls = {
     pensjonist: "#",
     syk: "#",
     hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`
+  },
+  chat: {
+    forside: `${baseUrl}/chat`,
+    familie: `${baseUrl}/chat/familie`,
+    aap: `${baseUrl}/chat/aap`,
+    sosialhjelp: `${baseUrl}/chat/sosialhjelp`,
+    okonomi: `${baseUrl}/chat/okonomi`,
+  },
+  chatBotApi: {
+    sessionConfig: "https://api.puzzel.com/chat/v1/sessions",
   },
   facebook: "#",
   snapchat: "#",
@@ -56,7 +68,7 @@ export const urls = {
   finnDittNavKontor: `${navUrl}/person/personopplysninger`,
   gamleKontaktOss: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss`,
   sosialeMedier: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/kontakt-nav-p%C3%A5-facebook-eller-twitter`,
-  chat: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/chat-med-nav`,
+  chatMedNav: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/chat-med-nav`,
   tekniskBrukerstotte: {
     selvhjelp: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Teknisk+brukerstotte/hjelp-til-personbruker?kap=398749`,
     ring: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Relatert+informasjon/kontakt-teknisk-brukerst%C3%B8tte-nav.no`
@@ -73,5 +85,16 @@ export const vars = {
     langSvartidName: "kontakt-oss.skriv-til-oss.lang-svartid",
     tekniskProblemDefault: false,
     tekniskProblemName: "kontakt-oss.teknisk-problem"
+  },
+  chatBot: {
+    queueKeyBot: "Q_CHAT_BOT",
+    queueKeyHuman: "Q_CHAT_AGENT",
+    customerKey: "41155",
+    configIds: {
+      [ChatTema.AAP]: "7f6b-4569-81a1-27202c419953",
+      [ChatTema.Familie]: "c3372a51-6434-4770-a0aa-6e4edba3471e",
+      [ChatTema.Sosial]: "",
+      [ChatTema.Okonomi]: "",
+    }
   }
 };

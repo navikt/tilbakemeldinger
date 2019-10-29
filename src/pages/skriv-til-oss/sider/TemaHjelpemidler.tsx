@@ -1,10 +1,11 @@
 import React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
+import MetaTags from "react-meta-tags";
+
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
 import { urls } from "../../../Config";
-import { FormattedMessage, useIntl } from "react-intl";
-import MetaTags from "react-meta-tags";
 
 const Ingress = () => {
   const intl = useIntl();

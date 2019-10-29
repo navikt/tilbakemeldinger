@@ -15,6 +15,7 @@ const unleashMultipleToSingleCallback = (featureToggleName: string, callbackSing
 export const getFeatureToggleStatusMultiple = (featureToggleNames: Array<string>, callback: CallbackTypeMultiple) => {
   api.fetchUnleashFeatures(featureToggleNames)
     .then((features) => {
+      // @ts-ignore
       callback(features);
     })
     .catch((e: any) => {

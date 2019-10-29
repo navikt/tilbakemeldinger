@@ -13,7 +13,6 @@ import skiplinks from "./clients/apiMock/decorator/decorator-skiplinks";
 import styles from "./clients/apiMock/decorator/decorator-styles";
 import { StoreProvider } from "./providers/Provider";
 import { initialState, reducer } from "./providers/Store";
-// import NAVChatBot from "@navikt/nav-chatbot";
 
 import msgsNb from "./language/nb";
 import msgsEn from "./language/en";
@@ -56,14 +55,17 @@ const init = async () => {
       megamenu
     );
   }
+
   ReactDOM.render(
-    <StoreProvider initialState={initialState} reducer={reducer}>
-      <ValidatorsProvider validators={extraValidators as SimpleValidators}>
-        <IntlProvider locale={defaultLang} messages={messages[defaultLang]}>
-          <App />
-        </IntlProvider>
-      </ValidatorsProvider>
-    </StoreProvider>,
+    (
+      <StoreProvider initialState={initialState} reducer={reducer}>
+        <ValidatorsProvider validators={extraValidators as SimpleValidators}>
+          <IntlProvider locale={defaultLang} messages={messages[defaultLang]}>
+            <App />
+          </IntlProvider>
+        </ValidatorsProvider>
+      </StoreProvider>
+    ),
     document.getElementById("app")
   );
   serviceWorker.unregister();

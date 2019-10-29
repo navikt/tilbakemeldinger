@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { EtikettLiten, Normaltekst, Sidetittel } from "nav-frontend-typografi";
-import { LenkepanelData } from "../../types/lenker";
-import { useIntl, FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { vars } from "../../Config";
 import { Features, getFeatureToggleStatusMultiple } from "../../utils/unleash";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import AlertStripe from "nav-frontend-alertstriper";
+import { LenkepanelData } from "../../types/lenker";
 import SkrivTilOssLenkepanel from "./SkrivTilOssLenkepanel";
 
 const enabledName = vars.unleash.skrivTilOssEnabledName;
 const svartidName = vars.unleash.langSvartidName;
 const enabledDefault = vars.unleash.skrivTilOssEnabledDefault;
 const svartidDefault = vars.unleash.langSvartidDefault;
+
+const cssPrefix = "skriv-til-oss";
 
 type Props = {
   tittel: string;
@@ -56,38 +58,36 @@ const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
   if (!skrivTilOssEnabled) {
     return (
       <AlertStripe type="advarsel">
-        {"Tjenesten er dessverre ikke tilgjengelig."}
+        <FormattedMessage id={"skrivtiloss.disabled"}/>
       </AlertStripe>
     );
   }
 
-  return (
-    <div className="skriv-til-oss pagecontent">
-      <div className="skriv-til-oss__header">
-        <EtikettLiten>{"NAV privatperson"}</EtikettLiten>
+  return(
+    <div className={`${cssPrefix} pagecontent`}>
+      <div className={`${cssPrefix}__header`}>
+        <EtikettLiten>
+          <FormattedMessage id={"header.navperson"} />
+        </EtikettLiten>
         <Sidetittel>
           <FormattedMessage id={tittel} />
         </Sidetittel>
       </div>
-      <div className="skriv-til-oss__ingress">
-        <Normaltekst className="skriv-til-oss__svartid">
+      <div className={`${cssPrefix}__ingress`}>
+        <Normaltekst className={`${cssPrefix}__svartid`}>
           <FormattedMessage
             id={"skrivtiloss.svartid"}
             values={{ numDager: vars.svartidDager }}
           />
-          {langSvartid ? (
-            <FormattedMessage id={"skrivtiloss.svartid.lang"} />
-          ) : null}
+          {langSvartid && <FormattedMessage id={"skrivtiloss.svartid.lang"}/>}
         </Normaltekst>
         {children}
       </div>
-      {lenker ? (
-        <div className="skriv-til-oss__lenker">
-          {lenker.map(lenke => (
-            <SkrivTilOssLenkepanel lenkePanelData={lenke} key={lenke.tittel} />
-          ))}
+      { lenker && (
+        <div className={`${cssPrefix}__lenker`}>
+          {lenker.map(lenke => <SkrivTilOssLenkepanel lenkePanelData={lenke} key={lenke.tittel}/>)}
         </div>
-      ) : null}
+      )}
     </div>
   );
 };

@@ -1,7 +1,9 @@
 export default {
   "teknisk-problem":
     "Vi har for øyeblikket tekniske problemer med disse sidene.",
+  "header.navperson": "NAV privatperson",
 
+  "skrivtiloss.disabled": "Tjenesten er dessverre ikke tilgjengelig for øyeblikket.",
   "skrivtiloss.tittel": "Skriv til oss",
   "skrivtiloss.description":
     "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Normal svartid er 2 arbeidsdager.",
@@ -117,5 +119,49 @@ export default {
   "feilogmangler.description": "Meld fra om feil og mangler på nav.no",
   "klagepaservice.tittel": "Klage på service - www.nav.no",
   "klagepaservice.description":
-    "Send klage på service hos NAV. Hva gjelder tilbakemeldingen og hvem skriver du på vegne av?"
+    "Send klage på service hos NAV. Hva gjelder tilbakemeldingen og hvem skriver du på vegne av?",
+
+  "chat.forside.tittel": "Chat med oss",
+  "chat.forside.ingress": "NAV tilbyr chat på noen temaer. Vi svarer på generelle spørsmål, men vi har ikke mulighet" +
+    " til å gå inn i konkrete saker",
+
+  "chat.familie.lenke.tittel": "Chat om familie og barn",
+  "chat.familie.lenke.ingress": "Foreldrepenger, engangsstønad, kontantstøtte, barnebidrag og mye mer.",
+
+  "chat.aap.lenke.tittel": "Chat om arbeidsavklaringspenger (AAP)",
+  "chat.aap.lenke.ingress": "Arbeidsavklaringspenger og overgangen fra sykepenger til arbeidsavklaringspenger.",
+
+  "chat.sosialhjelp.lenke.tittel": "Chat om sosiale tjenester og økonomisk sosialhjelp",
+  "chat.sosialhjelp.lenke.ingress": "Aosiale tjenester og økonomisk sosialhjelp.",
+
+  "chat.okonomi.lenke.tittel": "Chat om økonomi og gjeldsrådgivning",
+  "chat.okonomi.lenke.ingress": "Budsjett, økonomi og gjeldsrådgivning.",
+
+  "chat.startknapp": "Start chat",
+  "chat.advarsel.personvern": "<p>Alle samtaler blir lagret anonymt i 6 måneder. Ikke oppgi navn, fødselsnummer eller" +
+    " sensitive opplysninger som helseforhold eller diagnoser.</p>",
+
+  "chat.familie.tittel": "Chat om familie og barn",
+  "chat.familie.ingressKort": "Foreldrepenger, engangsstønad, kontantstøtte, barnebidrag og mye mer.",
+  "chat.familie.ingress": "<p>Vi svarer på generelle spørsmål om foreldrepenger, engangsstønad, kontantstøtte," +
+    " barnebidrag og mye mer</p>" +
+    "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
+
+  "chat.aap.tittel": "Chat om arbeidsavklaringspenger (AAP)",
+  "chat.aap.ingressKort": "Arbeidsavklaringspenger og overgangen fra sykepenger til arbeidsavklaringspenger.",
+  "chat.aap.ingress": "<p>Vi svarer på generelle spørsmål om arbeidsavklaringspenger</p>",
+
+  "chat.sosialhjelp.tittel": "Chat om sosiale tjenester og økonomisk sosialhjelp",
+  "chat.sosialhjelp.ingressKort": "Sosiale tjenester og økonomisk sosialhjelp.",
+  "chat.sosialhjelp.ingress": "<p>Vi svarer på generelle spørsmål om sosiale tjenester og økonomisk sosialhjelp.</p>" +
+    "<p>Åpningstid: kl. 09.00 - 14.30 (mandag-fredag)</p>",
+
+  "chat.okonomi.tittel": "Chat om økonomi og gjeldsrådgivning",
+  "chat.okonomi.ingressKort": "Budsjett, økonomi og gjeldsrådgivning.",
+  "chat.okonomi.ingress": "<p>Vi svarer på generelle spørsmål om budsjett, økonomi og gjeldsrådgivning.</p>" +
+    "<p>Åpningstider:\n" +
+    "Mandag, tirsdag og onsdag kl. 10.00 - 15.00\n" +
+    "Torsdag kl. 10.00 - 14.30\n" +
+    "Fredag kl. 10.00 - 15.00</p>" +
+    "<p>Du kan også ringe NAV Gjeldsrådgivning på tlf. 55 55 33 39 alle hverdager mellom klokken 09.00 og 15.00</p>",
 };
