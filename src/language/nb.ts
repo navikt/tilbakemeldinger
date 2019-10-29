@@ -6,42 +6,42 @@ export default {
   "skrivtiloss.description":
     "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Normal svartid er 2 arbeidsdager.",
   "skrivtiloss.svartid":
-    "Hvis du har sendt beskjed til NAV, er normal svartid {numDager} arbeidsdager.",
+    "Du kan sende oss spørsmål eller informasjon om saken din. Du får normalt svar innen to arbeidsdager.",
   "skrivtiloss.svartid.lang":
     " På grunn av stor pågang kan svartid for tiden være noe lengre. Vi beklager dette.",
   "skrivtiloss.ingress":
-    "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Du kan for" +
-    " eksempel sende beskjed om endringer i inntekt, familiesituasjon, jobbsituasjon eller opphold i utlandet som" +
-    " kan ha betydning for beløpet du får utbetalt fra NAV.",
+    "Du må skrive til oss på norsk eller engelsk. Du kan ikke kontakte oss på vegne av andre. Det gjelder også" +
+    " fullmektig og verge.",
 
   "skrivtiloss.arbeidssoker.lenke.tittel": "Arbeidssøker",
   "skrivtiloss.arbeidssoker.lenke.ingress":
-    "Du kan gi beskjed om endringer i saken din om sykepenger, dagpenger, arbeidsavklaringspenger," +
-    " tiltakspenger, yrkesskade/ménerstatning eller lignende. Hvis du har en aktivitetsplan, kan du stille spørsmål" +
-    " som gjelder oppfølging mot arbeid direkte til veilederen ved NAV-kontoret.",
-
-  "skrivtiloss.familieogbarn.lenke.tittel": "Familie og barn",
-  "skrivtiloss.familieogbarn.lenke.ingress":
-    "Du kan gi beskjed om endringer i saken din om overgangsstønad, kontantstøtte, barnetrygd, foreldrepenger," +
-    " barnebidrag og svangerskapspenger. Det kan for eksempel være beskjed om endret sivilstatus, inntekt," +
-    " barnehageplass og lignende. Du kan også be om utsettelse på å ettersende dokumenter i forbindelse med en søknad.",
-
-  "skrivtiloss.pensjonist.lenke.tittel": "Pensjonist",
-  "skrivtiloss.pensjonist.lenke.ingress":
-    "Du kan sende oss nye opplysninger som påvirker din sak om alderpensjon, barnepensjon, etterlattepensjon" +
-    " og krigspensjon. For eksempel endring i inntekt eller jobbsituasjon. Ønsker du å registerer frivillig/ekstra" +
-    " skattetrekk kan du gjøre det selv i Din pensjon under din profil.",
+    "Dagpenger, arbeidsavklaringspenger, tiltakspenger, yrkesskade/ménerstatning, hjelp og veiledning for å komme i" +
+    " arbeid og aktivitet, med mer.",
 
   "skrivtiloss.syk.lenke.tittel": "Syk",
   "skrivtiloss.syk.lenke.ingress":
-    "Du kan gi beskjed om endinger i saken din om sykepenger, dagpenger, arbeidsavklaringspenger," +
-    " tiltakspenger, yrkesskade/ménerstatning eller lignende. Hvis du har en aktivitetsplan, kan du stille spørsmål" +
-    " som gjelder oppfølging mot arbeid direkte til veilederen ved NAV-kontoret.",
+    "Sykemeldt, sykepenger, arbeidsavklaringspenger, pleiepenger, yrkesskade/ménerstatning, hjelp og veiledning for å" +
+    " komme i arbeid og aktivitet, med mer.",
+
+  "skrivtiloss.familieogbarn.lenke.tittel": "Familie og barn",
+  "skrivtiloss.familieogbarn.lenke.ingress":
+    "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag og pleiepenger med mer.",
+
+  "skrivtiloss.pensjonist.lenke.tittel": "Pensjonist",
+  "skrivtiloss.pensjonist.lenke.ingress":
+    "Alderspensjon, barnepensjon, etterlattepensjon og krigspensjon med mer.",
+
+  "skrivtiloss.ufor.lenke.tittel": "Ufør",
+  "skrivtiloss.ufor.lenke.ingress":
+    "Uføretrygd, barnetillegg og gjenlevendetillegg med mer.",
 
   "skrivtiloss.hjelpemidler.lenke.tittel": "Hjelpemidler",
   "skrivtiloss.hjelpemidler.lenke.ingress":
-    "Gjelder spørsmål eller opplysninger som tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk," +
-    " tilrettelegging og tilpasning.",
+    "Tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk, tilrettelegging og tilpasning.",
+
+  "skrivtiloss.sosial.lenke.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
+  "skrivtiloss.sosial.lenke.ingress":
+    "Ring 55 55 33 33 for å gi informasjon om saken din. For generelle spørsmål kan du chatte med oss.",
 
   "arbeidssoker.tittel": "Skriv til oss om arbeid",
   "arbeidssoker.description":
@@ -64,6 +64,20 @@ export default {
   "arbeidssoker.lenke.snapchat.ingress":
     "Legg til navjobblyst på Snapchat og se hverdagen til unge som kommer i jobb.",
 
+  "syk.tittel": "Syk",
+  "syk.description":
+    "",
+  "syk.infotekst":
+    "",
+  "syk.lenke.skrivtiloss.tittel":
+    "Skriv til oss",
+  "syk.lenke.skrivtiloss.ingress":
+    "Du kan ikke sende e-post til oss, men du kan sende spørsmål eller informasjon om saken din ved å logge inn på" +
+    " Ditt NAV. Du får svar innen to arbeidsdager.",
+  "syk.lenke.veileder.tittel": "Kontakt til veileder",
+  "syk.lenke.veileder.ingress":
+    "Hvis du er registrert som arbeidssøker, kan du skrive direkte til veilederen din.",
+
   "familieogbarn.tittel": "Skriv til oss om familie",
   "familieogbarn.description":
     "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. " +
@@ -79,10 +93,7 @@ export default {
   "hjelpemidler.tittel": "Skriv til oss om hjelpemidler",
   "hjelpemidler.description":
     "Send spørsmål eller opplysninger om tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk, tilrettelegging og tilpasning.",
-  "hjelpemidler.infotekst":
-    "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Du kan for" +
-    " eksempel sende beskjed om endringer i inntekt, familiesituasjon, jobbsituasjon eller opphold i utlandet som" +
-    " kan ha betydning for beløpet du får utbetalt fra NAV.",
+  "hjelpemidler.infotekst": " ",
   "hjelpemidler.lenke.generelt.tittel": "Generelle spørsmål",
   "hjelpemidler.lenke.generelt.ingress":
     "Gjelder spørsmål om hjelpemidler eller tiltak som bidrar til å reduserer praktiske problemer for personer" +
@@ -90,11 +101,14 @@ export default {
   "hjelpemidler.lenke.skrivtiloss.tittel": "Skriv til oss",
   "hjelpemidler.lenke.skrivtiloss.ingress":
     "Du kan sende oss nye opplysninger knyttet til saken din om høreapparat, parykk, protese, ortose eller" +
-    " ortopediske fottøy. For informasjon og veiledning om hjelpemidlene kan du ringe oss på telefon 55 55 33 33.",
+    " ortopediske fottøy.",
   "hjelpemidler.lenke.bil.tittel": "Spørsmål om bil og spesialutstyr til bil",
   "hjelpemidler.lenke.bil.ingress":
     "Gjelder spørsmål eller opplysninger om bil og transport for personer med varig nedsatt funksjonsevne som" +
     " ikke kan bruke offentlig transport til arbeid, skole eller i dagliglivet.",
+  "hjelpemidler.lenke.tolk.tittel": "Tegnspråktolk",
+  "hjelpemidler.lenke.tolk.ingress":
+    "Gjelder det bestilling av tolketjenester, send e-post eller sms til den lokale tolketjenesten din.",
 
   "skrivtiloss.temalenke.chat.tittel": "Chat",
   "skrivtiloss.temalenke.chat.ingress":

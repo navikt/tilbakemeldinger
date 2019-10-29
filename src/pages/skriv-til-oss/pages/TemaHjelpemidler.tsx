@@ -42,7 +42,13 @@ const lenker: LenkepanelData[] = [
     ingress: <FormattedMessage id={"hjelpemidler.lenke.bil.ingress"} />,
     url: urls.temaHjelpemidler.bil,
     external: false
-  }
+  },
+  {
+    tittel: "hjelpemidler.lenke.tolk.tittel",
+    ingress: <FormattedMessage id={"hjelpemidler.lenke.tolk.ingress"} />,
+    url: urls.temaHjelpemidler.tolk,
+    external: false
+  },
 ];
 
 const TemaHjelpemidler = () => (
