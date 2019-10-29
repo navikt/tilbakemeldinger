@@ -43,7 +43,7 @@ export const urls = {
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
   faq: {
     endreKontonummer: `${navUrl}/person/personopplysninger`,
-    postTilAnnenAdresse: `${navUrl}/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/vil-du-ha-post-fra-nav-til-en-annen-adresse`
+    postTilAnnenAdresse: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/vil-du-ha-post-fra-nav-til-en-annen-adresse`
   },
   veteraner: `${navUrl}/veteraner`,
   arbeidssoker: `${tjenesteUrl}/veiledearbeidssoker/mistet-jobben/registrering-arbeidssoker`,
