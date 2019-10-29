@@ -29,10 +29,10 @@ const Tilbakemeldinger = () => {
           <LinkBox
             key={lenke.tittel}
             id={lenke.tittel}
-            tittel={lenke.tittel}
-            beskrivelse={lenke.beskrivelse}
+            tittel={intl.messages[lenke.tittel] as string}
+            beskrivelse={intl.messages[lenke.beskrivelse] as string}
             to={lenke.lenke}
-            lenkeTekst={lenke.lenkeTekst}
+            lenkeTekst={intl.messages[lenke.lenkeTekst] as string}
             external={lenke.external}
           />
         ))}

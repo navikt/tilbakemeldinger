@@ -8,6 +8,7 @@ export const urls = {
   forside: baseUrl,
   tilbakemeldinger: {
     forside: `${baseUrl}/tilbakemeldinger`,
+    klagepavedtak: `${navUrl}/no/Person/Skjemaer-for-privatpersoner/klage-pa-vedtak`,
     serviceklage: {
       form: `${baseUrl}/tilbakemeldinger/serviceklage`,
       login: `${baseUrl}/tilbakemeldinger/serviceklage/login`

@@ -200,6 +200,26 @@ export default {
     "Du treffer oss på Facebook. Twitter, Linkedin, Instagram, og Youtube",
   "kontaktoss.sosialemedier.link": "Se hvor du finner oss",
 
+  "tilbakemeldinger.klageanke.tittel": "Klage eller anke på vedtak",
+  "tilbakemeldinger.klageanke.beskrivelse":
+    "Har du fått helt eller delvis avslag på søknaden din, kan du klage på avslaget. Får du ikke medhold i klagen din i NAV, kan du med noen unntak anke til Trygderetten.",
+  "tilbakemeldinger.klageanke.link": "Send klage eller anke på vedtak",
+
+  "tilbakemeldinger.serviceklage.tittel": "Klage på service",
+  "tilbakemeldinger.serviceklage.beskrivelse":
+    "Har du blitt møtt på en dårlig måte? Eller hatt en annen negativ opplevelse i møte med NAV?",
+  "tilbakemeldinger.serviceklage.link": "Send tilbakemelding på service",
+
+  "tilbakemeldinger.feilogmangler.tittel": "Feil og mangler på nav.no",
+  "tilbakemeldinger.feilogmangler.beskrivelse":
+    "Har du oppdaget en feil på nav.no? Kanskje en teknisk feil, feil informasjon eller for lav grad av universell utforming? Da vil vi gjerne høre fra deg.",
+  "tilbakemeldinger.feilogmangler.link": "Meld fra om feil og mangler",
+
+  "tilbakemeldinger.ros.tittel": "Ros til NAV",
+  "tilbakemeldinger.ros.beskrivelse":
+    "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
+  "tilbakemeldinger.ros.link": "Gi ros til nav",
+
   "seo.kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "seo.kontaktoss.description":
     "Kontakt NAV via chat, skriv til oss, telefon eller sosiale medier. Finn ditt NAV-kontor, kontakt tolketjenesten, send klage eller tilbakemeldinger.",
