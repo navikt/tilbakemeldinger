@@ -5,7 +5,8 @@ import { vars } from "../../Config";
 import { Features, getFeatureToggleStatusMultiple } from "../../utils/unleash";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import AlertStripe from "nav-frontend-alertstriper";
-import SkrivTilOssLenkepanel, { LenkepanelData } from "./SkrivTilOssLenkepanel";
+import { LenkepanelData } from "../../types/lenker";
+import SkrivTilOssLenkepanel from "./SkrivTilOssLenkepanel";
 
 const enabledName = vars.unleash.skrivTilOssEnabledName;
 const svartidName = vars.unleash.langSvartidName;
