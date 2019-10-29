@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { EtikettLiten, Normaltekst, Sidetittel } from "nav-frontend-typografi";
 import { FormattedMessage, useIntl } from "react-intl";
 import { vars } from "../../Config";
@@ -17,11 +17,11 @@ const cssPrefix = "skriv-til-oss";
 
 type Props = {
   tittel: string;
-  ingress: ReactNode;
+  children: JSX.Element;
   lenker?: Array<LenkepanelData>;
 };
 
-const SkrivTilOssBase = ({tittel, ingress, lenker}: Props) => {
+const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
   const documentTitle = `${useIntl().formatMessage({
     id: tittel
   })} - www.nav.no`;
@@ -74,22 +74,20 @@ const SkrivTilOssBase = ({tittel, ingress, lenker}: Props) => {
         </Sidetittel>
       </div>
       <div className={`${cssPrefix}__ingress`}>
-        <Normaltekst>
+        <Normaltekst className={`${cssPrefix}__svartid`}>
           <FormattedMessage
             id={"skrivtiloss.svartid"}
             values={{ numDager: vars.svartidDager }}
           />
           {langSvartid && <FormattedMessage id={"skrivtiloss.svartid.lang"}/>}
         </Normaltekst>
-        {ingress}
+        {children}
       </div>
-      { lenker &&
-      (
+      { lenker && (
         <div className={`${cssPrefix}__lenker`}>
           {lenker.map(lenke => <SkrivTilOssLenkepanel lenkePanelData={lenke} key={lenke.tittel}/>)}
         </div>
-      )
-      }
+      )}
     </div>
   );
 };

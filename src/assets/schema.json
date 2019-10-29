@@ -1,0 +1,75 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://nav.no/#organization",
+  "name": "Arbeids og velferdsetaten",
+  "legalName": "Arbeids og velferdsetaten",
+  "url": "https://nav.no/",
+  "logo": "https://www.nav.no/_public/beta.nav.no/images/logo.png?_ts=1512923c9b0",
+  "foundingDate": "2006",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "name": "Personbruker",
+      "telephone": "+47 55 55 33 33",
+      "openingHours": "Mo-Fr 08:00-15:30",
+      "contactType": "customer support",
+      "availableLanguage": ["NO", "EN"]
+    },
+    {
+      "@type": "ContactPoint",
+      "name": "Pensjon",
+      "telephone": "+47 55 55 33 34",
+      "openingHours": "Mo-Fr 08:00-15:30",
+      "contactType": "customer support",
+      "availableLanguage": ["EN", "NO"]
+    },
+    {
+      "@type": "ContactPoint",
+      "name": "Hjelpemidler",
+      "telephone": "+47 55 55 33 35",
+      "openingHours": "Mo-Fr 08:00-15:30",
+      "contactType": "customer support",
+      "availableLanguage": ["NO", "EN"]
+    },
+    {
+      "@type": "ContactPoint",
+      "name": "Teknisk brukerstøtte/Eures/Gjeldsrådgivning",
+      "telephone": "+47 55 55 33 39",
+      "openingHours": "Mo-Fr 08:00-15:30",
+      "contactType": "technical support",
+      "availableLanguage": ["NO", "EN"]
+    },
+    {
+      "@type": "ContactPoint",
+      "name": "Internasjonalt",
+      "telephone": "+47 21 07 37 00",
+      "openingHours": "Mo-Fr 08:00-15:30",
+      "contactType": "customer support",
+      "availableLanguage": ["NO", "EN"],
+      "areaServed": "Worldwide"
+    },
+    {
+      "@type": "ContactPoint",
+      "name": "Lønnsgaranti",
+      "telephone": "+47 22 82 20 00",
+      "openingHours": "Mo-Fr 08:00-15:30",
+      "contactType": "customer support",
+      "availableLanguage": ["NO", "EN"]
+    }
+  ],
+  "sameAs": [
+    "https://no.wikipedia.org/wiki/NAV",
+    "https://arbeidsplassen.nav.no",
+    "http://navlab.no/",
+    "https://www.detsombetyrnoe.no/",
+    "https://www.facebook.com/navforeldrepenger",
+    "https://www.facebook.com/DeterdinPensjon/",
+    "https://www.facebook.com/navjobblyst",
+    "https://twitter.com/navnorge",
+    "https://www.linkedin.com/company/nav/",
+    "https://www.instagram.com/jobbmesse/",
+    "https://www.youtube.com/user/NAVnorge",
+    "https://github.com/navikt"
+  ]
+}

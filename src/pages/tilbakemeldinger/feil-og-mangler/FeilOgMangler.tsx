@@ -16,41 +16,51 @@ import Header from "../../../components/header/Header";
 import { urls } from "Config";
 import Box from "../../../components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
+import InputField from "../../../components/input-fields/InputField";
+import { useIntl } from "react-intl";
+import MetaTags from "react-meta-tags";
 
 export interface OutboundFeilOgMangler {
   navn: string;
   telefonnummer: string;
+  epost: string;
   feiltype: string;
   melding: string;
 }
 
 const FOM = (props: RouteComponentProps) => {
-  document.title = "Feil og mangler - www.nav.no";
   const [loading, settLoading] = useState(false);
   const [error, settError] = useState();
+  const intl = useIntl();
 
   const formConfig = {
     navn: {
-      isRequired: "Navn er påkrevd"
+      isRequired: "Navn er nødvendig"
+    },
+    epost: {
+      isRequired: "E-post er nødvendig",
+      isEmail: "Må være en gyldig e-postadresse"
     },
     telefonnummer: {
-      isRequired: "Telefonnummer er påkrevd"
+      isRequired: "Telefonnummer er nødvendig"
     },
     feiltype: {
       isRequired: "Du må velge hvilken type feil eller mangel du fant"
     },
     melding: {
-      isRequired: "Melding er påkrevd"
+      isRequired: "Melding er nødvendig"
     }
   };
 
   const send = (e: FormContext) => {
     const { isValid, fields } = e;
     const { navn, telefonnummer, feiltype, melding } = fields;
+    const { epost } = fields;
 
     if (isValid) {
       const outbound = {
         navn,
+        epost,
         telefonnummer,
         feiltype,
         melding
@@ -73,6 +83,13 @@ const FOM = (props: RouteComponentProps) => {
 
   return (
     <div className="pagecontent">
+      <MetaTags>
+        <title>{intl.messages["feilogmangler.tittel"]}</title>
+        <meta
+          name="description"
+          content={intl.messages["feilogmangler.description"] as string}
+        />
+      </MetaTags>
       <Tilbake to={urls.tilbakemeldinger.forside} />
       <Header title="Feil og mangler" />
       <div className={"tb__veileder"}>
@@ -92,6 +109,14 @@ const FOM = (props: RouteComponentProps) => {
               error={errors.navn}
               onChange={v => setField({ navn: v })}
               submitted={submitted}
+            />
+            <InputField
+              bredde={"L"}
+              label={"E-post"}
+              value={fields.epost}
+              error={errors.epost}
+              submitted={submitted}
+              onChange={v => setField({ epost: v })}
             />
             <InputTelefon
               bredde={"S"}
@@ -130,7 +155,7 @@ const FOM = (props: RouteComponentProps) => {
             </SkjemaGruppe>
             <div className="mellomrom">
               <InputMelding
-                label={"Melding til NAV"}
+                label={"Skriv din tilbakemelding her"}
                 submitted={submitted}
                 value={fields.melding}
                 error={errors.melding}

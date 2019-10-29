@@ -1,6 +1,6 @@
 {
   "name": "tilbakemeldinger",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "private": true,
   "author": "NAV",
   "license": "MIT",
@@ -65,6 +65,7 @@
     "react-collapse": "^5.0.0",
     "react-dom": "^16.10.1",
     "react-intl": "^3.3.2",
+    "react-meta-tags": "^0.7.4",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
     "react-select": "^3.0.7",

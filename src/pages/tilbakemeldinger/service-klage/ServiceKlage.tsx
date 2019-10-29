@@ -34,17 +34,18 @@ import Header from "components/header/Header";
 import { urls } from "Config";
 import Box from "../../../components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
+import { useIntl } from "react-intl";
+import MetaTags from "react-meta-tags";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageType &
   OutboundServiceKlageExtend;
 
 const ServiceKlage = (props: RouteComponentProps) => {
-  document.title = "Klage på service - www.nav.no";
-
   const [{ auth }] = useStore();
   const [loading, settLoading] = useState(false);
   const [error, settError] = useState();
+  const intl = useIntl();
 
   const send = (e: FormContext) => {
     const { isValid, fields } = e;
@@ -134,6 +135,13 @@ const ServiceKlage = (props: RouteComponentProps) => {
   return (
     <>
       <div className="pagecontent">
+        <MetaTags>
+          <title>{intl.messages["klagepaservice.tittel"]}</title>
+          <meta
+            name="description"
+            content={intl.messages["klagepaservice.description"] as string}
+          />
+        </MetaTags>
         <Tilbake to={tilbakeTil} />
         <Header title="Klage på service" />
         <div className={"tb__veileder"}>
@@ -386,7 +394,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                     </SkjemaGruppe>
                     <div className="serviceKlage__melding">
                       <InputMelding
-                        label={"Melding til NAV"}
+                        label={"Skriv din tilbakemelding her"}
                         submitted={submitted}
                         value={fields.melding}
                         error={errors.melding}

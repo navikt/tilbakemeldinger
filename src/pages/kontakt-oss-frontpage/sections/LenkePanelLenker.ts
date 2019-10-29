@@ -1,7 +1,4 @@
-import Environment from "Environments";
 import { urls } from "Config";
-
-const { baseUrl } = Environment();
 
 export default [
   {
@@ -10,7 +7,7 @@ export default [
     tittel: "Finn ditt NAV-kontor",
     beskrivelse: `På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.`,
     lenkeTekst: "Finn adressen (du må logge inn)",
-    url: `${baseUrl}/person/personopplysninger`
+    url: urls.finnDittNavKontor
   },
   {
     id: "klage-og-tilbakemeldinger",
