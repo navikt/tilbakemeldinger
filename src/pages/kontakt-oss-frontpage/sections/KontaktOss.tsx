@@ -20,9 +20,9 @@ const SkrivTilOss = () => (
         <FormattedMessage id={"kontaktoss.chat.beskrivelse"} />
       </div>
       <div className={"box__section-lenke"}>
-        <Lenke href={urls.chat.forside}>
+        <Link to={urls.chat.forside}>
           <FormattedMessage id={"kontaktoss.chat.knapp"} />
-        </Lenke>
+        </Link>
       </div>
     </div>
     <RingOss />
