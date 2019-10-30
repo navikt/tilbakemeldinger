@@ -48,7 +48,7 @@ const lenker: LenkepanelData[] = [
     ingress: <FormattedMessage id={"skrivtiloss.temalenke.facebook.ingress"} />,
     url: urls.facebook,
     external: true
-  },
+  }
 ];
 
 const TemaFamilieOgBarn = () => (

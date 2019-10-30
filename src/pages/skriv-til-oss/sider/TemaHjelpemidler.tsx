@@ -49,7 +49,7 @@ const lenker: LenkepanelData[] = [
     ingress: <FormattedMessage id={"hjelpemidler.lenke.tolk.ingress"} />,
     url: urls.temaHjelpemidler.tolk,
     external: false
-  },
+  }
 ];
 
 const TemaHjelpemidler = () => (

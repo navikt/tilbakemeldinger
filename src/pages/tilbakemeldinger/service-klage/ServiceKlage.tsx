@@ -21,7 +21,7 @@ import Header from "components/header/Header";
 import { urls } from "Config";
 import Box from "../../../components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
-import { FormattedMessage, useIntl } from "react-intl";
+import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
 import ServiceKlagePrivatperson from "./ServicecKlagePrivatperson";
 import ServiceKlageForAnnenPerson from "./ServicecKlageAnnenPerson";
@@ -157,7 +157,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
         />
         <div className={"tb__veileder"}>
           <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-            <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
+            <FormattedHTMLMessage id="tilbakemeldinger.serviceklage.form.veileder" />
           </Veilederpanel>
         </div>
         <Form onSubmit={send}>

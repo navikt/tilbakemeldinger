@@ -57,15 +57,13 @@ const init = async () => {
   }
 
   ReactDOM.render(
-    (
-      <StoreProvider initialState={initialState} reducer={reducer}>
-        <ValidatorsProvider validators={extraValidators as SimpleValidators}>
-          <IntlProvider locale={defaultLang} messages={messages[defaultLang]}>
-            <App />
-          </IntlProvider>
-        </ValidatorsProvider>
-      </StoreProvider>
-    ),
+    <StoreProvider initialState={initialState} reducer={reducer}>
+      <ValidatorsProvider validators={extraValidators as SimpleValidators}>
+        <IntlProvider locale={defaultLang} messages={messages[defaultLang]}>
+          <App />
+        </IntlProvider>
+      </ValidatorsProvider>
+    </StoreProvider>,
     document.getElementById("app")
   );
   serviceWorker.unregister();
