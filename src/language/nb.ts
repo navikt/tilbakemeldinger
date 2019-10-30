@@ -406,6 +406,6 @@ export default {
     "Fredag kl. 10.00 - 15.00</p>" +
     "<p>Du kan også ringe NAV Gjeldsrådgivning på tlf. 55 55 33 39 alle hverdager mellom klokken 09.00 og 15.00</p>",
 
-  "takk.melding": "Takk for at du sendte en tilbakemelding",
+  "takk.melding": "Meldingen din er sendt",
   "takk.knapp": "Gå til nav.no"
 };
