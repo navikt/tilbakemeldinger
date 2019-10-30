@@ -9,15 +9,17 @@ const ServiceKlageForAnnenPerson = () => {
   const intl = useIntl();
   const annenPersFormConfig = {
     innmelderNavn: {
-      isRequired: "Navn er påkrevd"
+      isRequired: intl.formatMessage({ id: "validering.navn.pakrevd" })
     },
     paaVegneAvNavn: {
-      isRequired: "Navn er påkrevd"
+      isRequired: intl.formatMessage({ id: "validering.navn.pakrevd" })
     },
     paaVegneAvFodselsnr: {
-      isRequired: "Fødselsnummer er påkrevd",
+      isRequired: intl.formatMessage({ id: "validering.fodselsnr.pakrevd" }),
       isExactLength: {
-        message: "Fødselsnummer må være 11 siffer",
+        message: intl.formatMessage({
+          id: "validering.fodselsnr.korrektsiffer"
+        }),
         length: 11
       }
     },

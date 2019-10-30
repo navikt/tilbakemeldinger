@@ -8,7 +8,7 @@ const ServiceKlageForBedrift = () => {
   const intl = useIntl();
   const bedriftFormConfig = {
     innmelderNavn: {
-      isRequired: "Navn er påkrevd"
+      isRequired: intl.formatMessage({ id: "validering.navn.pakrevd" })
     },
     orgNavn: {
       isRequired: "Organisasjonsnavn er påkrevd"

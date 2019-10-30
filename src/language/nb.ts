@@ -249,6 +249,8 @@ export default {
     "Du må velge hvem tilbakemeldingen er på vegne av",
   "validering.oenskerkontakt.pakrevd":
     "Du må velge om du ønsker at vi tar kontakt",
+  "validering.fodselsnr.pakrevd": "Fødselsnummer er påkrevd",
+  "validering.fodselsnr.korrektsiffer": "Fødselsnummer må være 11 siffer",
 
   "felter.navn.tittel": "Navn",
   "felter.epost.tittel": "E-post",
@@ -283,6 +285,7 @@ export default {
   "felter.oneskerkontakt": "Ønsker du at vi kontakter deg?",
   "felter.oneskerkontakt.ja": "Ja, jeg ønsker å kontaktes",
   "felter.oneskerkontakt.nei": "Nei, jeg ville bare si ifra",
+  "felter.fodselsnr": "Fødselsnummer",
 
   "seo.kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "seo.kontaktoss.description":

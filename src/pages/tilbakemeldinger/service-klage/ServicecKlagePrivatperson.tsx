@@ -9,12 +9,14 @@ const ServiceKlagePrivatperson = () => {
 
   const privPersFormConfig = {
     innmelderNavn: {
-      isRequired: "Navn er påkrevd"
+      isRequired: intl.formatMessage({ id: "validering.navn.pakrevd" })
     },
     innmelderFnr: {
-      isRequired: "Fødselsnummer er påkrevd",
+      isRequired: intl.formatMessage({ id: "validering.fodselsnr.pakrevd" }),
       isExactLength: {
-        message: "Fødselsnummer må være 11 siffer",
+        message: intl.formatMessage({
+          id: "validering.fodselsnr.korrektsiffer"
+        }),
         length: 11
       }
     }
@@ -26,7 +28,7 @@ const ServiceKlagePrivatperson = () => {
           <div className="serviceKlage__ekspandert">
             <InputNavn
               bredde={"L"}
-              label={"Navn"}
+              label={intl.formatMessage({ id: "felter.navn.tittel" })}
               submitted={submitted}
               value={fields.innmelderNavn}
               error={errors.innmelderNavn}
@@ -34,6 +36,7 @@ const ServiceKlagePrivatperson = () => {
             />
             <InputFodselsnr
               bredde={"M"}
+              label={intl.formatMessage({ id: "felter.fodselsnr" })}
               submitted={submitted}
               error={errors.innmelderFnr}
               value={fields.innmelderFnr}

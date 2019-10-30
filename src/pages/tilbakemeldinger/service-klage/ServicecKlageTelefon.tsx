@@ -7,7 +7,7 @@ const ServiceKlageTelefon = () => {
   const intl = useIntl();
   const tlfFormConfig = {
     innmelderTlfnr: {
-      isRequired: "Telefonnummer er påkrevd"
+      isRequired: intl.formatMessage({ id: "validering.tlf.pakrevd" })
     }
   };
 
@@ -18,7 +18,7 @@ const ServiceKlageTelefon = () => {
           <div className="serviceKlage__ekspandert">
             <InputTelefon
               bredde={"S"}
-              label={"Telefon"}
+              label={intl.formatMessage({ id: "felter.tlf.tittel" })}
               value={fields.innmelderTlfnr}
               error={errors.innmelderTlfnr}
               onChange={v => setField({ innmelderTlfnr: v })}
