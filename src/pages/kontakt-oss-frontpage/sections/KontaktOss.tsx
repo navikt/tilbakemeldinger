@@ -6,52 +6,53 @@ import RingOss from "./RingOss";
 import { Link } from "react-router-dom";
 import { urls } from "../../../Config";
 import Lenke from "nav-frontend-lenker";
+import { FormattedHTMLMessage, FormattedMessage } from "react-intl";
 
 const SkrivTilOss = () => (
   <Box icon={VeilederIcon}>
     <div className={"box__section"}>
       <div className={"box__section-title"}>
-        <Undertittel className="box__title">Chat</Undertittel>
+        <Undertittel className="box__title">
+          <FormattedMessage id={"kontaktoss.chat.tittel"} />
+        </Undertittel>
       </div>
       <div className={"box__section-description"}>
-        På chat kan vi ikke svare på saken din, men vi hjelper deg gjerne med
-        generelle spørsmål.
+        <FormattedMessage id={"kontaktoss.chat.beskrivelse"} />
       </div>
       <div className={"box__section-lenke"}>
-        <Lenke href={urls.chat.forside}>Chat</Lenke>
+        <Link to={urls.chat.forside}>
+          <FormattedMessage id={"kontaktoss.chat.knapp"} />
+        </Link>
       </div>
     </div>
     <RingOss />
     <div className={"box__section"}>
       <div className={"box__section-title"}>
-        <Undertittel className="box__title">Skriv til oss</Undertittel>
+        <Undertittel className="box__title">
+          <FormattedMessage id={"kontaktoss.skrivtiloss.tittel"} />
+        </Undertittel>
       </div>
       <div className={"box__section-description"}>
-        Du kan ikke sende e-post til oss, men du kan sende spørsmål om saken din
-        eller opplysninger til oss ved å logge inn og skrive til oss. Du får
-        svar etter <b>omtrent 2 arbeidsdager</b>.
+        <FormattedHTMLMessage id={"kontaktoss.skrivtiloss.beskrivelse"} />
       </div>
       <div className={"box__section-lenke"}>
         <Link className={"lenke"} to={urls.skrivTilOss.forside}>
-          Skriv til oss
+          <FormattedMessage id={"kontaktoss.skrivtiloss.knapp"} />
         </Link>
       </div>
     </div>
     <div className={"box__section"}>
       <div className={"box__section-title"}>
         <Undertittel className="box__title">
-          Kontakt din veileder via aktivitetsplanen
+          <FormattedMessage id={"kontaktoss.aktivitetsplan.tittel"} />
         </Undertittel>
       </div>
       <div className={"box__section-description"}>
-        Du har en aktivietsplan dersom du er{" "}
-        <Lenke href={urls.arbeidssoker}>registrert som arbeidssøker</Lenke>. Da
-        kan du kontakte din veileder og be om et møte eller råd under
-        jobbsøkerprosessen. Svartiden varirerer.
+        <FormattedHTMLMessage id={"kontaktoss.aktivitetsplan.beskrivelse"} />
       </div>
       <div className={"box__section-lenke"}>
         <Lenke href={urls.aktivitetsplan}>
-          Kontakt din veileder via aktivitetsplanen
+          <FormattedMessage id={"kontaktoss.aktivitetsplan.knapp"} />
         </Lenke>
       </div>
     </div>

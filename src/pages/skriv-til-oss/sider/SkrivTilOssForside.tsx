@@ -12,7 +12,7 @@ const Ingress = () => {
   return (
     <>
       <MetaTags>
-        <title>{intl.messages["feilogmangler.tittel"]}</title>
+        <title>{intl.messages["skrivtiloss.tittel"]}</title>
         <meta
           name="description"
           content={intl.messages["skrivtiloss.description"] as string}
@@ -29,38 +29,40 @@ const lenker: LenkepanelData[] = [
   {
     tittel: "skrivtiloss.arbeidssoker.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.arbeidssoker.lenke.ingress"} />,
-    url: urls.skrivTilOss.arbeidssoker,
+    url: urls.skrivTilOss.arbeidssoker
   },
   {
     tittel: "skrivtiloss.syk.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.syk.lenke.ingress"} />,
-    url: urls.skrivTilOss.syk,
+    url: urls.skrivTilOss.syk
   },
   {
     tittel: "skrivtiloss.familieogbarn.lenke.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.familieogbarn.lenke.ingress"} />,
-    url: urls.skrivTilOss.familieogbarn,
+    ingress: (
+      <FormattedMessage id={"skrivtiloss.familieogbarn.lenke.ingress"} />
+    ),
+    url: urls.skrivTilOss.familieogbarn
   },
   {
     tittel: "skrivtiloss.pensjonist.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.pensjonist.lenke.ingress"} />,
-    url: urls.skrivTilOss.pensjonist,
+    url: urls.skrivTilOss.pensjonist
   },
   {
     tittel: "skrivtiloss.ufor.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.ufor.lenke.ingress"} />,
-    url: urls.skrivTilOss.ufor,
+    url: urls.skrivTilOss.ufor
   },
   {
     tittel: "skrivtiloss.hjelpemidler.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.hjelpemidler.lenke.ingress"} />,
-    url: urls.skrivTilOss.hjelpemidler,
+    url: urls.skrivTilOss.hjelpemidler
   },
   {
     tittel: "skrivtiloss.sosial.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.sosial.lenke.ingress"} />,
-    url: urls.skrivTilOss.sosial,
-  },
+    url: urls.skrivTilOss.sosial
+  }
 ];
 
 const SkrivTilOssForside = () => (

@@ -4,28 +4,29 @@ import VeilederIcon from "assets/Veileder.svg";
 import Box from "components/box/Box";
 import { Link } from "react-router-dom";
 import { urls } from "../../../Config";
+import { FormattedMessage } from "react-intl";
 
 const FeilOgMangler = () => (
   <Box icon={VeilederIcon}>
     <div className={"box__section-title"}>
       <Undertittel className="box__title">
-        Feil og mangler på nav.no
+        <FormattedMessage id={"kontaktoss.tekniskfeil.tittel"} />
       </Undertittel>
     </div>
     <div className={"box__section-description"}>
       <div className="faq__lenke">
         <a className="lenke" href={urls.tekniskBrukerstotte.selvhjelp}>
-          Prøv å løse problemet selv
+          <FormattedMessage id={"kontaktoss.tekniskfeil.link.losselv"} />
         </a>
       </div>
       <div className="faq__lenke">
         <Link className="lenke" to={urls.tilbakemeldinger.feilogmangler}>
-          Meld ifra om feil og mangler
+          <FormattedMessage id={"kontaktoss.tekniskfeil.link.meldifra"} />
         </Link>
       </div>
       <div className="faq__lenke">
         <a className="lenke" href={urls.tekniskBrukerstotte.ring}>
-          Ring teknisk brukerstøtte
+          <FormattedMessage id={"kontaktoss.tekniskfeil.link.ring"} />
         </a>
       </div>
     </div>

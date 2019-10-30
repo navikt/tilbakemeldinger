@@ -10,34 +10,28 @@ export interface Lenke {
 
 export const lenker: Lenke[] = [
   {
-    tittel: "Klage eller anke på vedtak",
-    beskrivelse:
-      "Har du fått helt eller delvis avslag på søknaden din, kan du klage på avslaget. Får du ikke medhold i klagen din i NAV, kan du med noen unntak anke til Trygderetten. ",
-    lenke:
-      "https://www.nav.no/no/Person/Skjemaer-for-privatpersoner/klage-pa-vedtak",
-    lenkeTekst: "Send klage eller anke på vedtak",
+    tittel: "tilbakemeldinger.klageanke.tittel",
+    beskrivelse: "tilbakemeldinger.klageanke.tittel",
+    lenke: urls.tilbakemeldinger.klagepavedtak,
+    lenkeTekst: "tilbakemeldinger.klageanke.link",
     external: true
   },
   {
-    tittel: "Klage på service",
-    beskrivelse:
-      "Har du blitt møtt på en dårlig måte? Eller hatt en annen negativ opplevelse i møte med NAV?",
+    tittel: "tilbakemeldinger.serviceklage.tittel",
+    beskrivelse: "tilbakemeldinger.serviceklage.beskrivelse",
     lenke: urls.tilbakemeldinger.serviceklage.login,
-    lenkeTekst: "Send tilbakemelding på service"
+    lenkeTekst: "tilbakemeldinger.serviceklage.link"
   },
   {
-    tittel: "Feil og mangler på nav.no",
-    beskrivelse:
-      "Har du oppdaget en feil på nav.no? Kanskje en teknisk feil, feil informasjon eller for lav grad av universell utforming? " +
-      "Da vil vi gjerne høre fra deg. ",
+    tittel: "tilbakemeldinger.feilogmangler.tittel",
+    beskrivelse: "tilbakemeldinger.feilogmangler.beskrivelse",
     lenke: urls.tilbakemeldinger.feilogmangler,
-    lenkeTekst: "Meld fra om feil og mangler"
+    lenkeTekst: "tilbakemeldinger.feilogmangler.link"
   },
   {
-    tittel: "Ros til NAV",
-    beskrivelse:
-      "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
+    tittel: "tilbakemeldinger.ros.tittel",
+    beskrivelse: "tilbakemeldinger.ros.beskrivelse",
     lenke: urls.tilbakemeldinger.rostilnav,
-    lenkeTekst: "Gi ros til nav"
+    lenkeTekst: "tilbakemeldinger.ros.link"
   }
 ];

@@ -17,7 +17,7 @@ import { urls } from "Config";
 import Box from "../../../components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import InputField from "../../../components/input-fields/InputField";
-import { useIntl } from "react-intl";
+import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
 
 export interface OutboundFeilOgMangler {
@@ -35,20 +35,32 @@ const FOM = (props: RouteComponentProps) => {
 
   const formConfig = {
     navn: {
-      isRequired: "Navn er nødvendig"
+      isRequired: intl.formatMessage({
+        id: "validering.navn.pakrevd"
+      })
     },
     epost: {
-      isRequired: "E-post er nødvendig",
-      isEmail: "Må være en gyldig e-postadresse"
+      isRequired: intl.formatMessage({
+        id: "validering.epost.pakrevd"
+      }),
+      isEmail: intl.formatMessage({
+        id: "validering.epost.gyldig"
+      })
     },
     telefonnummer: {
-      isRequired: "Telefonnummer er nødvendig"
+      isRequired: intl.formatMessage({
+        id: "validering.tlf.pakrevd"
+      })
     },
     feiltype: {
-      isRequired: "Du må velge hvilken type feil eller mangel du fant"
+      isRequired: intl.formatMessage({
+        id: "validering.feiltype.pakrevd"
+      })
     },
     melding: {
-      isRequired: "Melding er nødvendig"
+      isRequired: intl.formatMessage({
+        id: "validering.melding.pakrevd"
+      })
     }
   };
 
@@ -84,27 +96,37 @@ const FOM = (props: RouteComponentProps) => {
   return (
     <div className="pagecontent">
       <MetaTags>
-        <title>{intl.messages["feilogmangler.tittel"]}</title>
+        <title>{intl.messages["seo.feilogmangler.tittel"]}</title>
         <meta
           name="description"
-          content={intl.messages["feilogmangler.description"] as string}
+          content={intl.messages["seo.feilogmangler.description"] as string}
         />
       </MetaTags>
       <Tilbake to={urls.tilbakemeldinger.forside} />
-      <Header title="Feil og mangler" />
+      <Header
+        title={intl.formatMessage({
+          id: "tilbakemeldinger.feilogmangler.form.tittel"
+        })}
+      />
       <div className={"tb__veileder"}>
         <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-          Takk for at du sier ifra om feil og mangler.
-          <br />
-          Vi sørger for at meldingen kommer fram til riktig person.
+          <FormattedHTMLMessage
+            id={"tilbakemeldinger.feilogmangler.form.veileder"}
+          />
         </Veilederpanel>
       </div>
       <FormValidation onSubmit={send} config={formConfig}>
         {({ errors, fields, submitted, setField, isValid }) => (
-          <Box tittel={"Send inn feil og mangler på nav.no"}>
+          <Box
+            tittel={intl.formatMessage({
+              id: "tilbakemeldinger.feilogmangler.form.overskrift"
+            })}
+          >
             <InputNavn
               bredde={"M"}
-              label={"Navn"}
+              label={intl.formatMessage({
+                id: "felter.navn.tittel"
+              })}
               value={fields.navn}
               error={errors.navn}
               onChange={v => setField({ navn: v })}
@@ -112,7 +134,9 @@ const FOM = (props: RouteComponentProps) => {
             />
             <InputField
               bredde={"L"}
-              label={"E-post"}
+              label={intl.formatMessage({
+                id: "felter.epost.tittel"
+              })}
               value={fields.epost}
               error={errors.epost}
               submitted={submitted}
@@ -120,14 +144,18 @@ const FOM = (props: RouteComponentProps) => {
             />
             <InputTelefon
               bredde={"S"}
-              label={"Telefon"}
+              label={intl.formatMessage({
+                id: "felter.tlf.tittel"
+              })}
               value={fields.telefonnummer}
               error={errors.telefonnummer}
               onChange={v => setField({ telefonnummer: v })}
               submitted={submitted}
             />
             <SkjemaGruppe
-              title={"Hva slags feil eller mangel fant du?"}
+              title={intl.formatMessage({
+                id: "felter.typefeil.tittel"
+              })}
               feil={
                 submitted && errors.feiltype
                   ? { feilmelding: errors.feiltype }
@@ -135,19 +163,25 @@ const FOM = (props: RouteComponentProps) => {
               }
             >
               <Radio
-                label={"Teknisk feil"}
+                label={intl.formatMessage({
+                  id: "felter.typefeil.tekniskfeil"
+                })}
                 name={"TEKNISK_FEIL"}
                 checked={fields.feiltype === "TEKNISK_FEIL"}
                 onChange={() => setField({ feiltype: "TEKNISK_FEIL" })}
               />
               <Radio
-                label={"Feil informasjon"}
+                label={intl.formatMessage({
+                  id: "felter.typefeil.feilinformasjon"
+                })}
                 name={"FEIL_INFO"}
                 checked={fields.feiltype === "FEIL_INFO"}
                 onChange={() => setField({ feiltype: "FEIL_INFO" })}
               />
               <Radio
-                label={"Lav grad av universell utforming"}
+                label={intl.formatMessage({
+                  id: "felter.typefeil.uu"
+                })}
                 name={"UNIVERSELL_UTFORMING"}
                 checked={fields.feiltype === "UNIVERSELL_UTFORMING"}
                 onChange={() => setField({ feiltype: "UNIVERSELL_UTFORMING" })}
@@ -155,7 +189,9 @@ const FOM = (props: RouteComponentProps) => {
             </SkjemaGruppe>
             <div className="mellomrom">
               <InputMelding
-                label={"Skriv din tilbakemelding her"}
+                label={intl.formatMessage({
+                  id: "felter.melding.tittel"
+                })}
                 submitted={submitted}
                 value={fields.melding}
                 error={errors.melding}
@@ -163,7 +199,9 @@ const FOM = (props: RouteComponentProps) => {
               />
             </div>
             {error && (
-              <AlertStripeFeil>Oi! Noe gikk galt: {error}</AlertStripeFeil>
+              <AlertStripeFeil>
+                <FormattedMessage id={"felter.noegikkgalt"} /> {error}
+              </AlertStripeFeil>
             )}
             <div className="tb__knapper">
               <div className="tb__knapp">
@@ -172,12 +210,18 @@ const FOM = (props: RouteComponentProps) => {
                   type={"standard"}
                   disabled={loading || (submitted && !isValid)}
                 >
-                  {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
+                  {loading ? (
+                    <NavFrontendSpinner type={"S"} />
+                  ) : (
+                    <FormattedMessage id={"felter.send"} />
+                  )}
                 </Knapp>
               </div>
               <div className="tb__knapp">
                 <Link to={urls.tilbakemeldinger.forside}>
-                  <Knapp type={"flat"}>Tilbake</Knapp>
+                  <Knapp type={"flat"}>
+                    <FormattedMessage id={"felter.tilbake"} />
+                  </Knapp>
                 </Link>
               </div>
             </div>

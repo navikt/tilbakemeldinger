@@ -13,10 +13,12 @@ const Tilbakemeldinger = () => {
     <>
       <div className="pagecontent">
         <MetaTags>
-          <title>{intl.messages["tilbakemeldinger.tittel"]}</title>
+          <title>{intl.messages["seo.tilbakemeldinger.tittel"]}</title>
           <meta
             name="description"
-            content={intl.messages["tilbakemeldinger.description"] as string}
+            content={
+              intl.messages["seo.tilbakemeldinger.description"] as string
+            }
           />
         </MetaTags>
         <Tilbake to={urls.forside} />
@@ -27,10 +29,10 @@ const Tilbakemeldinger = () => {
           <LinkBox
             key={lenke.tittel}
             id={lenke.tittel}
-            tittel={lenke.tittel}
-            beskrivelse={lenke.beskrivelse}
+            tittel={intl.messages[lenke.tittel] as string}
+            beskrivelse={intl.messages[lenke.beskrivelse] as string}
             to={lenke.lenke}
-            lenkeTekst={lenke.lenkeTekst}
+            lenkeTekst={intl.messages[lenke.lenkeTekst] as string}
             external={lenke.external}
           />
         ))}

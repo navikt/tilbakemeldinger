@@ -3,39 +3,31 @@ import VeilederIcon from "assets/Veileder.svg";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import Tilbake from "components/tilbake/Tilbake";
 import { useStore } from "providers/Provider";
-import RadioPanelGruppe from "components/input-fields/RadioPanelGruppe";
 import { Knapp } from "nav-frontend-knapper";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
-import InputFodselsnr from "components/input-fields/InputFodselsnr";
 import { postServiceKlage } from "clients/apiClient";
-import InputField from "components/input-fields/InputField";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { HTTPError } from "components/error/Error";
 import { FormContext, Form, Validation } from "calidation";
-import InputNavn from "components/input-fields/InputNavn";
 import InputMelding from "components/input-fields/InputMelding";
-import InputTelefon from "components/input-fields/InputTelefon";
 import {
   ON_BEHALF_OF,
   OutboundServiceKlageBase,
   OutboundServiceKlageType,
   OutboundServiceKlageExtend
 } from "types/serviceklage";
-import {
-  annenPersFormConfig,
-  baseFormConfig,
-  bedriftFormConfig,
-  privPersFormConfig,
-  tlfFormConfig,
-  ytelseTjenesteFormConfig
-} from "./config/form";
 import Header from "components/header/Header";
 import { urls } from "Config";
 import Box from "../../../components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
-import { useIntl } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
+import ServiceKlagePrivatperson from "./ServicecKlagePrivatperson";
+import ServiceKlageForAnnenPerson from "./ServicecKlageAnnenPerson";
+import ServiceKlageForBedrift from "./ServicecKlageBedrift";
+import ServiceKlageYtelse from "./ServicecKlageYtelse";
+import ServiceKlageTelefon from "./ServicecKlageTelefon";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageType &
@@ -46,6 +38,21 @@ const ServiceKlage = (props: RouteComponentProps) => {
   const [loading, settLoading] = useState(false);
   const [error, settError] = useState();
   const intl = useIntl();
+
+  const baseFormConfig = {
+    klageType: {
+      isRequired: intl.formatMessage({ id: "validering.klagetype.pakrevd" })
+    },
+    hvemFra: {
+      isRequired: intl.formatMessage({ id: "validering.klagetype.pakrevd" })
+    },
+    melding: {
+      isRequired: intl.formatMessage({ id: "validering.melding.pakrevd" })
+    },
+    onskerKontakt: {
+      isRequired: intl.formatMessage({ id: "validering.onskerkontakt.pakrevd" })
+    }
+  };
 
   const send = (e: FormContext) => {
     const { isValid, fields } = e;
@@ -136,20 +143,21 @@ const ServiceKlage = (props: RouteComponentProps) => {
     <>
       <div className="pagecontent">
         <MetaTags>
-          <title>{intl.messages["klagepaservice.tittel"]}</title>
+          <title>{intl.messages["seo.klagepaservice.tittel"]}</title>
           <meta
             name="description"
-            content={intl.messages["klagepaservice.description"] as string}
+            content={intl.messages["seo.klagepaservice.description"] as string}
           />
         </MetaTags>
         <Tilbake to={tilbakeTil} />
-        <Header title="Klage på service" />
+        <Header
+          title={intl.formatMessage({
+            id: "tilbakemeldinger.serviceklage.form.tittel"
+          })}
+        />
         <div className={"tb__veileder"}>
           <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-            Velg det alternativet som passer best.
-            <br />
-            Vi vil uansett sørge for at tilbakemeldingen kommer fram til riktig
-            person.
+            <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
           </Veilederpanel>
         </div>
         <Form onSubmit={send}>
@@ -160,7 +168,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                 <Box>
                   <div className="serviceKlage__content">
                     <SkjemaGruppe
-                      title={"Hva gjelder tilbakemeldingen?"}
+                      title={intl.formatMessage({ id: "felter.klagetype" })}
                       feil={
                         submitted && errors.klageType
                           ? { feilmelding: errors.klageType }
@@ -168,7 +176,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       }
                     >
                       <Radio
-                        label={"Saksbehandling av søknad"}
+                        label={intl.formatMessage({
+                          id: "felter.klageType.saksbehandling"
+                        })}
                         name={"SAKSBEHANDLING"}
                         checked={fields.klageType === "SAKSBEHANDLING"}
                         onChange={() =>
@@ -176,48 +186,43 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         }
                       />
                       {fields.klageType === "SAKSBEHANDLING" && (
-                        <Validation key="yt" config={ytelseTjenesteFormConfig}>
-                          {() => (
-                            <div className="serviceKlage__ekspandert">
-                              <InputField
-                                bredde={"L"}
-                                label={"Type søknad (valgfritt)"}
-                                value={fields.ytelseTjeneste}
-                                error={errors.ytelseTjeneste}
-                                onChange={v => setField({ ytelseTjeneste: v })}
-                                submitted={submitted}
-                              />
-                            </div>
-                          )}
-                        </Validation>
+                        <ServiceKlageYtelse />
                       )}
                       <Radio
-                        label={"NAV-kontor"}
+                        label={intl.formatMessage({
+                          id: "felter.klageType.navkontor"
+                        })}
                         name={"NAV_KONTOR"}
                         checked={fields.klageType === "NAV_KONTOR"}
                         onChange={() => setField({ klageType: "NAV_KONTOR" })}
                       />
                       <Radio
-                        label={"Telefon"}
+                        label={intl.formatMessage({
+                          id: "felter.klageType.telefon"
+                        })}
                         name={"TELEFON"}
                         checked={fields.klageType === "TELEFON"}
                         onChange={() => setField({ klageType: "TELEFON" })}
                       />
                       <Radio
-                        label={"nav.no"}
+                        label={intl.formatMessage({
+                          id: "felter.klageType.navno"
+                        })}
                         name={"NAVNO"}
                         checked={fields.klageType === "NAVNO"}
                         onChange={() => setField({ klageType: "NAVNO" })}
                       />
                       <Radio
-                        label={"Annet"}
+                        label={intl.formatMessage({
+                          id: "felter.klageType.annet"
+                        })}
                         name={"ANNET"}
                         checked={fields.klageType === "ANNET"}
                         onChange={() => setField({ klageType: "ANNET" })}
                       />
                     </SkjemaGruppe>
                     <SkjemaGruppe
-                      title={"Hvem skriver du på vegne av?"}
+                      title={intl.formatMessage({ id: "felter.hvemfra" })}
                       feil={
                         submitted && errors.hvemFra
                           ? { feilmelding: errors.hvemFra }
@@ -225,176 +230,42 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       }
                     >
                       <Radio
-                        label={"Meg selv som privatperson"}
+                        label={intl.formatMessage({
+                          id: "felter.hvemfra.megselv"
+                        })}
                         name={"PRIVATPERSON"}
                         checked={fields.hvemFra === "PRIVATPERSON"}
                         onChange={() => setField({ hvemFra: "PRIVATPERSON" })}
                       />
                       {hvemFra === "PRIVATPERSON" && (
-                        <Validation key={hvemFra} config={privPersFormConfig}>
-                          {() => (
-                            <div className="serviceKlage__ekspandert">
-                              <InputNavn
-                                bredde={"L"}
-                                label={"Navn"}
-                                submitted={submitted}
-                                value={fields.innmelderNavn}
-                                error={errors.innmelderNavn}
-                                onChange={v => setField({ innmelderNavn: v })}
-                              />
-                              <InputFodselsnr
-                                bredde={"M"}
-                                submitted={submitted}
-                                error={errors.innmelderFnr}
-                                value={fields.innmelderFnr}
-                                onChange={v => setField({ innmelderFnr: v })}
-                              />
-                            </div>
-                          )}
-                        </Validation>
+                        <ServiceKlagePrivatperson />
                       )}
                       <Radio
-                        label={"På vegne av en annen privatperson"}
+                        label={intl.formatMessage({
+                          id: "felter.hvemfra.enannen"
+                        })}
                         name={"ANNEN_PERSON"}
                         checked={fields.hvemFra === "ANNEN_PERSON"}
                         onChange={() => setField({ hvemFra: "ANNEN_PERSON" })}
                       />
                       {hvemFra === "ANNEN_PERSON" && (
-                        <Validation key={hvemFra} config={annenPersFormConfig}>
-                          {() => (
-                            <div className="serviceKlage__ekspandert">
-                              <InputNavn
-                                bredde={"L"}
-                                label={"Ditt navn"}
-                                submitted={submitted}
-                                value={fields.innmelderNavn}
-                                error={errors.innmelderNavn}
-                                onChange={v => setField({ innmelderNavn: v })}
-                              />
-                              <InputField
-                                bredde={"M"}
-                                submitted={submitted}
-                                label={
-                                  "Din rolle (nær pårørende, behandler e.l.)"
-                                }
-                                required={true}
-                                value={fields.innmelderRolle}
-                                error={errors.innmelderRolle}
-                                onChange={v => setField({ innmelderRolle: v })}
-                              />
-                              <InputField
-                                bredde={"L"}
-                                label={"Navn til den som klager"}
-                                submitted={submitted}
-                                value={fields.paaVegneAvNavn}
-                                error={errors.paaVegneAvNavn}
-                                onChange={v => setField({ paaVegneAvNavn: v })}
-                              />
-                              <InputField
-                                bredde={"S"}
-                                label={"Fødselsnummer til den som klager"}
-                                submitted={submitted}
-                                value={fields.paaVegneAvFodselsnr}
-                                error={errors.paaVegneAvFodselsnr}
-                                onChange={v =>
-                                  setField({ paaVegneAvFodselsnr: v })
-                                }
-                              />
-                              <div className={"serviceKlage__fullmakt"}>
-                                <RadioPanelGruppe
-                                  legend={"Har du fullmakt?"}
-                                  className="radioPanel__bool"
-                                  radios={[
-                                    {
-                                      label: "Ja, jeg har fullmakt",
-                                      value: "true"
-                                    },
-                                    {
-                                      label: "Nei, jeg har ikke fullmakt",
-                                      value: "false"
-                                    }
-                                  ]}
-                                  name={"fullmakt"}
-                                  submitted={submitted}
-                                  checked={fields.innmelderHarFullmakt}
-                                  error={errors.innmelderHarFullmakt}
-                                  onChange={v =>
-                                    setField({ innmelderHarFullmakt: v })
-                                  }
-                                />
-                              </div>
-                            </div>
-                          )}
-                        </Validation>
+                        <ServiceKlageForAnnenPerson />
                       )}
                       <Radio
-                        label={"På vegne av en virksomhet"}
+                        label={intl.formatMessage({
+                          id: "felter.hvemfra.virksomhet"
+                        })}
                         name={"BEDRIFT"}
                         checked={fields.hvemFra === "BEDRIFT"}
                         onChange={() => setField({ hvemFra: "BEDRIFT" })}
                       />
-                      {hvemFra === "BEDRIFT" && (
-                        <Validation key={hvemFra} config={bedriftFormConfig}>
-                          {() => (
-                            <div className="serviceKlage__ekspandert">
-                              <InputNavn
-                                bredde={"M"}
-                                label={"Ditt navn"}
-                                submitted={submitted}
-                                value={fields.innmelderNavn}
-                                error={errors.innmelderNavn}
-                                onChange={v => setField({ innmelderNavn: v })}
-                              />
-                              <InputField
-                                bredde={"M"}
-                                label={
-                                  "Din rolle (leder, HR-ansvarlig, tillitsvalgt osv.)"
-                                }
-                                submitted={submitted}
-                                value={fields.innmelderRolle}
-                                error={errors.innmelderRolle}
-                                onChange={v => setField({ innmelderRolle: v })}
-                              />
-                              <InputField
-                                bredde={"M"}
-                                label={"Organisasjonsnavn"}
-                                submitted={submitted}
-                                value={fields.orgNavn}
-                                error={errors.orgNavn}
-                                onChange={v => setField({ orgNavn: v })}
-                              />
-                              <InputField
-                                bredde={"M"}
-                                label={"Organisasjonsnummer"}
-                                submitted={submitted}
-                                value={fields.orgNummer}
-                                error={errors.orgNummer}
-                                onChange={v => setField({ orgNummer: v })}
-                              />
-                              <InputField
-                                bredde={"L"}
-                                label={"Bedriftens postadresse"}
-                                submitted={submitted}
-                                value={fields.orgPostadr}
-                                error={errors.orgPostadr}
-                                onChange={v => setField({ orgPostadr: v })}
-                              />
-                              <InputField
-                                bredde={"S"}
-                                label={"Bedriftens telefonnummer"}
-                                submitted={submitted}
-                                value={fields.orgTlfNr}
-                                error={errors.orgTlfNr}
-                                onChange={v => setField({ orgTlfNr: v })}
-                              />
-                            </div>
-                          )}
-                        </Validation>
-                      )}
+                      {hvemFra === "BEDRIFT" && <ServiceKlageForBedrift />}
                     </SkjemaGruppe>
                     <div className="serviceKlage__melding">
                       <InputMelding
-                        label={"Skriv din tilbakemelding her"}
+                        label={intl.formatMessage({
+                          id: "felter.melding.tittel"
+                        })}
                         submitted={submitted}
                         value={fields.melding}
                         error={errors.melding}
@@ -402,7 +273,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       />
                     </div>
                     <SkjemaGruppe
-                      title={"Ønsker du at vi kontakter deg?"}
+                      title={intl.formatMessage({
+                        id: "felter.onskerkontakt"
+                      })}
                       feil={
                         submitted && errors.onskerKontakt
                           ? { feilmelding: errors.onskerKontakt }
@@ -410,37 +283,32 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       }
                     >
                       <Radio
-                        label={"Ja, jeg ønsker å kontaktes"}
-                        name={"Ja, jeg ønsker å kontaktes"}
+                        label={intl.formatMessage({
+                          id: "felter.onskerkontakt.ja"
+                        })}
+                        name={intl.formatMessage({
+                          id: "felter.onskerkontakt.ja"
+                        })}
                         checked={fields.onskerKontakt === "true"}
                         onChange={() => setField({ onskerKontakt: "true" })}
                       />
                       {fields.onskerKontakt === "true" && (
-                        <Validation key="kontakt" config={tlfFormConfig}>
-                          {() => (
-                            <div className="serviceKlage__ekspandert">
-                              <InputTelefon
-                                bredde={"S"}
-                                label={"Telefon"}
-                                value={fields.innmelderTlfnr}
-                                error={errors.innmelderTlfnr}
-                                onChange={v => setField({ innmelderTlfnr: v })}
-                                submitted={submitted}
-                              />
-                            </div>
-                          )}
-                        </Validation>
+                        <ServiceKlageTelefon />
                       )}
                       <Radio
-                        label={"Nei, jeg ville bare si ifra"}
-                        name={"Nei, jeg ville bare si ifra"}
+                        label={intl.formatMessage({
+                          id: "felter.onskerkontakt.nei"
+                        })}
+                        name={intl.formatMessage({
+                          id: "felter.onskerkontakt.nei"
+                        })}
                         checked={fields.onskerKontakt === "false"}
                         onChange={() => setField({ onskerKontakt: "false" })}
                       />
                     </SkjemaGruppe>
                     {error && (
                       <AlertStripeFeil>
-                        Oi! Noe gikk galt: {error}
+                        <FormattedMessage id={"felter.noegikkgalt"} /> {error}
                       </AlertStripeFeil>
                     )}
                     <div className="tb__knapper">
@@ -450,12 +318,18 @@ const ServiceKlage = (props: RouteComponentProps) => {
                           type={"standard"}
                           disabled={loading || (submitted && !isValid)}
                         >
-                          {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
+                          {loading ? (
+                            <NavFrontendSpinner type={"S"} />
+                          ) : (
+                            <FormattedMessage id={"felter.send"} />
+                          )}
                         </Knapp>
                       </div>
                       <div className="tb__knapp">
                         <Link to={tilbakeTil}>
-                          <Knapp type={"flat"}>Tilbake</Knapp>
+                          <Knapp type={"flat"}>
+                            <FormattedMessage id={"felter.tilbake"} />
+                          </Knapp>
                         </Link>
                       </div>
                     </div>
