@@ -4,10 +4,9 @@ import { Hovedknapp } from "nav-frontend-knapper";
 import { Link, Redirect } from "react-router-dom";
 import Tilbake from "components/tilbake/Tilbake";
 import Environment from "Environments";
-
 import { urls } from "Config";
-import Box from "../../../components/box/Box";
-import Header from "../../../components/header/Header";
+import Box from "components/box/Box";
+import Header from "components/header/Header";
 import MetaTags from "react-meta-tags";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 const { loginUrl } = Environment();
