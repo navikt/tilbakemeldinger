@@ -24,10 +24,10 @@ const ServiceKlageForAnnenPerson = () => {
       }
     },
     innmelderHarFullmakt: {
-      isRequired: "Fullmakt er påkrevd"
+      isRequired: intl.formatMessage({ id: "validering.fullmakt.pakrevd" })
     },
     innmelderRolle: {
-      isRequired: "Rolle er påkrevd"
+      isRequired: intl.formatMessage({ id: "validering.rolle.pakrevd" })
     }
   };
 
@@ -38,7 +38,7 @@ const ServiceKlageForAnnenPerson = () => {
           <div className="serviceKlage__ekspandert">
             <InputNavn
               bredde={"L"}
-              label={"Ditt navn"}
+              label={intl.formatMessage({ id: "felter.dittnavn" })}
               submitted={submitted}
               value={fields.innmelderNavn}
               error={errors.innmelderNavn}
@@ -47,7 +47,7 @@ const ServiceKlageForAnnenPerson = () => {
             <InputField
               bredde={"M"}
               submitted={submitted}
-              label={"Din rolle (nær pårørende, behandler e.l.)"}
+              label={intl.formatMessage({ id: "felter.dinrolle" })}
               required={true}
               value={fields.innmelderRolle}
               error={errors.innmelderRolle}
@@ -55,7 +55,7 @@ const ServiceKlageForAnnenPerson = () => {
             />
             <InputField
               bredde={"L"}
-              label={"Navn til den som klager"}
+              label={intl.formatMessage({ id: "felter.navntilklager" })}
               submitted={submitted}
               value={fields.paaVegneAvNavn}
               error={errors.paaVegneAvNavn}
@@ -63,7 +63,7 @@ const ServiceKlageForAnnenPerson = () => {
             />
             <InputField
               bredde={"S"}
-              label={"Fødselsnummer til den som klager"}
+              label={intl.formatMessage({ id: "felter.fodselsnrtilklager" })}
               submitted={submitted}
               value={fields.paaVegneAvFodselsnr}
               error={errors.paaVegneAvFodselsnr}
@@ -71,15 +71,15 @@ const ServiceKlageForAnnenPerson = () => {
             />
             <div className={"serviceKlage__fullmakt"}>
               <RadioPanelGruppe
-                legend={"Har du fullmakt?"}
+                legend={intl.formatMessage({ id: "felter.fullmakt" })}
                 className="radioPanel__bool"
                 radios={[
                   {
-                    label: "Ja, jeg har fullmakt",
+                    label: intl.formatMessage({ id: "felter.fullmakt.ja" }),
                     value: "true"
                   },
                   {
-                    label: "Nei, jeg har ikke fullmakt",
+                    label: intl.formatMessage({ id: "felter.fullmakt.nei" }),
                     value: "false"
                   }
                 ]}

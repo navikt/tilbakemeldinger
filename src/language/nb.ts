@@ -251,6 +251,8 @@ export default {
     "Du må velge om du ønsker at vi tar kontakt",
   "validering.fodselsnr.pakrevd": "Fødselsnummer er påkrevd",
   "validering.fodselsnr.korrektsiffer": "Fødselsnummer må være 11 siffer",
+  "validering.fullmakt.pakrevd": "Fullmakt er påkrevd",
+  "validering.rolle.pakrevd": "Rolle er påkrevd",
 
   "felter.navn.tittel": "Navn",
   "felter.epost.tittel": "E-post",
@@ -286,6 +288,13 @@ export default {
   "felter.oneskerkontakt.ja": "Ja, jeg ønsker å kontaktes",
   "felter.oneskerkontakt.nei": "Nei, jeg ville bare si ifra",
   "felter.fodselsnr": "Fødselsnummer",
+  "felter.dittnavn": "Ditt navn",
+  "felter.dinrolle": "Din rolle (nær pårørende, behandler e.l.)",
+  "felter.navntilklager": "Navn til den som klager",
+  "felter.fodselsnrtilklager": "Fødselsnummer til den som klager",
+  "felter.fullmakt": "Har du fullmakt?",
+  "felter.fullmakt.ja": "Ja, jeg har fullmakt",
+  "felter.fullmakt.nei": "Nei, jeg har ikke fullmakt",
 
   "seo.kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "seo.kontaktoss.description":
