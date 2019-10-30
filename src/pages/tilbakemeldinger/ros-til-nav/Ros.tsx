@@ -280,7 +280,6 @@ const Ros = (props: RouteComponentProps) => {
                     value={fields.melding}
                     error={errors.melding}
                     onChange={v => setField({ melding: v })}
-                    maxLength={0}
                   />
                 </div>
                 {error && (

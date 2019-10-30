@@ -21,7 +21,7 @@ import Header from "components/header/Header";
 import { urls } from "Config";
 import Box from "../../../components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
-import { useIntl } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
 import ServiceKlagePrivatperson from "./ServicecKlagePrivatperson";
 import ServiceKlageForAnnenPerson from "./ServicecKlageAnnenPerson";
@@ -41,19 +41,16 @@ const ServiceKlage = (props: RouteComponentProps) => {
 
   const baseFormConfig = {
     klageType: {
-      isRequired: "Du må velge hva tilbakemeldingen gjelder"
+      isRequired: intl.formatMessage({ id: "validering.klagetype.pakrevd" })
     },
     hvemFra: {
-      isRequired: "Du må velge hvem tilbakemeldingen er på vegne av"
-    },
-    innmelderNavn: {
-      isRequired: "Navn er påkrevd"
-    },
-    onskerKontakt: {
-      isRequired: "Du må velge om du ønsker at vi tar kontakt"
+      isRequired: intl.formatMessage({ id: "validering.klagetype.pakrevd" })
     },
     melding: {
-      isRequired: "Melding er påkrevd"
+      isRequired: intl.formatMessage({ id: "validering.melding.pakrevd" })
+    },
+    onskerKontakt: {
+      isRequired: intl.formatMessage({ id: "validering.onskerKontakt.pakrevd" })
     }
   };
 
@@ -153,13 +150,14 @@ const ServiceKlage = (props: RouteComponentProps) => {
           />
         </MetaTags>
         <Tilbake to={tilbakeTil} />
-        <Header title="Klage på service" />
+        <Header
+          title={intl.formatMessage({
+            id: "tilbakemeldinger.serviceklage.form.tittel"
+          })}
+        />
         <div className={"tb__veileder"}>
           <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-            Velg det alternativet som passer best.
-            <br />
-            Vi vil uansett sørge for at tilbakemeldingen kommer fram til riktig
-            person.
+            <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
           </Veilederpanel>
         </div>
         <Form onSubmit={send}>
@@ -170,7 +168,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                 <Box>
                   <div className="serviceKlage__content">
                     <SkjemaGruppe
-                      title={"Hva gjelder tilbakemeldingen?"}
+                      title={intl.formatMessage({ id: "felter.klagetype" })}
                       feil={
                         submitted && errors.klageType
                           ? { feilmelding: errors.klageType }
@@ -178,7 +176,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       }
                     >
                       <Radio
-                        label={"Saksbehandling av søknad"}
+                        label={intl.formatMessage({
+                          id: "felter.klageType.saksbehandling"
+                        })}
                         name={"SAKSBEHANDLING"}
                         checked={fields.klageType === "SAKSBEHANDLING"}
                         onChange={() =>
@@ -189,32 +189,40 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         <ServiceKlageYtelse />
                       )}
                       <Radio
-                        label={"NAV-kontor"}
+                        label={intl.formatMessage({
+                          id: "felter.klageType.navkontor"
+                        })}
                         name={"NAV_KONTOR"}
                         checked={fields.klageType === "NAV_KONTOR"}
                         onChange={() => setField({ klageType: "NAV_KONTOR" })}
                       />
                       <Radio
-                        label={"Telefon"}
+                        label={intl.formatMessage({
+                          id: "felter.klageType.telefon"
+                        })}
                         name={"TELEFON"}
                         checked={fields.klageType === "TELEFON"}
                         onChange={() => setField({ klageType: "TELEFON" })}
                       />
                       <Radio
-                        label={"nav.no"}
+                        label={intl.formatMessage({
+                          id: "felter.klageType.navno"
+                        })}
                         name={"NAVNO"}
                         checked={fields.klageType === "NAVNO"}
                         onChange={() => setField({ klageType: "NAVNO" })}
                       />
                       <Radio
-                        label={"Annet"}
+                        label={intl.formatMessage({
+                          id: "felter.klageType.annet"
+                        })}
                         name={"ANNET"}
                         checked={fields.klageType === "ANNET"}
                         onChange={() => setField({ klageType: "ANNET" })}
                       />
                     </SkjemaGruppe>
                     <SkjemaGruppe
-                      title={"Hvem skriver du på vegne av?"}
+                      title={intl.formatMessage({ id: "felter.hvemfra" })}
                       feil={
                         submitted && errors.hvemFra
                           ? { feilmelding: errors.hvemFra }
@@ -222,7 +230,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       }
                     >
                       <Radio
-                        label={"Meg selv som privatperson"}
+                        label={intl.formatMessage({
+                          id: "felter.hvemfra.megselv"
+                        })}
                         name={"PRIVATPERSON"}
                         checked={fields.hvemFra === "PRIVATPERSON"}
                         onChange={() => setField({ hvemFra: "PRIVATPERSON" })}
@@ -231,7 +241,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         <ServiceKlagePrivatperson />
                       )}
                       <Radio
-                        label={"På vegne av en annen privatperson"}
+                        label={intl.formatMessage({
+                          id: "felter.hvemfra.enannen"
+                        })}
                         name={"ANNEN_PERSON"}
                         checked={fields.hvemFra === "ANNEN_PERSON"}
                         onChange={() => setField({ hvemFra: "ANNEN_PERSON" })}
@@ -240,7 +252,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         <ServiceKlageForAnnenPerson />
                       )}
                       <Radio
-                        label={"På vegne av en virksomhet"}
+                        label={intl.formatMessage({
+                          id: "felter.hvemfra.virksomhet"
+                        })}
                         name={"BEDRIFT"}
                         checked={fields.hvemFra === "BEDRIFT"}
                         onChange={() => setField({ hvemFra: "BEDRIFT" })}
@@ -249,7 +263,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
                     </SkjemaGruppe>
                     <div className="serviceKlage__melding">
                       <InputMelding
-                        label={"Skriv din tilbakemelding her"}
+                        label={intl.formatMessage({
+                          id: "felter.melding.tittel"
+                        })}
                         submitted={submitted}
                         value={fields.melding}
                         error={errors.melding}
@@ -257,7 +273,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       />
                     </div>
                     <SkjemaGruppe
-                      title={"Ønsker du at vi kontakter deg?"}
+                      title={intl.formatMessage({
+                        id: "felter.oneskerkontakt"
+                      })}
                       feil={
                         submitted && errors.onskerKontakt
                           ? { feilmelding: errors.onskerKontakt }
@@ -265,8 +283,12 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       }
                     >
                       <Radio
-                        label={"Ja, jeg ønsker å kontaktes"}
-                        name={"Ja, jeg ønsker å kontaktes"}
+                        label={intl.formatMessage({
+                          id: "felter.oneskerkontakt.ja"
+                        })}
+                        name={intl.formatMessage({
+                          id: "felter.oneskerkontakt.ja"
+                        })}
                         checked={fields.onskerKontakt === "true"}
                         onChange={() => setField({ onskerKontakt: "true" })}
                       />
@@ -274,15 +296,19 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         <ServiceKlageTelefon />
                       )}
                       <Radio
-                        label={"Nei, jeg ville bare si ifra"}
-                        name={"Nei, jeg ville bare si ifra"}
+                        label={intl.formatMessage({
+                          id: "felter.oneskerkontakt.nei"
+                        })}
+                        name={intl.formatMessage({
+                          id: "felter.oneskerkontakt.nei"
+                        })}
                         checked={fields.onskerKontakt === "false"}
                         onChange={() => setField({ onskerKontakt: "false" })}
                       />
                     </SkjemaGruppe>
                     {error && (
                       <AlertStripeFeil>
-                        Oi! Noe gikk galt: {error}
+                        <FormattedMessage id={"felter.noegikkgalt"} /> {error}
                       </AlertStripeFeil>
                     )}
                     <div className="tb__knapper">
@@ -292,12 +318,18 @@ const ServiceKlage = (props: RouteComponentProps) => {
                           type={"standard"}
                           disabled={loading || (submitted && !isValid)}
                         >
-                          {loading ? <NavFrontendSpinner type={"S"} /> : "Send"}
+                          {loading ? (
+                            <NavFrontendSpinner type={"S"} />
+                          ) : (
+                            <FormattedMessage id={"felter.send"} />
+                          )}
                         </Knapp>
                       </div>
                       <div className="tb__knapp">
                         <Link to={tilbakeTil}>
-                          <Knapp type={"flat"}>Tilbake</Knapp>
+                          <Knapp type={"flat"}>
+                            <FormattedMessage id={"felter.tilbake"} />
+                          </Knapp>
                         </Link>
                       </div>
                     </div>

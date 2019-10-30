@@ -8,6 +8,9 @@ import RadioPanelGruppe from "components/input-fields/RadioPanelGruppe";
 const ServiceKlageForAnnenPerson = () => {
   const intl = useIntl();
   const annenPersFormConfig = {
+    innmelderNavn: {
+      isRequired: "Navn er påkrevd"
+    },
     paaVegneAvNavn: {
       isRequired: "Navn er påkrevd"
     },

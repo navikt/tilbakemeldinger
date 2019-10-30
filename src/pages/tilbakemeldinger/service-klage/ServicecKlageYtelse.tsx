@@ -1,11 +1,8 @@
 import React from "react";
-import { useIntl } from "react-intl";
 import { Validation } from "calidation";
 import InputField from "components/input-fields/InputField";
 
 const ServiceKlageYtelse = () => {
-  const intl = useIntl();
-
   const ytelseTjenesteFormConfig = {
     ytelseTjeneste: {}
   };

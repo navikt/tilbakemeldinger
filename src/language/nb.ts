@@ -209,6 +209,10 @@ export default {
   "tilbakemeldinger.serviceklage.beskrivelse":
     "Har du blitt møtt på en dårlig måte? Eller hatt en annen negativ opplevelse i møte med NAV?",
   "tilbakemeldinger.serviceklage.link": "Send tilbakemelding på service",
+  "tilbakemeldinger.serviceklage.form.veileder":
+    "Velg det alternativet som passer best. <br />" +
+    "Vi vil uansett sørge for at tilbakemeldingen kommer fram til riktig person.",
+  "tilbakemeldinger.serviceklage.form.tittel": "Klage på service",
 
   "tilbakemeldinger.feilogmangler.tittel": "Feil og mangler på nav.no",
   "tilbakemeldinger.feilogmangler.beskrivelse":
@@ -240,6 +244,11 @@ export default {
   "validering.melding.pakrevd": "Melding er nødvendig",
   "validering.hvemroses.pakrevd": "Du må velge hvem du skal gi ros til",
   "validering.navkontor.pakrevd": "Du må velge NAV-kontor",
+  "validering.klagetype.pakrevd": "Du må velge hva tilbakemeldingen gjelder",
+  "validering.hvemfra.pakrevd":
+    "Du må velge hvem tilbakemeldingen er på vegne av",
+  "validering.oenskerkontakt.pakrevd":
+    "Du må velge om du ønsker at vi tar kontakt",
 
   "felter.navn.tittel": "Navn",
   "felter.epost.tittel": "E-post",
@@ -261,6 +270,19 @@ export default {
   "felter.hvemroses.navkontor.velg": "Velg NAV-kontor",
   "felter.hvemroses.navkontor.skrivinn":
     "Skriv inn navnet eller velg med piltast",
+  "felter.klagetype": "Hva gjelder tilbakemeldingen?",
+  "felter.klageType.saksbehandling": "Saksbehandling av søknad",
+  "felter.klageType.navkontor": "NAV-kontor",
+  "felter.klageType.telefon": "Telefon",
+  "felter.klageType.navno": "nav.no",
+  "felter.klageType.annet": "Annet",
+  "felter.hvemfra": "Hvem skriver du på vegne av?",
+  "felter.hvemfra.megselv": "Meg selv som privatperson",
+  "felter.hvemfra.enannen": "På vegne av en annen privatperson",
+  "felter.hvemfra.virksomhet": "På vegne av en virksomhet",
+  "felter.oneskerkontakt": "Ønsker du at vi kontakter deg?",
+  "felter.oneskerkontakt.ja": "Ja, jeg ønsker å kontaktes",
+  "felter.oneskerkontakt.nei": "Nei, jeg ville bare si ifra",
 
   "seo.kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "seo.kontaktoss.description":

@@ -7,6 +7,9 @@ import InputField from "components/input-fields/InputField";
 const ServiceKlageForBedrift = () => {
   const intl = useIntl();
   const bedriftFormConfig = {
+    innmelderNavn: {
+      isRequired: "Navn er påkrevd"
+    },
     orgNavn: {
       isRequired: "Organisasjonsnavn er påkrevd"
     },
