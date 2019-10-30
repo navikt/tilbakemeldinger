@@ -19,6 +19,7 @@ import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import InputField from "../../../components/input-fields/InputField";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
+import Takk from "../../../components/takk/Takk";
 
 export interface OutboundFeilOgMangler {
   navn: string;
@@ -30,6 +31,7 @@ export interface OutboundFeilOgMangler {
 
 const FOM = (props: RouteComponentProps) => {
   const [loading, settLoading] = useState(false);
+  const [success, settSuccess] = useState(false);
   const [error, settError] = useState();
   const intl = useIntl();
 
@@ -82,7 +84,7 @@ const FOM = (props: RouteComponentProps) => {
       settLoading(true);
       postFeilOgMangler(outbound)
         .then(() => {
-          props.history.push(`${props.location.pathname}/takk`);
+          settSuccess(true);
         })
         .catch((error: HTTPError) => {
           settError(`${error.code} - ${error.text}`);
@@ -92,6 +94,10 @@ const FOM = (props: RouteComponentProps) => {
         });
     }
   };
+
+  const tittel = intl.formatMessage({
+    id: "tilbakemeldinger.feilogmangler.form.overskrift"
+  });
 
   return (
     <div className="pagecontent">
@@ -115,119 +121,123 @@ const FOM = (props: RouteComponentProps) => {
           />
         </Veilederpanel>
       </div>
-      <FormValidation onSubmit={send} config={formConfig}>
-        {({ errors, fields, submitted, setField, isValid }) => (
-          <Box
-            tittel={intl.formatMessage({
-              id: "tilbakemeldinger.feilogmangler.form.overskrift"
-            })}
-          >
-            <InputNavn
-              bredde={"M"}
-              label={intl.formatMessage({
-                id: "felter.navn.tittel"
-              })}
-              value={fields.navn}
-              error={errors.navn}
-              onChange={v => setField({ navn: v })}
-              submitted={submitted}
-            />
-            <InputField
-              bredde={"L"}
-              label={intl.formatMessage({
-                id: "felter.epost.tittel"
-              })}
-              value={fields.epost}
-              error={errors.epost}
-              submitted={submitted}
-              onChange={v => setField({ epost: v })}
-            />
-            <InputTelefon
-              bredde={"S"}
-              label={intl.formatMessage({
-                id: "felter.tlf.tittel"
-              })}
-              value={fields.telefonnummer}
-              error={errors.telefonnummer}
-              onChange={v => setField({ telefonnummer: v })}
-              submitted={submitted}
-            />
-            <SkjemaGruppe
-              title={intl.formatMessage({
-                id: "felter.typefeil.tittel"
-              })}
-              feil={
-                submitted && errors.feiltype
-                  ? { feilmelding: errors.feiltype }
-                  : undefined
-              }
-            >
-              <Radio
-                label={intl.formatMessage({
-                  id: "felter.typefeil.tekniskfeil"
-                })}
-                name={"TEKNISK_FEIL"}
-                checked={fields.feiltype === "TEKNISK_FEIL"}
-                onChange={() => setField({ feiltype: "TEKNISK_FEIL" })}
-              />
-              <Radio
-                label={intl.formatMessage({
-                  id: "felter.typefeil.feilinformasjon"
-                })}
-                name={"FEIL_INFO"}
-                checked={fields.feiltype === "FEIL_INFO"}
-                onChange={() => setField({ feiltype: "FEIL_INFO" })}
-              />
-              <Radio
-                label={intl.formatMessage({
-                  id: "felter.typefeil.uu"
-                })}
-                name={"UNIVERSELL_UTFORMING"}
-                checked={fields.feiltype === "UNIVERSELL_UTFORMING"}
-                onChange={() => setField({ feiltype: "UNIVERSELL_UTFORMING" })}
-              />
-            </SkjemaGruppe>
-            <div className="mellomrom">
-              <InputMelding
-                label={intl.formatMessage({
-                  id: "felter.melding.tittel"
-                })}
-                submitted={submitted}
-                value={fields.melding}
-                error={errors.melding}
-                onChange={v => setField({ melding: v })}
-              />
-            </div>
-            {error && (
-              <AlertStripeFeil>
-                <FormattedMessage id={"felter.noegikkgalt"} /> {error}
-              </AlertStripeFeil>
-            )}
-            <div className="tb__knapper">
-              <div className="tb__knapp">
-                <Knapp
-                  htmlType={"submit"}
-                  type={"standard"}
-                  disabled={loading || (submitted && !isValid)}
+      <Box tittel={tittel}>
+        {success ? (
+          <Takk />
+        ) : (
+          <FormValidation onSubmit={send} config={formConfig}>
+            {({ errors, fields, submitted, setField, isValid }) => (
+              <>
+                <InputNavn
+                  bredde={"M"}
+                  label={intl.formatMessage({
+                    id: "felter.navn.tittel"
+                  })}
+                  value={fields.navn}
+                  error={errors.navn}
+                  onChange={v => setField({ navn: v })}
+                  submitted={submitted}
+                />
+                <InputField
+                  bredde={"L"}
+                  label={intl.formatMessage({
+                    id: "felter.epost.tittel"
+                  })}
+                  value={fields.epost}
+                  error={errors.epost}
+                  submitted={submitted}
+                  onChange={v => setField({ epost: v })}
+                />
+                <InputTelefon
+                  bredde={"S"}
+                  label={intl.formatMessage({
+                    id: "felter.tlf.tittel"
+                  })}
+                  value={fields.telefonnummer}
+                  error={errors.telefonnummer}
+                  onChange={v => setField({ telefonnummer: v })}
+                  submitted={submitted}
+                />
+                <SkjemaGruppe
+                  title={intl.formatMessage({
+                    id: "felter.typefeil.tittel"
+                  })}
+                  feil={
+                    submitted && errors.feiltype
+                      ? { feilmelding: errors.feiltype }
+                      : undefined
+                  }
                 >
-                  {loading ? (
-                    <NavFrontendSpinner type={"S"} />
-                  ) : (
-                    <FormattedMessage id={"felter.send"} />
-                  )}
-                </Knapp>
-              </div>
-              <div className="tb__knapp">
-                <Link to={urls.tilbakemeldinger.forside}>
-                  <Knapp type={"flat"}>
-                    <FormattedMessage id={"felter.tilbake"} />
-                  </Knapp>
-                </Link>
-              </div>
-            </div>
-          </Box>
+                  <Radio
+                    label={intl.formatMessage({
+                      id: "felter.typefeil.tekniskfeil"
+                    })}
+                    name={"TEKNISK_FEIL"}
+                    checked={fields.feiltype === "TEKNISK_FEIL"}
+                    onChange={() => setField({ feiltype: "TEKNISK_FEIL" })}
+                  />
+                  <Radio
+                    label={intl.formatMessage({
+                      id: "felter.typefeil.feilinformasjon"
+                    })}
+                    name={"FEIL_INFO"}
+                    checked={fields.feiltype === "FEIL_INFO"}
+                    onChange={() => setField({ feiltype: "FEIL_INFO" })}
+                  />
+                  <Radio
+                    label={intl.formatMessage({
+                      id: "felter.typefeil.uu"
+                    })}
+                    name={"UNIVERSELL_UTFORMING"}
+                    checked={fields.feiltype === "UNIVERSELL_UTFORMING"}
+                    onChange={() =>
+                      setField({ feiltype: "UNIVERSELL_UTFORMING" })
+                    }
+                  />
+                </SkjemaGruppe>
+                <div className="mellomrom">
+                  <InputMelding
+                    label={intl.formatMessage({
+                      id: "felter.melding.tittel"
+                    })}
+                    submitted={submitted}
+                    value={fields.melding}
+                    error={errors.melding}
+                    onChange={v => setField({ melding: v })}
+                  />
+                </div>
+                {error && (
+                  <AlertStripeFeil>
+                    <FormattedMessage id={"felter.noegikkgalt"} /> {error}
+                  </AlertStripeFeil>
+                )}
+                <div className="tb__knapper">
+                  <div className="tb__knapp">
+                    <Knapp
+                      htmlType={"submit"}
+                      type={"standard"}
+                      disabled={loading || (submitted && !isValid)}
+                    >
+                      {loading ? (
+                        <NavFrontendSpinner type={"S"} />
+                      ) : (
+                        <FormattedMessage id={"felter.send"} />
+                      )}
+                    </Knapp>
+                  </div>
+                  <div className="tb__knapp">
+                    <Link to={urls.tilbakemeldinger.forside}>
+                      <Knapp type={"flat"}>
+                        <FormattedMessage id={"felter.tilbake"} />
+                      </Knapp>
+                    </Link>
+                  </div>
+                </div>
+              </>
+            )}
+          </FormValidation>
         )}
-      </FormValidation>
+      </Box>
     </div>
   );
 };
