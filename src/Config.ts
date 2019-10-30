@@ -27,17 +27,17 @@ export const urls = {
     syk: "#",
     hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`,
     ufor: "#",
-    sosial: "#",
+    sosial: "#"
   },
   chat: {
     forside: `${baseUrl}/chat`,
     familie: `${baseUrl}/chat/familie`,
     aap: `${baseUrl}/chat/aap`,
     sosialhjelp: `${baseUrl}/chat/sosialhjelp`,
-    okonomi: `${baseUrl}/chat/okonomi`,
+    okonomi: `${baseUrl}/chat/okonomi`
   },
   chatBotApi: {
-    sessionConfig: "https://api.puzzel.com/chat/v1/sessions",
+    sessionConfig: "https://api.puzzel.com/chat/v1/sessions"
   },
   facebook: "#",
   snapchat: "#",
@@ -54,8 +54,9 @@ export const urls = {
     generelt: "#",
     skrivtiloss: "#",
     bil: "#",
-    tolk: "#",
+    tolk: "#"
   },
+  fullmaktskjema: "(lenke til fullmaktskjema)",
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
   faq: {
     utbetalinger: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Utbetalinger/Utbetalinger`,
@@ -98,7 +99,7 @@ export const vars = {
       [ChatTema.AAP]: "7f6b-4569-81a1-27202c419953",
       [ChatTema.Familie]: "c3372a51-6434-4770-a0aa-6e4edba3471e",
       [ChatTema.Sosial]: "",
-      [ChatTema.Okonomi]: "",
+      [ChatTema.Okonomi]: ""
     }
   }
 };
