@@ -1,8 +1,9 @@
 import React from "react";
-import { useIntl } from "react-intl";
+import { FormattedHTMLMessage, useIntl } from "react-intl";
 import { Validation } from "calidation";
 import InputNavn from "components/input-fields/InputNavn";
 import InputField from "components/input-fields/InputField";
+import { AlertStripeAdvarsel } from "nav-frontend-alertstriper";
 import RadioPanelGruppe from "components/input-fields/RadioPanelGruppe";
 
 const ServiceKlageForAnnenPerson = () => {
@@ -89,6 +90,11 @@ const ServiceKlageForAnnenPerson = () => {
                 error={errors.innmelderHarFullmakt}
                 onChange={v => setField({ innmelderHarFullmakt: v })}
               />
+              {fields.innmelderHarFullmakt === "false" && (
+                <AlertStripeAdvarsel>
+                  <FormattedHTMLMessage id={"felter.fullmakt.advarsel"} />
+                </AlertStripeAdvarsel>
+              )}
             </div>
           </div>
         );
