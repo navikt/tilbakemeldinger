@@ -1,10 +1,11 @@
 import React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
+import MetaTags from "react-meta-tags";
+
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
 import { vars, urls } from "../../../Config";
-import { FormattedMessage, useIntl } from "react-intl";
-import MetaTags from "react-meta-tags";
 
 const Ingress = () => {
   const intl = useIntl();
@@ -32,12 +33,6 @@ const lenker: LenkepanelData[] = [
     external: false
   },
   {
-    tittel: "skrivtiloss.temalenke.facebook.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.temalenke.facebook.ingress"} />,
-    url: urls.facebook,
-    external: true
-  },
-  {
     tittel: "familieogbarn.lenke.skrivtiloss.tittel",
     ingress: (
       <FormattedMessage
@@ -47,7 +42,13 @@ const lenker: LenkepanelData[] = [
     ),
     url: urls.temaFamilieOgBarn.skrivtiloss,
     external: false
-  }
+  },
+  {
+    tittel: "skrivtiloss.temalenke.facebook.tittel",
+    ingress: <FormattedMessage id={"skrivtiloss.temalenke.facebook.ingress"} />,
+    url: urls.facebook,
+    external: true
+  },
 ];
 
 const TemaFamilieOgBarn = () => (

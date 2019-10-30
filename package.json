@@ -1,6 +1,6 @@
 {
   "name": "tilbakemeldinger",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "private": true,
   "author": "NAV",
   "license": "MIT",
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@navikt/nav-chatbot": "^1.1.8",
+    "axios": "^0.19.0",
     "babel-polyfill": "^6.26.0",
     "calidation": "^1.16.2",
     "classnames": "^2.2.6",
@@ -28,6 +29,7 @@
     "less-plugin-npm-import": "^2.1.0",
     "less-watch-compiler": "^1.14.1",
     "lodash.throttle": "^4.1.1",
+    "moment": "^2.24.0",
     "nav-frontend-alertstriper": "^3.0.6",
     "nav-frontend-alertstriper-style": "^2.0.5",
     "nav-frontend-chevron": "^1.0.10",

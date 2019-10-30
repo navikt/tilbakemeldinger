@@ -1,10 +1,11 @@
 import React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
+import MetaTags from "react-meta-tags";
+
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
 import { urls } from "../../../Config";
-import { FormattedMessage, useIntl } from "react-intl";
-import MetaTags from "react-meta-tags";
 
 const Ingress = () => {
   const intl = useIntl();
@@ -42,7 +43,13 @@ const lenker: LenkepanelData[] = [
     ingress: <FormattedMessage id={"hjelpemidler.lenke.bil.ingress"} />,
     url: urls.temaHjelpemidler.bil,
     external: false
-  }
+  },
+  {
+    tittel: "hjelpemidler.lenke.tolk.tittel",
+    ingress: <FormattedMessage id={"hjelpemidler.lenke.tolk.ingress"} />,
+    url: urls.temaHjelpemidler.tolk,
+    external: false
+  },
 ];
 
 const TemaHjelpemidler = () => (
