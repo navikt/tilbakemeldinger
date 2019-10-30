@@ -10,6 +10,8 @@ import Tolketjenesten from "./sections/Toketjenesten";
 import Schema from "assets/schema.json";
 import MetaTags from "react-meta-tags";
 import { FormattedMessage, useIntl } from "react-intl";
+import Environment from "../../Environments";
+const { miljo } = Environment();
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
@@ -44,7 +46,7 @@ const KontaktOssFrontpage = () => {
             </Sidetittel>
           </div>
         </header>
-        <UnderUtvikling />
+        {miljo === "PROD" && <UnderUtvikling />}
         <div className="frontpage__content">
           <FAQ />
           <KontaktOss />
