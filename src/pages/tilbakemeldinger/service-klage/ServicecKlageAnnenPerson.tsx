@@ -47,7 +47,7 @@ const ServiceKlageForAnnenPerson = () => {
             <InputField
               bredde={"M"}
               submitted={submitted}
-              label={intl.formatMessage({ id: "felter.dinrolle" })}
+              label={intl.formatMessage({ id: "felter.dinrolle.annenperson" })}
               required={true}
               value={fields.innmelderRolle}
               error={errors.innmelderRolle}

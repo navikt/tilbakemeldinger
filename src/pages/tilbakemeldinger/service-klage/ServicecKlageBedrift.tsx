@@ -11,23 +11,23 @@ const ServiceKlageForBedrift = () => {
       isRequired: intl.formatMessage({ id: "validering.navn.pakrevd" })
     },
     orgNavn: {
-      isRequired: "Organisasjonsnavn er påkrevd"
+      isRequired: intl.formatMessage({ id: "validering.orgnavn.pakrevd" })
     },
     orgNummer: {
-      isRequired: "Organisasjonsnummer er påkrevd",
+      isRequired: intl.formatMessage({ id: "validering.orgnr.pakrevd" }),
       isExactLength: {
-        message: "Organisasjonsnummer må ha 9 siffer",
+        message: intl.formatMessage({ id: "validering.orgnr.korrektsiffer" }),
         length: 9
       }
     },
     orgPostadr: {
-      isRequired: "Postadresse er påkrevd"
+      isRequired: intl.formatMessage({ id: "validering.postadr.pakrevd" })
     },
     orgTlfNr: {
-      isRequired: "Telefonnummer er påkrevd"
+      isRequired: intl.formatMessage({ id: "validering.tlf.pakrevd" })
     },
     innmelderRolle: {
-      isRequired: "Rolle er påkrevd"
+      isRequired: intl.formatMessage({ id: "validering.rolle.pakrevd" })
     }
   };
   return (
@@ -37,7 +37,7 @@ const ServiceKlageForBedrift = () => {
           <div className="serviceKlage__ekspandert">
             <InputNavn
               bredde={"M"}
-              label={"Ditt navn"}
+              label={intl.formatMessage({ id: "felter.dittnavn" })}
               submitted={submitted}
               value={fields.innmelderNavn}
               error={errors.innmelderNavn}
@@ -45,7 +45,7 @@ const ServiceKlageForBedrift = () => {
             />
             <InputField
               bredde={"M"}
-              label={"Din rolle (leder, HR-ansvarlig, tillitsvalgt osv.)"}
+              label={intl.formatMessage({ id: "felter.dinrolle.bedrift" })}
               submitted={submitted}
               value={fields.innmelderRolle}
               error={errors.innmelderRolle}
@@ -53,7 +53,7 @@ const ServiceKlageForBedrift = () => {
             />
             <InputField
               bredde={"M"}
-              label={"Organisasjonsnavn"}
+              label={intl.formatMessage({ id: "felter.orgnavn" })}
               submitted={submitted}
               value={fields.orgNavn}
               error={errors.orgNavn}
@@ -61,7 +61,7 @@ const ServiceKlageForBedrift = () => {
             />
             <InputField
               bredde={"M"}
-              label={"Organisasjonsnummer"}
+              label={intl.formatMessage({ id: "felter.orgnr" })}
               submitted={submitted}
               value={fields.orgNummer}
               error={errors.orgNummer}
@@ -69,7 +69,7 @@ const ServiceKlageForBedrift = () => {
             />
             <InputField
               bredde={"L"}
-              label={"Bedriftens postadresse"}
+              label={intl.formatMessage({ id: "felter.postadr" })}
               submitted={submitted}
               value={fields.orgPostadr}
               error={errors.orgPostadr}
@@ -77,7 +77,7 @@ const ServiceKlageForBedrift = () => {
             />
             <InputField
               bredde={"S"}
-              label={"Bedriftens telefonnummer"}
+              label={intl.formatMessage({ id: "felter.tlf.bedrift" })}
               submitted={submitted}
               value={fields.orgTlfNr}
               error={errors.orgTlfNr}

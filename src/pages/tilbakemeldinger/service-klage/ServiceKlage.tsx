@@ -50,7 +50,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
       isRequired: intl.formatMessage({ id: "validering.melding.pakrevd" })
     },
     onskerKontakt: {
-      isRequired: intl.formatMessage({ id: "validering.onskerKontakt.pakrevd" })
+      isRequired: intl.formatMessage({ id: "validering.onskerkontakt.pakrevd" })
     }
   };
 
@@ -274,7 +274,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                     </div>
                     <SkjemaGruppe
                       title={intl.formatMessage({
-                        id: "felter.oneskerkontakt"
+                        id: "felter.onskerkontakt"
                       })}
                       feil={
                         submitted && errors.onskerKontakt
@@ -284,10 +284,10 @@ const ServiceKlage = (props: RouteComponentProps) => {
                     >
                       <Radio
                         label={intl.formatMessage({
-                          id: "felter.oneskerkontakt.ja"
+                          id: "felter.onskerkontakt.ja"
                         })}
                         name={intl.formatMessage({
-                          id: "felter.oneskerkontakt.ja"
+                          id: "felter.onskerkontakt.ja"
                         })}
                         checked={fields.onskerKontakt === "true"}
                         onChange={() => setField({ onskerKontakt: "true" })}
@@ -297,10 +297,10 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       )}
                       <Radio
                         label={intl.formatMessage({
-                          id: "felter.oneskerkontakt.nei"
+                          id: "felter.onskerkontakt.nei"
                         })}
                         name={intl.formatMessage({
-                          id: "felter.oneskerkontakt.nei"
+                          id: "felter.onskerkontakt.nei"
                         })}
                         checked={fields.onskerKontakt === "false"}
                         onChange={() => setField({ onskerKontakt: "false" })}
