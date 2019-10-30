@@ -22,6 +22,9 @@ export const extraValidators: Validators = {
   }) => (!(value.FORMIDDAG || value.ETTERMIDDAG) ? config.message : null)
 };
 
+export const sjekkForFeil = (submitted: boolean, error: string | null) =>
+  submitted && error ? { feilmelding: error } : undefined;
+
 /*
   Overridden types
  */

@@ -23,6 +23,7 @@ import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import MetaTags from "react-meta-tags";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import Takk from "../../../components/takk/Takk";
+import { sjekkForFeil } from "../../../utils/validators";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
 
@@ -107,7 +108,6 @@ const Ros = (props: RouteComponentProps) => {
         ...outboundExtend[hvemRoses]
       };
 
-      console.log(outbound);
       settLoading(true);
       postRosTilNav(outbound)
         .then(() => {
@@ -167,11 +167,7 @@ const Ros = (props: RouteComponentProps) => {
                       title={intl.formatMessage({
                         id: "felter.hvemroses.tittel"
                       })}
-                      feil={
-                        submitted && errors.hvemRoses
-                          ? { feilmelding: errors.hvemRoses }
-                          : undefined
-                      }
+                      feil={sjekkForFeil(submitted, errors.hvemRoses)}
                     >
                       <Radio
                         label={intl.formatMessage({
@@ -203,57 +199,55 @@ const Ros = (props: RouteComponentProps) => {
                       />
                       {fields.hvemRoses === "NAV_KONTOR" && (
                         <Validation config={navKontorConfig}>
-                          {() => {
-                            return (
-                              <div className="ros-til-nav__navkontor">
-                                <div className="ros-til-nav__label">
-                                  <Element>
-                                    <FormattedMessage
-                                      id={"felter.hvemroses.navkontor.velg"}
-                                    />
-                                  </Element>
-                                </div>
-                                {enheter.status === "RESULT" ? (
-                                  <Select
-                                    placeholder={intl.formatMessage({
-                                      id: "felter.hvemroses.navkontor.skrivinn"
-                                    })}
-                                    classNamePrefix={
-                                      submitted && errors.navKontor
-                                        ? "ros-til-nav-feil"
-                                        : "ros-til-nav"
-                                    }
-                                    value={fields.navKontor}
-                                    onChange={(
-                                      v: ValueType<{
-                                        value: string;
-                                        label: string;
-                                      }>
-                                    ) => setField({ navKontor: v })}
-                                    options={enheter.data
-                                      .sort((a, b) =>
-                                        a.enhetsnavn < b.enhetsnavn ? -1 : 1
-                                      )
-                                      .map(enhet => ({
-                                        value: enhet.enhetsnummer,
-                                        label: `${enhet.enhetsnavn} -  ${enhet.enhetsnummer}`
-                                      }))}
+                          {() => (
+                            <div className="ros-til-nav__navkontor">
+                              <div className="ros-til-nav__label">
+                                <Element>
+                                  <FormattedMessage
+                                    id={"felter.hvemroses.navkontor.velg"}
                                   />
-                                ) : (
-                                  <div className="ros-til-nav__spinner">
-                                    <NavFrontendSpinner />
-                                  </div>
-                                )}
-                                {submitted && errors.navKontor && (
-                                  <div role="alert" aria-live="assertive">
-                                    <div className="skjemaelement__feilmelding">
-                                      {errors.navKontor}
-                                    </div>
-                                  </div>
-                                )}
+                                </Element>
                               </div>
-                            );
-                          }}
+                              {enheter.status === "RESULT" ? (
+                                <Select
+                                  placeholder={intl.formatMessage({
+                                    id: "felter.hvemroses.navkontor.skrivinn"
+                                  })}
+                                  classNamePrefix={
+                                    submitted && errors.navKontor
+                                      ? "ros-til-nav-feil"
+                                      : "ros-til-nav"
+                                  }
+                                  value={fields.navKontor}
+                                  onChange={(
+                                    v: ValueType<{
+                                      value: string;
+                                      label: string;
+                                    }>
+                                  ) => setField({ navKontor: v })}
+                                  options={enheter.data
+                                    .sort((a, b) =>
+                                      a.enhetsnavn < b.enhetsnavn ? -1 : 1
+                                    )
+                                    .map(enhet => ({
+                                      value: enhet.enhetsnummer,
+                                      label: `${enhet.enhetsnavn} -  ${enhet.enhetsnummer}`
+                                    }))}
+                                />
+                              ) : (
+                                <div className="ros-til-nav__spinner">
+                                  <NavFrontendSpinner />
+                                </div>
+                              )}
+                              {submitted && errors.navKontor && (
+                                <div role="alert" aria-live="assertive">
+                                  <div className="skjemaelement__feilmelding">
+                                    {errors.navKontor}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          )}
                         </Validation>
                       )}
                     </SkjemaGruppe>

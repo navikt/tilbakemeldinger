@@ -20,6 +20,7 @@ import InputField from "../../../components/input-fields/InputField";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
 import Takk from "../../../components/takk/Takk";
+import { sjekkForFeil } from "../../../utils/validators";
 
 export interface OutboundFeilOgMangler {
   navn: string;
@@ -80,7 +81,6 @@ const FOM = (props: RouteComponentProps) => {
         melding
       };
 
-      console.log(outbound);
       settLoading(true);
       postFeilOgMangler(outbound)
         .then(() => {
@@ -162,11 +162,7 @@ const FOM = (props: RouteComponentProps) => {
                   title={intl.formatMessage({
                     id: "felter.typefeil.tittel"
                   })}
-                  feil={
-                    submitted && errors.feiltype
-                      ? { feilmelding: errors.feiltype }
-                      : undefined
-                  }
+                  feil={sjekkForFeil(submitted, errors.feiltype)}
                 >
                   <Radio
                     label={intl.formatMessage({

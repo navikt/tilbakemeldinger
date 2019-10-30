@@ -29,6 +29,7 @@ import ServiceKlageForBedrift from "./ServicecKlageBedrift";
 import ServiceKlageYtelse from "./ServicecKlageYtelse";
 import ServiceKlageTelefon from "./ServicecKlageTelefon";
 import Takk from "../../../components/takk/Takk";
+import { sjekkForFeil } from "../../../utils/validators";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageType &
@@ -122,7 +123,6 @@ const ServiceKlage = (props: RouteComponentProps) => {
         ...outboundExtend[hvemFra]
       };
 
-      console.log(outbound);
       settLoading(true);
       postServiceKlage(outbound)
         .then(() => {
@@ -170,176 +170,162 @@ const ServiceKlage = (props: RouteComponentProps) => {
               {({ errors, fields, submitted, setField, isValid }) => {
                 const hvemFra: ON_BEHALF_OF = fields.hvemFra;
                 return (
-                  <>
-                    <div className="serviceKlage__content">
-                      <SkjemaGruppe
-                        title={intl.formatMessage({ id: "felter.klagetype" })}
-                        feil={
-                          submitted && errors.klageType
-                            ? { feilmelding: errors.klageType }
-                            : undefined
-                        }
-                      >
-                        <Radio
-                          label={intl.formatMessage({
-                            id: "felter.klageType.saksbehandling"
-                          })}
-                          name={"SAKSBEHANDLING"}
-                          checked={fields.klageType === "SAKSBEHANDLING"}
-                          onChange={() =>
-                            setField({ klageType: "SAKSBEHANDLING" })
-                          }
-                        />
-                        {fields.klageType === "SAKSBEHANDLING" && (
-                          <ServiceKlageYtelse />
-                        )}
-                        <Radio
-                          label={intl.formatMessage({
-                            id: "felter.klageType.navkontor"
-                          })}
-                          name={"NAV_KONTOR"}
-                          checked={fields.klageType === "NAV_KONTOR"}
-                          onChange={() => setField({ klageType: "NAV_KONTOR" })}
-                        />
-                        <Radio
-                          label={intl.formatMessage({
-                            id: "felter.klageType.telefon"
-                          })}
-                          name={"TELEFON"}
-                          checked={fields.klageType === "TELEFON"}
-                          onChange={() => setField({ klageType: "TELEFON" })}
-                        />
-                        <Radio
-                          label={intl.formatMessage({
-                            id: "felter.klageType.navno"
-                          })}
-                          name={"NAVNO"}
-                          checked={fields.klageType === "NAVNO"}
-                          onChange={() => setField({ klageType: "NAVNO" })}
-                        />
-                        <Radio
-                          label={intl.formatMessage({
-                            id: "felter.klageType.annet"
-                          })}
-                          name={"ANNET"}
-                          checked={fields.klageType === "ANNET"}
-                          onChange={() => setField({ klageType: "ANNET" })}
-                        />
-                      </SkjemaGruppe>
-                      <SkjemaGruppe
-                        title={intl.formatMessage({ id: "felter.hvemfra" })}
-                        feil={
-                          submitted && errors.hvemFra
-                            ? { feilmelding: errors.hvemFra }
-                            : undefined
-                        }
-                      >
-                        <Radio
-                          label={intl.formatMessage({
-                            id: "felter.hvemfra.megselv"
-                          })}
-                          name={"PRIVATPERSON"}
-                          checked={fields.hvemFra === "PRIVATPERSON"}
-                          onChange={() => setField({ hvemFra: "PRIVATPERSON" })}
-                        />
-                        {hvemFra === "PRIVATPERSON" && (
-                          <ServiceKlagePrivatperson />
-                        )}
-                        <Radio
-                          label={intl.formatMessage({
-                            id: "felter.hvemfra.enannen"
-                          })}
-                          name={"ANNEN_PERSON"}
-                          checked={fields.hvemFra === "ANNEN_PERSON"}
-                          onChange={() => setField({ hvemFra: "ANNEN_PERSON" })}
-                        />
-                        {hvemFra === "ANNEN_PERSON" && (
-                          <ServiceKlageForAnnenPerson />
-                        )}
-                        <Radio
-                          label={intl.formatMessage({
-                            id: "felter.hvemfra.virksomhet"
-                          })}
-                          name={"BEDRIFT"}
-                          checked={fields.hvemFra === "BEDRIFT"}
-                          onChange={() => setField({ hvemFra: "BEDRIFT" })}
-                        />
-                        {hvemFra === "BEDRIFT" && <ServiceKlageForBedrift />}
-                      </SkjemaGruppe>
-                      <div className="serviceKlage__melding">
-                        <InputMelding
-                          label={intl.formatMessage({
-                            id: "felter.melding.tittel"
-                          })}
-                          submitted={submitted}
-                          value={fields.melding}
-                          error={errors.melding}
-                          onChange={v => setField({ melding: v })}
-                        />
-                      </div>
-                      <SkjemaGruppe
-                        title={intl.formatMessage({
-                          id: "felter.onskerkontakt"
+                  <div className="serviceKlage__content">
+                    <SkjemaGruppe
+                      title={intl.formatMessage({ id: "felter.klagetype" })}
+                      feil={sjekkForFeil(submitted, errors.klageType)}
+                    >
+                      <Radio
+                        label={intl.formatMessage({
+                          id: "felter.klageType.saksbehandling"
                         })}
-                        feil={
-                          submitted && errors.onskerKontakt
-                            ? { feilmelding: errors.onskerKontakt }
-                            : undefined
+                        name={"SAKSBEHANDLING"}
+                        checked={fields.klageType === "SAKSBEHANDLING"}
+                        onChange={() =>
+                          setField({ klageType: "SAKSBEHANDLING" })
                         }
-                      >
-                        <Radio
-                          label={intl.formatMessage({
-                            id: "felter.onskerkontakt.ja"
-                          })}
-                          name={intl.formatMessage({
-                            id: "felter.onskerkontakt.ja"
-                          })}
-                          checked={fields.onskerKontakt === "true"}
-                          onChange={() => setField({ onskerKontakt: "true" })}
-                        />
-                        {fields.onskerKontakt === "true" && (
-                          <ServiceKlageTelefon />
-                        )}
-                        <Radio
-                          label={intl.formatMessage({
-                            id: "felter.onskerkontakt.nei"
-                          })}
-                          name={intl.formatMessage({
-                            id: "felter.onskerkontakt.nei"
-                          })}
-                          checked={fields.onskerKontakt === "false"}
-                          onChange={() => setField({ onskerKontakt: "false" })}
-                        />
-                      </SkjemaGruppe>
-                      {error && (
-                        <AlertStripeFeil>
-                          <FormattedMessage id={"felter.noegikkgalt"} /> {error}
-                        </AlertStripeFeil>
+                      />
+                      {fields.klageType === "SAKSBEHANDLING" && (
+                        <ServiceKlageYtelse />
                       )}
-                      <div className="tb__knapper">
-                        <div className="tb__knapp">
-                          <Knapp
-                            htmlType={"submit"}
-                            type={"standard"}
-                            disabled={loading || (submitted && !isValid)}
-                          >
-                            {loading ? (
-                              <NavFrontendSpinner type={"S"} />
-                            ) : (
-                              <FormattedMessage id={"felter.send"} />
-                            )}
+                      <Radio
+                        label={intl.formatMessage({
+                          id: "felter.klageType.navkontor"
+                        })}
+                        name={"NAV_KONTOR"}
+                        checked={fields.klageType === "NAV_KONTOR"}
+                        onChange={() => setField({ klageType: "NAV_KONTOR" })}
+                      />
+                      <Radio
+                        label={intl.formatMessage({
+                          id: "felter.klageType.telefon"
+                        })}
+                        name={"TELEFON"}
+                        checked={fields.klageType === "TELEFON"}
+                        onChange={() => setField({ klageType: "TELEFON" })}
+                      />
+                      <Radio
+                        label={intl.formatMessage({
+                          id: "felter.klageType.navno"
+                        })}
+                        name={"NAVNO"}
+                        checked={fields.klageType === "NAVNO"}
+                        onChange={() => setField({ klageType: "NAVNO" })}
+                      />
+                      <Radio
+                        label={intl.formatMessage({
+                          id: "felter.klageType.annet"
+                        })}
+                        name={"ANNET"}
+                        checked={fields.klageType === "ANNET"}
+                        onChange={() => setField({ klageType: "ANNET" })}
+                      />
+                    </SkjemaGruppe>
+                    <SkjemaGruppe
+                      title={intl.formatMessage({ id: "felter.hvemfra" })}
+                      feil={sjekkForFeil(submitted, errors.hvemFra)}
+                    >
+                      <Radio
+                        label={intl.formatMessage({
+                          id: "felter.hvemfra.megselv"
+                        })}
+                        name={"PRIVATPERSON"}
+                        checked={fields.hvemFra === "PRIVATPERSON"}
+                        onChange={() => setField({ hvemFra: "PRIVATPERSON" })}
+                      />
+                      {hvemFra === "PRIVATPERSON" && (
+                        <ServiceKlagePrivatperson />
+                      )}
+                      <Radio
+                        label={intl.formatMessage({
+                          id: "felter.hvemfra.enannen"
+                        })}
+                        name={"ANNEN_PERSON"}
+                        checked={fields.hvemFra === "ANNEN_PERSON"}
+                        onChange={() => setField({ hvemFra: "ANNEN_PERSON" })}
+                      />
+                      {hvemFra === "ANNEN_PERSON" && (
+                        <ServiceKlageForAnnenPerson />
+                      )}
+                      <Radio
+                        label={intl.formatMessage({
+                          id: "felter.hvemfra.virksomhet"
+                        })}
+                        name={"BEDRIFT"}
+                        checked={fields.hvemFra === "BEDRIFT"}
+                        onChange={() => setField({ hvemFra: "BEDRIFT" })}
+                      />
+                      {hvemFra === "BEDRIFT" && <ServiceKlageForBedrift />}
+                    </SkjemaGruppe>
+                    <div className="serviceKlage__melding">
+                      <InputMelding
+                        label={intl.formatMessage({
+                          id: "felter.melding.tittel"
+                        })}
+                        submitted={submitted}
+                        value={fields.melding}
+                        error={errors.melding}
+                        onChange={v => setField({ melding: v })}
+                      />
+                    </div>
+                    <SkjemaGruppe
+                      title={intl.formatMessage({
+                        id: "felter.onskerkontakt"
+                      })}
+                      feil={sjekkForFeil(submitted, errors.onskerKontakt)}
+                    >
+                      <Radio
+                        label={intl.formatMessage({
+                          id: "felter.onskerkontakt.ja"
+                        })}
+                        name={intl.formatMessage({
+                          id: "felter.onskerkontakt.ja"
+                        })}
+                        checked={fields.onskerKontakt === "true"}
+                        onChange={() => setField({ onskerKontakt: "true" })}
+                      />
+                      {fields.onskerKontakt === "true" && (
+                        <ServiceKlageTelefon />
+                      )}
+                      <Radio
+                        label={intl.formatMessage({
+                          id: "felter.onskerkontakt.nei"
+                        })}
+                        name={intl.formatMessage({
+                          id: "felter.onskerkontakt.nei"
+                        })}
+                        checked={fields.onskerKontakt === "false"}
+                        onChange={() => setField({ onskerKontakt: "false" })}
+                      />
+                    </SkjemaGruppe>
+                    {error && (
+                      <AlertStripeFeil>
+                        <FormattedMessage id={"felter.noegikkgalt"} /> {error}
+                      </AlertStripeFeil>
+                    )}
+                    <div className="tb__knapper">
+                      <div className="tb__knapp">
+                        <Knapp
+                          htmlType={"submit"}
+                          type={"standard"}
+                          disabled={loading || (submitted && !isValid)}
+                        >
+                          {loading ? (
+                            <NavFrontendSpinner type={"S"} />
+                          ) : (
+                            <FormattedMessage id={"felter.send"} />
+                          )}
+                        </Knapp>
+                      </div>
+                      <div className="tb__knapp">
+                        <Link to={tilbakeTil}>
+                          <Knapp type={"flat"}>
+                            <FormattedMessage id={"felter.tilbake"} />
                           </Knapp>
-                        </div>
-                        <div className="tb__knapp">
-                          <Link to={tilbakeTil}>
-                            <Knapp type={"flat"}>
-                              <FormattedMessage id={"felter.tilbake"} />
-                            </Knapp>
-                          </Link>
-                        </div>
+                        </Link>
                       </div>
                     </div>
-                  </>
+                  </div>
                 );
               }}
             </Validation>

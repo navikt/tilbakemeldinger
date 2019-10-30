@@ -12,6 +12,8 @@ import { Checkbox, SkjemaGruppe } from "nav-frontend-skjema";
 import Box from "../../../components/box/Box";
 import InputField from "../../../components/input-fields/InputField";
 import Takk from "../../../components/takk/Takk";
+import { sjekkForFeil } from "../../../utils/validators";
+import { FormattedMessage } from "react-intl";
 
 type TIDSROM = "FORMIDDAG" | "FORMIDDAG" | "BEGGE";
 export interface OutboundBestillingAvSamtale {
@@ -22,7 +24,7 @@ export interface OutboundBestillingAvSamtale {
 }
 
 const BAS = (props: RouteComponentProps) => {
-  document.title = "Bestilling av stamtale - www.nav.no";
+  document.title = "Bestilling av samtale - www.nav.no";
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState();
@@ -66,7 +68,6 @@ const BAS = (props: RouteComponentProps) => {
           : "ETTERMIDDAG") as TIDSROM
       };
 
-      console.log(outbound);
       settLoading(true);
       postSamiskBestillSamtale(outbound)
         .then(() => {
@@ -152,11 +153,7 @@ const BAS = (props: RouteComponentProps) => {
                       Goas heive duinna váldit oktavuođa?
                     </legend>
                     <SkjemaGruppe
-                      feil={
-                        submitted && errors.tidsrom
-                          ? { feilmelding: errors.tidsrom }
-                          : undefined
-                      }
+                      feil={sjekkForFeil(submitted, errors.tidsrom)}
                     >
                       <Checkbox
                         label={"08.00-10.00"}
@@ -189,7 +186,7 @@ const BAS = (props: RouteComponentProps) => {
                   <div>
                     {error && (
                       <AlertStripeFeil>
-                        Oi! Noe gikk galt: {error}
+                        <FormattedMessage id={"felter.noegikkgalt"} /> {error}
                       </AlertStripeFeil>
                     )}
                   </div>
@@ -214,7 +211,7 @@ const BAS = (props: RouteComponentProps) => {
                             "https://www.nav.no/se/Samegiella";
                         }}
                       >
-                        Gå tilbake
+                        <FormattedMessage id={"felter.tilbake"} />
                       </Flatknapp>
                     </div>
                   </div>
