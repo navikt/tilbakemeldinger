@@ -33,7 +33,7 @@ const KontaktOssFrontpage = () => {
     <div className="pagecontent">
       <div className="frontpage">
         <MetaTags>
-          <title>{intl.messages["seo.kontaktoss.urltittel"]}</title>
+          <title>{intl.messages["seo.kontaktoss.tittel"]}</title>
           <meta
             name="description"
             content={intl.messages["seo.kontaktoss.description"] as string}
