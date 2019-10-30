@@ -8,11 +8,13 @@ import Environment from "Environments";
 import { urls } from "Config";
 import Box from "../../../components/box/Box";
 import Header from "../../../components/header/Header";
+import MetaTags from "react-meta-tags";
+import { useIntl } from "react-intl";
 const { loginUrl } = Environment();
 
 const Login = () => {
-  document.title = "Login - www.nav.no";
   const [{ auth }] = useStore();
+  const intl = useIntl();
 
   if (auth.authenticated) {
     return <Redirect to={urls.tilbakemeldinger.serviceklage.form} />;
@@ -20,6 +22,9 @@ const Login = () => {
 
   return (
     <div className="pagecontent">
+      <MetaTags>
+        <title>{intl.messages["seo.klagepaservice.login.tittel"]}</title>
+      </MetaTags>
       <Tilbake to={urls.tilbakemeldinger.forside} />
       <Header title="Klage på service" />
       <Box tittel={"Ønsker du å logge inn?"}>

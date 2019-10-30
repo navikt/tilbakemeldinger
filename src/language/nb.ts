@@ -337,6 +337,7 @@ export default {
     "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
   "seo.feilogmangler.tittel": "Feil og mangler - www.nav.no",
   "seo.feilogmangler.description": "Meld fra om feil og mangler på nav.no",
+  "seo.klagepaservice.login.tittel": "Logg inn - Klage på service - www.nav.no",
   "seo.klagepaservice.tittel": "Klage på service - www.nav.no",
   "seo.klagepaservice.description":
     "Send klage på service hos NAV. Hva gjelder tilbakemeldingen og hvem skriver du på vegne av?",
