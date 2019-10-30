@@ -47,13 +47,14 @@ const Login = () => {
             </a>
           </div>
           <div className={"tb__knapp serviceKlage__login-lenke"}>
-            <div className="lenke">
-              <Link to={urls.tilbakemeldinger.serviceklage.form}>
-                <FormattedMessage
-                  id={"tilbakemeldinger.serviceklage.login.knapp.fortsettuten"}
-                />
-              </Link>
-            </div>
+            <Link
+              className={"lenke"}
+              to={urls.tilbakemeldinger.serviceklage.form}
+            >
+              <FormattedMessage
+                id={"tilbakemeldinger.serviceklage.login.knapp.fortsettuten"}
+              />
+            </Link>
           </div>
         </div>
       </Box>

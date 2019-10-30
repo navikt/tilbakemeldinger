@@ -38,7 +38,7 @@ export type OutboundServiceKlage = OutboundServiceKlageBase &
 const ServiceKlage = (props: RouteComponentProps) => {
   const [{ auth }] = useStore();
   const [loading, settLoading] = useState(false);
-  const [success, settSuccess] = useState(true);
+  const [success, settSuccess] = useState(false);
   const [error, settError] = useState();
   const intl = useIntl();
 
