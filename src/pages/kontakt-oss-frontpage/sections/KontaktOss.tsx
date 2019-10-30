@@ -20,7 +20,7 @@ const SkrivTilOss = () => (
         <FormattedMessage id={"kontaktoss.chat.beskrivelse"} />
       </div>
       <div className={"box__section-lenke"}>
-        <Link to={urls.chat.forside}>
+        <Link className={"lenke"} to={urls.chat.forside}>
           <FormattedMessage id={"kontaktoss.chat.knapp"} />
         </Link>
       </div>

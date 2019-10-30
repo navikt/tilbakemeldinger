@@ -158,7 +158,7 @@ export default {
   "kontaktoss.ringoss.tastevalg.tast4.tittel": "Tast 4",
   "kontaktoss.ringoss.tastevalg.tast4.beskrivelse": "Uføretrygd og honnørkort",
   "kontaktoss.ringoss.tastevalg.tast5.tittel": "Tast 5",
-  "kontaktoss.ringoss.tastevalg.tast45.beskrivelse": "Andre henvendelser",
+  "kontaktoss.ringoss.tastevalg.tast5.beskrivelse": "Andre henvendelser",
 
   "kontaktoss.ringoss.spesialnr": "Spesialnumre",
   "kontaktoss.ringoss.spesialnr.pensjon": "Pensjon",
