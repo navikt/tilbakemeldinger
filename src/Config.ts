@@ -56,7 +56,7 @@ export const urls = {
     bil: "#",
     tolk: "#"
   },
-  fullmaktskjema: "(lenke til fullmaktskjema)",
+  fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
   faq: {
     utbetalinger: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Utbetalinger/Utbetalinger`,

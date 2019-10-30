@@ -5,7 +5,6 @@ import InputNavn from "components/input-fields/InputNavn";
 import InputField from "components/input-fields/InputField";
 import { AlertStripeAdvarsel } from "nav-frontend-alertstriper";
 import RadioPanelGruppe from "components/input-fields/RadioPanelGruppe";
-import { urls } from "../../../Config";
 
 const ServiceKlageForAnnenPerson = () => {
   const intl = useIntl();
