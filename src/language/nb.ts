@@ -223,6 +223,13 @@ export default {
   "tilbakemeldinger.serviceklage.tittel": "Klage på service",
   "tilbakemeldinger.serviceklage.beskrivelse":
     "Har du blitt møtt på en dårlig måte? Eller hatt en annen negativ opplevelse i møte med NAV?",
+  "tilbakemeldinger.serviceklage.login.tittel": "Klage på service",
+  "tilbakemeldinger.serviceklage.login.beskrivelse":
+    "Vi anbefaler at du logger inn, så slipper du å fylle inn all informasjonen om deg selv.<br />" +
+    "Du må opppgi hvem du er uansett om du logger inn eller ikke.",
+  "tilbakemeldinger.serviceklage.login.knapp": "Logg inn",
+  "tilbakemeldinger.serviceklage.login.knapp.fortsettuten":
+    "Fortsett uten å logge inn",
   "tilbakemeldinger.serviceklage.link": "Send tilbakemelding på service",
   "tilbakemeldinger.serviceklage.form.veileder":
     "Velg det alternativet som passer best. <br />" +
