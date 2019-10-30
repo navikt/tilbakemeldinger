@@ -19,22 +19,26 @@ const RingOss = () => {
         <div className={"box__section-description"}>
           <FormattedMessage id={"kontaktoss.ringoss.beskrivelse"} />
         </div>
-        <div
-          className={"ringoss__visnr box__section-lenke lenke "}
+        <button
+          className={"ringoss__visnr box__section-lenke lenke"}
           onClick={() => settVisNummer(!visNummer)}
         >
           {visNummer ? (
             <>
-              <FormattedMessage id={"kontaktoss.ringoss.skjultlf"} />
+              <span>
+                <FormattedMessage id={"kontaktoss.ringoss.skjultlf"} />
+              </span>
               <OppChevron />
             </>
           ) : (
             <>
-              <FormattedMessage id={"kontaktoss.ringoss.vistlf"} />
+              <span>
+                <FormattedMessage id={"kontaktoss.ringoss.vistlf"} />
+              </span>
               <NedChevron />
             </>
           )}
-        </div>
+        </button>
         {visNummer && (
           <>
             <div className={"ringoss__tlf"}>

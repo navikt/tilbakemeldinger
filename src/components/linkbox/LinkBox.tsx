@@ -27,13 +27,15 @@ const LinkBox = (props: Props) => {
           <Normaltekst>{props.beskrivelse}</Normaltekst>
         </div>
         {props.external ? (
-          <Lenke href={props.to}>
-            <Normaltekst>{props.lenkeTekst}</Normaltekst>
-          </Lenke>
+          <Normaltekst>
+            <Lenke href={props.to}>{props.lenkeTekst}</Lenke>
+          </Normaltekst>
         ) : (
-          <Link to={props.to}>
-            <Normaltekst>{props.lenkeTekst}</Normaltekst>
-          </Link>
+          <Normaltekst>
+            <Link className={"lenke"} to={props.to}>
+              {props.lenkeTekst}
+            </Link>
+          </Normaltekst>
         )}
       </div>
     </Box>

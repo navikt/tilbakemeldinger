@@ -158,7 +158,7 @@ export default {
   "kontaktoss.ringoss.tastevalg.tast4.tittel": "Tast 4",
   "kontaktoss.ringoss.tastevalg.tast4.beskrivelse": "Uføretrygd og honnørkort",
   "kontaktoss.ringoss.tastevalg.tast5.tittel": "Tast 5",
-  "kontaktoss.ringoss.tastevalg.tast45.beskrivelse": "Andre henvendelser",
+  "kontaktoss.ringoss.tastevalg.tast5.beskrivelse": "Andre henvendelser",
 
   "kontaktoss.ringoss.spesialnr": "Spesialnumre",
   "kontaktoss.ringoss.spesialnr.pensjon": "Pensjon",
@@ -223,6 +223,13 @@ export default {
   "tilbakemeldinger.serviceklage.tittel": "Klage på service",
   "tilbakemeldinger.serviceklage.beskrivelse":
     "Har du blitt møtt på en dårlig måte? Eller hatt en annen negativ opplevelse i møte med NAV?",
+  "tilbakemeldinger.serviceklage.login.tittel": "Klage på service",
+  "tilbakemeldinger.serviceklage.login.beskrivelse":
+    "Vi anbefaler at du logger inn, så slipper du å fylle inn all informasjonen om deg selv.<br />" +
+    "Du må opppgi hvem du er uansett om du logger inn eller ikke.",
+  "tilbakemeldinger.serviceklage.login.knapp": "Logg inn",
+  "tilbakemeldinger.serviceklage.login.knapp.fortsettuten":
+    "Fortsett uten å logge inn",
   "tilbakemeldinger.serviceklage.link": "Send tilbakemelding på service",
   "tilbakemeldinger.serviceklage.form.veileder":
     "Velg det alternativet som passer best. <br />" +
@@ -274,6 +281,7 @@ export default {
   "validering.postadr.pakrevd": "Postadresse er påkrevd",
 
   "felter.navn.tittel": "Navn",
+  "felter.navn.tittel.valgfritt": "Navn (valgfritt)",
   "felter.epost.tittel": "E-post",
   "felter.tlf.tittel": "Telefon",
   "felter.typefeil.tittel": "Hva slags feil eller mangel fant du?",
@@ -336,6 +344,7 @@ export default {
     "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
   "seo.feilogmangler.tittel": "Feil og mangler - www.nav.no",
   "seo.feilogmangler.description": "Meld fra om feil og mangler på nav.no",
+  "seo.klagepaservice.login.tittel": "Logg inn - Klage på service - www.nav.no",
   "seo.klagepaservice.tittel": "Klage på service - www.nav.no",
   "seo.klagepaservice.description":
     "Send klage på service hos NAV. Hva gjelder tilbakemeldingen og hvem skriver du på vegne av?",
@@ -395,5 +404,8 @@ export default {
     "Mandag, tirsdag og onsdag kl. 10.00 - 15.00\n" +
     "Torsdag kl. 10.00 - 14.30\n" +
     "Fredag kl. 10.00 - 15.00</p>" +
-    "<p>Du kan også ringe NAV Gjeldsrådgivning på tlf. 55 55 33 39 alle hverdager mellom klokken 09.00 og 15.00</p>"
+    "<p>Du kan også ringe NAV Gjeldsrådgivning på tlf. 55 55 33 39 alle hverdager mellom klokken 09.00 og 15.00</p>",
+
+  "takk.melding": "Meldingen din er sendt",
+  "takk.knapp": "Gå til nav.no"
 };

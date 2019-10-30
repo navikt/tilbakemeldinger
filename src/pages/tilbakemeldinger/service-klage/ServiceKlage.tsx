@@ -28,6 +28,8 @@ import ServiceKlageForAnnenPerson from "./ServicecKlageAnnenPerson";
 import ServiceKlageForBedrift from "./ServicecKlageBedrift";
 import ServiceKlageYtelse from "./ServicecKlageYtelse";
 import ServiceKlageTelefon from "./ServicecKlageTelefon";
+import Takk from "../../../components/takk/Takk";
+import { sjekkForFeil } from "../../../utils/validators";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageType &
@@ -36,6 +38,7 @@ export type OutboundServiceKlage = OutboundServiceKlageBase &
 const ServiceKlage = (props: RouteComponentProps) => {
   const [{ auth }] = useStore();
   const [loading, settLoading] = useState(false);
+  const [success, settSuccess] = useState(false);
   const [error, settError] = useState();
   const intl = useIntl();
 
@@ -120,11 +123,10 @@ const ServiceKlage = (props: RouteComponentProps) => {
         ...outboundExtend[hvemFra]
       };
 
-      console.log(outbound);
       settLoading(true);
       postServiceKlage(outbound)
         .then(() => {
-          props.history.push(`${props.location.pathname}/takk`);
+          settSuccess(true);
         })
         .catch((error: HTTPError) => {
           settError(`${error.code} - ${error.text}`);
@@ -140,40 +142,38 @@ const ServiceKlage = (props: RouteComponentProps) => {
     : urls.tilbakemeldinger.serviceklage.login;
 
   return (
-    <>
-      <div className="pagecontent">
-        <MetaTags>
-          <title>{intl.messages["seo.klagepaservice.tittel"]}</title>
-          <meta
-            name="description"
-            content={intl.messages["seo.klagepaservice.description"] as string}
-          />
-        </MetaTags>
-        <Tilbake to={tilbakeTil} />
-        <Header
-          title={intl.formatMessage({
-            id: "tilbakemeldinger.serviceklage.form.tittel"
-          })}
+    <div className="pagecontent">
+      <MetaTags>
+        <title>{intl.messages["seo.klagepaservice.tittel"]}</title>
+        <meta
+          name="description"
+          content={intl.messages["seo.klagepaservice.description"] as string}
         />
-        <div className={"tb__veileder"}>
-          <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-            <FormattedHTMLMessage id="tilbakemeldinger.serviceklage.form.veileder" />
-          </Veilederpanel>
-        </div>
-        <Form onSubmit={send}>
-          <Validation config={baseFormConfig}>
-            {({ errors, fields, submitted, setField, isValid }) => {
-              const hvemFra: ON_BEHALF_OF = fields.hvemFra;
-              return (
-                <Box>
+      </MetaTags>
+      <Tilbake to={tilbakeTil} />
+      <Header
+        title={intl.formatMessage({
+          id: "tilbakemeldinger.serviceklage.form.tittel"
+        })}
+      />
+      <div className={"tb__veileder"}>
+        <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
+          <FormattedHTMLMessage id="tilbakemeldinger.serviceklage.form.veileder" />
+        </Veilederpanel>
+      </div>
+      <Box>
+        {success ? (
+          <Takk />
+        ) : (
+          <Form onSubmit={send}>
+            <Validation config={baseFormConfig}>
+              {({ errors, fields, submitted, setField, isValid }) => {
+                const hvemFra: ON_BEHALF_OF = fields.hvemFra;
+                return (
                   <div className="serviceKlage__content">
                     <SkjemaGruppe
                       title={intl.formatMessage({ id: "felter.klagetype" })}
-                      feil={
-                        submitted && errors.klageType
-                          ? { feilmelding: errors.klageType }
-                          : undefined
-                      }
+                      feil={sjekkForFeil(submitted, errors.klageType)}
                     >
                       <Radio
                         label={intl.formatMessage({
@@ -223,11 +223,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                     </SkjemaGruppe>
                     <SkjemaGruppe
                       title={intl.formatMessage({ id: "felter.hvemfra" })}
-                      feil={
-                        submitted && errors.hvemFra
-                          ? { feilmelding: errors.hvemFra }
-                          : undefined
-                      }
+                      feil={sjekkForFeil(submitted, errors.hvemFra)}
                     >
                       <Radio
                         label={intl.formatMessage({
@@ -276,11 +272,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       title={intl.formatMessage({
                         id: "felter.onskerkontakt"
                       })}
-                      feil={
-                        submitted && errors.onskerKontakt
-                          ? { feilmelding: errors.onskerKontakt }
-                          : undefined
-                      }
+                      feil={sjekkForFeil(submitted, errors.onskerKontakt)}
                     >
                       <Radio
                         label={intl.formatMessage({
@@ -334,13 +326,13 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       </div>
                     </div>
                   </div>
-                </Box>
-              );
-            }}
-          </Validation>
-        </Form>
-      </div>
-    </>
+                );
+              }}
+            </Validation>
+          </Form>
+        )}
+      </Box>
+    </div>
   );
 };
 
