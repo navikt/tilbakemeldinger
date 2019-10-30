@@ -4,7 +4,7 @@ import VeilederIcon from "assets/Veileder.svg";
 import Lenke from "nav-frontend-lenker";
 import { urls } from "../../Config";
 
-const utvikling = true;
+const utvikling = false;
 
 const UnderUtvikling = () =>
   utvikling ? (
