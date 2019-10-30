@@ -274,6 +274,7 @@ export default {
   "validering.postadr.pakrevd": "Postadresse er påkrevd",
 
   "felter.navn.tittel": "Navn",
+  "felter.navn.tittel.valgfritt": "Navn (valgfritt)",
   "felter.epost.tittel": "E-post",
   "felter.tlf.tittel": "Telefon",
   "felter.typefeil.tittel": "Hva slags feil eller mangel fant du?",

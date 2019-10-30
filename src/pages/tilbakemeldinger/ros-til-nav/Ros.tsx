@@ -4,7 +4,6 @@ import VeilederIcon from "../../../assets/Veileder.svg";
 import { Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import InputNavn from "../../../components/input-fields/InputNavn";
-import InputTelefon from "../../../components/input-fields/InputTelefon";
 import InputMelding from "../../../components/input-fields/InputMelding";
 import { fetchEnheter, postRosTilNav } from "../../../clients/apiClient";
 import Tilbake from "../../../components/tilbake/Tilbake";
@@ -28,7 +27,6 @@ type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
 
 type OutboundRosTilNavBase = {
   navn: string;
-  telefonnummer: string;
   melding: string;
 };
 
@@ -57,16 +55,7 @@ const Ros = (props: RouteComponentProps) => {
   }, []);
 
   const formConfig = {
-    navn: {
-      isRequired: intl.formatMessage({
-        id: "validering.navn.pakrevd"
-      })
-    },
-    telefonnummer: {
-      isRequired: intl.formatMessage({
-        id: "validering.tlf.pakrevd"
-      })
-    },
+    navn: {},
     hvemRoses: {
       isRequired: intl.formatMessage({
         id: "validering.hvemroses.pakrevd"
@@ -89,13 +78,14 @@ const Ros = (props: RouteComponentProps) => {
 
   const send = (e: FormContext) => {
     const { isValid, fields } = e;
-    const { navn, telefonnummer, melding } = fields;
+    const { navn, melding } = fields;
     const hvemRoses: HVEM_ROSES = fields.hvemRoses;
 
     if (isValid) {
       const outboundBase = {
-        navn,
-        telefonnummer,
+        ...(navn && {
+          navn
+        }),
         melding
       };
 
@@ -160,21 +150,11 @@ const Ros = (props: RouteComponentProps) => {
                 <InputNavn
                   bredde={"L"}
                   label={intl.formatMessage({
-                    id: "felter.navn.tittel"
+                    id: "felter.navn.tittel.valgfritt"
                   })}
                   value={fields.navn}
                   error={errors.navn}
                   onChange={v => setField({ navn: v })}
-                  submitted={submitted}
-                />
-                <InputTelefon
-                  bredde={"S"}
-                  label={intl.formatMessage({
-                    id: "felter.tlf.tittel"
-                  })}
-                  value={fields.telefonnummer}
-                  error={errors.telefonnummer}
-                  onChange={v => setField({ telefonnummer: v })}
                   submitted={submitted}
                 />
                 <SkjemaGruppe
