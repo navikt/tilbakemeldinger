@@ -2,7 +2,7 @@ export type ON_BEHALF_OF = "PRIVATPERSON" | "ANNEN_PERSON" | "BEDRIFT";
 
 export type OutboundServiceKlageBase = {
   klagetekst: string;
-  oenskerAaKontaktes: boolean;
+  oenskerAaKontaktes?: boolean;
 };
 
 export type OutboundServiceKlageType =
