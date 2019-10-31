@@ -121,11 +121,13 @@ export default {
   "skrivtiloss.temalenke.facebook.ingress":
     "Våre veiledere svarer på generelle spørsmål innen 1 arbeidsdag.",
 
+  "faq.intro": "Nå spør mange om dette",
   "faq.nesteutbetaling": "Når kommer neste utbetaling?",
   "faq.posttilannenadresse":
     "Hvordan kan jeg få post fra NAV til en annen adresse?",
   "faq.saksbehandlingstider":
     "Hvilke saksbehandlingstider gjelder i mitt fylke?",
+  "faq.minside": "Må min side finner du blant annet",
   "faq.endrekontonummer": "Endre kontonummer",
   "faq.utbetalingsoversikt": "Se dine utbetalinger og skattetrekk",
   "faq.saksoversikt": "Se status i saken min",
