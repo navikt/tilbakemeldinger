@@ -1,6 +1,7 @@
 import { Textarea, TextareaProps } from "nav-frontend-skjema";
 import React, { SyntheticEvent, useState } from "react";
 import { FormattedMessage } from "react-intl";
+import { AlertStripeAdvarsel } from "nav-frontend-alertstriper";
 
 interface Props extends Omit<TextareaProps, "onChange"> {
   onChange: (value: string) => void;
@@ -15,8 +16,10 @@ const InputMelding = (props: Props) => {
   return (
     <>
       <div className={"skjema__legend"}>{label}</div>
-      <div>
-        <FormattedMessage id={"felter.melding.beskrivelse"} />
+      <div className={"felter__melding-advarsel"}>
+        <AlertStripeAdvarsel>
+          <FormattedMessage id={"felter.melding.beskrivelse"} />
+        </AlertStripeAdvarsel>
       </div>
       <Textarea
         label={""}

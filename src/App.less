@@ -60,6 +60,7 @@ body {
   &__knapper {
     display: flex;
     flex-direction: row;
+    align-items: center;
     padding-top: 0.5rem;
     @media @maxMobile {
       flex-direction: column;
@@ -100,6 +101,12 @@ body {
   }
 }
 
+.felter {
+  &__melding-advarsel {
+    margin-bottom: 1rem;
+  }
+}
+
 .knapp--hoved {
   max-height: 2.5rem;
 }
@@ -129,11 +136,6 @@ body {
 .lenkepanel:focus {
   .fokus-overstyring();
   color: @navBla;
-}
-
-.radioknapp + .skjemaelement__label {
-  max-height: 0px;
-  line-height: 30px !important;
 }
 
 .btn-auth {
