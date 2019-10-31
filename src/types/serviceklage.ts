@@ -19,7 +19,7 @@ export type OutboundServiceKlageExtend =
       paaVegneAv: "PRIVATPERSON";
       innmelder: {
         navn: string;
-        telefonnummer: string;
+        telefonnummer?: string;
         personnummer: string;
       };
     }
@@ -27,7 +27,7 @@ export type OutboundServiceKlageExtend =
       paaVegneAv: "ANNEN_PERSON";
       innmelder: {
         navn: string;
-        telefonnummer: string;
+        telefonnummer?: string;
         harFullmakt: boolean;
         rolle: string;
       };
@@ -40,7 +40,7 @@ export type OutboundServiceKlageExtend =
       paaVegneAv: "BEDRIFT";
       innmelder: {
         navn: string;
-        telefonnummer: string;
+        telefonnummer?: string;
         rolle: string;
       };
       paaVegneAvBedrift: {
