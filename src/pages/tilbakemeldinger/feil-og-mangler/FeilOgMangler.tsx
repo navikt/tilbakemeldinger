@@ -4,7 +4,6 @@ import VeilederIcon from "../../../assets/Veileder.svg";
 import { Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import InputNavn from "../../../components/input-fields/InputNavn";
-import InputTelefon from "../../../components/input-fields/InputTelefon";
 import InputMelding from "../../../components/input-fields/InputMelding";
 import { postFeilOgMangler } from "../../../clients/apiClient";
 import Tilbake from "../../../components/tilbake/Tilbake";
@@ -16,16 +15,16 @@ import Header from "../../../components/header/Header";
 import { urls } from "Config";
 import Box from "../../../components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
-import InputField from "../../../components/input-fields/InputField";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
 import Takk from "../../../components/takk/Takk";
 import { sjekkForFeil } from "../../../utils/validators";
+import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
 
 export interface OutboundFeilOgMangler {
   navn: string;
-  telefonnummer: string;
-  epost: string;
+  onskerKontakt: boolean;
+  epost?: string;
   feiltype: string;
   melding: string;
 }
@@ -42,19 +41,6 @@ const FOM = (props: RouteComponentProps) => {
         id: "validering.navn.pakrevd"
       })
     },
-    epost: {
-      isRequired: intl.formatMessage({
-        id: "validering.epost.pakrevd"
-      }),
-      isEmail: intl.formatMessage({
-        id: "validering.epost.gyldig"
-      })
-    },
-    telefonnummer: {
-      isRequired: intl.formatMessage({
-        id: "validering.tlf.pakrevd"
-      })
-    },
     feiltype: {
       isRequired: intl.formatMessage({
         id: "validering.feiltype.pakrevd"
@@ -69,15 +55,19 @@ const FOM = (props: RouteComponentProps) => {
 
   const send = (e: FormContext) => {
     const { isValid, fields } = e;
-    const { navn, telefonnummer, feiltype, melding } = fields;
+    const { navn, onskerKontakt, feiltype, melding } = fields;
     const { epost } = fields;
 
     if (isValid) {
       const outbound = {
-        navn,
-        epost,
-        telefonnummer,
+        ...(navn && {
+          navn
+        }),
         feiltype,
+        onskerKontakt,
+        ...(onskerKontakt && {
+          epost
+        }),
         melding
       };
 
@@ -138,26 +128,6 @@ const FOM = (props: RouteComponentProps) => {
                   onChange={v => setField({ navn: v })}
                   submitted={submitted}
                 />
-                <InputField
-                  bredde={"L"}
-                  label={intl.formatMessage({
-                    id: "felter.epost.tittel"
-                  })}
-                  value={fields.epost}
-                  error={errors.epost}
-                  submitted={submitted}
-                  onChange={v => setField({ epost: v })}
-                />
-                <InputTelefon
-                  bredde={"S"}
-                  label={intl.formatMessage({
-                    id: "felter.tlf.tittel"
-                  })}
-                  value={fields.telefonnummer}
-                  error={errors.telefonnummer}
-                  onChange={v => setField({ telefonnummer: v })}
-                  submitted={submitted}
-                />
                 <SkjemaGruppe
                   title={intl.formatMessage({
                     id: "felter.typefeil.tittel"
@@ -202,6 +172,7 @@ const FOM = (props: RouteComponentProps) => {
                     onChange={v => setField({ melding: v })}
                   />
                 </div>
+                <FeilgOgManglerOnskerAaKontaktes />
                 {error && (
                   <AlertStripeFeil>
                     <FormattedMessage id={"felter.noegikkgalt"} /> {error}
