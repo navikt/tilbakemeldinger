@@ -18,7 +18,7 @@ const FAQ = () => {
       <div className={"box__section"}>
         <div className={"box__section-title"}>
           <Undertittel className="box__title">
-            Nå spør mange om dette
+            <FormattedMessage id={"faq.intro"} />
           </Undertittel>
         </div>
         <div className={"box__section-description"}>
@@ -39,7 +39,7 @@ const FAQ = () => {
       <div className={"box__section"}>
         <div className={"box__section-title"}>
           <Undertittel className="box__title">
-            Må min side finner du blant annet
+            <FormattedMessage id={"faq.minside"} />
           </Undertittel>
         </div>
         <div className={"box__section-description"}>

@@ -3,9 +3,9 @@ import { useIntl } from "react-intl";
 import { Validation } from "calidation";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { sjekkForFeil } from "../../../utils/validators";
-import ServiceKlageTelefon from "./ServiceKlageTelefon";
+import FeilOgManglerEpost from "./FeilOgManglerEpost";
 
-const ServiceKlageOnskerAaKontaktes = () => {
+const FeilgOgManglerOnskerAaKontaktes = () => {
   const intl = useIntl();
   const onskerKontaktConfig = {
     onskerKontakt: {
@@ -33,7 +33,7 @@ const ServiceKlageOnskerAaKontaktes = () => {
               checked={fields.onskerKontakt === true}
               onChange={() => setField({ onskerKontakt: true })}
             />
-            {fields.onskerKontakt && <ServiceKlageTelefon />}
+            {fields.onskerKontakt && <FeilOgManglerEpost />}
             <Radio
               label={intl.formatMessage({
                 id: "felter.onskerkontakt.nei"
@@ -50,4 +50,4 @@ const ServiceKlageOnskerAaKontaktes = () => {
     </Validation>
   );
 };
-export default ServiceKlageOnskerAaKontaktes;
+export default FeilgOgManglerOnskerAaKontaktes;

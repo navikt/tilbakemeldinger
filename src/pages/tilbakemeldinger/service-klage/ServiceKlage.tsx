@@ -57,12 +57,13 @@ const ServiceKlage = (props: RouteComponentProps) => {
   const send = (e: FormContext) => {
     const { isValid, fields } = e;
     const hvemFra: ON_BEHALF_OF = fields.hvemFra;
+    const { onskerKontakt } = fields;
 
     if (isValid) {
       const outboundBase: OutboundServiceKlageBase = {
         klagetekst: fields.melding,
-        ...(fields.onskerKontakt && {
-          oenskerAaKontaktes: fields.onskerKontakt === "true" ? true : false
+        ...(onskerKontakt && {
+          oenskerAaKontaktes: !!onskerKontakt
         })
       };
 
@@ -96,7 +97,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
             ...(fields.innmelderTlfnr && {
               telefonnummer: fields.innmelderTlfnr
             }),
-            harFullmakt: fields.innmelderHarFullmakt === "true" ? true : false,
+            harFullmakt: fields.innmelderHarFullmakt === "true",
             rolle: fields.innmelderRolle
           },
           paaVegneAvPerson: {
