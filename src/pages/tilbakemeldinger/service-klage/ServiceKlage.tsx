@@ -19,17 +19,17 @@ import {
 } from "types/serviceklage";
 import Header from "components/header/Header";
 import { urls } from "Config";
-import Box from "../../../components/box/Box";
+import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
-import ServiceKlagePrivatperson from "./ServicecKlagePrivatperson";
-import ServiceKlageForAnnenPerson from "./ServicecKlageAnnenPerson";
-import ServiceKlageForBedrift from "./ServicecKlageBedrift";
-import ServiceKlageYtelse from "./ServicecKlageYtelse";
-import ServiceKlageTelefon from "./ServicecKlageTelefon";
-import Takk from "../../../components/takk/Takk";
-import { sjekkForFeil } from "../../../utils/validators";
+import ServiceKlagePrivatperson from "./ServiceKlagePrivatperson";
+import ServiceKlageForAnnenPerson from "./ServiceKlageAnnenPerson";
+import ServiceKlageForBedrift from "./ServiceKlageBedrift";
+import ServiceKlageYtelse from "./ServiceKlageYtelse";
+import Takk from "components/takk/Takk";
+import { sjekkForFeil } from "utils/validators";
+import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageType &
@@ -51,9 +51,6 @@ const ServiceKlage = (props: RouteComponentProps) => {
     },
     melding: {
       isRequired: intl.formatMessage({ id: "validering.melding.pakrevd" })
-    },
-    onskerKontakt: {
-      isRequired: intl.formatMessage({ id: "validering.onskerkontakt.pakrevd" })
     }
   };
 
@@ -64,7 +61,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
     if (isValid) {
       const outboundBase: OutboundServiceKlageBase = {
         klagetekst: fields.melding,
-        oenskerAaKontaktes: fields.onskerKontakt === "true" ? true : false
+        ...(fields.onskerKontakt && {
+          oenskerAaKontaktes: fields.onskerKontakt === "true" ? true : false
+        })
       };
 
       const outboundType: OutboundServiceKlageType =
@@ -84,7 +83,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
           paaVegneAv: "PRIVATPERSON",
           innmelder: {
             navn: fields.innmelderNavn,
-            telefonnummer: fields.innmelderTlfnr,
+            ...(fields.innmelderTlfnr && {
+              telefonnummer: fields.innmelderTlfnr
+            }),
             personnummer: fields.innmelderFnr
           }
         },
@@ -92,7 +93,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
           paaVegneAv: "ANNEN_PERSON",
           innmelder: {
             navn: fields.innmelderNavn,
-            telefonnummer: fields.innmelderTlfnr,
+            ...(fields.innmelderTlfnr && {
+              telefonnummer: fields.innmelderTlfnr
+            }),
             harFullmakt: fields.innmelderHarFullmakt === "true" ? true : false,
             rolle: fields.innmelderRolle
           },
@@ -105,7 +108,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
           paaVegneAv: "BEDRIFT",
           innmelder: {
             navn: fields.innmelderNavn,
-            telefonnummer: fields.innmelderTlfnr,
+            ...(fields.innmelderTlfnr && {
+              telefonnummer: fields.innmelderTlfnr
+            }),
             rolle: fields.innmelderRolle
           },
           paaVegneAvBedrift: {
@@ -169,6 +174,11 @@ const ServiceKlage = (props: RouteComponentProps) => {
             <Validation config={baseFormConfig}>
               {({ errors, fields, submitted, setField, isValid }) => {
                 const hvemFra: ON_BEHALF_OF = fields.hvemFra;
+                const { innmelderHarFullmakt } = fields;
+                const kanOnskeAaKontaktes =
+                  hvemFra !== "ANNEN_PERSON" ||
+                  innmelderHarFullmakt !== "false";
+
                 return (
                   <div className="serviceKlage__content">
                     <SkjemaGruppe
@@ -268,36 +278,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         onChange={v => setField({ melding: v })}
                       />
                     </div>
-                    <SkjemaGruppe
-                      title={intl.formatMessage({
-                        id: "felter.onskerkontakt"
-                      })}
-                      feil={sjekkForFeil(submitted, errors.onskerKontakt)}
-                    >
-                      <Radio
-                        label={intl.formatMessage({
-                          id: "felter.onskerkontakt.ja"
-                        })}
-                        name={intl.formatMessage({
-                          id: "felter.onskerkontakt.ja"
-                        })}
-                        checked={fields.onskerKontakt === "true"}
-                        onChange={() => setField({ onskerKontakt: "true" })}
-                      />
-                      {fields.onskerKontakt === "true" && (
-                        <ServiceKlageTelefon />
-                      )}
-                      <Radio
-                        label={intl.formatMessage({
-                          id: "felter.onskerkontakt.nei"
-                        })}
-                        name={intl.formatMessage({
-                          id: "felter.onskerkontakt.nei"
-                        })}
-                        checked={fields.onskerKontakt === "false"}
-                        onChange={() => setField({ onskerKontakt: "false" })}
-                      />
-                    </SkjemaGruppe>
+                    {kanOnskeAaKontaktes && <ServiceKlageOnskerAaKontaktes />}
                     {error && (
                       <AlertStripeFeil>
                         <FormattedMessage id={"felter.noegikkgalt"} /> {error}

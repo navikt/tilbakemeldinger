@@ -324,9 +324,8 @@ export default {
   "felter.fullmakt": "Har du fullmakt?",
   "felter.fullmakt.ja": "Ja, jeg har fullmakt",
   "felter.fullmakt.nei": "Nei, jeg har ikke fullmakt",
-  "felter.fullmakt.advarsel": `For at NAV skal kunne svare, må du ha fullmakt fra den
-        tilbakemeldingen gjelder. Hvis NAV ikke har mottatt skriftlig
-        fullmakt, må den som gir deg fullmakt sende dette til NAV.
+  "felter.fullmakt.advarsel": `
+        Vi kan ikke kontakte deg med mindre vi har mottatt en fullmakt fra personen det gjelder.
         <a href="${urls.fullmaktskjema}">Gå til fullmaktskjema</a>.`,
   "felter.orgnavn": "Organisasjonsnavn",
   "felter.orgnr": "Organisasjonsnummer",
