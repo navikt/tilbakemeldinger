@@ -5,7 +5,6 @@ import { Knapp } from "nav-frontend-knapper";
 import { Link } from "react-router-dom";
 import InputMelding from "components/input-fields/InputMelding";
 import { fetchEnheter, postRosTilNav } from "clients/apiClient";
-import Tilbake from "components/tilbake/Tilbake";
 import { HTTPError } from "components/error/Error";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import { Element } from "nav-frontend-typografi";
@@ -13,14 +12,15 @@ import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, Form, Validation } from "calidation";
 import Select from "react-select";
 import { ValueType } from "react-select/src/types";
-import { Enheter } from "types/enheter";
-import { useStore } from "providers/Provider";
-import Header from "components/header/Header";
+import { Enheter } from "../../../types/enheter";
+import { useStore } from "../../../providers/Provider";
+import Header from "../../../components/header/Header";
 import { urls } from "Config";
 import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import MetaTags from "react-meta-tags";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
+import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 
@@ -120,6 +120,7 @@ const Ros = () => {
   };
   return (
     <div className="pagecontent">
+      <Breadcrumbs path={window.location.pathname} />
       <MetaTags>
         <title>{intl.messages["seo.rostilnav.tittel"]}</title>
         <meta
@@ -127,7 +128,6 @@ const Ros = () => {
           content={intl.messages["seo.rostilnav.description"] as string}
         />
       </MetaTags>
-      <Tilbake to={urls.tilbakemeldinger.forside} />
       <Header
         title={intl.formatMessage({ id: "tilbakemeldinger.ros.form.tittel" })}
       />

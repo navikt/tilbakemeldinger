@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import VeilederIcon from "assets/Veileder.svg";
 import Veilederpanel from "nav-frontend-veilederpanel";
-import Tilbake from "components/tilbake/Tilbake";
 import { useStore } from "providers/Provider";
 import { Knapp } from "nav-frontend-knapper";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
@@ -29,6 +28,7 @@ import ServiceKlageGjelderSosialhjelp from "./ServiceKlageGjelderSosialhjelp";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
+import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageExtend;
@@ -147,6 +147,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
 
   return (
     <div className="pagecontent">
+      <Breadcrumbs path={window.location.pathname} />
       <MetaTags>
         <title>{intl.messages["seo.klagepaservice.tittel"]}</title>
         <meta
@@ -154,7 +155,6 @@ const ServiceKlage = (props: RouteComponentProps) => {
           content={intl.messages["seo.klagepaservice.description"] as string}
         />
       </MetaTags>
-      <Tilbake to={tilbakeTil} />
       <Header
         title={intl.formatMessage({
           id: "tilbakemeldinger.serviceklage.form.tittel"
