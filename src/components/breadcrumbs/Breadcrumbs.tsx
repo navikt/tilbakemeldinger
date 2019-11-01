@@ -11,24 +11,29 @@ type Props = {
   path: string;
 };
 
+type Lenke = {
+  url: string,
+  lenketekst: string,
+};
+
 const cssPrefix = "breadcrumbs";
 
-const parsePath = (path: string, formatMessage: Function) => {
-  const baseUrl = urls.baseUrl;
-  const parts = path.replace(baseUrl, "").split("/");
+const getPathSegmentLenker = (path: string, formatMessage: Function): Array<Lenke> => {
+  const basePath = urls.baseUrl;
+  const pathSegments = path.replace(basePath, "").split("/");
 
-  // Remove any trailing slash ("/")
-  if (parts.length > 1 && parts[parts.length - 1] === "") {
-    parts.pop();
+  // fjerner tomt segment ved trailing slash
+  if (pathSegments.length > 1 && pathSegments[pathSegments.length - 1] === "") {
+    pathSegments.pop();
   }
 
-  return parts.map((part, index) => {
-    const recombinedParts = parts.slice(0, index + 1);
-    const url = recombinedParts.length === 1 ? "/" : recombinedParts.join("/");
+  return pathSegments.map((segment, index) => {
+    const combinedSegments = pathSegments.slice(0, index + 1);
+    const segmentPath = combinedSegments.length === 1 ? "/" : combinedSegments.join("/");
 
     return {
-      url: `${baseUrl}${url}`,
-      label: formatMessage({id: `route.${part}`})
+      url: `${basePath}${segmentPath}`,
+      lenketekst: formatMessage({id: `route.${segment}`})
     };
   });
 };
@@ -37,20 +42,20 @@ const Breadcrumbs = (props: Props) => {
   const { path } = props;
   const formatMessage = useIntl().formatMessage;
 
-  const breadcrumbChain: Array<ReactNode> = [];
-  const parsedPath = parsePath(path, formatMessage);
+  const breadcrumbsNoder: Array<ReactNode> = [];
+  const pathSegmentLenker = getPathSegmentLenker(path, formatMessage);
 
-  breadcrumbChain.push(<img src={HjemIkon} alt="" className={`${cssPrefix}__ikon`} />);
+  breadcrumbsNoder.push(<img src={HjemIkon} alt="" className={`${cssPrefix}__ikon`} />);
 
-  parsedPath.forEach((part, index) => {
-    const current = index === parsedPath.length - 1;
-    breadcrumbChain.push(
+  pathSegmentLenker.forEach((segment, index) => {
+    const isCurrentPath = index === pathSegmentLenker.length - 1;
+    breadcrumbsNoder.push(
       <Normaltekst key={`crumb${index}`} className={`${cssPrefix}__item`}>
-        { current
-          ? part.label
+        { isCurrentPath
+          ? segment.lenketekst
           : (
             <>
-              <Link to={part.url}>{part.label}</Link>
+              <Link to={segment.url}>{segment.lenketekst}</Link>
               <HoyreChevron key={`chevron${index}`} className={`${cssPrefix}__chevron`} />
             </>
           )
@@ -61,7 +66,7 @@ const Breadcrumbs = (props: Props) => {
 
   return (
     <div className={cssPrefix}>
-      {breadcrumbChain.map((node: ReactNode) => (node))}
+      {breadcrumbsNoder.map((node: ReactNode) => (node))}
     </div>
   );
 };
