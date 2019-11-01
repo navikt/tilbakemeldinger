@@ -18,9 +18,9 @@ const Box = (props: Props) => {
   return (
     <div className={`box__wrapper ${wrapperClassName || ""}`} style={styles}>
       <PanelBase>
-        <div className="box__container">
+        <div className={`box__container ${containerClassName || ""}`}>
           {tittel && (
-            <div className={`box__header ${containerClassName || ""}`}>
+            <div className="box__header">
               <div className="box__title-container">
                 <Undertittel className="box__title">{tittel}</Undertittel>
                 <div className="box__line" />
