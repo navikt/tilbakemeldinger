@@ -13,7 +13,7 @@ export default {
   "route.hjelpemidler": "Pensjon",
   "route.chat": "Chat",
   "route.tilbakemeldinger": "Tilbakemeldinger",
-  "route.serviceklage": "Serviceklage",
+  "route.serviceklage": "Klage på service",
   "route.login": "Innlogging",
   "route.feil-og-mangler": "Feil og mangler",
   "route.ros-til-nav": "Ros",
