@@ -163,15 +163,17 @@ const ServiceKlage = (props: RouteComponentProps) => {
         })}
       />
       <div className={"tb__veileder"}>
-        <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-          <FormattedHTMLMessage id="tilbakemeldinger.serviceklage.form.veileder" />
+        <Veilederpanel
+          svg={<img src={VeilederIcon} alt="Veileder" />}
+          type={"plakat"}
+          kompakt={true}
+        >
+          <div className={"tb__veileder-container"}>
+            <FormattedHTMLMessage id="tilbakemeldinger.serviceklage.form.veileder" />
+          </div>
         </Veilederpanel>
       </div>
-      <Box
-        tittel={intl.formatMessage({
-          id: "tilbakemeldinger.serviceklage.form.overskrift"
-        })}
-      >
+      <Box>
         {success ? (
           <Takk />
         ) : (
@@ -185,7 +187,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                   innmelderHarFullmakt !== "false";
 
                 return (
-                  <div className="serviceKlage__content">
+                  <div className="skjema__content">
                     <SkjemaGruppe
                       title={intl.formatMessage({ id: "felter.klagetype" })}
                       feil={sjekkForFeil(submitted, errors.klageType)}

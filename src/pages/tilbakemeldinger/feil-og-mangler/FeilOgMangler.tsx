@@ -85,10 +85,6 @@ const FOM = (props: RouteComponentProps) => {
     }
   };
 
-  const tittel = intl.formatMessage({
-    id: "tilbakemeldinger.feilogmangler.form.overskrift"
-  });
-
   return (
     <div className="pagecontent">
       <MetaTags>
@@ -105,19 +101,25 @@ const FOM = (props: RouteComponentProps) => {
         })}
       />
       <div className={"tb__veileder"}>
-        <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-          <FormattedHTMLMessage
-            id={"tilbakemeldinger.feilogmangler.form.veileder"}
-          />
+        <Veilederpanel
+          svg={<img src={VeilederIcon} alt="Veileder" />}
+          type={"plakat"}
+          kompakt={true}
+        >
+          <div className={"tb__veileder-container"}>
+            <FormattedHTMLMessage
+              id={"tilbakemeldinger.feilogmangler.form.veileder"}
+            />
+          </div>
         </Veilederpanel>
       </div>
-      <Box tittel={tittel}>
+      <Box>
         {success ? (
           <Takk />
         ) : (
           <FormValidation onSubmit={send} config={formConfig}>
             {({ errors, fields, submitted, setField, isValid }) => (
-              <>
+              <div className={"skjema__content"}>
                 <InputNavn
                   bredde={"M"}
                   label={intl.formatMessage({
@@ -161,17 +163,15 @@ const FOM = (props: RouteComponentProps) => {
                     }
                   />
                 </SkjemaGruppe>
-                <div className="mellomrom">
-                  <InputMelding
-                    label={intl.formatMessage({
-                      id: "felter.melding.tittel"
-                    })}
-                    submitted={submitted}
-                    value={fields.melding}
-                    error={errors.melding}
-                    onChange={v => setField({ melding: v })}
-                  />
-                </div>
+                <InputMelding
+                  label={intl.formatMessage({
+                    id: "felter.melding.tittel"
+                  })}
+                  submitted={submitted}
+                  value={fields.melding}
+                  error={errors.melding}
+                  onChange={v => setField({ melding: v })}
+                />
                 <FeilgOgManglerOnskerAaKontaktes />
                 {error && (
                   <AlertStripeFeil>
@@ -200,7 +200,7 @@ const FOM = (props: RouteComponentProps) => {
                     </Link>
                   </div>
                 </div>
-              </>
+              </div>
             )}
           </FormValidation>
         )}

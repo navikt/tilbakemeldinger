@@ -118,11 +118,6 @@ const Ros = () => {
         });
     }
   };
-
-  const tittel = intl.formatMessage({
-    id: "tilbakemeldinger.ros.form.overskrift"
-  });
-
   return (
     <div className="pagecontent">
       <MetaTags>
@@ -136,12 +131,18 @@ const Ros = () => {
       <Header
         title={intl.formatMessage({ id: "tilbakemeldinger.ros.form.tittel" })}
       />
-      <div className="tb__veileder">
-        <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-          <FormattedHTMLMessage id={"tilbakemeldinger.ros.form.veileder"} />
+      <div className={"tb__veileder"}>
+        <Veilederpanel
+          svg={<img src={VeilederIcon} alt="Veileder" />}
+          type={"plakat"}
+          kompakt={true}
+        >
+          <div className={"tb__veileder-container"}>
+            <FormattedHTMLMessage id={"tilbakemeldinger.ros.form.veileder"} />
+          </div>
         </Veilederpanel>
       </div>
-      <Box tittel={tittel}>
+      <Box>
         {success ? (
           <Takk />
         ) : (
@@ -149,7 +150,7 @@ const Ros = () => {
             <Validation config={formConfig}>
               {({ errors, fields, submitted, setField, isValid }) => {
                 return (
-                  <>
+                  <div className={"skjema__content"}>
                     <SkjemaGruppe
                       title={intl.formatMessage({
                         id: "felter.hvemroses.tittel"
@@ -238,17 +239,15 @@ const Ros = () => {
                         </Validation>
                       )}
                     </SkjemaGruppe>
-                    <div className="mellomrom">
-                      <InputMelding
-                        label={intl.formatMessage({
-                          id: "felter.melding.tittel"
-                        })}
-                        submitted={submitted}
-                        value={fields.melding}
-                        error={errors.melding}
-                        onChange={v => setField({ melding: v })}
-                      />
-                    </div>
+                    <InputMelding
+                      label={intl.formatMessage({
+                        id: "felter.melding.tittel"
+                      })}
+                      submitted={submitted}
+                      value={fields.melding}
+                      error={errors.melding}
+                      onChange={v => setField({ melding: v })}
+                    />
                     {error && (
                       <AlertStripeFeil>
                         <FormattedMessage id={"felter.noegikkgalt"} /> {error}
@@ -276,7 +275,7 @@ const Ros = () => {
                         </Link>
                       </div>
                     </div>
-                  </>
+                  </div>
                 );
               }}
             </Validation>

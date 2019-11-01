@@ -207,7 +207,7 @@ export default {
   "kontaktoss.tolketjenesten.link.spraktolk":
     "Språktolk til veiledningssamtaler",
 
-  "kontaktoss.tekniskfeil.tittel": "Kontakt tolketjenesten",
+  "kontaktoss.tekniskfeil.tittel": "Teknisk feil på nav.no",
   "kontaktoss.tekniskfeil.link.losselv": "Prøv å løse problemet selv",
   "kontaktoss.tekniskfeil.link.meldifra": "Meld ifra om feil og mangler",
   "kontaktoss.tekniskfeil.link.ring": "Ring teknisk brukerstøtte",
