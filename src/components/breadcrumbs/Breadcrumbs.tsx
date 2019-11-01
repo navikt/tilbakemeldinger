@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
-import { Link } from "react-router-dom";
 import { useIntl } from "react-intl";
+import { Link } from "react-router-dom";
 
 import { HoyreChevron } from "nav-frontend-chevron";
 import { Normaltekst } from "nav-frontend-typografi";
@@ -11,14 +11,14 @@ type Props = {
   path: string;
 };
 
-type Lenke = {
+type LenkeData = {
   url: string,
   lenketekst: string,
 };
 
 const cssPrefix = "breadcrumbs";
 
-const getPathSegmentLenker = (path: string, formatMessage: Function): Array<Lenke> => {
+const getPathSegmentLenker = (path: string, formatMessage: Function): Array<LenkeData> => {
   const basePath = urls.baseUrl;
   const pathSegments = path.replace(basePath, "").split("/");
 
@@ -50,12 +50,12 @@ const Breadcrumbs = (props: Props) => {
   pathSegmentLenker.forEach((segment, index) => {
     const isCurrentPath = index === pathSegmentLenker.length - 1;
     breadcrumbsNoder.push(
-      <Normaltekst key={`crumb${index}`} className={`${cssPrefix}__item`}>
+      <Normaltekst key={`crumb${index}`} className={`${cssPrefix}__segment`}>
         { isCurrentPath
           ? segment.lenketekst
           : (
             <>
-              <Link to={segment.url}>{segment.lenketekst}</Link>
+              <Link to={segment.url} className="lenke">{segment.lenketekst}</Link>
               <HoyreChevron key={`chevron${index}`} className={`${cssPrefix}__chevron`} />
             </>
           )
