@@ -235,8 +235,7 @@ export default {
     "Fortsett uten å logge inn",
   "tilbakemeldinger.serviceklage.link": "Send tilbakemelding på service",
   "tilbakemeldinger.serviceklage.form.veileder":
-    "Du vil få svar på serviceklagen innen 3 uker. " +
-    `Har du heller behov for å stille spørsmål eller gi oss beskjed om noe annet, må du <a class="lenke" href="/person/kontakt-oss/">kontakte oss på telefon.</a>`,
+    "Her kan du klage på servicen du har fått. Du vil få svar innen 3 uker.",
   "tilbakemeldinger.serviceklage.form.tittel": "Klage på service",
   "tilbakemeldinger.serviceklage.form.overskrift": "Send inn klage på service",
 
@@ -246,8 +245,7 @@ export default {
   "tilbakemeldinger.feilogmangler.link": "Meld fra om feil og mangler",
   "tilbakemeldinger.feilogmangler.form.tittel": "Feil og mangler",
   "tilbakemeldinger.feilogmangler.form.veileder":
-    "Takk for at du sier ifra om feil og mangler. <br />" +
-    "Vi sørger for at meldingen kommer fram til riktig person.",
+    "Takk for at du sier ifra. Vi sørger for at meldingen kommer fram til riktig person.",
   "tilbakemeldinger.feilogmangler.form.overskrift":
     "Send inn feil og mangler på nav.no",
 
@@ -258,8 +256,7 @@ export default {
   "tilbakemeldinger.ros.form.tittel": "Ros til NAV",
   "tilbakemeldinger.ros.form.overskrift": "Send inn ros til NAV",
   "tilbakemeldinger.ros.form.veileder":
-    "Takk for at du vil dele din opplevelse med oss!<br />" +
-    "Vi sørger for at rosen kommer fram til riktig person.",
+    "Takk for at du vil dele opplevelsen med oss! Vi sørger for at rosen kommer fram til riktig person.",
 
   "validering.navn.pakrevd": "Navn er nødvendig",
   "validering.epost.pakrevd": "E-post er nødvendig",
