@@ -3,7 +3,6 @@ import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "../../../assets/Veileder.svg";
 import { Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import InputNavn from "../../../components/input-fields/InputNavn";
 import InputMelding from "../../../components/input-fields/InputMelding";
 import { postFeilOgMangler } from "../../../clients/apiClient";
 import { HTTPError } from "../../../components/error/Error";
@@ -22,10 +21,9 @@ import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
 import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 
 export interface OutboundFeilOgMangler {
-  navn: string;
   onskerKontakt: boolean;
   epost?: string;
-  feiltype: string;
+  feiltype: "TEKNISK_FEIL" | "FEIL_INFO" | "UNIVERSELL_UTFORMING";
   melding: string;
 }
 
@@ -36,11 +34,6 @@ const FOM = (props: RouteComponentProps) => {
   const intl = useIntl();
 
   const formConfig = {
-    navn: {
-      isRequired: intl.formatMessage({
-        id: "validering.navn.pakrevd"
-      })
-    },
     feiltype: {
       isRequired: intl.formatMessage({
         id: "validering.feiltype.pakrevd"
@@ -55,14 +48,11 @@ const FOM = (props: RouteComponentProps) => {
 
   const send = (e: FormContext) => {
     const { isValid, fields } = e;
-    const { navn, onskerKontakt, feiltype, melding } = fields;
+    const { onskerKontakt, feiltype, melding } = fields;
     const { epost } = fields;
 
     if (isValid) {
       const outbound = {
-        ...(navn && {
-          navn
-        }),
         feiltype,
         onskerKontakt,
         ...(onskerKontakt && {
@@ -85,10 +75,6 @@ const FOM = (props: RouteComponentProps) => {
     }
   };
 
-  const tittel = intl.formatMessage({
-    id: "tilbakemeldinger.feilogmangler.form.overskrift"
-  });
-
   return (
     <div className="pagecontent">
       <Breadcrumbs path={window.location.pathname} />
@@ -105,29 +91,25 @@ const FOM = (props: RouteComponentProps) => {
         })}
       />
       <div className={"tb__veileder"}>
-        <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-          <FormattedHTMLMessage
-            id={"tilbakemeldinger.feilogmangler.form.veileder"}
-          />
+        <Veilederpanel
+          svg={<img src={VeilederIcon} alt="Veileder" />}
+          type={"plakat"}
+          kompakt={true}
+        >
+          <div className={"tb__veileder-container"}>
+            <FormattedHTMLMessage
+              id={"tilbakemeldinger.feilogmangler.form.veileder"}
+            />
+          </div>
         </Veilederpanel>
       </div>
-      <Box tittel={tittel}>
+      <Box>
         {success ? (
           <Takk />
         ) : (
           <FormValidation onSubmit={send} config={formConfig}>
             {({ errors, fields, submitted, setField, isValid }) => (
-              <>
-                <InputNavn
-                  bredde={"M"}
-                  label={intl.formatMessage({
-                    id: "felter.navn.tittel"
-                  })}
-                  value={fields.navn}
-                  error={errors.navn}
-                  onChange={v => setField({ navn: v })}
-                  submitted={submitted}
-                />
+              <div className={"skjema__content"}>
                 <SkjemaGruppe
                   title={intl.formatMessage({
                     id: "felter.typefeil.tittel"
@@ -161,20 +143,18 @@ const FOM = (props: RouteComponentProps) => {
                     }
                   />
                 </SkjemaGruppe>
-                <div className="mellomrom">
-                  <InputMelding
-                    label={intl.formatMessage({
-                      id: "felter.melding.tittel"
-                    })}
-                    submitted={submitted}
-                    value={fields.melding}
-                    error={errors.melding}
-                    onChange={v => setField({ melding: v })}
-                  />
-                </div>
+                <InputMelding
+                  label={intl.formatMessage({
+                    id: "felter.melding.tittel"
+                  })}
+                  submitted={submitted}
+                  value={fields.melding}
+                  error={errors.melding}
+                  onChange={v => setField({ melding: v })}
+                />
                 <FeilgOgManglerOnskerAaKontaktes />
                 {error && (
-                  <AlertStripeFeil>
+                  <AlertStripeFeil className={"felter__melding-advarsel"}>
                     <FormattedMessage id={"felter.noegikkgalt"} /> {error}
                   </AlertStripeFeil>
                 )}
@@ -200,7 +180,7 @@ const FOM = (props: RouteComponentProps) => {
                     </Link>
                   </div>
                 </div>
-              </>
+              </div>
             )}
           </FormValidation>
         )}

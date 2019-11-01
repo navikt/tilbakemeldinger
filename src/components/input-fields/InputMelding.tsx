@@ -14,7 +14,7 @@ const InputMelding = (props: Props) => {
   const [blur, settBlur] = useState(false);
   const { error, value, label, submitted } = props;
   return (
-    <>
+    <div>
       <div className={"skjema__legend"}>{label}</div>
       <div className={"felter__melding-advarsel"}>
         <AlertStripeAdvarsel>
@@ -34,7 +34,7 @@ const InputMelding = (props: Props) => {
         onBlur={() => settBlur(true)}
         maxLength={0}
       />
-    </>
+    </div>
   );
 };
 

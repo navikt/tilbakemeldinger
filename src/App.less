@@ -61,7 +61,6 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: 0.5rem;
     @media @maxMobile {
       flex-direction: column;
     }
@@ -77,6 +76,20 @@ body {
   }
   &__veileder {
     margin-top: 1rem;
+    &-container {
+      margin: 0 2rem 1rem 2rem;
+    }
+  }
+}
+
+.skjema {
+  &__content {
+    margin: 1rem 0;
+    > div {
+      &:not(:last-child) {
+        padding-bottom: 1rem;
+      }
+    }
   }
 }
 

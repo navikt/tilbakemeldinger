@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
-import VeilederIcon from "../../../assets/Veileder.svg";
+import VeilederIcon from "assets/Veileder.svg";
 import { Knapp } from "nav-frontend-knapper";
-import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import InputNavn from "../../../components/input-fields/InputNavn";
-import InputMelding from "../../../components/input-fields/InputMelding";
-import { fetchEnheter, postRosTilNav } from "../../../clients/apiClient";
-import { HTTPError } from "../../../components/error/Error";
+import { Link } from "react-router-dom";
+import InputMelding from "components/input-fields/InputMelding";
+import { fetchEnheter, postRosTilNav } from "clients/apiClient";
+import { HTTPError } from "components/error/Error";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import { Element } from "nav-frontend-typografi";
 import NavFrontendSpinner from "nav-frontend-spinner";
@@ -17,18 +16,17 @@ import { Enheter } from "../../../types/enheter";
 import { useStore } from "../../../providers/Provider";
 import Header from "../../../components/header/Header";
 import { urls } from "Config";
-import Box from "../../../components/box/Box";
+import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import MetaTags from "react-meta-tags";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
-import Takk from "../../../components/takk/Takk";
-import { sjekkForFeil } from "../../../utils/validators";
 import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
+import Takk from "components/takk/Takk";
+import { sjekkForFeil } from "utils/validators";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
 
 type OutboundRosTilNavBase = {
-  navn: string;
   melding: string;
 };
 
@@ -38,8 +36,7 @@ type OutboundRosTilNavExtend =
   | { hvemRoses: "NAV_KONTOR"; navKontor: string };
 
 export type OutboundRosTilNav = OutboundRosTilNavBase & OutboundRosTilNavExtend;
-
-const Ros = (props: RouteComponentProps) => {
+const Ros = () => {
   const [{ enheter }, dispatch] = useStore();
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);
@@ -121,11 +118,6 @@ const Ros = (props: RouteComponentProps) => {
         });
     }
   };
-
-  const tittel = intl.formatMessage({
-    id: "tilbakemeldinger.ros.form.overskrift"
-  });
-
   return (
     <div className="pagecontent">
       <Breadcrumbs path={window.location.pathname} />
@@ -139,12 +131,18 @@ const Ros = (props: RouteComponentProps) => {
       <Header
         title={intl.formatMessage({ id: "tilbakemeldinger.ros.form.tittel" })}
       />
-      <div className="tb__veileder">
-        <Veilederpanel svg={<img src={VeilederIcon} alt="Veileder" />}>
-          <FormattedHTMLMessage id={"tilbakemeldinger.ros.form.veileder"} />
+      <div className={"tb__veileder"}>
+        <Veilederpanel
+          svg={<img src={VeilederIcon} alt="Veileder" />}
+          type={"plakat"}
+          kompakt={true}
+        >
+          <div className={"tb__veileder-container"}>
+            <FormattedHTMLMessage id={"tilbakemeldinger.ros.form.veileder"} />
+          </div>
         </Veilederpanel>
       </div>
-      <Box tittel={tittel}>
+      <Box>
         {success ? (
           <Takk />
         ) : (
@@ -152,17 +150,7 @@ const Ros = (props: RouteComponentProps) => {
             <Validation config={formConfig}>
               {({ errors, fields, submitted, setField, isValid }) => {
                 return (
-                  <>
-                    <InputNavn
-                      bredde={"L"}
-                      label={intl.formatMessage({
-                        id: "felter.navn.tittel.valgfritt"
-                      })}
-                      value={fields.navn}
-                      error={errors.navn}
-                      onChange={v => setField({ navn: v })}
-                      submitted={submitted}
-                    />
+                  <div className={"skjema__content"}>
                     <SkjemaGruppe
                       title={intl.formatMessage({
                         id: "felter.hvemroses.tittel"
@@ -251,19 +239,17 @@ const Ros = (props: RouteComponentProps) => {
                         </Validation>
                       )}
                     </SkjemaGruppe>
-                    <div className="mellomrom">
-                      <InputMelding
-                        label={intl.formatMessage({
-                          id: "felter.melding.tittel"
-                        })}
-                        submitted={submitted}
-                        value={fields.melding}
-                        error={errors.melding}
-                        onChange={v => setField({ melding: v })}
-                      />
-                    </div>
+                    <InputMelding
+                      label={intl.formatMessage({
+                        id: "felter.melding.tittel"
+                      })}
+                      submitted={submitted}
+                      value={fields.melding}
+                      error={errors.melding}
+                      onChange={v => setField({ melding: v })}
+                    />
                     {error && (
-                      <AlertStripeFeil>
+                      <AlertStripeFeil className={"felter__melding-advarsel"}>
                         <FormattedMessage id={"felter.noegikkgalt"} /> {error}
                       </AlertStripeFeil>
                     )}
@@ -289,7 +275,7 @@ const Ros = (props: RouteComponentProps) => {
                         </Link>
                       </div>
                     </div>
-                  </>
+                  </div>
                 );
               }}
             </Validation>
@@ -299,4 +285,4 @@ const Ros = (props: RouteComponentProps) => {
     </div>
   );
 };
-export default withRouter(Ros);
+export default Ros;

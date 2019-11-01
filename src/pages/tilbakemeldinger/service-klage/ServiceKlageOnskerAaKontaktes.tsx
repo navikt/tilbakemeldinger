@@ -4,6 +4,7 @@ import { Validation } from "calidation";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { sjekkForFeil } from "../../../utils/validators";
 import ServiceKlageTelefon from "./ServiceKlageTelefon";
+import ServiceKlageKontaktBedrift from "./ServiceKlageKontaktBedrift";
 
 const ServiceKlageOnskerAaKontaktes = () => {
   const intl = useIntl();
@@ -33,7 +34,6 @@ const ServiceKlageOnskerAaKontaktes = () => {
               checked={fields.onskerKontakt === true}
               onChange={() => setField({ onskerKontakt: true })}
             />
-            {fields.onskerKontakt && <ServiceKlageTelefon />}
             <Radio
               label={intl.formatMessage({
                 id: "felter.onskerkontakt.nei"
@@ -44,6 +44,12 @@ const ServiceKlageOnskerAaKontaktes = () => {
               checked={fields.onskerKontakt === false}
               onChange={() => setField({ onskerKontakt: false })}
             />
+            {fields.onskerKontakt && (
+              <>
+                {fields.hvemFra === "BEDRIFT" && <ServiceKlageKontaktBedrift />}
+                <ServiceKlageTelefon />
+              </>
+            )}
           </SkjemaGruppe>
         );
       }}
