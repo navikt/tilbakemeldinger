@@ -3,6 +3,9 @@ export default {
     "Vi har for øyeblikket tekniske problemer med disse sidene.",
   "header.navperson": "NAV privatperson",
 
+  "route.": "Kontakt oss",
+  "route.skriv-til-oss": "Skriv til oss",
+
   "skrivtiloss.disabled": "Tjenesten er dessverre ikke tilgjengelig for øyeblikket.",
   "skrivtiloss.tittel": "Skriv til oss",
   "skrivtiloss.description":

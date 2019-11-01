@@ -2,11 +2,12 @@ import Environment from "./Environments";
 import { ChatTema } from "./types/chat";
 
 export const baseUrl = "/person/kontakt-oss";
-const { tjenesteUrl } = Environment();
+const { tjenesteUrl, appUrl } = Environment();
 const navUrl = Environment().baseUrl;
 
 export const urls = {
   baseUrl: baseUrl,
+  appUrl: appUrl,
   forside: baseUrl,
   tilbakemeldinger: {
     forside: `${baseUrl}/tilbakemeldinger`,

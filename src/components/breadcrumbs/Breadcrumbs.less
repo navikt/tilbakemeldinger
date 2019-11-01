@@ -1,0 +1,39 @@
+
+.breadcrumbs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-self: flex-start;
+
+    margin: 0 1rem 1.5rem 1rem;
+
+    &__chevron {
+        color: @navGra60;
+        display: inline-block;
+        margin: 0 0.5rem;
+    }
+
+    &__item {
+        white-space: nowrap;
+        display: inline-block;
+
+        &:last-child {
+            font-weight: bold;
+        }
+    }
+
+    a {
+        &:hover {
+            text-decoration: underline;
+        }
+        &:focus {
+            background-color: @white;
+            box-shadow: 2px 2px inset @fokusFarge, -2px -2px inset @fokusFarge;
+        }
+    }
+
+    @media (max-width: @screen-tablet) {
+        margin: 0 0 1.5rem 0;
+    }
+}
