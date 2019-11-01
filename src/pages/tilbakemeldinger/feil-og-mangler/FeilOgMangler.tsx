@@ -3,7 +3,6 @@ import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "../../../assets/Veileder.svg";
 import { Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import InputNavn from "../../../components/input-fields/InputNavn";
 import InputMelding from "../../../components/input-fields/InputMelding";
 import { postFeilOgMangler } from "../../../clients/apiClient";
 import Tilbake from "../../../components/tilbake/Tilbake";
@@ -22,7 +21,6 @@ import { sjekkForFeil } from "../../../utils/validators";
 import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
 
 export interface OutboundFeilOgMangler {
-  navn: string;
   onskerKontakt: boolean;
   epost?: string;
   feiltype: "TEKNISK_FEIL" | "FEIL_INFO" | "UNIVERSELL_UTFORMING";
@@ -36,11 +34,6 @@ const FOM = (props: RouteComponentProps) => {
   const intl = useIntl();
 
   const formConfig = {
-    navn: {
-      isRequired: intl.formatMessage({
-        id: "validering.navn.pakrevd"
-      })
-    },
     feiltype: {
       isRequired: intl.formatMessage({
         id: "validering.feiltype.pakrevd"
@@ -55,14 +48,11 @@ const FOM = (props: RouteComponentProps) => {
 
   const send = (e: FormContext) => {
     const { isValid, fields } = e;
-    const { navn, onskerKontakt, feiltype, melding } = fields;
+    const { onskerKontakt, feiltype, melding } = fields;
     const { epost } = fields;
 
     if (isValid) {
       const outbound = {
-        ...(navn && {
-          navn
-        }),
         feiltype,
         onskerKontakt,
         ...(onskerKontakt && {
@@ -120,16 +110,6 @@ const FOM = (props: RouteComponentProps) => {
           <FormValidation onSubmit={send} config={formConfig}>
             {({ errors, fields, submitted, setField, isValid }) => (
               <div className={"skjema__content"}>
-                <InputNavn
-                  bredde={"M"}
-                  label={intl.formatMessage({
-                    id: "felter.navn.tittel"
-                  })}
-                  value={fields.navn}
-                  error={errors.navn}
-                  onChange={v => setField({ navn: v })}
-                  submitted={submitted}
-                />
                 <SkjemaGruppe
                   title={intl.formatMessage({
                     id: "felter.typefeil.tittel"
@@ -174,7 +154,7 @@ const FOM = (props: RouteComponentProps) => {
                 />
                 <FeilgOgManglerOnskerAaKontaktes />
                 {error && (
-                  <AlertStripeFeil>
+                  <AlertStripeFeil className={"felter__melding-advarsel"}>
                     <FormattedMessage id={"felter.noegikkgalt"} /> {error}
                   </AlertStripeFeil>
                 )}

@@ -11,13 +11,7 @@ export type OutboundServiceKlageType =
       gjelderSosialhjelp: "JA" | "NEI" | "VET_IKKE";
     }
   | {
-      klagetype:
-        | "TELEFON"
-        | "NAVNO"
-        | "SKRIFTLIG_KONTAKT_NETT"
-        | "BREV"
-        | "FLERE_KATEGORIER"
-        | "ANNET";
+      klagetype: "TELEFON" | "NAVNO" | "BREV" | "ANNET";
     };
 
 export type OutboundServiceKlageExtend =
@@ -47,12 +41,11 @@ export type OutboundServiceKlageExtend =
       innmelder: {
         navn: string;
         telefonnummer?: string;
-        rolle: string;
+        rolle?: string;
       };
       paaVegneAvBedrift: {
         navn: string;
         organisasjonsnummer: string;
-        postadresse: string;
-        telefonnummer: string;
+        postadresse?: string;
       };
     };

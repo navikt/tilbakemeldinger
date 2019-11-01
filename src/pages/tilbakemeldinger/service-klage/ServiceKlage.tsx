@@ -6,7 +6,7 @@ import { useStore } from "providers/Provider";
 import { Knapp } from "nav-frontend-knapper";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { postServiceKlage } from "clients/apiClient";
-import { AlertStripeFeil } from "nav-frontend-alertstriper";
+import { AlertStripeFeil, AlertStripeInfo } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { HTTPError } from "components/error/Error";
 import { FormContext, Form, Validation } from "calidation";
@@ -20,7 +20,7 @@ import {
 import Header from "components/header/Header";
 import { urls } from "Config";
 import Box from "components/box/Box";
-import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
+import { Checkbox, Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
 import ServiceKlagePrivatperson from "./ServiceKlagePrivatperson";
@@ -108,17 +108,20 @@ const ServiceKlage = (props: RouteComponentProps) => {
         BEDRIFT: {
           paaVegneAv: "BEDRIFT",
           innmelder: {
-            navn: fields.innmelderNavn,
-            ...(fields.innmelderTlfnr && {
+            ...(fields.onskerKontakt && {
+              navn: fields.innmelderNavn,
               telefonnummer: fields.innmelderTlfnr
             }),
-            rolle: fields.innmelderRolle
+            ...(fields.innmelderRolle && {
+              rolle: fields.innmelderRolle
+            })
           },
           paaVegneAvBedrift: {
             navn: fields.orgNavn,
-            postadresse: fields.orgPostadr,
-            organisasjonsnummer: fields.orgNummer,
-            telefonnummer: fields.orgTlfNr
+            ...(fields.onskerKontakt && {
+              postadresse: fields.orgPostadr
+            }),
+            organisasjonsnummer: fields.orgNummer
           }
         }
       };
@@ -192,7 +195,12 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       title={intl.formatMessage({ id: "felter.klagetype" })}
                       feil={sjekkForFeil(submitted, errors.klageType)}
                     >
-                      <Radio
+                      <div className={"felter__melding-advarsel"}>
+                        <AlertStripeInfo>
+                          <FormattedMessage id={"felter.klagetype.info"} />
+                        </AlertStripeInfo>
+                      </div>
+                      <Checkbox
                         label={intl.formatMessage({
                           id: "felter.klageType.telefon"
                         })}
@@ -200,7 +208,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         checked={fields.klageType === "TELEFON"}
                         onChange={() => setField({ klageType: "TELEFON" })}
                       />
-                      <Radio
+                      <Checkbox
                         label={intl.formatMessage({
                           id: "felter.klageType.navkontor"
                         })}
@@ -210,8 +218,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                           setField({ klageType: "LOKALT_NAV_KONTOR" })
                         }
                       />
-
-                      <Radio
+                      <Checkbox
                         label={intl.formatMessage({
                           id: "felter.klageType.navno"
                         })}
@@ -219,17 +226,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         checked={fields.klageType === "NAVNO"}
                         onChange={() => setField({ klageType: "NAVNO" })}
                       />
-                      <Radio
-                        label={intl.formatMessage({
-                          id: "felter.klageType.skriftlig"
-                        })}
-                        name={"SKRIFTLIG_KONTAKT_NETT"}
-                        checked={fields.klageType === "SKRIFTLIG_KONTAKT_NETT"}
-                        onChange={() =>
-                          setField({ klageType: "SKRIFTLIG_KONTAKT_NETT" })
-                        }
-                      />
-                      <Radio
+                      <Checkbox
                         label={intl.formatMessage({
                           id: "felter.klageType.brev"
                         })}
@@ -237,17 +234,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         checked={fields.klageType === "BREV"}
                         onChange={() => setField({ klageType: "BREV" })}
                       />
-                      <Radio
-                        label={intl.formatMessage({
-                          id: "felter.klageType.flerekategorier"
-                        })}
-                        name={"FLERE_KATEGORIER"}
-                        checked={fields.klageType === "FLERE_KATEGORIER"}
-                        onChange={() =>
-                          setField({ klageType: "FLERE_KATEGORIER" })
-                        }
-                      />
-                      <Radio
+                      <Checkbox
                         label={intl.formatMessage({
                           id: "felter.klageType.annet"
                         })}
@@ -271,9 +258,6 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         checked={fields.hvemFra === "PRIVATPERSON"}
                         onChange={() => setField({ hvemFra: "PRIVATPERSON" })}
                       />
-                      {hvemFra === "PRIVATPERSON" && (
-                        <ServiceKlagePrivatperson />
-                      )}
                       <Radio
                         label={intl.formatMessage({
                           id: "felter.hvemfra.enannen"
@@ -282,9 +266,6 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         checked={fields.hvemFra === "ANNEN_PERSON"}
                         onChange={() => setField({ hvemFra: "ANNEN_PERSON" })}
                       />
-                      {hvemFra === "ANNEN_PERSON" && (
-                        <ServiceKlageForAnnenPerson />
-                      )}
                       <Radio
                         label={intl.formatMessage({
                           id: "felter.hvemfra.virksomhet"
@@ -293,6 +274,12 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         checked={fields.hvemFra === "BEDRIFT"}
                         onChange={() => setField({ hvemFra: "BEDRIFT" })}
                       />
+                      {hvemFra === "PRIVATPERSON" && (
+                        <ServiceKlagePrivatperson />
+                      )}
+                      {hvemFra === "ANNEN_PERSON" && (
+                        <ServiceKlageForAnnenPerson />
+                      )}
                       {hvemFra === "BEDRIFT" && <ServiceKlageForBedrift />}
                     </SkjemaGruppe>
                     <div className="serviceKlage__melding">
@@ -308,7 +295,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                     </div>
                     {kanOnskeAaKontaktes && <ServiceKlageOnskerAaKontaktes />}
                     {error && (
-                      <AlertStripeFeil>
+                      <AlertStripeFeil className={"felter__melding-advarsel"}>
                         <FormattedMessage id={"felter.noegikkgalt"} /> {error}
                       </AlertStripeFeil>
                     )}

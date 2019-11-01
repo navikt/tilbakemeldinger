@@ -4,7 +4,8 @@ import { Validation } from "calidation";
 import InputNavn from "components/input-fields/InputNavn";
 import InputField from "components/input-fields/InputField";
 import { AlertStripeAdvarsel } from "nav-frontend-alertstriper";
-import RadioPanelGruppe from "components/input-fields/RadioPanelGruppe";
+import { sjekkForFeil } from "../../../utils/validators";
+import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 
 const ServiceKlageForAnnenPerson = () => {
   const intl = useIntl();
@@ -70,32 +71,38 @@ const ServiceKlageForAnnenPerson = () => {
               error={errors.paaVegneAvFodselsnr}
               onChange={v => setField({ paaVegneAvFodselsnr: v })}
             />
-            <div className={"serviceKlage__fullmakt"}>
-              <RadioPanelGruppe
-                legend={intl.formatMessage({ id: "felter.fullmakt" })}
-                className="radioPanel__bool"
-                radios={[
-                  {
-                    label: intl.formatMessage({ id: "felter.fullmakt.ja" }),
-                    value: "true"
-                  },
-                  {
-                    label: intl.formatMessage({ id: "felter.fullmakt.nei" }),
-                    value: "false"
-                  }
-                ]}
-                name={"fullmakt"}
-                submitted={submitted}
-                checked={fields.innmelderHarFullmakt}
-                error={errors.innmelderHarFullmakt}
-                onChange={v => setField({ innmelderHarFullmakt: v })}
+            <SkjemaGruppe
+              title={intl.formatMessage({
+                id: "felter.fullmakt"
+              })}
+              feil={sjekkForFeil(submitted, errors.innmelderHarFullmakt)}
+            >
+              <Radio
+                label={intl.formatMessage({
+                  id: "felter.fullmakt.ja"
+                })}
+                name={intl.formatMessage({
+                  id: "felter.fullmakt.ja"
+                })}
+                checked={fields.innmelderHarFullmakt === true}
+                onChange={() => setField({ innmelderHarFullmakt: true })}
               />
-              {fields.innmelderHarFullmakt === "false" && (
+              <Radio
+                label={intl.formatMessage({
+                  id: "felter.fullmakt.nei"
+                })}
+                name={intl.formatMessage({
+                  id: "felter.fullmakt.nei"
+                })}
+                checked={fields.innmelderHarFullmakt === false}
+                onChange={() => setField({ innmelderHarFullmakt: false })}
+              />
+              {fields.innmelderHarFullmakt === false && (
                 <AlertStripeAdvarsel>
                   <FormattedHTMLMessage id={"felter.fullmakt.advarsel"} />
                 </AlertStripeAdvarsel>
               )}
-            </div>
+            </SkjemaGruppe>
           </div>
         );
       }}

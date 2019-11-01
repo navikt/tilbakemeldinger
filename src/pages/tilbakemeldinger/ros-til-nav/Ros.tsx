@@ -249,7 +249,7 @@ const Ros = () => {
                       onChange={v => setField({ melding: v })}
                     />
                     {error && (
-                      <AlertStripeFeil>
+                      <AlertStripeFeil className={"felter__melding-advarsel"}>
                         <FormattedMessage id={"felter.noegikkgalt"} /> {error}
                       </AlertStripeFeil>
                     )}

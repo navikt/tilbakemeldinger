@@ -307,13 +307,11 @@ export default {
   "felter.hvemroses.navkontor.skrivinn":
     "Skriv inn navnet eller velg med piltast",
   "felter.klagetype": "Hva gjelder tilbakemeldingen?",
+  "felter.klagetype.info": "Du kan velge flere kategorier",
   "felter.klageType.telefon": "Telefon",
   "felter.klageType.navkontor": "Lokalt NAV-kontor",
-  "felter.klageType.navno": "nav.no",
-  "felter.klageType.skriftlig":
-    "Chat, meldinger, og annen skriftlig kontakt på nettsiden",
+  "felter.klageType.navno": "NAVs digitale tjenester",
   "felter.klageType.brev": "Brev",
-  "felter.klageType.flerekategorier": "Flere kategorier",
   "felter.klageType.annet": "Annet",
   "felter.hvemfra": "Hvem skriver du på vegne av?",
   "felter.hvemfra.megselv": "Meg selv som privatperson",
@@ -342,7 +340,7 @@ export default {
   "felter.gjeldersosialhjelp":
     "Gjelder det økonomisk sosialhjelp / sosiale tjenester?",
   "felter.gjeldersosialhjelp.ja": "Ja",
-  "felter.gjeldersosialhjelp.nei": "Ja",
+  "felter.gjeldersosialhjelp.nei": "Nei",
   "felter.gjeldersosialhjelp.vetikke": "Vet ikke",
 
   "seo.kontaktoss.tittel": "Kontakt oss - www.nav.no",
