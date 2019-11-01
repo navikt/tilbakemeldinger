@@ -14,7 +14,6 @@ import InputMelding from "components/input-fields/InputMelding";
 import {
   ON_BEHALF_OF,
   OutboundServiceKlageBase,
-  OutboundServiceKlageType,
   OutboundServiceKlageExtend
 } from "types/serviceklage";
 import Header from "components/header/Header";
@@ -32,7 +31,6 @@ import { sjekkForFeil } from "utils/validators";
 import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
-  OutboundServiceKlageType &
   OutboundServiceKlageExtend;
 
 const ServiceKlage = (props: RouteComponentProps) => {
@@ -54,6 +52,10 @@ const ServiceKlage = (props: RouteComponentProps) => {
     }
   };
 
+  const initialValues = {
+    klageType: []
+  };
+
   const send = (e: FormContext) => {
     const { isValid, fields } = e;
     const hvemFra: ON_BEHALF_OF = fields.hvemFra;
@@ -62,20 +64,14 @@ const ServiceKlage = (props: RouteComponentProps) => {
     if (isValid) {
       const outboundBase: OutboundServiceKlageBase = {
         klagetekst: fields.melding,
+        klagetype: fields.klageType,
+        ...(fields.klageType.includes("LOKALT_NAV_KONTOR") && {
+          gjelderSosialhjelp: fields.gjelderSosialhjelp
+        }),
         ...(onskerKontakt && {
           oenskerAaKontaktes: !!onskerKontakt
         })
       };
-
-      const outboundType: OutboundServiceKlageType =
-        fields.klageType === "LOKALT_NAV_KONTOR"
-          ? {
-              klagetype: fields.klageType,
-              gjelderSosialhjelp: fields.gjelderSosialhjelp
-            }
-          : {
-              klagetype: fields.klageType
-            };
 
       const outboundExtend: {
         [key in ON_BEHALF_OF]: OutboundServiceKlageExtend;
@@ -128,7 +124,6 @@ const ServiceKlage = (props: RouteComponentProps) => {
 
       const outbound = {
         ...outboundBase,
-        ...outboundType,
         ...outboundExtend[hvemFra]
       };
 
@@ -181,13 +176,27 @@ const ServiceKlage = (props: RouteComponentProps) => {
           <Takk />
         ) : (
           <Form onSubmit={send}>
-            <Validation config={baseFormConfig}>
+            <Validation config={baseFormConfig} initialValues={initialValues}>
               {({ errors, fields, submitted, setField, isValid }) => {
                 const hvemFra: ON_BEHALF_OF = fields.hvemFra;
                 const { innmelderHarFullmakt } = fields;
                 const kanOnskeAaKontaktes =
                   hvemFra !== "ANNEN_PERSON" ||
                   innmelderHarFullmakt !== "false";
+
+                const toggleKlageType = (value: string) => {
+                  if (fields.klageType.includes(value)) {
+                    setField({
+                      klageType: fields.klageType.filter(
+                        (v: string) => v !== value
+                      )
+                    });
+                  } else {
+                    setField({
+                      klageType: fields.klageType.concat([value])
+                    });
+                  }
+                };
 
                 return (
                   <div className="skjema__content">
@@ -205,45 +214,43 @@ const ServiceKlage = (props: RouteComponentProps) => {
                           id: "felter.klageType.telefon"
                         })}
                         name={"TELEFON"}
-                        checked={fields.klageType === "TELEFON"}
-                        onChange={() => setField({ klageType: "TELEFON" })}
+                        checked={fields.klageType.includes("TELEFON")}
+                        onChange={() => toggleKlageType("TELEFON")}
                       />
                       <Checkbox
                         label={intl.formatMessage({
                           id: "felter.klageType.navkontor"
                         })}
                         name={"LOKALT_NAV_KONTOR"}
-                        checked={fields.klageType === "LOKALT_NAV_KONTOR"}
-                        onChange={() =>
-                          setField({ klageType: "LOKALT_NAV_KONTOR" })
-                        }
+                        checked={fields.klageType.includes("LOKALT_NAV_KONTOR")}
+                        onChange={() => toggleKlageType("LOKALT_NAV_KONTOR")}
                       />
                       <Checkbox
                         label={intl.formatMessage({
                           id: "felter.klageType.navno"
                         })}
                         name={"NAVNO"}
-                        checked={fields.klageType === "NAVNO"}
-                        onChange={() => setField({ klageType: "NAVNO" })}
+                        checked={fields.klageType.includes("NAVNO")}
+                        onChange={() => toggleKlageType("NAVNO")}
                       />
                       <Checkbox
                         label={intl.formatMessage({
                           id: "felter.klageType.brev"
                         })}
                         name={"BREV"}
-                        checked={fields.klageType === "BREV"}
-                        onChange={() => setField({ klageType: "BREV" })}
+                        checked={fields.klageType.includes("BREV")}
+                        onChange={() => toggleKlageType("BREV")}
                       />
                       <Checkbox
                         label={intl.formatMessage({
                           id: "felter.klageType.annet"
                         })}
                         name={"ANNET"}
-                        checked={fields.klageType === "ANNET"}
-                        onChange={() => setField({ klageType: "ANNET" })}
+                        checked={fields.klageType.includes("ANNET")}
+                        onChange={() => toggleKlageType("ANNET")}
                       />
                     </SkjemaGruppe>
-                    {fields.klageType === "LOKALT_NAV_KONTOR" && (
+                    {fields.klageType.includes("LOKALT_NAV_KONTOR") && (
                       <ServiceKlageGjelderSosialhjelp />
                     )}
                     <SkjemaGruppe

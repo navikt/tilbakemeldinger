@@ -1,18 +1,18 @@
 export type ON_BEHALF_OF = "PRIVATPERSON" | "ANNEN_PERSON" | "BEDRIFT";
 
+export type KLAGE_TYPE =
+  | "LOKALT_NAV_KONTOR"
+  | "TELEFON"
+  | "NAVNO"
+  | "BREV"
+  | "ANNET";
+
 export type OutboundServiceKlageBase = {
   klagetekst: string;
   oenskerAaKontaktes?: boolean;
+  gjelderSosialhjelp?: "JA" | "NEI" | "VET_IKKE";
+  klagetype: KLAGE_TYPE[];
 };
-
-export type OutboundServiceKlageType =
-  | {
-      klagetype: "LOKALT_NAV_KONTOR";
-      gjelderSosialhjelp: "JA" | "NEI" | "VET_IKKE";
-    }
-  | {
-      klagetype: "TELEFON" | "NAVNO" | "BREV" | "ANNET";
-    };
 
 export type OutboundServiceKlageExtend =
   | {
