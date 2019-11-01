@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flatknapp, Knapp } from "nav-frontend-knapper";
+import { Knapp } from "nav-frontend-knapper";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import InputTelefon from "components/input-fields/InputTelefon";
 import { postSamiskBestillSamtale } from "clients/apiClient";
@@ -16,6 +16,7 @@ import { sjekkForFeil } from "../../../utils/validators";
 import { FormattedMessage } from "react-intl";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "../../../assets/Veileder.svg";
+import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 
 type TIDSROM = "FORMIDDAG" | "FORMIDDAG" | "BEGGE";
 export interface OutboundBestillingAvSamtale {
@@ -86,9 +87,7 @@ const BAS = (props: RouteComponentProps) => {
 
   return (
     <div className="pagecontent">
-      <div className="tilbake__lenke lenke">
-        <a href={"https://www.nav.no/se/Samegiella"}>Tilbake</a>
-      </div>
+      <Breadcrumbs path={window.location.pathname} />
       <div className="bestilling-av-samtale__header">
         <div className="bestilling-av-samtale__tittel">
           <Sidetittel>
@@ -132,30 +131,32 @@ const BAS = (props: RouteComponentProps) => {
           >
             {({ errors, fields, submitted, setField, isValid }) => (
               <div className={"skjema__content"}>
-                <InputField
-                  bredde={"M"}
-                  label={"Ovdanamma"}
-                  value={fields.fornavn}
-                  error={errors.fornavn}
-                  onChange={v => setField({ fornavn: v })}
-                  submitted={submitted}
-                />
-                <InputField
-                  bredde={"M"}
-                  label={"Goargu"}
-                  value={fields.etternavn}
-                  error={errors.etternavn}
-                  onChange={v => setField({ etternavn: v })}
-                  submitted={submitted}
-                />
-                <InputTelefon
-                  bredde={"S"}
-                  label={"Telefovdna*"}
-                  value={fields.telefonnummer}
-                  error={errors.telefonnummer}
-                  onChange={v => setField({ telefonnummer: v })}
-                  submitted={submitted}
-                />
+                <div>
+                  <InputField
+                    bredde={"M"}
+                    label={"Ovdanamma"}
+                    value={fields.fornavn}
+                    error={errors.fornavn}
+                    onChange={v => setField({ fornavn: v })}
+                    submitted={submitted}
+                  />
+                  <InputField
+                    bredde={"M"}
+                    label={"Goargu"}
+                    value={fields.etternavn}
+                    error={errors.etternavn}
+                    onChange={v => setField({ etternavn: v })}
+                    submitted={submitted}
+                  />
+                  <InputTelefon
+                    bredde={"S"}
+                    label={"Telefovdna*"}
+                    value={fields.telefonnummer}
+                    error={errors.telefonnummer}
+                    onChange={v => setField({ telefonnummer: v })}
+                    submitted={submitted}
+                  />
+                </div>
                 <div className="bestilling-av-samtale__tidsrom">
                   <legend className="skjema__legend">
                     Goas heive duinna váldit oktavuođa?
@@ -189,13 +190,13 @@ const BAS = (props: RouteComponentProps) => {
                     />
                   </SkjemaGruppe>
                 </div>
-                <div>
-                  {error && (
+                {error && (
+                  <div>
                     <AlertStripeFeil>
                       <FormattedMessage id={"felter.noegikkgalt"} /> {error}
                     </AlertStripeFeil>
-                  )}
-                </div>
+                  </div>
+                )}
                 <div className="bestilling-av-samtale__knapper">
                   <div className="bestilling-av-samtale__knapp">
                     <Knapp
@@ -209,16 +210,6 @@ const BAS = (props: RouteComponentProps) => {
                         "Sádde jearaldaga"
                       )}
                     </Knapp>
-                  </div>
-                  <div className="bestilling-av-samtale__knapp">
-                    <Flatknapp
-                      onClick={() => {
-                        window.location.href =
-                          "https://www.nav.no/se/Samegiella";
-                      }}
-                    >
-                      <FormattedMessage id={"felter.tilbake"} />
-                    </Flatknapp>
                   </div>
                 </div>
               </div>
