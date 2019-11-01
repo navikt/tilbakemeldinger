@@ -325,8 +325,8 @@ export default {
   "felter.dinrolle.annenperson": "Din rolle (nær pårørende, behandler e.l.)",
   "felter.dinrolle.bedrift":
     "Din rolle (leder, HR-ansvarlig, tillitsvalgt osv.)",
-  "felter.navntilklager": "Navn til den som klager",
-  "felter.fodselsnrtilklager": "Fødselsnummer til den som klager",
+  "felter.navntilklager": "På vegne av (navn)",
+  "felter.fodselsnrtilklager": "På vegne av (fødselsnummer)",
   "felter.fullmakt": "Har du fullmakt?",
   "felter.fullmakt.ja": "Ja, jeg har fullmakt",
   "felter.fullmakt.nei": "Nei, jeg har ikke fullmakt",
