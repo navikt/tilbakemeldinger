@@ -12,15 +12,15 @@ import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, Form, Validation } from "calidation";
 import Select from "react-select";
 import { ValueType } from "react-select/src/types";
-import { Enheter } from "../../../types/enheter";
-import { useStore } from "../../../providers/Provider";
-import Header from "../../../components/header/Header";
+import { Enheter } from "types/enheter";
+import { useStore } from "providers/Provider";
+import Header from "components/header/Header";
 import { urls } from "Config";
 import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import MetaTags from "react-meta-tags";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "components/breadcrumbs/Breadcrumbs";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 
@@ -39,7 +39,7 @@ export type OutboundRosTilNav = OutboundRosTilNavBase & OutboundRosTilNavExtend;
 const Ros = () => {
   const [{ enheter }, dispatch] = useStore();
   const [loading, settLoading] = useState(false);
-  const [success, settSuccess] = useState(true);
+  const [success, settSuccess] = useState(false);
   const [error, settError] = useState();
   const intl = useIntl();
 

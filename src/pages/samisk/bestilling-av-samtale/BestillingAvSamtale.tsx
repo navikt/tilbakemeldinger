@@ -9,14 +9,14 @@ import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, FormValidation } from "calidation";
 import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
 import { Checkbox, SkjemaGruppe } from "nav-frontend-skjema";
-import Box from "../../../components/box/Box";
-import InputField from "../../../components/input-fields/InputField";
-import Takk from "../../../components/takk/Takk";
-import { sjekkForFeil } from "../../../utils/validators";
+import Box from "components/box/Box";
+import InputField from "components/input-fields/InputField";
+import Takk from "components/takk/Takk";
+import { sjekkForFeil } from "utils/validators";
 import { FormattedMessage } from "react-intl";
 import Veilederpanel from "nav-frontend-veilederpanel";
-import VeilederIcon from "../../../assets/Veileder.svg";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
+import VeilederIcon from "assets/Veileder.svg";
+import Breadcrumbs from "components/breadcrumbs/Breadcrumbs";
 
 type TIDSROM = "FORMIDDAG" | "FORMIDDAG" | "BEGGE";
 export interface OutboundBestillingAvSamtale {

@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
-import VeilederIcon from "../../../assets/Veileder.svg";
+import VeilederIcon from "assets/Veileder.svg";
 import { Knapp } from "nav-frontend-knapper";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import InputMelding from "../../../components/input-fields/InputMelding";
-import { postFeilOgMangler } from "../../../clients/apiClient";
-import { HTTPError } from "../../../components/error/Error";
+import InputMelding from "components/input-fields/InputMelding";
+import { postFeilOgMangler } from "clients/apiClient";
+import { HTTPError } from "components/error/Error";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, FormValidation } from "calidation";
-import Header from "../../../components/header/Header";
+import Header from "components/header/Header";
 import { urls } from "Config";
-import Box from "../../../components/box/Box";
+import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
-import Takk from "../../../components/takk/Takk";
-import { sjekkForFeil } from "../../../utils/validators";
+import Takk from "components/takk/Takk";
+import { sjekkForFeil } from "utils/validators";
 import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "components/breadcrumbs/Breadcrumbs";
 
 export interface OutboundFeilOgMangler {
   onskerKontakt: boolean;
