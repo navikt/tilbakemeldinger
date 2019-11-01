@@ -2,13 +2,13 @@ import React from "react";
 import { useStore } from "providers/Provider";
 import { Hovedknapp } from "nav-frontend-knapper";
 import { Link, Redirect } from "react-router-dom";
-import Tilbake from "components/tilbake/Tilbake";
 import Environment from "Environments";
 import { urls } from "Config";
 import Box from "components/box/Box";
 import Header from "components/header/Header";
 import MetaTags from "react-meta-tags";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
+import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 const { loginUrl } = Environment();
 
 const Login = () => {
@@ -21,10 +21,10 @@ const Login = () => {
 
   return (
     <div className="pagecontent">
+      <Breadcrumbs path={window.location.pathname} />
       <MetaTags>
         <title>{intl.messages["seo.klagepaservice.login.tittel"]}</title>
       </MetaTags>
-      <Tilbake to={urls.tilbakemeldinger.forside} />
       <Header
         title={intl.formatMessage({
           id: "tilbakemeldinger.serviceklage.login.tittel"

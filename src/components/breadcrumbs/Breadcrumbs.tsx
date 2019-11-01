@@ -1,9 +1,11 @@
 import React, { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { useIntl } from "react-intl";
+
 import { HoyreChevron } from "nav-frontend-chevron";
 import { Normaltekst } from "nav-frontend-typografi";
 import { urls } from "../../Config";
-import { useIntl } from "react-intl";
+import HjemIkon from "assets/icons/line/home-1-line.svg";
 
 type Props = {
   path: string;
@@ -25,7 +27,7 @@ const parsePath = (path: string, formatMessage: Function) => {
     const url = recombinedParts.length === 1 ? "/" : recombinedParts.join("/");
 
     return {
-      url,
+      url: `${baseUrl}${url}`,
       label: formatMessage({id: `route.${part}`})
     };
   });
@@ -37,6 +39,8 @@ const Breadcrumbs = (props: Props) => {
 
   const breadcrumbChain: Array<ReactNode> = [];
   const parsedPath = parsePath(path, formatMessage);
+
+  breadcrumbChain.push(<img src={HjemIkon} alt="" className={`${cssPrefix}__ikon`} />);
 
   parsedPath.forEach((part, index) => {
     const current = index === parsedPath.length - 1;

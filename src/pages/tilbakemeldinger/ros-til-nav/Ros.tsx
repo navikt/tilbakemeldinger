@@ -6,7 +6,6 @@ import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import InputNavn from "../../../components/input-fields/InputNavn";
 import InputMelding from "../../../components/input-fields/InputMelding";
 import { fetchEnheter, postRosTilNav } from "../../../clients/apiClient";
-import Tilbake from "../../../components/tilbake/Tilbake";
 import { HTTPError } from "../../../components/error/Error";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import { Element } from "nav-frontend-typografi";
@@ -24,6 +23,7 @@ import MetaTags from "react-meta-tags";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import Takk from "../../../components/takk/Takk";
 import { sjekkForFeil } from "../../../utils/validators";
+import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
 
@@ -128,6 +128,7 @@ const Ros = (props: RouteComponentProps) => {
 
   return (
     <div className="pagecontent">
+      <Breadcrumbs path={window.location.pathname} />
       <MetaTags>
         <title>{intl.messages["seo.rostilnav.tittel"]}</title>
         <meta
@@ -135,7 +136,6 @@ const Ros = (props: RouteComponentProps) => {
           content={intl.messages["seo.rostilnav.description"] as string}
         />
       </MetaTags>
-      <Tilbake to={urls.tilbakemeldinger.forside} />
       <Header
         title={intl.formatMessage({ id: "tilbakemeldinger.ros.form.tittel" })}
       />

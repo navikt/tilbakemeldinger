@@ -6,7 +6,6 @@ import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import InputNavn from "../../../components/input-fields/InputNavn";
 import InputMelding from "../../../components/input-fields/InputMelding";
 import { postFeilOgMangler } from "../../../clients/apiClient";
-import Tilbake from "../../../components/tilbake/Tilbake";
 import { HTTPError } from "../../../components/error/Error";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
@@ -20,6 +19,7 @@ import MetaTags from "react-meta-tags";
 import Takk from "../../../components/takk/Takk";
 import { sjekkForFeil } from "../../../utils/validators";
 import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
+import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 
 export interface OutboundFeilOgMangler {
   navn: string;
@@ -91,6 +91,7 @@ const FOM = (props: RouteComponentProps) => {
 
   return (
     <div className="pagecontent">
+      <Breadcrumbs path={window.location.pathname} />
       <MetaTags>
         <title>{intl.messages["seo.feilogmangler.tittel"]}</title>
         <meta
@@ -98,7 +99,6 @@ const FOM = (props: RouteComponentProps) => {
           content={intl.messages["seo.feilogmangler.description"] as string}
         />
       </MetaTags>
-      <Tilbake to={urls.tilbakemeldinger.forside} />
       <Header
         title={intl.formatMessage({
           id: "tilbakemeldinger.feilogmangler.form.tittel"

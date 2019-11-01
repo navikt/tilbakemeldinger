@@ -12,6 +12,7 @@ import ChatbotWrangler from "../../utils/chatbotWrangler";
 import ChatValgtIkon from "assets/ChatValgtIkon.svg";
 import ChatIkkeValgtIkon from "assets/ChatUvalgtIkon.svg";
 import NAVChatBot from "@navikt/nav-chatbot";
+import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 
 const cssPrefix = "chat-med-oss";
 const sideTittel = "chat.forside.tittel";
@@ -56,6 +57,7 @@ const ChatSide = () => {
   return(
     <>
       <div className={`${cssPrefix} pagecontent`}>
+        <Breadcrumbs path={window.location.pathname} />
         <EtikettLiten>
           <FormattedMessage id={"header.navperson"}/>
         </EtikettLiten>
