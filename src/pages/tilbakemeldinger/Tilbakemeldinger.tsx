@@ -1,17 +1,17 @@
 import React from "react";
 import { lenker } from "./TilbakemeldingerLenker";
-import Tilbake from "../../components/tilbake/Tilbake";
-import { urls } from "../../Config";
 import Header from "../../components/header/Header";
 import TilpassetLenkepanel from "../../components/lenkepanel/Lenkepanel";
 import MetaTags from "react-meta-tags";
 import { useIntl } from "react-intl";
+import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 
 const Tilbakemeldinger = () => {
   const intl = useIntl();
   return (
     <>
       <div className="pagecontent">
+        <Breadcrumbs path={window.location.pathname} />
         <MetaTags>
           <title>{intl.messages["seo.tilbakemeldinger.tittel"]}</title>
           <meta
@@ -21,7 +21,6 @@ const Tilbakemeldinger = () => {
             }
           />
         </MetaTags>
-        <Tilbake to={urls.forside} />
         <div className={"tilbakemeldinger__tittel"}>
           <Header title={"Tilbakemeldinger til NAV"} />
         </div>

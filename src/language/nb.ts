@@ -5,6 +5,19 @@ export default {
     "Vi har for øyeblikket tekniske problemer med disse sidene.",
   "header.navperson": "NAV privatperson",
 
+  "route.": "Kontakt oss",
+  "route.skriv-til-oss": "Skriv til oss",
+  "route.arbeidssoker": "Arbeidssøker",
+  "route.syk": "Syk",
+  "route.familieogbarn": "Familie og barn",
+  "route.hjelpemidler": "Pensjon",
+  "route.chat": "Chat",
+  "route.tilbakemeldinger": "Tilbakemeldinger",
+  "route.serviceklage": "Klage på service",
+  "route.login": "Innlogging",
+  "route.feil-og-mangler": "Feil og mangler",
+  "route.ros-til-nav": "Ros",
+
   "skrivtiloss.disabled":
     "Tjenesten er dessverre ikke tilgjengelig for øyeblikket.",
   "skrivtiloss.tittel": "Skriv til oss",
