@@ -14,6 +14,8 @@ import InputField from "../../../components/input-fields/InputField";
 import Takk from "../../../components/takk/Takk";
 import { sjekkForFeil } from "../../../utils/validators";
 import { FormattedMessage } from "react-intl";
+import Veilederpanel from "nav-frontend-veilederpanel";
+import VeilederIcon from "../../../assets/Veileder.svg";
 
 type TIDSROM = "FORMIDDAG" | "FORMIDDAG" | "BEGGE";
 export interface OutboundBestillingAvSamtale {
@@ -94,24 +96,32 @@ const BAS = (props: RouteComponentProps) => {
           </Sidetittel>
         </div>
       </div>
+      <div className={"tb__veileder"}>
+        <Veilederpanel
+          svg={<img src={VeilederIcon} alt="Veileder" />}
+          type={"plakat"}
+          kompakt={true}
+        >
+          <div className={"tb__veileder-container"}>
+            <Normaltekst>
+              Diŋgo dás davvisámegilli bálvalusa mas vástiduvvo dutnje
+              sámegillii buot NAV – bálvalusain ja oajuin. Mii veahkehit gávdnat
+              mo du áššiin manná, ja veahkehit du dovdat rivttiid ja
+              geatnegasvuođaid mat leat álbmotoadjolága njuolggadusain. Don
+              gávnnat dieđuid iežat áššis neahttabálvalusas nav.no Ditt NAV. Don
+              sáhtát iskat mii dutnje lea máksojuvvon dás:
+            </Normaltekst>
+            <br />
+            <Normaltekst>
+              Don sáhtat ain riŋget NAV-bálvalussii 55 55 33 33 ja dáhtot ahte
+              davvisámegielat bagadalli riŋge dutnje. Muite addit riegadan- ja
+              persunnummara ja maid telefunnummara masa davvisámegielat galga
+              riŋget.
+            </Normaltekst>
+          </div>
+        </Veilederpanel>
+      </div>
       <Box>
-        <div className="bestilling-av-samtale__ingress">
-          <Normaltekst>
-            Diŋgo dás davvisámegilli bálvalusa mas vástiduvvo dutnje sámegillii
-            buot NAV – bálvalusain ja oajuin. Mii veahkehit gávdnat mo du áššiin
-            manná, ja veahkehit du dovdat rivttiid ja geatnegasvuođaid mat leat
-            álbmotoadjolága njuolggadusain. Don gávnnat dieđuid iežat áššis
-            neahttabálvalusas nav.no Ditt NAV. Don sáhtát iskat mii dutnje lea
-            máksojuvvon dás:
-          </Normaltekst>
-          <br />
-          <Normaltekst>
-            Don sáhtat ain riŋget NAV-bálvalussii 55 55 33 33 ja dáhtot ahte
-            davvisámegielat bagadalli riŋge dutnje. Muite addit riegadan- ja
-            persunnummara ja maid telefunnummara masa davvisámegielat galga
-            riŋget.
-          </Normaltekst>
-        </div>
         {success ? (
           <Takk />
         ) : (
@@ -121,7 +131,7 @@ const BAS = (props: RouteComponentProps) => {
             initialValues={initialValues}
           >
             {({ errors, fields, submitted, setField, isValid }) => (
-              <>
+              <div className={"skjema__content"}>
                 <InputField
                   bredde={"M"}
                   label={"Ovdanamma"}
@@ -211,7 +221,7 @@ const BAS = (props: RouteComponentProps) => {
                     </Flatknapp>
                   </div>
                 </div>
-              </>
+              </div>
             )}
           </FormValidation>
         )}

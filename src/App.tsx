@@ -118,7 +118,12 @@ const App = () => {
             />
             <Route
               exact={true}
-              path={urls.samegiella}
+              path={urls.samegiella.base}
+              render={() => (window.location.href = urls.samegiella.redirect)}
+            />
+            <Route
+              exact={true}
+              path={urls.samegiella.samtale}
               component={BestillingAvSamtale}
             />
             <Route component={PageNotFound} />
