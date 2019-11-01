@@ -237,6 +237,7 @@ export default {
     "Velg det alternativet som passer best. <br />" +
     "Vi vil uansett sørge for at tilbakemeldingen kommer fram til riktig person.",
   "tilbakemeldinger.serviceklage.form.tittel": "Klage på service",
+  "tilbakemeldinger.serviceklage.form.overskrift": "Send inn klage på service",
 
   "tilbakemeldinger.feilogmangler.tittel": "Feil og mangler på nav.no",
   "tilbakemeldinger.feilogmangler.beskrivelse":
@@ -281,6 +282,8 @@ export default {
   "validering.orgnr.pakrevd": "Organisasjonsnummer er påkrevd",
   "validering.orgnr.korrektsiffer": "Organisasjonsnummer må ha 9 siffer",
   "validering.postadr.pakrevd": "Postadresse er påkrevd",
+  "validering.gjeldersosialhjelp.pakrevd":
+    "Du må velge om det gjelder sosialehjelp",
 
   "felter.navn.tittel": "Navn",
   "felter.navn.tittel.valgfritt": "Navn (valgfritt)",
@@ -304,10 +307,13 @@ export default {
   "felter.hvemroses.navkontor.skrivinn":
     "Skriv inn navnet eller velg med piltast",
   "felter.klagetype": "Hva gjelder tilbakemeldingen?",
-  "felter.klageType.saksbehandling": "Saksbehandling av søknad",
-  "felter.klageType.navkontor": "NAV-kontor",
   "felter.klageType.telefon": "Telefon",
+  "felter.klageType.navkontor": "Lokalt NAV-kontor",
   "felter.klageType.navno": "nav.no",
+  "felter.klageType.skriftlig":
+    "Chat, meldinger, og annen skriftlig kontakt på nettsiden",
+  "felter.klageType.brev": "Brev",
+  "felter.klageType.flerekategorier": "Flere kategorier",
   "felter.klageType.annet": "Annet",
   "felter.hvemfra": "Hvem skriver du på vegne av?",
   "felter.hvemfra.megselv": "Meg selv som privatperson",
@@ -333,6 +339,11 @@ export default {
   "felter.orgnr": "Organisasjonsnummer",
   "felter.postadr": "Bedriftens postadresse",
   "felter.tlf.bedrift": "Bedriftens telefonnummer",
+  "felter.gjeldersosialhjelp":
+    "Gjelder det økonomisk sosialhjelp / sosiale tjenester?",
+  "felter.gjeldersosialhjelp.ja": "Ja",
+  "felter.gjeldersosialhjelp.nei": "Ja",
+  "felter.gjeldersosialhjelp.vetikke": "Vet ikke",
 
   "seo.kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "seo.kontaktoss.description":

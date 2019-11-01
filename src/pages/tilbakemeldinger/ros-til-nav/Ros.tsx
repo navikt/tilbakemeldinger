@@ -1,34 +1,32 @@
 import React, { useState, useEffect } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
-import VeilederIcon from "../../../assets/Veileder.svg";
+import VeilederIcon from "assets/Veileder.svg";
 import { Knapp } from "nav-frontend-knapper";
-import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import InputNavn from "../../../components/input-fields/InputNavn";
-import InputMelding from "../../../components/input-fields/InputMelding";
-import { fetchEnheter, postRosTilNav } from "../../../clients/apiClient";
-import Tilbake from "../../../components/tilbake/Tilbake";
-import { HTTPError } from "../../../components/error/Error";
+import { Link } from "react-router-dom";
+import InputMelding from "components/input-fields/InputMelding";
+import { fetchEnheter, postRosTilNav } from "clients/apiClient";
+import Tilbake from "components/tilbake/Tilbake";
+import { HTTPError } from "components/error/Error";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import { Element } from "nav-frontend-typografi";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, Form, Validation } from "calidation";
 import Select from "react-select";
 import { ValueType } from "react-select/src/types";
-import { Enheter } from "../../../types/enheter";
-import { useStore } from "../../../providers/Provider";
-import Header from "../../../components/header/Header";
+import { Enheter } from "types/enheter";
+import { useStore } from "providers/Provider";
+import Header from "components/header/Header";
 import { urls } from "Config";
-import Box from "../../../components/box/Box";
+import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import MetaTags from "react-meta-tags";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
-import Takk from "../../../components/takk/Takk";
-import { sjekkForFeil } from "../../../utils/validators";
+import Takk from "components/takk/Takk";
+import { sjekkForFeil } from "utils/validators";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
 
 type OutboundRosTilNavBase = {
-  navn: string;
   melding: string;
 };
 
@@ -38,8 +36,7 @@ type OutboundRosTilNavExtend =
   | { hvemRoses: "NAV_KONTOR"; navKontor: string };
 
 export type OutboundRosTilNav = OutboundRosTilNavBase & OutboundRosTilNavExtend;
-
-const Ros = (props: RouteComponentProps) => {
+const Ros = () => {
   const [{ enheter }, dispatch] = useStore();
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);
@@ -153,16 +150,6 @@ const Ros = (props: RouteComponentProps) => {
               {({ errors, fields, submitted, setField, isValid }) => {
                 return (
                   <>
-                    <InputNavn
-                      bredde={"L"}
-                      label={intl.formatMessage({
-                        id: "felter.navn.tittel.valgfritt"
-                      })}
-                      value={fields.navn}
-                      error={errors.navn}
-                      onChange={v => setField({ navn: v })}
-                      submitted={submitted}
-                    />
                     <SkjemaGruppe
                       title={intl.formatMessage({
                         id: "felter.hvemroses.tittel"
@@ -299,4 +286,4 @@ const Ros = (props: RouteComponentProps) => {
     </div>
   );
 };
-export default withRouter(Ros);
+export default Ros;

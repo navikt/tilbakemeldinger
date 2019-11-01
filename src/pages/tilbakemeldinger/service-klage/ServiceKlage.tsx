@@ -26,7 +26,7 @@ import MetaTags from "react-meta-tags";
 import ServiceKlagePrivatperson from "./ServiceKlagePrivatperson";
 import ServiceKlageForAnnenPerson from "./ServiceKlageAnnenPerson";
 import ServiceKlageForBedrift from "./ServiceKlageBedrift";
-import ServiceKlageYtelse from "./ServiceKlageYtelse";
+import ServiceKlageGjelderSosialhjelp from "./ServiceKlageGjelderSosialhjelp";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
@@ -68,10 +68,10 @@ const ServiceKlage = (props: RouteComponentProps) => {
       };
 
       const outboundType: OutboundServiceKlageType =
-        fields.klageType === "SAKSBEHANDLING"
+        fields.klageType === "LOKALT_NAV_KONTOR"
           ? {
               klagetype: fields.klageType,
-              ytelseTjeneste: fields.ytelseTjeneste
+              gjelderSosialhjelp: fields.gjelderSosialhjelp
             }
           : {
               klagetype: fields.klageType
@@ -167,7 +167,11 @@ const ServiceKlage = (props: RouteComponentProps) => {
           <FormattedHTMLMessage id="tilbakemeldinger.serviceklage.form.veileder" />
         </Veilederpanel>
       </div>
-      <Box>
+      <Box
+        tittel={intl.formatMessage({
+          id: "tilbakemeldinger.serviceklage.form.overskrift"
+        })}
+      >
         {success ? (
           <Takk />
         ) : (
@@ -188,33 +192,23 @@ const ServiceKlage = (props: RouteComponentProps) => {
                     >
                       <Radio
                         label={intl.formatMessage({
-                          id: "felter.klageType.saksbehandling"
-                        })}
-                        name={"SAKSBEHANDLING"}
-                        checked={fields.klageType === "SAKSBEHANDLING"}
-                        onChange={() =>
-                          setField({ klageType: "SAKSBEHANDLING" })
-                        }
-                      />
-                      {fields.klageType === "SAKSBEHANDLING" && (
-                        <ServiceKlageYtelse />
-                      )}
-                      <Radio
-                        label={intl.formatMessage({
-                          id: "felter.klageType.navkontor"
-                        })}
-                        name={"NAV_KONTOR"}
-                        checked={fields.klageType === "NAV_KONTOR"}
-                        onChange={() => setField({ klageType: "NAV_KONTOR" })}
-                      />
-                      <Radio
-                        label={intl.formatMessage({
                           id: "felter.klageType.telefon"
                         })}
                         name={"TELEFON"}
                         checked={fields.klageType === "TELEFON"}
                         onChange={() => setField({ klageType: "TELEFON" })}
                       />
+                      <Radio
+                        label={intl.formatMessage({
+                          id: "felter.klageType.navkontor"
+                        })}
+                        name={"LOKALT_NAV_KONTOR"}
+                        checked={fields.klageType === "LOKALT_NAV_KONTOR"}
+                        onChange={() =>
+                          setField({ klageType: "LOKALT_NAV_KONTOR" })
+                        }
+                      />
+
                       <Radio
                         label={intl.formatMessage({
                           id: "felter.klageType.navno"
@@ -225,6 +219,34 @@ const ServiceKlage = (props: RouteComponentProps) => {
                       />
                       <Radio
                         label={intl.formatMessage({
+                          id: "felter.klageType.skriftlig"
+                        })}
+                        name={"SKRIFTLIG_KONTAKT_NETT"}
+                        checked={fields.klageType === "SKRIFTLIG_KONTAKT_NETT"}
+                        onChange={() =>
+                          setField({ klageType: "SKRIFTLIG_KONTAKT_NETT" })
+                        }
+                      />
+                      <Radio
+                        label={intl.formatMessage({
+                          id: "felter.klageType.brev"
+                        })}
+                        name={"BREV"}
+                        checked={fields.klageType === "BREV"}
+                        onChange={() => setField({ klageType: "BREV" })}
+                      />
+                      <Radio
+                        label={intl.formatMessage({
+                          id: "felter.klageType.flerekategorier"
+                        })}
+                        name={"FLERE_KATEGORIER"}
+                        checked={fields.klageType === "FLERE_KATEGORIER"}
+                        onChange={() =>
+                          setField({ klageType: "FLERE_KATEGORIER" })
+                        }
+                      />
+                      <Radio
+                        label={intl.formatMessage({
                           id: "felter.klageType.annet"
                         })}
                         name={"ANNET"}
@@ -232,6 +254,9 @@ const ServiceKlage = (props: RouteComponentProps) => {
                         onChange={() => setField({ klageType: "ANNET" })}
                       />
                     </SkjemaGruppe>
+                    {fields.klageType === "LOKALT_NAV_KONTOR" && (
+                      <ServiceKlageGjelderSosialhjelp />
+                    )}
                     <SkjemaGruppe
                       title={intl.formatMessage({ id: "felter.hvemfra" })}
                       feil={sjekkForFeil(submitted, errors.hvemFra)}

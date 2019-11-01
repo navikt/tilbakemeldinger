@@ -25,7 +25,7 @@ export interface OutboundFeilOgMangler {
   navn: string;
   onskerKontakt: boolean;
   epost?: string;
-  feiltype: string;
+  feiltype: "TEKNISK_FEIL" | "FEIL_INFO" | "UNIVERSELL_UTFORMING";
   melding: string;
 }
 

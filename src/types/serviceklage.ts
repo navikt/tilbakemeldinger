@@ -7,11 +7,17 @@ export type OutboundServiceKlageBase = {
 
 export type OutboundServiceKlageType =
   | {
-      klagetype: "SAKSBEHANDLING";
-      ytelseTjeneste: string;
+      klagetype: "LOKALT_NAV_KONTOR";
+      gjelderSosialhjelp: "JA" | "NEI" | "VET_IKKE";
     }
   | {
-      klagetype: "NAV_KONTOR" | "TELEFON" | "NAVNO" | "ANNET";
+      klagetype:
+        | "TELEFON"
+        | "NAVNO"
+        | "SKRIFTLIG_KONTAKT_NETT"
+        | "BREV"
+        | "FLERE_KATEGORIER"
+        | "ANNET";
     };
 
 export type OutboundServiceKlageExtend =
