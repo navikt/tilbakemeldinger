@@ -4,6 +4,7 @@ import Lenke from "nav-frontend-lenker";
 import { NedChevron, OppChevron } from "nav-frontend-chevron";
 import { spesialnr, tastevalg } from "./RingOssData";
 import { urls } from "../../../Config";
+import { FormattedMessage } from "react-intl";
 
 const RingOss = () => {
   const [visNummer, settVisNummer] = useState(false);
@@ -11,46 +12,58 @@ const RingOss = () => {
     <>
       <div className={"box__section"}>
         <div className={"box__section-title"}>
-          <Undertittel className="box__title">Ring oss</Undertittel>
+          <Undertittel className="box__title">
+            <FormattedMessage id={"kontaktoss.ringoss.tittel"} />
+          </Undertittel>
         </div>
         <div className={"box__section-description"}>
-          Vi hjelper deg med generelle spørsmål og veiledning hverdager mellom
-          08:00 - 15:00. Svartiden varierer, men det er kortest ventetid mellom
-          10:00-13:00
+          <FormattedMessage id={"kontaktoss.ringoss.beskrivelse"} />
         </div>
-        <div
-          className={"ringoss__visnr box__section-lenke lenke "}
+        <button
+          className={"ringoss__visnr box__section-lenke lenke"}
           onClick={() => settVisNummer(!visNummer)}
         >
           {visNummer ? (
             <>
-              <span>Skjul telefonnumre og tastevalg</span>
+              <span>
+                <FormattedMessage id={"kontaktoss.ringoss.skjultlf"} />
+              </span>
               <OppChevron />
             </>
           ) : (
             <>
-              <span>Vis telefonnumre og tastevalg</span>
+              <span>
+                <FormattedMessage id={"kontaktoss.ringoss.vistlf"} />
+              </span>
               <NedChevron />
             </>
           )}
-        </div>
+        </button>
         {visNummer && (
           <>
             <div className={"ringoss__tlf"}>
-              <Undertittel>Personbruker: 55 55 33 33</Undertittel>
+              <Undertittel>
+                <FormattedMessage id={"kontaktoss.ringoss.tlf"} />
+              </Undertittel>
             </div>
             <table className="ringoss__tabell-tastevalg tabell">
               <thead>
                 <tr>
-                  <th className="ringoss__kolonne">Tastevalg</th>
+                  <th className="ringoss__kolonne">
+                    <FormattedMessage id={"kontaktoss.ringoss.tastevalg"} />
+                  </th>
                   <th />
                 </tr>
               </thead>
               <tbody>
                 {tastevalg.map(valg => (
                   <tr key={valg.tastevalg}>
-                    <td className="ringoss__kolonne">{valg.tastevalg}</td>
-                    <td>{valg.beskrivelse}</td>
+                    <td className="ringoss__kolonne">
+                      <FormattedMessage id={valg.tastevalg} />
+                    </td>
+                    <td>
+                      <FormattedMessage id={valg.beskrivelse} />
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -58,7 +71,9 @@ const RingOss = () => {
             <table className="ringoss__tabell-spesialnr tabell">
               <thead>
                 <tr>
-                  <th className="ringoss__kolonne">Spesialnumre</th>
+                  <th className="ringoss__kolonne">
+                    <FormattedMessage id={"kontaktoss.ringoss.spesialnr"} />
+                  </th>
                   <th />
                 </tr>
               </thead>
@@ -66,19 +81,21 @@ const RingOss = () => {
                 {spesialnr.map(valg => (
                   <tr key={valg.nummer}>
                     <td className="ringoss__kolonne">{valg.nummer}</td>
-                    <td>{valg.beskrivelse}</td>
+                    <td>
+                      <FormattedMessage id={valg.beskrivelse} />
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
             <div className={"faq__lenke"}>
               <Lenke href={urls.veteraner}>
-                Råd og veiledning for veteraner fra Forsvaret
+                <FormattedMessage id={"kontaktoss.ringoss.forsvaret"} />
               </Lenke>
             </div>
             <div className={"faq__lenke"}>
               <Lenke href={"#"} className={"faq__lenke"}>
-                Ringer du på vegne av en annen?
+                <FormattedMessage id={"kontaktoss.ringoss.forandre"} />
               </Lenke>
             </div>
             {/*

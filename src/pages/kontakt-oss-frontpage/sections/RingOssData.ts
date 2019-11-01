@@ -1,48 +1,45 @@
 export const tastevalg = [
   {
-    tastevalg: "Tast 1",
-    beskrivelse:
-      "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester"
+    tastevalg: "kontaktoss.ringoss.tastevalg.tast1.tittel",
+    beskrivelse: "kontaktoss.ringoss.tastevalg.tast1.beskrivelse"
   },
   {
-    tastevalg: "Tast 2",
-    beskrivelse:
-      "Arbeidssøker, dagpenger, arbeidsavklaringspenger eller sykemeldt"
+    tastevalg: "kontaktoss.ringoss.tastevalg.tast2.tittel",
+    beskrivelse: "kontaktoss.ringoss.tastevalg.tast2.beskrivelse"
   },
   {
-    tastevalg: "Tast 3",
-    beskrivelse:
-      "Foreldrepenger, engangsstønad, svangerskapspenger, barnebidrag, barnetrygd, kontantstøtte, enslig forsørger, pleiepenger og andre familieytelser"
+    tastevalg: "kontaktoss.ringoss.tastevalg.tast3.tittel",
+    beskrivelse: "kontaktoss.ringoss.tastevalg.tast3.beskrivelse"
   },
   {
-    tastevalg: "Tast 4",
-    beskrivelse: "Uføretrygd og honnørkort"
+    tastevalg: "kontaktoss.ringoss.tastevalg.tast4.tittel",
+    beskrivelse: "kontaktoss.ringoss.tastevalg.tast4.beskrivelse"
   },
   {
-    tastevalg: "Tast 5",
-    beskrivelse: "Andre henvendelser"
+    tastevalg: "kontaktoss.ringoss.tastevalg.tast5.tittel",
+    beskrivelse: "kontaktoss.ringoss.tastevalg.tast5.beskrivelse"
   }
 ];
 
 export const spesialnr = [
   {
     nummer: "55 55 33 34",
-    beskrivelse: "Pensjon"
+    beskrivelse: "kontaktoss.ringoss.spesialnr.pensjon"
   },
   {
     nummer: "55 55 33 35",
-    beskrivelse: "Hjelpemidler"
+    beskrivelse: "kontaktoss.ringoss.spesialnr.hjelpemidler"
   },
   {
     nummer: "55 55 33 39",
-    beskrivelse: "Teknisk brukerstøtte / EURES / gjeldsrådgivning"
+    beskrivelse: "kontaktoss.ringoss.spesialnr.teknisk"
   },
   {
     nummer: "(+47) 21 07 37 00",
-    beskrivelse: "Internasjonalt"
+    beskrivelse: "kontaktoss.ringoss.spesialnr.internasjonalt"
   },
   {
     nummer: "22 82 20 00",
-    beskrivelse: "Lønnsgaranti"
+    beskrivelse: "kontaktoss.ringoss.spesialnr.lonnsgaranti"
   }
 ];

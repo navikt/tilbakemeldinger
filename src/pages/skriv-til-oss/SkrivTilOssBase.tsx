@@ -59,12 +59,12 @@ const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
   if (!skrivTilOssEnabled) {
     return (
       <AlertStripe type="advarsel">
-        <FormattedMessage id={"skrivtiloss.disabled"}/>
+        <FormattedMessage id={"skrivtiloss.disabled"} />
       </AlertStripe>
     );
   }
 
-  return(
+  return (
     <div className={`${cssPrefix} pagecontent`}>
       <Breadcrumbs path={window.location.pathname} />
       <div className={`${cssPrefix}__header`}>
@@ -81,13 +81,15 @@ const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
             id={"skrivtiloss.svartid"}
             values={{ numDager: vars.svartidDager }}
           />
-          {langSvartid && <FormattedMessage id={"skrivtiloss.svartid.lang"}/>}
+          {langSvartid && <FormattedMessage id={"skrivtiloss.svartid.lang"} />}
         </Normaltekst>
         {children}
       </div>
-      { lenker && (
+      {lenker && (
         <div className={`${cssPrefix}__lenker`}>
-          {lenker.map(lenke => <SkrivTilOssLenkepanel lenkePanelData={lenke} key={lenke.tittel}/>)}
+          {lenker.map(lenke => (
+            <SkrivTilOssLenkepanel lenkePanelData={lenke} key={lenke.tittel} />
+          ))}
         </div>
       )}
     </div>

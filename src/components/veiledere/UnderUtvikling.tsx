@@ -13,7 +13,7 @@ const UnderUtvikling = () => (
     <br />
     <div className={"faq__lenke"}>
       <Lenke href={urls.gamleKontaktOss}>
-        Gå til gamle de gamle kontakt-oss sidene
+        Gå til de gamle kontakt-oss sidene
       </Lenke>
     </div>
   </Veilederpanel>

@@ -12,7 +12,7 @@ const Ingress = () => {
   return (
     <>
       <MetaTags>
-        <title>{intl.messages["feilogmangler.tittel"]}</title>
+        <title>{intl.messages["skrivtiloss.tittel"]}</title>
         <meta
           name="description"
           content={intl.messages["skrivtiloss.description"] as string}

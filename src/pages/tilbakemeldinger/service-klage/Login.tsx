@@ -4,15 +4,16 @@ import { Hovedknapp } from "nav-frontend-knapper";
 import { Link, Redirect } from "react-router-dom";
 import Tilbake from "components/tilbake/Tilbake";
 import Environment from "Environments";
-
 import { urls } from "Config";
-import Box from "../../../components/box/Box";
-import Header from "../../../components/header/Header";
+import Box from "components/box/Box";
+import Header from "components/header/Header";
+import MetaTags from "react-meta-tags";
+import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 const { loginUrl } = Environment();
 
 const Login = () => {
-  document.title = "Login - www.nav.no";
   const [{ auth }] = useStore();
+  const intl = useIntl();
 
   if (auth.authenticated) {
     return <Redirect to={urls.tilbakemeldinger.serviceklage.form} />;
@@ -20,27 +21,40 @@ const Login = () => {
 
   return (
     <div className="pagecontent">
+      <MetaTags>
+        <title>{intl.messages["seo.klagepaservice.login.tittel"]}</title>
+      </MetaTags>
       <Tilbake to={urls.tilbakemeldinger.forside} />
-      <Header title="Klage på service" />
+      <Header
+        title={intl.formatMessage({
+          id: "tilbakemeldinger.serviceklage.login.tittel"
+        })}
+      />
       <Box tittel={"Ønsker du å logge inn?"}>
         <div className="serviceKlage__login-info">
-          Vi anbefaler at du logger inn, så slipper du å fylle inn all
-          informasjonen om deg selv.
-          <br />
-          Du må opppgi hvem du er uansett om du logger inn eller ikke.
+          <FormattedHTMLMessage
+            id={"tilbakemeldinger.serviceklage.login.beskrivelse"}
+          />
         </div>
         <div className="tb__knapper">
           <div className={"tb__knapp"}>
             <a href={`${loginUrl}?redirect=${window.location.href}`}>
-              <Hovedknapp>Logg inn</Hovedknapp>
+              <Hovedknapp>
+                <FormattedMessage
+                  id={"tilbakemeldinger.serviceklage.login.knapp"}
+                />
+              </Hovedknapp>
             </a>
           </div>
           <div className={"tb__knapp serviceKlage__login-lenke"}>
-            <div className="lenke">
-              <Link to={urls.tilbakemeldinger.serviceklage.form}>
-                Fortsett uten å logge inn
-              </Link>
-            </div>
+            <Link
+              className={"lenke"}
+              to={urls.tilbakemeldinger.serviceklage.form}
+            >
+              <FormattedMessage
+                id={"tilbakemeldinger.serviceklage.login.knapp.fortsettuten"}
+              />
+            </Link>
           </div>
         </div>
       </Box>

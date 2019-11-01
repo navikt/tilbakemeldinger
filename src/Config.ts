@@ -11,6 +11,7 @@ export const urls = {
   forside: baseUrl,
   tilbakemeldinger: {
     forside: `${baseUrl}/tilbakemeldinger`,
+    klagepavedtak: `${navUrl}/no/Person/Skjemaer-for-privatpersoner/klage-pa-vedtak`,
     serviceklage: {
       form: `${baseUrl}/tilbakemeldinger/serviceklage`,
       login: `${baseUrl}/tilbakemeldinger/serviceklage/login`
@@ -27,17 +28,17 @@ export const urls = {
     syk: "#",
     hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`,
     ufor: "#",
-    sosial: "#",
+    sosial: "#"
   },
   chat: {
     forside: `${baseUrl}/chat`,
     familie: `${baseUrl}/chat/familie`,
     aap: `${baseUrl}/chat/aap`,
     sosialhjelp: `${baseUrl}/chat/sosialhjelp`,
-    okonomi: `${baseUrl}/chat/okonomi`,
+    okonomi: `${baseUrl}/chat/okonomi`
   },
   chatBotApi: {
-    sessionConfig: "https://api.puzzel.com/chat/v1/sessions",
+    sessionConfig: "https://api.puzzel.com/chat/v1/sessions"
   },
   facebook: "#",
   snapchat: "#",
@@ -54,14 +55,15 @@ export const urls = {
     generelt: "#",
     skrivtiloss: "#",
     bil: "#",
-    tolk: "#",
+    tolk: "#"
   },
+  fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
   faq: {
     utbetalinger: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Utbetalinger/Utbetalinger`,
     utbetalingsoversikt: `${tjenesteUrl}/utbetalingsoversikt/`,
     saksbehandlingstider: `${navUrl}/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV`,
-    endreKontonummer: `${navUrl}/person/personopplysninger`,
+    endreKontonummer: `${navUrl}/person/personopplysninger#utbetaling`,
     saksoversikt: `${tjenesteUrl}/saksoversikt/`,
     postTilAnnenAdresse: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/vil-du-ha-post-fra-nav-til-en-annen-adresse`
   },
@@ -69,7 +71,7 @@ export const urls = {
   arbeidssoker: `${tjenesteUrl}/veiledearbeidssoker/mistet-jobben/registrering-arbeidssoker`,
   tolketjenesten: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Tolketjenesten`,
   spraktolk: `${navUrl}/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Oppfolging+fra+NAV/trenger-du-spr%C3%A5ktolk`,
-  finnDittNavKontor: `${navUrl}/person/personopplysninger`,
+  finnDittNavKontor: `${navUrl}/person/personopplysninger#ditt-nav-kontor`,
   gamleKontaktOss: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss`,
   sosialeMedier: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/kontakt-nav-p%C3%A5-facebook-eller-twitter`,
   chatMedNav: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/chat-med-nav`,
@@ -98,7 +100,7 @@ export const vars = {
       [ChatTema.AAP]: "7f6b-4569-81a1-27202c419953",
       [ChatTema.Familie]: "c3372a51-6434-4770-a0aa-6e4edba3471e",
       [ChatTema.Sosial]: "",
-      [ChatTema.Okonomi]: "",
+      [ChatTema.Okonomi]: ""
     }
   }
 };

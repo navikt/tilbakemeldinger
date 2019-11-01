@@ -4,6 +4,7 @@ import Box from "components/box/Box";
 import Lenke from "nav-frontend-lenker";
 import { lenkerFAQ, lenkerMinSide } from "./FAQLenker";
 import VisMer from "./FAQLenkerVisMer";
+import { FormattedMessage } from "react-intl";
 
 const FAQ = () => {
   const [visFlereFAQ, settVisFlereFAQ] = useState(false);
@@ -17,7 +18,7 @@ const FAQ = () => {
       <div className={"box__section"}>
         <div className={"box__section-title"}>
           <Undertittel className="box__title">
-            Nå spør mange om dette
+            <FormattedMessage id={"faq.intro"} />
           </Undertittel>
         </div>
         <div className={"box__section-description"}>
@@ -25,7 +26,9 @@ const FAQ = () => {
             .slice(0, visFlereFAQ ? lenkerFAQ.length : visElementer)
             .map(({ lenke, lenkeTekst }) => (
               <div key={lenkeTekst} className={"faq__lenke"}>
-                <Lenke href={lenke}>{lenkeTekst}</Lenke>
+                <Lenke href={lenke}>
+                  <FormattedMessage id={lenkeTekst} />
+                </Lenke>
               </div>
             ))}
           {lenkerFAQ.length > visElementer && (
@@ -36,7 +39,7 @@ const FAQ = () => {
       <div className={"box__section"}>
         <div className={"box__section-title"}>
           <Undertittel className="box__title">
-            Må min side finner du blant annet
+            <FormattedMessage id={"faq.minside"} />
           </Undertittel>
         </div>
         <div className={"box__section-description"}>
@@ -44,7 +47,9 @@ const FAQ = () => {
             .slice(0, visFlereMinside ? lenkerMinSide.length : visElementer)
             .map(({ lenke, lenkeTekst }) => (
               <div key={lenkeTekst} className={"faq__lenke"}>
-                <Lenke href={lenke}>{lenkeTekst}</Lenke>
+                <Lenke href={lenke}>
+                  <FormattedMessage id={lenkeTekst} />
+                </Lenke>
               </div>
             ))}
           {lenkerFAQ.length > visElementer && (

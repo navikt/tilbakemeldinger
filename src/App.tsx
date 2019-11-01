@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
-
 import AlertStripe from "nav-frontend-alertstriper";
-
 import Tilbakemeldinger from "./pages/tilbakemeldinger/Tilbakemeldinger";
 import Ros from "./pages/tilbakemeldinger/ros-til-nav/Ros";
 import PageNotFound from "./pages/404/404";
@@ -16,21 +14,17 @@ import {
 import { useStore } from "./providers/Provider";
 import { AuthInfo } from "./types/authInfo";
 import { HTTPError } from "./components/error/Error";
-import Takk from "./pages/tilbakemeldinger/takk/Takk";
 import ServiceKlage from "./pages/tilbakemeldinger/service-klage/ServiceKlage";
 import Login from "./pages/tilbakemeldinger/service-klage/Login";
 import { KontaktInfo } from "./types/kontaktInfo";
 import { Fodselsnr } from "./types/fodselsnr";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTopp";
-
-import { urls, vars } from "./Config";
-
 import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOss";
 import SkrivTilOssRouter from "./pages/skriv-til-oss/SkrivTilOssRouter";
-
 import { getFeatureToggleStatus } from "./utils/unleash";
 import ChatSide from "./pages/chat/ChatSide";
 import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
+import { urls, vars } from "./Config";
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
@@ -96,11 +90,7 @@ const App = () => {
               path={urls.skrivTilOss.forside}
               component={SkrivTilOssRouter}
             />
-            <Route
-              exact={true}
-              path={urls.chat.forside}
-              component={ChatSide}
-            />
+            <Route exact={true} path={urls.chat.forside} component={ChatSide} />
             <Route
               exact={true}
               path={urls.tilbakemeldinger.forside}
@@ -130,11 +120,6 @@ const App = () => {
               exact={true}
               path={urls.samegiella}
               component={BestillingAvSamtale}
-            />
-            <Route
-              exact={true}
-              path={`(${urls.tilbakemeldinger.rostilnav}|${urls.tilbakemeldinger.feilogmangler}|${urls.tilbakemeldinger.serviceklage.form}|${urls.samegiella})/takk`}
-              component={Takk}
             />
             <Route component={PageNotFound} />
           </Switch>

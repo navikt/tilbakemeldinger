@@ -5,6 +5,7 @@ import { useStore } from "../../providers/Provider";
 interface Props {
   onChange: (value: string) => void;
   submitted: boolean;
+  label: string;
   error: string | null;
   bredde?: "fullbredde" | "XXL" | "XL" | "L" | "M" | "S" | "XS" | "XXS";
   value: string;
@@ -13,23 +14,18 @@ interface Props {
 const InputFodselsnr = (props: Props) => {
   const [{ auth, fodselsnr }] = useStore();
   const [blur, settBlur] = useState(false);
-  const { value, error, submitted, bredde } = props;
+  const { value, label, error, submitted, bredde } = props;
 
   if (auth.authenticated && fodselsnr !== value) {
     props.onChange(fodselsnr);
   }
 
   return auth.authenticated && fodselsnr ? (
-    <Input
-      bredde={bredde}
-      label={"Fødselsnummer"}
-      value={value}
-      disabled={true}
-    />
+    <Input bredde={bredde} label={label} value={value} disabled={true} />
   ) : (
     <Input
       bredde={bredde}
-      label={"Fødselsnummer"}
+      label={label}
       value={value}
       onChange={event => props.onChange(event.currentTarget.value)}
       onBlur={() => settBlur(true)}
