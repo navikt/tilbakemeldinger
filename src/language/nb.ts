@@ -236,7 +236,7 @@ export default {
   "tilbakemeldinger.serviceklage.link": "Send tilbakemelding på service",
   "tilbakemeldinger.serviceklage.form.veileder":
     "Du vil få svar på serviceklagen innen 3 uker. " +
-    "Har du heller behov for å stille spørsmål eller gi oss beskjed om noe annet, må du kontakte oss på telefon.",
+    `Har du heller behov for å stille spørsmål eller gi oss beskjed om noe annet, må du <a class="lenke" href="/person/kontakt-oss/">kontakte oss på telefon.</a>`,
   "tilbakemeldinger.serviceklage.form.tittel": "Klage på service",
   "tilbakemeldinger.serviceklage.form.overskrift": "Send inn klage på service",
 
@@ -246,8 +246,8 @@ export default {
   "tilbakemeldinger.feilogmangler.link": "Meld fra om feil og mangler",
   "tilbakemeldinger.feilogmangler.form.tittel": "Feil og mangler",
   "tilbakemeldinger.feilogmangler.form.veileder":
-    "Takk for at du sier ifra om feil og mangler.<br />" +
-    " Vi sørger for at meldingen kommer fram til riktig person.",
+    "Takk for at du sier ifra om feil og mangler. <br />" +
+    "Vi sørger for at meldingen kommer fram til riktig person.",
   "tilbakemeldinger.feilogmangler.form.overskrift":
     "Send inn feil og mangler på nav.no",
 
