@@ -207,7 +207,7 @@ export default {
   "kontaktoss.tolketjenesten.link.spraktolk":
     "Språktolk til veiledningssamtaler",
 
-  "kontaktoss.tekniskfeil.tittel": "Kontakt tolketjenesten",
+  "kontaktoss.tekniskfeil.tittel": "Teknisk feil på nav.no",
   "kontaktoss.tekniskfeil.link.losselv": "Prøv å løse problemet selv",
   "kontaktoss.tekniskfeil.link.meldifra": "Meld ifra om feil og mangler",
   "kontaktoss.tekniskfeil.link.ring": "Ring teknisk brukerstøtte",
@@ -237,6 +237,7 @@ export default {
     "Velg det alternativet som passer best. <br />" +
     "Vi vil uansett sørge for at tilbakemeldingen kommer fram til riktig person.",
   "tilbakemeldinger.serviceklage.form.tittel": "Klage på service",
+  "tilbakemeldinger.serviceklage.form.overskrift": "Send inn klage på service",
 
   "tilbakemeldinger.feilogmangler.tittel": "Feil og mangler på nav.no",
   "tilbakemeldinger.feilogmangler.beskrivelse":
@@ -281,6 +282,8 @@ export default {
   "validering.orgnr.pakrevd": "Organisasjonsnummer er påkrevd",
   "validering.orgnr.korrektsiffer": "Organisasjonsnummer må ha 9 siffer",
   "validering.postadr.pakrevd": "Postadresse er påkrevd",
+  "validering.gjeldersosialhjelp.pakrevd":
+    "Du må velge om det gjelder sosialehjelp",
 
   "felter.navn.tittel": "Navn",
   "felter.navn.tittel.valgfritt": "Navn (valgfritt)",
@@ -304,10 +307,11 @@ export default {
   "felter.hvemroses.navkontor.skrivinn":
     "Skriv inn navnet eller velg med piltast",
   "felter.klagetype": "Hva gjelder tilbakemeldingen?",
-  "felter.klageType.saksbehandling": "Saksbehandling av søknad",
-  "felter.klageType.navkontor": "NAV-kontor",
+  "felter.klagetype.info": "Du kan velge flere kategorier",
   "felter.klageType.telefon": "Telefon",
-  "felter.klageType.navno": "nav.no",
+  "felter.klageType.navkontor": "Lokalt NAV-kontor",
+  "felter.klageType.navno": "NAVs digitale tjenester",
+  "felter.klageType.brev": "Brev",
   "felter.klageType.annet": "Annet",
   "felter.hvemfra": "Hvem skriver du på vegne av?",
   "felter.hvemfra.megselv": "Meg selv som privatperson",
@@ -321,8 +325,8 @@ export default {
   "felter.dinrolle.annenperson": "Din rolle (nær pårørende, behandler e.l.)",
   "felter.dinrolle.bedrift":
     "Din rolle (leder, HR-ansvarlig, tillitsvalgt osv.)",
-  "felter.navntilklager": "Navn til den som klager",
-  "felter.fodselsnrtilklager": "Fødselsnummer til den som klager",
+  "felter.navntilklager": "På vegne av (navn)",
+  "felter.fodselsnrtilklager": "På vegne av (fødselsnummer)",
   "felter.fullmakt": "Har du fullmakt?",
   "felter.fullmakt.ja": "Ja, jeg har fullmakt",
   "felter.fullmakt.nei": "Nei, jeg har ikke fullmakt",
@@ -333,6 +337,11 @@ export default {
   "felter.orgnr": "Organisasjonsnummer",
   "felter.postadr": "Bedriftens postadresse",
   "felter.tlf.bedrift": "Bedriftens telefonnummer",
+  "felter.gjeldersosialhjelp":
+    "Gjelder det økonomisk sosialhjelp / sosiale tjenester?",
+  "felter.gjeldersosialhjelp.ja": "Ja",
+  "felter.gjeldersosialhjelp.nei": "Nei",
+  "felter.gjeldersosialhjelp.vetikke": "Vet ikke",
 
   "seo.kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "seo.kontaktoss.description":

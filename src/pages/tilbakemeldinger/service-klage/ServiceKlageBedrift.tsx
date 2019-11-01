@@ -1,7 +1,6 @@
 import React from "react";
 import { useIntl } from "react-intl";
 import { Validation } from "calidation";
-import InputNavn from "components/input-fields/InputNavn";
 import InputField from "components/input-fields/InputField";
 
 const ServiceKlageForBedrift = () => {
@@ -26,23 +25,13 @@ const ServiceKlageForBedrift = () => {
     orgTlfNr: {
       isRequired: intl.formatMessage({ id: "validering.tlf.pakrevd" })
     },
-    innmelderRolle: {
-      isRequired: intl.formatMessage({ id: "validering.rolle.pakrevd" })
-    }
+    innmelderRolle: {}
   };
   return (
     <Validation key={"bedrift"} config={bedriftFormConfig}>
       {({ errors, fields, submitted, setField }) => {
         return (
           <div className="serviceKlage__ekspandert">
-            <InputNavn
-              bredde={"M"}
-              label={intl.formatMessage({ id: "felter.dittnavn" })}
-              submitted={submitted}
-              value={fields.innmelderNavn}
-              error={errors.innmelderNavn}
-              onChange={v => setField({ innmelderNavn: v })}
-            />
             <InputField
               bredde={"M"}
               label={intl.formatMessage({ id: "felter.dinrolle.bedrift" })}
@@ -66,22 +55,6 @@ const ServiceKlageForBedrift = () => {
               value={fields.orgNummer}
               error={errors.orgNummer}
               onChange={v => setField({ orgNummer: v })}
-            />
-            <InputField
-              bredde={"L"}
-              label={intl.formatMessage({ id: "felter.postadr" })}
-              submitted={submitted}
-              value={fields.orgPostadr}
-              error={errors.orgPostadr}
-              onChange={v => setField({ orgPostadr: v })}
-            />
-            <InputField
-              bredde={"S"}
-              label={intl.formatMessage({ id: "felter.tlf.bedrift" })}
-              submitted={submitted}
-              value={fields.orgTlfNr}
-              error={errors.orgTlfNr}
-              onChange={v => setField({ orgTlfNr: v })}
             />
           </div>
         );

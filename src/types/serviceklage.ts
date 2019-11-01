@@ -7,11 +7,11 @@ export type OutboundServiceKlageBase = {
 
 export type OutboundServiceKlageType =
   | {
-      klagetype: "SAKSBEHANDLING";
-      ytelseTjeneste: string;
+      klagetype: "LOKALT_NAV_KONTOR";
+      gjelderSosialhjelp: "JA" | "NEI" | "VET_IKKE";
     }
   | {
-      klagetype: "NAV_KONTOR" | "TELEFON" | "NAVNO" | "ANNET";
+      klagetype: "TELEFON" | "NAVNO" | "BREV" | "ANNET";
     };
 
 export type OutboundServiceKlageExtend =
@@ -41,12 +41,11 @@ export type OutboundServiceKlageExtend =
       innmelder: {
         navn: string;
         telefonnummer?: string;
-        rolle: string;
+        rolle?: string;
       };
       paaVegneAvBedrift: {
         navn: string;
         organisasjonsnummer: string;
-        postadresse: string;
-        telefonnummer: string;
+        postadresse?: string;
       };
     };
