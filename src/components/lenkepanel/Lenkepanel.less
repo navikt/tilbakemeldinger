@@ -1,0 +1,29 @@
+.linkbox {
+  &__container {
+    margin-top: 0.25rem;
+    @media @minDesktop {
+      padding: 1.5rem 4rem;
+    }
+    @media @maxTablet {
+      padding: 2rem;
+    }
+  }
+
+  &__tittel {
+    margin-bottom: 0.5rem;
+  }
+
+  &__beskrivelse {
+    margin-right: 1rem;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__icon-container {
+    padding: 0 1.5rem 0 0;
+    @media @maxMobile {
+      padding: 0 0.5rem 0 0;
+    }
+  }
+}
