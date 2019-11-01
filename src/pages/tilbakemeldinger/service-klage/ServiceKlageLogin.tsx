@@ -11,7 +11,7 @@ import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 const { loginUrl } = Environment();
 
-const Login = () => {
+const ServiceKlageLogin = () => {
   const [{ auth }] = useStore();
   const intl = useIntl();
 
@@ -30,7 +30,12 @@ const Login = () => {
           id: "tilbakemeldinger.serviceklage.login.tittel"
         })}
       />
-      <Box tittel={"Ønsker du å logge inn?"}>
+      <Box
+        tittel={intl.formatMessage({
+          id: "tilbakemeldinger.serviceklage.login.overskrift"
+        })}
+        containerClassName={"serviceKlage__login-container"}
+      >
         <div className="serviceKlage__login-info">
           <FormattedHTMLMessage
             id={"tilbakemeldinger.serviceklage.login.beskrivelse"}
@@ -62,4 +67,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ServiceKlageLogin;

@@ -15,7 +15,7 @@ import { useStore } from "./providers/Provider";
 import { AuthInfo } from "./types/authInfo";
 import { HTTPError } from "./components/error/Error";
 import ServiceKlage from "./pages/tilbakemeldinger/service-klage/ServiceKlage";
-import Login from "./pages/tilbakemeldinger/service-klage/Login";
+import ServiceKlageLogin from "./pages/tilbakemeldinger/service-klage/ServiceKlageLogin";
 import { KontaktInfo } from "./types/kontaktInfo";
 import { Fodselsnr } from "./types/fodselsnr";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTopp";
@@ -99,7 +99,7 @@ const App = () => {
             <Route
               exact={true}
               path={urls.tilbakemeldinger.serviceklage.login}
-              component={Login}
+              component={ServiceKlageLogin}
             />
             <Route
               exact={true}

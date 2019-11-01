@@ -239,6 +239,7 @@ export default {
   "tilbakemeldinger.serviceklage.beskrivelse":
     "Har du blitt møtt på en dårlig måte? Eller hatt en annen negativ opplevelse i møte med NAV?",
   "tilbakemeldinger.serviceklage.login.tittel": "Klage på service",
+  "tilbakemeldinger.serviceklage.login.overskrift": "Ønsker du å logge inn?",
   "tilbakemeldinger.serviceklage.login.beskrivelse":
     "Vi anbefaler at du logger inn, så slipper du å fylle inn all informasjonen om deg selv.<br />" +
     "Du må opppgi hvem du er uansett om du logger inn eller ikke.",
@@ -247,8 +248,7 @@ export default {
     "Fortsett uten å logge inn",
   "tilbakemeldinger.serviceklage.link": "Send tilbakemelding på service",
   "tilbakemeldinger.serviceklage.form.veileder":
-    "Velg det alternativet som passer best. <br />" +
-    "Vi vil uansett sørge for at tilbakemeldingen kommer fram til riktig person.",
+    "Her kan du klage på servicen du har fått. Du vil få svar innen 3 uker.",
   "tilbakemeldinger.serviceklage.form.tittel": "Klage på service",
   "tilbakemeldinger.serviceklage.form.overskrift": "Send inn klage på service",
 
@@ -258,8 +258,7 @@ export default {
   "tilbakemeldinger.feilogmangler.link": "Meld fra om feil og mangler",
   "tilbakemeldinger.feilogmangler.form.tittel": "Feil og mangler",
   "tilbakemeldinger.feilogmangler.form.veileder":
-    "Takk for at du sier ifra om feil og mangler.<br />" +
-    " Vi sørger for at meldingen kommer fram til riktig person.",
+    "Takk for at du sier ifra. Vi sørger for at meldingen kommer fram til riktig person.",
   "tilbakemeldinger.feilogmangler.form.overskrift":
     "Send inn feil og mangler på nav.no",
 
@@ -270,8 +269,7 @@ export default {
   "tilbakemeldinger.ros.form.tittel": "Ros til NAV",
   "tilbakemeldinger.ros.form.overskrift": "Send inn ros til NAV",
   "tilbakemeldinger.ros.form.veileder":
-    "Takk for at du vil dele din opplevelse med oss!<br />" +
-    "Vi sørger for at rosen kommer fram til riktig person.",
+    "Takk for at du vil dele opplevelsen med oss! Vi sørger for at rosen kommer fram til riktig person.",
 
   "validering.navn.pakrevd": "Navn er nødvendig",
   "validering.epost.pakrevd": "E-post er nødvendig",
@@ -282,21 +280,21 @@ export default {
   "validering.melding.pakrevd": "Melding er nødvendig",
   "validering.hvemroses.pakrevd": "Du må velge hvem du skal gi ros til",
   "validering.navkontor.pakrevd": "Du må velge NAV-kontor",
-  "validering.klagetype.pakrevd": "Du må velge hva tilbakemeldingen gjelder",
+  "validering.klagetype.pakrevd": "Du må velge hvem du skriver på vegne av",
   "validering.hvemfra.pakrevd":
     "Du må velge hvem tilbakemeldingen er på vegne av",
   "validering.onskerkontakt.pakrevd":
     "Du må velge om du ønsker at vi tar kontakt",
-  "validering.fodselsnr.pakrevd": "Fødselsnummer er påkrevd",
+  "validering.fodselsnr.pakrevd": "Fødselsnummer er nødvendig",
   "validering.fodselsnr.korrektsiffer": "Fødselsnummer må være 11 siffer",
-  "validering.fullmakt.pakrevd": "Fullmakt er påkrevd",
-  "validering.rolle.pakrevd": "Rolle er påkrevd",
-  "validering.orgnavn.pakrevd": "Organisasjonsnavn er påkrevd",
-  "validering.orgnr.pakrevd": "Organisasjonsnummer er påkrevd",
+  "validering.fullmakt.pakrevd": "Fullmakt er nødvendig",
+  "validering.rolle.pakrevd": "Rolle er nødvendig",
+  "validering.orgnavn.pakrevd": "Organisasjonsnavn er nødvendig",
+  "validering.orgnr.pakrevd": "Organisasjonsnummer er nødvendig",
   "validering.orgnr.korrektsiffer": "Organisasjonsnummer må ha 9 siffer",
-  "validering.postadr.pakrevd": "Postadresse er påkrevd",
+  "validering.postadr.pakrevd": "Postadresse er nødvendig",
   "validering.gjeldersosialhjelp.pakrevd":
-    "Du må velge om det gjelder sosialehjelp",
+    "Du må velge om det gjelder økonomisk sosialhjelp / sosiale tjenester",
 
   "felter.navn.tittel": "Navn",
   "felter.navn.tittel.valgfritt": "Navn (valgfritt)",
@@ -320,7 +318,8 @@ export default {
   "felter.hvemroses.navkontor.skrivinn":
     "Skriv inn navnet eller velg med piltast",
   "felter.klagetype": "Hva gjelder tilbakemeldingen?",
-  "felter.klagetype.info": "Du kan velge flere kategorier",
+  "felter.klagetype.info":
+    "Velg det alternativet som passer best. Du har mulighet til å velge flere kategorier.",
   "felter.klageType.telefon": "Telefon",
   "felter.klageType.navkontor": "Lokalt NAV-kontor",
   "felter.klageType.navno": "NAVs digitale tjenester",

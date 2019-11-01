@@ -10,7 +10,10 @@
 
   &__ingress {
     text-align: left;
-    max-width: 80%;
+    padding: 0 1rem;
+    @media @minDesktop {
+      max-width: 41.5rem;
+    }
     margin-top: 1em;
     p:not(:last-of-type) {
       margin-bottom: 1em;
@@ -31,5 +34,6 @@
 
   &__lenkepanel-ingress {
     margin-top: 0.5em;
+    margin-right: 1rem;
   }
 }

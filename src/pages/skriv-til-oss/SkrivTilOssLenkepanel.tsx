@@ -1,7 +1,7 @@
 import { LenkepanelData } from "../../types/lenker";
 import { LenkepanelBase } from "nav-frontend-lenkepanel/lib";
 import { Link } from "react-router-dom";
-import { Systemtittel, Undertekst } from "nav-frontend-typografi";
+import { Normaltekst, Undertittel } from "nav-frontend-typografi";
 import { FormattedMessage } from "react-intl";
 import React from "react";
 
@@ -12,7 +12,7 @@ type Props = {
 const SkrivTilOssLenkepanel = ({ lenkePanelData }: Props) => (
   <LenkepanelBase
     border={true}
-    className="skriv-til-oss__temalenke"
+    className="skriv-til-oss__temalenke linkbox__container"
     linkCreator={props => {
       return lenkePanelData.external ? (
         <a href={lenkePanelData.url} className={props.className}>
@@ -28,12 +28,12 @@ const SkrivTilOssLenkepanel = ({ lenkePanelData }: Props) => (
     <div>
       {lenkePanelData.ikon ? <div>{lenkePanelData.ikon}</div> : null}
       <div>
-        <Systemtittel className="skriv-til-oss__temalenke-header lenkepanel__heading">
+        <Undertittel className="skriv-til-oss__temalenke-header lenkepanel__heading">
           <FormattedMessage id={lenkePanelData.tittel} />
-        </Systemtittel>
-        <Undertekst className="skriv-til-oss__temalenke-ingress">
+        </Undertittel>
+        <Normaltekst className="skriv-til-oss__lenkepanel-ingress">
           {lenkePanelData.ingress}
-        </Undertekst>
+        </Normaltekst>
       </div>
     </div>
   </LenkepanelBase>

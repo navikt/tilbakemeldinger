@@ -1,7 +1,7 @@
 import React from "react";
 import { lenker } from "./TilbakemeldingerLenker";
 import Header from "../../components/header/Header";
-import LinkBox from "../../components/linkbox/LinkBox";
+import TilpassetLenkepanel from "../../components/lenkepanel/Lenkepanel";
 import MetaTags from "react-meta-tags";
 import { useIntl } from "react-intl";
 import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
@@ -25,7 +25,7 @@ const Tilbakemeldinger = () => {
           <Header title={"Tilbakemeldinger til NAV"} />
         </div>
         {lenker.map(lenke => (
-          <LinkBox
+          <TilpassetLenkepanel
             key={lenke.tittel}
             id={lenke.tittel}
             tittel={intl.messages[lenke.tittel] as string}

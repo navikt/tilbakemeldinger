@@ -181,8 +181,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
                 const hvemFra: ON_BEHALF_OF = fields.hvemFra;
                 const { innmelderHarFullmakt } = fields;
                 const kanOnskeAaKontaktes =
-                  hvemFra !== "ANNEN_PERSON" ||
-                  innmelderHarFullmakt !== "false";
+                  hvemFra !== "ANNEN_PERSON" || innmelderHarFullmakt !== false;
 
                 const toggleKlageType = (value: string) => {
                   if (fields.klageType.includes(value)) {
