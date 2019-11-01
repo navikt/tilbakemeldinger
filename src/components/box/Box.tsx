@@ -7,13 +7,15 @@ interface Props {
   beskrivelse?: string;
   icon?: string;
   wrapperClassName?: string;
+  contentClassName?: string;
   containerClassName?: string;
   margin?: string;
   children: JSX.Element | JSX.Element[];
 }
 
 const Box = (props: Props) => {
-  const { children, tittel, containerClassName, wrapperClassName } = props;
+  const { children, tittel } = props;
+  const { containerClassName, wrapperClassName, contentClassName } = props;
   const styles = { margin: props.margin ? props.margin : "1rem 0 0 0" };
   return (
     <div className={`box__wrapper ${wrapperClassName || ""}`} style={styles}>
@@ -27,7 +29,9 @@ const Box = (props: Props) => {
               </div>
             </div>
           )}
-          <div className="box__content">{children}</div>
+          <div className={`box__content ${contentClassName || ""}`}>
+            {children}
+          </div>
         </div>
       </PanelBase>
     </div>

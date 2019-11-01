@@ -17,6 +17,9 @@ export default {
   "route.login": "Innlogging",
   "route.feil-og-mangler": "Feil og mangler",
   "route.ros-til-nav": "Ros",
+  "route.samegiella": "Samegiella",
+  "route.bestilling-av-samtale":
+    "Jearaldat bagadallama oažžut sámegillii telefovnnas",
 
   "skrivtiloss.disabled":
     "Tjenesten er dessverre ikke tilgjengelig for øyeblikket.",

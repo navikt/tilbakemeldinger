@@ -39,7 +39,7 @@ export type OutboundRosTilNav = OutboundRosTilNavBase & OutboundRosTilNavExtend;
 const Ros = () => {
   const [{ enheter }, dispatch] = useStore();
   const [loading, settLoading] = useState(false);
-  const [success, settSuccess] = useState(false);
+  const [success, settSuccess] = useState(true);
   const [error, settError] = useState();
   const intl = useIntl();
 
