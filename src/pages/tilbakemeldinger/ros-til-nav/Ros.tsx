@@ -22,6 +22,7 @@ import MetaTags from "react-meta-tags";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
+import { triggerHotjar } from "../../../utils/hotjar";
 import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
@@ -109,6 +110,7 @@ const Ros = () => {
       postRosTilNav(outbound)
         .then(() => {
           settSuccess(true);
+          triggerHotjar("rosnav");
         })
         .catch((error: HTTPError) => {
           settError(`${error.code} - ${error.text}`);

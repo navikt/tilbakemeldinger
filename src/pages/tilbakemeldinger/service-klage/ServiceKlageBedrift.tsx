@@ -6,9 +6,7 @@ import InputField from "components/input-fields/InputField";
 const ServiceKlageForBedrift = () => {
   const intl = useIntl();
   const bedriftFormConfig = {
-    innmelderNavn: {
-      isRequired: intl.formatMessage({ id: "validering.navn.pakrevd" })
-    },
+    innmelderRolle: {},
     orgNavn: {
       isRequired: intl.formatMessage({ id: "validering.orgnavn.pakrevd" })
     },
@@ -18,14 +16,7 @@ const ServiceKlageForBedrift = () => {
         message: intl.formatMessage({ id: "validering.orgnr.korrektsiffer" }),
         length: 9
       }
-    },
-    orgPostadr: {
-      isRequired: intl.formatMessage({ id: "validering.postadr.pakrevd" })
-    },
-    orgTlfNr: {
-      isRequired: intl.formatMessage({ id: "validering.tlf.pakrevd" })
-    },
-    innmelderRolle: {}
+    }
   };
   return (
     <Validation key={"bedrift"} config={bedriftFormConfig}>
