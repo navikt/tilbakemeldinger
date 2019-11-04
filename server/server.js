@@ -15,43 +15,23 @@ server.engine("html", mustacheExpress());
 // parse application/json
 server.use(express.json());
 
-server.use((req, res, next) => {
-  res.removeHeader("X-Powered-By");
-  next();
-});
+// Static files
+server.use(baseUrl, express.static(buildPath, { index: false }));
 
-const renderApp = decoratorFragments =>
-  new Promise((resolve, reject) =>
-    server.render("index.html", decoratorFragments, (err, html) => {
-      if (err) reject(err);
-      resolve(html);
-    })
-  );
+// Nais functions
+server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
+  res.sendStatus(200)
+);
 
-const startServer = html => {
-  // Static files
-  server.use(baseUrl, express.static(buildPath, { index: false }));
+// Match everything except internal og static
+server.use(/\/(person\/kontakt-oss)\/*(?:(?!static|internal).)*$/, (req, res) =>
+  getDecorator()
+    .then(html => res.send(html))
+    .catch(error => console.error("Failed to get decorator", error))
+);
 
-  // Nais functions
-  server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
-    res.sendStatus(200)
-  );
-
-  // Match everything except internal og static
-  server.use(
-    /\/(person\/kontakt-oss)\/*(?:(?!static|internal).)*$/,
-    (req, res) => res.send(html)
-  );
-
-  const port = process.env.PORT || 8080;
-  server.listen(port, () => console.log(`App listening on port: ${port}`));
-};
-
-const logError = (errorMessage, details) => console.log(errorMessage, details);
-
-getDecorator()
-  .then(renderApp, error => logError("Failed to get decorator", error))
-  .then(startServer, error => logError("Failed to render app", error));
+const port = process.env.PORT || 8080;
+server.listen(port, () => console.log(`App listening on port: ${port}`));
 
 process.on("SIGTERM", () =>
   setTimeout(() => console.log("Har sovet i 30 sekunder"), 30000)
