@@ -22,9 +22,9 @@ const getUrl = namespace => {
 
 const getDecorator = namespace =>
   new Promise((resolve, reject) => {
-    const cache = cache.get(namespace);
-    if (cache) {
-      resolve(cache);
+    const decorator = cache.get(namespace);
+    if (decorator) {
+      resolve(decorator);
     } else {
       request(getUrl(namespace), (error, response, body) => {
         if (!error && response.statusCode >= 200 && response.statusCode < 400) {
