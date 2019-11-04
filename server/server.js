@@ -30,7 +30,8 @@ server.use(
   /\/(person\/kontakt-oss)\/*(?:(?!static|internal).)*$/,
   (req, res) => {
     const subdomain = req.headers.host.split(".")[0];
-    getDecorator(subdomain)
+    const namespace = subdomain !== "www" ? subdomain.split("-")[1] : "prod";
+    getDecorator(namespace)
       .then(fragments => {
         res.render("index.html", fragments);
       })
