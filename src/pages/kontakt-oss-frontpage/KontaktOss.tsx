@@ -11,6 +11,7 @@ import Schema from "assets/schema.json";
 import MetaTags from "react-meta-tags";
 import { FormattedMessage, useIntl } from "react-intl";
 import Environment from "../../Environments";
+import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 const { miljo } = Environment();
 
 const KontaktOssFrontpage = () => {
@@ -32,6 +33,7 @@ const KontaktOssFrontpage = () => {
   return (
     <div className="pagecontent">
       <div className="frontpage">
+        <BreadcrumbsWrapper />
         <MetaTags>
           <title>{intl.messages["seo.kontaktoss.tittel"]}</title>
           <meta

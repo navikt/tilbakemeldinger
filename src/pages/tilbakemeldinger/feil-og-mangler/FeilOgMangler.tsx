@@ -18,7 +18,7 @@ import MetaTags from "react-meta-tags";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
-import Breadcrumbs from "components/breadcrumbs/Breadcrumbs";
+import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
 import { triggerHotjar } from "../../../utils/hotjar";
 
 export interface OutboundFeilOgMangler {
@@ -79,7 +79,7 @@ const FOM = (props: RouteComponentProps) => {
 
   return (
     <div className="pagecontent">
-      <Breadcrumbs path={window.location.pathname} />
+      <BreadcrumbsWrapper />
       <MetaTags>
         <title>{intl.messages["seo.feilogmangler.tittel"]}</title>
         <meta

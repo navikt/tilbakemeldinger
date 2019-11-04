@@ -7,7 +7,7 @@ import NavFrontendSpinner from "nav-frontend-spinner";
 import AlertStripe from "nav-frontend-alertstriper";
 import { LenkepanelData } from "../../types/lenker";
 import SkrivTilOssLenkepanel from "./SkrivTilOssLenkepanel";
-import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
+import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 
 const enabledName = vars.unleash.skrivTilOssEnabledName;
 const svartidName = vars.unleash.langSvartidName;
@@ -66,7 +66,7 @@ const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
 
   return (
     <div className={`${cssPrefix} pagecontent`}>
-      <Breadcrumbs path={window.location.pathname} />
+      <BreadcrumbsWrapper />
       <div className={`${cssPrefix}__header`}>
         <EtikettLiten>
           <FormattedMessage id={"header.navperson"} />
