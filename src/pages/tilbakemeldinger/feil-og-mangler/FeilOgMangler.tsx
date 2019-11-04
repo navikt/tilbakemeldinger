@@ -19,6 +19,7 @@ import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
 import Breadcrumbs from "components/breadcrumbs/Breadcrumbs";
+import { triggerHotjar } from "../../../utils/hotjar";
 
 export interface OutboundFeilOgMangler {
   onskerKontakt: boolean;
@@ -65,6 +66,7 @@ const FOM = (props: RouteComponentProps) => {
       postFeilOgMangler(outbound)
         .then(() => {
           settSuccess(true);
+          triggerHotjar("feilogmangler");
         })
         .catch((error: HTTPError) => {
           settError(`${error.code} - ${error.text}`);

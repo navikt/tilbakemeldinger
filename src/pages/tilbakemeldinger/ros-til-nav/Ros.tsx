@@ -23,6 +23,7 @@ import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import Breadcrumbs from "components/breadcrumbs/Breadcrumbs";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
+import { triggerHotjar } from "../../../utils/hotjar";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
 
@@ -109,6 +110,7 @@ const Ros = () => {
       postRosTilNav(outbound)
         .then(() => {
           settSuccess(true);
+          triggerHotjar("rosnav");
         })
         .catch((error: HTTPError) => {
           settError(`${error.code} - ${error.text}`);

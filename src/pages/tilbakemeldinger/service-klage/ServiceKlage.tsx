@@ -29,6 +29,7 @@ import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
 import Breadcrumbs from "components/breadcrumbs/Breadcrumbs";
+import { triggerHotjar } from "../../../utils/hotjar";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageExtend;
@@ -131,6 +132,7 @@ const ServiceKlage = (props: RouteComponentProps) => {
       postServiceKlage(outbound)
         .then(() => {
           settSuccess(true);
+          triggerHotjar("serviceklage");
         })
         .catch((error: HTTPError) => {
           settError(`${error.code} - ${error.text}`);
