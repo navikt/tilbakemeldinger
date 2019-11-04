@@ -320,8 +320,7 @@ export default {
   "felter.hvemroses.digitaletjenester": "NAVs digitale tjenester",
   "felter.hvemroses.navkontor": "NAV-kontor",
   "felter.hvemroses.navkontor.velg": "Velg NAV-kontor",
-  "felter.hvemroses.navkontor.skrivinn":
-    "Skriv inn navnet eller velg med piltast",
+  "felter.hvemroses.navkontor.skrivinn": "Søk eller velg med piltast",
   "felter.klagetyper": "Hva gjelder tilbakemeldingen?",
   "felter.klagetyper.info":
     "Velg det alternativet som passer best. Du har mulighet til å velge flere kategorier.",
