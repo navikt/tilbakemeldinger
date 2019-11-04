@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 const express = require("express");
 const path = require("path");
 const mustacheExpress = require("mustache-express");
@@ -12,8 +11,12 @@ server.set("views", `${__dirname}/../build`);
 server.set("view engine", "mustache");
 server.engine("html", mustacheExpress());
 
-// parse application/json
+// Parse application/json
 server.use(express.json());
+server.use((req, res, next) => {
+  res.removeHeader("X-Powered-By");
+  next();
+});
 
 // Static files
 server.use(baseUrl, express.static(buildPath, { index: false }));
