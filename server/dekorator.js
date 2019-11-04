@@ -2,7 +2,7 @@ const jsdom = require("jsdom");
 const request = require("request");
 const { JSDOM } = jsdom;
 
-const url = subdomain => {
+const getUrl = subdomain => {
   if (subdomain !== "www") {
     const namespace = subdomain.split("-")[1];
     return `https://www-${namespace}.nav.no/person/nav-dekoratoren/`;
@@ -13,7 +13,7 @@ const url = subdomain => {
 
 const getDecorator = subdomain =>
   new Promise((resolve, reject) => {
-    request(url(subdomain), (error, response, body) => {
+    request(getUrl(subdomain), (error, response, body) => {
       if (!error && response.statusCode >= 200 && response.statusCode < 400) {
         const { document } = new JSDOM(body).window;
         const prop = "innerHTML";
