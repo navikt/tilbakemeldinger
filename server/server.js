@@ -1,4 +1,3 @@
-require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const mustacheExpress = require("mustache-express");
@@ -31,8 +30,7 @@ server.use(
   /\/(person\/kontakt-oss)\/*(?:(?!static|internal).)*$/,
   (req, res) => {
     const subdomain = req.headers.host.split(".")[0];
-    const namespace = subdomain.split("-")[1];
-    getDecorator(namespace)
+    getDecorator(subdomain)
       .then(fragments => {
         res.render("index.html", fragments);
       })

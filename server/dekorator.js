@@ -1,17 +1,19 @@
 const jsdom = require("jsdom");
 const request = require("request");
-
-const { NAIS_CLUSTER_NAME } = process.env;
 const { JSDOM } = jsdom;
 
-const url = namespace =>
-  NAIS_CLUSTER_NAME === "dev-sbs"
-    ? `https://www-${namespace}.nav.no/person/nav-dekoratoren/`
-    : "https://appres.nav.no/common-html/v4/navno?header-withmenu=true&styles=true&scripts=true&footer-withmenu=true&skiplinks=true&megamenu-resources=true";
+const url = subdomain => {
+  if (subdomain !== "www") {
+    const namespace = subdomain.split("-")[1];
+    return `https://www-${namespace}.nav.no/person/nav-dekoratoren/`;
+  } else {
+    return "https://appres.nav.no/common-html/v4/navno?header-withmenu=true&styles=true&scripts=true&footer-withmenu=true&skiplinks=true&megamenu-resources=true";
+  }
+};
 
-const getDecorator = namespace =>
+const getDecorator = subdomain =>
   new Promise((resolve, reject) => {
-    request(url(namespace), (error, response, body) => {
+    request(url(subdomain), (error, response, body) => {
       if (!error && response.statusCode >= 200 && response.statusCode < 400) {
         const { document } = new JSDOM(body).window;
         const prop = "innerHTML";
