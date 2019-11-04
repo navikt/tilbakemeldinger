@@ -24,10 +24,15 @@ server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
 );
 
 // Match everything except internal og static
-server.use(/\/(person\/kontakt-oss)\/*(?:(?!static|internal).)*$/, (req, res) =>
-  getDecorator()
-    .then(html => res.send(html))
-    .catch(error => console.error("Failed to get decorator", error))
+server.use(
+  /\/(person\/kontakt-oss)\/*(?:(?!static|internal).)*$/,
+  (req, res) => {
+    const subdomain = req.headers.host.split(".")[0];
+    const env = subdomain.split("-")[1];
+    getDecorator(env)
+      .then(html => res.send(html))
+      .catch(error => console.error("Failed to get decorator", error));
+  }
 );
 
 const port = process.env.PORT || 8080;
