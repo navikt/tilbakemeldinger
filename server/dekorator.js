@@ -5,9 +5,10 @@ const { JSDOM } = jsdom;
 const getUrl = subdomain => {
   if (subdomain !== "www") {
     const namespace = subdomain.split("-")[1];
-    return `https://www-${namespace}.nav.no/person/nav-dekoratoren/`;
+    // https://www-${namespace}.nav.no/person/nav-dekoratoren/
+    return `https://appres-${namespace}.nav.no/common-html/v4/navno?header-withmenu=true&styles=true&scripts=true&footer-withmenu=true&skiplinks=true&megamenu-resources=true`;
   } else {
-    return "https://appres.nav.no/common-html/v4/navno?header-withmenu=true&styles=true&scripts=true&footer-withmenu=true&skiplinks=true&megamenu-resources=true";
+    return `https://appres.nav.no/common-html/v4/navno?header-withmenu=true&styles=true&scripts=true&footer-withmenu=true&skiplinks=true&megamenu-resources=true`;
   }
 };
 
