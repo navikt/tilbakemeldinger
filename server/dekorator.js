@@ -3,7 +3,7 @@ const request = require("request");
 const NodeCache = require("node-cache");
 const { JSDOM } = jsdom;
 
-const SECONDS_PER_MINUTE = 1 * 60;
+const SECONDS_PER_MINUTE = 60;
 const SECONDS_PER_HOUR = SECONDS_PER_MINUTE * 60;
 
 // Refresh cache every hour
