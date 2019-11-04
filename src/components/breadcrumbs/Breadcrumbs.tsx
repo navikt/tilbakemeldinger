@@ -1,5 +1,5 @@
 import React from "react";
-import { useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { HoyreChevron } from "nav-frontend-chevron";
@@ -15,9 +15,7 @@ type BreadcrumbsProps = {
 
 type SegmentProps = {
   lenke: BreadcrumbLenke;
-  key: string;
   isCurrentPath: boolean;
-  formatMessage: Function;
 };
 
 export type BreadcrumbLenke = {
@@ -47,8 +45,8 @@ const getSegmentLenker = (currentPath: string, basePath: string): Array<Breadcru
   });
 };
 
-const SegmentNode = ({lenke, isCurrentPath, formatMessage}: SegmentProps) => {
-  const lenketekst = formatMessage({id: lenke.lenketekstId});
+const SegmentNode = ({lenke, isCurrentPath}: SegmentProps) => {
+  const lenketekst = <FormattedMessage id={lenke.lenketekstId} />;
 
   return (
     <Normaltekst className={`${cssPrefix}__segment`}>
@@ -71,7 +69,6 @@ const SegmentNode = ({lenke, isCurrentPath, formatMessage}: SegmentProps) => {
 
 const Breadcrumbs = ({currentPath, basePath, baseLenker = [], ikonUrl}: BreadcrumbsProps) => {
   const lenker = baseLenker.concat(getSegmentLenker(currentPath, basePath));
-  const formatMessage = useIntl().formatMessage;
 
   return (
     <div className={cssPrefix}>
@@ -80,7 +77,6 @@ const Breadcrumbs = ({currentPath, basePath, baseLenker = [], ikonUrl}: Breadcru
         <SegmentNode
           lenke={lenke}
           isCurrentPath={index === lenker.length - 1}
-          formatMessage={formatMessage}
           key={`segment-${index}`}
         />
       ))}
