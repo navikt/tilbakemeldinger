@@ -33,9 +33,7 @@ server.use(
     const subdomain = req.headers.host.split(".")[0];
     const env = subdomain.split("-")[1];
     getDecorator(env)
-      .then(fragments =>
-        server.render("index.html", fragments, html => res.send(html))
-      )
+      .then(fragments => res.render("index.html", fragments))
       .catch(error => console.error("Failed to get decorator", error));
   }
 );
