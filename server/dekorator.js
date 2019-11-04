@@ -1,8 +1,16 @@
 const jsdom = require("jsdom");
 const request = require("request");
 const NodeCache = require("node-cache");
-const cache = new NodeCache();
 const { JSDOM } = jsdom;
+
+const SECONDS_PER_MINUTE = 1 * 60;
+const SECONDS_PER_HOUR = SECONDS_PER_MINUTE * 60;
+
+// Refresh cache every hour
+const cache = new NodeCache({
+  stdTTL: SECONDS_PER_HOUR,
+  checkperiod: SECONDS_PER_MINUTE
+});
 
 const getUrl = namespace => {
   if (namespace !== "prod") {
