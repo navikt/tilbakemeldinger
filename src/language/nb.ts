@@ -283,7 +283,8 @@ export default {
   "validering.melding.pakrevd": "Melding er nødvendig",
   "validering.hvemroses.pakrevd": "Du må velge hvem du skal gi ros til",
   "validering.navkontor.pakrevd": "Du må velge NAV-kontor",
-  "validering.klagetyper.pakrevd": "Du må velge hvem du skriver på vegne av",
+  "validering.klagetyper.pakrevd": "Du må velge kagetori",
+  "validering.klagetyper.velg": "Du må velge minst en kategori",
   "validering.hvemfra.pakrevd":
     "Du må velge hvem tilbakemeldingen er på vegne av",
   "validering.onskerkontakt.pakrevd":
@@ -297,7 +298,7 @@ export default {
   "validering.orgnr.korrektsiffer": "Organisasjonsnummer må ha 9 siffer",
   "validering.postadr.pakrevd": "Postadresse er nødvendig",
   "validering.gjeldersosialhjelp.pakrevd":
-    "Du må velge om det gjelder økonomisk sosialhjelp / sosiale tjenester",
+    "Du må velge om tilbakemeldingen gjelder økonomisk sosialhjelp / sosiale tjenester",
 
   "felter.navn.tittel": "Navn",
   "felter.navn.tittel.valgfritt": "Navn (valgfritt)",

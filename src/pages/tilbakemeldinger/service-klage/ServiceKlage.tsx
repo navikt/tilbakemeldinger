@@ -43,10 +43,11 @@ const ServiceKlage = () => {
 
   const baseFormConfig = {
     klagetyper: {
-      isRequired: intl.formatMessage({ id: "validering.klagetyper.pakrevd" })
+      isRequired: intl.formatMessage({ id: "validering.klagetyper.pakrevd" }),
+      isValidFeiltyper: intl.formatMessage({ id: "validering.klagetyper.velg" })
     },
     hvemFra: {
-      isRequired: intl.formatMessage({ id: "validering.klagetyper.pakrevd" })
+      isRequired: intl.formatMessage({ id: "validering.hvemfra.pakrevd" })
     },
     melding: {
       isRequired: intl.formatMessage({ id: "validering.melding.pakrevd" })
