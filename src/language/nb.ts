@@ -284,7 +284,7 @@ export default {
   "validering.melding.pakrevd": "Melding er nødvendig",
   "validering.hvemroses.pakrevd": "Du må velge hvem du skal gi ros til",
   "validering.navkontor.pakrevd": "Du må velge NAV-kontor",
-  "validering.klagetype.pakrevd": "Du må velge hvem du skriver på vegne av",
+  "validering.klagetyper.pakrevd": "Du må velge hvem du skriver på vegne av",
   "validering.hvemfra.pakrevd":
     "Du må velge hvem tilbakemeldingen er på vegne av",
   "validering.onskerkontakt.pakrevd":
@@ -321,14 +321,14 @@ export default {
   "felter.hvemroses.navkontor.velg": "Velg NAV-kontor",
   "felter.hvemroses.navkontor.skrivinn":
     "Skriv inn navnet eller velg med piltast",
-  "felter.klagetype": "Hva gjelder tilbakemeldingen?",
-  "felter.klagetype.info":
+  "felter.klagetyper": "Hva gjelder tilbakemeldingen?",
+  "felter.klagetyper.info":
     "Velg det alternativet som passer best. Du har mulighet til å velge flere kategorier.",
-  "felter.klageType.telefon": "Telefon",
-  "felter.klageType.navkontor": "Lokalt NAV-kontor",
-  "felter.klageType.navno": "NAVs digitale tjenester",
-  "felter.klageType.brev": "Brev",
-  "felter.klageType.annet": "Annet",
+  "felter.klagetyper.telefon": "Telefon",
+  "felter.klagetyper.navkontor": "Lokalt NAV-kontor",
+  "felter.klagetyper.navno": "NAVs digitale tjenester",
+  "felter.klagetyper.brev": "Brev",
+  "felter.klagetyper.annet": "Annet",
   "felter.hvemfra": "Hvem skriver du på vegne av?",
   "felter.hvemfra.megselv": "Meg selv som privatperson",
   "felter.hvemfra.enannen": "På vegne av en annen privatperson",

@@ -3,7 +3,7 @@ import VeilederIcon from "assets/Veileder.svg";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import { useStore } from "providers/Provider";
 import { Knapp } from "nav-frontend-knapper";
-import { Link, RouteComponentProps, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { postServiceKlage } from "clients/apiClient";
 import { AlertStripeFeil, AlertStripeInfo } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
@@ -27,14 +27,14 @@ import ServiceKlageForBedrift from "./ServiceKlageBedrift";
 import ServiceKlageGjelderSosialhjelp from "./ServiceKlageGjelderSosialhjelp";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
+import { triggerHotjar } from "utils/hotjar";
 import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
-import { triggerHotjar } from "../../../utils/hotjar";
 import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageExtend;
 
-const ServiceKlage = (props: RouteComponentProps) => {
+const ServiceKlage = () => {
   const [{ auth }] = useStore();
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);
@@ -42,11 +42,11 @@ const ServiceKlage = (props: RouteComponentProps) => {
   const intl = useIntl();
 
   const baseFormConfig = {
-    klageType: {
-      isRequired: intl.formatMessage({ id: "validering.klagetype.pakrevd" })
+    klagetyper: {
+      isRequired: intl.formatMessage({ id: "validering.klagetyper.pakrevd" })
     },
     hvemFra: {
-      isRequired: intl.formatMessage({ id: "validering.klagetype.pakrevd" })
+      isRequired: intl.formatMessage({ id: "validering.klagetyper.pakrevd" })
     },
     melding: {
       isRequired: intl.formatMessage({ id: "validering.melding.pakrevd" })
@@ -54,23 +54,20 @@ const ServiceKlage = (props: RouteComponentProps) => {
   };
 
   const initialValues = {
-    klageType: []
+    klagetyper: []
   };
 
   const send = (e: FormContext) => {
     const { isValid, fields } = e;
     const hvemFra: ON_BEHALF_OF = fields.hvemFra;
-    const { onskerKontakt } = fields;
 
     if (isValid) {
       const outboundBase: OutboundServiceKlageBase = {
         klagetekst: fields.melding,
-        klagetype: fields.klageType,
-        ...(fields.klageType.includes("LOKALT_NAV_KONTOR") && {
+        klagetyper: fields.klagetyper,
+        oenskerAaKontaktes: fields.onskerKontakt,
+        ...(fields.klagetyper.includes("LOKALT_NAV_KONTOR") && {
           gjelderSosialhjelp: fields.gjelderSosialhjelp
-        }),
-        ...(onskerKontakt && {
-          oenskerAaKontaktes: !!onskerKontakt
         })
       };
 
@@ -115,9 +112,6 @@ const ServiceKlage = (props: RouteComponentProps) => {
           },
           paaVegneAvBedrift: {
             navn: fields.orgNavn,
-            ...(fields.onskerKontakt && {
-              postadresse: fields.orgPostadr
-            }),
             organisasjonsnummer: fields.orgNummer
           }
         }
@@ -185,16 +179,16 @@ const ServiceKlage = (props: RouteComponentProps) => {
                 const kanOnskeAaKontaktes =
                   hvemFra !== "ANNEN_PERSON" || innmelderHarFullmakt !== false;
 
-                const toggleKlageType = (value: string) => {
-                  if (fields.klageType.includes(value)) {
+                const toggleklagetyper = (value: string) => {
+                  if (fields.klagetyper.includes(value)) {
                     setField({
-                      klageType: fields.klageType.filter(
+                      klagetyper: fields.klagetyper.filter(
                         (v: string) => v !== value
                       )
                     });
                   } else {
                     setField({
-                      klageType: fields.klageType.concat([value])
+                      klagetyper: fields.klagetyper.concat([value])
                     });
                   }
                 };
@@ -202,56 +196,58 @@ const ServiceKlage = (props: RouteComponentProps) => {
                 return (
                   <div className="skjema__content">
                     <SkjemaGruppe
-                      title={intl.formatMessage({ id: "felter.klagetype" })}
-                      feil={sjekkForFeil(submitted, errors.klageType)}
+                      title={intl.formatMessage({ id: "felter.klagetyper" })}
+                      feil={sjekkForFeil(submitted, errors.klagetyper)}
                     >
                       <div className={"felter__melding-advarsel"}>
                         <AlertStripeInfo>
-                          <FormattedMessage id={"felter.klagetype.info"} />
+                          <FormattedMessage id={"felter.klagetyper.info"} />
                         </AlertStripeInfo>
                       </div>
                       <Checkbox
                         label={intl.formatMessage({
-                          id: "felter.klageType.telefon"
+                          id: "felter.klagetyper.telefon"
                         })}
                         name={"TELEFON"}
-                        checked={fields.klageType.includes("TELEFON")}
-                        onChange={() => toggleKlageType("TELEFON")}
+                        checked={fields.klagetyper.includes("TELEFON")}
+                        onChange={() => toggleklagetyper("TELEFON")}
                       />
                       <Checkbox
                         label={intl.formatMessage({
-                          id: "felter.klageType.navkontor"
+                          id: "felter.klagetyper.navkontor"
                         })}
                         name={"LOKALT_NAV_KONTOR"}
-                        checked={fields.klageType.includes("LOKALT_NAV_KONTOR")}
-                        onChange={() => toggleKlageType("LOKALT_NAV_KONTOR")}
+                        checked={fields.klagetyper.includes(
+                          "LOKALT_NAV_KONTOR"
+                        )}
+                        onChange={() => toggleklagetyper("LOKALT_NAV_KONTOR")}
                       />
                       <Checkbox
                         label={intl.formatMessage({
-                          id: "felter.klageType.navno"
+                          id: "felter.klagetyper.navno"
                         })}
                         name={"NAVNO"}
-                        checked={fields.klageType.includes("NAVNO")}
-                        onChange={() => toggleKlageType("NAVNO")}
+                        checked={fields.klagetyper.includes("NAVNO")}
+                        onChange={() => toggleklagetyper("NAVNO")}
                       />
                       <Checkbox
                         label={intl.formatMessage({
-                          id: "felter.klageType.brev"
+                          id: "felter.klagetyper.brev"
                         })}
                         name={"BREV"}
-                        checked={fields.klageType.includes("BREV")}
-                        onChange={() => toggleKlageType("BREV")}
+                        checked={fields.klagetyper.includes("BREV")}
+                        onChange={() => toggleklagetyper("BREV")}
                       />
                       <Checkbox
                         label={intl.formatMessage({
-                          id: "felter.klageType.annet"
+                          id: "felter.klagetyper.annet"
                         })}
                         name={"ANNET"}
-                        checked={fields.klageType.includes("ANNET")}
-                        onChange={() => toggleKlageType("ANNET")}
+                        checked={fields.klagetyper.includes("ANNET")}
+                        onChange={() => toggleklagetyper("ANNET")}
                       />
                     </SkjemaGruppe>
-                    {fields.klageType.includes("LOKALT_NAV_KONTOR") && (
+                    {fields.klagetyper.includes("LOKALT_NAV_KONTOR") && (
                       <ServiceKlageGjelderSosialhjelp />
                     )}
                     <SkjemaGruppe
@@ -340,4 +336,4 @@ const ServiceKlage = (props: RouteComponentProps) => {
   );
 };
 
-export default withRouter(ServiceKlage);
+export default ServiceKlage;

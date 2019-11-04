@@ -11,7 +11,7 @@ export type OutboundServiceKlageBase = {
   klagetekst: string;
   oenskerAaKontaktes?: boolean;
   gjelderSosialhjelp?: "JA" | "NEI" | "VET_IKKE";
-  klagetype: KLAGE_TYPE[];
+  klagetyper: KLAGE_TYPE[];
 };
 
 export type OutboundServiceKlageExtend =
