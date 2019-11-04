@@ -5,6 +5,7 @@ export default {
     "Vi har for øyeblikket tekniske problemer med disse sidene.",
   "header.navperson": "NAV privatperson",
 
+  "route.nav-no": "nav.no",
   "route.": "Kontakt oss",
   "route.skriv-til-oss": "Skriv til oss",
   "route.arbeidssoker": "Arbeidssøker",
