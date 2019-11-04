@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { HoyreChevron } from "nav-frontend-chevron";
 import { Normaltekst } from "nav-frontend-typografi";
+import Lenke from "nav-frontend-lenker";
 
 type BreadcrumbsProps = {
   currentPath: string;
@@ -22,6 +23,7 @@ type SegmentProps = {
 export type BreadcrumbLenke = {
   url: string;
   lenketekstId: string;
+  isExternal?: boolean;
 };
 
 const cssPrefix = "breadcrumbs";
@@ -40,7 +42,7 @@ const getSegmentLenker = (currentPath: string, basePath: string): Array<Breadcru
 
     return {
       url: `${basePath}${segmentPath}`,
-      lenketekstId: `route.${segment}`,
+      lenketekstId: `breadcrumb.${segment}`,
     };
   });
 };
@@ -54,7 +56,11 @@ const SegmentNode = ({lenke, isCurrentPath, formatMessage}: SegmentProps) => {
         ? lenketekst
         : (
           <>
-            <Link to={lenke.url} className="lenke">{lenketekst}</Link>
+            {
+              lenke.isExternal
+              ? <Lenke href={lenke.url} className="lenke">{lenketekst}</Lenke>
+              : <Link to={lenke.url} className="lenke">{lenketekst}</Link>
+            }
             <HoyreChevron className={`${cssPrefix}__chevron`} />
           </>
         )
@@ -63,25 +69,17 @@ const SegmentNode = ({lenke, isCurrentPath, formatMessage}: SegmentProps) => {
   );
 };
 
-const Breadcrumbs = ({currentPath, basePath, baseLenker, ikonUrl}: BreadcrumbsProps) => {
-  const segmentLenker = getSegmentLenker(currentPath, basePath);
+const Breadcrumbs = ({currentPath, basePath, baseLenker = [], ikonUrl}: BreadcrumbsProps) => {
+  const lenker = baseLenker.concat(getSegmentLenker(currentPath, basePath));
   const formatMessage = useIntl().formatMessage;
 
   return (
     <div className={cssPrefix}>
       {ikonUrl && <img src={ikonUrl} alt="" className={`${cssPrefix}__ikon`} />}
-      {baseLenker && baseLenker.map((lenke: BreadcrumbLenke, index: number) => (
+      {lenker.map((lenke: BreadcrumbLenke, index: number) => (
         <SegmentNode
           lenke={lenke}
-          isCurrentPath={false}
-          formatMessage={formatMessage}
-          key={`rootSegment-${index}`}
-        />
-      ))}
-      {segmentLenker.map((lenke: BreadcrumbLenke, index: number) => (
-        <SegmentNode
-          lenke={lenke}
-          isCurrentPath={index === segmentLenker.length - 1}
+          isCurrentPath={index === lenker.length - 1}
           formatMessage={formatMessage}
           key={`segment-${index}`}
         />
