@@ -16,7 +16,7 @@ import { sjekkForFeil } from "utils/validators";
 import { FormattedMessage } from "react-intl";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "assets/Veileder.svg";
-import Breadcrumbs from "components/breadcrumbs/Breadcrumbs";
+import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
 
 type TIDSROM = "FORMIDDAG" | "FORMIDDAG" | "BEGGE";
 export interface OutboundBestillingAvSamtale {
@@ -87,7 +87,7 @@ const BAS = (props: RouteComponentProps) => {
 
   return (
     <div className="pagecontent">
-      <Breadcrumbs path={window.location.pathname} />
+      <BreadcrumbsWrapper />
       <div className="bestilling-av-samtale__header">
         <div className="bestilling-av-samtale__tittel">
           <Sidetittel>

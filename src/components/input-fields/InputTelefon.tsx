@@ -28,12 +28,7 @@ const InputTelefon = (props: Props) => {
   const formattert = value;
 
   return kontaktInfo.mobiltelefonnummer ? (
-    <Input
-      bredde={props.bredde}
-      label={props.label}
-      value={formattert}
-      disabled={true}
-    />
+    <Input bredde={props.bredde} label={props.label} value={formattert} />
   ) : (
     <Input
       bredde={props.bredde}

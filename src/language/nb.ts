@@ -5,20 +5,21 @@ export default {
     "Vi har for øyeblikket tekniske problemer med disse sidene.",
   "header.navperson": "NAV privatperson",
 
-  "route.": "Kontakt oss",
-  "route.skriv-til-oss": "Skriv til oss",
-  "route.arbeidssoker": "Arbeidssøker",
-  "route.syk": "Syk",
-  "route.familieogbarn": "Familie og barn",
-  "route.hjelpemidler": "Pensjon",
-  "route.chat": "Chat",
-  "route.tilbakemeldinger": "Tilbakemeldinger",
-  "route.serviceklage": "Klage på service",
-  "route.login": "Innlogging",
-  "route.feil-og-mangler": "Feil og mangler",
-  "route.ros-til-nav": "Ros",
-  "route.samegiella": "Samegiella",
-  "route.bestilling-av-samtale":
+  "breadcrumb.nav-no": "nav.no",
+  "breadcrumb.": "Kontakt oss",
+  "breadcrumb.skriv-til-oss": "Skriv til oss",
+  "breadcrumb.arbeidssoker": "Arbeidssøker",
+  "breadcrumb.syk": "Syk",
+  "breadcrumb.familieogbarn": "Familie og barn",
+  "breadcrumb.hjelpemidler": "Pensjon",
+  "breadcrumb.chat": "Chat",
+  "breadcrumb.tilbakemeldinger": "Tilbakemeldinger",
+  "breadcrumb.serviceklage": "Klage på service",
+  "breadcrumb.login": "Innlogging",
+  "breadcrumb.feil-og-mangler": "Feil og mangler",
+  "breadcrumb.ros-til-nav": "Ros",
+  "breadcrumb.samegiella": "Samegiella",
+  "breadcrumb.bestilling-av-samtale":
     "Jearaldat bagadallama oažžut sámegillii telefovnnas",
 
   "skrivtiloss.disabled":
@@ -283,7 +284,8 @@ export default {
   "validering.melding.pakrevd": "Melding er nødvendig",
   "validering.hvemroses.pakrevd": "Du må velge hvem du skal gi ros til",
   "validering.navkontor.pakrevd": "Du må velge NAV-kontor",
-  "validering.klagetype.pakrevd": "Du må velge hvem du skriver på vegne av",
+  "validering.klagetyper.pakrevd": "Du må velge kagetori",
+  "validering.klagetyper.velg": "Du må velge minst en kategori",
   "validering.hvemfra.pakrevd":
     "Du må velge hvem tilbakemeldingen er på vegne av",
   "validering.onskerkontakt.pakrevd":
@@ -297,7 +299,7 @@ export default {
   "validering.orgnr.korrektsiffer": "Organisasjonsnummer må ha 9 siffer",
   "validering.postadr.pakrevd": "Postadresse er nødvendig",
   "validering.gjeldersosialhjelp.pakrevd":
-    "Du må velge om det gjelder økonomisk sosialhjelp / sosiale tjenester",
+    "Du må velge om tilbakemeldingen gjelder økonomisk sosialhjelp / sosiale tjenester",
 
   "felter.navn.tittel": "Navn",
   "felter.navn.tittel.valgfritt": "Navn (valgfritt)",
@@ -318,16 +320,15 @@ export default {
   "felter.hvemroses.digitaletjenester": "NAVs digitale tjenester",
   "felter.hvemroses.navkontor": "NAV-kontor",
   "felter.hvemroses.navkontor.velg": "Velg NAV-kontor",
-  "felter.hvemroses.navkontor.skrivinn":
-    "Skriv inn navnet eller velg med piltast",
-  "felter.klagetype": "Hva gjelder tilbakemeldingen?",
-  "felter.klagetype.info":
+  "felter.hvemroses.navkontor.skrivinn": "Søk eller velg med piltast",
+  "felter.klagetyper": "Hva gjelder tilbakemeldingen?",
+  "felter.klagetyper.info":
     "Velg det alternativet som passer best. Du har mulighet til å velge flere kategorier.",
-  "felter.klageType.telefon": "Telefon",
-  "felter.klageType.navkontor": "Lokalt NAV-kontor",
-  "felter.klageType.navno": "NAVs digitale tjenester",
-  "felter.klageType.brev": "Brev",
-  "felter.klageType.annet": "Annet",
+  "felter.klagetyper.telefon": "Telefon",
+  "felter.klagetyper.navkontor": "Lokalt NAV-kontor",
+  "felter.klagetyper.navno": "NAVs digitale tjenester",
+  "felter.klagetyper.brev": "Brev",
+  "felter.klagetyper.annet": "Annet",
   "felter.hvemfra": "Hvem skriver du på vegne av?",
   "felter.hvemfra.megselv": "Meg selv som privatperson",
   "felter.hvemfra.enannen": "På vegne av en annen privatperson",

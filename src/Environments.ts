@@ -1,6 +1,6 @@
 const Environment = () => {
-  var host = window.location.host;
-  var subdomain = host.split(`.`)[0];
+  const host = window.location.host;
+  const subdomain = host.split(`.`)[0];
 
   if (process.env.NODE_ENV === `development`) {
     return {

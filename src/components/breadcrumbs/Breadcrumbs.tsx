@@ -1,26 +1,33 @@
-import React, { ReactNode } from "react";
-import { useIntl } from "react-intl";
+import React from "react";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { HoyreChevron } from "nav-frontend-chevron";
 import { Normaltekst } from "nav-frontend-typografi";
-import { urls } from "../../Config";
-import HjemIkon from "assets/icons/line/home-1-line.svg";
+import Lenke from "nav-frontend-lenker";
 
-type Props = {
-  path: string;
+type BreadcrumbsProps = {
+  currentPath: string;
+  basePath: string;
+  baseLenker?: Array<BreadcrumbLenke>;
+  ikonUrl?: string;
 };
 
-type LenkeData = {
-  url: string,
-  lenketekst: string,
+type SegmentProps = {
+  lenke: BreadcrumbLenke;
+  isCurrentPath: boolean;
+};
+
+export type BreadcrumbLenke = {
+  url: string;
+  lenketekstId: string;
+  isExternal?: boolean;
 };
 
 const cssPrefix = "breadcrumbs";
 
-const getPathSegmentLenker = (path: string, formatMessage: Function): Array<LenkeData> => {
-  const basePath = urls.baseUrl;
-  const pathSegments = path.replace(basePath, "").split("/");
+const getSegmentLenker = (currentPath: string, basePath: string): Array<BreadcrumbLenke> => {
+  const pathSegments = currentPath.replace(basePath, "").split("/");
 
   // fjerner tomt segment ved trailing slash
   if (pathSegments.length > 1 && pathSegments[pathSegments.length - 1] === "") {
@@ -33,40 +40,46 @@ const getPathSegmentLenker = (path: string, formatMessage: Function): Array<Lenk
 
     return {
       url: `${basePath}${segmentPath}`,
-      lenketekst: formatMessage({id: `route.${segment}`})
+      lenketekstId: `breadcrumb.${segment}`,
     };
   });
 };
 
-const Breadcrumbs = (props: Props) => {
-  const { path } = props;
-  const formatMessage = useIntl().formatMessage;
+const SegmentNode = ({lenke, isCurrentPath}: SegmentProps) => {
+  const lenketekst = <FormattedMessage id={lenke.lenketekstId} />;
 
-  const breadcrumbsNoder: Array<ReactNode> = [];
-  const pathSegmentLenker = getPathSegmentLenker(path, formatMessage);
+  return (
+    <Normaltekst className={`${cssPrefix}__segment`}>
+      { isCurrentPath
+        ? lenketekst
+        : (
+          <>
+            {
+              lenke.isExternal
+              ? <Lenke href={lenke.url} className="lenke">{lenketekst}</Lenke>
+              : <Link to={lenke.url} className="lenke">{lenketekst}</Link>
+            }
+            <HoyreChevron className={`${cssPrefix}__chevron`} />
+          </>
+        )
+      }
+    </Normaltekst>
+  );
+};
 
-  breadcrumbsNoder.push(<img src={HjemIkon} alt="" className={`${cssPrefix}__ikon`} />);
-
-  pathSegmentLenker.forEach((segment, index) => {
-    const isCurrentPath = index === pathSegmentLenker.length - 1;
-    breadcrumbsNoder.push(
-      <Normaltekst key={`crumb${index}`} className={`${cssPrefix}__segment`}>
-        { isCurrentPath
-          ? segment.lenketekst
-          : (
-            <>
-              <Link to={segment.url} className="lenke">{segment.lenketekst}</Link>
-              <HoyreChevron key={`chevron${index}`} className={`${cssPrefix}__chevron`} />
-            </>
-          )
-        }
-      </Normaltekst>
-    );
-  });
+const Breadcrumbs = ({currentPath, basePath, baseLenker = [], ikonUrl}: BreadcrumbsProps) => {
+  const lenker = baseLenker.concat(getSegmentLenker(currentPath, basePath));
 
   return (
     <div className={cssPrefix}>
-      {breadcrumbsNoder.map((node: ReactNode) => (node))}
+      {ikonUrl && <img src={ikonUrl} alt="" className={`${cssPrefix}__ikon`} />}
+      {lenker.map((lenke: BreadcrumbLenke, index: number) => (
+        <SegmentNode
+          lenke={lenke}
+          isCurrentPath={index === lenker.length - 1}
+          key={`segment-${index}`}
+        />
+      ))}
     </div>
   );
 };

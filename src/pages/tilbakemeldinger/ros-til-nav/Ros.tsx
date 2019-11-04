@@ -20,12 +20,12 @@ import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import MetaTags from "react-meta-tags";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
-import Breadcrumbs from "components/breadcrumbs/Breadcrumbs";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import { triggerHotjar } from "../../../utils/hotjar";
+import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
 
-type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
+type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_TJENESTER" | "NAV_KONTOR";
 
 type OutboundRosTilNavBase = {
   melding: string;
@@ -33,7 +33,7 @@ type OutboundRosTilNavBase = {
 
 type OutboundRosTilNavExtend =
   | { hvemRoses: "NAV_KONTAKTSENTER" }
-  | { hvemRoses: "NAV_DIGITALE_LOSNINGER" }
+  | { hvemRoses: "NAV_DIGITALE_TJENESTER" }
   | { hvemRoses: "NAV_KONTOR"; navKontor: string };
 
 export type OutboundRosTilNav = OutboundRosTilNavBase & OutboundRosTilNavExtend;
@@ -94,7 +94,7 @@ const Ros = () => {
         [key in HVEM_ROSES]: OutboundRosTilNavExtend;
       } = {
         NAV_KONTAKTSENTER: { hvemRoses: "NAV_KONTAKTSENTER" },
-        NAV_DIGITALE_LOSNINGER: { hvemRoses: "NAV_DIGITALE_LOSNINGER" },
+        NAV_DIGITALE_TJENESTER: { hvemRoses: "NAV_DIGITALE_TJENESTER" },
         NAV_KONTOR: {
           hvemRoses: "NAV_KONTOR",
           navKontor: fields.navKontor ? fields.navKontor.label : undefined
@@ -122,7 +122,7 @@ const Ros = () => {
   };
   return (
     <div className="pagecontent">
-      <Breadcrumbs path={window.location.pathname} />
+      <BreadcrumbsWrapper />
       <MetaTags>
         <title>{intl.messages["seo.rostilnav.tittel"]}</title>
         <meta
@@ -173,10 +173,10 @@ const Ros = () => {
                         label={intl.formatMessage({
                           id: "felter.hvemroses.digitaletjenester"
                         })}
-                        name={"NAV_DIGITALE_LOSNINGER"}
-                        checked={fields.hvemRoses === "NAV_DIGITALE_LOSNINGER"}
+                        name={"NAV_DIGITALE_TJENESTER"}
+                        checked={fields.hvemRoses === "NAV_DIGITALE_TJENESTER"}
                         onChange={() =>
-                          setField({ hvemRoses: "NAV_DIGITALE_LOSNINGER" })
+                          setField({ hvemRoses: "NAV_DIGITALE_TJENESTER" })
                         }
                       />
                       <Radio
