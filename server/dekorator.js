@@ -1,15 +1,14 @@
-require("dotenv").config();
 const jsdom = require("jsdom");
 const request = require("request");
 
-const { JSDOM } = jsdom;
 const { NAIS_CLUSTER_NAME } = process.env;
+const { JSDOM } = jsdom;
 
-const getDecorator = env =>
+const getDecorator = namespace =>
   new Promise((resolve, reject) => {
     request(
       NAIS_CLUSTER_NAME === "dev-sbs"
-        ? `https://www-${env}.nav.no/person/nav-dekoratoren/`
+        ? `https://www-${namespace}.nav.no/person/nav-dekoratoren/`
         : "https://appres.nav.no/common-html/v4/navno?header-withmenu=true&styles=true&scripts=true&footer-withmenu=true&skiplinks=true&megamenu-resources=true",
       (error, response, body) => {
         if (!error && response.statusCode >= 200 && response.statusCode < 400) {

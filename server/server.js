@@ -31,8 +31,8 @@ server.use(
   /\/(person\/kontakt-oss)\/*(?:(?!static|internal).)*$/,
   (req, res) => {
     const subdomain = req.headers.host.split(".")[0];
-    const env = subdomain.split("-")[1];
-    getDecorator(env)
+    const namespace = subdomain.split("-")[1];
+    getDecorator(namespace)
       .then(fragments => res.render("index.html", fragments))
       .catch(error => console.error("Failed to get decorator", error));
   }
