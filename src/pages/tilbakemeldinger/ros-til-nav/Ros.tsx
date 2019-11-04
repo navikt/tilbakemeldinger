@@ -25,7 +25,7 @@ import { sjekkForFeil } from "utils/validators";
 import { triggerHotjar } from "../../../utils/hotjar";
 import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
 
-type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_LOSNINGER" | "NAV_KONTOR";
+type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_TJENESTER" | "NAV_KONTOR";
 
 type OutboundRosTilNavBase = {
   melding: string;
@@ -33,7 +33,7 @@ type OutboundRosTilNavBase = {
 
 type OutboundRosTilNavExtend =
   | { hvemRoses: "NAV_KONTAKTSENTER" }
-  | { hvemRoses: "NAV_DIGITALE_LOSNINGER" }
+  | { hvemRoses: "NAV_DIGITALE_TJENESTER" }
   | { hvemRoses: "NAV_KONTOR"; navKontor: string };
 
 export type OutboundRosTilNav = OutboundRosTilNavBase & OutboundRosTilNavExtend;
@@ -94,7 +94,7 @@ const Ros = () => {
         [key in HVEM_ROSES]: OutboundRosTilNavExtend;
       } = {
         NAV_KONTAKTSENTER: { hvemRoses: "NAV_KONTAKTSENTER" },
-        NAV_DIGITALE_LOSNINGER: { hvemRoses: "NAV_DIGITALE_LOSNINGER" },
+        NAV_DIGITALE_TJENESTER: { hvemRoses: "NAV_DIGITALE_TJENESTER" },
         NAV_KONTOR: {
           hvemRoses: "NAV_KONTOR",
           navKontor: fields.navKontor ? fields.navKontor.label : undefined
@@ -173,10 +173,10 @@ const Ros = () => {
                         label={intl.formatMessage({
                           id: "felter.hvemroses.digitaletjenester"
                         })}
-                        name={"NAV_DIGITALE_LOSNINGER"}
-                        checked={fields.hvemRoses === "NAV_DIGITALE_LOSNINGER"}
+                        name={"NAV_DIGITALE_TJENESTER"}
+                        checked={fields.hvemRoses === "NAV_DIGITALE_TJENESTER"}
                         onChange={() =>
-                          setField({ hvemRoses: "NAV_DIGITALE_LOSNINGER" })
+                          setField({ hvemRoses: "NAV_DIGITALE_TJENESTER" })
                         }
                       />
                       <Radio
