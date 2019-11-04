@@ -33,8 +33,13 @@ server.use(
     const subdomain = req.headers.host.split(".")[0];
     const namespace = subdomain.split("-")[1];
     getDecorator(namespace)
-      .then(fragments => res.render("index.html", fragments))
-      .catch(error => console.error("Failed to get decorator", error));
+      .then(fragments => {
+        res.render("index.html", fragments);
+      })
+      .catch(error => {
+        console.error("Failed to get decorator", error);
+        next(error);
+      });
   }
 );
 
