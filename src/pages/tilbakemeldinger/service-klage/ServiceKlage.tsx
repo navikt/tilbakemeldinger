@@ -29,7 +29,7 @@ import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import { triggerHotjar } from "utils/hotjar";
 import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
-import Breadcrumbs from "components/breadcrumbs/Breadcrumbs";
+import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageExtend;
@@ -144,7 +144,7 @@ const ServiceKlage = () => {
 
   return (
     <div className="pagecontent">
-      <Breadcrumbs path={window.location.pathname} />
+      <BreadcrumbsWrapper />
       <MetaTags>
         <title>{intl.messages["seo.klagepaservice.tittel"]}</title>
         <meta

@@ -4,14 +4,14 @@ import Header from "../../components/header/Header";
 import TilpassetLenkepanel from "../../components/lenkepanel/Lenkepanel";
 import MetaTags from "react-meta-tags";
 import { useIntl } from "react-intl";
-import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
+import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 
 const Tilbakemeldinger = () => {
   const intl = useIntl();
   return (
     <>
       <div className="pagecontent">
-        <Breadcrumbs path={window.location.pathname} />
+        <BreadcrumbsWrapper />
         <MetaTags>
           <title>{intl.messages["seo.tilbakemeldinger.tittel"]}</title>
           <meta

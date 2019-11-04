@@ -8,7 +8,7 @@ import Box from "components/box/Box";
 import Header from "components/header/Header";
 import MetaTags from "react-meta-tags";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
+import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
 const { loginUrl } = Environment();
 
 const ServiceKlageLogin = () => {
@@ -21,7 +21,7 @@ const ServiceKlageLogin = () => {
 
   return (
     <div className="pagecontent">
-      <Breadcrumbs path={window.location.pathname} />
+      <BreadcrumbsWrapper />
       <MetaTags>
         <title>{intl.messages["seo.klagepaservice.login.tittel"]}</title>
       </MetaTags>
