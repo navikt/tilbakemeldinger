@@ -32,8 +32,8 @@ const KontaktOssFrontpage = () => {
 
   return (
     <div className="pagecontent">
+      <BreadcrumbsWrapper />
       <div className="frontpage">
-        <BreadcrumbsWrapper />
         <MetaTags>
           <title>{intl.messages["seo.kontaktoss.tittel"]}</title>
           <meta
