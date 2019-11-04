@@ -36,9 +36,10 @@ server.use(
       .then(fragments => {
         res.render("index.html", fragments);
       })
-      .catch(error => {
-        console.error("Failed to get decorator", error);
-        next(error);
+      .catch(e => {
+        const error = `Failed to get decorator: ${e}`;
+        console.error(error);
+        res.status(500).send(error);
       });
   }
 );
