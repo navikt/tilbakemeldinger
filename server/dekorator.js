@@ -26,6 +26,7 @@ const getDecorator = namespace =>
   new Promise((resolve, reject) => {
     const decorator = cache.get(namespace);
     if (decorator) {
+      console.log(`${q0}: Using cache`);
       resolve(decorator);
     } else {
       request(getUrl(namespace), (error, response, body) => {
@@ -42,6 +43,7 @@ const getDecorator = namespace =>
               prop
             ]
           };
+          console.log(`${q0}: Creating cache`);
           cache.set(namespace, data);
           resolve(data);
         } else {
