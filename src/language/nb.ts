@@ -66,77 +66,25 @@ export default {
   "skrivtiloss.sosial.lenke.ingress":
     "Ring 55 55 33 33 for å gi informasjon om saken din. For generelle spørsmål kan du chatte med oss.",
 
-  "arbeidssoker.tittel": "Skriv til oss om arbeid",
-  "arbeidssoker.description":
-    "Gi beskjed om endringer i saken din om sykepenger, dagpenger, arbeidsavklaringspenger, tiltakspenger, yrkesskade/ménerstatning eller lignende. " +
-    "Har du aktivitetsplan så kan du stille spørsmål om oppfølging mot arbeid direkte til veilederen hos NAV.",
-  "arbeidssoker.infotekst":
-    "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Du kan for" +
-    " eksempel sende beskjed om endringer i inntekt, familiesituasjon, jobbsituasjon eller opphold i utlandet som" +
-    " kan ha betydning for beløpet du får utbetalt fra NAV.",
-  "arbeidssoker.lenke.veileder.tittel":
-    "Kontakt din veileder via aktivitetsplanen",
-  "arbeidssoker.lenke.veileder.ingress":
-    "Du kan gi beskjed om endringer i saken din om sykepenger, dagpenger, arbeidsavklaringspenger," +
-    " tiltakspenger, yrkesskade/ménerstatning eller lignende. Hvis du har en aktivitetsplan, kan du stille spørsmål" +
-    " som gjelder oppfølging mot arbeid direkte til veilederen ved NAV-kontoret.",
-  "arbeidssoker.lenke.skrivtiloss.tittel": "Skriv til oss",
-  "arbeidssoker.lenke.skrivtiloss.ingress":
-    "Hvis du har spørsmål om saken din, så kan du skrive til oss. Du får svar etter omtrent {numDager} arbeidsdager.",
-  "arbeidssoker.lenke.snapchat.tittel": "Snapchat",
-  "arbeidssoker.lenke.snapchat.ingress":
-    "Legg til navjobblyst på Snapchat og se hverdagen til unge som kommer i jobb.",
-
-  "syk.tittel": "Syk",
-  "syk.description": "",
-  "syk.infotekst": "",
-  "syk.lenke.skrivtiloss.tittel": "Skriv til oss",
-  "syk.lenke.skrivtiloss.ingress":
-    "Du kan ikke sende e-post til oss, men du kan sende spørsmål eller informasjon om saken din ved å logge inn på" +
-    " Ditt NAV. Du får svar innen to arbeidsdager.",
-  "syk.lenke.veileder.tittel": "Kontakt til veileder",
-  "syk.lenke.veileder.ingress":
-    "Hvis du er registrert som arbeidssøker, kan du skrive direkte til veilederen din.",
-
-  "familieogbarn.tittel": "Skriv til oss om familie",
-  "familieogbarn.description":
-    "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. " +
-    "Du kan for eksempel sende beskjed om endringer i inntekt, familiesituasjon, jobbsituasjon eller opphold i utlandet som kan ha betydning for beløpet du får utbetalt fra NAV.",
-  "familieogbarn.infotekst":
-    "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Du kan for" +
-    " eksempel sende beskjed om endringer i inntekt, familiesituasjon, jobbsituasjon eller opphold i utlandet som" +
-    " kan ha betydning for beløpet du får utbetalt fra NAV.",
-  "familieogbarn.lenke.skrivtiloss.tittel": "Skriv til oss",
-  "familieogbarn.lenke.skrivtiloss.ingress":
-    "Hvis du har spørsmål om saken din, så kan du skrive til oss. Du får svar etter omtrent {numDager} arbeidsdager.",
-
-  "hjelpemidler.tittel": "Skriv til oss om hjelpemidler",
-  "hjelpemidler.description":
+  "skrivtiloss.hjelpemidler.tittel": "Skriv til oss om hjelpemidler",
+  "skrivtiloss.hjelpemidler.description":
     "Send spørsmål eller opplysninger om tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk, tilrettelegging og tilpasning.",
-  "hjelpemidler.infotekst": " ",
-  "hjelpemidler.lenke.generelt.tittel": "Generelle spørsmål",
-  "hjelpemidler.lenke.generelt.ingress":
+  "skrivtiloss.hjelpemidler.infotekst": " ",
+  "skrivtiloss.hjelpemidler.generelt.tittel": "Generelle spørsmål",
+  "skrivtiloss.hjelpemidler.generelt.ingress":
     "Gjelder spørsmål om hjelpemidler eller tiltak som bidrar til å reduserer praktiske problemer for personer" +
     " med nedsatt funksjonsevne.",
-  "hjelpemidler.lenke.skrivtiloss.tittel": "Skriv til oss",
-  "hjelpemidler.lenke.skrivtiloss.ingress":
+  "skrivtiloss.hjelpemidler.ortopediske.tittel": "Ortopediske hjelpemidler",
+  "skrivtiloss.hjelpemidler.ortopediske.ingress":
     "Du kan sende oss nye opplysninger knyttet til saken din om høreapparat, parykk, protese, ortose eller" +
     " ortopediske fottøy.",
-  "hjelpemidler.lenke.bil.tittel": "Spørsmål om bil og spesialutstyr til bil",
-  "hjelpemidler.lenke.bil.ingress":
+  "skrivtiloss.hjelpemidler.bil.tittel": "Spørsmål om bil og spesialutstyr til bil",
+  "skrivtiloss.hjelpemidler.bil.ingress":
     "Gjelder spørsmål eller opplysninger om bil og transport for personer med varig nedsatt funksjonsevne som" +
     " ikke kan bruke offentlig transport til arbeid, skole eller i dagliglivet.",
-  "hjelpemidler.lenke.tolk.tittel": "Tegnspråktolk",
-  "hjelpemidler.lenke.tolk.ingress":
+  "skrivtiloss.hjelpemidler.tolk.tittel": "Tegnspråktolk",
+  "skrivtiloss.hjelpemidler.tolk.ingress":
     "Gjelder det bestilling av tolketjenester, send e-post eller sms til den lokale tolketjenesten din.",
-
-  "skrivtiloss.temalenke.chat.tittel": "Chat",
-  "skrivtiloss.temalenke.chat.ingress":
-    "På chat kan vi ikke gi status eller svar på pågående saker, men hjelper deg gjerne med generelle" +
-    " spørsmål.",
-  "skrivtiloss.temalenke.facebook.tittel": "Facebook",
-  "skrivtiloss.temalenke.facebook.ingress":
-    "Våre veiledere svarer på generelle spørsmål innen 1 arbeidsdag.",
 
   "faq.intro": "Nå spør mange om dette",
   "faq.nesteutbetaling": "Når kommer neste utbetaling?",

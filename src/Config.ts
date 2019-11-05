@@ -33,6 +33,12 @@ export const urls = {
     hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`,
     ufor: `${tjenesteUrl}/mininnboks/sporsmal/skriv/UFRT`,
     sosial: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chat-med-oss-om-sosiale-tjenester`,
+    temaHjelpemidler: {
+      generelt: `${tjenesteUrl}/mininnboks/sporsmal/skriv/HJLPM`,
+      ortopediske: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ORT_HJE`,
+      bil: `${tjenesteUrl}/mininnboks/sporsmal/skriv/BIL`,
+      tolk: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Tolketjenesten`
+    },
   },
   chat: {
     forside: `${baseUrl}/chat`,
@@ -46,21 +52,6 @@ export const urls = {
   },
   facebook: "#",
   snapchat: "#",
-  temaArbeidssoker: {
-    veileder: "#",
-    chat: "#",
-    skrivtiloss: "#"
-  },
-  temaFamilieOgBarn: {
-    chat: "#",
-    skrivtiloss: "#"
-  },
-  temaHjelpemidler: {
-    generelt: `${tjenesteUrl}/mininnboks/sporsmal/skriv/HJLPM`,
-    skrivtiloss: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ORT_HJE`,
-    bil: `${tjenesteUrl}/mininnboks/sporsmal/skriv/BIL`,
-    tolk: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Tolketjenesten`
-  },
   fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
   faq: {
