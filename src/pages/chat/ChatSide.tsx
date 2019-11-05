@@ -21,8 +21,8 @@ const sideTittel = "chat.forside.tittel";
 const temaButtonHandlers: {[key in ChatTema]: Function} = {
   [ChatTema.AAP]: () => ChatbotWrangler.apneChatbotForTema(ChatTema.AAP),
   [ChatTema.Familie]: () => ChatbotWrangler.apneChatbotForTema(ChatTema.Familie),
-  [ChatTema.Sosial]: () => window.location.href = urls.chat.sosialhjelp,
-  [ChatTema.Okonomi]: () => window.location.href = urls.chat.okonomi,
+  [ChatTema.Sosial]: () => window.location.assign(urls.chat.sosialhjelp),
+  [ChatTema.Okonomi]: () => window.location.assign(urls.chat.okonomi),
 };
 
 const chatDataTilPanelInnhold =
