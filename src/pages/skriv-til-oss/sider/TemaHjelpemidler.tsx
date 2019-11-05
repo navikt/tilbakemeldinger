@@ -30,25 +30,25 @@ const lenker: LenkepanelData[] = [
     tittel: "hjelpemidler.lenke.generelt.tittel",
     ingress: <FormattedMessage id={"hjelpemidler.lenke.generelt.ingress"} />,
     url: urls.temaHjelpemidler.generelt,
-    external: false
+    external: true
   },
   {
     tittel: "hjelpemidler.lenke.skrivtiloss.tittel",
     ingress: <FormattedMessage id={"hjelpemidler.lenke.skrivtiloss.ingress"} />,
     url: urls.temaHjelpemidler.skrivtiloss,
-    external: false
+    external: true
   },
   {
     tittel: "hjelpemidler.lenke.bil.tittel",
     ingress: <FormattedMessage id={"hjelpemidler.lenke.bil.ingress"} />,
     url: urls.temaHjelpemidler.bil,
-    external: false
+    external: true
   },
   {
     tittel: "hjelpemidler.lenke.tolk.tittel",
     ingress: <FormattedMessage id={"hjelpemidler.lenke.tolk.ingress"} />,
     url: urls.temaHjelpemidler.tolk,
-    external: false
+    external: true
   }
 ];
 

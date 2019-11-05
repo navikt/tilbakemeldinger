@@ -26,11 +26,11 @@ export const urls = {
   },
   skrivTilOss: {
     forside: `${baseUrl}/skriv-til-oss`,
-    arbeidssoker: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Skriv+til+oss/Arbeid`,
-    familieogbarn: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/skriv+til+oss/familie`,
+    arbeidssoker: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
+    familieogbarn: `${tjenesteUrl}/mininnboks/sporsmal/skriv/FMLI`,
     pensjonist: `${tjenesteUrl}/mininnboks/sporsmal/skriv/PENS`,
-    syk: `${tjenesteUrl}`,
-    hjelpemidler: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Skriv+til+oss/Hjelpemidler`,
+    syk: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
+    hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`,
     ufor: `${tjenesteUrl}/mininnboks/sporsmal/skriv/UFRT`,
     sosial: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chat-med-oss-om-sosiale-tjenester`,
   },
@@ -56,10 +56,10 @@ export const urls = {
     skrivtiloss: "#"
   },
   temaHjelpemidler: {
-    generelt: "#",
-    skrivtiloss: "#",
-    bil: "#",
-    tolk: "#"
+    generelt: `${tjenesteUrl}/mininnboks/sporsmal/skriv/HJLPM`,
+    skrivtiloss: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ORT_HJE`,
+    bil: `${tjenesteUrl}/mininnboks/sporsmal/skriv/BIL`,
+    tolk: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Tolketjenesten`
   },
   fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,

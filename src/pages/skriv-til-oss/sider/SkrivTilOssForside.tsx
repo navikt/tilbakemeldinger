@@ -2,10 +2,10 @@ import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
 
-import SkrivTilOssBase from "./SkrivTilOssBase";
+import SkrivTilOssBase from "../SkrivTilOssBase";
 import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
-import { urls } from "../../Config";
+import { urls } from "../../../Config";
 
 const Ingress = () => {
   const intl = useIntl();
@@ -60,7 +60,6 @@ const lenker: LenkepanelData[] = [
     tittel: "skrivtiloss.hjelpemidler.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.hjelpemidler.lenke.ingress"} />,
     url: urls.skrivTilOss.hjelpemidler,
-    external: true,
   },
   {
     tittel: "skrivtiloss.sosial.lenke.tittel",

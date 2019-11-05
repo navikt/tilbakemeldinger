@@ -11,7 +11,7 @@ export default {
   "breadcrumb.arbeidssoker": "Arbeidssøker",
   "breadcrumb.syk": "Syk",
   "breadcrumb.familieogbarn": "Familie og barn",
-  "breadcrumb.hjelpemidler": "Pensjon",
+  "breadcrumb.hjelpemidler": "Hjelpemidler",
   "breadcrumb.chat": "Chat",
   "breadcrumb.tilbakemeldinger": "Tilbakemeldinger",
   "breadcrumb.serviceklage": "Klage på service",
