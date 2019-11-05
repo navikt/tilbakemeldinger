@@ -13,7 +13,7 @@ const cache = new NodeCache({
 });
 
 const getUrl = namespace => {
-  if (namespace !== "prod") {
+  if (namespace !== "p") {
     return `https://appres-${namespace}.nav.no/common-html/v4/navno?header-withmenu=true&styles=true&scripts=true&footer-withmenu=true&skiplinks=true&megamenu-resources=true`;
   } else {
     return `https://appres.nav.no/common-html/v4/navno?header-withmenu=true&styles=true&scripts=true&footer-withmenu=true&skiplinks=true&megamenu-resources=true`;
