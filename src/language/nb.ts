@@ -388,8 +388,7 @@ export default {
   "chat.aap.lenke.ingress":
     "Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.",
 
-  "chat.sosialhjelp.lenke.tittel":
-    "Sosiale tjenester og økonomisk sosialhjelp",
+  "chat.sosialhjelp.lenke.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.lenke.ingress":
     "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
 
@@ -414,8 +413,7 @@ export default {
   "chat.aap.ingress":
     "<p>Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.</p>",
 
-  "chat.sosialhjelp.tittel":
-    "Sosiale tjenester og økonomisk sosialhjelp",
+  "chat.sosialhjelp.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.ingressKort":
     "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
   "chat.sosialhjelp.ingress":

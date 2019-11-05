@@ -27,22 +27,19 @@ server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
 );
 
 // Match everything except internal og static
-server.use(
-  /\/(person\/kontakt-oss)\/*(?:(?!static|internal).)*$/,
-  (req, res) => {
-    const subdomain = req.headers.host.split(".")[0];
-    const namespace = subdomain !== "www" ? subdomain.split("-")[1] : "prod";
-    getDecorator(namespace)
-      .then(fragments => {
-        res.render("index.html", fragments);
-      })
-      .catch(e => {
-        const error = `Failed to get decorator: ${e}`;
-        console.error(error);
-        res.status(500).send(error);
-      });
-  }
-);
+server.use(/^(?!.*\/(internal|static)\/).*$/, (req, res) => {
+  const subdomain = req.headers.host.split(".")[0];
+  const namespace = subdomain !== "www" ? subdomain.split("-")[1] : "prod";
+  getDecorator(namespace)
+    .then(fragments => {
+      res.render("index.html", fragments);
+    })
+    .catch(e => {
+      const error = `Failed to get decorator: ${e}`;
+      console.error(error);
+      res.status(500).send(error);
+    });
+});
 
 const port = process.env.PORT || 8080;
 server.listen(port, () => console.log(`App listening on port: ${port}`));
