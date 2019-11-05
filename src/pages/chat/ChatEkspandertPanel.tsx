@@ -16,7 +16,7 @@ type Props = {
 
 const personvernMsgId = "chat.advarsel.personvern";
 
-const ChatEkspandertPanelInnhold = ({msgId, cssPrefix, temaKode, buttonClickHandler}: Props) => {
+const ChatEkspandertPanel = ({msgId, cssPrefix, temaKode, buttonClickHandler}: Props) => {
   return(
     <div className={`${cssPrefix}__panel-innhold`}>
       <FormattedMsgMedParagrafer id={msgId} Component={Normaltekst}/>
@@ -33,4 +33,4 @@ const ChatEkspandertPanelInnhold = ({msgId, cssPrefix, temaKode, buttonClickHand
   );
 };
 
-export default ChatEkspandertPanelInnhold;
+export default ChatEkspandertPanel;

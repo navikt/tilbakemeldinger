@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { EtikettLiten, Normaltekst, Sidetittel } from "nav-frontend-typografi";
+import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
 import { FormattedMessage, useIntl } from "react-intl";
 import { vars } from "../../Config";
 import { Features, getFeatureToggleStatusMultiple } from "../../utils/unleash";
@@ -68,9 +68,6 @@ const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
     <div className={`${cssPrefix} pagecontent`}>
       <BreadcrumbsWrapper />
       <div className={`${cssPrefix}__header`}>
-        <EtikettLiten>
-          <FormattedMessage id={"header.navperson"} />
-        </EtikettLiten>
         <Sidetittel>
           <FormattedMessage id={tittel} />
         </Sidetittel>
@@ -86,7 +83,7 @@ const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
         {children}
       </div>
       {lenker && (
-        <div className={`${cssPrefix}__lenker`}>
+        <div className={`${cssPrefix}__lenke-seksjon`}>
           {lenker.map(lenke => (
             <SkrivTilOssLenkepanel lenkePanelData={lenke} key={lenke.tittel} />
           ))}

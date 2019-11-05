@@ -1,21 +1,29 @@
 import React, { useEffect } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { EtikettLiten, Normaltekst, Systemtittel } from "nav-frontend-typografi";
+import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
 import EkspanderendePanelGruppe, { EkspanderendePanelData } from "../../components/ekspanderende-panel/EkspanderendePanelGruppe";
 import { ChatTemaData, ChatTema } from "../../types/chat";
 import chatSideInnhold from "./ChatSideInnhold";
-import ChatKollapsetPanelInnhold from "./ChatKollapsetPanelInnhold";
-import ChatEkspandertPanelInnhold, { ButtonClickHandler } from "./ChatEkspandertPanelInnhold";
+import ChatKollapsetPanel from "./ChatKollapsetPanel";
+import ChatEkspandertPanel, { ButtonClickHandler } from "./ChatEkspandertPanel";
 import ChatbotWrangler from "../../utils/chatbotWrangler";
 
 import ChatValgtIkon from "assets/ChatValgtIkon.svg";
 import ChatIkkeValgtIkon from "assets/ChatUvalgtIkon.svg";
 import NAVChatBot from "@navikt/nav-chatbot";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
+import { urls } from "../../Config";
 
 const cssPrefix = "chat-med-oss";
 const sideTittel = "chat.forside.tittel";
+
+const temaButtonHandlers: {[key in ChatTema]: Function} = {
+  [ChatTema.AAP]: () => ChatbotWrangler.apneChatbotForTema(ChatTema.AAP),
+  [ChatTema.Familie]: () => ChatbotWrangler.apneChatbotForTema(ChatTema.Familie),
+  [ChatTema.Sosial]: () => window.location.href = urls.chat.sosialhjelp,
+  [ChatTema.Okonomi]: () => window.location.href = urls.chat.okonomi,
+};
 
 const chatDataTilPanelInnhold =
   (
@@ -25,9 +33,9 @@ const chatDataTilPanelInnhold =
   ): EkspanderendePanelData => (
   {
     tittel: intlFormatMessage({id: chatTema.tittelId}),
-    kollapsetInnhold: <ChatKollapsetPanelInnhold msgId={chatTema.kortTekstId} cssPrefix={cssPrefix}/>,
+    kollapsetInnhold: <ChatKollapsetPanel msgId={chatTema.kortTekstId} cssPrefix={cssPrefix}/>,
     ekspandertInnhold: (
-      <ChatEkspandertPanelInnhold
+      <ChatEkspandertPanel
         msgId={chatTema.langTekstId}
         cssPrefix={cssPrefix}
         temaKode={chatTema.temaKode}
@@ -35,8 +43,8 @@ const chatDataTilPanelInnhold =
       />
     ),
     id: chatTema.temaKode.toString(),
-    ekspandertIkon: <img src={ChatValgtIkon} alt="" className={`${cssPrefix}__ikon`}/>,
-    kollapsetIkon: <img src={ChatIkkeValgtIkon} alt="" className={`${cssPrefix}__ikon`}/>,
+    ekspandertIkon: <img src={ChatValgtIkon} alt="" className={`${cssPrefix}__panel-ikon`}/>,
+    kollapsetIkon: <img src={ChatIkkeValgtIkon} alt="" className={`${cssPrefix}__panel-ikon`}/>,
   }
 );
 
@@ -48,7 +56,7 @@ const ChatSide = () => {
   }, [documentTitle]);
 
   const buttonClickHandler = (temaKode: ChatTema) => {
-    ChatbotWrangler.apneChatbotForTema(temaKode);
+    temaButtonHandlers[temaKode]();
   };
 
   const panelInnhold = chatSideInnhold.map(
@@ -58,20 +66,17 @@ const ChatSide = () => {
     <>
       <div className={`${cssPrefix} pagecontent`}>
         <BreadcrumbsWrapper />
-        <EtikettLiten>
-          <FormattedMessage id={"header.navperson"}/>
-        </EtikettLiten>
         <div className={`${cssPrefix}__header`}>
-          <Systemtittel>
+          <Sidetittel>
             <FormattedMessage id={sideTittel}/>
-          </Systemtittel>
+          </Sidetittel>
         </div>
         <div className={`${cssPrefix}__ingress`}>
           <Normaltekst>
             <FormattedMessage id="chat.forside.ingress"/>
           </Normaltekst>
         </div>
-        <div className={`${cssPrefix}__chat-valg-container`}>
+        <div className={`${cssPrefix}__temapanel-seksjon`}>
           {EkspanderendePanelGruppe(panelInnhold, "chatTemaVelger")}
         </div>
       </div>

@@ -26,20 +26,20 @@ export const urls = {
   },
   skrivTilOss: {
     forside: `${baseUrl}/skriv-til-oss`,
-    arbeidssoker: `${baseUrl}/skriv-til-oss/arbeidssoker`,
-    familieogbarn: `${baseUrl}/skriv-til-oss/familieogbarn`,
-    pensjonist: "#",
-    syk: "#",
-    hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`,
-    ufor: "#",
-    sosial: "#"
+    arbeidssoker: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Skriv+til+oss/Arbeid`,
+    familieogbarn: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/skriv+til+oss/familie`,
+    pensjonist: `${tjenesteUrl}/mininnboks/sporsmal/skriv/PENS`,
+    syk: `${tjenesteUrl}`,
+    hjelpemidler: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Skriv+til+oss/Hjelpemidler`,
+    ufor: `${tjenesteUrl}/mininnboks/sporsmal/skriv/UFRT`,
+    sosial: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chat-med-oss-om-sosiale-tjenester`,
   },
   chat: {
     forside: `${baseUrl}/chat`,
-    familie: `${baseUrl}/chat/familie`,
-    aap: `${baseUrl}/chat/aap`,
-    sosialhjelp: `${baseUrl}/chat/sosialhjelp`,
-    okonomi: `${baseUrl}/chat/okonomi`
+    familie: "#",
+    aap: "#",
+    sosialhjelp: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-sosialetjenester`,
+    okonomi: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-gjeldsradgivning`
   },
   chatBotApi: {
     sessionConfig: "https://api.puzzel.com/chat/v1/sessions"
