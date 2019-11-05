@@ -377,55 +377,55 @@ export default {
 
   "chat.forside.tittel": "Chat med oss",
   "chat.forside.ingress":
-    "NAV tilbyr chat på noen temaer. Vi svarer på generelle spørsmål, men vi har ikke mulighet" +
-    " til å gå inn i konkrete saker",
+    "Vi hjelper deg med å finne frem på nav.no og kan svare deg på spørsmål om hva du kan ha rett på. Vi kan ikke se" +
+    " saken din eller utgi personlige opplysninger.",
 
-  "chat.familie.lenke.tittel": "Chat om familie og barn",
+  "chat.familie.lenke.tittel": "Foreldre, barn og familie",
   "chat.familie.lenke.ingress":
-    "Foreldrepenger, engangsstønad, kontantstøtte, barnebidrag og mye mer.",
+    "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger med mer.",
 
-  "chat.aap.lenke.tittel": "Chat om arbeidsavklaringspenger (AAP)",
+  "chat.aap.lenke.tittel": "Jobbsøker",
   "chat.aap.lenke.ingress":
-    "Arbeidsavklaringspenger og overgangen fra sykepenger til arbeidsavklaringspenger.",
+    "Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.",
 
   "chat.sosialhjelp.lenke.tittel":
-    "Chat om sosiale tjenester og økonomisk sosialhjelp",
+    "Sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.lenke.ingress":
-    "Aosiale tjenester og økonomisk sosialhjelp.",
+    "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
 
-  "chat.okonomi.lenke.tittel": "Chat om økonomi og gjeldsrådgivning",
+  "chat.okonomi.lenke.tittel": "Økonomi og gjeldsrådgivning",
   "chat.okonomi.lenke.ingress": "Budsjett, økonomi og gjeldsrådgivning.",
 
   "chat.startknapp": "Start chat",
   "chat.advarsel.personvern":
-    "<p>Alle samtaler blir lagret anonymt i 6 måneder. Ikke oppgi navn, fødselsnummer eller" +
+    "<p>Alle samtaler blir lagret anonymt i 6 måneder.</p><p>Ikke oppgi navn, fødselsnummer eller" +
     " sensitive opplysninger som helseforhold eller diagnoser.</p>",
 
-  "chat.familie.tittel": "Chat om familie og barn",
+  "chat.familie.tittel": "Foreldre, barn og familie",
   "chat.familie.ingressKort":
-    "Foreldrepenger, engangsstønad, kontantstøtte, barnebidrag og mye mer.",
+    "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger med mer.",
   "chat.familie.ingress":
-    "<p>Vi svarer på generelle spørsmål om foreldrepenger, engangsstønad, kontantstøtte," +
-    " barnebidrag og mye mer</p>" +
+    "<p>Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger med mer.</p>" +
     "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
 
-  "chat.aap.tittel": "Chat om arbeidsavklaringspenger (AAP)",
+  "chat.aap.tittel": "Jobbsøker",
   "chat.aap.ingressKort":
-    "Arbeidsavklaringspenger og overgangen fra sykepenger til arbeidsavklaringspenger.",
+    "Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.",
   "chat.aap.ingress":
-    "<p>Vi svarer på generelle spørsmål om arbeidsavklaringspenger</p>",
+    "<p>Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.</p>",
 
   "chat.sosialhjelp.tittel":
-    "Chat om sosiale tjenester og økonomisk sosialhjelp",
-  "chat.sosialhjelp.ingressKort": "Sosiale tjenester og økonomisk sosialhjelp.",
+    "Sosiale tjenester og økonomisk sosialhjelp",
+  "chat.sosialhjelp.ingressKort":
+    "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
   "chat.sosialhjelp.ingress":
-    "<p>Vi svarer på generelle spørsmål om sosiale tjenester og økonomisk sosialhjelp.</p>" +
+    "<p>Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.</p>" +
     "<p>Åpningstid: kl. 09.00 - 14.30 (mandag-fredag)</p>",
 
-  "chat.okonomi.tittel": "Chat om økonomi og gjeldsrådgivning",
+  "chat.okonomi.tittel": "Økonomi og gjeldsrådgivning",
   "chat.okonomi.ingressKort": "Budsjett, økonomi og gjeldsrådgivning.",
   "chat.okonomi.ingress":
-    "<p>Vi svarer på generelle spørsmål om budsjett, økonomi og gjeldsrådgivning.</p>" +
+    "<p>Budsjett, økonomi og gjeldsrådgivning.</p>" +
     "<p>Åpningstider:\n" +
     "Mandag, tirsdag og onsdag kl. 10.00 - 15.00\n" +
     "Torsdag kl. 10.00 - 14.30\n" +
