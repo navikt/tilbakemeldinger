@@ -32,7 +32,6 @@ export const urls = {
     syk: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
     hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`,
     ufor: `${tjenesteUrl}/mininnboks/sporsmal/skriv/UFRT`,
-    // sosial: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chat-med-oss-om-sosiale-tjenester`,
     temaHjelpemidler: {
       generelt: `${tjenesteUrl}/mininnboks/sporsmal/skriv/HJLPM`,
       ortopediske: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ORT_HJE`,

@@ -62,11 +62,6 @@ export default {
   "skrivtiloss.hjelpemidler.lenke.ingress":
     "Tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk, tilrettelegging og tilpasning.",
 
-  // "skrivtiloss.sosial.lenke.tittel":
-  //   "Sosiale tjenester og økonomisk sosialhjelp",
-  // "skrivtiloss.sosial.lenke.ingress":
-  //   "Ring 55 55 33 33 for å gi informasjon om saken din. For generelle spørsmål kan du chatte med oss.",
-
   "skrivtiloss.hjelpemidler.tittel": "Skriv til oss om hjelpemidler",
   "skrivtiloss.hjelpemidler.description":
     "Send spørsmål eller opplysninger om tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk," +
