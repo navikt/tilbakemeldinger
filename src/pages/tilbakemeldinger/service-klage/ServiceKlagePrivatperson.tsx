@@ -13,6 +13,7 @@ const ServiceKlagePrivatperson = () => {
     },
     innmelderFnr: {
       isRequired: intl.formatMessage({ id: "validering.fodselsnr.pakrevd" }),
+      isNumber: intl.formatMessage({ id: "validering.fodselsnr.siffer" }),
       isExactLength: {
         message: intl.formatMessage({
           id: "validering.fodselsnr.korrektsiffer"

@@ -4,7 +4,7 @@ import { Validation } from "calidation";
 import InputNavn from "components/input-fields/InputNavn";
 import InputField from "components/input-fields/InputField";
 import { AlertStripeAdvarsel } from "nav-frontend-alertstriper";
-import { sjekkForFeil } from "../../../utils/validators";
+import { sjekkForFeil } from "utils/validators";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 
 const ServiceKlageForAnnenPerson = () => {
@@ -18,6 +18,7 @@ const ServiceKlageForAnnenPerson = () => {
     },
     paaVegneAvFodselsnr: {
       isRequired: intl.formatMessage({ id: "validering.fodselsnr.pakrevd" }),
+      isNumber: intl.formatMessage({ id: "validering.fodselsnr.siffer" }),
       isExactLength: {
         message: intl.formatMessage({
           id: "validering.fodselsnr.korrektsiffer"

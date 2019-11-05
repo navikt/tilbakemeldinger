@@ -1,8 +1,7 @@
 import React from "react";
 import { useIntl } from "react-intl";
 import { Validation } from "calidation";
-import InputTelefon from "components/input-fields/InputTelefon";
-import InputField from "../../../components/input-fields/InputField";
+import InputField from "components/input-fields/InputField";
 
 const FeilOgManglerEpost = () => {
   const intl = useIntl();

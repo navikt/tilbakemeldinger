@@ -14,6 +14,7 @@ const ServiceKlageForBedrift = () => {
     },
     orgNummer: {
       isRequired: intl.formatMessage({ id: "validering.orgnr.pakrevd" }),
+      isNumber: intl.formatMessage({ id: "validering.orgnr.siffer" }),
       isExactLength: {
         message: intl.formatMessage({ id: "validering.orgnr.korrektsiffer" }),
         length: 9

@@ -291,11 +291,13 @@ export default {
   "validering.onskerkontakt.pakrevd":
     "Du må velge om du ønsker at vi tar kontakt",
   "validering.fodselsnr.pakrevd": "Fødselsnummer er nødvendig",
+  "validering.fodselsnr.siffer": "Fødselsnummer kan kun bestå av siffer",
   "validering.fodselsnr.korrektsiffer": "Fødselsnummer må være 11 siffer",
   "validering.fullmakt.pakrevd": "Fullmakt er nødvendig",
   "validering.rolle.pakrevd": "Rolle er nødvendig",
   "validering.orgnavn.pakrevd": "Organisasjonsnavn er nødvendig",
   "validering.orgnr.pakrevd": "Organisasjonsnummer er nødvendig",
+  "validering.orgnr.siffer": "Organisasjonsnummer kan kun bestå av siffer",
   "validering.orgnr.korrektsiffer": "Organisasjonsnummer må ha 9 siffer",
   "validering.postadr.pakrevd": "Postadresse er nødvendig",
   "validering.gjeldersosialhjelp.pakrevd":
