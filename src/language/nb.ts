@@ -208,7 +208,7 @@ export default {
   "kontaktoss.aktivitetsplan.knapp":
     "Kontakt din veileder via aktivitetsplanen",
 
-  "kontaktoss.navkontor.tittel": "Finn ditt NAV-kontor",
+  "kontaktoss.navkontor.tittel": "Finn din NAV-enhet",
   "kontaktoss.navkontor.beskrivelse":
     "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
   "kontaktoss.navkontor.knapp": "Finn adressen (du må logge inn)",
@@ -283,7 +283,7 @@ export default {
     "Du må velge hvilken type feil eller mangel du fant",
   "validering.melding.pakrevd": "Melding er nødvendig",
   "validering.hvemroses.pakrevd": "Du må velge hvem du skal gi ros til",
-  "validering.navkontor.pakrevd": "Du må velge NAV-kontor",
+  "validering.navkontor.pakrevd": "Du må velge NAV-enhet",
   "validering.klagetyper.pakrevd": "Du må velge kagetori",
   "validering.klagetyper.velg": "Du må velge minst en kategori",
   "validering.hvemfra.pakrevd":
@@ -319,7 +319,8 @@ export default {
   "felter.hvemroses.navkontaktsenter": "NAV Kontaktsenter",
   "felter.hvemroses.digitaletjenester": "NAVs digitale tjenester",
   "felter.hvemroses.navkontor": "NAV-kontor",
-  "felter.hvemroses.navkontor.velg": "Velg NAV-kontor",
+  "felter.hvemroses.navkontor.velg": "Velg NAV-enhet",
+  "felter.klagerpa.navkontor.velg": "NAV-enheten du klager på",
   "felter.hvemroses.navkontor.skrivinn": "Søk eller velg med piltast",
   "felter.klagetyper": "Hva gjelder tilbakemeldingen?",
   "felter.klagetyper.info":
@@ -388,8 +389,7 @@ export default {
   "chat.aap.lenke.ingress":
     "Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.",
 
-  "chat.sosialhjelp.lenke.tittel":
-    "Sosiale tjenester og økonomisk sosialhjelp",
+  "chat.sosialhjelp.lenke.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.lenke.ingress":
     "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
 
@@ -414,8 +414,7 @@ export default {
   "chat.aap.ingress":
     "<p>Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.</p>",
 
-  "chat.sosialhjelp.tittel":
-    "Sosiale tjenester og økonomisk sosialhjelp",
+  "chat.sosialhjelp.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.ingressKort":
     "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
   "chat.sosialhjelp.ingress":

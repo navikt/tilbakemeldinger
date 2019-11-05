@@ -38,6 +38,7 @@ export type OutboundServiceKlageExtend =
     }
   | {
       paaVegneAv: "BEDRIFT";
+      enhetsnummerPaaklaget: string;
       innmelder: {
         navn: string;
         telefonnummer?: string;
