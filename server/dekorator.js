@@ -1,6 +1,7 @@
 const jsdom = require("jsdom");
 const request = require("request");
 const NodeCache = require("node-cache");
+const logger = require("./logger");
 const { JSDOM } = jsdom;
 
 const SECONDS_PER_MINUTE = 60;
@@ -26,7 +27,7 @@ const getDecorator = namespace =>
   new Promise((resolve, reject) => {
     const decorator = cache.get(namespace);
     if (decorator) {
-      console.log(`${q0}: Using cache`);
+      logger.info(`${q0}: Using cache`);
       resolve(decorator);
     } else {
       request(getUrl(namespace), (error, response, body) => {
@@ -43,7 +44,7 @@ const getDecorator = namespace =>
               prop
             ]
           };
-          console.log(`${q0}: Creating cache`);
+          logger.info(`${q0}: Creating cache`);
           cache.set(namespace, data);
           resolve(data);
         } else {
