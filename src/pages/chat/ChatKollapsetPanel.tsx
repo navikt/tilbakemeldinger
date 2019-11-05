@@ -7,7 +7,7 @@ type Props = {
   cssPrefix: string,
 };
 
-const ChatKollapsetPanelInnhold = ({msgId, cssPrefix}: Props) => (
+const ChatKollapsetPanel = ({msgId, cssPrefix}: Props) => (
   <div className={`${cssPrefix}__panel-innhold`}>
     <Normaltekst>
       <FormattedMessage id={msgId}/>
@@ -15,4 +15,4 @@ const ChatKollapsetPanelInnhold = ({msgId, cssPrefix}: Props) => (
   </div>
 );
 
-export default ChatKollapsetPanelInnhold;
+export default ChatKollapsetPanel;
