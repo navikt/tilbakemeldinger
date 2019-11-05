@@ -102,7 +102,9 @@ const ServiceKlage = () => {
         },
         BEDRIFT: {
           paaVegneAv: "BEDRIFT",
-          enhetsnummerPaaklaget: fields.enhetsnummerPaaklaget.value,
+          ...(fields.enhetsnummerPaaklaget && {
+            enhetsnummerPaaklaget: fields.enhetsnummerPaaklaget.value
+          }),
           innmelder: {
             ...(fields.onskerKontakt && {
               navn: fields.innmelderNavn,
