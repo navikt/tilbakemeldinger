@@ -1,8 +1,8 @@
 import React from "react";
 import { useIntl } from "react-intl";
 import { Validation } from "calidation";
-import InputField from "../../../components/input-fields/InputField";
-import { useStore } from "../../../providers/Provider";
+import InputField from "components/input-fields/InputField";
+import { useStore } from "providers/Provider";
 
 const ServiceKlageTelefon = () => {
   const intl = useIntl();
