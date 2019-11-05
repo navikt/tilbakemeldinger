@@ -11,25 +11,20 @@ interface Props {
   value: string;
 }
 
-const InputTelefon = (props: Props) => {
+const InputEpost = (props: Props) => {
   const [{ auth, kontaktInfo }] = useStore();
-  const { mobiltelefonnummer } = kontaktInfo;
+  const { epostadresse } = kontaktInfo;
   const { error, submitted, value, onChange } = props;
   const [blur, settBlur] = useState(false);
 
-  if (
-    auth.authenticated &&
-    mobiltelefonnummer &&
-    mobiltelefonnummer !== value
-  ) {
-    onChange(mobiltelefonnummer);
+  if (auth.authenticated && epostadresse && epostadresse !== value) {
+    onChange(epostadresse);
   }
 
   return (
     <Input
       bredde={props.bredde}
       label={props.label}
-      required={true}
       value={value}
       onChange={event => onChange(event.currentTarget.value)}
       feil={error && (blur || submitted) ? { feilmelding: error } : undefined}
@@ -38,4 +33,4 @@ const InputTelefon = (props: Props) => {
   );
 };
 
-export default InputTelefon;
+export default InputEpost;
