@@ -2,6 +2,8 @@ import React from "react";
 import { useIntl } from "react-intl";
 import { Validation } from "calidation";
 import InputField from "components/input-fields/InputField";
+import SelectEnhet from "../../../components/input-fields/SelectEnhet";
+import { ValueType } from "react-select/src/types";
 
 const ServiceKlageForBedrift = () => {
   const intl = useIntl();
@@ -16,6 +18,11 @@ const ServiceKlageForBedrift = () => {
         message: intl.formatMessage({ id: "validering.orgnr.korrektsiffer" }),
         length: 9
       }
+    },
+    enhetsnummerPaaklaget: {
+      isRequired: intl.formatMessage({
+        id: "validering.navkontor.pakrevd"
+      })
     }
   };
   return (
@@ -46,6 +53,18 @@ const ServiceKlageForBedrift = () => {
               value={fields.orgNummer}
               error={errors.orgNummer}
               onChange={v => setField({ orgNummer: v })}
+            />
+            <SelectEnhet
+              label={"felter.klagerpa.navkontor.velg"}
+              error={errors.enhetsnummerPaaklaget}
+              submitted={submitted}
+              value={fields.enhetsnummerPaaklaget}
+              onChange={(
+                v: ValueType<{
+                  value: string;
+                  label: string;
+                }>
+              ) => setField({ enhetsnummerPaaklaget: v })}
             />
           </div>
         );

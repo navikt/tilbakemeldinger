@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "assets/Veileder.svg";
 import { Knapp } from "nav-frontend-knapper";
 import { Link } from "react-router-dom";
 import InputMelding from "components/input-fields/InputMelding";
-import { fetchEnheter, postRosTilNav } from "clients/apiClient";
+import { postRosTilNav } from "clients/apiClient";
 import { HTTPError } from "components/error/Error";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
-import { Element } from "nav-frontend-typografi";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, Form, Validation } from "calidation";
-import Select from "react-select";
 import { ValueType } from "react-select/src/types";
-import { Enheter } from "types/enheter";
-import { useStore } from "providers/Provider";
 import Header from "components/header/Header";
 import { urls } from "Config";
 import Box from "components/box/Box";
@@ -22,8 +18,9 @@ import MetaTags from "react-meta-tags";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
-import { triggerHotjar } from "../../../utils/hotjar";
-import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
+import { triggerHotjar } from "utils/hotjar";
+import BreadcrumbsWrapper from "components/breadcrumbs/BreadcrumbsWrapper";
+import SelectEnhet from "components/input-fields/SelectEnhet";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_TJENESTER" | "NAV_KONTOR";
 
@@ -38,22 +35,10 @@ type OutboundRosTilNavExtend =
 
 export type OutboundRosTilNav = OutboundRosTilNavBase & OutboundRosTilNavExtend;
 const Ros = () => {
-  const [{ enheter }, dispatch] = useStore();
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState();
   const intl = useIntl();
-
-  useEffect(() => {
-    fetchEnheter()
-      .then((enheter: Enheter[]) => {
-        dispatch({ type: "SETT_ENHETER_RESULT", payload: enheter });
-      })
-      .catch((error: HTTPError) => {
-        dispatch({ type: "SETT_ENHETER_ERROR", payload: error });
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const formConfig = {
     navn: {},
@@ -190,53 +175,18 @@ const Ros = () => {
                       {fields.hvemRoses === "NAV_KONTOR" && (
                         <Validation config={navKontorConfig}>
                           {() => (
-                            <div className="ros-til-nav__navkontor">
-                              <div className="ros-til-nav__label">
-                                <Element>
-                                  <FormattedMessage
-                                    id={"felter.hvemroses.navkontor.velg"}
-                                  />
-                                </Element>
-                              </div>
-                              {enheter.status === "RESULT" ? (
-                                <Select
-                                  placeholder={intl.formatMessage({
-                                    id: "felter.hvemroses.navkontor.skrivinn"
-                                  })}
-                                  classNamePrefix={
-                                    submitted && errors.navKontor
-                                      ? "ros-til-nav-feil"
-                                      : "ros-til-nav"
-                                  }
-                                  value={fields.navKontor}
-                                  onChange={(
-                                    v: ValueType<{
-                                      value: string;
-                                      label: string;
-                                    }>
-                                  ) => setField({ navKontor: v })}
-                                  options={enheter.data
-                                    .sort((a, b) =>
-                                      a.enhetsnavn < b.enhetsnavn ? -1 : 1
-                                    )
-                                    .map(enhet => ({
-                                      value: enhet.enhetsnummer,
-                                      label: `${enhet.enhetsnavn} -  ${enhet.enhetsnummer}`
-                                    }))}
-                                />
-                              ) : (
-                                <div className="ros-til-nav__spinner">
-                                  <NavFrontendSpinner />
-                                </div>
-                              )}
-                              {submitted && errors.navKontor && (
-                                <div role="alert" aria-live="assertive">
-                                  <div className="skjemaelement__feilmelding">
-                                    {errors.navKontor}
-                                  </div>
-                                </div>
-                              )}
-                            </div>
+                            <SelectEnhet
+                              label={"felter.hvemroses.navkontor.velg"}
+                              error={errors.navKontor}
+                              submitted={submitted}
+                              value={fields.navKontor}
+                              onChange={(
+                                v: ValueType<{
+                                  value: string;
+                                  label: string;
+                                }>
+                              ) => setField({ navKontor: v })}
+                            />
                           )}
                         </Validation>
                       )}
