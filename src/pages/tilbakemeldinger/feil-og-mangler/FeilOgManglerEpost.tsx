@@ -1,10 +1,19 @@
 import React from "react";
 import { useIntl } from "react-intl";
 import { Validation } from "calidation";
+import { useStore } from "providers/Provider";
 import InputField from "components/input-fields/InputField";
 
 const FeilOgManglerEpost = () => {
   const intl = useIntl();
+  const [{ kontaktInfo }] = useStore();
+
+  const initialValues = {
+    ...(kontaktInfo.epostadresse && {
+      epost: kontaktInfo.epostadresse
+    })
+  };
+
   const epostConfig = {
     epost: {
       isRequired: intl.formatMessage({
@@ -17,7 +26,11 @@ const FeilOgManglerEpost = () => {
   };
 
   return (
-    <Validation key={"epost"} config={epostConfig}>
+    <Validation
+      key={"epost"}
+      config={epostConfig}
+      initialValues={initialValues}
+    >
       {({ errors, fields, submitted, setField }) => {
         return (
           <div className="serviceKlage__ekspandert">

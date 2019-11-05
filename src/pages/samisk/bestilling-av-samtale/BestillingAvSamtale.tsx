@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Knapp } from "nav-frontend-knapper";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import InputTelefon from "components/input-fields/InputTelefon";
 import { postSamiskBestillSamtale } from "clients/apiClient";
 import { HTTPError } from "components/error/Error";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
@@ -17,6 +16,7 @@ import { FormattedMessage } from "react-intl";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "assets/Veileder.svg";
 import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
+import { useStore } from "../../../providers/Provider";
 
 type TIDSROM = "FORMIDDAG" | "FORMIDDAG" | "BEGGE";
 export interface OutboundBestillingAvSamtale {
@@ -28,6 +28,7 @@ export interface OutboundBestillingAvSamtale {
 
 const BAS = (props: RouteComponentProps) => {
   document.title = "Bestilling av samtale - www.nav.no";
+  const [{ kontaktInfo }] = useStore();
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState();
@@ -49,6 +50,9 @@ const BAS = (props: RouteComponentProps) => {
   };
 
   const initialValues = {
+    ...(kontaktInfo.mobiltelefonnummer && {
+      telefonnummer: kontaktInfo.mobiltelefonnummer
+    }),
     tidsrom: {
       FORMIDDAG: false,
       ETTERMIDDAG: false
@@ -148,7 +152,7 @@ const BAS = (props: RouteComponentProps) => {
                     onChange={v => setField({ etternavn: v })}
                     submitted={submitted}
                   />
-                  <InputTelefon
+                  <InputField
                     bredde={"S"}
                     label={"Telefovdna*"}
                     value={fields.telefonnummer}

@@ -1,10 +1,19 @@
 import React from "react";
 import { useIntl } from "react-intl";
 import { Validation } from "calidation";
-import InputTelefon from "components/input-fields/InputTelefon";
+import InputField from "components/input-fields/InputField";
+import { useStore } from "providers/Provider";
 
 const ServiceKlageTelefon = () => {
   const intl = useIntl();
+  const [{ kontaktInfo }] = useStore();
+
+  const initialValues = {
+    ...(kontaktInfo.mobiltelefonnummer && {
+      innmelderTlfnr: kontaktInfo.mobiltelefonnummer
+    })
+  };
+
   const tlfFormConfig = {
     innmelderTlfnr: {
       isRequired: intl.formatMessage({ id: "validering.tlf.pakrevd" })
@@ -12,11 +21,15 @@ const ServiceKlageTelefon = () => {
   };
 
   return (
-    <Validation key={"tlf"} config={tlfFormConfig}>
+    <Validation
+      key={"tlf"}
+      config={tlfFormConfig}
+      initialValues={initialValues}
+    >
       {({ errors, fields, submitted, setField }) => {
         return (
           <div className="serviceKlage__ekspandert">
-            <InputTelefon
+            <InputField
               bredde={"S"}
               label={intl.formatMessage({ id: "felter.tlf.tittel" })}
               value={fields.innmelderTlfnr}
