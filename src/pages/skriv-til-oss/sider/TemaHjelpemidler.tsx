@@ -4,24 +4,18 @@ import MetaTags from "react-meta-tags";
 
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { LenkepanelData } from "types/lenker";
-import { Normaltekst } from "nav-frontend-typografi";
 import { urls } from "../../../Config";
 
 const Ingress = () => {
   const intl = useIntl();
   return (
-    <>
-      <MetaTags>
-        <title>{intl.messages["skrivtiloss.hjelpemidler.tittel"]}</title>
-        <meta
-          name="description"
-          content={intl.messages["skrivtiloss.hjelpemidler.description"] as string}
-        />
-      </MetaTags>
-      <Normaltekst className="skriv-til-oss__infotekst">
-        <FormattedMessage id={"skrivtiloss.hjelpemidler.infotekst"} />
-      </Normaltekst>
-    </>
+    <MetaTags>
+      <title>{intl.messages["skrivtiloss.hjelpemidler.tittel"]}</title>
+      <meta
+        name="description"
+        content={intl.messages["skrivtiloss.hjelpemidler.description"] as string}
+      />
+    </MetaTags>
   );
 };
 
