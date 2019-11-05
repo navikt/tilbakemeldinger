@@ -1,8 +1,8 @@
 import React from "react";
 import { useIntl } from "react-intl";
 import { Validation } from "calidation";
-import { useStore } from "../../../providers/Provider";
-import InputField from "../../../components/input-fields/InputField";
+import { useStore } from "providers/Provider";
+import InputField from "components/input-fields/InputField";
 
 const FeilOgManglerEpost = () => {
   const intl = useIntl();
@@ -24,6 +24,7 @@ const FeilOgManglerEpost = () => {
       })
     }
   };
+
   return (
     <Validation
       key={"epost"}
