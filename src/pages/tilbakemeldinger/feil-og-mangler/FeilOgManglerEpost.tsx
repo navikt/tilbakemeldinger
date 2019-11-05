@@ -2,6 +2,7 @@ import React from "react";
 import { useIntl } from "react-intl";
 import { Validation } from "calidation";
 import InputTelefon from "components/input-fields/InputTelefon";
+import InputField from "../../../components/input-fields/InputField";
 
 const FeilOgManglerEpost = () => {
   const intl = useIntl();
@@ -21,7 +22,7 @@ const FeilOgManglerEpost = () => {
       {({ errors, fields, submitted, setField }) => {
         return (
           <div className="serviceKlage__ekspandert">
-            <InputTelefon
+            <InputField
               bredde={"L"}
               label={intl.formatMessage({ id: "felter.epost.tittel" })}
               value={fields.epost}
