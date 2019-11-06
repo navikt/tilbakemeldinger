@@ -84,7 +84,7 @@ export const postSamiskBestillSamtale = (data: OutboundBestillingAvSamtale) =>
  */
 
 const parseJson = (data: any) => data.json();
-const sjekkForFeil = (url: string, response: Response) => {
+const sjekkForFeil = async (url: string, response: Response) => {
   if (response.ok) {
     return response;
   } else {
@@ -92,7 +92,7 @@ const sjekkForFeil = (url: string, response: Response) => {
       code: response.status,
       text:
         response.status === 400
-          ? parseJson(response).then((data: BadRequest) => data.message)
+          ? await parseJson(response).then((data: BadRequest) => data.message)
           : response.statusText
     };
     throw error;
