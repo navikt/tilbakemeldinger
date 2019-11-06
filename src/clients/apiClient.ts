@@ -5,6 +5,7 @@ import { OutboundRosTilNav } from "../pages/tilbakemeldinger/ros-til-nav/Ros";
 import { OutboundFeilOgMangler } from "../pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
 import { OutboundServiceKlage } from "../pages/tilbakemeldinger/service-klage/ServiceKlage";
 import { OutboundBestillingAvSamtale } from "../pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
+import { BadRequest } from "../types/errors";
 const { baseUrl, apiUrl, personInfoApiUrl } = Environment();
 
 /*
@@ -87,14 +88,11 @@ const sjekkForFeil = (url: string, response: Response) => {
   if (response.ok) {
     return response;
   } else {
-    if (response.status === 400) {
-      console.log(parseJson(response));
-    }
     const error = {
       code: response.status,
       text:
         response.status === 400
-          ? parseJson(response).message
+          ? parseJson(response).then((data: BadRequest) => data.message)
           : response.statusText
     };
     throw error;
