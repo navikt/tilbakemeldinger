@@ -69,7 +69,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
     "react-select": "^3.0.7",
-    "typescript": "3.6.3"
+    "typescript": "3.6.3",
+    "unleash-client": "^3.3.0"
   },
   "devDependencies": {
     "@types/calidation": "^1.16.0",

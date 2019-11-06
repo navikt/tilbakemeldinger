@@ -1,9 +1,17 @@
 import React, { ReactNode } from "react";
 import PanelBase from "nav-frontend-paneler";
-import { EkspanderendePanelData } from "./EkspanderendePanelGruppe";
 import { Undertittel } from "nav-frontend-typografi";
 
 const cssPrefix = "ekspanderende-panel";
+
+export type EkspanderendePanelData = {
+  tittel: string,
+  kollapsetInnhold: ReactNode,
+  ekspandertInnhold: ReactNode,
+  id?: string,
+  kollapsetIkon?: ReactNode,
+  ekspandertIkon?: ReactNode,
+};
 
 type Props = {
   checked: boolean,

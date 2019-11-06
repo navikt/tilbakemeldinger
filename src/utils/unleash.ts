@@ -26,3 +26,12 @@ export const getFeatureToggleStatusMultiple = (featureToggleNames: Array<string>
 export const getFeatureToggleStatus = (featureToggleName: string, callback: CallbackTypeSingle) => {
   getFeatureToggleStatusMultiple([featureToggleName], unleashMultipleToSingleCallback(featureToggleName, callback));
 };
+
+// export const initUnleashClient = () => {
+//   const {initialize} = require("unleash-client");
+//   const isntance = initialize({
+//     url: "https://unleashproxy.nais.oera.no/api/",
+//     appname: "tilbakemeldinger",
+//     instanceId: "??!",
+//   });
+// };

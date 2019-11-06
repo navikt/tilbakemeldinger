@@ -52,17 +52,20 @@ type SessionCreateResponse = {
 const sessionConfigApiUrl = urls.chatBotApi.sessionConfig;
 const queueKeyBot = vars.chatBot.queueKeyBot;
 const customerKey = vars.chatBot.customerKey;
-// const configIdsForTema = vars.chatBot.configIds;
 
 const temaFilters: {[key in ChatTema]: string} = {
   [ChatTema.AAP]: "filter.AAP",
   [ChatTema.Familie]: "filter.Familie",
-  [ChatTema.Sosial]: "filter.Sosial",
-  [ChatTema.Okonomi]: "filter.Okonomi",
+  [ChatTema.Sosial]: "",
+  [ChatTema.Okonomi]: "",
 };
 
-const chatbotConfigStorageKey = "chatbot-frida_config";
-const tempStorageKey = "temp-storage";
+const storageKeys = {
+  config: "chatbot-frida_config",
+  apenState: "chatbot-frida_apen",
+  historie: "chatbot-frida_historie",
+  temp: "temp-storage",
+};
 
 const getConfigRequestDataForTema = (tema: ChatTema): SessionCreate => ({
   customerKey: customerKey,
@@ -81,7 +84,7 @@ const getConfigRequestDataForTema = (tema: ChatTema): SessionCreate => ({
 
 // TODO: finn denne ut fra styled-components algoritme som genererer classnames
 const getApneKnappClassName = () => {
-  return "sc-fAjcbJ jPeQQL";
+  return "sc-fAjcbJ";
 };
 
 const getApneFunc = () => {
@@ -109,15 +112,15 @@ const fetchConfigForTema = async (tema: ChatTema) => {
 
 const sessionStorageEventListener = (event: Event) => {
   const storageKey = (event as CustomEvent).detail.key;
-  if (storageKey !== chatbotConfigStorageKey) {
+  if (storageKey !== storageKeys.config) {
     return;
   }
 
   window.removeEventListener("sessionStorageSet", sessionStorageEventListener);
 
-  const temaSpesifikkConfig = sessionStorage.getItem(tempStorageKey);
+  const temaSpesifikkConfig = sessionStorage.getItem(storageKeys.temp);
   if (temaSpesifikkConfig) {
-    sessionStorage.setItem(chatbotConfigStorageKey, temaSpesifikkConfig);
+    sessionStorage.setItem(storageKeys.config, temaSpesifikkConfig);
   }
 };
 
@@ -141,7 +144,7 @@ const apneChatbotForTema = async (temaKode: ChatTema) => {
 
   await fetchConfigForTema(temaKode)
     .then(res => {
-      sessionStorage.setItem(tempStorageKey, JSON.stringify(res));
+      sessionStorage.setItem(storageKeys.temp, JSON.stringify(res));
     })
     .catch((e) => {
       console.log("Error fetching chatbot config: " + e);
@@ -153,6 +156,11 @@ const apneChatbotForTema = async (temaKode: ChatTema) => {
   apneFunc();
 };
 
+const clearSessionData = () => {
+  Object.entries(storageKeys).forEach(([_, storageKey]) => sessionStorage.removeItem(storageKey));
+};
+
 export default {
-  apneChatbotForTema
+  apneChatbotForTema,
+  clearSessionData,
 };
