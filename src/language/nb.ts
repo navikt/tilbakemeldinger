@@ -11,7 +11,7 @@ export default {
   "breadcrumb.arbeidssoker": "Arbeidssøker",
   "breadcrumb.syk": "Syk",
   "breadcrumb.familieogbarn": "Familie og barn",
-  "breadcrumb.hjelpemidler": "Pensjon",
+  "breadcrumb.hjelpemidler": "Hjelpemidler",
   "breadcrumb.chat": "Chat",
   "breadcrumb.tilbakemeldinger": "Tilbakemeldinger",
   "breadcrumb.serviceklage": "Klage på service",
@@ -26,11 +26,12 @@ export default {
     "Tjenesten er dessverre ikke tilgjengelig for øyeblikket.",
   "skrivtiloss.tittel": "Skriv til oss",
   "skrivtiloss.description":
-    "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Normal svartid er 2 arbeidsdager.",
+    "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Normal svartid" +
+    " er 2 arbeidsdager.",
   "skrivtiloss.svartid":
     "Du kan sende oss spørsmål eller informasjon om saken din. Du får normalt svar innen to arbeidsdager.",
   "skrivtiloss.svartid.lang":
-    " På grunn av stor pågang kan svartid for tiden være noe lengre. Vi beklager dette.",
+    " På grunn av stor pågang kan svartiden akkurat nå være noe lengre. Vi beklager dette.",
   "skrivtiloss.ingress":
     "Du må skrive til oss på norsk eller engelsk. Du kan ikke kontakte oss på vegne av andre. Det gjelder også" +
     " fullmektig og verge.",
@@ -45,98 +46,41 @@ export default {
     "Sykemeldt, sykepenger, arbeidsavklaringspenger, pleiepenger, yrkesskade/ménerstatning, hjelp og veiledning for å" +
     " komme i arbeid og aktivitet, med mer.",
 
-  "skrivtiloss.familieogbarn.lenke.tittel": "Familie og barn",
+  "skrivtiloss.familieogbarn.lenke.tittel": "Familie, barn og familie",
   "skrivtiloss.familieogbarn.lenke.ingress":
     "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag og pleiepenger med mer.",
 
   "skrivtiloss.pensjonist.lenke.tittel": "Pensjonist",
   "skrivtiloss.pensjonist.lenke.ingress":
-    "Alderspensjon, barnepensjon, etterlattepensjon og krigspensjon med mer.",
+    "Alderspensjon, barnepensjon, etterlattepensjon og krigspensjon, med mer.",
 
   "skrivtiloss.ufor.lenke.tittel": "Ufør",
   "skrivtiloss.ufor.lenke.ingress":
-    "Uføretrygd, barnetillegg og gjenlevendetillegg med mer.",
+    "Uføretrygd, barnetillegg og gjenlevendetillegg, med mer.",
 
   "skrivtiloss.hjelpemidler.lenke.tittel": "Hjelpemidler",
   "skrivtiloss.hjelpemidler.lenke.ingress":
     "Tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk, tilrettelegging og tilpasning.",
 
-  "skrivtiloss.sosial.lenke.tittel":
-    "Sosiale tjenester og økonomisk sosialhjelp",
-  "skrivtiloss.sosial.lenke.ingress":
-    "Ring 55 55 33 33 for å gi informasjon om saken din. For generelle spørsmål kan du chatte med oss.",
-
-  "arbeidssoker.tittel": "Skriv til oss om arbeid",
-  "arbeidssoker.description":
-    "Gi beskjed om endringer i saken din om sykepenger, dagpenger, arbeidsavklaringspenger, tiltakspenger, yrkesskade/ménerstatning eller lignende. " +
-    "Har du aktivitetsplan så kan du stille spørsmål om oppfølging mot arbeid direkte til veilederen hos NAV.",
-  "arbeidssoker.infotekst":
-    "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Du kan for" +
-    " eksempel sende beskjed om endringer i inntekt, familiesituasjon, jobbsituasjon eller opphold i utlandet som" +
-    " kan ha betydning for beløpet du får utbetalt fra NAV.",
-  "arbeidssoker.lenke.veileder.tittel":
-    "Kontakt din veileder via aktivitetsplanen",
-  "arbeidssoker.lenke.veileder.ingress":
-    "Du kan gi beskjed om endringer i saken din om sykepenger, dagpenger, arbeidsavklaringspenger," +
-    " tiltakspenger, yrkesskade/ménerstatning eller lignende. Hvis du har en aktivitetsplan, kan du stille spørsmål" +
-    " som gjelder oppfølging mot arbeid direkte til veilederen ved NAV-kontoret.",
-  "arbeidssoker.lenke.skrivtiloss.tittel": "Skriv til oss",
-  "arbeidssoker.lenke.skrivtiloss.ingress":
-    "Hvis du har spørsmål om saken din, så kan du skrive til oss. Du får svar etter omtrent {numDager} arbeidsdager.",
-  "arbeidssoker.lenke.snapchat.tittel": "Snapchat",
-  "arbeidssoker.lenke.snapchat.ingress":
-    "Legg til navjobblyst på Snapchat og se hverdagen til unge som kommer i jobb.",
-
-  "syk.tittel": "Syk",
-  "syk.description": "",
-  "syk.infotekst": "",
-  "syk.lenke.skrivtiloss.tittel": "Skriv til oss",
-  "syk.lenke.skrivtiloss.ingress":
-    "Du kan ikke sende e-post til oss, men du kan sende spørsmål eller informasjon om saken din ved å logge inn på" +
-    " Ditt NAV. Du får svar innen to arbeidsdager.",
-  "syk.lenke.veileder.tittel": "Kontakt til veileder",
-  "syk.lenke.veileder.ingress":
-    "Hvis du er registrert som arbeidssøker, kan du skrive direkte til veilederen din.",
-
-  "familieogbarn.tittel": "Skriv til oss om familie",
-  "familieogbarn.description":
-    "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. " +
-    "Du kan for eksempel sende beskjed om endringer i inntekt, familiesituasjon, jobbsituasjon eller opphold i utlandet som kan ha betydning for beløpet du får utbetalt fra NAV.",
-  "familieogbarn.infotekst":
-    "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Du kan for" +
-    " eksempel sende beskjed om endringer i inntekt, familiesituasjon, jobbsituasjon eller opphold i utlandet som" +
-    " kan ha betydning for beløpet du får utbetalt fra NAV.",
-  "familieogbarn.lenke.skrivtiloss.tittel": "Skriv til oss",
-  "familieogbarn.lenke.skrivtiloss.ingress":
-    "Hvis du har spørsmål om saken din, så kan du skrive til oss. Du får svar etter omtrent {numDager} arbeidsdager.",
-
-  "hjelpemidler.tittel": "Skriv til oss om hjelpemidler",
-  "hjelpemidler.description":
-    "Send spørsmål eller opplysninger om tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk, tilrettelegging og tilpasning.",
-  "hjelpemidler.infotekst": " ",
-  "hjelpemidler.lenke.generelt.tittel": "Generelle spørsmål",
-  "hjelpemidler.lenke.generelt.ingress":
+  "skrivtiloss.hjelpemidler.tittel": "Skriv til oss om hjelpemidler",
+  "skrivtiloss.hjelpemidler.description":
+    "Send spørsmål eller opplysninger om tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk," +
+    " tilrettelegging og tilpasning.",
+  "skrivtiloss.hjelpemidler.generelt.tittel": "Generelle spørsmål",
+  "skrivtiloss.hjelpemidler.generelt.ingress":
     "Gjelder spørsmål om hjelpemidler eller tiltak som bidrar til å reduserer praktiske problemer for personer" +
     " med nedsatt funksjonsevne.",
-  "hjelpemidler.lenke.skrivtiloss.tittel": "Skriv til oss",
-  "hjelpemidler.lenke.skrivtiloss.ingress":
+  "skrivtiloss.hjelpemidler.ortopediske.tittel": "Ortopediske hjelpemidler",
+  "skrivtiloss.hjelpemidler.ortopediske.ingress":
     "Du kan sende oss nye opplysninger knyttet til saken din om høreapparat, parykk, protese, ortose eller" +
     " ortopediske fottøy.",
-  "hjelpemidler.lenke.bil.tittel": "Spørsmål om bil og spesialutstyr til bil",
-  "hjelpemidler.lenke.bil.ingress":
+  "skrivtiloss.hjelpemidler.bil.tittel": "Spørsmål om bil og spesialutstyr til bil",
+  "skrivtiloss.hjelpemidler.bil.ingress":
     "Gjelder spørsmål eller opplysninger om bil og transport for personer med varig nedsatt funksjonsevne som" +
     " ikke kan bruke offentlig transport til arbeid, skole eller i dagliglivet.",
-  "hjelpemidler.lenke.tolk.tittel": "Tegnspråktolk",
-  "hjelpemidler.lenke.tolk.ingress":
+  "skrivtiloss.hjelpemidler.tolk.tittel": "Tegnspråktolk",
+  "skrivtiloss.hjelpemidler.tolk.ingress":
     "Gjelder det bestilling av tolketjenester, send e-post eller sms til den lokale tolketjenesten din.",
-
-  "skrivtiloss.temalenke.chat.tittel": "Chat",
-  "skrivtiloss.temalenke.chat.ingress":
-    "På chat kan vi ikke gi status eller svar på pågående saker, men hjelper deg gjerne med generelle" +
-    " spørsmål.",
-  "skrivtiloss.temalenke.facebook.tittel": "Facebook",
-  "skrivtiloss.temalenke.facebook.ingress":
-    "Våre veiledere svarer på generelle spørsmål innen 1 arbeidsdag.",
 
   "faq.intro": "Nå spør mange om dette",
   "faq.nesteutbetaling": "Når kommer neste utbetaling?",
@@ -173,7 +117,8 @@ export default {
     "Arbeidssøker, dagpenger, arbeidsavklaringspenger eller sykemeldt",
   "kontaktoss.ringoss.tastevalg.tast3.tittel": "Tast 3",
   "kontaktoss.ringoss.tastevalg.tast3.beskrivelse":
-    "Foreldrepenger, engangsstønad, svangerskapspenger, barnebidrag, barnetrygd, kontantstøtte, enslig forsørger, pleiepenger og andre familieytelser",
+    "Foreldrepenger, engangsstønad, svangerskapspenger, barnebidrag, barnetrygd, kontantstøtte, enslig forsørger," +
+    " pleiepenger og andre familieytelser",
   "kontaktoss.ringoss.tastevalg.tast4.tittel": "Tast 4",
   "kontaktoss.ringoss.tastevalg.tast4.beskrivelse": "Uføretrygd og honnørkort",
   "kontaktoss.ringoss.tastevalg.tast5.tittel": "Tast 5",
@@ -215,7 +160,8 @@ export default {
 
   "kontaktoss.klage.tittel": "Klage og tilbakemeldinger",
   "kontaktoss.klage.beskrivelse":
-    "Du kan klage hvis du har fått helt eller delvis avslag på søknaden din, og hvis du har hatt en negativ opplevelse i møte med NAV",
+    "Du kan klage hvis du har fått helt eller delvis avslag på søknaden din, og hvis du har hatt en negativ" +
+    " opplevelse i møte med NAV",
   "kontaktoss.klage.knapp": "Slik går du frem for å klage",
 
   "kontaktoss.tolketjenesten.tittel": "Kontakt tolketjenesten",
@@ -236,7 +182,8 @@ export default {
 
   "tilbakemeldinger.klageanke.tittel": "Klage eller anke på vedtak",
   "tilbakemeldinger.klageanke.beskrivelse":
-    "Har du fått helt eller delvis avslag på søknaden din, kan du klage på avslaget. Får du ikke medhold i klagen din i NAV, kan du med noen unntak anke til Trygderetten.",
+    "Har du fått helt eller delvis avslag på søknaden din, kan du klage på avslaget. Får du ikke medhold i klagen din" +
+    " i NAV, kan du med noen unntak anke til Trygderetten.",
   "tilbakemeldinger.klageanke.link": "Send klage eller anke på vedtak",
 
   "tilbakemeldinger.serviceklage.tittel": "Klage på service",
@@ -258,7 +205,8 @@ export default {
 
   "tilbakemeldinger.feilogmangler.tittel": "Feil og mangler på nav.no",
   "tilbakemeldinger.feilogmangler.beskrivelse":
-    "Har du oppdaget en feil på nav.no? Kanskje en teknisk feil, feil informasjon eller for lav grad av universell utforming? Da vil vi gjerne høre fra deg.",
+    "Har du oppdaget en feil på nav.no? Kanskje en teknisk feil, feil informasjon eller for lav grad av universell" +
+    " utforming? Da vil vi gjerne høre fra deg.",
   "tilbakemeldinger.feilogmangler.link": "Meld fra om feil og mangler",
   "tilbakemeldinger.feilogmangler.form.tittel": "Feil og mangler",
   "tilbakemeldinger.feilogmangler.form.veileder":
@@ -364,10 +312,12 @@ export default {
 
   "seo.kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "seo.kontaktoss.description":
-    "Kontakt NAV via chat, skriv til oss, telefon eller sosiale medier. Finn ditt NAV-kontor, kontakt tolketjenesten, send klage eller tilbakemeldinger.",
+    "Kontakt NAV via chat, skriv til oss, telefon eller sosiale medier. Finn ditt NAV-kontor, kontakt tolketjenesten," +
+    " send klage eller tilbakemeldinger.",
   "seo.tilbakemeldinger.tittel": "Tilbakemeldinger til NAV - www.nav.no",
   "seo.tilbakemeldinger.description":
-    "Her kan du gi tilbakemeldinger til NAV, klage eller anke på vedtak, service og melde fra om feil og mangler på nav.no. Du kan også gi oss ros om våre tjenester og medarbeidere.",
+    "Her kan du gi tilbakemeldinger til NAV, klage eller anke på vedtak, service og melde fra om feil og mangler på" +
+    " nav.no. Du kan også gi oss ros om våre tjenester og medarbeidere.",
   "seo.rostilnav.tittel": "Ros til NAV - www.nav.no",
   "seo.rostilnav.description":
     "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
@@ -383,21 +333,6 @@ export default {
     "Vi hjelper deg med å finne frem på nav.no og kan svare deg på spørsmål om hva du kan ha rett på. Vi kan ikke se" +
     " saken din eller utgi personlige opplysninger.",
 
-  "chat.familie.lenke.tittel": "Foreldre, barn og familie",
-  "chat.familie.lenke.ingress":
-    "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger med mer.",
-
-  "chat.aap.lenke.tittel": "Jobbsøker",
-  "chat.aap.lenke.ingress":
-    "Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.",
-
-  "chat.sosialhjelp.lenke.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
-  "chat.sosialhjelp.lenke.ingress":
-    "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
-
-  "chat.okonomi.lenke.tittel": "Økonomi og gjeldsrådgivning",
-  "chat.okonomi.lenke.ingress": "Budsjett, økonomi og gjeldsrådgivning.",
-
   "chat.startknapp": "Start chat",
   "chat.advarsel.personvern":
     "<p>Alle samtaler blir lagret anonymt i 6 måneder.</p><p>Ikke oppgi navn, fødselsnummer eller" +
@@ -408,13 +343,16 @@ export default {
     "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger med mer.",
   "chat.familie.ingress":
     "<p>Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger med mer.</p>" +
+    "<p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
     "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
 
   "chat.aap.tittel": "Jobbsøker",
   "chat.aap.ingressKort":
     "Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.",
   "chat.aap.ingress":
-    "<p>Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.</p>",
+    "<p>Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller" +
+    " aktivitet.</p><p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
+    "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
 
   "chat.sosialhjelp.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.ingressKort":

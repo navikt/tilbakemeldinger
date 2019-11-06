@@ -26,41 +26,31 @@ export const urls = {
   },
   skrivTilOss: {
     forside: `${baseUrl}/skriv-til-oss`,
-    arbeidssoker: `${baseUrl}/skriv-til-oss/arbeidssoker`,
-    familieogbarn: `${baseUrl}/skriv-til-oss/familieogbarn`,
-    pensjonist: "#",
-    syk: "#",
+    arbeidssoker: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
+    familieogbarn: `${tjenesteUrl}/mininnboks/sporsmal/skriv/FMLI`,
+    pensjonist: `${tjenesteUrl}/mininnboks/sporsmal/skriv/PENS`,
+    syk: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
     hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`,
-    ufor: "#",
-    sosial: "#"
+    ufor: `${tjenesteUrl}/mininnboks/sporsmal/skriv/UFRT`,
+    temaHjelpemidler: {
+      generelt: `${tjenesteUrl}/mininnboks/sporsmal/skriv/HJLPM`,
+      ortopediske: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ORT_HJE`,
+      bil: `${tjenesteUrl}/mininnboks/sporsmal/skriv/BIL`,
+      tolk: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Tolketjenesten`
+    },
   },
   chat: {
     forside: `${baseUrl}/chat`,
-    familie: `${baseUrl}/chat/familie`,
-    aap: `${baseUrl}/chat/aap`,
-    sosialhjelp: `${baseUrl}/chat/sosialhjelp`,
-    okonomi: `${baseUrl}/chat/okonomi`
+    familie: "#",
+    aap: "#",
+    sosialhjelp: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-sosialetjenester`,
+    okonomi: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-gjeldsradgivning`
   },
   chatBotApi: {
     sessionConfig: "https://api.puzzel.com/chat/v1/sessions"
   },
   facebook: "#",
   snapchat: "#",
-  temaArbeidssoker: {
-    veileder: "#",
-    chat: "#",
-    skrivtiloss: "#"
-  },
-  temaFamilieOgBarn: {
-    chat: "#",
-    skrivtiloss: "#"
-  },
-  temaHjelpemidler: {
-    generelt: "#",
-    skrivtiloss: "#",
-    bil: "#",
-    tolk: "#"
-  },
   fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
   faq: {

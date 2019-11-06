@@ -3,8 +3,6 @@ import { Route, Switch } from "react-router";
 import { urls } from "../../Config";
 
 import SkrivTilOssForside from "./sider/SkrivTilOssForside";
-import TemaArbeidssoker from "./sider/TemaArbeidssoker";
-import TemaFamilieOgBarn from "./sider/TemaFamilieOgBarn";
 import TemaHjelpemidler from "./sider/TemaHjelpemidler";
 import NotFound from "../404/404";
 
@@ -16,18 +14,6 @@ const SkrivTilOssRouter = () => {
         path={urls.skrivTilOss.forside}
       >
         <SkrivTilOssForside />
-      </Route>
-      <Route
-        exact={true}
-        path={urls.skrivTilOss.arbeidssoker}
-      >
-        <TemaArbeidssoker />
-      </Route>
-      <Route
-        exact={true}
-        path={urls.skrivTilOss.familieogbarn}
-      >
-        <TemaFamilieOgBarn />
       </Route>
       <Route
         exact={true}
