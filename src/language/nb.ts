@@ -301,7 +301,7 @@ export default {
         Vi kan ikke kontakte deg med mindre vi har mottatt en fullmakt fra personen det gjelder.
         <a href="${urls.fullmaktskjema}">Gå til fullmaktskjema</a>.`,
   "felter.orgnavn": "Organisasjonsnavn",
-  "felter.orgnr": "Organisasjonsnummer",
+  "felter.orgnr": "Organisasjonsnummer (til din lokale enhet)",
   "felter.postadr": "Bedriftens postadresse",
   "felter.tlf.bedrift": "Bedriftens telefonnummer",
   "felter.gjeldersosialhjelp":
