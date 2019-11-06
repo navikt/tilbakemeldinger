@@ -50,7 +50,8 @@ const ServiceKlage = () => {
       isRequired: intl.formatMessage({ id: "validering.hvemfra.pakrevd" })
     },
     melding: {
-      isRequired: intl.formatMessage({ id: "validering.melding.pakrevd" })
+      isRequired: intl.formatMessage({ id: "validering.melding.pakrevd" }),
+      isValidMelding: intl.formatMessage({ id: "validering.melding.tegn" })
     }
   };
 

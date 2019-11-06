@@ -6,6 +6,7 @@ import {
   ValidatorContext
 } from "calidation";
 import { KLAGE_TYPE } from "../types/serviceklage";
+import { vars } from "../Config";
 
 /*
   Form validators
@@ -15,6 +16,7 @@ export type ExtraFieldsConfig = Dictionary<FieldConfig & ExtraFieldConfig>;
 export interface ExtraFieldConfig {
   isValidTidsrom?: SimpleValidator;
   isValidFeiltyper?: SimpleValidator;
+  isValidMelding?: SimpleValidator;
 }
 
 export const extraValidators: Validators = {
@@ -24,7 +26,10 @@ export const extraValidators: Validators = {
   }) => (!(value.FORMIDDAG || value.ETTERMIDDAG) ? config.message : null),
 
   isValidFeiltyper: (config: SimpleValidatorConfig) => (value: KLAGE_TYPE[]) =>
-    !value.length ? config.message : null
+    !value.length ? config.message : null,
+
+  isValidMelding: (config: SimpleValidatorConfig) => (value: string) =>
+    value.length > vars.maksLengdeMelding ? config.message : null
 };
 
 export const sjekkForFeil = (submitted: boolean, error: string | null) =>

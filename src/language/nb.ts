@@ -231,6 +231,7 @@ export default {
   "validering.feiltype.pakrevd":
     "Du må velge hvilken type feil eller mangel du fant",
   "validering.melding.pakrevd": "Melding er nødvendig",
+  "validering.melding.tegn": "Du har tastet inn for mange tegn",
   "validering.hvemroses.pakrevd": "Du må velge hvem du skal gi ros til",
   "validering.navkontor.pakrevd": "Du må velge NAV-enhet",
   "validering.klagetyper.pakrevd": "Du må velge kagetori",
