@@ -89,7 +89,10 @@ const sjekkForFeil = (url: string, response: Response) => {
   } else {
     const error = {
       code: response.status,
-      text: response.statusText
+      text:
+        response.status === 400
+          ? parseJson(response).message
+          : response.statusText
     };
     throw error;
   }
