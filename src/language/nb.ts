@@ -260,7 +260,7 @@ export default {
   "felter.typefeil.tekniskfeil": "Teknisk feil",
   "felter.typefeil.feilinformasjon": "Feil informasjon",
   "felter.typefeil.uu": "Lav grad av universell utforming",
-  "felter.melding.tittel": "Skriv din tilbakemelding her",
+  "felter.melding.tittel": "Din tilbakemelding",
   "felter.melding.beskrivelse":
     "Unngå sensitive personopplysninger, som f.eks eksempel opplysninger om helseforhold eller diagnoser",
   "felter.noegikkgalt": "Oi! Noe gikk galt:",
