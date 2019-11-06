@@ -74,7 +74,8 @@ export default {
   "skrivtiloss.hjelpemidler.ortopediske.ingress":
     "Du kan sende oss nye opplysninger knyttet til saken din om høreapparat, parykk, protese, ortose eller" +
     " ortopediske fottøy.",
-  "skrivtiloss.hjelpemidler.bil.tittel": "Spørsmål om bil og spesialutstyr til bil",
+  "skrivtiloss.hjelpemidler.bil.tittel":
+    "Spørsmål om bil og spesialutstyr til bil",
   "skrivtiloss.hjelpemidler.bil.ingress":
     "Gjelder spørsmål eller opplysninger om bil og transport for personer med varig nedsatt funksjonsevne som" +
     " ikke kan bruke offentlig transport til arbeid, skole eller i dagliglivet.",
@@ -290,8 +291,7 @@ export default {
   "felter.fodselsnr": "Fødselsnummer",
   "felter.dittnavn": "Ditt navn",
   "felter.dinrolle.annenperson": "Din rolle (nær pårørende, behandler e.l.)",
-  "felter.dinrolle.bedrift":
-    "Din rolle (leder, HR-ansvarlig, tillitsvalgt osv.)",
+  "felter.dinrolle.bedrift": "Din rolle (valgfri)",
   "felter.navntilklager": "På vegne av (navn)",
   "felter.fodselsnrtilklager": "På vegne av (fødselsnummer)",
   "felter.fullmakt": "Har du fullmakt?",
