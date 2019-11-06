@@ -87,6 +87,9 @@ const sjekkForFeil = (url: string, response: Response) => {
   if (response.ok) {
     return response;
   } else {
+    if (response.status === 400) {
+      console.log(parseJson(response));
+    }
     const error = {
       code: response.status,
       text:
