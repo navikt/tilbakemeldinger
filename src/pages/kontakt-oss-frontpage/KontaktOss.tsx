@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Sidetittel } from "nav-frontend-typografi";
 import FAQ from "./sections/FAQ";
-import LenkePanel from "./sections/KlageOgTilbakemeldinger";
 import UnderUtvikling from "../../components/veiledere/UnderUtvikling";
 import FeilOgMangler from "./sections/FeilOgMangler";
 import SosialeMedier from "./sections/SosialeMedier";
@@ -55,8 +54,10 @@ const KontaktOssFrontpage = () => {
         {miljo === "PROD" && <UnderUtvikling />}
         <div className="frontpage__content">
           <Chat />
-          <RingOss />
-          <FAQ />
+          <div className="frontpage__row">
+            <RingOss />
+            <FAQ />
+          </div>
           <SkrivTilOss />
           <SosialeMedier />
           <FinnNavKontor />

@@ -4,7 +4,8 @@ import { FormattedHTMLMessage, FormattedMessage } from "react-intl";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 import { urls } from "../../../Config";
 
-import ikon from "assets/forside-chat-ikon.svg";
+import ikon from "assets/forside-navkontor-ikon.svg";
+import ChevronLenke from "../../../components/chevronlenke/ChevronLenke";
 
 const FinnNavKontor = () => {
   const tittel = <FormattedMessage id={"kontaktoss.navkontor.tittel"} />;
@@ -12,12 +13,12 @@ const FinnNavKontor = () => {
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
       <>
-        <div className={"box__section-description"}>
+        <div>
           <FormattedHTMLMessage id="kontaktoss.navkontor.beskrivelse" />
         </div>
-        <a className="lenke" href={urls.finnDittNavKontor}>
+        <ChevronLenke href={urls.finnDittNavKontor} isExternal={true}>
           <FormattedMessage id="kontaktoss.navkontor.knapp" />
-        </a>
+        </ChevronLenke>
       </>
     </IkonPanel>
   );

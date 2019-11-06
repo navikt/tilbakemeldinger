@@ -4,7 +4,8 @@ import { FormattedMessage } from "react-intl";
 
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 
-import ikon from "assets/forside-chat-ikon.svg";
+import ikon from "assets/forside-facebook-ikon.svg";
+import ChevronLenke from "../../../components/chevronlenke/ChevronLenke";
 
 const urlSosialeMedier = urls.sosialeMedier;
 
@@ -13,13 +14,13 @@ const SosialeMedier = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <div className={"box__section-description"}>
+      <div>
         <FormattedMessage id={"kontaktoss.sosialemedier.beskrivelse"} />
       </div>
-      <div className="faq__lenke">
-        <a className="lenke" href={urlSosialeMedier}>
+      <div>
+        <ChevronLenke href={urlSosialeMedier} isExternal={true}>
           <FormattedMessage id={"kontaktoss.sosialemedier.link"} />
-        </a>
+        </ChevronLenke>
       </div>
     </IkonPanel>
   );

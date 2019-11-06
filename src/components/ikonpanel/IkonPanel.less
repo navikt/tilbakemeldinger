@@ -3,23 +3,28 @@
 
 @ikonSize: 5em;
 
+.setBoxShadowColor(@color) {
+  box-shadow: inset 4px 4px @color, inset -4px -4px @color;
+}
+
 .ikonpanel {
   padding: @paddingy @paddingx;
-  margin-top: 3rem;
-  box-shadow: inset 4px 4px @navGra80, inset -4px -4px @navGra80;
+  margin-top: @ikonSize/2;
+  //box-shadow: inset 4px 4px @navGra80, inset -4px -4px @navGra80;
+  .setBoxShadowColor(@navGra80);
 
   &__ikon {
     width: @ikonSize;
     height: @ikonSize;
-    position: absolute;
+    position: relative;
     left: 50%;
     margin-top: -(@ikonSize/2 + @paddingy);
     margin-left: -@ikonSize/2;
 
     background-color: white;
-    padding: 0.75em;
+    padding: 1em;
 
-    border-radius: 8px;
+    //border-radius: 8px;
     //border: 2px solid @navGra80;
   }
 
@@ -35,3 +40,4 @@
     margin-top: 1em;
   }
 }
+

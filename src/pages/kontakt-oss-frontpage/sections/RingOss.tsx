@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Undertittel } from "nav-frontend-typografi";
-import Lenke from "nav-frontend-lenker";
 import { NedChevron, OppChevron } from "nav-frontend-chevron";
 import { spesialnr, tastevalg } from "./RingOssData";
 import { urls } from "../../../Config";
@@ -8,14 +7,17 @@ import { FormattedMessage } from "react-intl";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 
 import ikon from "assets/forside-ringoss-ikon.svg";
+import ChevronLenke from "../../../components/chevronlenke/ChevronLenke";
 
 const RingOss = () => {
   const tittel = <FormattedMessage id={"kontaktoss.ringoss.tittel"} />;
   const [visNummer, settVisNummer] = useState(false);
 
   return (
-    <IkonPanel ikon={ikon} tittel={tittel}>
-      <FormattedMessage id={"kontaktoss.ringoss.beskrivelse"} />
+    <IkonPanel ikon={ikon} tittel={tittel} className="ringoss">
+      <p>
+        <FormattedMessage id={"kontaktoss.ringoss.beskrivelse"} />
+      </p>
       <button
         className={"ringoss__visnr box__section-lenke lenke"}
         onClick={() => settVisNummer(!visNummer)}
@@ -86,14 +88,14 @@ const RingOss = () => {
             </tbody>
           </table>
           <div className={"faq__lenke"}>
-            <Lenke href={urls.veteraner}>
+            <ChevronLenke href={urls.veteraner} isExternal={true}>
               <FormattedMessage id={"kontaktoss.ringoss.forsvaret"} />
-            </Lenke>
+            </ChevronLenke>
           </div>
           <div className={"faq__lenke"}>
-            <Lenke href={"#"} className={"faq__lenke"}>
+            <ChevronLenke href={"#"} className={"faq__lenke"}>
               <FormattedMessage id={"kontaktoss.ringoss.forandre"} />
-            </Lenke>
+            </ChevronLenke>
           </div>
           {/*
             <div className={"ringoss__andre"}>
