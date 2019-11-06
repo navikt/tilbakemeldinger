@@ -92,7 +92,7 @@ const ServiceKlage = () => {
             ...(fields.innmelderTlfnr && {
               telefonnummer: fields.innmelderTlfnr
             }),
-            harFullmakt: fields.innmelderHarFullmakt === "true",
+            harFullmakt: fields.innmelderHarFullmakt,
             rolle: fields.innmelderRolle
           },
           paaVegneAvPerson: {
