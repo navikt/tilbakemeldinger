@@ -1,7 +1,8 @@
-import { Textarea, TextareaProps } from "nav-frontend-skjema";
-import React, { SyntheticEvent, useState } from "react";
+import { TextareaControlled, TextareaProps } from "nav-frontend-skjema";
+import React, { KeyboardEvent, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { AlertStripeAdvarsel } from "nav-frontend-alertstriper";
+import { vars } from "../../Config";
 
 interface Props extends Omit<TextareaProps, "onChange"> {
   onChange: (value: string) => void;
@@ -21,18 +22,19 @@ const InputMelding = (props: Props) => {
           <FormattedMessage id={"felter.melding.beskrivelse"} />
         </AlertStripeAdvarsel>
       </div>
-      <Textarea
+      <TextareaControlled
         label={""}
         required={true}
         value={value}
-        onChange={(e: SyntheticEvent<EventTarget, Event>) => {
+        defaultValue={""}
+        maxLength={vars.maksLengdeMelding}
+        feil={error && (blur || submitted) ? { feilmelding: error } : undefined}
+        onBlur={() => settBlur(true)}
+        onKeyUp={(e: KeyboardEvent<HTMLTextAreaElement>) => {
           if (e.target instanceof HTMLTextAreaElement) {
             props.onChange(e.target.value);
           }
         }}
-        feil={error && (blur || submitted) ? { feilmelding: error } : undefined}
-        onBlur={() => settBlur(true)}
-        maxLength={0}
       />
     </div>
   );

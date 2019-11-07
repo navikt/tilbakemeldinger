@@ -74,7 +74,8 @@ export default {
   "skrivtiloss.hjelpemidler.ortopediske.ingress":
     "Du kan sende oss nye opplysninger knyttet til saken din om høreapparat, parykk, protese, ortose eller" +
     " ortopediske fottøy.",
-  "skrivtiloss.hjelpemidler.bil.tittel": "Spørsmål om bil og spesialutstyr til bil",
+  "skrivtiloss.hjelpemidler.bil.tittel":
+    "Spørsmål om bil og spesialutstyr til bil",
   "skrivtiloss.hjelpemidler.bil.ingress":
     "Gjelder spørsmål eller opplysninger om bil og transport for personer med varig nedsatt funksjonsevne som" +
     " ikke kan bruke offentlig transport til arbeid, skole eller i dagliglivet.",
@@ -230,6 +231,7 @@ export default {
   "validering.feiltype.pakrevd":
     "Du må velge hvilken type feil eller mangel du fant",
   "validering.melding.pakrevd": "Melding er nødvendig",
+  "validering.melding.tegn": "Du har tastet inn for mange tegn",
   "validering.hvemroses.pakrevd": "Du må velge hvem du skal gi ros til",
   "validering.navkontor.pakrevd": "Du må velge NAV-enhet",
   "validering.klagetyper.pakrevd": "Du må velge kagetori",
@@ -259,7 +261,7 @@ export default {
   "felter.typefeil.tekniskfeil": "Teknisk feil",
   "felter.typefeil.feilinformasjon": "Feil informasjon",
   "felter.typefeil.uu": "Lav grad av universell utforming",
-  "felter.melding.tittel": "Skriv din tilbakemelding her",
+  "felter.melding.tittel": "Din tilbakemelding",
   "felter.melding.beskrivelse":
     "Unngå sensitive personopplysninger, som f.eks eksempel opplysninger om helseforhold eller diagnoser",
   "felter.noegikkgalt": "Oi! Noe gikk galt:",
@@ -290,8 +292,7 @@ export default {
   "felter.fodselsnr": "Fødselsnummer",
   "felter.dittnavn": "Ditt navn",
   "felter.dinrolle.annenperson": "Din rolle (nær pårørende, behandler e.l.)",
-  "felter.dinrolle.bedrift":
-    "Din rolle (leder, HR-ansvarlig, tillitsvalgt osv.)",
+  "felter.dinrolle.bedrift": "Din rolle (valgfri)",
   "felter.navntilklager": "På vegne av (navn)",
   "felter.fodselsnrtilklager": "På vegne av (fødselsnummer)",
   "felter.fullmakt": "Har du fullmakt?",
@@ -299,9 +300,9 @@ export default {
   "felter.fullmakt.nei": "Nei, jeg har ikke fullmakt",
   "felter.fullmakt.advarsel": `
         Vi kan ikke kontakte deg med mindre vi har mottatt en fullmakt fra personen det gjelder.
-        <a href="${urls.fullmaktskjema}">Gå til fullmaktskjema</a>.`,
+        <a href="${urls.fullmaktskjema}" target="_blank">Gå til fullmaktskjema</a>.`,
   "felter.orgnavn": "Organisasjonsnavn",
-  "felter.orgnr": "Organisasjonsnummer",
+  "felter.orgnr": "Organisasjonsnummer (til din lokale enhet)",
   "felter.postadr": "Bedriftens postadresse",
   "felter.tlf.bedrift": "Bedriftens telefonnummer",
   "felter.gjeldersosialhjelp":

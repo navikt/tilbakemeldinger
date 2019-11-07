@@ -37,7 +37,7 @@ export const urls = {
       ortopediske: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ORT_HJE`,
       bil: `${tjenesteUrl}/mininnboks/sporsmal/skriv/BIL`,
       tolk: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Tolketjenesten`
-    },
+    }
   },
   chat: {
     forside: `${baseUrl}/chat`,
@@ -77,6 +77,7 @@ export const urls = {
 
 export const vars = {
   svartidDager: 2,
+  maksLengdeMelding: 10000,
   unleash: {
     timeout: 3000,
     skrivTilOssEnabledDefault: true,
