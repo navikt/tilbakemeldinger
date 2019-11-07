@@ -5,6 +5,7 @@ import { OutboundRosTilNav } from "../pages/tilbakemeldinger/ros-til-nav/Ros";
 import { OutboundFeilOgMangler } from "../pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
 import { OutboundServiceKlage } from "../pages/tilbakemeldinger/service-klage/ServiceKlage";
 import { OutboundBestillingAvSamtale } from "../pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
+import { BadRequest } from "../types/errors";
 const { baseUrl, apiUrl, personInfoApiUrl } = Environment();
 
 /*
@@ -83,13 +84,16 @@ export const postSamiskBestillSamtale = (data: OutboundBestillingAvSamtale) =>
  */
 
 const parseJson = (data: any) => data.json();
-const sjekkForFeil = (url: string, response: Response) => {
+const sjekkForFeil = async (url: string, response: Response) => {
   if (response.ok) {
     return response;
   } else {
     const error = {
       code: response.status,
-      text: response.statusText
+      text:
+        response.status === 400
+          ? await parseJson(response).then((data: BadRequest) => data.message)
+          : response.statusText
     };
     throw error;
   }
