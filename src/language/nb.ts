@@ -276,7 +276,7 @@ export default {
     "Velg det alternativet som passer best. Du har mulighet til å velge flere kategorier.",
   "felter.klagetyper.telefon": "Telefon",
   "felter.klagetyper.navkontor": "Lokalt NAV-kontor",
-  "felter.klagetyper.navno": "NAVs digitale tjenester",
+  "felter.klagetyper.digitaletjenester": "NAVs digitale tjenester",
   "felter.klagetyper.brev": "Brev",
   "felter.klagetyper.annet": "Annet",
   "felter.hvemfra": "Hvem skriver du på vegne av?",

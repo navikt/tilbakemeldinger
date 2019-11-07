@@ -229,7 +229,7 @@ const ServiceKlage = () => {
                       />
                       <Checkbox
                         label={intl.formatMessage({
-                          id: "felter.klagetyper.navno"
+                          id: "felter.klagetyper.digitaletjenester"
                         })}
                         name={"NAV_DIGITALE_TJENESTER"}
                         checked={fields.klagetyper.includes(
