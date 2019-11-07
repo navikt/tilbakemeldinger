@@ -1,7 +1,7 @@
-const w = window as any;
-
 export const triggerHotjar = (id: string) => {
-  if (w.hj) {
-    w.hj("trigger", id);
+  // @ts-ignore
+  if (window.hj) {
+    // @ts-ignore
+    window.hj("trigger", id);
   }
 };
