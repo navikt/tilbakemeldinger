@@ -17,15 +17,13 @@ const FAQ = () => {
   const tittel = <FormattedMessage id={"faq.intro"} />;
 
   return (
-    <IkonPanel ikon={ikon} tittel={tittel}>
+    <IkonPanel ikon={ikon} tittel={tittel} className={"faq"}>
       {lenkerFAQ
         .slice(0, visFlereFAQ ? lenkerFAQ.length : visElementer)
         .map(({ lenke, lenkeTekst }) => (
-          <div key={lenkeTekst} className={"faq__lenke"}>
-            <ChevronLenke href={lenke} isExternal={true}>
-              <FormattedMessage id={lenkeTekst} />
-            </ChevronLenke>
-          </div>
+          <ChevronLenke href={lenke} isExternal={true} key={lenkeTekst}>
+            <FormattedMessage id={lenkeTekst} />
+          </ChevronLenke>
         ))}
       {lenkerFAQ.length > visElementer && (
         <VisMer visFlere={visFlereFAQ} onClick={toggleVisFlereFAQ} />

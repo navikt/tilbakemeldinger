@@ -15,9 +15,9 @@ const RingOss = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel} className="ringoss">
-      <p>
+      <div>
         <FormattedMessage id={"kontaktoss.ringoss.beskrivelse"} />
-      </p>
+      </div>
       <button
         className={"ringoss__visnr box__section-lenke lenke"}
         onClick={() => settVisNummer(!visNummer)}

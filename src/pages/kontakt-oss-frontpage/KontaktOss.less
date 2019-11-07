@@ -2,7 +2,7 @@
 @import (reference) "../../index.less";
 
 .frontpage {
-  @margin-vertical: 1rem;
+  @margin-vertical: 1.5rem;
   @margin-horizontal: 1rem;
 
   &__content {
@@ -26,11 +26,12 @@
 
     .ikonpanel {
       flex-grow: 1;
+      flex-shrink: 1;
       flex-basis: 50%;
     }
 
     @media @minDesktop {
-      .ikonpanel:first-of-type {
+      > :not(:last-child) {
         margin-right: @margin-horizontal;
       }
     }
@@ -46,8 +47,6 @@
   }
 
   .ringoss {
-    .setBoxShadowColor(@navGronnLighten60);
-
     &__kolonne {
       width: 10rem;
     }
@@ -76,10 +75,11 @@
   }
 
   .faq {
+    .ikonpanel.setPanelBorder(@navGronnLighten60);
+
     &__vismer {
       margin: 0.25rem 0;
       padding: 0;
-      background: none;
       border: 0;
       &-content {
       }

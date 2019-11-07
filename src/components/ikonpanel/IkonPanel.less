@@ -1,43 +1,63 @@
 @paddingy: 1.5em;
-@paddingx: @paddingy*1.62;
+@paddingx: @paddingy * 1.62;
 
-@ikonSize: 5em;
+@ikonSize: 3em;
+@ikonPadding: 1em;
+@ikonContainerSize: @ikonSize + @ikonPadding * 2;
 
-.setBoxShadowColor(@color) {
-  box-shadow: inset 4px 4px @color, inset -4px -4px @color;
-}
+@borderColor: @navGra80;
+@borderSize: 4px;
 
 .ikonpanel {
   padding: @paddingy @paddingx;
-  margin-top: @ikonSize/2;
-  //box-shadow: inset 4px 4px @navGra80, inset -4px -4px @navGra80;
-  .setBoxShadowColor(@navGra80);
+  margin-top: @ikonContainerSize/2;
+  .setPanelBorder();
+
+  &__ikon-container {
+    width: @ikonContainerSize;
+    height: @ikonContainerSize;
+    position: relative;
+    left: 50%;
+    margin-top: -(@ikonContainerSize/2 + @paddingy);
+    margin-left: -@ikonContainerSize/2;
+
+    background-color: white;
+    padding: @ikonPadding;
+
+    border-radius: 50%;
+  }
 
   &__ikon {
     width: @ikonSize;
     height: @ikonSize;
-    position: relative;
-    left: 50%;
-    margin-top: -(@ikonSize/2 + @paddingy);
-    margin-left: -@ikonSize/2;
-
-    background-color: white;
-    padding: 1em;
-
-    //border-radius: 8px;
-    //border: 2px solid @navGra80;
   }
 
   &__innhold {
-    margin: (@ikonSize/2 - @paddingy) 0;
   }
 
-  &__header {
-
+  &__innhold-header {
   }
 
-  &__body {
+  &__innhold-body {
+    display: flex;
+    flex-direction: column;
+
     margin-top: 1em;
+
+    & > * {
+      &:not(:last-child) {
+        margin-bottom: 0.25em;
+      }
+    }
+  }
+
+  .setPanelBorder(@color: @borderColor, @size: @borderSize) {
+    box-shadow: inset 0 0 0 @size @color;
+  }
+
+  .setIkonBorder(@color: @borderColor, @size: @borderSize) {
+    .ikonpanel__ikon-container {
+      box-shadow: inset 0 0 0 @size @color;
+    }
   }
 }
-

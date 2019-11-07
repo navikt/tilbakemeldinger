@@ -10,26 +10,20 @@ type Props = {
   className?: string,
 };
 
-const cssPrefix = "chevronlenke";
-
-const lenkeTekstMedChevron = (tekst: React.ReactNode) => (
-  <>
-    <HoyreChevron className={`${cssPrefix}__chevron`}/>
+const lenkeTekstMedChevron = (tekst: React.ReactNode, className?: string) => (
+  <span className={className || ""}>
+    <HoyreChevron className={"chevronlenke__chevron"}/>
     {tekst}
-  </>
+  </span>
 );
 
 const ChevronLenke = ({href, children, isExternal, className}: Props) => {
-  const lenkeTekst = lenkeTekstMedChevron(children);
+  const lenkeTekst = lenkeTekstMedChevron(children, className);
 
   return(
-    <div className={className || ""}>
-      {
-        isExternal
-        ? <Lenke href={href} className={cssPrefix}>{lenkeTekst}</Lenke>
-        : <Link to={href} className={`${cssPrefix} lenke`}>{lenkeTekst}</Link>
-      }
-    </div>
+    isExternal
+    ? <Lenke href={href} className="chevronlenke">{lenkeTekst}</Lenke>
+    : <Link to={href} className={"chevronlenke lenke"}>{lenkeTekst}</Link>
   );
 };
 

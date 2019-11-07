@@ -34,7 +34,7 @@ const KontaktOssFrontpage = () => {
   }, []);
 
   return (
-    <div className="pagecontent">
+    <div className="pagecontent pagecontent__frontpage">
       <BreadcrumbsWrapper />
       <div className="frontpage">
         <MetaTags>

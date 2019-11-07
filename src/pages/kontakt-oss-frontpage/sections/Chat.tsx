@@ -12,12 +12,14 @@ const Chat = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <p>
+      <div>
         <FormattedMessage id={"kontaktoss.chat.beskrivelse"} />
-      </p>
-      <ChevronLenke href={urls.chat.forside}>
-        <FormattedMessage id={"kontaktoss.chat.knapp"} />
-      </ChevronLenke>
+      </div>
+      <div>
+        <ChevronLenke href={urls.chat.forside}>
+          <FormattedMessage id={"kontaktoss.chat.knapp"} />
+        </ChevronLenke>
+      </div>
     </IkonPanel>
   );
 };
