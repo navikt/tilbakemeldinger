@@ -50,7 +50,8 @@ const ServiceKlage = () => {
       isRequired: intl.formatMessage({ id: "validering.hvemfra.pakrevd" })
     },
     melding: {
-      isRequired: intl.formatMessage({ id: "validering.melding.pakrevd" })
+      isRequired: intl.formatMessage({ id: "validering.melding.pakrevd" }),
+      isValidMelding: intl.formatMessage({ id: "validering.melding.tegn" })
     }
   };
 
@@ -92,7 +93,7 @@ const ServiceKlage = () => {
             ...(fields.innmelderTlfnr && {
               telefonnummer: fields.innmelderTlfnr
             }),
-            harFullmakt: fields.innmelderHarFullmakt === "true",
+            harFullmakt: fields.innmelderHarFullmakt,
             rolle: fields.innmelderRolle
           },
           paaVegneAvPerson: {
@@ -228,11 +229,15 @@ const ServiceKlage = () => {
                       />
                       <Checkbox
                         label={intl.formatMessage({
-                          id: "felter.klagetyper.navno"
+                          id: "felter.klagetyper.digitaletjenester"
                         })}
-                        name={"NAVNO"}
-                        checked={fields.klagetyper.includes("NAVNO")}
-                        onChange={() => toggleklagetyper("NAVNO")}
+                        name={"NAV_DIGITALE_TJENESTER"}
+                        checked={fields.klagetyper.includes(
+                          "NAV_DIGITALE_TJENESTER"
+                        )}
+                        onChange={() =>
+                          toggleklagetyper("NAV_DIGITALE_TJENESTER")
+                        }
                       />
                       <Checkbox
                         label={intl.formatMessage({

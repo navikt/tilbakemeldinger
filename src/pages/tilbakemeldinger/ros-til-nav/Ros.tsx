@@ -50,7 +50,8 @@ const Ros = () => {
     melding: {
       isRequired: intl.formatMessage({
         id: "validering.melding.pakrevd"
-      })
+      }),
+      isValidMelding: intl.formatMessage({ id: "validering.melding.tegn" })
     }
   };
 
