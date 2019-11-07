@@ -36,7 +36,6 @@ export const urls = {
       generelt: `${tjenesteUrl}/mininnboks/sporsmal/skriv/HJLPM`,
       ortopediske: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ORT_HJE`,
       bil: `${tjenesteUrl}/mininnboks/sporsmal/skriv/BIL`,
-      tolk: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Tolketjenesten`
     }
   },
   chat: {

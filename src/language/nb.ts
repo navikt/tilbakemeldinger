@@ -79,9 +79,6 @@ export default {
   "skrivtiloss.hjelpemidler.bil.ingress":
     "Gjelder spørsmål eller opplysninger om bil og transport for personer med varig nedsatt funksjonsevne som" +
     " ikke kan bruke offentlig transport til arbeid, skole eller i dagliglivet.",
-  "skrivtiloss.hjelpemidler.tolk.tittel": "Tegnspråktolk",
-  "skrivtiloss.hjelpemidler.tolk.ingress":
-    "Gjelder det bestilling av tolketjenester, send e-post eller sms til den lokale tolketjenesten din.",
 
   "faq.intro": "Nå spør mange om dette",
   "faq.nesteutbetaling": "Når kommer neste utbetaling?",
