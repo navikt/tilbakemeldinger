@@ -102,7 +102,6 @@ const Ros = () => {
           settError(`${error.code} - ${error.text}`);
         })
         .then(() => {
-          triggerHotjar("rosnav");
           settLoading(false);
         });
     }
