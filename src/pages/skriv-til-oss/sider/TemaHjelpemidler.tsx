@@ -38,12 +38,6 @@ const lenker: LenkepanelData[] = [
     url: urls.skrivTilOss.temaHjelpemidler.bil,
     external: true
   },
-  {
-    tittel: "skrivtiloss.hjelpemidler.tolk.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.hjelpemidler.tolk.ingress"} />,
-    url: urls.skrivTilOss.temaHjelpemidler.tolk,
-    external: true
-  }
 ];
 
 const TemaHjelpemidler = () => (
