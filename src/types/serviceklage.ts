@@ -3,7 +3,7 @@ export type ON_BEHALF_OF = "PRIVATPERSON" | "ANNEN_PERSON" | "BEDRIFT";
 export type KLAGE_TYPE =
   | "LOKALT_NAV_KONTOR"
   | "TELEFON"
-  | "NAVNO"
+  | "NAV_DIGITALE_TJENESTER"
   | "BREV"
   | "ANNET";
 

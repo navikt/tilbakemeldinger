@@ -231,9 +231,13 @@ const ServiceKlage = () => {
                         label={intl.formatMessage({
                           id: "felter.klagetyper.navno"
                         })}
-                        name={"NAVNO"}
-                        checked={fields.klagetyper.includes("NAVNO")}
-                        onChange={() => toggleklagetyper("NAVNO")}
+                        name={"NAV_DIGITALE_TJENESTER"}
+                        checked={fields.klagetyper.includes(
+                          "NAV_DIGITALE_TJENESTER"
+                        )}
+                        onChange={() =>
+                          toggleklagetyper("NAV_DIGITALE_TJENESTER")
+                        }
                       />
                       <Checkbox
                         label={intl.formatMessage({
