@@ -34,21 +34,23 @@ const TilpassetLenkepanel = (props: Props) => {
         );
       }}
     >
-      <>
+      <div className={"linkbox__row"}>
         {props.icon && (
-          <div className="linkbox__icon-container icon__container">
-            <Icon backgroundImage={props.icon} />
+          <div className="linkbox__icon-container">
+            <img className="linkbox__icon" src={props.icon} />
           </div>
         )}
-        <div className="linkbox__tittel">
-          <Undertittel>{props.tittel}</Undertittel>
+        <div>
+          <div className="linkbox__tittel">
+            <Undertittel>{props.tittel}</Undertittel>
+          </div>
+          {props.beskrivelse && (
+            <div className="linkbox__beskrivelse">
+              <Normaltekst>{props.beskrivelse}</Normaltekst>
+            </div>
+          )}
         </div>
-        {props.beskrivelse && (
-          <div className="linkbox__beskrivelse">
-            <Normaltekst>{props.beskrivelse}</Normaltekst>
-          </div>
-        )}
-      </>
+      </div>
     </Lenkepanel>
   );
 };

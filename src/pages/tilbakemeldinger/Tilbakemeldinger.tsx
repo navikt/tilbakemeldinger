@@ -26,6 +26,7 @@ const Tilbakemeldinger = () => {
         </div>
         {lenker.map(lenke => (
           <TilpassetLenkepanel
+            icon={lenke.icon}
             key={lenke.tittel}
             id={lenke.tittel}
             tittel={intl.messages[lenke.tittel] as string}
