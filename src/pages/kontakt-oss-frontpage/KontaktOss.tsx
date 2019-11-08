@@ -1,17 +1,20 @@
 import React, { useEffect } from "react";
 import { Sidetittel } from "nav-frontend-typografi";
 import FAQ from "./sections/FAQ";
-import LenkePanel from "./sections/LenkePanel";
-import KontaktOss from "./sections/KontaktOss";
 import UnderUtvikling from "../../components/veiledere/UnderUtvikling";
 import FeilOgMangler from "./sections/FeilOgMangler";
 import SosialeMedier from "./sections/SosialeMedier";
-import Tolketjenesten from "./sections/Toketjenesten";
+import Tolketjenesten from "./sections/Tolketjenesten";
 import Schema from "assets/schema.json";
 import MetaTags from "react-meta-tags";
 import { FormattedMessage, useIntl } from "react-intl";
 import Environment from "../../Environments";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
+import Chat from "./sections/Chat";
+import RingOss from "./sections/RingOss";
+import SkrivTilOss from "./sections/SkrivTilOss";
+import FinnNavKontor from "./sections/FinnNavKontor";
+import KlageOgTilbakemeldinger from "./sections/KlageOgTilbakemeldinger";
 const { miljo } = Environment();
 
 const KontaktOssFrontpage = () => {
@@ -31,7 +34,7 @@ const KontaktOssFrontpage = () => {
   }, []);
 
   return (
-    <div className="pagecontent">
+    <div className="pagecontent pagecontent__frontpage">
       <BreadcrumbsWrapper />
       <div className="frontpage">
         <MetaTags>
@@ -50,12 +53,17 @@ const KontaktOssFrontpage = () => {
         </header>
         {miljo === "PROD" && <UnderUtvikling />}
         <div className="frontpage__content">
-          <FAQ />
-          <KontaktOss />
-          <LenkePanel />
-          <Tolketjenesten />
-          <FeilOgMangler />
+          <Chat />
+          <div className="frontpage__row">
+            <RingOss />
+            <FAQ />
+          </div>
+          <SkrivTilOss />
           <SosialeMedier />
+          <FinnNavKontor />
+          <Tolketjenesten />
+          <KlageOgTilbakemeldinger />
+          <FeilOgMangler />
         </div>
       </div>
     </div>
