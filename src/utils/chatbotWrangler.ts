@@ -156,11 +156,23 @@ const apneChatbotForTema = async (temaKode: ChatTema) => {
   apneFunc();
 };
 
+const apneChatbot = () => {
+  const apneFunc = getApneFunc();
+
+  if (!apneFunc) {
+    console.log("Error: chatbot åpne funksjon ble ikke funnet. Chatbot ikke mounted eller allerede åpnet?");
+    return;
+  }
+
+  apneFunc();
+};
+
 const clearSessionData = () => {
   Object.entries(storageKeys).forEach(([_, storageKey]) => sessionStorage.removeItem(storageKey));
 };
 
 export default {
   apneChatbotForTema,
+  apneChatbot,
   clearSessionData,
 };

@@ -20,7 +20,7 @@ const getTemaConfig: {[key in ChatTema]: ChatbotConfig | null} = {
     queueKey: vars.chatBot.queueKeyBot,
   },
   [ChatTema.Familie]: {
-    configId: vars.chatBot.configIds.aap,
+    configId: vars.chatBot.configIds.familie,
     queueKey: vars.chatBot.queueKeyBot,
   },
   [ChatTema.Sosial]: null,
@@ -28,18 +28,18 @@ const getTemaConfig: {[key in ChatTema]: ChatbotConfig | null} = {
 };
 
 const ChatbotWrapper = ({chatTema}: Props) => {
-  if (chatTema === null) {
-    return null;
-  }
+  useEffect(() => {
+    console.log("Chatbot update!");
+    return () => {
+      console.log("Chatbot cleanup!");
+      ChatbotWrangler.apneChatbot();
+    };
+  });
 
-  const temaConfig = getTemaConfig[chatTema];
+  const temaConfig = chatTema ? getTemaConfig[chatTema] : null;
 
-  // useEffect(() => {
-  //   ChatbotWrangler.clearSessionData();
-  // }, []);
-
-  return (
-    temaConfig ? (
+  return (temaConfig ?
+    (
       <NAVChatBot
         configId={temaConfig.configId}
         queueKey={temaConfig.queueKey}
