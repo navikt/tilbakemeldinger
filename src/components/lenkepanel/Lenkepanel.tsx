@@ -1,6 +1,5 @@
 import React from "react";
 import { Normaltekst, Undertittel } from "nav-frontend-typografi";
-import Icon from "components/icon/Icon";
 import { Link } from "react-router-dom";
 import Lenkepanel from "nav-frontend-lenkepanel";
 
@@ -34,21 +33,27 @@ const TilpassetLenkepanel = (props: Props) => {
         );
       }}
     >
-      <>
+      <div className={"linkbox__row"}>
         {props.icon && (
-          <div className="linkbox__icon-container icon__container">
-            <Icon backgroundImage={props.icon} />
+          <div className="linkbox__icon-container">
+            <img
+              className="linkbox__icon"
+              src={props.icon}
+              alt={props.tittel}
+            />
           </div>
         )}
-        <div className="linkbox__tittel">
-          <Undertittel>{props.tittel}</Undertittel>
+        <div>
+          <div className="linkbox__tittel">
+            <Undertittel>{props.tittel}</Undertittel>
+          </div>
+          {props.beskrivelse && (
+            <div className="linkbox__beskrivelse">
+              <Normaltekst>{props.beskrivelse}</Normaltekst>
+            </div>
+          )}
         </div>
-        {props.beskrivelse && (
-          <div className="linkbox__beskrivelse">
-            <Normaltekst>{props.beskrivelse}</Normaltekst>
-          </div>
-        )}
-      </>
+      </div>
     </Lenkepanel>
   );
 };

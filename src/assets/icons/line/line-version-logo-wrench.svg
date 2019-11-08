@@ -1,0 +1,9 @@
+<svg contentScriptType="text/ecmascript" width="24"
+     xmlns:xlink="http://www.w3.org/1999/xlink" zoomAndPan="magnify"
+     contentStyleType="text/css" viewBox="0 0 24 24" height="24"
+     preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+     version="1.0">
+    <path fill="none"
+          d="M21.438 11.752c2.045-2.046 2.44-5.122 1.19-7.564l-3.312 3.301h-2.664v-2.809l3.229-3.312c-2.442-1.249-5.551-.854-7.596 1.19-2.044 2.044-2.46 5.111-1.21 7.554l-9.827 9.819c-.781.779-.787 2.046-.005 2.826.781.781 2.044.781 2.826 0l9.816-9.817c2.443 1.25 5.51.855 7.553-1.188z"
+          stroke-miterlimit="10" stroke="#3e3832" stroke-linejoin="round"/>
+</svg>
