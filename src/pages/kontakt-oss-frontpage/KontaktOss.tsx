@@ -32,11 +32,13 @@ const KontaktOssFrontpage = () => {
     return () => {
       document.body.removeChild(script);
     };
+  }, []);
 
+  useEffect(() => {
     /*
-      Redirect to old frontpage
-      TODO: Fjern
-     */
+    Redirect to old frontpage
+    TODO: Fjern
+   */
     if (miljo === "PROD") {
       window.location.href = urls.gamleKontaktOss;
     }
