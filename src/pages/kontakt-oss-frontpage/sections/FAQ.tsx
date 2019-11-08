@@ -1,66 +1,50 @@
 import React, { useState } from "react";
-import { Undertittel } from "nav-frontend-typografi";
-import Box from "components/box/Box";
-import Lenke from "nav-frontend-lenker";
-import { lenkerFAQ, lenkerMinSide } from "./FAQLenker";
+import { lenkerFAQ } from "./FAQLenker";
 import VisMer from "./FAQLenkerVisMer";
 import { FormattedMessage } from "react-intl";
+import IkonPanel from "../../../components/ikonpanel/IkonPanel";
+
+import ikon from "assets/forside-faq-ikon.svg";
+import ChevronLenke from "../../../components/chevronlenke/ChevronLenke";
 
 const FAQ = () => {
   const [visFlereFAQ, settVisFlereFAQ] = useState(false);
-  const [visFlereMinside, settVisFlereMinside] = useState(false);
+  // const [visFlereMinside, settVisFlereMinside] = useState(false);
   const toggleVisFlereFAQ = () => settVisFlereFAQ(!visFlereFAQ);
-  const toggleVisFlereMinSide = () => settVisFlereMinside(!visFlereMinside);
+  // const toggleVisFlereMinSide = () => settVisFlereMinside(!visFlereMinside);
   const visElementer = 2;
 
+  const tittel = <FormattedMessage id={"faq.intro"} />;
+
   return (
-    <Box>
-      <div className={"box__section"}>
-        <div className={"box__section-title"}>
-          <Undertittel className="box__title">
-            <FormattedMessage id={"faq.intro"} />
-          </Undertittel>
-        </div>
-        <div className={"box__section-description"}>
-          {lenkerFAQ
-            .slice(0, visFlereFAQ ? lenkerFAQ.length : visElementer)
-            .map(({ lenke, lenkeTekst }) => (
-              <div key={lenkeTekst} className={"faq__lenke"}>
-                <Lenke href={lenke}>
-                  <FormattedMessage id={lenkeTekst} />
-                </Lenke>
-              </div>
-            ))}
-          {lenkerFAQ.length > visElementer && (
-            <VisMer visFlere={visFlereFAQ} onClick={toggleVisFlereFAQ} />
-          )}
-        </div>
-      </div>
-      <div className={"box__section"}>
-        <div className={"box__section-title"}>
-          <Undertittel className="box__title">
-            <FormattedMessage id={"faq.minside"} />
-          </Undertittel>
-        </div>
-        <div className={"box__section-description"}>
-          {lenkerMinSide
-            .slice(0, visFlereMinside ? lenkerMinSide.length : visElementer)
-            .map(({ lenke, lenkeTekst }) => (
-              <div key={lenkeTekst} className={"faq__lenke"}>
-                <Lenke href={lenke}>
-                  <FormattedMessage id={lenkeTekst} />
-                </Lenke>
-              </div>
-            ))}
-          {lenkerFAQ.length > visElementer && (
-            <VisMer
-              visFlere={visFlereMinside}
-              onClick={toggleVisFlereMinSide}
-            />
-          )}
-        </div>
-      </div>
-    </Box>
+    <IkonPanel ikon={ikon} tittel={tittel} className={"faq"}>
+      {lenkerFAQ
+        .slice(0, visFlereFAQ ? lenkerFAQ.length : visElementer)
+        .map(({ lenke, lenkeTekst }) => (
+          <ChevronLenke href={lenke} isExternal={true} key={lenkeTekst}>
+            <FormattedMessage id={lenkeTekst} />
+          </ChevronLenke>
+        ))}
+      {lenkerFAQ.length > visElementer && (
+        <VisMer visFlere={visFlereFAQ} onClick={toggleVisFlereFAQ} />
+      )}
+
+      {/*{lenkerMinSide*/}
+      {/*  .slice(0, visFlereMinside ? lenkerMinSide.length : visElementer)*/}
+      {/*  .map(({ lenke, lenkeTekst }) => (*/}
+      {/*    <div key={lenkeTekst} className={"faq__lenke"}>*/}
+      {/*      <Lenke href={lenke}>*/}
+      {/*        <FormattedMessage id={lenkeTekst} />*/}
+      {/*      </Lenke>*/}
+      {/*    </div>*/}
+      {/*  ))}*/}
+      {/*{lenkerMinSide.length > visElementer && (*/}
+      {/*  <VisMer*/}
+      {/*    visFlere={visFlereMinside}*/}
+      {/*    onClick={toggleVisFlereMinSide}*/}
+      {/*  />*/}
+      {/*)}*/}
+    </IkonPanel>
   );
 };
 
