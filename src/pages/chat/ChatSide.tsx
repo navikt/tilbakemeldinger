@@ -60,6 +60,8 @@ const ChatSide = () => {
     document.title = documentTitle;
   }, [documentTitle]);
 
+  console.log("valgt tema:" + valgtChatTema);
+
   return(
     <>
       <div className={`${cssPrefix} pagecontent`}>

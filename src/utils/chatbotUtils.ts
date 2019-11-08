@@ -1,4 +1,3 @@
-// Wrangles the chatbot into doing your bidding!
 // TODO:  - undersøk om det er nødvendig å implementere settTimerConfig funksjonen fra chatbot
 //        - (og evt. gjør det)
 //        - finn en måte å hooke axios.post på for å hindre doble kall mot puzzel api
@@ -82,18 +81,6 @@ const getConfigRequestDataForTema = (tema: ChatTema): SessionCreate => ({
   myFlag: true,
 });
 
-// TODO: finn denne ut fra styled-components algoritme som genererer classnames
-const getApneKnappClassName = () => {
-  return "sc-fAjcbJ";
-};
-
-const getApneFunc = () => {
-  const apneKnappClassName = getApneKnappClassName();
-  const apneKnapper = document.getElementsByClassName(apneKnappClassName);
-  const apneKnapp = (apneKnapper && apneKnapper.length > 0) && (apneKnapper[0] as HTMLElement);
-  return apneKnapp && apneKnapp.click.bind(apneKnapp);
-};
-
 const fetchConfigForTema = async (tema: ChatTema) => {
   const session = await axios.post(sessionConfigApiUrl, getConfigRequestDataForTema(tema));
 
@@ -134,11 +121,28 @@ const hookSessionStorageSetItemFunc = () => {
   };
 };
 
+// TODO: finn denne ut fra styled-components algoritme som genererer classnames
+const getApneKnappClassName = () => {
+  return "sc-fAjcbJ";
+};
+
+const getApneFunc = () => {
+  const apneKnappClassName = getApneKnappClassName();
+  const apneKnapper = document.getElementsByClassName(apneKnappClassName);
+  const apneKnapp = (apneKnapper && apneKnapper.length > 0) && (apneKnapper[0] as HTMLElement);
+
+  if (apneKnapp) {
+    return apneKnapp.click.bind(apneKnapp);
+  }
+
+  console.log("Error: chatbot åpne funksjon ble ikke funnet. Chatbot ikke mounted eller allerede åpnet?");
+  return null;
+};
+
 const apneChatbotForTema = async (temaKode: ChatTema) => {
   const apneFunc = getApneFunc();
 
   if (!apneFunc) {
-    console.log("Error: chatbot åpne funksjon ble ikke funnet. Chatbot ikke mounted eller allerede åpnet?");
     return;
   }
 
@@ -160,7 +164,6 @@ const apneChatbot = () => {
   const apneFunc = getApneFunc();
 
   if (!apneFunc) {
-    console.log("Error: chatbot åpne funksjon ble ikke funnet. Chatbot ikke mounted eller allerede åpnet?");
     return;
   }
 

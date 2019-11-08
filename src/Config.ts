@@ -1,5 +1,4 @@
 import Environment from "./Environments";
-import { ChatTema } from "./types/chat";
 
 export const baseUrl = "/person/kontakt-oss";
 const { tjenesteUrl, appUrl } = Environment();
