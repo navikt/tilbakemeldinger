@@ -20,13 +20,6 @@ const { miljo } = Environment();
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
-  /*
-     Redirect to old frontpage
-     TODO: Fjern
-  */
-  if (miljo === "PROD") {
-    window.location.href = urls.gamleKontaktOss;
-  }
 
   useEffect(() => {
     /*
@@ -41,41 +34,50 @@ const KontaktOssFrontpage = () => {
     };
   }, []);
 
-  return (
-    <div className="pagecontent pagecontent__frontpage">
-      <BreadcrumbsWrapper />
-      <div className="frontpage">
-        <MetaTags>
-          <title>{intl.messages["seo.kontaktoss.tittel"]}</title>
-          <meta
-            name="description"
-            content={intl.messages["seo.kontaktoss.description"] as string}
-          />
-        </MetaTags>
-        <header className="frontpage__introduksjon">
-          <div className="frontpage__sidetittel">
-            <Sidetittel>
-              <FormattedMessage id={"kontaktoss.tittel"} />
-            </Sidetittel>
+  if (miljo === "PROD") {
+    /*
+      Redirect to old frontpage
+      TODO: Fjern
+    */
+    window.location.href = urls.gamleKontaktOss;
+    return null;
+  } else {
+    return (
+      <div className="pagecontent pagecontent__frontpage">
+        <BreadcrumbsWrapper />
+        <div className="frontpage">
+          <MetaTags>
+            <title>{intl.messages["seo.kontaktoss.tittel"]}</title>
+            <meta
+              name="description"
+              content={intl.messages["seo.kontaktoss.description"] as string}
+            />
+          </MetaTags>
+          <header className="frontpage__introduksjon">
+            <div className="frontpage__sidetittel">
+              <Sidetittel>
+                <FormattedMessage id={"kontaktoss.tittel"} />
+              </Sidetittel>
+            </div>
+          </header>
+          {miljo === "PROD" && <UnderUtvikling />}
+          <div className="frontpage__content">
+            <Chat />
+            <div className="frontpage__row">
+              <RingOss />
+              <FAQ />
+            </div>
+            <SkrivTilOss />
+            <SosialeMedier />
+            <FinnNavKontor />
+            <Tolketjenesten />
+            <KlageOgTilbakemeldinger />
+            <FeilOgMangler />
           </div>
-        </header>
-        {miljo === "PROD" && <UnderUtvikling />}
-        <div className="frontpage__content">
-          <Chat />
-          <div className="frontpage__row">
-            <RingOss />
-            <FAQ />
-          </div>
-          <SkrivTilOss />
-          <SosialeMedier />
-          <FinnNavKontor />
-          <Tolketjenesten />
-          <KlageOgTilbakemeldinger />
-          <FeilOgMangler />
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default KontaktOssFrontpage;
