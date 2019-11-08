@@ -15,6 +15,7 @@ import RingOss from "./sections/RingOss";
 import SkrivTilOss from "./sections/SkrivTilOss";
 import FinnNavKontor from "./sections/FinnNavKontor";
 import KlageOgTilbakemeldinger from "./sections/KlageOgTilbakemeldinger";
+import { urls } from "../../Config";
 const { miljo } = Environment();
 
 const KontaktOssFrontpage = () => {
@@ -31,6 +32,14 @@ const KontaktOssFrontpage = () => {
     return () => {
       document.body.removeChild(script);
     };
+
+    /*
+      Redirect to old frontpage
+      TODO: Fjern
+     */
+    if (miljo === "PROD") {
+      window.location.href = urls.gamleKontaktOss;
+    }
   }, []);
 
   return (
