@@ -4,6 +4,7 @@ import { vars } from "../../Config";
 import NAVChatBot from "@navikt/nav-chatbot";
 import ChatbotWrangler from "../../utils/chatbotUtils";
 import { ChatTema } from "../../types/chat";
+import chatbotUtils from "../../utils/chatbotUtils";
 
 type Props = {
   chatTema: ChatTema | null;
@@ -17,19 +18,24 @@ type ChatbotConfig = {
 const getTemaConfig: {[key in ChatTema]: ChatbotConfig | null} = {
   [ChatTema.Familie]: {
     configId: vars.chatBot.configIds.familie,
-    queueKey: vars.chatBot.queueKeyBot,
+    queueKey: vars.chatBot.queueKeys.familie,
   },
   [ChatTema.AAP]: {
     configId: vars.chatBot.configIds.aap,
-    queueKey: vars.chatBot.queueKeyBot,
+    queueKey: vars.chatBot.queueKeys.aap,
   },
   [ChatTema.Sosial]: null,
   [ChatTema.Okonomi]: null,
+  [ChatTema.EURES]: null,
 };
 
 const ChatbotWrapper = ({chatTema}: Props) => {
-  const temaConfig = (chatTema || chatTema === 0) ? getTemaConfig[chatTema] : null;
+  const temaConfig = chatTema ? getTemaConfig[chatTema] : null;
   console.log("chattema:" + chatTema + " // temaconfig:" + JSON.stringify(temaConfig));
+
+  useEffect(() => {
+    chatbotUtils.clearSessionData();
+  }, [chatTema]);
 
   const chatbotComponent = temaConfig ?
     (

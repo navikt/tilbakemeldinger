@@ -1,6 +1,6 @@
 import { Normaltekst } from "nav-frontend-typografi";
 import React from "react";
-import { FormattedMessage } from "react-intl";
+import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
 
 type Props = {
   msgId: string,
@@ -10,7 +10,7 @@ type Props = {
 const ChatKollapsetPanel = ({msgId, cssPrefix}: Props) => (
   <div className={`${cssPrefix}__panel-innhold`}>
     <Normaltekst>
-      <FormattedMessage id={msgId}/>
+      <FormattedMsgMedParagrafer id={msgId} Component={Normaltekst}/>
     </Normaltekst>
   </div>
 );

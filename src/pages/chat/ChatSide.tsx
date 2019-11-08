@@ -30,7 +30,7 @@ const ChatSide = () => {
       ),
       ekspandertInnhold: (
         <ChatEkspandertPanel
-          msgId={chatTema.langTekstId}
+          msgIds={chatTema.langTekstIds}
           cssPrefix={cssPrefix}
           temaKode={chatTema.temaKode}
           buttonClickHandler={temaButtonHandlers[chatTema.temaKode]}
@@ -49,6 +49,7 @@ const ChatSide = () => {
     [ChatTema.AAP]: () => setValgtChatTema(ChatTema.AAP),
     [ChatTema.Sosial]: () => window.location.assign(urls.chat.sosialhjelp),
     [ChatTema.Okonomi]: () => window.location.assign(urls.chat.okonomi),
+    [ChatTema.EURES]: () => window.location.assign(urls.chat.eures),
   };
 
   const formatMessage = useIntl().formatMessage;

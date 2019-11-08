@@ -2,13 +2,14 @@
 export type ChatTemaData = {
   tittelId: string,
   kortTekstId: string,
-  langTekstId: string,
+  langTekstIds: Array<string>,
   temaKode: ChatTema,
 };
 
 export enum ChatTema {
-  Familie,
-  AAP,
-  Sosial,
-  Okonomi,
+  Familie = "familie",
+  AAP = "aap",
+  Sosial = "sosial",
+  Okonomi = "okonomi",
+  EURES = "eures",
 }

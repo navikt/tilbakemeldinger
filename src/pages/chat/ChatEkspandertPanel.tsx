@@ -6,7 +6,7 @@ import React from "react";
 import { ChatTema } from "../../types/chat";
 
 type Props = {
-  msgId: string,
+  msgIds: Array<string>,
   cssPrefix: string,
   temaKode: ChatTema,
   buttonClickHandler: Function,
@@ -14,11 +14,10 @@ type Props = {
 
 const personvernMsgId = "chat.advarsel.personvern";
 
-const ChatEkspandertPanel = ({msgId, cssPrefix, temaKode, buttonClickHandler}: Props) => {
+const ChatEkspandertPanel = ({msgIds, cssPrefix, temaKode, buttonClickHandler}: Props) => {
   return(
     <div className={`${cssPrefix}__panel-innhold`}>
-      <FormattedMsgMedParagrafer id={msgId} Component={Normaltekst}/>
-      <FormattedMsgMedParagrafer id={personvernMsgId} Component={Normaltekst}/>
+      {msgIds.map((msgId: string) => <FormattedMsgMedParagrafer id={msgId} Component={Normaltekst} key={msgId}/>)}
       <div className={`${cssPrefix}__panel-start-knapp`}>
         <Hovedknapp
           htmlType={"button"}

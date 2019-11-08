@@ -49,7 +49,7 @@ type SessionCreateResponse = {
 };
 
 const sessionConfigApiUrl = urls.chatBotApi.sessionConfig;
-const queueKeyBot = vars.chatBot.queueKeyBot;
+const queueKeyBot = vars.chatBot.queueKeys.familie;
 const customerKey = vars.chatBot.customerKey;
 
 const temaFilters: {[key in ChatTema]: string} = {
@@ -57,6 +57,7 @@ const temaFilters: {[key in ChatTema]: string} = {
   [ChatTema.Familie]: "filter.Familie",
   [ChatTema.Sosial]: "",
   [ChatTema.Okonomi]: "",
+  [ChatTema.EURES]: "",
 };
 
 const storageKeys = {
