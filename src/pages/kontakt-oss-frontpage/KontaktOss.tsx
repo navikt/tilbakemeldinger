@@ -23,7 +23,7 @@ const KontaktOssFrontpage = () => {
   /*
      Redirect to old frontpage
      TODO: Fjern
-    */
+  */
   if (miljo === "PROD") {
     window.location.href = urls.gamleKontaktOss;
   }
@@ -31,7 +31,7 @@ const KontaktOssFrontpage = () => {
   useEffect(() => {
     /*
       Add schema from assets
-     */
+    */
     const script = document.createElement("script");
     script.type = "application/ld+json";
     script.innerHTML = JSON.stringify(Schema);
