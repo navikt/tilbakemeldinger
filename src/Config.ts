@@ -42,8 +42,8 @@ export const urls = {
     forside: `${baseUrl}/chat`,
     familie: "#",
     aap: "#",
-    sosialhjelp: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-sosialetjenester_asdf`,
-    okonomi: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-gjeldsradgivning_asdf`
+    sosialhjelp: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-sosialetjenester`,
+    okonomi: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-gjeldsradgivning`
   },
   chatBotApi: {
     sessionConfig: "https://api.puzzel.com/chat/v1/sessions"
@@ -87,14 +87,13 @@ export const vars = {
     tekniskProblemName: "kontakt-oss.teknisk-problem"
   },
   chatBot: {
+    customerKey: "41155",
     queueKeyBot: "Q_CHAT_BOT",
     queueKeyHuman: "Q_CHAT_AGENT",
-    customerKey: "41155",
     configIds: {
-      [ChatTema.AAP]: "7f6b-4569-81a1-27202c419953",
-      [ChatTema.Familie]: "c3372a51-6434-4770-a0aa-6e4edba3471e",
-      [ChatTema.Sosial]: "",
-      [ChatTema.Okonomi]: ""
+      familie: "c3372a51-6434-4770-a0aa-6e4edba3471e",
+      aap: "7f6b-4569-81a1-27202c419953",
+      jobbsoker: "asdf",
     }
   }
 };

@@ -1,22 +1,49 @@
-import NAVChatBot from "@navikt/nav-chatbot";
-import React from "react";
+import React, { useEffect } from "react";
 import { vars } from "../../Config";
 
+import NAVChatBot from "@navikt/nav-chatbot";
+import ChatbotWrangler from "../../utils/chatbotWrangler";
+import { ChatTema } from "../../types/chat";
+
 type Props = {
-  configId?: string,
-  queueKey?: string,
-  customerKey?: string,
+  chatTema: ChatTema | null;
 };
 
-const ChatbotWrapper = (
-  {configId, queueKey = vars.chatBot.queueKeyBot, customerKey = vars.chatBot.customerKey}: Props) => {
+type ChatbotConfig = {
+  configId: string;
+  queueKey: string;
+};
+
+const getTemaConfig: {[key in ChatTema]: ChatbotConfig | null} = {
+  [ChatTema.AAP]: {
+    configId: vars.chatBot.configIds.aap,
+    queueKey: vars.chatBot.queueKeyBot,
+  },
+  [ChatTema.Familie]: {
+    configId: vars.chatBot.configIds.aap,
+    queueKey: vars.chatBot.queueKeyBot,
+  },
+  [ChatTema.Sosial]: null,
+  [ChatTema.Okonomi]: null,
+};
+
+const ChatbotWrapper = ({chatTema}: Props) => {
+  if (chatTema === null) {
+    return null;
+  }
+
+  const temaConfig = getTemaConfig[chatTema];
+
+  // useEffect(() => {
+  //   ChatbotWrangler.clearSessionData();
+  // }, []);
 
   return (
-    configId ? (
+    temaConfig ? (
       <NAVChatBot
-        queueKey={queueKey}
-        customerKey={customerKey}
-        configId={configId}
+        configId={temaConfig.configId}
+        queueKey={temaConfig.queueKey}
+        customerKey={vars.chatBot.customerKey}
       />
     ) : null
   );
