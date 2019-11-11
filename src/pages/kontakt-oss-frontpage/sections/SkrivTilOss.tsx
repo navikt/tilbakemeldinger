@@ -31,7 +31,9 @@ const SkrivTilOss = () => {
             <FormattedMessage id={"kontaktoss.aktivitetsplan.tittel"} />
           </Undertittel>
           <p>
-            <FormattedHTMLMessage id={"kontaktoss.aktivitetsplan.beskrivelse"} />
+            <FormattedHTMLMessage
+              id={"kontaktoss.aktivitetsplan.beskrivelse"}
+            />
           </p>
           <ChevronLenke href={urls.aktivitetsplan} isExternal={true}>
             <FormattedMessage id={"kontaktoss.aktivitetsplan.knapp"} />

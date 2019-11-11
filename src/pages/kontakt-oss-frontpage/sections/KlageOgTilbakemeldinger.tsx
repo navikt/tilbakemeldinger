@@ -17,7 +17,7 @@ const KlageOgTilbakemeldinger = () => {
       </Normaltekst>
       <Normaltekst>
         <ChevronLenke href={urls.tilbakemeldinger.forside}>
-            <FormattedMessage id="kontaktoss.klage.knapp" />
+          <FormattedMessage id="kontaktoss.klage.knapp" />
         </ChevronLenke>
       </Normaltekst>
     </IkonPanel>

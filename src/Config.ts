@@ -5,6 +5,17 @@ export const baseUrl = "/person/kontakt-oss";
 const { tjenesteUrl, appUrl } = Environment();
 const navUrl = Environment().baseUrl;
 
+export const varsler = [
+  {
+    tittel: "Feiltolkning av EØS-reglene",
+    beskrivelse:
+      "Her finner du informasjon knyttet til feil tolkning og praktisering av EØS-reglene for mottakere av arbeidsavklaringspenger, sykepenger og pleiepenger.",
+    lenke:
+      "https://www.nav.no/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Feiltolkning+av+E%C3%98S-reglene",
+    lenkeTekst: "Les mer"
+  }
+];
+
 export const urls = {
   baseUrl: baseUrl,
   appUrl: appUrl,
@@ -35,7 +46,7 @@ export const urls = {
     temaHjelpemidler: {
       generelt: `${tjenesteUrl}/mininnboks/sporsmal/skriv/HJLPM`,
       ortopediske: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ORT_HJE`,
-      bil: `${tjenesteUrl}/mininnboks/sporsmal/skriv/BIL`,
+      bil: `${tjenesteUrl}/mininnboks/sporsmal/skriv/BIL`
     }
   },
   chat: {
