@@ -3,7 +3,7 @@ import { Sidetittel, Undertittel } from "nav-frontend-typografi";
 import FAQ from "./sections/FAQ";
 import UnderUtvikling from "../../components/veiledere/UnderUtvikling";
 import FeilOgMangler from "./sections/FeilOgMangler";
-import SosialeMedier from "./sections/SosialeMedier";
+import Facebook from "./sections/Facebook";
 import Tolketjenesten from "./sections/Tolketjenesten";
 import Schema from "assets/schema.json";
 import MetaTags from "react-meta-tags";
@@ -15,6 +15,9 @@ import RingOss from "./sections/RingOss";
 import SkrivTilOss from "./sections/SkrivTilOss";
 import FinnNavKontor from "./sections/FinnNavKontor";
 import KlageOgTilbakemeldinger from "./sections/KlageOgTilbakemeldinger";
+import KontaktVeileder from "./sections/KontaktVeileder";
+import Pressekontakt from "./sections/Pressekontakt";
+import SosialeMedier from "./sections/SosialeMedier";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import { urls, varsler } from "Config";
 import Lenke from "nav-frontend-lenker";
@@ -78,13 +81,17 @@ const KontaktOssFrontpage = () => {
                 <FAQ />
               </div>
               <SkrivTilOss />
-              <SosialeMedier />
+              <KontaktVeileder />
+              <Facebook />
               <FinnNavKontor />
               <Tolketjenesten />
               <KlageOgTilbakemeldinger />
               <FeilOgMangler />
+              <Pressekontakt />
+              <SosialeMedier />
             </div>
           </div>
+          <BreadcrumbsWrapper />
         </div>
       </div>
     );

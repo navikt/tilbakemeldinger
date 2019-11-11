@@ -1,5 +1,6 @@
 import React from "react";
 import { NedChevron, OppChevron } from "nav-frontend-chevron";
+import { FormattedMessage } from "react-intl";
 
 interface Props {
   visFlere: boolean;
@@ -15,7 +16,7 @@ const VisMer = (props: Props) => {
         </div>
       ) : (
         <div className={"faq__vismer-content"}>
-          Vis flere
+          <FormattedMessage id="faq.visflere" />
           <NedChevron />
         </div>
       )}
