@@ -18,7 +18,11 @@ const SosialeMedier = () => {
         <FormattedMessage id={"kontaktoss.sosialemedier.beskrivelse"} />
       </div>
       <div>
-        <ChevronLenke href={urlSosialeMedier} isExternal={true}>
+        <ChevronLenke
+          href={urlSosialeMedier}
+          isExternal={true}
+          className={"frontpage__lenke"}
+        >
           <FormattedMessage id={"kontaktoss.sosialemedier.link"} />
         </ChevronLenke>
       </div>

@@ -16,24 +16,27 @@ const SkrivTilOss = () => {
     <IkonPanel ikon={ikon} tittel={tittel}>
       <>
         <div>
-          <div>
-            <FormattedHTMLMessage id={"kontaktoss.skrivtiloss.beskrivelse"} />
-          </div>
-          <div>
-            <ChevronLenke href={urls.skrivTilOss.forside}>
-              <FormattedMessage id={"kontaktoss.skrivtiloss.knapp"} />
-            </ChevronLenke>
-          </div>
+          <FormattedHTMLMessage id={"kontaktoss.skrivtiloss.beskrivelse"} />
         </div>
+        <ChevronLenke
+          href={urls.skrivTilOss.forside}
+          className={"frontpage__lenke"}
+        >
+          <FormattedMessage id={"kontaktoss.skrivtiloss.knapp"} />
+        </ChevronLenke>
 
-        <div>
+        <div className={"frontpage__aktivitetsplan"}>
           <Undertittel>
             <FormattedMessage id={"kontaktoss.aktivitetsplan.tittel"} />
           </Undertittel>
-          <p>
-            <FormattedHTMLMessage id={"kontaktoss.aktivitetsplan.beskrivelse"} />
-          </p>
-          <ChevronLenke href={urls.aktivitetsplan} isExternal={true}>
+        </div>
+        <div className={"ikonpanel__innhold-body"}>
+          <FormattedHTMLMessage id={"kontaktoss.aktivitetsplan.beskrivelse"} />
+          <ChevronLenke
+            href={urls.aktivitetsplan}
+            className={"frontpage__lenke"}
+            isExternal={true}
+          >
             <FormattedMessage id={"kontaktoss.aktivitetsplan.knapp"} />
           </ChevronLenke>
         </div>
