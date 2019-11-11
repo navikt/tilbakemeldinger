@@ -43,10 +43,21 @@ const ChatSide = () => {
   );
 
   const [valgtChatTema, setValgtChatTema] = useState<ChatTema | null>(null);
+  const [sisteTemavalgTimestamp, setSisteTemavalgTimestamp] = useState(Date());
 
   const temaButtonHandlers: {[key in ChatTema]: Function} = {
-    [ChatTema.Familie]: () => setValgtChatTema(ChatTema.Familie),
-    [ChatTema.AAP]: () => setValgtChatTema(ChatTema.AAP),
+    [ChatTema.Familie]: () => {
+      setSisteTemavalgTimestamp(Date());
+      setValgtChatTema(ChatTema.Familie);
+    },
+    [ChatTema.AAP]: () => {
+      setSisteTemavalgTimestamp(Date());
+      setValgtChatTema(ChatTema.AAP);
+    },
+    [ChatTema.Jobbsoker]: () => {
+      setSisteTemavalgTimestamp(Date());
+      setValgtChatTema(ChatTema.Jobbsoker);
+    },
     [ChatTema.Sosial]: () => window.location.assign(urls.chat.sosialhjelp),
     [ChatTema.Okonomi]: () => window.location.assign(urls.chat.okonomi),
     [ChatTema.EURES]: () => window.location.assign(urls.chat.eures),
@@ -60,8 +71,6 @@ const ChatSide = () => {
   useEffect(() => {
     document.title = documentTitle;
   }, [documentTitle]);
-
-  console.log("valgt tema:" + valgtChatTema);
 
   return(
     <>
@@ -84,7 +93,7 @@ const ChatSide = () => {
           />
         </div>
       </div>
-      <ChatbotWrapper chatTema={valgtChatTema} />
+      <ChatbotWrapper chatTema={valgtChatTema} timeStamp={sisteTemavalgTimestamp}/>
     </>
   );
 };

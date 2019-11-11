@@ -12,8 +12,6 @@ type Props = {
   buttonClickHandler: Function,
 };
 
-const personvernMsgId = "chat.advarsel.personvern";
-
 const ChatEkspandertPanel = ({msgIds, cssPrefix, temaKode, buttonClickHandler}: Props) => {
   return(
     <div className={`${cssPrefix}__panel-innhold`}>
@@ -21,10 +19,7 @@ const ChatEkspandertPanel = ({msgIds, cssPrefix, temaKode, buttonClickHandler}: 
       <div className={`${cssPrefix}__panel-start-knapp`}>
         <Hovedknapp
           htmlType={"button"}
-          onClick={() => {
-            buttonClickHandler(temaKode);
-            console.log(temaKode);
-          }}
+          onClick={() => buttonClickHandler(temaKode)}
         >
           <FormattedMessage id={"chat.startknapp"}/>
         </Hovedknapp>

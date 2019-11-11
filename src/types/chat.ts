@@ -9,6 +9,7 @@ export type ChatTemaData = {
 export enum ChatTema {
   Familie = "familie",
   AAP = "aap",
+  Jobbsoker = "jobbsoker",
   Sosial = "sosial",
   Okonomi = "okonomi",
   EURES = "eures",

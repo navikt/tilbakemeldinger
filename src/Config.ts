@@ -89,11 +89,17 @@ export const vars = {
     queueKeys: {
       familie: "Q_CHAT_BOT",
       aap: "q_key_AAP",
+      jobbsoker: "qwer"
     },
     configIds: {
       familie: "c3372a51-6434-4770-a0aa-6e4edba3471e",
       aap: "7f6b-4569-81a1-27202c419953",
       jobbsoker: "asdf",
+    },
+    storageKeys: {
+      config: "chatbot-frida_config",
+      openState: "chatbot-frida_apen",
+      history: "chatbot-frida_historie",
     },
   }
 };

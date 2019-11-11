@@ -343,10 +343,17 @@ export default {
     "<p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
     "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
 
-  "chat.aap.tittel": "Jobbsøker",
+  "chat.aap.tittel": "Arbeidsavklaringspenger",
   "chat.aap.ingressKort":
     "<p>Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.</p>",
   "chat.aap.ingress":
+    "<p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
+    "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
+
+  "chat.jobbsoker.tittel": "Jobbsøker",
+  "chat.jobbsoker.ingressKort":
+    "<p>Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.</p>",
+  "chat.jobbsoker.ingress":
     "<p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
     "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
 

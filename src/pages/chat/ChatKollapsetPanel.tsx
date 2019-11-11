@@ -9,9 +9,7 @@ type Props = {
 
 const ChatKollapsetPanel = ({msgId, cssPrefix}: Props) => (
   <div className={`${cssPrefix}__panel-innhold`}>
-    <Normaltekst>
-      <FormattedMsgMedParagrafer id={msgId} Component={Normaltekst}/>
-    </Normaltekst>
+    <FormattedMsgMedParagrafer id={msgId} Component={Normaltekst}/>
   </div>
 );
 
