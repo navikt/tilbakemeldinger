@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Sidetittel } from "nav-frontend-typografi";
+import { Sidetittel, Undertittel } from "nav-frontend-typografi";
 import FAQ from "./sections/FAQ";
 import UnderUtvikling from "../../components/veiledere/UnderUtvikling";
 import FeilOgMangler from "./sections/FeilOgMangler";
@@ -15,7 +15,9 @@ import RingOss from "./sections/RingOss";
 import SkrivTilOss from "./sections/SkrivTilOss";
 import FinnNavKontor from "./sections/FinnNavKontor";
 import KlageOgTilbakemeldinger from "./sections/KlageOgTilbakemeldinger";
-import { urls } from "Config";
+import { AlertStripeInfo } from "nav-frontend-alertstriper";
+import { urls, varsler } from "Config";
+import Lenke from "nav-frontend-lenker";
 const { miljo } = Environment();
 
 const KontaktOssFrontpage = () => {
@@ -61,6 +63,13 @@ const KontaktOssFrontpage = () => {
                 </Sidetittel>
               </div>
             </header>
+            {varsler.map(varsel => (
+              <AlertStripeInfo key={varsel.tittel}>
+                <Undertittel>{varsel.tittel}</Undertittel>
+                <div className={"varsel__body"}>{varsel.beskrivelse}</div>
+                <Lenke href={varsel.lenke}>{varsel.lenkeTekst}</Lenke>
+              </AlertStripeInfo>
+            ))}
             {miljo === "PROD" && <UnderUtvikling />}
             <div className="frontpage__content">
               <Chat />
