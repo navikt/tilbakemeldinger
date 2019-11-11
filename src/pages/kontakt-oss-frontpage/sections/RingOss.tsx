@@ -19,7 +19,7 @@ const RingOss = () => {
         <FormattedMessage id={"kontaktoss.ringoss.beskrivelse"} />
       </div>
       <button
-        className={"ringoss__visnr box__section-lenke lenke"}
+        className={"frontpage__lenke ringoss__visnr box__section-lenke lenke"}
         onClick={() => settVisNummer(!visNummer)}
       >
         {visNummer ? (

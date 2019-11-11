@@ -15,11 +15,9 @@ const Chat = () => {
       <div>
         <FormattedMessage id={"kontaktoss.chat.beskrivelse"} />
       </div>
-      <div>
-        <ChevronLenke href={urls.chat.forside}>
-          <FormattedMessage id={"kontaktoss.chat.knapp"} />
-        </ChevronLenke>
-      </div>
+      <ChevronLenke href={urls.chat.forside} className={"frontpage__lenke"}>
+        <FormattedMessage id={"kontaktoss.chat.knapp"} />
+      </ChevronLenke>
     </IkonPanel>
   );
 };

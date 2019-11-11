@@ -16,7 +16,11 @@ const FinnNavKontor = () => {
         <div>
           <FormattedHTMLMessage id="kontaktoss.navkontor.beskrivelse" />
         </div>
-        <ChevronLenke href={urls.finnDittNavKontor} isExternal={true}>
+        <ChevronLenke
+          href={urls.finnDittNavKontor}
+          isExternal={true}
+          className={"frontpage__lenke"}
+        >
           <FormattedMessage id="kontaktoss.navkontor.knapp" />
         </ChevronLenke>
       </>
