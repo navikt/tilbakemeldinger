@@ -3,7 +3,7 @@ import { Sidetittel } from "nav-frontend-typografi";
 import FAQ from "./sections/FAQ";
 import UnderUtvikling from "../../components/veiledere/UnderUtvikling";
 import FeilOgMangler from "./sections/FeilOgMangler";
-import SosialeMedier from "./sections/SosialeMedier";
+import Facebook from "./sections/Facebook";
 import Tolketjenesten from "./sections/Tolketjenesten";
 import Schema from "assets/schema.json";
 import MetaTags from "react-meta-tags";
@@ -16,6 +16,9 @@ import SkrivTilOss from "./sections/SkrivTilOss";
 import FinnNavKontor from "./sections/FinnNavKontor";
 import KlageOgTilbakemeldinger from "./sections/KlageOgTilbakemeldinger";
 import { urls } from "Config";
+import KontaktVeileder from "./sections/KontaktVeileder";
+import Pressekontakt from "./sections/Pressekontakt";
+import SosialeMedier from "./sections/SosialeMedier";
 const { miljo } = Environment();
 
 const KontaktOssFrontpage = () => {
@@ -69,13 +72,17 @@ const KontaktOssFrontpage = () => {
                 <FAQ />
               </div>
               <SkrivTilOss />
-              <SosialeMedier />
+              <KontaktVeileder />
+              <Facebook />
               <FinnNavKontor />
               <Tolketjenesten />
               <KlageOgTilbakemeldinger />
               <FeilOgMangler />
+              <Pressekontakt />
+              <SosialeMedier />
             </div>
           </div>
+          <BreadcrumbsWrapper />
         </div>
       </div>
     );

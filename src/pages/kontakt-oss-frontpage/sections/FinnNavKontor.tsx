@@ -1,5 +1,5 @@
 import React from "react";
-import { FormattedHTMLMessage, FormattedMessage } from "react-intl";
+import { FormattedMessage } from "react-intl";
 
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 import { urls } from "../../../Config";
@@ -13,9 +13,6 @@ const FinnNavKontor = () => {
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
       <>
-        <div>
-          <FormattedHTMLMessage id="kontaktoss.navkontor.beskrivelse" />
-        </div>
         <ChevronLenke
           href={urls.finnDittNavKontor}
           isExternal={true}

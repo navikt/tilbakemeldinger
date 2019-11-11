@@ -80,18 +80,22 @@ export default {
     "Gjelder spørsmål eller opplysninger om bil og transport for personer med varig nedsatt funksjonsevne som" +
     " ikke kan bruke offentlig transport til arbeid, skole eller i dagliglivet.",
 
-  "faq.intro": "Nå spør mange om dette",
-  "faq.nesteutbetaling": "Når kommer neste utbetaling?",
+  "faq.intro": "Nå lurer mange på",
+  "faq.visflere": "Vis flere",
+  "faq.nesteutbetaling": "Utbetalingsdatoer",
   "faq.posttilannenadresse":
-    "Hvordan kan jeg få post fra NAV til en annen adresse?",
+    "Vil du ha post til en annen adresse?",
   "faq.saksbehandlingstider":
-    "Hvilke saksbehandlingstider gjelder i mitt fylke?",
+    "Saksbehandlingstider",
   "faq.minside": "Må min side finner du blant annet",
   "faq.endrekontonummer": "Endre kontonummer",
-  "faq.utbetalingsoversikt": "Se dine utbetalinger og skattetrekk",
-  "faq.saksoversikt": "Se status i saken min",
+  "faq.utbetalingsoversikt": "Sjekk dine utbetalinger",
+  "faq.saksoversikt": "Hvordan går det med saken min?",
+  "faq.eosreglersak": "Feiltolkning av EØS-regelene",
 
   "kontaktoss.tittel": "Kontakt oss",
+  "kontaktoss.svartiddager": "Svartid: {antall} arbeidsdager.",
+
   "kontaktoss.chat.tittel": "Chat",
   "kontaktoss.chat.beskrivelse":
     "På chat kan vi ikke svare på saken din, men vi hjelper deg gjerne med generelle spørsmål.",
@@ -136,25 +140,28 @@ export default {
 
   "kontaktoss.skrivtiloss.tittel": "Skriv til oss",
   "kontaktoss.skrivtiloss.beskrivelse":
-    "Du kan ikke sende e-post til oss, men du kan sende spørsmål om saken din " +
-    "eller opplysninger til oss ved å logge inn og skrive til oss. Du får " +
-    "svar etter <b>omtrent 2 arbeidsdager</b>.",
+    "Du må logge inn for å sende e-post",
   "kontaktoss.skrivtiloss.knapp": "Skriv til oss",
 
-  "kontaktoss.aktivitetsplan.tittel":
-    "Kontakt din veileder via aktivitetsplanen",
-  "kontaktoss.aktivitetsplan.beskrivelse":
-    " Du har en aktivietsplan dersom du er " +
-    `<a class='lenke' href="${urls.arbeidssoker}">registrert som arbeidssøker</a>. Da ` +
-    "kan du kontakte din veileder og be om et møte eller råd under  " +
-    "jobbsøkerprosessen. Svartiden varirerer.",
-  "kontaktoss.aktivitetsplan.knapp":
-    "Kontakt din veileder via aktivitetsplanen",
+  "kontaktoss.kontaktveileder.tittel": "Kontakt din veileder",
+  "kontaktoss.kontaktveileder.beskrivelse":
+    "Du må være registert som arbeidssøker for å kontakte din veileder.",
+  "kontaktoss.kontaktveileder.knapp": "Kontakt din veileder",
 
-  "kontaktoss.navkontor.tittel": "Finn din NAV-enhet",
+  "kontaktoss.facebook.tittel": "Spør oss på Facebook",
+  "kontaktoss.facebook.foreldrepenger": "Foreldrepenger på Facebook",
+  "kontaktoss.facebook.jobblyst": "Jobblyst på Facebook",
+
+  "kontaktoss.navkontor.tittel": "Finn ditt NAV-kontor",
   "kontaktoss.navkontor.beskrivelse":
     "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
-  "kontaktoss.navkontor.knapp": "Finn adressen (du må logge inn)",
+  "kontaktoss.navkontor.knapp": "Finn adressen til ditt NAV-kontor",
+
+  "kontaktoss.tolketjenesten.tittel": "Tolketjenesten",
+  "kontaktoss.tolketjenesten.link":
+    "Kontakt tolketjenesten for døve, døvblinde og hørselshemmede",
+  "kontaktoss.tolketjenesten.link.spraktolk":
+    "Språktolk til veiledningssamtaler",
 
   "kontaktoss.klage.tittel": "Klage og tilbakemeldinger",
   "kontaktoss.klage.beskrivelse":
@@ -162,21 +169,16 @@ export default {
     " opplevelse i møte med NAV",
   "kontaktoss.klage.knapp": "Slik går du frem for å klage",
 
-  "kontaktoss.tolketjenesten.tittel": "Kontakt tolketjenesten",
-  "kontaktoss.tolketjenesten.link":
-    "Kontakt tolketjenesten for døve, døvblinde og hørselshemmede",
-  "kontaktoss.tolketjenesten.link.spraktolk":
-    "Språktolk til veiledningssamtaler",
-
   "kontaktoss.tekniskfeil.tittel": "Teknisk feil på nav.no",
   "kontaktoss.tekniskfeil.link.losselv": "Prøv å løse problemet selv",
   "kontaktoss.tekniskfeil.link.meldifra": "Meld ifra om feil og mangler",
   "kontaktoss.tekniskfeil.link.ring": "Ring teknisk brukerstøtte",
 
+  "kontaktoss.presse.tittel": "Pressekontakt",
+  "kontaktoss.presse.link": "Pressekontakt",
+
   "kontaktoss.sosialemedier.tittel": "NAV i sosiale medier",
-  "kontaktoss.sosialemedier.beskrivelse":
-    "Du treffer oss på Facebook. Twitter, Linkedin, Instagram, og Youtube",
-  "kontaktoss.sosialemedier.link": "Se hvor du finner oss",
+  "kontaktoss.sosialemedier.link": "NAV i sosiale medier",
 
   "tilbakemeldinger.klageanke.tittel": "Klage eller anke på vedtak",
   "tilbakemeldinger.klageanke.beskrivelse":

@@ -7,23 +7,8 @@ export interface Lenke {
 
 export const lenkerFAQ: Lenke[] = [
   {
-    lenke: urls.faq.utbetalinger,
-    lenkeTekst: "faq.nesteutbetaling"
-  },
-  {
-    lenke: urls.faq.postTilAnnenAdresse,
-    lenkeTekst: "faq.posttilannenadresse"
-  },
-  {
-    lenke: urls.faq.saksbehandlingstider,
-    lenkeTekst: "faq.saksbehandlingstider"
-  }
-];
-
-export const lenkerMinSide: Lenke[] = [
-  {
-    lenke: urls.faq.endreKontonummer,
-    lenkeTekst: "faq.endrekontonummer"
+    lenke: urls.faq.eosReglerSak,
+    lenkeTekst: "faq.eosreglersak",
   },
   {
     lenke: urls.faq.utbetalingsoversikt,
@@ -32,5 +17,21 @@ export const lenkerMinSide: Lenke[] = [
   {
     lenke: urls.faq.saksoversikt,
     lenkeTekst: "faq.saksoversikt"
-  }
+  },
+  {
+    lenke: urls.faq.saksbehandlingstider,
+    lenkeTekst: "faq.saksbehandlingstider"
+  },
+  {
+    lenke: urls.faq.utbetalinger,
+    lenkeTekst: "faq.nesteutbetaling"
+  },
+  {
+    lenke: urls.faq.endreKontonummer,
+    lenkeTekst: "faq.endrekontonummer"
+  },
+  {
+    lenke: urls.faq.postTilAnnenAdresse,
+    lenkeTekst: "faq.posttilannenadresse"
+  },
 ];

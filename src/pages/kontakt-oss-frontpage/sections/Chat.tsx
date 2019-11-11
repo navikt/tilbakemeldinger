@@ -12,9 +12,6 @@ const Chat = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <div>
-        <FormattedMessage id={"kontaktoss.chat.beskrivelse"} />
-      </div>
       <ChevronLenke href={urls.chat.forside} className={"frontpage__lenke"}>
         <FormattedMessage id={"kontaktoss.chat.knapp"} />
       </ChevronLenke>
