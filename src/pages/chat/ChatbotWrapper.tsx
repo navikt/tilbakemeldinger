@@ -40,7 +40,7 @@ const ChatbotWrapper = ({chatTema, timeStamp}: Props) => {
   useEffect(() => {
     console.log("First render, initializing...");
     chatbotUtils.clearSessionData();
-    chatbotUtils.initOnOpenEvent();
+    chatbotUtils.initEventDispatcherHooks();
   }, []);
 
   useEffect(() => {

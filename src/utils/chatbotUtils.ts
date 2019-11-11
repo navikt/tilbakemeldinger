@@ -17,24 +17,16 @@ const hookSessionStorageSetItem = (storageKey: string) => {
   };
 };
 
-const addOnOpenEventListener = (eventListener: EventListener) => {
-  window.addEventListener(`sessionStorageSet_${storageKeys.openState}`, eventListener);
-};
-
-const removeOnOpenEventListener = (eventListener: EventListener) => {
-  window.removeEventListener(`sessionStorageSet_${storageKeys.openState}`, eventListener);
-};
-
-const initOnOpenEvent = () => {
+const initEventDispatcherHooks = () => {
   hookSessionStorageSetItem(storageKeys.openState);
 };
 
 // TODO: finn denne ut fra styled-components algoritme som genererer classnames
-const getApneClassName = () => {
+const getApneKnappClassName = () => {
   return "sc-fAjcbJ";
 };
 
-const getMinimerClassName = () => {
+const getLukkKnappClassName = () => {
   return "sc-bxivhb";
 };
 
@@ -50,11 +42,11 @@ const getClickFunc = (className: string) => {
 };
 
 const getApneFunc = () => {
-  return getClickFunc(getApneClassName());
+  return getClickFunc(getApneKnappClassName());
 };
 
 const getLukkFunc = () => {
-  return getClickFunc(getMinimerClassName());
+  return getClickFunc(getLukkKnappClassName());
 };
 
 const reOpenOnClose = (event: Event) => {
@@ -63,11 +55,20 @@ const reOpenOnClose = (event: Event) => {
     return;
   }
 
+  window.removeEventListener(`sessionStorageSet_${storageKeys.openState}`, reOpenOnClose);
   const isOpen = storageElement.value === "true";
   if (!isOpen) {
     console.log("Chatbot er lukket, gjenåpner...");
-    apneChatbot();
-    removeOnOpenEventListener(reOpenOnClose);
+    const apneFunc = getApneFunc();
+
+    if (!apneFunc) {
+      console.log("Åpne funksjon fortsatt IKKE funnet");
+      return;
+    }
+
+    console.log("Fant åpne funksjon denne gangen, kjører...");
+    clearSessionData();
+    apneFunc();
   }
 };
 
@@ -78,9 +79,8 @@ const lukkOgApneChatbot = () => {
     return false;
   }
 
-  addOnOpenEventListener(reOpenOnClose);
+  window.addEventListener(`sessionStorageSet_${storageKeys.openState}`, reOpenOnClose);
   lukkFunc();
-
   return true;
 };
 
@@ -120,8 +120,6 @@ const clearSessionData = () => {
 export default {
   apneChatbot,
   lukkChatbot,
-  initOnOpenEvent,
-  addOnOpenEventListener,
-  removeOnOpenEventListener,
+  initEventDispatcherHooks,
   clearSessionData,
 };
