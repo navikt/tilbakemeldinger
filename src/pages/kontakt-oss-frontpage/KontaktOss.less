@@ -5,6 +5,15 @@
   @margin-vertical: 1.5rem;
   @margin-horizontal: 1rem;
 
+  &__wrapper {
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
   &__content {
     display: flex;
     justify-content: center;
@@ -18,6 +27,10 @@
   &__sidetittel {
     padding: 1rem 0;
     text-align: center;
+  }
+
+  &__aktivitetsplan {
+    margin-top: 1rem;
   }
 
   &__row {
@@ -46,6 +59,10 @@
     }
   }
 
+  &__lenke {
+    margin: 0.5rem 0;
+  }
+
   .ringoss {
     &__kolonne {
       width: 10rem;
@@ -60,6 +77,8 @@
       margin-bottom: 1rem;
     }
     &__visnr {
+      display: flex;
+      align-items: center;
       border: 0;
       padding: 0;
       > * {
@@ -78,7 +97,9 @@
     .ikonpanel.setPanelBorder(@navGronnLighten60);
 
     &__vismer {
-      margin: 0.25rem 0;
+      display: flex;
+      align-items: center;
+      margin: 0.5rem 0;
       padding: 0;
       border: 0;
       &-content {
@@ -96,4 +117,3 @@
     background-color: @navGra20;
   }
 }
-

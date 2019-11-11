@@ -15,8 +15,8 @@ import RingOss from "./sections/RingOss";
 import SkrivTilOss from "./sections/SkrivTilOss";
 import FinnNavKontor from "./sections/FinnNavKontor";
 import KlageOgTilbakemeldinger from "./sections/KlageOgTilbakemeldinger";
-import { urls, varsler } from "Config";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
+import { urls, varsler } from "Config";
 import Lenke from "nav-frontend-lenker";
 const { miljo } = Environment();
 
@@ -45,43 +45,45 @@ const KontaktOssFrontpage = () => {
     return null;
   } else {
     return (
-      <div className="pagecontent pagecontent__frontpage">
-        <BreadcrumbsWrapper />
-        <div className="frontpage">
-          <MetaTags>
-            <title>{intl.messages["seo.kontaktoss.tittel"]}</title>
-            <meta
-              name="description"
-              content={intl.messages["seo.kontaktoss.description"] as string}
-            />
-          </MetaTags>
-          <header className="frontpage__introduksjon">
-            <div className="frontpage__sidetittel">
-              <Sidetittel>
-                <FormattedMessage id={"kontaktoss.tittel"} />
-              </Sidetittel>
+      <div className="frontpage__wrapper">
+        <div className="pagecontent pagecontent__frontpage">
+          <BreadcrumbsWrapper />
+          <div className="frontpage">
+            <MetaTags>
+              <title>{intl.messages["seo.kontaktoss.tittel"]}</title>
+              <meta
+                name="description"
+                content={intl.messages["seo.kontaktoss.description"] as string}
+              />
+            </MetaTags>
+            <header className="frontpage__introduksjon">
+              <div className="frontpage__sidetittel">
+                <Sidetittel>
+                  <FormattedMessage id={"kontaktoss.tittel"} />
+                </Sidetittel>
+              </div>
+            </header>
+            {varsler.map(varsel => (
+              <AlertStripeInfo key={varsel.tittel}>
+                <Undertittel>{varsel.tittel}</Undertittel>
+                <div className={"varsel__body"}>{varsel.beskrivelse}</div>
+                <Lenke href={varsel.lenke}>{varsel.lenkeTekst}</Lenke>
+              </AlertStripeInfo>
+            ))}
+            {miljo === "PROD" && <UnderUtvikling />}
+            <div className="frontpage__content">
+              <Chat />
+              <div className="frontpage__row">
+                <RingOss />
+                <FAQ />
+              </div>
+              <SkrivTilOss />
+              <SosialeMedier />
+              <FinnNavKontor />
+              <Tolketjenesten />
+              <KlageOgTilbakemeldinger />
+              <FeilOgMangler />
             </div>
-          </header>
-          {varsler.map(varsel => (
-            <AlertStripeInfo key={varsel.tittel}>
-              <Undertittel>{varsel.tittel}</Undertittel>
-              <div className={"varsel__body"}>{varsel.beskrivelse}</div>
-              <Lenke href={varsel.lenke}>{varsel.lenkeTekst}</Lenke>
-            </AlertStripeInfo>
-          ))}
-          {miljo === "PROD" && <UnderUtvikling />}
-          <div className="frontpage__content">
-            <Chat />
-            <div className="frontpage__row">
-              <RingOss />
-              <FAQ />
-            </div>
-            <SkrivTilOss />
-            <SosialeMedier />
-            <FinnNavKontor />
-            <Tolketjenesten />
-            <KlageOgTilbakemeldinger />
-            <FeilOgMangler />
           </div>
         </div>
       </div>

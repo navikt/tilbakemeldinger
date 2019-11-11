@@ -10,22 +10,22 @@ type Props = {
   className?: string;
 };
 
-const lenkeTekstMedChevron = (tekst: React.ReactNode, className?: string) => (
-  <span className={className || ""}>
+const lenkeTekstMedChevron = (tekst: React.ReactNode) => (
+  <span>
     <HoyreChevron className={"chevronlenke__chevron"} />
     {tekst}
   </span>
 );
 
 const ChevronLenke = ({ href, children, isExternal, className }: Props) => {
-  const lenkeTekst = lenkeTekstMedChevron(children, className);
+  const lenkeTekst = lenkeTekstMedChevron(children);
 
   return isExternal ? (
-    <Lenke href={href} className="chevronlenke">
+    <Lenke href={href} className={`chevronlenke ${className}`}>
       {lenkeTekst}
     </Lenke>
   ) : (
-    <Link to={href} className={"chevronlenke lenke"}>
+    <Link to={href} className={`chevronlenke ${className} lenke`}>
       {lenkeTekst}
     </Link>
   );
