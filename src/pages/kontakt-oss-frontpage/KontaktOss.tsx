@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Sidetittel, Undertittel } from "nav-frontend-typografi";
 import FAQ from "./sections/FAQ";
-import UnderUtvikling from "../../components/veiledere/UnderUtvikling";
 import FeilOgMangler from "./sections/FeilOgMangler";
 import Facebook from "./sections/Facebook";
 import Tolketjenesten from "./sections/Tolketjenesten";
@@ -65,7 +64,6 @@ const KontaktOssFrontpage = () => {
               <Lenke href={varsel.lenke}>{varsel.lenkeTekst}</Lenke>
             </AlertStripeInfo>
           ))}
-          {miljo === "PROD" && <UnderUtvikling />}
           <div className="frontpage__content">
             <Chat />
             <div className="frontpage__row">
