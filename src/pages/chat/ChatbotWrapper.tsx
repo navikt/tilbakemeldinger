@@ -7,7 +7,7 @@ import chatbotUtils from "../../utils/chatbotUtils";
 
 type Props = {
   chatTema: ChatTema | null;
-  shouldOpen: boolean;
+  lastClick: number;
 };
 
 type ChatbotConfig = {
@@ -33,9 +33,10 @@ const getTemaConfig: {[key in ChatTema]: ChatbotConfig | null} = {
   [ChatTema.EURES]: null,
 };
 
-const ChatbotWrapper = ({chatTema, shouldOpen}: Props) => {
+const ChatbotWrapper = ({chatTema, lastClick}: Props) => {
   const temaConfig = chatTema ? getTemaConfig[chatTema] : null;
   console.log(JSON.stringify(temaConfig));
+  console.log(lastClick);
 
   useEffect(() => {
     console.log("First render, initializing...");
@@ -46,15 +47,15 @@ const ChatbotWrapper = ({chatTema, shouldOpen}: Props) => {
   useEffect(() => {
     console.log("Chatbot update!");
 
-    if (temaConfig === null || !shouldOpen) {
+    if (temaConfig === null || !lastClick) {
       return;
     }
 
     chatbotUtils.apneChatbot();
-  }, [shouldOpen, temaConfig]);
+  }, [lastClick, temaConfig]);
 
   return (
-    temaConfig && shouldOpen ?
+    temaConfig && lastClick ?
     (
       <NAVChatBot
         configId={temaConfig.configId}

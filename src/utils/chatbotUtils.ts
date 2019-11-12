@@ -89,12 +89,12 @@ const apneChatbot = () => {
 
   if (!apneFunc) {
     console.log("Åpne funksjon IKKE funnet");
-    lukkOgApneChatbot();
+    // lukkOgApneChatbot();
     return false;
   }
 
   console.log("Fant åpne funksjon, kjører...");
-  clearSessionData();
+  // clearSessionData();
   apneFunc();
   return true;
 };

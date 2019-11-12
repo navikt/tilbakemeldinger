@@ -19,9 +19,9 @@ const cssPrefix = "chat-tema";
 
 const ChatTemaSide = ({tittelId, chatTema, children}: ChatTemaProps) => {
   const temaButtonHandlers: {[key in ChatTema]: Function} = {
-    [ChatTema.Familie]: () => setShouldOpen(true),
-    [ChatTema.AAP]: () => setShouldOpen(true),
-    [ChatTema.Jobbsoker]: () => setShouldOpen(true),
+    [ChatTema.Familie]: () => setLastClick(Date.now()),
+    [ChatTema.AAP]: () => setLastClick(Date()),
+    [ChatTema.Jobbsoker]: () => setLastClick(Date()),
     [ChatTema.Sosial]: () => window.location.assign(urls.chat.sosialhjelp.chat),
     [ChatTema.Okonomi]: () => window.location.assign(urls.chat.okonomi.chat),
     [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat),
@@ -33,7 +33,7 @@ const ChatTemaSide = ({tittelId, chatTema, children}: ChatTemaProps) => {
     document.title = documentTitle;
   }, [documentTitle]);
 
-  const [shouldOpen, setShouldOpen] = useState(false);
+  const [lastClick, setLastClick] = useState();
 
   return(
     <>
@@ -60,7 +60,7 @@ const ChatTemaSide = ({tittelId, chatTema, children}: ChatTemaProps) => {
           </div>
         </PanelBase>
       </div>
-      <ChatbotWrapper chatTema={chatTema} shouldOpen={shouldOpen}/>
+      <ChatbotWrapper chatTema={chatTema} lastClick={lastClick}/>
     </>
   );
 };

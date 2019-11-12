@@ -16,6 +16,7 @@ const TemaLenkepanel = ({ lenkePanelData, cssPrefix }: Props) => (
   <LenkepanelBase
     border={true}
     className={`${cssPrefix}__temalenke linkbox__container`}
+    href={"#"}
     linkCreator={props => {
       return lenkePanelData.external ? (
         <a href={lenkePanelData.url} className={props.className}>
