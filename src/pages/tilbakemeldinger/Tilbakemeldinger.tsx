@@ -22,7 +22,9 @@ const Tilbakemeldinger = () => {
           />
         </MetaTags>
         <div className={"tilbakemeldinger__tittel"}>
-          <Header title={"Tilbakemeldinger til NAV"} />
+          <Header
+            title={intl.formatMessage({ id: "tilbakemeldinger.sidetittel" })}
+          />
         </div>
         {lenker.map(lenke => (
           <TilpassetLenkepanel

@@ -90,11 +90,7 @@ const App = () => {
               path={urls.skrivTilOss.forside}
               component={SkrivTilOssRouter}
             />
-            <Route
-              exact={true}
-              path={urls.chat.forside}
-              component={ChatSide}
-            />
+            <Route exact={true} path={urls.chat.forside} component={ChatSide} />
             <Route
               exact={true}
               path={urls.tilbakemeldinger.forside}

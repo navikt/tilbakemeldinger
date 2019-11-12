@@ -84,10 +84,8 @@ export default {
   "faq.intro": "Nå lurer mange på",
   "faq.visflere": "Vis flere",
   "faq.nesteutbetaling": "Utbetalingsdatoer",
-  "faq.posttilannenadresse":
-    "Vil du ha post til en annen adresse?",
-  "faq.saksbehandlingstider":
-    "Saksbehandlingstider",
+  "faq.posttilannenadresse": "Vil du ha post til en annen adresse?",
+  "faq.saksbehandlingstider": "Saksbehandlingstider",
   "faq.minside": "Må min side finner du blant annet",
   "faq.endrekontonummer": "Endre kontonummer",
   "faq.utbetalingsoversikt": "Sjekk dine utbetalinger",
@@ -140,8 +138,7 @@ export default {
   "kontaktoss.ringoss.forandre": "Ringer du på vegne av en annen?",
 
   "kontaktoss.skrivtiloss.tittel": "Skriv til oss",
-  "kontaktoss.skrivtiloss.beskrivelse":
-    "Du må logge inn for å sende e-post",
+  "kontaktoss.skrivtiloss.beskrivelse": "Du må logge inn for å sende e-post",
   "kontaktoss.skrivtiloss.knapp": "Skriv til oss",
 
   "kontaktoss.kontaktveileder.tittel": "Kontakt din veileder",
@@ -181,6 +178,7 @@ export default {
   "kontaktoss.sosialemedier.tittel": "NAV i sosiale medier",
   "kontaktoss.sosialemedier.link": "NAV i sosiale medier",
 
+  "tilbakemeldinger.sidetittel": "Klage og tilbakemeldinger",
   "tilbakemeldinger.klageanke.tittel": "Klage eller anke på vedtak",
   "tilbakemeldinger.klageanke.beskrivelse":
     "Har du fått helt eller delvis avslag på søknaden din, kan du klage på avslaget. Får du ikke medhold i klagen din" +
