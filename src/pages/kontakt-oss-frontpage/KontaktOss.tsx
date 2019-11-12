@@ -7,7 +7,6 @@ import Tolketjenesten from "./sections/Tolketjenesten";
 import Schema from "assets/schema.json";
 import MetaTags from "react-meta-tags";
 import { FormattedMessage, useIntl } from "react-intl";
-import Environment from "../../Environments";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import Chat from "./sections/Chat";
 import RingOss from "./sections/RingOss";
