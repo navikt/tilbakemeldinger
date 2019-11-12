@@ -21,6 +21,7 @@ export const urls = {
   tilbakemeldinger: {
     forside: `${baseAppPath}/tilbakemeldinger`,
     klagepavedtak: `${navUrl}/soknader/nb/klage`,
+    klagerettigheter: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Klage+ris+og+ros/Klagerettigheter`,
     serviceklage: {
       form: `${baseAppPath}/tilbakemeldinger/serviceklage`,
       login: `${baseAppPath}/tilbakemeldinger/serviceklage/login`

@@ -188,8 +188,9 @@ export default {
   "tilbakemeldinger.sidetittel": "Klage og tilbakemeldinger",
   "tilbakemeldinger.klageanke.tittel": "Klage eller anke på vedtak",
   "tilbakemeldinger.klageanke.beskrivelse":
-    "Har du fått helt eller delvis avslag på søknaden din, kan du klage på avslaget. Får du ikke medhold i klagen din" +
-    " i NAV, kan du med noen unntak anke til Trygderetten.",
+    "Har du fått helt eller delvis avslag på søknaden din, kan du klage på avslaget. " +
+    "Får du ikke medhold i klagen din i NAV, kan du med noen unntak anke til Trygderetten. " +
+    `Les mer om dine <a href="${urls.tilbakemeldinger.klagerettigheter}" class="lenke">klagerettigheter</a>.`,
   "tilbakemeldinger.klageanke.link": "Send klage eller anke på vedtak",
 
   "tilbakemeldinger.serviceklage.tittel": "Klage på service",

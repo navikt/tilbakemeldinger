@@ -2,6 +2,7 @@ import React from "react";
 import { Normaltekst, Undertittel } from "nav-frontend-typografi";
 import { Link } from "react-router-dom";
 import { LenkepanelBase } from "nav-frontend-lenkepanel";
+import { FormattedHTMLMessage } from "react-intl";
 
 export interface Props {
   id: string;
@@ -47,7 +48,9 @@ const TilpassetLenkepanel = (props: Props) => {
           </div>
           {props.beskrivelse && (
             <div className="linkbox__beskrivelse">
-              <Normaltekst>{props.beskrivelse}</Normaltekst>
+              <Normaltekst>
+                <FormattedHTMLMessage id={props.beskrivelse} />
+              </Normaltekst>
             </div>
           )}
         </div>

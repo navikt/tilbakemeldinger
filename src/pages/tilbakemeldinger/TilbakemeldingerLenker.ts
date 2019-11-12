@@ -17,7 +17,7 @@ export const lenker: Lenke[] = [
   {
     icon: paperIcon,
     tittel: "tilbakemeldinger.klageanke.tittel",
-    beskrivelse: "tilbakemeldinger.klageanke.tittel",
+    beskrivelse: "tilbakemeldinger.klageanke.beskrivelse",
     lenke: urls.tilbakemeldinger.klagepavedtak,
     lenkeTekst: "tilbakemeldinger.klageanke.link",
     external: true
