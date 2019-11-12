@@ -20,7 +20,6 @@ import SosialeMedier from "./sections/SosialeMedier";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import { varsler } from "Config";
 import Lenke from "nav-frontend-lenker";
-const { miljo } = Environment();
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
