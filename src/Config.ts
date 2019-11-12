@@ -22,7 +22,7 @@ export const urls = {
   forside: baseUrl,
   tilbakemeldinger: {
     forside: `${baseUrl}/tilbakemeldinger`,
-    klagepavedtak: `${navUrl}/no/Person/Skjemaer-for-privatpersoner/klage-pa-vedtak`,
+    klagepavedtak: `${navUrl}/soknader/nb/klage`,
     serviceklage: {
       form: `${baseUrl}/tilbakemeldinger/serviceklage`,
       login: `${baseUrl}/tilbakemeldinger/serviceklage/login`
@@ -59,7 +59,7 @@ export const urls = {
   },
   facebook: {
     foreldrepenger: "https://www.facebook.com/navforeldrepenger",
-    jobblyst: "https://www.facebook.com/navjobblyst",
+    jobblyst: "https://www.facebook.com/navjobblyst"
   },
   samtykke: `${navUrl}/no/NAV+og+samfunn/Om+NAV/Relatert+informasjon/taushetsplikt-og-samtykke`,
   fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
@@ -71,7 +71,7 @@ export const urls = {
     endreKontonummer: `${navUrl}/person/personopplysninger#utbetaling`,
     saksoversikt: `${tjenesteUrl}/saksoversikt/`,
     postTilAnnenAdresse: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/vil-du-ha-post-fra-nav-til-en-annen-adresse`,
-    eosReglerSak: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Feiltolkning+av+E%C3%98S-reglene`,
+    eosReglerSak: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Feiltolkning+av+E%C3%98S-reglene`
   },
   veteraner: `${navUrl}/veteraner`,
   arbeidssoker: `${tjenesteUrl}/veiledearbeidssoker/mistet-jobben/registrering-arbeidssoker`,
@@ -85,7 +85,7 @@ export const urls = {
     selvhjelp: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Teknisk+brukerstotte/hjelp-til-personbruker?kap=398749`,
     ring: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Relatert+informasjon/kontakt-teknisk-brukerst%C3%B8tte-nav.no`
   },
-  presseKontakt: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Presse/Pressekontakt`,
+  presseKontakt: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Presse/Pressekontakt`
 };
 
 export const vars = {

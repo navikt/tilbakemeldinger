@@ -17,7 +17,10 @@ const SkrivTilOss = () => {
       <>
         <div>
           <Normaltekst className="svartid">
-            <FormattedMessage id={"kontaktoss.svartiddager"} values={{antall: 4}} />
+            <FormattedMessage
+              id={"kontaktoss.svartiddager"}
+              values={{ antall: 4 }}
+            />
           </Normaltekst>
           <Normaltekst>
             <FormattedMessage id={"kontaktoss.skrivtiloss.beskrivelse"} />
