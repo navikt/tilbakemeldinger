@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { vars } from "../../Config";
 
 import NAVChatBot from "@navikt/nav-chatbot";
@@ -7,7 +7,7 @@ import chatbotUtils from "../../utils/chatbotUtils";
 
 type Props = {
   chatTema: ChatTema | null;
-  timeStamp: string;
+  lastClick: number;
 };
 
 type ChatbotConfig = {
@@ -33,9 +33,10 @@ const getTemaConfig: {[key in ChatTema]: ChatbotConfig | null} = {
   [ChatTema.EURES]: null,
 };
 
-const ChatbotWrapper = ({chatTema, timeStamp}: Props) => {
+const ChatbotWrapper = ({chatTema, lastClick}: Props) => {
   const temaConfig = chatTema ? getTemaConfig[chatTema] : null;
   console.log(JSON.stringify(temaConfig));
+  console.log(lastClick);
 
   useEffect(() => {
     console.log("First render, initializing...");
@@ -46,21 +47,20 @@ const ChatbotWrapper = ({chatTema, timeStamp}: Props) => {
   useEffect(() => {
     console.log("Chatbot update!");
 
-    if (temaConfig === null) {
+    if (temaConfig === null || !lastClick) {
       return;
     }
 
     chatbotUtils.apneChatbot();
-  }, [temaConfig]);
+  }, [lastClick, temaConfig]);
 
   return (
-    temaConfig ?
+    temaConfig && lastClick ?
     (
       <NAVChatBot
         configId={temaConfig.configId}
         queueKey={temaConfig.queueKey}
         customerKey={vars.chatBot.customerKey}
-        key={timeStamp}
       />
     ) : null
   );

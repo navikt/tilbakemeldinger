@@ -3,11 +3,10 @@ import React from "react";
 
 type Props = {
   id: string,
-  values?: any,
   Component?: any,
 };
 
-const FormattedMsgMedParagrafer = ({id, values, Component}: Props) => (
+const FormattedMsgMedParagrafer = ({id, Component}: Props) => (
   <FormattedMessage
     id={id}
     values={{

@@ -11,7 +11,7 @@ import NavFrontendSpinner from "nav-frontend-spinner";
 import AlertStripe from "nav-frontend-alertstriper";
 
 const svartidName = vars.unleash.langSvartidName;
-const svartidDefault = vars.unleash.langSvartidDefault;
+// const svartidDefault = vars.unleash.langSvartidDefault;
 const enabledName = vars.unleash.skrivTilOssEnabledName;
 const enabledDefault = vars.unleash.skrivTilOssEnabledDefault;
 
@@ -19,7 +19,7 @@ const Ingress = () => {
   const intl = useIntl();
 
   const [unleashResponded, setUnleashResponded] = useState(false);
-  const [langSvartid, setLangSvartid] = useState(svartidDefault);
+  // const [langSvartid, setLangSvartid] = useState(svartidDefault);
   const [skrivTilOssEnabled, setSkrivTilOssEnabled] = useState(enabledDefault);
 
   const unleashTogglesResponse = (unleashToggles: Features, error: any) => {
@@ -29,7 +29,7 @@ const Ingress = () => {
       return;
     }
 
-    setLangSvartid(unleashToggles[svartidName]);
+    // setLangSvartid(unleashToggles[svartidName]);
     setSkrivTilOssEnabled(unleashToggles[enabledName]);
   };
 
@@ -62,13 +62,6 @@ const Ingress = () => {
         />
       </MetaTags>
       <Normaltekst>
-        <FormattedMessage
-          id={"skrivtiloss.svartid"}
-          values={{ numDager: vars.svartidDager }}
-        />
-        {langSvartid && <FormattedMessage id={"skrivtiloss.svartid.lang"} />}
-      </Normaltekst>
-      <Normaltekst>
         <FormattedMessage id="skrivtiloss.ingress" />
       </Normaltekst>
     </>
@@ -77,46 +70,40 @@ const Ingress = () => {
 
 const lenker: LenkepanelData[] = [
   {
-    tittel: "skrivtiloss.arbeidssoker.lenke.tittel",
+    tittelId: "skrivtiloss.arbeidssoker.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.arbeidssoker.lenke.ingress"} />,
     url: urls.skrivTilOss.arbeidssoker,
     external: true,
   },
   {
-    tittel: "skrivtiloss.syk.lenke.tittel",
+    tittelId: "skrivtiloss.syk.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.syk.lenke.ingress"} />,
     url: urls.skrivTilOss.syk,
     external: true,
   },
   {
-    tittel: "skrivtiloss.familieogbarn.lenke.tittel",
+    tittelId: "skrivtiloss.familieogbarn.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.familieogbarn.lenke.ingress"} />,
     url: urls.skrivTilOss.familieogbarn,
     external: true,
   },
   {
-    tittel: "skrivtiloss.pensjonist.lenke.tittel",
+    tittelId: "skrivtiloss.pensjonist.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.pensjonist.lenke.ingress"} />,
     url: urls.skrivTilOss.pensjonist,
     external: true,
   },
   {
-    tittel: "skrivtiloss.ufor.lenke.tittel",
+    tittelId: "skrivtiloss.ufor.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.ufor.lenke.ingress"} />,
     url: urls.skrivTilOss.ufor,
     external: true,
   },
   {
-    tittel: "skrivtiloss.hjelpemidler.lenke.tittel",
+    tittelId: "skrivtiloss.hjelpemidler.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.hjelpemidler.lenke.ingress"} />,
     url: urls.skrivTilOss.hjelpemidler,
   },
-  // {
-  //   tittel: "skrivtiloss.sosial.lenke.tittel",
-  //   ingress: <FormattedMessage id={"skrivtiloss.sosial.lenke.ingress"} />,
-  //   url: urls.skrivTilOss.sosial,
-  //   external: true,
-  // }
 ];
 
 const SkrivTilOssForside = () => (

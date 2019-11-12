@@ -1,3 +1,5 @@
+// TODO: Erstatt/merge denne med den andre lenkepanel komponenten
+
 import { LenkepanelData } from "../../types/lenker";
 import { LenkepanelBase } from "nav-frontend-lenkepanel/lib";
 import { Link } from "react-router-dom";
@@ -7,12 +9,14 @@ import React from "react";
 
 type Props = {
   lenkePanelData: LenkepanelData;
+  cssPrefix: string;
 };
 
-const SkrivTilOssLenkepanel = ({ lenkePanelData }: Props) => (
+const TemaLenkepanel = ({ lenkePanelData, cssPrefix }: Props) => (
   <LenkepanelBase
     border={true}
-    className="skriv-til-oss__temalenke linkbox__container"
+    className={`${cssPrefix}__temalenke linkbox__container`}
+    href={"#"}
     linkCreator={props => {
       return lenkePanelData.external ? (
         <a href={lenkePanelData.url} className={props.className}>
@@ -28,10 +32,10 @@ const SkrivTilOssLenkepanel = ({ lenkePanelData }: Props) => (
     <div>
       {lenkePanelData.ikon ? <div>{lenkePanelData.ikon}</div> : null}
       <div>
-        <Undertittel className="skriv-til-oss__temalenke-header lenkepanel__heading">
-          <FormattedMessage id={lenkePanelData.tittel} />
+        <Undertittel className={`${cssPrefix}__temalenke-header lenkepanel__heading`}>
+          <FormattedMessage id={lenkePanelData.tittelId} />
         </Undertittel>
-        <Normaltekst className="skriv-til-oss__lenkepanel-ingress">
+        <Normaltekst className={`${cssPrefix}__lenkepanel-ingress`}>
           {lenkePanelData.ingress}
         </Normaltekst>
       </div>
@@ -39,4 +43,4 @@ const SkrivTilOssLenkepanel = ({ lenkePanelData }: Props) => (
   </LenkepanelBase>
 );
 
-export default SkrivTilOssLenkepanel;
+export default TemaLenkepanel;

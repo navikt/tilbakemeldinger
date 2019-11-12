@@ -50,9 +50,27 @@ export const urls = {
   },
   chat: {
     forside: `${baseAppPath}/chat`,
-    sosialhjelp: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-sosialetjenester`,
-    okonomi: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-gjeldsradgivning`,
-    eures: "https://ec.europa.eu/eures/main.jsp?acro=eures&lang=no&catId=10821&parentCategory=10821",
+    familie: {
+      temaside: `${baseAppPath}/chat/familie`,
+    },
+    jobbsoker: {
+      temaside: `${baseAppPath}/chat/jobbsoker`,
+    },
+    aap: {
+      temaside: `${baseAppPath}/chat/aap`,
+    },
+    sosialhjelp: {
+      temaside: `${baseAppPath}/chat/sosialhjelp`,
+      chat: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-sosialetjenester`,
+    },
+    okonomi: {
+      temaside: `${baseAppPath}/chat/okonomi`,
+      chat: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-gjeldsradgivning`,
+    },
+    eures: {
+      temaside: `${baseAppPath}/chat/eures`,
+      chat: "https://ec.europa.eu/eures/main.jsp?acro=eures&lang=no&catId=10821&parentCategory=10821",
+    },
   },
   chatBotApi: {
     sessionConfig: "https://api.puzzel.com/chat/v1/sessions"

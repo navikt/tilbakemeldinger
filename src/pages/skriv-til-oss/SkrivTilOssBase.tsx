@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Sidetittel } from "nav-frontend-typografi";
 import { FormattedMessage, useIntl } from "react-intl";
 import { LenkepanelData } from "../../types/lenker";
-import SkrivTilOssLenkepanel from "./SkrivTilOssLenkepanel";
+import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 
 const cssPrefix = "skriv-til-oss";
@@ -35,7 +35,7 @@ const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
       {lenker && (
         <div className={`${cssPrefix}__lenke-seksjon`}>
           {lenker.map(lenke => (
-            <SkrivTilOssLenkepanel lenkePanelData={lenke} key={lenke.tittel} />
+            <TemaLenkepanel lenkePanelData={lenke} cssPrefix={cssPrefix} key={lenke.tittelId} />
           ))}
         </div>
       )}
