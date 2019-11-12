@@ -1,7 +1,7 @@
 import React from "react";
 import { Normaltekst, Undertittel } from "nav-frontend-typografi";
 import { Link } from "react-router-dom";
-import Lenkepanel from "nav-frontend-lenkepanel";
+import { LenkepanelBase } from "nav-frontend-lenkepanel";
 
 export interface Props {
   id: string;
@@ -15,12 +15,10 @@ export interface Props {
 
 const TilpassetLenkepanel = (props: Props) => {
   return (
-    <Lenkepanel
+    <LenkepanelBase
       href={props.to}
       border={true}
       className="linkbox__container"
-      title={props.tittel}
-      tittelProps={"undertittel"}
       linkCreator={p => {
         return props.external ? (
           <a href={props.to} {...p}>
@@ -44,7 +42,7 @@ const TilpassetLenkepanel = (props: Props) => {
           </div>
         )}
         <div>
-          <div className="linkbox__tittel">
+          <div className="linkbox__tittel lenkepanel__heading">
             <Undertittel>{props.tittel}</Undertittel>
           </div>
           {props.beskrivelse && (
@@ -54,7 +52,7 @@ const TilpassetLenkepanel = (props: Props) => {
           )}
         </div>
       </div>
-    </Lenkepanel>
+    </LenkepanelBase>
   );
 };
 
