@@ -1,66 +1,76 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
-import EkspanderendePanelGruppe, { EkspanderendePanelData } from "../../components/ekspanderende-panel/EkspanderendePanelGruppe";
+import EkspanderendePanelGruppe from "../../components/ekspanderende-panel/EkspanderendePanelGruppe";
 import { ChatTemaData, ChatTema } from "../../types/chat";
 import chatSideInnhold from "./ChatSideInnhold";
 import ChatKollapsetPanel from "./ChatKollapsetPanel";
-import ChatEkspandertPanel, { ButtonClickHandler } from "./ChatEkspandertPanel";
-import ChatbotWrangler from "../../utils/chatbotWrangler";
+import ChatEkspandertPanel from "./ChatEkspandertPanel";
 
 import ChatValgtIkon from "assets/ChatValgtIkon.svg";
 import ChatIkkeValgtIkon from "assets/ChatUvalgtIkon.svg";
-import NAVChatBot from "@navikt/nav-chatbot";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import { urls } from "../../Config";
+import { EkspanderendePanelData } from "../../components/ekspanderende-panel/EkspanderendePanel";
+import ChatbotWrapper from "./ChatbotWrapper";
 
 const cssPrefix = "chat-med-oss";
 const sideTittel = "chat.forside.tittel";
 
-const temaButtonHandlers: {[key in ChatTema]: Function} = {
-  [ChatTema.AAP]: () => ChatbotWrangler.apneChatbotForTema(ChatTema.AAP),
-  [ChatTema.Familie]: () => ChatbotWrangler.apneChatbotForTema(ChatTema.Familie),
-  [ChatTema.Sosial]: () => window.location.assign(urls.chat.sosialhjelp),
-  [ChatTema.Okonomi]: () => window.location.assign(urls.chat.okonomi),
-};
-
-const chatDataTilPanelInnhold =
-  (
-    chatTema: ChatTemaData,
-    intlFormatMessage: Function,
-    buttonClickHandler: ButtonClickHandler,
-  ): EkspanderendePanelData => (
-  {
-    tittel: intlFormatMessage({id: chatTema.tittelId}),
-    kollapsetInnhold: <ChatKollapsetPanel msgId={chatTema.kortTekstId} cssPrefix={cssPrefix}/>,
-    ekspandertInnhold: (
-      <ChatEkspandertPanel
-        msgId={chatTema.langTekstId}
-        cssPrefix={cssPrefix}
-        temaKode={chatTema.temaKode}
-        buttonClickHandler={buttonClickHandler}
-      />
-    ),
-    id: chatTema.temaKode.toString(),
-    ekspandertIkon: <img src={ChatValgtIkon} alt="" className={`${cssPrefix}__panel-ikon`}/>,
-    kollapsetIkon: <img src={ChatIkkeValgtIkon} alt="" className={`${cssPrefix}__panel-ikon`}/>,
-  }
-);
-
 const ChatSide = () => {
-  const intlFormatMessage = useIntl().formatMessage;
-  const documentTitle = `${intlFormatMessage({id: sideTittel})} - www.nav.no`;
+  const chatDataTilPanelInnhold = (chatTema: ChatTemaData, formatMessage: Function): EkspanderendePanelData => (
+    {
+      tittel: formatMessage({id: chatTema.tittelId}),
+      kollapsetInnhold: (
+        <ChatKollapsetPanel
+          msgId={chatTema.kortTekstId}
+          cssPrefix={cssPrefix}
+        />
+      ),
+      ekspandertInnhold: (
+        <ChatEkspandertPanel
+          msgIds={chatTema.langTekstIds}
+          cssPrefix={cssPrefix}
+          temaKode={chatTema.temaKode}
+          buttonClickHandler={temaButtonHandlers[chatTema.temaKode]}
+        />
+      ),
+      id: chatTema.temaKode.toString(),
+      ekspandertIkon: <img src={ChatValgtIkon} alt="" className={`${cssPrefix}__panel-ikon`}/>,
+      kollapsetIkon: <img src={ChatIkkeValgtIkon} alt="" className={`${cssPrefix}__panel-ikon`}/>,
+    }
+  );
+
+  const [valgtChatTema, setValgtChatTema] = useState<ChatTema | null>(null);
+  const [sisteTemavalgTimestamp, setSisteTemavalgTimestamp] = useState(Date());
+
+  const temaButtonHandlers: {[key in ChatTema]: Function} = {
+    [ChatTema.Familie]: () => {
+      setSisteTemavalgTimestamp(Date());
+      setValgtChatTema(ChatTema.Familie);
+    },
+    [ChatTema.AAP]: () => {
+      setSisteTemavalgTimestamp(Date());
+      setValgtChatTema(ChatTema.AAP);
+    },
+    [ChatTema.Jobbsoker]: () => {
+      setSisteTemavalgTimestamp(Date());
+      setValgtChatTema(ChatTema.Jobbsoker);
+    },
+    [ChatTema.Sosial]: () => window.location.assign(urls.chat.sosialhjelp),
+    [ChatTema.Okonomi]: () => window.location.assign(urls.chat.okonomi),
+    [ChatTema.EURES]: () => window.location.assign(urls.chat.eures),
+  };
+
+  const formatMessage = useIntl().formatMessage;
+
+  const panelInnhold = chatSideInnhold.map(chatTema => chatDataTilPanelInnhold(chatTema, formatMessage));
+
+  const documentTitle = `${formatMessage({id: sideTittel})} - www.nav.no`;
   useEffect(() => {
     document.title = documentTitle;
   }, [documentTitle]);
-
-  const buttonClickHandler = (temaKode: ChatTema) => {
-    temaButtonHandlers[temaKode]();
-  };
-
-  const panelInnhold = chatSideInnhold.map(
-    (chatTema) => chatDataTilPanelInnhold(chatTema, intlFormatMessage, buttonClickHandler));
 
   return(
     <>
@@ -77,15 +87,13 @@ const ChatSide = () => {
           </Normaltekst>
         </div>
         <div className={`${cssPrefix}__temapanel-seksjon`}>
-          {EkspanderendePanelGruppe(panelInnhold, "chatTemaVelger")}
+          <EkspanderendePanelGruppe
+            panelData={panelInnhold}
+            groupName="chatTemaVelger"
+          />
         </div>
       </div>
-
-      <NAVChatBot
-        queueKey="Q_CHAT_BOT"
-        customerKey="41155"
-        configId={"c3372a51-6434-4770-a0aa-6e4edba3471e"}
-      />
+      <ChatbotWrapper chatTema={valgtChatTema} timeStamp={sisteTemavalgTimestamp}/>
     </>
   );
 };

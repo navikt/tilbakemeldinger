@@ -1,16 +1,13 @@
-import React, { ReactNode, useState } from "react";
-import EkspanderendePanel from "./EkspanderendePanel";
+import React, { useState } from "react";
+import EkspanderendePanel, { EkspanderendePanelData } from "./EkspanderendePanel";
 
-export type EkspanderendePanelData = {
-  tittel: string,
-  kollapsetInnhold: ReactNode,
-  ekspandertInnhold: ReactNode,
-  id?: string,
-  kollapsetIkon?: ReactNode,
-  ekspandertIkon?: ReactNode,
+type Props = {
+  panelData: Array<EkspanderendePanelData>,
+  groupName: string,
+  defaultCheckedId?: string,
 };
 
-const EkspanderendePanelGruppe = (panelData: Array<EkspanderendePanelData>, groupName: string, defaultCheckedId?: string) => {
+const EkspanderendePanelGruppe = ({panelData, groupName, defaultCheckedId}: Props) => {
   const [selectedId, setSelectedId] = useState(defaultCheckedId);
   const optionChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedId(event.currentTarget.value);

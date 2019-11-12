@@ -5,26 +5,21 @@ import { FormattedMessage } from "react-intl";
 import React from "react";
 import { ChatTema } from "../../types/chat";
 
-export type ButtonClickHandler = (buttonId: ChatTema) => void;
-
 type Props = {
-  msgId: string,
+  msgIds: Array<string>,
   cssPrefix: string,
   temaKode: ChatTema,
-  buttonClickHandler: ButtonClickHandler,
+  buttonClickHandler: Function,
 };
 
-const personvernMsgId = "chat.advarsel.personvern";
-
-const ChatEkspandertPanel = ({msgId, cssPrefix, temaKode, buttonClickHandler}: Props) => {
+const ChatEkspandertPanel = ({msgIds, cssPrefix, temaKode, buttonClickHandler}: Props) => {
   return(
     <div className={`${cssPrefix}__panel-innhold`}>
-      <FormattedMsgMedParagrafer id={msgId} Component={Normaltekst}/>
-      <FormattedMsgMedParagrafer id={personvernMsgId} Component={Normaltekst}/>
+      {msgIds.map((msgId: string) => <FormattedMsgMedParagrafer id={msgId} Component={Normaltekst} key={msgId}/>)}
       <div className={`${cssPrefix}__panel-start-knapp`}>
         <Hovedknapp
           htmlType={"button"}
-          onClick={() => { buttonClickHandler(temaKode); }}
+          onClick={() => buttonClickHandler(temaKode)}
         >
           <FormattedMessage id={"chat.startknapp"}/>
         </Hovedknapp>
