@@ -6,7 +6,7 @@ import HjemIkon from "assets/icons/line/home-1-line.svg";
 import Environment from "../../Environments";
 
 const baseLenker: Array<BreadcrumbLenke> = [
-  {url: Environment().baseUrl, lenketekstId: "breadcrumb.nav-no", isExternal: true}
+  {url: Environment().baseUrl, lenketekstId: "breadcrumb.nav-no", isExternal: true},
 ];
 
 export default () => (

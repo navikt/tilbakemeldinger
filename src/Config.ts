@@ -18,8 +18,7 @@ export const varsler = [
 export const urls = {
   baseAppPath: baseAppPath,
   appUrl: appUrl,
-  forside: baseAppPath,
-  forsideGammel: "/person/kontakt-oss", // TODO: Fjern!
+  forside: "/person/kontakt-oss",
   tilbakemeldinger: {
     forside: `${baseAppPath}/tilbakemeldinger`,
     klagepavedtak: `${navUrl}/soknader/nb/klage`,

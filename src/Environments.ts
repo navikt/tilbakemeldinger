@@ -36,8 +36,8 @@ const Environment = () => {
   return {
     miljo: `PROD`,
     baseUrl: `https://www.nav.no`,
-    baseAppPath: `/person/kontakt-oss-ny`,
-    appUrl: `https://www.nav.no/person/kontakt-oss-ny`,  // TODO: Fjern "-ny" før dette går live!
+    baseAppPath: `/person/kontakt-oss`,
+    appUrl: `https://www.nav.no/person/kontakt-oss`,
     apiUrl: `https://www.nav.no/person/tilbakemeldinger-api`,
     personInfoApiUrl: `https://www.nav.no/person/personopplysninger-api`,
     tjenesteUrl: `https://tjenester.nav.no`,

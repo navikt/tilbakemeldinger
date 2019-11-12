@@ -25,7 +25,6 @@ import { getFeatureToggleStatus } from "./utils/unleash";
 import ChatSide from "./pages/chat/ChatSide";
 import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
 import { urls, vars } from "./Config";
-import Environments from "./Environments";
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
@@ -83,19 +82,9 @@ const App = () => {
           <Switch>
             <Route
               exact={true}
-              path={urls.forside}
+              path={`(|${urls.forside})`}
               component={KontaktOssFrontpage}
             />
-            <Route
-              exact={true}
-              path={`(|${urls.forsideGammel})`}
-            >
-              {
-                Environments().miljo === "PROD"
-                  ? window.location.href = urls.gamleKontaktOss
-                  : <KontaktOssFrontpage/>
-              }
-            </Route>
             <Route
               exact={false}
               path={urls.skrivTilOss.forside}

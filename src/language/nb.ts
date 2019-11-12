@@ -7,6 +7,7 @@ export default {
 
   "breadcrumb.nav-no": "nav.no",
   "breadcrumb.": "Kontakt oss",
+  "breadcrumb.-ny": "Kontakt oss",
   "breadcrumb.skriv-til-oss": "Skriv til oss",
   "breadcrumb.arbeidssoker": "Arbeidssøker",
   "breadcrumb.syk": "Syk",
