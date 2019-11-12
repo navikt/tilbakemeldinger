@@ -32,7 +32,7 @@ const Tilbakemeldinger = () => {
             key={lenke.tittel}
             id={lenke.tittel}
             tittel={intl.messages[lenke.tittel] as string}
-            beskrivelse={intl.messages[lenke.beskrivelse] as string}
+            beskrivelse={lenke.beskrivelse}
             to={lenke.lenke}
             lenkeTekst={intl.messages[lenke.lenkeTekst] as string}
             external={lenke.external}
