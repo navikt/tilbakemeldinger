@@ -18,3 +18,10 @@ export const logApiError = (url: string, err: HTTPError) => {
     frontendlogger.event(title, fields, tags);
   }
 };
+
+export const logEvent = (fields: object, tags?: object) => {
+  const title = "tilbakemeldinger.apiclient";
+  if (frontendlogger) {
+    frontendlogger.event(title, fields, tags || {});
+  }
+};
