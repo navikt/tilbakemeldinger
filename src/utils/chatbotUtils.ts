@@ -120,6 +120,7 @@ const clearSessionData = () => {
 export default {
   apneChatbot,
   lukkChatbot,
+  lukkOgApneChatbot,
   initEventDispatcherHooks,
   clearSessionData,
 };
