@@ -6,6 +6,7 @@ const Environment = () => {
     return {
       miljo: `LOCAL`,
       baseUrl: `https://www.nav.no`,
+      baseAppPath: `/person/kontakt-oss`,
       appUrl: `http://localhost:8080/person/kontakt-oss`,
       apiUrl: `http://localhost:8080/person/tilbakemeldinger-api`,
       personInfoApiUrl: `http://localhost:8080/person/personopplysninger-api`,
@@ -21,6 +22,7 @@ const Environment = () => {
     return {
       miljo: `DEV`,
       baseUrl: `https://www-${env}.nav.no`,
+      baseAppPath: `/person/kontakt-oss`,
       appUrl: `https://www-${env}.nav.no/person/kontakt-oss`,
       apiUrl: `https://www-${env}.nav.no/person/tilbakemeldinger-api`,
       personInfoApiUrl: `https://www-${env}.nav.no/person/personopplysninger-api`,
@@ -34,7 +36,8 @@ const Environment = () => {
   return {
     miljo: `PROD`,
     baseUrl: `https://www.nav.no`,
-    appUrl: `https://www.nav.no/person/kontakt-oss`,
+    baseAppPath: `/person/kontakt-oss-ny`,
+    appUrl: `https://www.nav.no/person/kontakt-oss-ny`,  // TODO: Fjern "-ny" før dette går live!
     apiUrl: `https://www.nav.no/person/tilbakemeldinger-api`,
     personInfoApiUrl: `https://www.nav.no/person/personopplysninger-api`,
     tjenesteUrl: `https://tjenester.nav.no`,
