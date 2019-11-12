@@ -1,6 +1,6 @@
 import Environment from "../Environments";
 import { HTTPError } from "../components/error/Error";
-import { logApiError } from "../utils/logger";
+import { logApiError, logEvent } from "../utils/logger";
 import { OutboundRosTilNav } from "../pages/tilbakemeldinger/ros-til-nav/Ros";
 import { OutboundFeilOgMangler } from "../pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
 import { OutboundServiceKlage } from "../pages/tilbakemeldinger/service-klage/ServiceKlage";
@@ -44,6 +44,7 @@ type Outbound =
 
 const sendJson = (url: string, data: Outbound) => {
   console.log(url, data);
+  logEvent({ url });
   return fetch(url, {
     method: "POST",
     body: JSON.stringify(data),

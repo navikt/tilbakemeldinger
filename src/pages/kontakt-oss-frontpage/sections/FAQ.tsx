@@ -12,7 +12,7 @@ const FAQ = () => {
   // const [visFlereMinside, settVisFlereMinside] = useState(false);
   const toggleVisFlereFAQ = () => settVisFlereFAQ(!visFlereFAQ);
   // const toggleVisFlereMinSide = () => settVisFlereMinside(!visFlereMinside);
-  const visElementer = 2;
+  const visElementer = 3;
 
   const tittel = <FormattedMessage id={"faq.intro"} />;
 
@@ -28,22 +28,6 @@ const FAQ = () => {
       {lenkerFAQ.length > visElementer && (
         <VisMer visFlere={visFlereFAQ} onClick={toggleVisFlereFAQ} />
       )}
-
-      {/*{lenkerMinSide*/}
-      {/*  .slice(0, visFlereMinside ? lenkerMinSide.length : visElementer)*/}
-      {/*  .map(({ lenke, lenkeTekst }) => (*/}
-      {/*    <div key={lenkeTekst} className={"faq__lenke"}>*/}
-      {/*      <Lenke href={lenke}>*/}
-      {/*        <FormattedMessage id={lenkeTekst} />*/}
-      {/*      </Lenke>*/}
-      {/*    </div>*/}
-      {/*  ))}*/}
-      {/*{lenkerMinSide.length > visElementer && (*/}
-      {/*  <VisMer*/}
-      {/*    visFlere={visFlereMinside}*/}
-      {/*    onClick={toggleVisFlereMinSide}*/}
-      {/*  />*/}
-      {/*)}*/}
     </IkonPanel>
   );
 };

@@ -7,12 +7,21 @@ export default {
 
   "breadcrumb.nav-no": "nav.no",
   "breadcrumb.": "Kontakt oss",
+
   "breadcrumb.skriv-til-oss": "Skriv til oss",
   "breadcrumb.arbeidssoker": "Arbeidssøker",
   "breadcrumb.syk": "Syk",
   "breadcrumb.familieogbarn": "Familie og barn",
   "breadcrumb.hjelpemidler": "Hjelpemidler",
+
   "breadcrumb.chat": "Chat",
+  "breadcrumb.familie": "Familie",
+  "breadcrumb.jobbsoker": "Jobbsøker",
+  "breadcrumb.aap": "Arbeidsavklaringspenger",
+  "breadcrumb.sosialhjelp": "Sosiale tjenester",
+  "breadcrumb.okonomi": "Økonomi",
+  "breadcrumb.eures": "EURES",
+
   "breadcrumb.tilbakemeldinger": "Tilbakemeldinger",
   "breadcrumb.serviceklage": "Klage på service",
   "breadcrumb.login": "Innlogging",
@@ -33,8 +42,7 @@ export default {
   "skrivtiloss.svartid.lang":
     " På grunn av stor pågang kan svartiden akkurat nå være noe lengre. Vi beklager dette.",
   "skrivtiloss.ingress":
-    "Du må skrive til oss på norsk eller engelsk. Du kan ikke kontakte oss på vegne av andre. Det gjelder også" +
-    " fullmektig og verge.",
+    "Har du en pågående sak? Send oss gjerne spørsmål eller nye opplysninger i saken din.",
 
   "skrivtiloss.arbeidssoker.lenke.tittel": "Arbeidssøker",
   "skrivtiloss.arbeidssoker.lenke.ingress":
@@ -80,18 +88,20 @@ export default {
     "Gjelder spørsmål eller opplysninger om bil og transport for personer med varig nedsatt funksjonsevne som" +
     " ikke kan bruke offentlig transport til arbeid, skole eller i dagliglivet.",
 
-  "faq.intro": "Nå spør mange om dette",
-  "faq.nesteutbetaling": "Når kommer neste utbetaling?",
-  "faq.posttilannenadresse":
-    "Hvordan kan jeg få post fra NAV til en annen adresse?",
-  "faq.saksbehandlingstider":
-    "Hvilke saksbehandlingstider gjelder i mitt fylke?",
+  "faq.intro": "Nå lurer mange på",
+  "faq.visflere": "Vis flere",
+  "faq.nesteutbetaling": "Utbetalingsdatoer",
+  "faq.posttilannenadresse": "Vil du ha post til en annen adresse?",
+  "faq.saksbehandlingstider": "Saksbehandlingstider",
   "faq.minside": "Må min side finner du blant annet",
   "faq.endrekontonummer": "Endre kontonummer",
-  "faq.utbetalingsoversikt": "Se dine utbetalinger og skattetrekk",
-  "faq.saksoversikt": "Se status i saken min",
+  "faq.utbetalingsoversikt": "Sjekk dine utbetalinger",
+  "faq.saksoversikt": "Hvordan går det med saken min?",
+  "faq.eosreglersak": "Feiltolkning av EØS-regelene",
 
   "kontaktoss.tittel": "Kontakt oss",
+  "kontaktoss.svartiddager": "Svartid: {antall} arbeidsdager.",
+
   "kontaktoss.chat.tittel": "Chat",
   "kontaktoss.chat.beskrivelse":
     "På chat kan vi ikke svare på saken din, men vi hjelper deg gjerne med generelle spørsmål.",
@@ -135,26 +145,28 @@ export default {
   "kontaktoss.ringoss.forandre": "Ringer du på vegne av en annen?",
 
   "kontaktoss.skrivtiloss.tittel": "Skriv til oss",
-  "kontaktoss.skrivtiloss.beskrivelse":
-    "Du kan ikke sende e-post til oss, men du kan sende spørsmål om saken din " +
-    "eller opplysninger til oss ved å logge inn og skrive til oss. Du får " +
-    "svar etter <b>omtrent 2 arbeidsdager</b>.",
+  "kontaktoss.skrivtiloss.beskrivelse": "Du må logge inn for å sende e-post",
   "kontaktoss.skrivtiloss.knapp": "Skriv til oss",
 
-  "kontaktoss.aktivitetsplan.tittel":
-    "Kontakt din veileder via aktivitetsplanen",
-  "kontaktoss.aktivitetsplan.beskrivelse":
-    " Du har en aktivietsplan dersom du er " +
-    `<a class='lenke' href="${urls.arbeidssoker}">registrert som arbeidssøker</a>. Da ` +
-    "kan du kontakte din veileder og be om et møte eller råd under  " +
-    "jobbsøkerprosessen. Svartiden varirerer.",
-  "kontaktoss.aktivitetsplan.knapp":
-    "Kontakt din veileder via aktivitetsplanen",
+  "kontaktoss.kontaktveileder.tittel": "Kontakt din veileder",
+  "kontaktoss.kontaktveileder.beskrivelse":
+    "Du må være registert som arbeidssøker for å kontakte din veileder.",
+  "kontaktoss.kontaktveileder.knapp": "Kontakt din veileder",
 
-  "kontaktoss.navkontor.tittel": "Finn din NAV-enhet",
+  "kontaktoss.facebook.tittel": "Spør oss på Facebook",
+  "kontaktoss.facebook.foreldrepenger": "Foreldrepenger på Facebook",
+  "kontaktoss.facebook.jobblyst": "Jobblyst på Facebook",
+
+  "kontaktoss.navkontor.tittel": "Finn ditt NAV-kontor",
   "kontaktoss.navkontor.beskrivelse":
     "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
-  "kontaktoss.navkontor.knapp": "Finn adressen (du må logge inn)",
+  "kontaktoss.navkontor.knapp": "Finn adressen til ditt NAV-kontor",
+
+  "kontaktoss.tolketjenesten.tittel": "Tolketjenesten",
+  "kontaktoss.tolketjenesten.link":
+    "Kontakt tolketjenesten for døve, døvblinde og hørselshemmede",
+  "kontaktoss.tolketjenesten.link.spraktolk":
+    "Språktolk til veiledningssamtaler",
 
   "kontaktoss.klage.tittel": "Klage og tilbakemeldinger",
   "kontaktoss.klage.beskrivelse":
@@ -162,22 +174,18 @@ export default {
     " opplevelse i møte med NAV",
   "kontaktoss.klage.knapp": "Slik går du frem for å klage",
 
-  "kontaktoss.tolketjenesten.tittel": "Kontakt tolketjenesten",
-  "kontaktoss.tolketjenesten.link":
-    "Kontakt tolketjenesten for døve, døvblinde og hørselshemmede",
-  "kontaktoss.tolketjenesten.link.spraktolk":
-    "Språktolk til veiledningssamtaler",
-
   "kontaktoss.tekniskfeil.tittel": "Teknisk feil på nav.no",
   "kontaktoss.tekniskfeil.link.losselv": "Prøv å løse problemet selv",
   "kontaktoss.tekniskfeil.link.meldifra": "Meld ifra om feil og mangler",
   "kontaktoss.tekniskfeil.link.ring": "Ring teknisk brukerstøtte",
 
-  "kontaktoss.sosialemedier.tittel": "NAV i sosiale medier",
-  "kontaktoss.sosialemedier.beskrivelse":
-    "Du treffer oss på Facebook. Twitter, Linkedin, Instagram, og Youtube",
-  "kontaktoss.sosialemedier.link": "Se hvor du finner oss",
+  "kontaktoss.presse.tittel": "Pressekontakt",
+  "kontaktoss.presse.link": "Pressekontakt",
 
+  "kontaktoss.sosialemedier.tittel": "NAV i sosiale medier",
+  "kontaktoss.sosialemedier.link": "NAV i sosiale medier",
+
+  "tilbakemeldinger.sidetittel": "Klage og tilbakemeldinger",
   "tilbakemeldinger.klageanke.tittel": "Klage eller anke på vedtak",
   "tilbakemeldinger.klageanke.beskrivelse":
     "Har du fått helt eller delvis avslag på søknaden din, kan du klage på avslaget. Får du ikke medhold i klagen din" +
@@ -328,43 +336,45 @@ export default {
 
   "chat.forside.tittel": "Chat med oss",
   "chat.forside.ingress":
-    "Vi hjelper deg med å finne frem på nav.no og kan svare deg på spørsmål om hva du kan ha rett på. Vi kan ikke se" +
-    " saken din eller utgi personlige opplysninger.",
+    "NAV tilbyr chat på noen temaer. Spør oss gjerne om hva du kan få hjelp til. På chat svarer vi dessverre ikke på" +
+    " spørsmål om saken din.",
 
   "chat.startknapp": "Start chat",
   "chat.advarsel.personvern":
     "<p>Alle samtaler blir lagret anonymt i 6 måneder.</p><p>Ikke oppgi navn, fødselsnummer eller" +
     " sensitive opplysninger som helseforhold eller diagnoser.</p>",
+  "chat.chatbotinfo":
+    "<p>Du vil først møte en chat-robot, men veilederne våre er tilgjengelig på chat på hverdager fra 09.00-14.30.</p>",
 
   "chat.familie.tittel": "Foreldre, barn og familie",
   "chat.familie.ingressKort":
-    "<p>Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger med mer.</p>",
+    "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger med mer.",
   "chat.familie.ingress":
     "<p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
     "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
 
   "chat.aap.tittel": "Arbeidsavklaringspenger",
   "chat.aap.ingressKort":
-    "<p>Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.</p>",
+    "Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.",
   "chat.aap.ingress":
     "<p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
     "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
 
   "chat.jobbsoker.tittel": "Jobbsøker",
   "chat.jobbsoker.ingressKort":
-    "<p>Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.</p>",
+    "Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.",
   "chat.jobbsoker.ingress":
     "<p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
     "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
 
   "chat.sosialhjelp.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.ingressKort":
-    "<p>Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.</p>",
+    "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
   "chat.sosialhjelp.ingress":
     "<p>Åpningstid: kl. 09.00 - 14.30 (mandag-fredag)</p>",
 
   "chat.okonomi.tittel": "Økonomi og gjeldsrådgivning",
-  "chat.okonomi.ingressKort": "<p>Budsjett, økonomi og gjeldsrådgivning.</p>",
+  "chat.okonomi.ingressKort": "Budsjett, økonomi og gjeldsrådgivning.",
   "chat.okonomi.ingress":
     "<p>Åpningstider:\n" +
     "Mandag, tirsdag og onsdag kl. 10.00 - 15.00\n" +
@@ -374,8 +384,8 @@ export default {
 
   "chat.eures.tittel": "EURES",
   "chat.eures.ingressKort":
-    "<p>Chat om jobb og rekruttering fra EU/EØS og Sveits. EURES svarer på spørsmål fra arbeidssøkere og" +
-    " arbeidsgivere.</p>",
+    "Chat om jobb og rekruttering fra EU/EØS og Sveits. EURES svarer på spørsmål fra arbeidssøkere og" +
+    " arbeidsgivere.",
   "chat.eures.ingress":
     "<p>Arbeidssøker: Spør oss om arbeid og opphold i EU/EØS og Sveits, eller om jobb i Norge hvis du er en" +
     " arbeidssøker fra EU/EØS og Sveits.</p>" +

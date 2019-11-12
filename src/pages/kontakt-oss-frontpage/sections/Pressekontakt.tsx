@@ -1,27 +1,28 @@
 import React from "react";
-import { urls } from "../../../Config";
 import { FormattedMessage } from "react-intl";
 
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
+import { urls } from "../../../Config";
 
-import ikon from "assets/forside-sosialemedier-ikon.svg";
+import ikon from "assets/forside-presse-ikon.svg";
 import ChevronLenke from "../../../components/chevronlenke/ChevronLenke";
 
-const SosialeMedier = () => {
-  const tittel = <FormattedMessage id={"kontaktoss.sosialemedier.tittel"} />;
+const Pressekontakt = () => {
+  const tittel = <FormattedMessage id={"kontaktoss.presse.tittel"} />;
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <div>
+      <>
         <ChevronLenke
-          href={urls.sosialeMedier}
+          href={urls.presseKontakt}
           isExternal={true}
+          className={"frontpage__lenke"}
         >
-          <FormattedMessage id={"kontaktoss.sosialemedier.link"} />
+          <FormattedMessage id="kontaktoss.presse.link" />
         </ChevronLenke>
-      </div>
+      </>
     </IkonPanel>
   );
 };
 
-export default SosialeMedier;
+export default Pressekontakt;

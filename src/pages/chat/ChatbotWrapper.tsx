@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { vars } from "../../Config";
 
 import NAVChatBot from "@navikt/nav-chatbot";
@@ -7,7 +7,7 @@ import chatbotUtils from "../../utils/chatbotUtils";
 
 type Props = {
   chatTema: ChatTema | null;
-  timeStamp: string;
+  shouldOpen: boolean;
 };
 
 type ChatbotConfig = {
@@ -33,7 +33,7 @@ const getTemaConfig: {[key in ChatTema]: ChatbotConfig | null} = {
   [ChatTema.EURES]: null,
 };
 
-const ChatbotWrapper = ({chatTema, timeStamp}: Props) => {
+const ChatbotWrapper = ({chatTema, shouldOpen}: Props) => {
   const temaConfig = chatTema ? getTemaConfig[chatTema] : null;
   console.log(JSON.stringify(temaConfig));
 
@@ -46,21 +46,20 @@ const ChatbotWrapper = ({chatTema, timeStamp}: Props) => {
   useEffect(() => {
     console.log("Chatbot update!");
 
-    if (temaConfig === null) {
+    if (temaConfig === null || !shouldOpen) {
       return;
     }
 
     chatbotUtils.apneChatbot();
-  }, [temaConfig]);
+  }, [shouldOpen, temaConfig]);
 
   return (
-    temaConfig ?
+    temaConfig && shouldOpen ?
     (
       <NAVChatBot
         configId={temaConfig.configId}
         queueKey={temaConfig.queueKey}
         customerKey={vars.chatBot.customerKey}
-        key={timeStamp}
       />
     ) : null
   );

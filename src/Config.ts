@@ -1,53 +1,84 @@
 import Environment from "./Environments";
 
-export const baseUrl = "/person/kontakt-oss";
-const { tjenesteUrl, appUrl } = Environment();
+const { tjenesteUrl, appUrl, baseAppPath } = Environment();
 const navUrl = Environment().baseUrl;
 
+export const varsler = [
+  {
+    tittel: "Feiltolkning av EØS-reglene",
+    beskrivelse:
+      "Her finner du informasjon knyttet til feil tolkning og praktisering av EØS-reglene for mottakere av arbeidsavklaringspenger, sykepenger og pleiepenger.",
+    lenke:
+      "https://www.nav.no/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Feiltolkning+av+E%C3%98S-reglene",
+    lenkeTekst: "Les mer"
+  }
+];
+
 export const urls = {
-  baseUrl: baseUrl,
+  baseAppPath: baseAppPath,
   appUrl: appUrl,
-  forside: baseUrl,
+  forside: "/person/kontakt-oss",
   tilbakemeldinger: {
-    forside: `${baseUrl}/tilbakemeldinger`,
-    klagepavedtak: `${navUrl}/no/Person/Skjemaer-for-privatpersoner/klage-pa-vedtak`,
+    forside: `${baseAppPath}/tilbakemeldinger`,
+    klagepavedtak: `${navUrl}/soknader/nb/klage`,
     serviceklage: {
-      form: `${baseUrl}/tilbakemeldinger/serviceklage`,
-      login: `${baseUrl}/tilbakemeldinger/serviceklage/login`
+      form: `${baseAppPath}/tilbakemeldinger/serviceklage`,
+      login: `${baseAppPath}/tilbakemeldinger/serviceklage/login`
     },
-    feilogmangler: `${baseUrl}/tilbakemeldinger/feil-og-mangler`,
-    rostilnav: `${baseUrl}/tilbakemeldinger/ros-til-nav`
+    feilogmangler: `${baseAppPath}/tilbakemeldinger/feil-og-mangler`,
+    rostilnav: `${baseAppPath}/tilbakemeldinger/ros-til-nav`
   },
   samegiella: {
-    base: `${baseUrl}/samegiella`,
+    base: `${baseAppPath}/samegiella`,
     redirect: `${navUrl}/se/Samegiella`,
-    samtale: `${baseUrl}/samegiella/bestilling-av-samtale`
+    samtale: `${baseAppPath}/samegiella/bestilling-av-samtale`
   },
   skrivTilOss: {
-    forside: `${baseUrl}/skriv-til-oss`,
+    forside: `${baseAppPath}/skriv-til-oss`,
     arbeidssoker: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
     familieogbarn: `${tjenesteUrl}/mininnboks/sporsmal/skriv/FMLI`,
     pensjonist: `${tjenesteUrl}/mininnboks/sporsmal/skriv/PENS`,
     syk: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
-    hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`,
+    hjelpemidler: `${baseAppPath}/skriv-til-oss/hjelpemidler`,
     ufor: `${tjenesteUrl}/mininnboks/sporsmal/skriv/UFRT`,
     temaHjelpemidler: {
       generelt: `${tjenesteUrl}/mininnboks/sporsmal/skriv/HJLPM`,
       ortopediske: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ORT_HJE`,
-      bil: `${tjenesteUrl}/mininnboks/sporsmal/skriv/BIL`,
+      bil: `${tjenesteUrl}/mininnboks/sporsmal/skriv/BIL`
     }
   },
   chat: {
-    forside: `${baseUrl}/chat`,
-    sosialhjelp: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-sosialetjenester_asdf`,
-    okonomi: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-gjeldsradgivning_asdf`,
-    eures: "https://ec.europa.eu/eures/main.jsp?acro=eures&lang=no&catId=10821&parentCategory=10821",
+    forside: `${baseAppPath}/chat`,
+    familie: {
+      temaside: `${baseAppPath}/chat/familie`,
+    },
+    jobbsoker: {
+      temaside: `${baseAppPath}/chat/jobbsoker`,
+    },
+    aap: {
+      temaside: `${baseAppPath}/chat/aap`,
+    },
+    sosialhjelp: {
+      temaside: `${baseAppPath}/chat/sosialhjelp`,
+      chat: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-sosialetjenester`,
+    },
+    okonomi: {
+      temaside: `${baseAppPath}/chat/okonomi`,
+      chat: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-gjeldsradgivning`,
+    },
+    eures: {
+      temaside: `${baseAppPath}/chat/eures`,
+      chat: "https://ec.europa.eu/eures/main.jsp?acro=eures&lang=no&catId=10821&parentCategory=10821",
+    },
   },
   chatBotApi: {
     sessionConfig: "https://api.puzzel.com/chat/v1/sessions"
   },
-  facebook: "#",
-  snapchat: "#",
+  facebook: {
+    foreldrepenger: "https://www.facebook.com/navforeldrepenger",
+    jobblyst: "https://www.facebook.com/navjobblyst"
+  },
+  samtykke: `${navUrl}/no/NAV+og+samfunn/Om+NAV/Relatert+informasjon/taushetsplikt-og-samtykke`,
   fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
   faq: {
@@ -56,7 +87,8 @@ export const urls = {
     saksbehandlingstider: `${navUrl}/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV`,
     endreKontonummer: `${navUrl}/person/personopplysninger#utbetaling`,
     saksoversikt: `${tjenesteUrl}/saksoversikt/`,
-    postTilAnnenAdresse: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/vil-du-ha-post-fra-nav-til-en-annen-adresse`
+    postTilAnnenAdresse: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/vil-du-ha-post-fra-nav-til-en-annen-adresse`,
+    eosReglerSak: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Feiltolkning+av+E%C3%98S-reglene`
   },
   veteraner: `${navUrl}/veteraner`,
   arbeidssoker: `${tjenesteUrl}/veiledearbeidssoker/mistet-jobben/registrering-arbeidssoker`,
@@ -69,7 +101,8 @@ export const urls = {
   tekniskBrukerstotte: {
     selvhjelp: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Teknisk+brukerstotte/hjelp-til-personbruker?kap=398749`,
     ring: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Relatert+informasjon/kontakt-teknisk-brukerst%C3%B8tte-nav.no`
-  }
+  },
+  presseKontakt: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Presse/Pressekontakt`
 };
 
 export const vars = {

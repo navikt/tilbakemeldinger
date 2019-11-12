@@ -6,35 +6,33 @@ import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 import { Normaltekst } from "nav-frontend-typografi";
 import { urls } from "../../../Config";
 
-import ikon from "assets/forside-skrivtiloss-ikon.svg";
+import ikon from "assets/forside-veileder-ikon.svg";
 import ChevronLenke from "../../../components/chevronlenke/ChevronLenke";
 
-const SkrivTilOss = () => {
-  const tittel = <FormattedMessage id={"kontaktoss.skrivtiloss.tittel"} />;
+const KontaktVeileder = () => {
+  const tittel = <FormattedMessage id={"kontaktoss.kontaktveileder.tittel"} />;
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
       <>
         <div>
           <Normaltekst className="svartid">
-            <FormattedMessage
-              id={"kontaktoss.svartiddager"}
-              values={{ antall: 4 }}
-            />
+            <FormattedMessage id={"kontaktoss.svartiddager"} values={{antall: 2}} />
           </Normaltekst>
           <Normaltekst>
-            <FormattedMessage id={"kontaktoss.skrivtiloss.beskrivelse"} />
+            <FormattedMessage id={"kontaktoss.kontaktveileder.beskrivelse"} />
           </Normaltekst>
         </div>
         <ChevronLenke
-          href={urls.skrivTilOss.forside}
+          href={urls.aktivitetsplan}
           className={"frontpage__lenke"}
+          isExternal={true}
         >
-          <FormattedMessage id={"kontaktoss.skrivtiloss.knapp"} />
+          <FormattedMessage id={"kontaktoss.kontaktveileder.knapp"} />
         </ChevronLenke>
       </>
     </IkonPanel>
   );
 };
 
-export default SkrivTilOss;
+export default KontaktVeileder;

@@ -13,11 +13,11 @@ const KlageOgTilbakemeldinger = () => {
   return (
     <IkonPanel tittel={tittel} className={"klage-og-tilbakemeldinger"}>
       <Normaltekst>
-        <FormattedMessage id="kontaktoss.klage.beskrivelse" />
-      </Normaltekst>
-      <Normaltekst>
-        <ChevronLenke href={urls.tilbakemeldinger.forside}>
-            <FormattedMessage id="kontaktoss.klage.knapp" />
+        <ChevronLenke
+          href={urls.tilbakemeldinger.forside}
+          className={"frontpage__lenke"}
+        >
+          <FormattedMessage id="kontaktoss.klage.knapp" />
         </ChevronLenke>
       </Normaltekst>
     </IkonPanel>

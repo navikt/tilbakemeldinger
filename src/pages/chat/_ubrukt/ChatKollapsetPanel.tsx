@@ -1,6 +1,6 @@
 import { Normaltekst } from "nav-frontend-typografi";
 import React from "react";
-import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
+import FormattedMsgMedParagrafer from "../../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
 
 type Props = {
   msgId: string,

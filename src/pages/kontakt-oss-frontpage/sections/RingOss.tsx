@@ -15,11 +15,8 @@ const RingOss = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel} className="ringoss">
-      <div>
-        <FormattedMessage id={"kontaktoss.ringoss.beskrivelse"} />
-      </div>
       <button
-        className={"ringoss__visnr box__section-lenke lenke"}
+        className={"frontpage__lenke ringoss__visnr box__section-lenke lenke"}
         onClick={() => settVisNummer(!visNummer)}
       >
         {visNummer ? (
@@ -93,7 +90,7 @@ const RingOss = () => {
             </ChevronLenke>
           </div>
           <div className={"faq__lenke"}>
-            <ChevronLenke href={"#"} className={"faq__lenke"}>
+            <ChevronLenke href={urls.samtykke} className={"faq__lenke"}>
               <FormattedMessage id={"kontaktoss.ringoss.forandre"} />
             </ChevronLenke>
           </div>
