@@ -12,7 +12,7 @@ const baseLenker: Array<BreadcrumbLenke> = [
 export default () => (
   <Breadcrumbs
     currentPath={window.location.pathname}
-    basePath={urls.baseUrl}
+    basePath={urls.baseAppPath}
     ikonUrl={HjemIkon}
     baseLenker={baseLenker}
   />

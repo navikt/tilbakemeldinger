@@ -1,8 +1,7 @@
 import Environment from "./Environments";
 import { ChatTema } from "./types/chat";
 
-export const baseUrl = "/person/kontakt-oss";
-const { tjenesteUrl, appUrl } = Environment();
+const { tjenesteUrl, appUrl, baseAppPath } = Environment();
 const navUrl = Environment().baseUrl;
 
 export const varsler = [
@@ -17,31 +16,32 @@ export const varsler = [
 ];
 
 export const urls = {
-  baseUrl: baseUrl,
+  baseAppPath: baseAppPath,
   appUrl: appUrl,
-  forside: baseUrl,
+  forside: baseAppPath,
+  forsideGammel: "/person/kontakt-oss", // TODO: Fjern!
   tilbakemeldinger: {
-    forside: `${baseUrl}/tilbakemeldinger`,
+    forside: `${baseAppPath}/tilbakemeldinger`,
     klagepavedtak: `${navUrl}/soknader/nb/klage`,
     serviceklage: {
-      form: `${baseUrl}/tilbakemeldinger/serviceklage`,
-      login: `${baseUrl}/tilbakemeldinger/serviceklage/login`
+      form: `${baseAppPath}/tilbakemeldinger/serviceklage`,
+      login: `${baseAppPath}/tilbakemeldinger/serviceklage/login`
     },
-    feilogmangler: `${baseUrl}/tilbakemeldinger/feil-og-mangler`,
-    rostilnav: `${baseUrl}/tilbakemeldinger/ros-til-nav`
+    feilogmangler: `${baseAppPath}/tilbakemeldinger/feil-og-mangler`,
+    rostilnav: `${baseAppPath}/tilbakemeldinger/ros-til-nav`
   },
   samegiella: {
-    base: `${baseUrl}/samegiella`,
+    base: `${baseAppPath}/samegiella`,
     redirect: `${navUrl}/se/Samegiella`,
-    samtale: `${baseUrl}/samegiella/bestilling-av-samtale`
+    samtale: `${baseAppPath}/samegiella/bestilling-av-samtale`
   },
   skrivTilOss: {
-    forside: `${baseUrl}/skriv-til-oss`,
+    forside: `${baseAppPath}/skriv-til-oss`,
     arbeidssoker: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
     familieogbarn: `${tjenesteUrl}/mininnboks/sporsmal/skriv/FMLI`,
     pensjonist: `${tjenesteUrl}/mininnboks/sporsmal/skriv/PENS`,
     syk: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
-    hjelpemidler: `${baseUrl}/skriv-til-oss/hjelpemidler`,
+    hjelpemidler: `${baseAppPath}/skriv-til-oss/hjelpemidler`,
     ufor: `${tjenesteUrl}/mininnboks/sporsmal/skriv/UFRT`,
     temaHjelpemidler: {
       generelt: `${tjenesteUrl}/mininnboks/sporsmal/skriv/HJLPM`,
@@ -50,7 +50,7 @@ export const urls = {
     }
   },
   chat: {
-    forside: `${baseUrl}/chat`,
+    forside: `${baseAppPath}/chat`,
     sosialhjelp: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-sosialetjenester`,
     okonomi: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-gjeldsradgivning`
   },
