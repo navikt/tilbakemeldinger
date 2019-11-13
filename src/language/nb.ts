@@ -7,6 +7,7 @@ export default {
 
   "breadcrumb.nav-no": "nav.no",
   "breadcrumb.": "Kontakt oss",
+  "breadcrumb.test": "Test",
 
   "breadcrumb.skriv-til-oss": "Skriv til oss",
   "breadcrumb.arbeidssoker": "Arbeidssøker",
@@ -108,6 +109,7 @@ export default {
   "kontaktoss.chat.knapp": "Chat med oss",
 
   "kontaktoss.ringoss.tittel": "Ring oss",
+  "kontaktoss.ringoss.knapp": "Alle telefonnumre",
   "kontaktoss.ringoss.beskrivelse":
     "Vi hjelper deg med generelle spørsmål og veiledning hverdager mellom " +
     "08:00 - 15:00. Svartiden varierer, men det er kortest ventetid mellom " +
