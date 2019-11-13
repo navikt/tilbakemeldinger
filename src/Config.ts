@@ -3,21 +3,21 @@ import Environment from "./Environments";
 const { tjenesteUrl, appUrl, baseAppPath } = Environment();
 const navUrl = Environment().baseUrl;
 
-export const varsler = [
-  {
-    tittel: "Feiltolkning av EØS-reglene",
-    beskrivelse:
-      "Her finner du informasjon knyttet til feil tolkning og praktisering av EØS-reglene for mottakere av arbeidsavklaringspenger, sykepenger og pleiepenger.",
-    lenke:
-      "https://www.nav.no/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Feiltolkning+av+E%C3%98S-reglene",
-    lenkeTekst: "Les mer"
-  }
-];
+interface Varsel {
+  tittel: string;
+  beskrivelse: string;
+  lenke: string;
+  lenkeTekst: string;
+}
+
+/* Viktige meldinger her */
+export const varsler: Varsel[] = [];
 
 export const urls = {
   baseAppPath: baseAppPath,
   appUrl: appUrl,
   forside: "/person/kontakt-oss",
+  testAvForside: "/person/kontakt-oss/test",
   tilbakemeldinger: {
     forside: `${baseAppPath}/tilbakemeldinger`,
     klagepavedtak: `${navUrl}/soknader/nb/klage`,
@@ -51,26 +51,27 @@ export const urls = {
   chat: {
     forside: `${baseAppPath}/chat`,
     familie: {
-      temaside: `${baseAppPath}/chat/familie`,
+      temaside: `${baseAppPath}/chat/familie`
     },
     jobbsoker: {
-      temaside: `${baseAppPath}/chat/jobbsoker`,
+      temaside: `${baseAppPath}/chat/jobbsoker`
     },
     aap: {
-      temaside: `${baseAppPath}/chat/aap`,
+      temaside: `${baseAppPath}/chat/aap`
     },
     sosialhjelp: {
       temaside: `${baseAppPath}/chat/sosialhjelp`,
-      chat: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-sosialetjenester`,
+      chat: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-sosialetjenester`
     },
     okonomi: {
       temaside: `${baseAppPath}/chat/okonomi`,
-      chat: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-gjeldsradgivning`,
+      chat: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-gjeldsradgivning`
     },
     eures: {
       temaside: `${baseAppPath}/chat/eures`,
-      chat: "https://ec.europa.eu/eures/main.jsp?acro=eures&lang=no&catId=10821&parentCategory=10821",
-    },
+      chat:
+        "https://ec.europa.eu/eures/main.jsp?acro=eures&lang=no&catId=10821&parentCategory=10821"
+    }
   },
   chatBotApi: {
     sessionConfig: "https://api.puzzel.com/chat/v1/sessions"
@@ -92,6 +93,7 @@ export const urls = {
     eosReglerSak: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Feiltolkning+av+E%C3%98S-reglene`
   },
   veteraner: `${navUrl}/veteraner`,
+  ringOss: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/kontakt-nav-p%C3%A5-telefon`,
   arbeidssoker: `${tjenesteUrl}/veiledearbeidssoker/mistet-jobben/registrering-arbeidssoker`,
   tolketjenesten: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Tolketjenesten`,
   spraktolk: `${navUrl}/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Oppfolging+fra+NAV/trenger-du-spr%C3%A5ktolk`,
@@ -128,12 +130,12 @@ export const vars = {
     configIds: {
       familie: "c3372a51-6434-4770-a0aa-6e4edba3471e",
       aap: "7f6b-4569-81a1-27202c419953",
-      jobbsoker: "asdf",
+      jobbsoker: "asdf"
     },
     storageKeys: {
       config: "chatbot-frida_config",
       openState: "chatbot-frida_apen",
-      history: "chatbot-frida_historie",
-    },
+      history: "chatbot-frida_historie"
+    }
   }
 };

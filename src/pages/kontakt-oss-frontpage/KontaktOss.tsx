@@ -22,7 +22,12 @@ import Lenke from "nav-frontend-lenker";
 import Environment from "../../Environments";
 const miljo = Environment().miljo;
 
-const KontaktOssFrontpage = () => {
+interface Props {
+  redirect: boolean;
+}
+
+const KontaktOssFrontpage = (props: Props) => {
+  const { redirect } = props;
   const intl = useIntl();
 
   useEffect(() => {
@@ -38,7 +43,7 @@ const KontaktOssFrontpage = () => {
     };
   }, []);
 
-  if (miljo === "PROD") {
+  if (redirect && miljo === "PROD") {
     /*
       Redirect to old frontpage
       TODO: Fjern
@@ -69,7 +74,9 @@ const KontaktOssFrontpage = () => {
               <AlertStripeInfo key={varsel.tittel}>
                 <Undertittel>{varsel.tittel}</Undertittel>
                 <div className={"varsel__body"}>{varsel.beskrivelse}</div>
-                <Lenke href={varsel.lenke}>{varsel.lenkeTekst}</Lenke>
+                {varsel.lenke && varsel.lenkeTekst && (
+                  <Lenke href={varsel.lenke}>{varsel.lenkeTekst}</Lenke>
+                )}
               </AlertStripeInfo>
             ))}
             <div className="frontpage__content">

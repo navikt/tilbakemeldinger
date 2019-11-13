@@ -7,6 +7,7 @@ export default {
 
   "breadcrumb.nav-no": "nav.no",
   "breadcrumb.": "Kontakt oss",
+  "breadcrumb.test": "Test",
 
   "breadcrumb.skriv-til-oss": "Skriv til oss",
   "breadcrumb.arbeidssoker": "Arbeidssøker",
@@ -108,6 +109,7 @@ export default {
   "kontaktoss.chat.knapp": "Chat med oss",
 
   "kontaktoss.ringoss.tittel": "Ring oss",
+  "kontaktoss.ringoss.knapp": "Alle telefonnumre",
   "kontaktoss.ringoss.beskrivelse":
     "Vi hjelper deg med generelle spørsmål og veiledning hverdager mellom " +
     "08:00 - 15:00. Svartiden varierer, men det er kortest ventetid mellom " +
@@ -269,7 +271,7 @@ export default {
   "felter.typefeil.uu": "Lav grad av universell utforming",
   "felter.melding.tittel": "Din tilbakemelding",
   "felter.melding.beskrivelse":
-    "Unngå sensitive personopplysninger, som f.eks eksempel opplysninger om helseforhold eller diagnoser",
+    "Unngå sensitive personopplysninger, som for eksempel opplysninger om helseforhold eller diagnoser",
   "felter.noegikkgalt": "Oi! Noe gikk galt:",
   "felter.send": "Send",
   "felter.tilbake": "Tilbake",
@@ -395,5 +397,5 @@ export default {
     " jobbmobilitetsportalen.</p>",
 
   "takk.melding": "Meldingen din er sendt",
-  "takk.knapp": "Gå til nav.no",
+  "takk.knapp": "Gå til nav.no"
 };

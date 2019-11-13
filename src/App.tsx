@@ -83,7 +83,12 @@ const App = () => {
             <Route
               exact={true}
               path={`(|${urls.forside})`}
-              component={KontaktOssFrontpage}
+              render={() => <KontaktOssFrontpage redirect={true} />}
+            />
+            <Route
+              exact={true}
+              path={urls.testAvForside}
+              render={() => <KontaktOssFrontpage redirect={false} />}
             />
             <Route
               exact={false}
