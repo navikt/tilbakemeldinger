@@ -124,13 +124,13 @@ export const vars = {
     customerKey: "41155",
     queueKeys: {
       familie: "Q_CHAT_BOT",
-      aap: "q_key_AAP",
-      jobbsoker: "qwer"
+      aap: "Q_CHAT_BOT",
+      jobbsoker: "Q_CHAT_AAP"
     },
     configIds: {
       familie: "c3372a51-6434-4770-a0aa-6e4edba3471e",
-      aap: "7f6b-4569-81a1-27202c419953",
-      jobbsoker: "asdf"
+      aap: "599f9e7c-7f6b-4569-81a1-27202c419953",
+      jobbsoker: "599f9e7c-7f6b-4569-81a1-27202c419953"
     },
     storageKeys: {
       config: "chatbot-frida_config",
