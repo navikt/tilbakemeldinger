@@ -22,7 +22,12 @@ import Lenke from "nav-frontend-lenker";
 import Environment from "../../Environments";
 const miljo = Environment().miljo;
 
-const KontaktOssFrontpage = () => {
+interface Props {
+  redirect: boolean;
+}
+
+const KontaktOssFrontpage = (props: Props) => {
+  const { redirect } = props;
   const intl = useIntl();
 
   useEffect(() => {
@@ -38,7 +43,7 @@ const KontaktOssFrontpage = () => {
     };
   }, []);
 
-  if (miljo === "PROD") {
+  if (redirect && miljo === "PROD") {
     /*
       Redirect to old frontpage
       TODO: Fjern
