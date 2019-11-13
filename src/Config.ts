@@ -136,6 +136,7 @@ export const vars = {
       config: "chatbot-frida_config",
       openState: "chatbot-frida_apen",
       history: "chatbot-frida_historie"
-    }
+    },
+    oldChatbotCookieName: "intelecomchat_41155",
   }
 };
