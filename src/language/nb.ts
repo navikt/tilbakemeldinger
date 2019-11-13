@@ -7,13 +7,21 @@ export default {
 
   "breadcrumb.nav-no": "nav.no",
   "breadcrumb.": "Kontakt oss",
-  "breadcrumb.-ny": "Kontakt oss",
+
   "breadcrumb.skriv-til-oss": "Skriv til oss",
   "breadcrumb.arbeidssoker": "Arbeidssøker",
   "breadcrumb.syk": "Syk",
   "breadcrumb.familieogbarn": "Familie og barn",
   "breadcrumb.hjelpemidler": "Hjelpemidler",
+
   "breadcrumb.chat": "Chat",
+  "breadcrumb.familie": "Familie",
+  "breadcrumb.jobbsoker": "Jobbsøker",
+  "breadcrumb.aap": "Arbeidsavklaringspenger",
+  "breadcrumb.sosialhjelp": "Sosiale tjenester",
+  "breadcrumb.okonomi": "Økonomi",
+  "breadcrumb.eures": "EURES",
+
   "breadcrumb.tilbakemeldinger": "Tilbakemeldinger",
   "breadcrumb.serviceklage": "Klage på service",
   "breadcrumb.login": "Innlogging",
@@ -34,8 +42,7 @@ export default {
   "skrivtiloss.svartid.lang":
     " På grunn av stor pågang kan svartiden akkurat nå være noe lengre. Vi beklager dette.",
   "skrivtiloss.ingress":
-    "Du må skrive til oss på norsk eller engelsk. Du kan ikke kontakte oss på vegne av andre. Det gjelder også" +
-    " fullmektig og verge.",
+    "Har du en pågående sak? Send oss gjerne spørsmål eller nye opplysninger i saken din.",
 
   "skrivtiloss.arbeidssoker.lenke.tittel": "Arbeidssøker",
   "skrivtiloss.arbeidssoker.lenke.ingress":
@@ -330,47 +337,63 @@ export default {
 
   "chat.forside.tittel": "Chat med oss",
   "chat.forside.ingress":
-    "Vi hjelper deg med å finne frem på nav.no og kan svare deg på spørsmål om hva du kan ha rett på. Vi kan ikke se" +
-    " saken din eller utgi personlige opplysninger.",
+    "NAV tilbyr chat på noen temaer. Spør oss gjerne om hva du kan få hjelp til. På chat svarer vi dessverre ikke på" +
+    " spørsmål om saken din.",
 
   "chat.startknapp": "Start chat",
   "chat.advarsel.personvern":
     "<p>Alle samtaler blir lagret anonymt i 6 måneder.</p><p>Ikke oppgi navn, fødselsnummer eller" +
     " sensitive opplysninger som helseforhold eller diagnoser.</p>",
+  "chat.chatbotinfo":
+    "<p>Du vil først møte en chat-robot, men veilederne våre er tilgjengelig på chat på hverdager fra 09.00-14.30.</p>",
 
   "chat.familie.tittel": "Foreldre, barn og familie",
   "chat.familie.ingressKort":
     "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger med mer.",
   "chat.familie.ingress":
-    "<p>Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger med mer.</p>" +
     "<p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
     "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
 
-  "chat.aap.tittel": "Jobbsøker",
+  "chat.aap.tittel": "Arbeidsavklaringspenger",
   "chat.aap.ingressKort":
     "Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.",
   "chat.aap.ingress":
-    "<p>Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller" +
-    " aktivitet.</p><p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
+    "<p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
+    "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
+
+  "chat.jobbsoker.tittel": "Jobbsøker",
+  "chat.jobbsoker.ingressKort":
+    "Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.",
+  "chat.jobbsoker.ingress":
+    "<p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
     "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
 
   "chat.sosialhjelp.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.ingressKort":
     "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
   "chat.sosialhjelp.ingress":
-    "<p>Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.</p>" +
     "<p>Åpningstid: kl. 09.00 - 14.30 (mandag-fredag)</p>",
 
   "chat.okonomi.tittel": "Økonomi og gjeldsrådgivning",
   "chat.okonomi.ingressKort": "Budsjett, økonomi og gjeldsrådgivning.",
   "chat.okonomi.ingress":
-    "<p>Budsjett, økonomi og gjeldsrådgivning.</p>" +
     "<p>Åpningstider:\n" +
     "Mandag, tirsdag og onsdag kl. 10.00 - 15.00\n" +
     "Torsdag kl. 10.00 - 14.30\n" +
     "Fredag kl. 10.00 - 15.00</p>" +
     "<p>Du kan også ringe NAV Gjeldsrådgivning på tlf. 55 55 33 39 alle hverdager mellom klokken 09.00 og 15.00</p>",
 
+  "chat.eures.tittel": "EURES",
+  "chat.eures.ingressKort":
+    "Chat om jobb og rekruttering fra EU/EØS og Sveits. EURES svarer på spørsmål fra arbeidssøkere og" +
+    " arbeidsgivere.",
+  "chat.eures.ingress":
+    "<p>Arbeidssøker: Spør oss om arbeid og opphold i EU/EØS og Sveits, eller om jobb i Norge hvis du er en" +
+    " arbeidssøker fra EU/EØS og Sveits.</p>" +
+    "<p>Arbeidsgiver: Spør oss om rekruttering fra EU/EØS og Sveits.</p>" +
+    "<p>Chatten er åpen hver fredag fra kl. 10-13 (ikke helligdager) og foregår på Den europeiske" +
+    " jobbmobilitetsportalen.</p>",
+
   "takk.melding": "Meldingen din er sendt",
-  "takk.knapp": "Gå til nav.no"
+  "takk.knapp": "Gå til nav.no",
 };

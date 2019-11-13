@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export interface LenkepanelData {
-  tittel: string;
+  tittelId: string;
   ingress: ReactNode;
   url: string;
   ikon?: any;

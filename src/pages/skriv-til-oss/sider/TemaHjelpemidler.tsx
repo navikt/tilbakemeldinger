@@ -21,19 +21,19 @@ const Ingress = () => {
 
 const lenker: LenkepanelData[] = [
   {
-    tittel: "skrivtiloss.hjelpemidler.generelt.tittel",
+    tittelId: "skrivtiloss.hjelpemidler.generelt.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.hjelpemidler.generelt.ingress"} />,
     url: urls.skrivTilOss.temaHjelpemidler.generelt,
     external: true
   },
   {
-    tittel: "skrivtiloss.hjelpemidler.ortopediske.tittel",
+    tittelId: "skrivtiloss.hjelpemidler.ortopediske.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.hjelpemidler.ortopediske.ingress"} />,
     url: urls.skrivTilOss.temaHjelpemidler.ortopediske,
     external: true
   },
   {
-    tittel: "skrivtiloss.hjelpemidler.bil.tittel",
+    tittelId: "skrivtiloss.hjelpemidler.bil.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.hjelpemidler.bil.ingress"} />,
     url: urls.skrivTilOss.temaHjelpemidler.bil,
     external: true

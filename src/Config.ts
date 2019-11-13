@@ -1,5 +1,4 @@
 import Environment from "./Environments";
-import { ChatTema } from "./types/chat";
 
 const { tjenesteUrl, appUrl, baseAppPath } = Environment();
 const navUrl = Environment().baseUrl;
@@ -50,8 +49,27 @@ export const urls = {
   },
   chat: {
     forside: `${baseAppPath}/chat`,
-    sosialhjelp: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-sosialetjenester`,
-    okonomi: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-gjeldsradgivning`
+    familie: {
+      temaside: `${baseAppPath}/chat/familie`,
+    },
+    jobbsoker: {
+      temaside: `${baseAppPath}/chat/jobbsoker`,
+    },
+    aap: {
+      temaside: `${baseAppPath}/chat/aap`,
+    },
+    sosialhjelp: {
+      temaside: `${baseAppPath}/chat/sosialhjelp`,
+      chat: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-sosialetjenester`,
+    },
+    okonomi: {
+      temaside: `${baseAppPath}/chat/okonomi`,
+      chat: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-gjeldsradgivning`,
+    },
+    eures: {
+      temaside: `${baseAppPath}/chat/eures`,
+      chat: "https://ec.europa.eu/eures/main.jsp?acro=eures&lang=no&catId=10821&parentCategory=10821",
+    },
   },
   chatBotApi: {
     sessionConfig: "https://api.puzzel.com/chat/v1/sessions"
@@ -100,14 +118,21 @@ export const vars = {
     tekniskProblemName: "kontakt-oss.teknisk-problem"
   },
   chatBot: {
-    queueKeyBot: "Q_CHAT_BOT",
-    queueKeyHuman: "Q_CHAT_AGENT",
     customerKey: "41155",
+    queueKeys: {
+      familie: "Q_CHAT_BOT",
+      aap: "q_key_AAP",
+      jobbsoker: "qwer"
+    },
     configIds: {
-      [ChatTema.AAP]: "7f6b-4569-81a1-27202c419953",
-      [ChatTema.Familie]: "c3372a51-6434-4770-a0aa-6e4edba3471e",
-      [ChatTema.Sosial]: "",
-      [ChatTema.Okonomi]: ""
-    }
+      familie: "c3372a51-6434-4770-a0aa-6e4edba3471e",
+      aap: "7f6b-4569-81a1-27202c419953",
+      jobbsoker: "asdf",
+    },
+    storageKeys: {
+      config: "chatbot-frida_config",
+      openState: "chatbot-frida_apen",
+      history: "chatbot-frida_historie",
+    },
   }
 };
