@@ -19,10 +19,13 @@ import SosialeMedier from "./sections/SosialeMedier";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import { urls, varsler } from "Config";
 import Lenke from "nav-frontend-lenker";
-import Environment from "../../Environments";
-const miljo = Environment().miljo;
 
-const KontaktOssFrontpage = () => {
+interface Props {
+  redirect: boolean;
+}
+
+const KontaktOssFrontpage = (props: Props) => {
+  const { redirect } = props;
   const intl = useIntl();
 
   useEffect(() => {
@@ -38,7 +41,7 @@ const KontaktOssFrontpage = () => {
     };
   }, []);
 
-  if (miljo === "PROD") {
+  if (redirect) {
     /*
       Redirect to old frontpage
       TODO: Fjern

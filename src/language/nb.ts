@@ -395,5 +395,5 @@ export default {
     " jobbmobilitetsportalen.</p>",
 
   "takk.melding": "Meldingen din er sendt",
-  "takk.knapp": "Gå til nav.no",
+  "takk.knapp": "Gå til nav.no"
 };
