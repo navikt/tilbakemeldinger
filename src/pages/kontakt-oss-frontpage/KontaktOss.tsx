@@ -19,6 +19,8 @@ import SosialeMedier from "./sections/SosialeMedier";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import { urls, varsler } from "Config";
 import Lenke from "nav-frontend-lenker";
+import Environment from "../../Environments";
+const miljo = Environment().miljo;
 
 interface Props {
   redirect: boolean;
@@ -41,7 +43,7 @@ const KontaktOssFrontpage = (props: Props) => {
     };
   }, []);
 
-  if (redirect) {
+  if (redirect && miljo === "PROD") {
     /*
       Redirect to old frontpage
       TODO: Fjern
