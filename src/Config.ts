@@ -119,7 +119,7 @@ export const vars = {
     langSvartidName: "kontakt-oss.skriv-til-oss.lang-svartid",
     tekniskProblemDefault: false,
     tekniskProblemName: "kontakt-oss.teknisk-problem",
-    redirectDefault: true,
+    redirectDefault: false,
     redirect: "kontakt-oss.redirect"
   },
   chatBot: {
