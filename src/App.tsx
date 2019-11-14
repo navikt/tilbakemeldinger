@@ -106,7 +106,7 @@ const App = () => {
             />
             <Route
               exact={true}
-              path={urls.testAvForside}
+              path={urls.forsideNoRedirect}
               component={KontaktOssFrontpage}
             />
             <Route

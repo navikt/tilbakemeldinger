@@ -17,7 +17,7 @@ export const urls = {
   baseAppPath: baseAppPath,
   appUrl: appUrl,
   forside: "/person/kontakt-oss",
-  testAvForside: "/person/kontakt-oss/test",
+  forsideNoRedirect: "/person/kontakt-oss?noredir=true",
   tilbakemeldinger: {
     forside: `${baseAppPath}/tilbakemeldinger`,
     klagepavedtak: `${navUrl}/soknader/nb/klage`,
