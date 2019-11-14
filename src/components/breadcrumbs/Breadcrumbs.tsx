@@ -38,7 +38,7 @@ const getSegmentLenker = (currentPath: string, basePath: string): Array<Breadcru
   return pathSegments.map((segment, index) => {
     const combinedSegments = pathSegments.slice(0, index + 1);
     const segmentPath = combinedSegments.length === 1
-      ? `/${queries ? `?${queries}` : ""}`
+      ? `${queries ? `?${queries}` : ""}`
       : combinedSegments.join("/");
 
     return {
