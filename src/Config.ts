@@ -120,7 +120,7 @@ export const vars = {
     tekniskProblemDefault: false,
     tekniskProblemName: "kontakt-oss.teknisk-problem",
     visNyeSiderDefault: true,
-    visNyeSiderName: "kontakt-oss.redirect"
+    visNyeSiderName: "kontakt-oss.vis-nye-sider"
   },
   chatBot: {
     customerKey: "41155",
