@@ -7,7 +7,6 @@ export default {
 
   "breadcrumb.nav-no": "nav.no",
   "breadcrumb.": "Kontakt oss",
-  "breadcrumb.test": "Test",
 
   "breadcrumb.skriv-til-oss": "Skriv til oss",
   "breadcrumb.arbeidssoker": "Arbeidssøker",
@@ -268,7 +267,7 @@ export default {
   "felter.typefeil.tittel": "Hva slags feil eller mangel fant du?",
   "felter.typefeil.tekniskfeil": "Teknisk feil",
   "felter.typefeil.feilinformasjon": "Feil informasjon",
-  "felter.typefeil.uu": "Lav grad av universell utforming",
+  "felter.typefeil.uu": "Feil på siden ved bruk av hjelpemiddelteknologi",
   "felter.melding.tittel": "Din tilbakemelding",
   "felter.melding.beskrivelse":
     "Unngå sensitive personopplysninger, som for eksempel opplysninger om helseforhold eller diagnoser",

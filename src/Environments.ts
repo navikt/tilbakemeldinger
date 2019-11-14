@@ -1,13 +1,19 @@
+import { forsidePath, noRedirectUrlSegment } from "./Config";
+
 const Environment = () => {
   const host = window.location.host;
   const subdomain = host.split(`.`)[0];
+
+  const pathname = window.location.pathname;
+  const noRedirect = pathname.includes(noRedirectUrlSegment);
+  const baseAppPath = `${forsidePath}${noRedirect ? noRedirectUrlSegment : ""}`;
 
   if (process.env.NODE_ENV === `development`) {
     return {
       miljo: `LOCAL`,
       baseUrl: `https://www.nav.no`,
-      baseAppPath: `/person/kontakt-oss`,
-      appUrl: `http://localhost:8080/person/kontakt-oss`,
+      baseAppPath: baseAppPath,
+      appUrl: `http://localhost:8080${baseAppPath}`,
       apiUrl: `http://localhost:8080/person/tilbakemeldinger-api`,
       personInfoApiUrl: `http://localhost:8080/person/personopplysninger-api`,
       tjenesteUrl: `https://tjenester.nav.no`,
@@ -22,8 +28,8 @@ const Environment = () => {
     return {
       miljo: `DEV`,
       baseUrl: `https://www-${env}.nav.no`,
-      baseAppPath: `/person/kontakt-oss`,
-      appUrl: `https://www-${env}.nav.no/person/kontakt-oss`,
+      baseAppPath: baseAppPath,
+      appUrl: `https://www-${env}.nav.no${baseAppPath}`,
       apiUrl: `https://www-${env}.nav.no/person/tilbakemeldinger-api`,
       personInfoApiUrl: `https://www-${env}.nav.no/person/personopplysninger-api`,
       tjenesteUrl: `https://tjenester-${env}.nav.no`,
@@ -36,8 +42,8 @@ const Environment = () => {
   return {
     miljo: `PROD`,
     baseUrl: `https://www.nav.no`,
-    baseAppPath: `/person/kontakt-oss`,
-    appUrl: `https://www.nav.no/person/kontakt-oss`,
+    baseAppPath: baseAppPath,
+    appUrl: `https://www.nav.no${baseAppPath}`,
     apiUrl: `https://www.nav.no/person/tilbakemeldinger-api`,
     personInfoApiUrl: `https://www.nav.no/person/personopplysninger-api`,
     tjenesteUrl: `https://tjenester.nav.no`,

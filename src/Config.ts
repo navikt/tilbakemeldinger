@@ -1,6 +1,9 @@
 import Environment from "./Environments";
 
-const { tjenesteUrl, appUrl, baseAppPath } = Environment();
+export const forsidePath = "/person/kontakt-oss";
+export const noRedirectUrlSegment = "/test";
+
+const { tjenesteUrl, baseAppPath } = Environment();
 const navUrl = Environment().baseUrl;
 
 interface Varsel {
@@ -15,9 +18,6 @@ export const varsler: Varsel[] = [];
 
 export const urls = {
   baseAppPath: baseAppPath,
-  appUrl: appUrl,
-  forside: "/person/kontakt-oss",
-  testAvForside: "/person/kontakt-oss/test",
   tilbakemeldinger: {
     forside: `${baseAppPath}/tilbakemeldinger`,
     klagepavedtak: `${navUrl}/soknader/nb/klage`,
@@ -118,7 +118,9 @@ export const vars = {
     langSvartidDefault: false,
     langSvartidName: "kontakt-oss.skriv-til-oss.lang-svartid",
     tekniskProblemDefault: false,
-    tekniskProblemName: "kontakt-oss.teknisk-problem"
+    tekniskProblemName: "kontakt-oss.teknisk-problem",
+    redirectDefault: false,
+    redirect: "kontakt-oss.redirect"
   },
   chatBot: {
     customerKey: "41155",
