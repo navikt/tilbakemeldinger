@@ -21,16 +21,22 @@ import { Fodselsnr } from "./types/fodselsnr";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTopp";
 import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOss";
 import SkrivTilOssRouter from "./pages/skriv-til-oss/SkrivTilOssRouter";
-import { getFeatureToggleStatus } from "./utils/unleash";
+import Unleash from "./utils/unleash";
 import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
-import { urls, vars } from "./Config";
+import { forsidePath, noRedirectUrlSegment, urls, vars } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
+import NavFrontendSpinner from "nav-frontend-spinner";
+
+const RedirectTilGammel = () => {
+  window.location.replace(urls.gamleKontaktOss);
+  return null;
+};
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
-  const [tekniskProblem, setTekniskProblem] = useState(
-    vars.unleash.tekniskProblemDefault
-  );
+  const [tekniskProblem, setTekniskProblem] = useState(vars.unleash.tekniskProblemDefault);
+  const [redirectTilGammel, setRedirectTilGammel] = useState (vars.unleash.redirectDefault);
+  const [unleashResponded, setUnleashResponded] = useState(false);
 
   useEffect(() => {
     if (!auth.authenticated) {
@@ -59,16 +65,27 @@ const App = () => {
         .catch((error: HTTPError) => console.error(error));
     }
 
-    getFeatureToggleStatus(
-      vars.unleash.tekniskProblemName,
-      (isEnabled: boolean, error: any) => {
-        if (!error) {
-          setTekniskProblem(isEnabled);
+    const tekniskProblemFeature = vars.unleash.tekniskProblemName;
+    const redirectFeature = vars.unleash.redirect;
+
+    Unleash.getFeatureToggleStatusMultiple(
+      [tekniskProblemFeature, redirectFeature],
+      (features, error) => {
+        setUnleashResponded(true);
+        if (error) {
+          console.log(`Unleash error: ${error}`);
+          return;
         }
+        setTekniskProblem(features[tekniskProblemFeature]);
+        setRedirectTilGammel(features[redirectFeature]);
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!unleashResponded) {
+    return <NavFrontendSpinner />;
+  }
 
   return (
     <>
@@ -82,13 +99,13 @@ const App = () => {
           <Switch>
             <Route
               exact={true}
-              path={`(|${urls.forside})`}
-              render={() => <KontaktOssFrontpage redirect={true} />}
+              path={`(|${forsidePath})`}
+              component={redirectTilGammel ? RedirectTilGammel : KontaktOssFrontpage}
             />
             <Route
               exact={true}
-              path={urls.testAvForside}
-              render={() => <KontaktOssFrontpage redirect={false} />}
+              path={`${forsidePath}${noRedirectUrlSegment}`}
+              component={KontaktOssFrontpage}
             />
             <Route
               exact={false}

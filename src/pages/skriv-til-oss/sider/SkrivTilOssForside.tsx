@@ -6,12 +6,11 @@ import SkrivTilOssBase from "../SkrivTilOssBase";
 import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
 import { urls, vars } from "../../../Config";
-import { Features, getFeatureToggleStatusMultiple } from "../../../utils/unleash";
+import Unleash from "../../../utils/unleash";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import AlertStripe from "nav-frontend-alertstriper";
 
 const svartidName = vars.unleash.langSvartidName;
-// const svartidDefault = vars.unleash.langSvartidDefault;
 const enabledName = vars.unleash.skrivTilOssEnabledName;
 const enabledDefault = vars.unleash.skrivTilOssEnabledDefault;
 
@@ -19,24 +18,20 @@ const Ingress = () => {
   const intl = useIntl();
 
   const [unleashResponded, setUnleashResponded] = useState(false);
-  // const [langSvartid, setLangSvartid] = useState(svartidDefault);
   const [skrivTilOssEnabled, setSkrivTilOssEnabled] = useState(enabledDefault);
 
-  const unleashTogglesResponse = (unleashToggles: Features, error: any) => {
-    setUnleashResponded(true);
-    if (error) {
-      console.log(`Unleash error: ${error}`);
-      return;
-    }
-
-    // setLangSvartid(unleashToggles[svartidName]);
-    setSkrivTilOssEnabled(unleashToggles[enabledName]);
-  };
-
   useEffect(() => {
-    getFeatureToggleStatusMultiple(
+    Unleash.getFeatureToggleStatusMultiple(
       [svartidName, enabledName],
-      unleashTogglesResponse
+      (unleashToggles, error) => {
+        setUnleashResponded(true);
+        if (error) {
+          console.log(`Unleash error: ${error}`);
+          return;
+        }
+
+        setSkrivTilOssEnabled(unleashToggles[enabledName]);
+      }
     );
   }, []);
 
