@@ -35,7 +35,7 @@ const RedirectTilGammel = () => {
 const App = () => {
   const [{ auth }, dispatch] = useStore();
   const [tekniskProblem, setTekniskProblem] = useState(false);
-  const [redirectTilGammel, setRedirectTilGammel] = useState (false);
+  const [visNyeSider, setVisNyeSider] = useState (true);
   const [unleashResponded, setUnleashResponded] = useState(false);
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const App = () => {
     }
 
     const tekniskProblemFeature = vars.unleash.tekniskProblemName;
-    const redirectFeature = vars.unleash.redirectTilGammelName;
+    const redirectFeature = vars.unleash.visNyeSiderName;
 
     Unleash.getFeatureToggleStatusMultiple(
       [tekniskProblemFeature, redirectFeature],
@@ -75,11 +75,11 @@ const App = () => {
         if (error) {
           console.log(`Unleash error: ${error}`);
           setTekniskProblem(vars.unleash.tekniskProblemDefault);
-          setRedirectTilGammel(vars.unleash.redirectTilGammelDefault);
+          setVisNyeSider(vars.unleash.visNyeSiderDefault);
           return;
         }
         setTekniskProblem(features[tekniskProblemFeature]);
-        setRedirectTilGammel(features[redirectFeature]);
+        setVisNyeSider(features[redirectFeature]);
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -102,7 +102,7 @@ const App = () => {
             <Route
               exact={true}
               path={`(|${urls.forside})`}
-              component={redirectTilGammel ? RedirectTilGammel : KontaktOssFrontpage}
+              component={visNyeSider ? KontaktOssFrontpage : RedirectTilGammel}
             />
             <Route
               exact={false}
