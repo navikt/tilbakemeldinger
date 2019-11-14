@@ -27,7 +27,8 @@ export type BreadcrumbLenke = {
 const cssPrefix = "breadcrumbs";
 
 const getSegmentLenker = (currentPath: string, basePath: string): Array<BreadcrumbLenke> => {
-  const pathSegments = currentPath.replace(basePath, "").split("/");
+  const [basePathQueriesStripped, queries] = basePath.split("?");
+  const pathSegments = currentPath.replace(basePathQueriesStripped, "").split("/");
 
   // fjerner tomt segment ved trailing slash
   if (pathSegments.length > 1 && pathSegments[pathSegments.length - 1] === "") {
@@ -36,10 +37,12 @@ const getSegmentLenker = (currentPath: string, basePath: string): Array<Breadcru
 
   return pathSegments.map((segment, index) => {
     const combinedSegments = pathSegments.slice(0, index + 1);
-    const segmentPath = combinedSegments.length === 1 ? "/" : combinedSegments.join("/");
+    const segmentPath = combinedSegments.length === 1
+      ? `/${queries ? `?${queries}` : ""}`
+      : combinedSegments.join("/");
 
     return {
-      url: `${basePath}${segmentPath}`,
+      url: `${basePathQueriesStripped}${segmentPath}`,
       lenketekstId: `breadcrumb.${segment}`,
     };
   });

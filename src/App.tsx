@@ -105,11 +105,6 @@ const App = () => {
               component={redirectTilGammel ? RedirectTilGammel : KontaktOssFrontpage}
             />
             <Route
-              exact={true}
-              path={urls.forsideNoRedirect}
-              component={KontaktOssFrontpage}
-            />
-            <Route
               exact={false}
               path={urls.skrivTilOss.forside}
               component={SkrivTilOssRouter}
