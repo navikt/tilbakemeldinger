@@ -28,7 +28,7 @@ import ChatRouter from "./pages/chat/ChatRouter";
 import NavFrontendSpinner from "nav-frontend-spinner";
 
 const RedirectTilGammel = () => {
-  window.location.assign(urls.gamleKontaktOss);
+  window.location.replace(urls.gamleKontaktOss);
   return null;
 };
 
