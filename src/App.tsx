@@ -23,7 +23,7 @@ import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOss";
 import SkrivTilOssRouter from "./pages/skriv-til-oss/SkrivTilOssRouter";
 import Unleash from "./utils/unleash";
 import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
-import { urls, vars } from "./Config";
+import { forsidePath, noRedirectUrlSegment, urls, vars } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
 import NavFrontendSpinner from "nav-frontend-spinner";
 
@@ -34,8 +34,8 @@ const RedirectTilGammel = () => {
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
-  const [tekniskProblem, setTekniskProblem] = useState(false);
-  const [redirectTilGammel, setRedirectTilGammel] = useState (false);
+  const [tekniskProblem, setTekniskProblem] = useState(vars.unleash.tekniskProblemDefault);
+  const [redirectTilGammel, setRedirectTilGammel] = useState (vars.unleash.redirectDefault);
   const [unleashResponded, setUnleashResponded] = useState(false);
 
   useEffect(() => {
@@ -74,8 +74,6 @@ const App = () => {
         setUnleashResponded(true);
         if (error) {
           console.log(`Unleash error: ${error}`);
-          setTekniskProblem(vars.unleash.tekniskProblemDefault);
-          setRedirectTilGammel(vars.unleash.redirectDefault);
           return;
         }
         setTekniskProblem(features[tekniskProblemFeature]);
@@ -89,9 +87,6 @@ const App = () => {
     return <NavFrontendSpinner />;
   }
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const noredir = urlParams.get("noredir") === "true" || !redirectTilGammel;
-
   return (
     <>
       {tekniskProblem && (
@@ -104,8 +99,13 @@ const App = () => {
           <Switch>
             <Route
               exact={true}
-              path={`(|${urls.forside})`}
-              component={noredir ? KontaktOssFrontpage : RedirectTilGammel}
+              path={`(|${forsidePath})`}
+              component={redirectTilGammel ? RedirectTilGammel : KontaktOssFrontpage}
+            />
+            <Route
+              exact={true}
+              path={`${forsidePath}${noRedirectUrlSegment}`}
+              component={KontaktOssFrontpage}
             />
             <Route
               exact={false}

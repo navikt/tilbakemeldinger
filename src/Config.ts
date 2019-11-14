@@ -1,6 +1,9 @@
 import Environment from "./Environments";
 
-const { tjenesteUrl, appUrl, baseAppPath } = Environment();
+export const forsidePath = "/person/kontakt-oss";
+export const noRedirectUrlSegment = "/test";
+
+const { tjenesteUrl, baseAppPath } = Environment();
 const navUrl = Environment().baseUrl;
 
 interface Varsel {
@@ -15,9 +18,6 @@ export const varsler: Varsel[] = [];
 
 export const urls = {
   baseAppPath: baseAppPath,
-  appUrl: appUrl,
-  forside: "/person/kontakt-oss",
-  forsideNoRedirect: "/person/kontakt-oss?noredir=true",
   tilbakemeldinger: {
     forside: `${baseAppPath}/tilbakemeldinger`,
     klagepavedtak: `${navUrl}/soknader/nb/klage`,
