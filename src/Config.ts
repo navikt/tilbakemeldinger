@@ -118,7 +118,9 @@ export const vars = {
     langSvartidDefault: false,
     langSvartidName: "kontakt-oss.skriv-til-oss.lang-svartid",
     tekniskProblemDefault: false,
-    tekniskProblemName: "kontakt-oss.teknisk-problem"
+    tekniskProblemName: "kontakt-oss.teknisk-problem",
+    redirectTilGammelDefault: false,
+    redirectTilGammelName: "kontakt-oss.redirect"
   },
   chatBot: {
     customerKey: "41155",

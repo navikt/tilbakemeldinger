@@ -17,17 +17,10 @@ import KontaktVeileder from "./sections/KontaktVeileder";
 import Pressekontakt from "./sections/Pressekontakt";
 import SosialeMedier from "./sections/SosialeMedier";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
-import { urls, varsler } from "Config";
+import { varsler } from "Config";
 import Lenke from "nav-frontend-lenker";
-import Environment from "../../Environments";
-const miljo = Environment().miljo;
 
-interface Props {
-  redirect: boolean;
-}
-
-const KontaktOssFrontpage = (props: Props) => {
-  const { redirect } = props;
+const KontaktOssFrontpage = () => {
   const intl = useIntl();
 
   useEffect(() => {
@@ -43,64 +36,55 @@ const KontaktOssFrontpage = (props: Props) => {
     };
   }, []);
 
-  if (redirect && miljo === "PROD") {
-    /*
-      Redirect to old frontpage
-      TODO: Fjern
-    */
-    window.location.href = urls.gamleKontaktOss;
-    return null;
-  } else {
-    return (
-      <div className="frontpage__wrapper">
-        <div className="pagecontent pagecontent__frontpage">
-          <BreadcrumbsWrapper />
-          <div className="frontpage">
-            <MetaTags>
-              <title>{intl.messages["seo.kontaktoss.tittel"]}</title>
-              <meta
-                name="description"
-                content={intl.messages["seo.kontaktoss.description"] as string}
-              />
-            </MetaTags>
-            <header className="frontpage__introduksjon">
-              <div className="frontpage__sidetittel">
-                <Sidetittel>
-                  <FormattedMessage id={"kontaktoss.tittel"} />
-                </Sidetittel>
-              </div>
-            </header>
-            {varsler.map(varsel => (
-              <AlertStripeInfo key={varsel.tittel}>
-                <Undertittel>{varsel.tittel}</Undertittel>
-                <div className={"varsel__body"}>{varsel.beskrivelse}</div>
-                {varsel.lenke && varsel.lenkeTekst && (
-                  <Lenke href={varsel.lenke}>{varsel.lenkeTekst}</Lenke>
-                )}
-              </AlertStripeInfo>
-            ))}
-            <div className="frontpage__content">
-              <Chat />
-              <div className="frontpage__row">
-                <RingOss />
-                <FAQ />
-              </div>
-              <SkrivTilOss />
-              <KontaktVeileder />
-              <Facebook />
-              <FinnNavKontor />
-              <Tolketjenesten />
-              <KlageOgTilbakemeldinger />
-              <FeilOgMangler />
-              <Pressekontakt />
-              <SosialeMedier />
+  return (
+    <div className="frontpage__wrapper">
+      <div className="pagecontent pagecontent__frontpage">
+        <BreadcrumbsWrapper />
+        <div className="frontpage">
+          <MetaTags>
+            <title>{intl.messages["seo.kontaktoss.tittel"]}</title>
+            <meta
+              name="description"
+              content={intl.messages["seo.kontaktoss.description"] as string}
+            />
+          </MetaTags>
+          <header className="frontpage__introduksjon">
+            <div className="frontpage__sidetittel">
+              <Sidetittel>
+                <FormattedMessage id={"kontaktoss.tittel"} />
+              </Sidetittel>
             </div>
+          </header>
+          {varsler.map(varsel => (
+            <AlertStripeInfo key={varsel.tittel}>
+              <Undertittel>{varsel.tittel}</Undertittel>
+              <div className={"varsel__body"}>{varsel.beskrivelse}</div>
+              {varsel.lenke && varsel.lenkeTekst && (
+                <Lenke href={varsel.lenke}>{varsel.lenkeTekst}</Lenke>
+              )}
+            </AlertStripeInfo>
+          ))}
+          <div className="frontpage__content">
+            <Chat />
+            <div className="frontpage__row">
+              <RingOss />
+              <FAQ />
+            </div>
+            <SkrivTilOss />
+            <KontaktVeileder />
+            <Facebook />
+            <FinnNavKontor />
+            <Tolketjenesten />
+            <KlageOgTilbakemeldinger />
+            <FeilOgMangler />
+            <Pressekontakt />
+            <SosialeMedier />
           </div>
-          <BreadcrumbsWrapper />
         </div>
+        <BreadcrumbsWrapper />
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default KontaktOssFrontpage;
