@@ -120,19 +120,24 @@ export const vars = {
     tekniskProblemDefault: false,
     tekniskProblemName: "kontakt-oss.teknisk-problem",
     redirectDefault: false,
-    redirect: "kontakt-oss.redirect"
+    redirectName: "kontakt-oss.redirect",
   },
   chatBot: {
     customerKey: "41155",
     queueKeys: {
       familie: "Q_CHAT_BOT",
+      familieVeileder: "Q_CHAT_FAMILIEYTELSER",
       aap: "Q_CHAT_BOT",
-      jobbsoker: "Q_CHAT_AAP"
+      jobbsoker: "Q_CHAT_AAP",
+      sosial: "Q_CHAT_SOSIALE_TJENESTER",
+      okonomi: "Q_CHAT_GJELDSRADGIVNING",
     },
     configIds: {
       familie: "c3372a51-6434-4770-a0aa-6e4edba3471e",
       aap: "599f9e7c-7f6b-4569-81a1-27202c419953",
-      jobbsoker: "599f9e7c-7f6b-4569-81a1-27202c419953"
+      jobbsoker: "599f9e7c-7f6b-4569-81a1-27202c419953",
+      sosial: "599f9e7c-7f6b-4569-81a1-27202c419953",
+      okonomi: "599f9e7c-7f6b-4569-81a1-27202c419953",
     },
     storageKeys: {
       config: "chatbot-frida_config",

@@ -20,10 +20,10 @@ const cssPrefix = "chat-tema";
 const ChatTemaSide = ({tittelId, chatTema, children}: ChatTemaProps) => {
   const temaButtonHandlers: {[key in ChatTema]: Function} = {
     [ChatTema.Familie]: () => setLastClick(Date.now()),
-    [ChatTema.AAP]: () => setLastClick(Date()),
-    [ChatTema.Jobbsoker]: () => setLastClick(Date()),
-    [ChatTema.Sosial]: () => window.location.assign(urls.chat.sosialhjelp.chat),
-    [ChatTema.Okonomi]: () => window.location.assign(urls.chat.okonomi.chat),
+    [ChatTema.AAP]: () => setLastClick(Date.now()),
+    [ChatTema.Jobbsoker]: () => setLastClick(Date.now()),
+    [ChatTema.Sosial]: () => setLastClick(Date.now()),
+    [ChatTema.Okonomi]: () => setLastClick(Date.now()),
     [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat),
   };
 
