@@ -5,7 +5,7 @@ import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 import { urls } from "../../../Config";
 
 import ikon from "assets/forside-navkontor-ikon.svg";
-import Lenke from "../../../components/lenke/Lenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenke";
 
 const FinnNavKontor = () => {
   const tittel = <FormattedMessage id={"kontaktoss.navkontor.tittel"} />;
@@ -13,9 +13,13 @@ const FinnNavKontor = () => {
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
       <>
-        <Lenke href={urls.finnDittNavKontor} isExternal={true}>
+        <RouterLenke
+          href={urls.finnDittNavKontor}
+          isExternal={true}
+          className={"frontpage__lenke"}
+        >
           <FormattedMessage id="kontaktoss.navkontor.knapp" />
-        </Lenke>
+        </RouterLenke>
       </>
     </IkonPanel>
   );

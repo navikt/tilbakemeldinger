@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 
 import ikon from "assets/forside-sosialemedier-ikon.svg";
-import Lenke from "../../../components/lenke/Lenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenke";
 
 const SosialeMedier = () => {
   const tittel = <FormattedMessage id={"kontaktoss.sosialemedier.tittel"} />;
@@ -13,12 +13,12 @@ const SosialeMedier = () => {
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
       <div>
-        <Lenke
+        <RouterLenke
           href={urls.sosialeMedier}
           isExternal={true}
         >
           <FormattedMessage id={"kontaktoss.sosialemedier.link"} />
-        </Lenke>
+        </RouterLenke>
       </div>
     </IkonPanel>
   );

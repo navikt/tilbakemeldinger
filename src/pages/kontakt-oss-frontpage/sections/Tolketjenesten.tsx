@@ -5,23 +5,23 @@ import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 import { urls } from "../../../Config";
 
 import ikon from "assets/forside-tolk-ikon.svg";
-import Lenke from "../../../components/lenke/Lenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenke";
 
 const Tolketjenesten = () => {
   const tittel = <FormattedMessage id={"kontaktoss.tolketjenesten.tittel"} />;
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <Lenke
+      <RouterLenke
         href={urls.tolketjenesten}
         isExternal={true}
-        className={"lenke__space"}
+        className={"lenke__avstand-under"}
       >
         <FormattedMessage id={"kontaktoss.tolketjenesten.link"} />
-      </Lenke>
-      <Lenke href={urls.spraktolk} isExternal={true} className={"lenke__space"}>
+      </RouterLenke>
+      <RouterLenke href={urls.spraktolk} isExternal={true}>
         <FormattedMessage id={"kontaktoss.tolketjenesten.link.spraktolk"} />
-      </Lenke>
+      </RouterLenke>
     </IkonPanel>
   );
 };

@@ -9,16 +9,16 @@ type Props = {
   className?: string;
 };
 
-const CustomLenke = ({ href, children, isExternal, className }: Props) => {
+const RouterLenke = ({ href, children, isExternal, className }: Props) => {
   return isExternal ? (
-    <Lenke href={href} className={`chevronlenke ${className}`}>
+    <Lenke href={href} className={`routerlenke ${className}`}>
       {children}
     </Lenke>
   ) : (
-    <Link to={href} className={`chevronlenke ${className} lenke`}>
+    <Link to={href} className={`routerlenke lenke ${className}`}>
       {children}
     </Link>
   );
 };
 
-export default CustomLenke;
+export default RouterLenke;

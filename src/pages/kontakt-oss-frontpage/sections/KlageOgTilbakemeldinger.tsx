@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 
 import { urls } from "../../../Config";
-import Lenke from "../../../components/lenke/Lenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenke";
 import { Normaltekst } from "nav-frontend-typografi";
 
 const KlageOgTilbakemeldinger = () => {
@@ -13,9 +13,12 @@ const KlageOgTilbakemeldinger = () => {
   return (
     <IkonPanel tittel={tittel} className={"klage-og-tilbakemeldinger"}>
       <Normaltekst>
-        <Lenke href={urls.tilbakemeldinger.forside}>
+        <RouterLenke
+          href={urls.tilbakemeldinger.forside}
+          className={"frontpage__lenke"}
+        >
           <FormattedMessage id="kontaktoss.klage.knapp" />
-        </Lenke>
+        </RouterLenke>
       </Normaltekst>
     </IkonPanel>
   );
