@@ -66,7 +66,7 @@ const App = () => {
     }
 
     const tekniskProblemFeature = vars.unleash.tekniskProblemName;
-    const redirectFeature = vars.unleash.redirect;
+    const redirectFeature = vars.unleash.redirectName;
 
     Unleash.getFeatureToggleStatusMultiple(
       [tekniskProblemFeature, redirectFeature],

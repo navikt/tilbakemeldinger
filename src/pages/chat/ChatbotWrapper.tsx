@@ -28,8 +28,14 @@ const getTemaConfig: {[key in ChatTema]: ChatbotConfig | null} = {
     configId: vars.chatBot.configIds.jobbsoker,
     queueKey: vars.chatBot.queueKeys.jobbsoker,
   },
-  [ChatTema.Sosial]: null,
-  [ChatTema.Okonomi]: null,
+  [ChatTema.Sosial]: {
+    configId: vars.chatBot.configIds.sosial,
+    queueKey: vars.chatBot.queueKeys.sosial,
+  },
+  [ChatTema.Okonomi]: {
+    configId: vars.chatBot.configIds.okonomi,
+    queueKey: vars.chatBot.queueKeys.okonomi,
+  },
   [ChatTema.EURES]: null,
 };
 
@@ -39,14 +45,11 @@ const ChatbotWrapper = ({chatTema, lastClick}: Props) => {
   console.log(lastClick);
 
   useEffect(() => {
-    console.log("First render, initializing...");
     chatbotUtils.clearSessionData();
     chatbotUtils.initEventDispatcherHooks();
   }, []);
 
   useEffect(() => {
-    console.log("Chatbot update!");
-
     if (temaConfig === null || !lastClick) {
       return;
     }
