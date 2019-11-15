@@ -9,7 +9,7 @@ const FeilOgMangler = () => {
   const tittel = <FormattedMessage id={"kontaktoss.tekniskfeil.tittel"} />;
 
   return (
-    <IkonPanel tittel={tittel} className={"feil-og-mangler"}>
+    <IkonPanel tittel={tittel}>
       <RouterLenke
         href={urls.tekniskBrukerstotte.selvhjelp}
         className={"lenke__avstand-under"}

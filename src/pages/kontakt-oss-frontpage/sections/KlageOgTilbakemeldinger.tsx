@@ -11,7 +11,7 @@ const KlageOgTilbakemeldinger = () => {
   const tittel = <FormattedMessage id={"kontaktoss.klage.tittel"} />;
 
   return (
-    <IkonPanel tittel={tittel} className={"klage-og-tilbakemeldinger"}>
+    <IkonPanel tittel={tittel}>
       <Normaltekst>
         <RouterLenke
           href={urls.tilbakemeldinger.forside}
