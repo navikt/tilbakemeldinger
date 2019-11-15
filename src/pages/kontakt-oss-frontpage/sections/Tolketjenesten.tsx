@@ -5,19 +5,19 @@ import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 import { urls } from "../../../Config";
 
 import ikon from "assets/forside-tolk-ikon.svg";
-import ChevronLenke from "../../../components/chevronlenke/ChevronLenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenke";
 
 const Tolketjenesten = () => {
   const tittel = <FormattedMessage id={"kontaktoss.tolketjenesten.tittel"} />;
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <ChevronLenke href={urls.tolketjenesten} isExternal={true}>
+      <RouterLenke href={urls.tolketjenesten} isExternal={true}>
         <FormattedMessage id={"kontaktoss.tolketjenesten.link"} />
-      </ChevronLenke>
-      <ChevronLenke href={urls.spraktolk} isExternal={true}>
+      </RouterLenke>
+      <RouterLenke href={urls.spraktolk} isExternal={true}>
         <FormattedMessage id={"kontaktoss.tolketjenesten.link.spraktolk"} />
-      </ChevronLenke>
+      </RouterLenke>
     </IkonPanel>
   );
 };

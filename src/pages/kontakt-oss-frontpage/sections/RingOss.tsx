@@ -4,16 +4,16 @@ import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 
 import ikon from "assets/forside-ringoss-ikon.svg";
 import { urls } from "../../../Config";
-import ChevronLenke from "../../../components/chevronlenke/ChevronLenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenke";
 
 const RingOss = () => {
   const tittel = <FormattedMessage id={"kontaktoss.ringoss.tittel"} />;
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel} className="ringoss">
-      <ChevronLenke isExternal={true} href={urls.ringOss}>
+      <RouterLenke isExternal={true} href={urls.ringOss}>
         <FormattedMessage id={"kontaktoss.ringoss.knapp"} />
-      </ChevronLenke>
+      </RouterLenke>
     </IkonPanel>
   );
 };

@@ -7,7 +7,7 @@ import { Normaltekst } from "nav-frontend-typografi";
 import { urls } from "../../../Config";
 
 import ikon from "assets/forside-skrivtiloss-ikon.svg";
-import ChevronLenke from "../../../components/chevronlenke/ChevronLenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenke";
 
 const SkrivTilOss = () => {
   const tittel = <FormattedMessage id={"kontaktoss.skrivtiloss.tittel"} />;
@@ -26,12 +26,12 @@ const SkrivTilOss = () => {
             <FormattedMessage id={"kontaktoss.skrivtiloss.beskrivelse"} />
           </Normaltekst>
         </div>
-        <ChevronLenke
+        <RouterLenke
           href={urls.skrivTilOss.forside}
           className={"frontpage__lenke"}
         >
           <FormattedMessage id={"kontaktoss.skrivtiloss.knapp"} />
-        </ChevronLenke>
+        </RouterLenke>
       </>
     </IkonPanel>
   );
