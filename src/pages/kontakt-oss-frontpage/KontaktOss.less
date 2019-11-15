@@ -2,12 +2,11 @@
 @import (reference) "../../index.less";
 
 .frontpage {
-  @margin-vertical: 1.5rem;
+  @margin-vertical: 1rem;
   @margin-horizontal: 1rem;
 
   &__wrapper {
     width: 100%;
-    background: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,10 +17,6 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-
-    > :not(:last-child) {
-      margin-bottom: @margin-vertical;
-    }
   }
 
   &__sidetittel {
@@ -57,10 +52,6 @@
         margin-bottom: @margin-vertical;
       }
     }
-  }
-
-  &__lenke {
-    margin: 0.5rem 0;
   }
 
   .ringoss {

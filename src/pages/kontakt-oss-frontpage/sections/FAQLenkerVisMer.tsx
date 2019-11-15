@@ -11,7 +11,7 @@ const VisMer = (props: Props) => {
     <button onClick={props.onClick} className={"faq__vismer lenke"}>
       {props.visFlere ? (
         <div className={"faq__vismer-content"}>
-          Vis færre
+          <FormattedMessage id="faq.visfaerre" />
           <OppChevron />
         </div>
       ) : (

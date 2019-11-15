@@ -3,22 +3,29 @@ import { FormattedMessage } from "react-intl";
 
 import { urls } from "../../../Config";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
-import ChevronLenke from "../../../components/chevronlenke/ChevronLenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenke";
 
 const FeilOgMangler = () => {
   const tittel = <FormattedMessage id={"kontaktoss.tekniskfeil.tittel"} />;
 
   return (
-    <IkonPanel tittel={tittel} className={"feil-og-mangler"}>
-      <ChevronLenke href={urls.tekniskBrukerstotte.selvhjelp} isExternal={true}>
+    <IkonPanel tittel={tittel}>
+      <RouterLenke
+        href={urls.tekniskBrukerstotte.selvhjelp}
+        className={"lenke__avstand-under"}
+        isExternal={true}
+      >
         <FormattedMessage id={"kontaktoss.tekniskfeil.link.losselv"} />
-      </ChevronLenke>
-      <ChevronLenke href={urls.tilbakemeldinger.feilogmangler}>
+      </RouterLenke>
+      <RouterLenke
+        href={urls.tilbakemeldinger.feilogmangler}
+        className={"lenke__avstand-under"}
+      >
         <FormattedMessage id={"kontaktoss.tekniskfeil.link.meldifra"} />
-      </ChevronLenke>
-      <ChevronLenke href={urls.tekniskBrukerstotte.ring} isExternal={true}>
+      </RouterLenke>
+      <RouterLenke href={urls.tekniskBrukerstotte.ring} isExternal={true}>
         <FormattedMessage id={"kontaktoss.tekniskfeil.link.ring"} />
-      </ChevronLenke>
+      </RouterLenke>
     </IkonPanel>
   );
 };

@@ -4,21 +4,21 @@ import { FormattedMessage } from "react-intl";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 
 import { urls } from "../../../Config";
-import ChevronLenke from "../../../components/chevronlenke/ChevronLenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenke";
 import { Normaltekst } from "nav-frontend-typografi";
 
 const KlageOgTilbakemeldinger = () => {
   const tittel = <FormattedMessage id={"kontaktoss.klage.tittel"} />;
 
   return (
-    <IkonPanel tittel={tittel} className={"klage-og-tilbakemeldinger"}>
+    <IkonPanel tittel={tittel}>
       <Normaltekst>
-        <ChevronLenke
+        <RouterLenke
           href={urls.tilbakemeldinger.forside}
           className={"frontpage__lenke"}
         >
           <FormattedMessage id="kontaktoss.klage.knapp" />
-        </ChevronLenke>
+        </RouterLenke>
       </Normaltekst>
     </IkonPanel>
   );

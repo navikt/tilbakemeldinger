@@ -7,10 +7,6 @@ export interface Lenke {
 
 export const lenkerFAQ: Lenke[] = [
   {
-    lenke: urls.faq.eosReglerSak,
-    lenkeTekst: "faq.eosreglersak",
-  },
-  {
     lenke: urls.faq.utbetalingsoversikt,
     lenkeTekst: "faq.utbetalingsoversikt"
   },
@@ -19,12 +15,16 @@ export const lenkerFAQ: Lenke[] = [
     lenkeTekst: "faq.saksoversikt"
   },
   {
-    lenke: urls.faq.saksbehandlingstider,
-    lenkeTekst: "faq.saksbehandlingstider"
+    lenke: urls.faq.eosReglerSak,
+    lenkeTekst: "faq.eosreglersak",
   },
   {
     lenke: urls.faq.utbetalinger,
     lenkeTekst: "faq.nesteutbetaling"
+  },
+  {
+    lenke: urls.faq.saksbehandlingstider,
+    lenkeTekst: "faq.saksbehandlingstider"
   },
   {
     lenke: urls.faq.endreKontonummer,

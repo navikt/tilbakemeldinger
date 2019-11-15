@@ -7,7 +7,7 @@ import { Normaltekst } from "nav-frontend-typografi";
 import { urls } from "../../../Config";
 
 import ikon from "assets/forside-veileder-ikon.svg";
-import ChevronLenke from "../../../components/chevronlenke/ChevronLenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenke";
 
 const KontaktVeileder = () => {
   const tittel = <FormattedMessage id={"kontaktoss.kontaktveileder.tittel"} />;
@@ -17,19 +17,22 @@ const KontaktVeileder = () => {
       <>
         <div>
           <Normaltekst className="svartid">
-            <FormattedMessage id={"kontaktoss.svartiddager"} values={{antall: 2}} />
+            <FormattedMessage
+              id={"kontaktoss.svartiddager"}
+              values={{ antall: 2 }}
+            />
           </Normaltekst>
           <Normaltekst>
             <FormattedMessage id={"kontaktoss.kontaktveileder.beskrivelse"} />
           </Normaltekst>
         </div>
-        <ChevronLenke
+        <RouterLenke
           href={urls.aktivitetsplan}
-          className={"frontpage__lenke"}
+          className={"lenke__avstand-over"}
           isExternal={true}
         >
           <FormattedMessage id={"kontaktoss.kontaktveileder.knapp"} />
-        </ChevronLenke>
+        </RouterLenke>
       </>
     </IkonPanel>
   );
