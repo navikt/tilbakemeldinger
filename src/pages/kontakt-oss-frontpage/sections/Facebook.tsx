@@ -5,25 +5,19 @@ import { FormattedMessage } from "react-intl";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 
 import ikon from "assets/forside-facebook-ikon.svg";
-import ChevronLenke from "../../../components/chevronlenke/ChevronLenke";
+import Lenke from "../../../components/lenke/Lenke";
 
 const Facebook = () => {
   const tittel = <FormattedMessage id={"kontaktoss.facebook.tittel"} />;
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <ChevronLenke
-        href={urls.facebook.foreldrepenger}
-        isExternal={true}
-      >
+      <Lenke href={urls.facebook.foreldrepenger} isExternal={true}>
         <FormattedMessage id={"kontaktoss.facebook.foreldrepenger"} />
-      </ChevronLenke>
-      <ChevronLenke
-        href={urls.facebook.jobblyst}
-        isExternal={true}
-      >
+      </Lenke>
+      <Lenke href={urls.facebook.jobblyst} isExternal={true}>
         <FormattedMessage id={"kontaktoss.facebook.jobblyst"} />
-      </ChevronLenke>
+      </Lenke>
     </IkonPanel>
   );
 };

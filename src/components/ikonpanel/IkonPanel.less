@@ -1,25 +1,26 @@
-@paddingy: 1.5em;
-@paddingx: @paddingy * 1.62;
+@paddingy: 2rem;
+@paddingx: @paddingy * 1;
 
 @ikonSize: 3em;
 @ikonPadding: 1em;
 @ikonContainerSize: @ikonSize + @ikonPadding * 2;
 
-@borderColor: @navGra80;
-@borderSize: 4px;
+@borderColor: @navGra20;
+@borderSize: 1px;
 
 .ikonpanel {
   padding: @paddingy @paddingx;
-  margin-top: @ikonContainerSize/2;
+  margin-top: @ikonContainerSize / 2;
+  position: relative;
   .setPanelBorder();
 
   &__ikon-container {
     width: @ikonContainerSize;
     height: @ikonContainerSize;
-    position: relative;
+    position: absolute;
     left: 50%;
-    margin-top: -(@ikonContainerSize/2 + @paddingy);
-    margin-left: -@ikonContainerSize/2;
+    margin-top: -(@ikonContainerSize / 2 + @paddingy);
+    margin-left: -@ikonContainerSize / 2;
 
     background-color: white;
     padding: @ikonPadding;

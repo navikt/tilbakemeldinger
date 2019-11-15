@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 
 import ikon from "assets/forside-faq-ikon.svg";
-import ChevronLenke from "../../../components/chevronlenke/ChevronLenke";
+import Lenke from "../../../components/lenke/Lenke";
 
 const FAQ = () => {
   const [visFlereFAQ, settVisFlereFAQ] = useState(false);
@@ -21,9 +21,9 @@ const FAQ = () => {
       {lenkerFAQ
         .slice(0, visFlereFAQ ? lenkerFAQ.length : visElementer)
         .map(({ lenke, lenkeTekst }) => (
-          <ChevronLenke href={lenke} isExternal={true} key={lenkeTekst}>
+          <Lenke href={lenke} isExternal={true} key={lenkeTekst}>
             <FormattedMessage id={lenkeTekst} />
-          </ChevronLenke>
+          </Lenke>
         ))}
       {lenkerFAQ.length > visElementer && (
         <VisMer visFlere={visFlereFAQ} onClick={toggleVisFlereFAQ} />
