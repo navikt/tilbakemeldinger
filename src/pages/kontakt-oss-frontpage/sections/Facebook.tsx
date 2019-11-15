@@ -12,10 +12,18 @@ const Facebook = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <Lenke href={urls.facebook.foreldrepenger} isExternal={true}>
+      <Lenke
+        href={urls.facebook.foreldrepenger}
+        isExternal={true}
+        className={"lenke__space"}
+      >
         <FormattedMessage id={"kontaktoss.facebook.foreldrepenger"} />
       </Lenke>
-      <Lenke href={urls.facebook.jobblyst} isExternal={true}>
+      <Lenke
+        href={urls.facebook.jobblyst}
+        isExternal={true}
+        className={"lenke__space"}
+      >
         <FormattedMessage id={"kontaktoss.facebook.jobblyst"} />
       </Lenke>
     </IkonPanel>

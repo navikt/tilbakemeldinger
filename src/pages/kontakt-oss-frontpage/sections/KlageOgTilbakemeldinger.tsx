@@ -13,10 +13,7 @@ const KlageOgTilbakemeldinger = () => {
   return (
     <IkonPanel tittel={tittel} className={"klage-og-tilbakemeldinger"}>
       <Normaltekst>
-        <Lenke
-          href={urls.tilbakemeldinger.forside}
-          className={"frontpage__lenke"}
-        >
+        <Lenke href={urls.tilbakemeldinger.forside}>
           <FormattedMessage id="kontaktoss.klage.knapp" />
         </Lenke>
       </Normaltekst>

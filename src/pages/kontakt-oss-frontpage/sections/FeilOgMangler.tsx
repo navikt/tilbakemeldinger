@@ -10,13 +10,24 @@ const FeilOgMangler = () => {
 
   return (
     <IkonPanel tittel={tittel} className={"feil-og-mangler"}>
-      <Lenke href={urls.tekniskBrukerstotte.selvhjelp} isExternal={true}>
+      <Lenke
+        href={urls.tekniskBrukerstotte.selvhjelp}
+        className={"lenke__space"}
+        isExternal={true}
+      >
         <FormattedMessage id={"kontaktoss.tekniskfeil.link.losselv"} />
       </Lenke>
-      <Lenke href={urls.tilbakemeldinger.feilogmangler}>
+      <Lenke
+        href={urls.tilbakemeldinger.feilogmangler}
+        className={"lenke__space"}
+      >
         <FormattedMessage id={"kontaktoss.tekniskfeil.link.meldifra"} />
       </Lenke>
-      <Lenke href={urls.tekniskBrukerstotte.ring} isExternal={true}>
+      <Lenke
+        href={urls.tekniskBrukerstotte.ring}
+        className={"lenke__space"}
+        isExternal={true}
+      >
         <FormattedMessage id={"kontaktoss.tekniskfeil.link.ring"} />
       </Lenke>
     </IkonPanel>

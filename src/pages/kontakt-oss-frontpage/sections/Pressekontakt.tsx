@@ -13,11 +13,7 @@ const Pressekontakt = () => {
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
       <>
-        <Lenke
-          href={urls.presseKontakt}
-          isExternal={true}
-          className={"frontpage__lenke"}
-        >
+        <Lenke href={urls.presseKontakt} isExternal={true}>
           <FormattedMessage id="kontaktoss.presse.link" />
         </Lenke>
       </>

@@ -12,10 +12,14 @@ const Tolketjenesten = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <Lenke href={urls.tolketjenesten} isExternal={true}>
+      <Lenke
+        href={urls.tolketjenesten}
+        isExternal={true}
+        className={"lenke__space"}
+      >
         <FormattedMessage id={"kontaktoss.tolketjenesten.link"} />
       </Lenke>
-      <Lenke href={urls.spraktolk} isExternal={true}>
+      <Lenke href={urls.spraktolk} isExternal={true} className={"lenke__space"}>
         <FormattedMessage id={"kontaktoss.tolketjenesten.link.spraktolk"} />
       </Lenke>
     </IkonPanel>

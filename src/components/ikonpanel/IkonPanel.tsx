@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Systemtittel } from "nav-frontend-typografi";
-import PanelBase, { Panel } from "nav-frontend-paneler";
+import { Panel } from "nav-frontend-paneler";
 
 type Props = {
   ikon?: string;
@@ -14,7 +14,7 @@ const cssPrefix = "ikonpanel";
 
 const IkonPanel = ({ ikon, tittel, children, className }: Props) => {
   return (
-    <PanelBase className={`${cssPrefix}${className ? ` ${className}` : ""}`}>
+    <Panel className={`${cssPrefix}${className ? ` ${className}` : ""}`}>
       {ikon && (
         <div className={`${cssPrefix}__ikon-container`}>
           <img src={ikon} alt="" className={`${cssPrefix}__ikon`} />
@@ -26,7 +26,7 @@ const IkonPanel = ({ ikon, tittel, children, className }: Props) => {
         </Systemtittel>
         <div className={`${cssPrefix}__innhold-body`}>{children}</div>
       </div>
-    </PanelBase>
+    </Panel>
   );
 };
 

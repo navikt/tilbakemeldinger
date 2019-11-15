@@ -13,11 +13,7 @@ const FinnNavKontor = () => {
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
       <>
-        <Lenke
-          href={urls.finnDittNavKontor}
-          isExternal={true}
-          className={"frontpage__lenke"}
-        >
+        <Lenke href={urls.finnDittNavKontor} isExternal={true}>
           <FormattedMessage id="kontaktoss.navkontor.knapp" />
         </Lenke>
       </>

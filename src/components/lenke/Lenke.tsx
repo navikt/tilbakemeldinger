@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Lenke from "nav-frontend-lenker";
-import { HoyreChevron } from "nav-frontend-chevron";
 
 type Props = {
   href: string;

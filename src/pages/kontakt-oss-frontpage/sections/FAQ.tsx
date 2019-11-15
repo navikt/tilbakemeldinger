@@ -21,10 +21,16 @@ const FAQ = () => {
       {lenkerFAQ
         .slice(0, visFlereFAQ ? lenkerFAQ.length : visElementer)
         .map(({ lenke, lenkeTekst }) => (
-          <Lenke href={lenke} isExternal={true} key={lenkeTekst}>
+          <Lenke
+            href={lenke}
+            isExternal={true}
+            key={lenkeTekst}
+            className={"lenke__faq"}
+          >
             <FormattedMessage id={lenkeTekst} />
           </Lenke>
         ))}
+
       {lenkerFAQ.length > visElementer && (
         <VisMer visFlere={visFlereFAQ} onClick={toggleVisFlereFAQ} />
       )}

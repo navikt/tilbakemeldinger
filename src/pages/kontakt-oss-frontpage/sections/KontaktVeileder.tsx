@@ -17,7 +17,10 @@ const KontaktVeileder = () => {
       <>
         <div>
           <Normaltekst className="svartid">
-            <FormattedMessage id={"kontaktoss.svartiddager"} values={{antall: 2}} />
+            <FormattedMessage
+              id={"kontaktoss.svartiddager"}
+              values={{ antall: 2 }}
+            />
           </Normaltekst>
           <Normaltekst>
             <FormattedMessage id={"kontaktoss.kontaktveileder.beskrivelse"} />
