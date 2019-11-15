@@ -32,7 +32,7 @@ export default {
     "Jearaldat bagadallama oažžut sámegillii telefovnnas",
 
   "skrivtiloss.disabled":
-    "Tjenesten er dessverre ikke tilgjengelig for øyeblikket.",
+    "Tjenesten er ikke tilgjengelig for øyeblikket.",
   "skrivtiloss.tittel": "Skriv til oss",
   "skrivtiloss.description":
     "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Normal svartid" +
@@ -42,7 +42,7 @@ export default {
   "skrivtiloss.svartid.lang":
     " På grunn av stor pågang kan svartiden akkurat nå være noe lengre. Vi beklager dette.",
   "skrivtiloss.ingress":
-    "Har du en pågående sak? Send oss gjerne spørsmål eller nye opplysninger i saken din.",
+    "Send oss spørsmål eller nye opplysninger i saken din.",
 
   "skrivtiloss.arbeidssoker.lenke.tittel": "Arbeidssøker",
   "skrivtiloss.arbeidssoker.lenke.ingress":
@@ -90,17 +90,17 @@ export default {
 
   "faq.intro": "Nå lurer mange på",
   "faq.visflere": "Vis flere",
-  "faq.nesteutbetaling": "Utbetalingsdatoer",
-  "faq.posttilannenadresse": "Vil du ha post til en annen adresse?",
-  "faq.saksbehandlingstider": "Saksbehandlingstider",
-  "faq.minside": "Må min side finner du blant annet",
-  "faq.endrekontonummer": "Endre kontonummer",
-  "faq.utbetalingsoversikt": "Sjekk dine utbetalinger",
+  "faq.visfaerre": "Vis færre",
+  "faq.utbetalingsoversikt": "Sjekk utbetalingene dine",
   "faq.saksoversikt": "Hvordan går det med saken min?",
-  "faq.eosreglersak": "Feiltolkning av EØS-regelene",
+  "faq.eosreglersak": "Feiltolking av EØS-regelene",
+  "faq.nesteutbetaling": "Utbetalingsdatoer",
+  "faq.saksbehandlingstider": "Saksbehandlingstider",
+  "faq.endrekontonummer": "Endre kontonummer",
+  "faq.posttilannenadresse": "Vil du ha NAV-post til en annen adresse?",
 
   "kontaktoss.tittel": "Kontakt oss",
-  "kontaktoss.svartiddager": "Svartid: {antall} arbeidsdager.",
+  "kontaktoss.svartiddager": "Svartid: {antall} arbeidsdager",
 
   "kontaktoss.chat.tittel": "Chat",
   "kontaktoss.chat.beskrivelse":
@@ -146,13 +146,13 @@ export default {
   "kontaktoss.ringoss.forandre": "Ringer du på vegne av en annen?",
 
   "kontaktoss.skrivtiloss.tittel": "Skriv til oss",
-  "kontaktoss.skrivtiloss.beskrivelse": "Du må logge inn for å sende e-post",
-  "kontaktoss.skrivtiloss.knapp": "Skriv til oss",
+  "kontaktoss.skrivtiloss.beskrivelse": "Du må logge inn for å sende e-post.",
+  "kontaktoss.skrivtiloss.knapp": "Skriv til oss (innlogget tjeneste)",
 
-  "kontaktoss.kontaktveileder.tittel": "Kontakt din veileder",
+  "kontaktoss.kontaktveileder.tittel": "Dialog med veileder",
   "kontaktoss.kontaktveileder.beskrivelse":
-    "Du må være registert som arbeidssøker for å kontakte din veileder.",
-  "kontaktoss.kontaktveileder.knapp": "Kontakt din veileder",
+    "Du må være registrert som arbeidssøker for å kontakte veilederen din.",
+  "kontaktoss.kontaktveileder.knapp": "Kontakt din veileder (innlogget tjeneste)",
 
   "kontaktoss.facebook.tittel": "Spør oss på Facebook",
   "kontaktoss.facebook.foreldrepenger": "Foreldrepenger på Facebook",
@@ -161,7 +161,7 @@ export default {
   "kontaktoss.navkontor.tittel": "Finn ditt NAV-kontor",
   "kontaktoss.navkontor.beskrivelse":
     "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
-  "kontaktoss.navkontor.knapp": "Finn adressen til ditt NAV-kontor",
+  "kontaktoss.navkontor.knapp": "Se hvilket NAV-kontor du tilhører (innlogget tjeneste)",
 
   "kontaktoss.tolketjenesten.tittel": "Tolketjenesten",
   "kontaktoss.tolketjenesten.link":
@@ -177,7 +177,7 @@ export default {
 
   "kontaktoss.tekniskfeil.tittel": "Teknisk feil på nav.no",
   "kontaktoss.tekniskfeil.link.losselv": "Prøv å løse problemet selv",
-  "kontaktoss.tekniskfeil.link.meldifra": "Meld ifra om feil og mangler",
+  "kontaktoss.tekniskfeil.link.meldifra": "Meld fra om feil og mangler",
   "kontaktoss.tekniskfeil.link.ring": "Ring teknisk brukerstøtte",
 
   "kontaktoss.presse.tittel": "Pressekontakt",
@@ -338,15 +338,14 @@ export default {
 
   "chat.forside.tittel": "Chat med oss",
   "chat.forside.ingress":
-    "NAV tilbyr chat på noen temaer. Spør oss gjerne om hva du kan få hjelp til. På chat svarer vi dessverre ikke på" +
-    " spørsmål om saken din.",
+    "På chat svarer vi ikke på spørsmål om saken din.",
 
   "chat.startknapp": "Start chat",
   "chat.advarsel.personvern":
-    "<p>Alle samtaler blir lagret anonymt i 6 måneder.</p><p>Ikke oppgi navn, fødselsnummer eller" +
-    " sensitive opplysninger som helseforhold eller diagnoser.</p>",
+    "<p>Chatten er ikke innlogget. Ikke oppgi navn, fødselsnummer eller sensitive opplysninger som helseforhold eller" +
+    " diagnoser.</p>",
   "chat.chatbotinfo":
-    "<p>Du vil først møte en chat-robot, men veilederne våre er tilgjengelig på chat på hverdager fra 09.00-14.30.</p>",
+    "<p>Du møter først en chatrobot, men kan bli satt videre til chat med en veileder (hverdager 09.00-14.30).</p>",
 
   "chat.familie.tittel": "Foreldre, barn og familie",
   "chat.familie.ingressKort":
@@ -366,23 +365,18 @@ export default {
   "chat.jobbsoker.ingressKort":
     "Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.",
   "chat.jobbsoker.ingress":
-    "<p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
-    "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
+    "<p>Veilederne våre er tilgjengelige på hverdager 10.00 - 14.30.</p>",
 
   "chat.sosialhjelp.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.ingressKort":
     "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
   "chat.sosialhjelp.ingress":
-    "<p>Åpningstid: kl. 09.00 - 14.30 (mandag-fredag)</p>",
+    "<p>Veilederne våre er tilgjengelige på hverdager 10.00 - 14.30.</p>",
 
   "chat.okonomi.tittel": "Økonomi og gjeldsrådgivning",
   "chat.okonomi.ingressKort": "Budsjett, økonomi og gjeldsrådgivning.",
   "chat.okonomi.ingress":
-    "<p>Åpningstider:\n" +
-    "Mandag, tirsdag og onsdag kl. 10.00 - 15.00\n" +
-    "Torsdag kl. 10.00 - 14.30\n" +
-    "Fredag kl. 10.00 - 15.00</p>" +
-    "<p>Du kan også ringe NAV Gjeldsrådgivning på tlf. 55 55 33 39 alle hverdager mellom klokken 09.00 og 15.00</p>",
+    "<p>Veilederne våre er tilgjengelige på hverdager 10.00 - 15.00 (14.30 torsdager).</p>",
 
   "chat.eures.tittel": "EURES",
   "chat.eures.ingressKort":

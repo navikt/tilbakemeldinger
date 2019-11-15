@@ -10,7 +10,7 @@ const ChatJobbsoker = () => {
       chatTema={ChatTema.Jobbsoker}
     >
       <>
-        <FormattedMsgMedParagrafer id={"chat.chatbotinfo"} />
+        <FormattedMsgMedParagrafer id={"chat.jobbsoker.ingress"} />
       </>
     </ChatTemaSide>
   );
