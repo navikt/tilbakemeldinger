@@ -1,19 +1,23 @@
 import React from "react";
-import ChatTemaSide from "../ChatTemasideBase";
-import { ChatTema } from "../../../types/chat";
+import ChatTemaSideBase from "../ChatTemasideBase";
+import { ChatTema, ChatTemaData } from "../../../types/chat";
 import FormattedMsgMedParagrafer from "../../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
+
+const chatTemaData: ChatTemaData = {
+  tittelTekstId: "chat.sosialhjelp.tittel",
+  chatTema: ChatTema.Sosial
+};
 
 const ChatSosial = () => {
   return(
-    <ChatTemaSide
-      tittelId={"chat.sosialhjelp.tittel"}
-      chatTema={ChatTema.Sosial}
+    <ChatTemaSideBase
+      chatTemaData={chatTemaData}
     >
       <>
         <FormattedMsgMedParagrafer id={"chat.sosialhjelp.ingress"} />
         <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
       </>
-    </ChatTemaSide>
+    </ChatTemaSideBase>
   );
 };
 

@@ -2,6 +2,7 @@ import React from "react";
 import { LenkepanelData } from "../../types/lenker";
 import { urls } from "Config";
 import { FormattedMessage } from "react-intl";
+import { ChatTemaData } from "../../types/chat";
 
 const chatTemaLenker: Array<LenkepanelData> = [
   {

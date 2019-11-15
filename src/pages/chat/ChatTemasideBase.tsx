@@ -4,20 +4,35 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { Systemtittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import ChatbotWrapper from "./ChatbotWrapper";
-import { ChatTema } from "../../types/chat";
+import { ChatTema, ChatTemaData } from "../../types/chat";
 import { Hovedknapp } from "nav-frontend-knapper";
 import { urls } from "../../Config";
 import PanelBase from "nav-frontend-paneler";
+import { AlertStripeInfo } from "nav-frontend-alertstriper";
+import { ApningsTider } from "../../types/datotid";
 
-export type ChatTemaProps = {
-  tittelId: string,
-  chatTema: ChatTema,
+type ChatTemaProps = {
+  chatTemaData: ChatTemaData,
   children: ReactNode,
 };
 
 const cssPrefix = "chat-tema";
 
-const ChatTemaSide = ({tittelId, chatTema, children}: ChatTemaProps) => {
+const ikkeApent = (
+  <AlertStripeInfo>
+    {"Chatten er ikke åpen, prøv senere!"}
+  </AlertStripeInfo>
+);
+
+const isChatOpen = (apningstider: ApningsTider) => {
+  if (!apningstider) {
+    return true;
+  }
+
+
+};
+
+const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
   const temaButtonHandlers: {[key in ChatTema]: Function} = {
     [ChatTema.Familie]: () => setLastClick(Date.now()),
     [ChatTema.AAP]: () => setLastClick(Date.now()),
@@ -28,7 +43,7 @@ const ChatTemaSide = ({tittelId, chatTema, children}: ChatTemaProps) => {
   };
 
   const formatMessage = useIntl().formatMessage;
-  const documentTitle = `${formatMessage({id: tittelId})} - www.nav.no`;
+  const documentTitle = `${formatMessage({id: chatTemaData.tittelTekstId})} - www.nav.no`;
   useEffect(() => {
     document.title = documentTitle;
   }, [documentTitle]);
@@ -42,7 +57,7 @@ const ChatTemaSide = ({tittelId, chatTema, children}: ChatTemaProps) => {
         <PanelBase className={cssPrefix}>
           <div className={`${cssPrefix}__header`}>
             <Systemtittel>
-              <FormattedMessage id={tittelId} />
+              <FormattedMessage id={chatTemaData.tittelTekstId} />
             </Systemtittel>
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
@@ -52,7 +67,7 @@ const ChatTemaSide = ({tittelId, chatTema, children}: ChatTemaProps) => {
             <Hovedknapp
               htmlType={"button"}
               onClick={
-                () => temaButtonHandlers[chatTema]()
+                () => temaButtonHandlers[chatTemaData.chatTema]()
               }
             >
               <FormattedMessage id={"chat.startknapp"}/>
@@ -60,9 +75,9 @@ const ChatTemaSide = ({tittelId, chatTema, children}: ChatTemaProps) => {
           </div>
         </PanelBase>
       </div>
-      <ChatbotWrapper chatTema={chatTema} lastClick={lastClick}/>
+      <ChatbotWrapper chatTema={chatTemaData.chatTema} lastClick={lastClick}/>
     </>
   );
 };
 
-export default ChatTemaSide;
+export default ChatTemaSideBase;
