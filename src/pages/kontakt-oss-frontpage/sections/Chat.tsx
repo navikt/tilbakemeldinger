@@ -12,7 +12,7 @@ const Chat = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <RouterLenke href={urls.chat.forside} className={"frontpage__lenke"}>
+      <RouterLenke href={urls.chat.forside}>
         <FormattedMessage id={"kontaktoss.chat.knapp"} />
       </RouterLenke>
     </IkonPanel>

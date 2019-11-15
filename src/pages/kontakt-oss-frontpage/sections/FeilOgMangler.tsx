@@ -9,11 +9,18 @@ const FeilOgMangler = () => {
   const tittel = <FormattedMessage id={"kontaktoss.tekniskfeil.tittel"} />;
 
   return (
-    <IkonPanel tittel={tittel} className={"feil-og-mangler"}>
-      <RouterLenke href={urls.tekniskBrukerstotte.selvhjelp} isExternal={true}>
+    <IkonPanel tittel={tittel}>
+      <RouterLenke
+        href={urls.tekniskBrukerstotte.selvhjelp}
+        className={"lenke__avstand-under"}
+        isExternal={true}
+      >
         <FormattedMessage id={"kontaktoss.tekniskfeil.link.losselv"} />
       </RouterLenke>
-      <RouterLenke href={urls.tilbakemeldinger.feilogmangler}>
+      <RouterLenke
+        href={urls.tilbakemeldinger.feilogmangler}
+        className={"lenke__avstand-under"}
+      >
         <FormattedMessage id={"kontaktoss.tekniskfeil.link.meldifra"} />
       </RouterLenke>
       <RouterLenke href={urls.tekniskBrukerstotte.ring} isExternal={true}>

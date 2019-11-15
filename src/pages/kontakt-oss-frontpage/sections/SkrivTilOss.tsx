@@ -28,7 +28,7 @@ const SkrivTilOss = () => {
         </div>
         <RouterLenke
           href={urls.skrivTilOss.forside}
-          className={"frontpage__lenke"}
+          className={"lenke__avstand-over"}
         >
           <FormattedMessage id={"kontaktoss.skrivtiloss.knapp"} />
         </RouterLenke>

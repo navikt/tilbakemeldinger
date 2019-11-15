@@ -17,7 +17,10 @@ const KontaktVeileder = () => {
       <>
         <div>
           <Normaltekst className="svartid">
-            <FormattedMessage id={"kontaktoss.svartiddager"} values={{antall: 2}} />
+            <FormattedMessage
+              id={"kontaktoss.svartiddager"}
+              values={{ antall: 2 }}
+            />
           </Normaltekst>
           <Normaltekst>
             <FormattedMessage id={"kontaktoss.kontaktveileder.beskrivelse"} />
@@ -25,7 +28,7 @@ const KontaktVeileder = () => {
         </div>
         <RouterLenke
           href={urls.aktivitetsplan}
-          className={"frontpage__lenke"}
+          className={"lenke__avstand-over"}
           isExternal={true}
         >
           <FormattedMessage id={"kontaktoss.kontaktveileder.knapp"} />

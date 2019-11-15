@@ -15,13 +15,11 @@ const Facebook = () => {
       <RouterLenke
         href={urls.facebook.foreldrepenger}
         isExternal={true}
+        className={"lenke__avstand-under"}
       >
         <FormattedMessage id={"kontaktoss.facebook.foreldrepenger"} />
       </RouterLenke>
-      <RouterLenke
-        href={urls.facebook.jobblyst}
-        isExternal={true}
-      >
+      <RouterLenke href={urls.facebook.jobblyst} isExternal={true}>
         <FormattedMessage id={"kontaktoss.facebook.jobblyst"} />
       </RouterLenke>
     </IkonPanel>

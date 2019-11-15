@@ -21,7 +21,12 @@ const FAQ = () => {
       {lenkerFAQ
         .slice(0, visFlereFAQ ? lenkerFAQ.length : visElementer)
         .map(({ lenke, lenkeTekst }) => (
-          <RouterLenke href={lenke} isExternal={true} key={lenkeTekst}>
+          <RouterLenke
+            href={lenke}
+            className={"lenke__avstand-under"}
+            isExternal={true}
+            key={lenkeTekst}
+          >
             <FormattedMessage id={lenkeTekst} />
           </RouterLenke>
         ))}
