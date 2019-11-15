@@ -2,29 +2,23 @@
 @paddingx: @paddingy * 1;
 
 @ikonSize: 3em;
-@ikonPadding: 1em;
-@ikonContainerSize: @ikonSize + @ikonPadding * 2;
+@ikonPadding: 1.5em;
+@ikonContainerSize: @ikonSize + @ikonPadding;
 
 @borderColor: @navGra20;
 @borderSize: 1px;
 
 .ikonpanel {
   padding: @paddingy @paddingx;
-  margin-top: @ikonContainerSize / 2;
+  margin: 1rem 0;
   position: relative;
+  display: flex;
   .setPanelBorder();
 
   &__ikon-container {
     width: @ikonContainerSize;
     height: @ikonContainerSize;
-    position: absolute;
-    left: 50%;
-    margin-top: -(@ikonContainerSize / 2 + @paddingy);
-    margin-left: -@ikonContainerSize / 2;
-
     background-color: white;
-    padding: @ikonPadding;
-
     border-radius: 50%;
   }
 
@@ -42,7 +36,6 @@
   &__innhold-body {
     display: flex;
     flex-direction: column;
-
     margin-top: 1em;
 
     & > * {
