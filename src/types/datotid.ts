@@ -1,15 +1,16 @@
 
-enum Ukedager {
-  Mandag = "mandag",
-  Tirsdag = "tirsdag",
-  Onsdag = "onsdag",
-  Torsdag = "torsdag",
-  Fredag = "fredag",
-  Lordag = "lørdag",
-  Sondag = "søndag",
+// Følger moment.js index for ukedager
+export enum Ukedager {
+  Sondag = 0,
+  Mandag,
+  Tirsdag,
+  Onsdag,
+  Torsdag,
+  Fredag,
+  Lordag,
 }
 
 export type ApningsTider = {[key in Ukedager]: {
-  start: Date,
-  end: Date,
-}};
+  start: string,
+  end: string,
+} | null};

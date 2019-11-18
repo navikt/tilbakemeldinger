@@ -41,8 +41,6 @@ const getTemaConfig: {[key in ChatTema]: ChatbotConfig | null} = {
 
 const ChatbotWrapper = ({chatTema, lastClick}: Props) => {
   const temaConfig = chatTema ? getTemaConfig[chatTema] : null;
-  console.log(JSON.stringify(temaConfig));
-  console.log(lastClick);
 
   useEffect(() => {
     chatbotUtils.clearSessionData();

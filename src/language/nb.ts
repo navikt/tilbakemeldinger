@@ -341,6 +341,8 @@ export default {
     "På chat svarer vi ikke på spørsmål om saken din.",
 
   "chat.startknapp": "Start chat",
+  "chat.disabledknapp": "Chat utilgjengelig",
+  "chat.stengt.info": "Chatten er ikke åpen, prøv senere!",
   "chat.advarsel.personvern":
     "<p>Chatten er ikke innlogget. Ikke oppgi navn, fødselsnummer eller sensitive opplysninger som helseforhold eller" +
     " diagnoser.</p>",

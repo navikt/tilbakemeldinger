@@ -6,10 +6,11 @@ import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper"
 import ChatbotWrapper from "./ChatbotWrapper";
 import { ChatTema, ChatTemaData } from "../../types/chat";
 import { Hovedknapp } from "nav-frontend-knapper";
-import { urls } from "../../Config";
+import { urls, vars } from "../../Config";
 import PanelBase from "nav-frontend-paneler";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
-import { ApningsTider } from "../../types/datotid";
+import { isOpen } from "../../utils/apningstider";
+import { fetchServerTidOffset } from "../../clients/apiClient";
 
 type ChatTemaProps = {
   chatTemaData: ChatTemaData,
@@ -18,19 +19,11 @@ type ChatTemaProps = {
 
 const cssPrefix = "chat-tema";
 
-const ikkeApent = (
+const IkkeApentInfo = () => (
   <AlertStripeInfo>
-    {"Chatten er ikke åpen, prøv senere!"}
+    <FormattedMessage id={"chat.stengt.info"} />
   </AlertStripeInfo>
 );
-
-const isChatOpen = (apningstider: ApningsTider) => {
-  if (!apningstider) {
-    return true;
-  }
-
-
-};
 
 const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
   const temaButtonHandlers: {[key in ChatTema]: Function} = {
@@ -44,11 +37,16 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
 
   const formatMessage = useIntl().formatMessage;
   const documentTitle = `${formatMessage({id: chatTemaData.tittelTekstId})} - www.nav.no`;
+
   useEffect(() => {
     document.title = documentTitle;
+    fetchServerTidOffset(setServerTidOffset);
   }, [documentTitle]);
 
   const [lastClick, setLastClick] = useState();
+  const [serverTidOffset, setServerTidOffset] = useState(0);
+
+  const chatErApen = isOpen(chatTemaData.apningstider, serverTidOffset, vars.chatBot.stengteDager);
 
   return(
     <>
@@ -61,6 +59,7 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
             </Systemtittel>
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
+            {!chatErApen && <IkkeApentInfo />}
             {children}
           </div>
           <div className={`${cssPrefix}__panel-start-knapp`}>
@@ -69,8 +68,9 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
               onClick={
                 () => temaButtonHandlers[chatTemaData.chatTema]()
               }
+              disabled={!chatErApen}
             >
-              <FormattedMessage id={"chat.startknapp"}/>
+              <FormattedMessage id={chatErApen ? "chat.startknapp" : "chat.disabledknapp"}/>
             </Hovedknapp>
           </div>
         </PanelBase>
