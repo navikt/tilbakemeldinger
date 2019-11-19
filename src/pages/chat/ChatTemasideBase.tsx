@@ -9,7 +9,7 @@ import { Hovedknapp } from "nav-frontend-knapper";
 import { urls, vars } from "../../Config";
 import PanelBase from "nav-frontend-paneler";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
-import { isOpen } from "../../utils/apningstider";
+import Apningstider from "../../utils/apningstider";
 import { fetchServerTidOffset } from "../../clients/apiClient";
 
 type ChatTemaProps = {
@@ -46,7 +46,9 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
   const [lastClick, setLastClick] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
 
-  const chatErApen = isOpen(chatTemaData.apningstider, serverTidOffset, vars.chatBot.stengteDager);
+  const chatErApen = chatTemaData.apningstider
+    ? Apningstider.isOpenNow(chatTemaData.apningstider, vars.chatBot.stengteDager, serverTidOffset)
+    : true;
 
   return(
     <>
