@@ -3,7 +3,6 @@ import { ApningsTider, Ukedager } from "../types/datotid";
 
 const isOpenNow = (apningstider: ApningsTider, stengteDager?: Set<string>, timeOffsetMs = 0, timeZone = "Europe/Oslo") => {
   const naaTid = moment().add(timeOffsetMs, "ms").tz(timeZone);
-  console.log("tid: " + naaTid.format());
 
   if (stengteDager && stengteDager.has(naaTid.format("DD-MM-YYYY"))) {
     return false;
