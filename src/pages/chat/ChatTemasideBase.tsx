@@ -26,27 +26,31 @@ const IkkeApentInfo = () => (
 );
 
 const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
+  const updateChatbot = () => setClickedTime(Date.now());
+  const redirectTo = (url: string) => window.location.assign(url);
+
   const temaButtonHandlers: {[key in ChatTema]: Function} = {
-    [ChatTema.Familie]: () => setLastClick(Date.now()),
-    [ChatTema.AAP]: () => setLastClick(Date.now()),
-    [ChatTema.Jobbsoker]: () => setLastClick(Date.now()),
-    [ChatTema.Sosial]: () => setLastClick(Date.now()),
-    [ChatTema.Okonomi]: () => setLastClick(Date.now()),
-    [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat),
+    [ChatTema.Familie]: updateChatbot,
+    [ChatTema.AAP]: updateChatbot,
+    [ChatTema.Jobbsoker]: updateChatbot,
+    [ChatTema.Sosial]: updateChatbot,
+    [ChatTema.Okonomi]: updateChatbot,
+    [ChatTema.EURES]: () => redirectTo(urls.chat.eures.chat),
   };
 
-  const formatMessage = useIntl().formatMessage;
-  const documentTitle = `${formatMessage({id: chatTemaData.tittelTekstId})} - www.nav.no`;
-
+  const documentTitle = `${useIntl().formatMessage({id: chatTemaData.tittelTekstId})} - www.nav.no`;
   useEffect(() => {
     document.title = documentTitle;
-    fetchServerTidOffset(setServerTidOffset);
   }, [documentTitle]);
 
-  const [lastClick, setLastClick] = useState();
+  useEffect(() => {
+    fetchServerTidOffset(setServerTidOffset);
+  }, []);
+
+  const [clickedTime, setClickedTime] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
 
-  const chatErApen = chatTemaData.apningstider
+  const isChatIApningstid = chatTemaData.apningstider
     ? Apningstider.isOpenNow(chatTemaData.apningstider, vars.chatBot.stengteDager, serverTidOffset)
     : true;
 
@@ -61,7 +65,7 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
             </Systemtittel>
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
-            {!chatErApen && <IkkeApentInfo />}
+            {!isChatIApningstid && <IkkeApentInfo />}
             {children}
           </div>
           <div className={`${cssPrefix}__panel-start-knapp`}>
@@ -70,14 +74,14 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
               onClick={
                 () => temaButtonHandlers[chatTemaData.chatTema]()
               }
-              disabled={!chatErApen}
+              disabled={!isChatIApningstid}
             >
-              <FormattedMessage id={chatErApen ? "chat.startknapp" : "chat.disabledknapp"}/>
+              <FormattedMessage id={isChatIApningstid ? "chat.startknapp" : "chat.disabledknapp"}/>
             </Hovedknapp>
           </div>
         </PanelBase>
       </div>
-      <ChatbotWrapper chatTema={chatTemaData.chatTema} lastClick={lastClick}/>
+      <ChatbotWrapper chatTema={chatTemaData.chatTema} lastClick={clickedTime}/>
     </>
   );
 };

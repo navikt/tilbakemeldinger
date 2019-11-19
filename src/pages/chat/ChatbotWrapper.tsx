@@ -3,7 +3,7 @@ import { vars } from "../../Config";
 
 import NAVChatBot from "@navikt/nav-chatbot";
 import { ChatTema } from "../../types/chat";
-import chatbotUtils from "../../utils/chatbotUtils";
+import chatbotUtils from "../../utils/chatbot";
 
 type Props = {
   chatTema: ChatTema | null;
