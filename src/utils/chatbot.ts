@@ -5,20 +5,6 @@ const storageKeys = {
   temp: "temp-storage",
 };
 
-const hookSessionStorageSetItem = (storageKey: string) => {
-  const setItemReal = sessionStorage.setItem.bind(sessionStorage);
-
-  sessionStorage.setItem = (key: string, value: string) => {
-    setItemReal(key, value);
-    window.dispatchEvent(
-      new CustomEvent(`sessionStorageSet_${storageKey}`, {detail: {key: key, value: value}}));
-  };
-};
-
-const initEventDispatcher = () => {
-  hookSessionStorageSetItem(storageKeys.openState);
-};
-
 // TODO: finn denne ut fra styled-components algoritme som genererer classnames
 const getApneKnappClassName = () => {
   return "sc-fAjcbJ";
@@ -58,6 +44,5 @@ const clearSessionData = () => {
 
 export default {
   apneChatbot,
-  initEventDispatcher,
   clearSessionData,
 };

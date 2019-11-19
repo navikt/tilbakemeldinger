@@ -44,7 +44,6 @@ const ChatbotWrapper = ({chatTema, lastClick}: Props) => {
 
   useEffect(() => {
     chatbotUtils.clearSessionData();
-    chatbotUtils.initEventDispatcher();
   }, []);
 
   useEffect(() => {
