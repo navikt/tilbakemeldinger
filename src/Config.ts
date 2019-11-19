@@ -1,4 +1,5 @@
 import Environment from "./Environments";
+import { Ukedager } from "./types/datotid";
 
 export const forsidePath = "/person/kontakt-oss";
 export const noRedirectUrlSegment = "/test";
@@ -144,6 +145,84 @@ export const vars = {
       openState: "chatbot-frida_apen",
       history: "chatbot-frida_historie"
     },
+    apningsTider: {
+      jobbsoker: {
+        [Ukedager.Mandag]: {
+          start: "10:00",
+          end: "14:30",
+        },
+        [Ukedager.Tirsdag]: {
+          start: "10:00",
+          end: "14:30",
+        },
+        [Ukedager.Onsdag]: {
+          start: "10:00",
+          end: "14:30",
+        },
+        [Ukedager.Torsdag]: {
+          start: "10:00",
+          end: "14:30",
+        },
+        [Ukedager.Fredag]: {
+          start: "10:00",
+          end: "14:30",
+        },
+        [Ukedager.Lordag]: null,
+        [Ukedager.Sondag]: null,
+      },
+      sosial: {
+        [Ukedager.Mandag]: {
+          start: "10:00",
+          end: "14:30",
+        },
+        [Ukedager.Tirsdag]: {
+          start: "10:00",
+          end: "14:30",
+        },
+        [Ukedager.Onsdag]: {
+          start: "10:00",
+          end: "14:30",
+        },
+        [Ukedager.Torsdag]: {
+          start: "10:00",
+          end: "14:30",
+        },
+        [Ukedager.Fredag]: {
+          start: "10:00",
+          end: "14:30",
+        },
+        [Ukedager.Lordag]: null,
+        [Ukedager.Sondag]: null,
+      },
+      okonomi: {
+        [Ukedager.Mandag]: {
+          start: "10:00",
+          end: "15:00",
+        },
+        [Ukedager.Tirsdag]: {
+          start: "10:00",
+          end: "15:00",
+        },
+        [Ukedager.Onsdag]: {
+          start: "10:00",
+          end: "15:00",
+        },
+        [Ukedager.Torsdag]: {
+          start: "10:00",
+          end: "14:30",
+        },
+        [Ukedager.Fredag]: {
+          start: "10:00",
+          end: "15:00",
+        },
+        [Ukedager.Lordag]: null,
+        [Ukedager.Sondag]: null,
+      },
+    },
+    stengteDager: new Set<string>([
+      "25-12-2019",
+      "01-01-2020",
+    ]),
     oldChatbotCookieName: "intelecomchat_41155",
   }
 };

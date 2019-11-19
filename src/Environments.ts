@@ -11,7 +11,7 @@ const Environment = () => {
   if (process.env.NODE_ENV === `development`) {
     return {
       miljo: `LOCAL`,
-      baseUrl: `https://www.nav.no`,
+      baseUrl: `http://localhost:3000`,
       baseAppPath: baseAppPath,
       appUrl: `http://localhost:8080${baseAppPath}`,
       apiUrl: `http://localhost:8080/person/tilbakemeldinger-api`,

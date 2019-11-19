@@ -1,18 +1,22 @@
 import React from "react";
-import ChatTemaSide from "../ChatTemasideBase";
-import { ChatTema } from "../../../types/chat";
+import ChatTemaSideBase from "../ChatTemasideBase";
+import { ChatTema, ChatTemaData } from "../../../types/chat";
 import FormattedMsgMedParagrafer from "../../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
+
+const chatTemaData: ChatTemaData = {
+  tittelTekstId: "chat.aap.tittel",
+  chatTema: ChatTema.AAP
+};
 
 const ChatAAP = () => {
   return(
-    <ChatTemaSide
-      tittelId={"chat.aap.tittel"}
-      chatTema={ChatTema.AAP}
+    <ChatTemaSideBase
+      chatTemaData={chatTemaData}
     >
       <>
         <FormattedMsgMedParagrafer id={"chat.chatbotinfo"} />
       </>
-    </ChatTemaSide>
+    </ChatTemaSideBase>
   );
 };
 

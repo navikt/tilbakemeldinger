@@ -1,10 +1,4 @@
-
-export type ChatTemaData = {
-  tittelId: string,
-  kortTekstId: string,
-  langTekstIds: Array<string>,
-  temaKode: ChatTema,
-};
+import { ApningsTider } from "./datotid";
 
 export enum ChatTema {
   Familie = "familie",
@@ -14,3 +8,9 @@ export enum ChatTema {
   Okonomi = "okonomi",
   EURES = "eures",
 }
+
+export type ChatTemaData = {
+  tittelTekstId: string,
+  chatTema: ChatTema,
+  apningstider?: ApningsTider,
+};

@@ -4,20 +4,28 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { Systemtittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import ChatbotWrapper from "./ChatbotWrapper";
-import { ChatTema } from "../../types/chat";
+import { ChatTema, ChatTemaData } from "../../types/chat";
 import { Hovedknapp } from "nav-frontend-knapper";
-import { urls } from "../../Config";
+import { urls, vars } from "../../Config";
 import PanelBase from "nav-frontend-paneler";
+import { AlertStripeInfo } from "nav-frontend-alertstriper";
+import Apningstider from "../../utils/apningstider";
+import { fetchServerTidOffset } from "../../clients/apiClient";
 
-export type ChatTemaProps = {
-  tittelId: string,
-  chatTema: ChatTema,
+type ChatTemaProps = {
+  chatTemaData: ChatTemaData,
   children: ReactNode,
 };
 
 const cssPrefix = "chat-tema";
 
-const ChatTemaSide = ({tittelId, chatTema, children}: ChatTemaProps) => {
+const IkkeApentInfo = () => (
+  <AlertStripeInfo>
+    <FormattedMessage id={"chat.stengt.info"} />
+  </AlertStripeInfo>
+);
+
+const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
   const temaButtonHandlers: {[key in ChatTema]: Function} = {
     [ChatTema.Familie]: () => setLastClick(Date.now()),
     [ChatTema.AAP]: () => setLastClick(Date.now()),
@@ -28,12 +36,19 @@ const ChatTemaSide = ({tittelId, chatTema, children}: ChatTemaProps) => {
   };
 
   const formatMessage = useIntl().formatMessage;
-  const documentTitle = `${formatMessage({id: tittelId})} - www.nav.no`;
+  const documentTitle = `${formatMessage({id: chatTemaData.tittelTekstId})} - www.nav.no`;
+
   useEffect(() => {
     document.title = documentTitle;
+    fetchServerTidOffset(setServerTidOffset);
   }, [documentTitle]);
 
   const [lastClick, setLastClick] = useState();
+  const [serverTidOffset, setServerTidOffset] = useState(0);
+
+  const chatErApen = chatTemaData.apningstider
+    ? Apningstider.isOpenNow(chatTemaData.apningstider, vars.chatBot.stengteDager, serverTidOffset)
+    : true;
 
   return(
     <>
@@ -42,27 +57,29 @@ const ChatTemaSide = ({tittelId, chatTema, children}: ChatTemaProps) => {
         <PanelBase className={cssPrefix}>
           <div className={`${cssPrefix}__header`}>
             <Systemtittel>
-              <FormattedMessage id={tittelId} />
+              <FormattedMessage id={chatTemaData.tittelTekstId} />
             </Systemtittel>
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
+            {!chatErApen && <IkkeApentInfo />}
             {children}
           </div>
           <div className={`${cssPrefix}__panel-start-knapp`}>
             <Hovedknapp
               htmlType={"button"}
               onClick={
-                () => temaButtonHandlers[chatTema]()
+                () => temaButtonHandlers[chatTemaData.chatTema]()
               }
+              disabled={!chatErApen}
             >
-              <FormattedMessage id={"chat.startknapp"}/>
+              <FormattedMessage id={chatErApen ? "chat.startknapp" : "chat.disabledknapp"}/>
             </Hovedknapp>
           </div>
         </PanelBase>
       </div>
-      <ChatbotWrapper chatTema={chatTema} lastClick={lastClick}/>
+      <ChatbotWrapper chatTema={chatTemaData.chatTema} lastClick={lastClick}/>
     </>
   );
 };
 
-export default ChatTemaSide;
+export default ChatTemaSideBase;

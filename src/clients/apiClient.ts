@@ -80,6 +80,20 @@ export const postFeilOgMangler = (data: OutboundFeilOgMangler) =>
 export const postSamiskBestillSamtale = (data: OutboundBestillingAvSamtale) =>
   sendJson(`${apiUrl}/mottak/bestilling-av-samtale`, data);
 
+export const fetchServerTidOffset = (callback: Function) => {
+  fetch(baseUrl, {method: "HEAD"})
+    .then((res) => {
+      const date = res.headers.get("date");
+      if (!date) {
+        console.log("Couldn't fetch server time!");
+        callback(0);
+        return;
+      }
+      callback(Date.parse(date) - Date.now());
+    })
+    .catch((e) => console.log(e));
+};
+
 /*
     Utils
  */

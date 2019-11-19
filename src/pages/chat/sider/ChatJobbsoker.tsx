@@ -1,18 +1,24 @@
 import React from "react";
-import ChatTemaSide from "../ChatTemasideBase";
-import { ChatTema } from "../../../types/chat";
+import ChatTemaSideBase from "../ChatTemasideBase";
+import { ChatTema, ChatTemaData } from "../../../types/chat";
 import FormattedMsgMedParagrafer from "../../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
+import { vars } from "../../../Config";
+
+const chatTemaData: ChatTemaData = {
+  tittelTekstId: "chat.jobbsoker.tittel",
+  chatTema: ChatTema.Jobbsoker,
+  apningstider: vars.chatBot.apningsTider.jobbsoker
+};
 
 const ChatJobbsoker = () => {
   return(
-    <ChatTemaSide
-      tittelId={"chat.jobbsoker.tittel"}
-      chatTema={ChatTema.Jobbsoker}
+    <ChatTemaSideBase
+      chatTemaData={chatTemaData}
     >
       <>
         <FormattedMsgMedParagrafer id={"chat.jobbsoker.ingress"} />
       </>
-    </ChatTemaSide>
+    </ChatTemaSideBase>
   );
 };
 
