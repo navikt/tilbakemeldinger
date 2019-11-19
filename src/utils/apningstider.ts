@@ -1,8 +1,9 @@
-import moment from "moment";
+import moment from "moment-timezone";
 import { ApningsTider, Ukedager } from "../types/datotid";
 
-const isOpen = (apningstider: ApningsTider, stengteDager?: Set<string>, timeOffsetMs = 0) => {
-  const naaTid = moment().add(timeOffsetMs, "ms");
+const isOpenNow = (apningstider: ApningsTider, stengteDager?: Set<string>, timeOffsetMs = 0, timeZone = "Europe/Oslo") => {
+  const naaTid = moment().add(timeOffsetMs, "ms").tz(timeZone);
+  console.log("tid: " + naaTid.format());
 
   if (stengteDager && stengteDager.has(naaTid.format("DD-MM-YYYY"))) {
     return false;
@@ -15,12 +16,12 @@ const isOpen = (apningstider: ApningsTider, stengteDager?: Set<string>, timeOffs
     return false;
   }
 
-  const apner = moment(dagensApningstid.start, "HH-mm");
-  const lukker = moment(dagensApningstid.end, "HH-mm");
+  const apner = moment.tz(dagensApningstid.start, "HH-mm", timeZone);
+  const lukker = moment.tz(dagensApningstid.end, "HH-mm", timeZone);
 
   return naaTid.isBetween(apner, lukker);
 };
 
 export default {
-  isOpenNow: isOpen,
+  isOpenNow,
 };
