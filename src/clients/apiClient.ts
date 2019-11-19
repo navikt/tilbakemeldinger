@@ -81,7 +81,7 @@ export const postSamiskBestillSamtale = (data: OutboundBestillingAvSamtale) =>
   sendJson(`${apiUrl}/mottak/bestilling-av-samtale`, data);
 
 export const fetchServerTidOffset = (callback: Function) => {
-  fetch(baseUrl, {method: "GET"})
+  fetch(baseUrl, {method: "HEAD"})
     .then((res) => {
       const date = res.headers.get("date");
       if (!date) {
