@@ -7,22 +7,22 @@ import chatbotUtils from "../../utils/chatbot";
 
 type Props = {
   config: ChatConfig;
-  openChat: boolean;
+  openChatTimestamp: number;
 };
 
-const ChatbotWrapper = ({config, openChat}: Props) => {
+const ChatbotWrapper = ({config, openChatTimestamp}: Props) => {
   useEffect(() => {
     chatbotUtils.clearSessionData();
   }, []);
 
   useEffect(() => {
-    if (openChat) {
+    if (openChatTimestamp) {
       chatbotUtils.apneChatbot();
     }
-  }, [openChat]);
+  }, [openChatTimestamp]);
 
   return (
-    openChat ?
+    openChatTimestamp ?
     (
       <NAVChatBot
         configId={config.configId}

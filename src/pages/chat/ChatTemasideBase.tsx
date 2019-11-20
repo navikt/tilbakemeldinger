@@ -31,12 +31,12 @@ const hookSessionStorageClearWithEventDispatcher = (eventName: string) => {
 };
 
 const chatButtonTekst = (chatIApningsTid: boolean, chatVinduApent: boolean) => {
-  if (chatIApningsTid && !chatVinduApent) {
-    return "chat.knapp.start";
+  if (chatVinduApent) {
+    return "chat.knapp.paagaar";
   } else if (!chatIApningsTid) {
     return "chat.knapp.stengt";
   } else {
-    return "chat.knapp.paagaar";
+    return "chat.knapp.start";
   }
 };
 
@@ -106,7 +106,7 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
       {chatbotConfig && (
         <ChatbotWrapper
           config={chatbotConfig}
-          openChat={chatButtonClicked}
+          openChatTimestamp={chatButtonClicked}
         />
       )}
     </>
