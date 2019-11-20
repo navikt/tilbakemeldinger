@@ -27,8 +27,7 @@ const IkkeApentInfo = () => (
 
 const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
   const updateChatbot = () => {
-    setClickedTime(Date.now());
-    setchatShouldBeOpen(true);
+    setButtonClicked(Date.now());
   };
 
   const temaButtonHandlers: {[key in ChatTema]: Function} = {
@@ -49,8 +48,7 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
     fetchServerTidOffset(setServerTidOffset);
   }, []);
 
-  const [clickedTime, setClickedTime] = useState();
-  const [chatShouldBeOpen, setchatShouldBeOpen] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
 
   const isChatIApningstid = chatTemaData.apningstider
@@ -89,8 +87,7 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
       {chatbotConfig && (
         <ChatbotWrapper
           config={chatbotConfig}
-          shouldBeOpen={chatShouldBeOpen}
-          key={clickedTime}
+          openChat={buttonClicked}
         />
       )}
     </>
