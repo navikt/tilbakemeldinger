@@ -2,64 +2,31 @@ import React, { useEffect } from "react";
 import { vars } from "../../Config";
 
 import NAVChatBot from "@navikt/nav-chatbot";
-import { ChatTema } from "../../types/chat";
+import { ChatConfig } from "../../types/chat";
 import chatbotUtils from "../../utils/chatbot";
 
 type Props = {
-  chatTema: ChatTema | null;
-  lastClick: number;
+  config: ChatConfig;
+  shouldBeOpen: boolean;
 };
 
-type ChatbotConfig = {
-  configId: string;
-  queueKey: string;
-};
-
-const getTemaConfig: {[key in ChatTema]: ChatbotConfig | null} = {
-  [ChatTema.Familie]: {
-    configId: vars.chatBot.configIds.familie,
-    queueKey: vars.chatBot.queueKeys.familie,
-  },
-  [ChatTema.AAP]: {
-    configId: vars.chatBot.configIds.aap,
-    queueKey: vars.chatBot.queueKeys.aap,
-  },
-  [ChatTema.Jobbsoker]: {
-    configId: vars.chatBot.configIds.jobbsoker,
-    queueKey: vars.chatBot.queueKeys.jobbsoker,
-  },
-  [ChatTema.Sosial]: {
-    configId: vars.chatBot.configIds.sosial,
-    queueKey: vars.chatBot.queueKeys.sosial,
-  },
-  [ChatTema.Okonomi]: {
-    configId: vars.chatBot.configIds.okonomi,
-    queueKey: vars.chatBot.queueKeys.okonomi,
-  },
-  [ChatTema.EURES]: null,
-};
-
-const ChatbotWrapper = ({chatTema, lastClick}: Props) => {
-  const temaConfig = chatTema ? getTemaConfig[chatTema] : null;
-
+const ChatbotWrapper = ({config, shouldBeOpen}: Props) => {
   useEffect(() => {
     chatbotUtils.clearSessionData();
   }, []);
 
   useEffect(() => {
-    if (temaConfig === null || !lastClick) {
-      return;
+    if (shouldBeOpen) {
+      chatbotUtils.apneChatbot();
     }
-
-    chatbotUtils.apneChatbot();
-  }, [lastClick, temaConfig]);
+  }, [shouldBeOpen]);
 
   return (
-    temaConfig && lastClick ?
+    shouldBeOpen ?
     (
       <NAVChatBot
-        configId={temaConfig.configId}
-        queueKey={temaConfig.queueKey}
+        configId={config.configId}
+        queueKey={config.queueKey}
         customerKey={vars.chatBot.customerKey}
       />
     ) : null

@@ -1,5 +1,6 @@
 import Environment from "./Environments";
 import { Ukedager } from "./types/datotid";
+import { ChatTema } from "./types/chat";
 
 export const forsidePath = "/person/kontakt-oss";
 export const noRedirectUrlSegment = "/test";
@@ -125,25 +126,33 @@ export const vars = {
   },
   chatBot: {
     customerKey: "41155",
-    queueKeys: {
-      familie: "Q_CHAT_BOT",
-      familieVeileder: "Q_CHAT_FAMILIEYTELSER",
-      aap: "Q_CHAT_BOT",
-      jobbsoker: "Q_CHAT_AAP",
-      sosial: "Q_CHAT_SOSIALE_TJENESTER",
-      okonomi: "Q_CHAT_GJELDSRADGIVNING",
-    },
-    configIds: {
-      familie: "c3372a51-6434-4770-a0aa-6e4edba3471e",
-      aap: "599f9e7c-7f6b-4569-81a1-27202c419953",
-      jobbsoker: "599f9e7c-7f6b-4569-81a1-27202c419953",
-      sosial: "599f9e7c-7f6b-4569-81a1-27202c419953",
-      okonomi: "599f9e7c-7f6b-4569-81a1-27202c419953",
-    },
     storageKeys: {
       config: "chatbot-frida_config",
       openState: "chatbot-frida_apen",
       history: "chatbot-frida_historie"
+    },
+    temaConfigs: {
+      [ChatTema.Familie]: {
+        configId: "c3372a51-6434-4770-a0aa-6e4edba3471e",
+        queueKey: "Q_CHAT_BOT",
+      },
+      [ChatTema.AAP]: {
+        configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
+        queueKey: "Q_CHAT_BOT",
+      },
+      [ChatTema.Jobbsoker]: {
+        configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
+        queueKey: "Q_CHAT_AAP",
+      },
+      [ChatTema.Sosial]: {
+        configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
+        queueKey: "Q_CHAT_SOSIALE_TJENESTER",
+      },
+      [ChatTema.Okonomi]: {
+        configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
+        queueKey: "Q_CHAT_GJELDSRADGIVNING",
+      },
+      [ChatTema.EURES]: null,
     },
     apningsTider: {
       jobbsoker: {
@@ -223,6 +232,5 @@ export const vars = {
       "25-12-2019",
       "01-01-2020",
     ]),
-    oldChatbotCookieName: "intelecomchat_41155",
   }
 };

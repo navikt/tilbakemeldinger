@@ -14,3 +14,8 @@ export type ChatTemaData = {
   chatTema: ChatTema,
   apningstider?: ApningsTider,
 };
+
+export type ChatConfig = {
+  configId: string,
+  queueKey: string,
+};

@@ -26,8 +26,10 @@ const IkkeApentInfo = () => (
 );
 
 const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
-  const updateChatbot = () => setClickedTime(Date.now());
-  const redirectTo = (url: string) => window.location.assign(url);
+  const updateChatbot = () => {
+    setClickedTime(Date.now());
+    setchatShouldBeOpen(true);
+  };
 
   const temaButtonHandlers: {[key in ChatTema]: Function} = {
     [ChatTema.Familie]: updateChatbot,
@@ -35,7 +37,7 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
     [ChatTema.Jobbsoker]: updateChatbot,
     [ChatTema.Sosial]: updateChatbot,
     [ChatTema.Okonomi]: updateChatbot,
-    [ChatTema.EURES]: () => redirectTo(urls.chat.eures.chat),
+    [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat),
   };
 
   const documentTitle = `${useIntl().formatMessage({id: chatTemaData.tittelTekstId})} - www.nav.no`;
@@ -48,11 +50,14 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
   }, []);
 
   const [clickedTime, setClickedTime] = useState();
+  const [chatShouldBeOpen, setchatShouldBeOpen] = useState(false);
   const [serverTidOffset, setServerTidOffset] = useState(0);
 
   const isChatIApningstid = chatTemaData.apningstider
     ? Apningstider.isOpenNow(chatTemaData.apningstider, vars.chatBot.stengteDager, serverTidOffset)
     : true;
+
+  const chatbotConfig = vars.chatBot.temaConfigs[chatTemaData.chatTema];
 
   return(
     <>
@@ -81,7 +86,13 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
           </div>
         </PanelBase>
       </div>
-      <ChatbotWrapper chatTema={chatTemaData.chatTema} lastClick={clickedTime}/>
+      {chatbotConfig && (
+        <ChatbotWrapper
+          config={chatbotConfig}
+          shouldBeOpen={chatShouldBeOpen}
+          key={clickedTime}
+        />
+      )}
     </>
   );
 };
