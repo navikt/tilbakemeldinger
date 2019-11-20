@@ -165,8 +165,8 @@ export const vars = {
           end: "14:30",
         },
         [Ukedager.Onsdag]: {
-          start: "10:00",
-          end: "14:30",
+          start: "11:00",
+          end: "11:01", // TODO: endre tilbake
         },
         [Ukedager.Torsdag]: {
           start: "10:00",

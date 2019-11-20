@@ -19,39 +19,54 @@ type ChatTemaProps = {
 
 const cssPrefix = "chat-tema";
 
-const IkkeApentInfo = () => (
-  <AlertStripeInfo>
-    <FormattedMessage id={"chat.stengt.info"} />
-  </AlertStripeInfo>
-);
+const hookSessionStorageClearWithEventDispatcher = (eventName: string) => {
+  const clearReal = sessionStorage.clear.bind(sessionStorage);
+
+  sessionStorage.clear = () => {
+    clearReal();
+    window.dispatchEvent(
+      new CustomEvent(eventName)
+    );
+  };
+};
+
+const chatButtonTekst = (chatIApningsTid: boolean, chatVinduApent: boolean) => {
+  if (chatIApningsTid && !chatVinduApent) {
+    return "chat.knapp.start";
+  } else if (!chatIApningsTid) {
+    return "chat.knapp.stengt";
+  } else {
+    return "chat.knapp.paagaar";
+  }
+};
 
 const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
-  const updateChatbot = () => {
-    setButtonClicked(Date.now());
-  };
+  const [chatButtonClicked, setChatButtonClicked] = useState();
+  const [serverTidOffset, setServerTidOffset] = useState(0);
 
-  const temaButtonHandlers: {[key in ChatTema]: Function} = {
-    [ChatTema.Familie]: updateChatbot,
-    [ChatTema.AAP]: updateChatbot,
-    [ChatTema.Jobbsoker]: updateChatbot,
-    [ChatTema.Sosial]: updateChatbot,
-    [ChatTema.Okonomi]: updateChatbot,
-    [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat),
-  };
+  useEffect(() => {
+    fetchServerTidOffset(setServerTidOffset);
+    hookSessionStorageClearWithEventDispatcher("sessionStorageClear");
+    window.addEventListener("sessionStorageClear", () => {
+      setChatButtonClicked(null);
+    });
+  }, []);
 
   const documentTitle = `${useIntl().formatMessage({id: chatTemaData.tittelTekstId})} - www.nav.no`;
   useEffect(() => {
     document.title = documentTitle;
   }, [documentTitle]);
 
-  useEffect(() => {
-    fetchServerTidOffset(setServerTidOffset);
-  }, []);
+  const temaButtonHandlers: {[key in ChatTema]: Function} = {
+    [ChatTema.Familie]: () => setChatButtonClicked(Date.now()),
+    [ChatTema.AAP]: () => setChatButtonClicked(Date.now()),
+    [ChatTema.Jobbsoker]: () => setChatButtonClicked(Date.now()),
+    [ChatTema.Sosial]: () => setChatButtonClicked(Date.now()),
+    [ChatTema.Okonomi]: () => setChatButtonClicked(Date.now()),
+    [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat),
+  };
 
-  const [buttonClicked, setButtonClicked] = useState();
-  const [serverTidOffset, setServerTidOffset] = useState(0);
-
-  const isChatIApningstid = chatTemaData.apningstider
+  const chatIApningstid = chatTemaData.apningstider
     ? Apningstider.isOpenNow(chatTemaData.apningstider, vars.chatBot.stengteDager, serverTidOffset)
     : true;
 
@@ -68,7 +83,11 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
             </Systemtittel>
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
-            {!isChatIApningstid && <IkkeApentInfo />}
+            {!chatIApningstid && (
+              <AlertStripeInfo>
+                <FormattedMessage id={"chat.stengt.info"} />
+              </AlertStripeInfo>
+            )}
             {children}
           </div>
           <div className={`${cssPrefix}__panel-start-knapp`}>
@@ -77,9 +96,9 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
               onClick={
                 () => temaButtonHandlers[chatTemaData.chatTema]()
               }
-              disabled={!isChatIApningstid}
+              disabled={!chatIApningstid || chatButtonClicked}
             >
-              <FormattedMessage id={isChatIApningstid ? "chat.startknapp" : "chat.disabledknapp"}/>
+              <FormattedMessage id={chatButtonTekst(chatIApningstid, chatButtonClicked)} />
             </Hovedknapp>
           </div>
         </PanelBase>
@@ -87,7 +106,7 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
       {chatbotConfig && (
         <ChatbotWrapper
           config={chatbotConfig}
-          openChat={buttonClicked}
+          openChat={chatButtonClicked}
         />
       )}
     </>
