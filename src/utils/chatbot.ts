@@ -10,9 +10,15 @@ const getApneKnappClassName = () => {
   return "sc-fAjcbJ";
 };
 
-const getClickFunc = (className: string) => {
+const getButtonFromClassname = (className: string, index = 0) => {
   const buttons = document.getElementsByClassName(className);
-  const button = (buttons && buttons.length > 0) && (buttons[0] as HTMLElement);
+  const button = (buttons && buttons.length > index) && (buttons[index] as HTMLElement);
+
+  return button;
+};
+
+const getClickFunc = (className: string, index = 0) => {
+  const button = getButtonFromClassname(className, index);
 
   if (button) {
     return button.click.bind(button);
@@ -25,14 +31,14 @@ const getApneFunc = () => {
   return getClickFunc(getApneKnappClassName());
 };
 
-const apneChatbot = () => {
+const apneChatbot = async () => {
   const apneFunc = getApneFunc();
 
   if (!apneFunc) {
     return false;
   }
 
-  apneFunc();
+  await apneFunc();
   return true;
 };
 

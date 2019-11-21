@@ -19,37 +19,12 @@ type ChatTemaProps = {
 
 const cssPrefix = "chat-tema";
 
-const hookSessionStorageClearWithEventDispatcher = (eventName: string) => {
-  const clearReal = sessionStorage.clear.bind(sessionStorage);
-
-  sessionStorage.clear = () => {
-    clearReal();
-    window.dispatchEvent(
-      new CustomEvent(eventName)
-    );
-  };
-};
-
-const chatButtonTekst = (chatIApningsTid: boolean, chatVinduApent: boolean) => {
-  if (chatVinduApent) {
-    return "chat.knapp.paagaar";
-  } else if (!chatIApningsTid) {
-    return "chat.knapp.stengt";
-  } else {
-    return "chat.knapp.start";
-  }
-};
-
 const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
   const [chatButtonClicked, setChatButtonClicked] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
 
   useEffect(() => {
     fetchServerTidOffset(setServerTidOffset);
-    hookSessionStorageClearWithEventDispatcher("sessionStorageClear");
-    window.addEventListener("sessionStorageClear", () => {
-      setChatButtonClicked(null);
-    });
   }, []);
 
   const documentTitle = `${useIntl().formatMessage({id: chatTemaData.tittelTekstId})} - www.nav.no`;
@@ -96,9 +71,8 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
               onClick={
                 () => temaButtonHandlers[chatTemaData.chatTema]()
               }
-              disabled={!chatIApningstid || chatButtonClicked}
             >
-              <FormattedMessage id={chatButtonTekst(chatIApningstid, chatButtonClicked)} />
+              <FormattedMessage id={chatIApningstid ? "chat.knapp.start" : "chat.knapp.stengt"} />
             </Hovedknapp>
           </div>
         </PanelBase>

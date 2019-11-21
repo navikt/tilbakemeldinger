@@ -129,7 +129,8 @@ export const vars = {
     storageKeys: {
       config: "chatbot-frida_config",
       openState: "chatbot-frida_apen",
-      history: "chatbot-frida_historie"
+      history: "chatbot-frida_historie",
+      mailTimeout: "chatbot-frida_mail-timeout",
     },
     temaConfigs: {
       [ChatTema.Familie]: {
