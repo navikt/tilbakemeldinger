@@ -14,6 +14,8 @@ const svartidName = vars.unleash.langSvartidName;
 const enabledName = vars.unleash.skrivTilOssEnabledName;
 const enabledDefault = vars.unleash.skrivTilOssEnabledDefault;
 
+// TODO: Unleash toggle skal skjule lenker
+
 const Ingress = () => {
   const intl = useIntl();
 

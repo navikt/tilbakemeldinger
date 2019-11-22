@@ -8,11 +8,10 @@ import TemaLenkepanel from "../../../components/lenkepanel/TemaLenkepanel";
 import { LenkepanelData } from "../../../types/lenker";
 
 const cssPrefix = "chat-med-oss";
-const sideTittel = "chat.forside.tittel";
+const sideTittelId = "chat.forside.tittel";
 
 const ChatForside = () => {
-  const formatMessage = useIntl().formatMessage;
-  const documentTitle = `${formatMessage({id: sideTittel})} - www.nav.no`;
+  const documentTitle = `${useIntl().formatMessage({id: sideTittelId})} - www.nav.no`;
   useEffect(() => {
     document.title = documentTitle;
   }, [documentTitle]);
@@ -23,7 +22,7 @@ const ChatForside = () => {
         <BreadcrumbsWrapper />
         <div className={`${cssPrefix}__header`}>
           <Sidetittel>
-            <FormattedMessage id={sideTittel}/>
+            <FormattedMessage id={sideTittelId}/>
           </Sidetittel>
         </div>
         <div className={`${cssPrefix}__ingress`}>
