@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 
 import { urls } from "../../../Config";
-import RouterLenke from "../../../components/routerlenke/RouterLenke";
+import RouterLenkeNoChevron from "../../../components/routerlenke/RouterLenkeMedChevron";
 import { Normaltekst } from "nav-frontend-typografi";
 
 const KlageOgTilbakemeldinger = () => {
@@ -13,12 +13,12 @@ const KlageOgTilbakemeldinger = () => {
   return (
     <IkonPanel tittel={tittel}>
       <Normaltekst>
-        <RouterLenke
+        <RouterLenkeNoChevron
           href={urls.tilbakemeldinger.forside}
           className={"frontpage__lenke"}
         >
           <FormattedMessage id="kontaktoss.klage.knapp" />
-        </RouterLenke>
+        </RouterLenkeNoChevron>
       </Normaltekst>
     </IkonPanel>
   );

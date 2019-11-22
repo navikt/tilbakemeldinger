@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 
 import ikon from "assets/forside-faq-ikon.svg";
-import RouterLenke from "../../../components/routerlenke/RouterLenke";
+import RouterLenkeNoChevron from "../../../components/routerlenke/RouterLenkeMedChevron";
 
 const FAQ = () => {
   const [visFlereFAQ, settVisFlereFAQ] = useState(false);
@@ -21,14 +21,14 @@ const FAQ = () => {
       {lenkerFAQ
         .slice(0, visFlereFAQ ? lenkerFAQ.length : visElementer)
         .map(({ lenke, lenkeTekst }) => (
-          <RouterLenke
+          <RouterLenkeNoChevron
             href={lenke}
             className={"lenke__avstand-under"}
             isExternal={true}
             key={lenkeTekst}
           >
             <FormattedMessage id={lenkeTekst} />
-          </RouterLenke>
+          </RouterLenkeNoChevron>
         ))}
       {lenkerFAQ.length > visElementer && (
         <VisMer visFlere={visFlereFAQ} onClick={toggleVisFlereFAQ} />
