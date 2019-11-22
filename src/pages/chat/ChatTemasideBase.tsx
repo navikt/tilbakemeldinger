@@ -71,6 +71,7 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
               onClick={
                 () => temaButtonHandlers[chatTemaData.chatTema]()
               }
+              disabled={!chatIApningstid}
             >
               <FormattedMessage id={chatIApningstid ? "chat.knapp.start" : "chat.knapp.stengt"} />
             </Hovedknapp>

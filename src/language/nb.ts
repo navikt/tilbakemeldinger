@@ -344,7 +344,7 @@ export default {
   "chat.knapp.paagaar": "Chat pågår",
   "chat.knapp.stengt": "Chat utilgjengelig",
 
-  "chat.stengt.info": "Chatten er ikke åpen, prøv senere!",
+  "chat.stengt.info": "Denne chatten er utenfor åpningstid.",
   "chat.advarsel.personvern":
     "<p>Chatten er ikke innlogget. Ikke oppgi navn, fødselsnummer eller sensitive opplysninger som helseforhold eller" +
     " diagnoser.</p>",
@@ -375,7 +375,7 @@ export default {
   "chat.sosialhjelp.ingressKort":
     "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
   "chat.sosialhjelp.ingress":
-    "<p>Veilederne våre er tilgjengelige på hverdager 10.00 - 14.30.</p>",
+    "<p>Veilederne våre er tilgjengelige på hverdager 09.00 - 14.30.</p>",
 
   "chat.okonomi.tittel": "Økonomi og gjeldsrådgivning",
   "chat.okonomi.ingressKort": "Budsjett, økonomi og gjeldsrådgivning.",
