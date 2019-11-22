@@ -101,7 +101,7 @@ export default {
   "kontaktoss.tittel": "Kontakt oss",
   "kontaktoss.svartiddager": "Svartid: {antall} arbeidsdager",
 
-  "kontaktoss.chat.tittel": "Chat",
+  "kontaktoss.chat.tittel": "Chat med oss",
   "kontaktoss.chat.beskrivelse":
     "På chat kan vi ikke svare på saken din, men vi hjelper deg gjerne med generelle spørsmål.",
   "kontaktoss.chat.knapp": "Chat med oss",
@@ -145,14 +145,14 @@ export default {
   "kontaktoss.ringoss.forandre": "Ringer du på vegne av en annen?",
 
   "kontaktoss.skrivtiloss.tittel": "Skriv til oss",
-  "kontaktoss.skrivtiloss.beskrivelse": "Du må logge inn for å sende e-post.",
-  "kontaktoss.skrivtiloss.knapp": "Skriv til oss (innlogget tjeneste)",
+  "kontaktoss.skrivtiloss.beskrivelse": "Dette er et sikkert alternativ til e-post.",
+  "kontaktoss.skrivtiloss.knapp": "Logg inn og skriv til oss",
 
-  "kontaktoss.kontaktveileder.tittel": "Dialog med veileder",
+  "kontaktoss.kontaktveileder.tittel": "Kontakt din veileder",
   "kontaktoss.kontaktveileder.beskrivelse":
-    "Du må være registrert som arbeidssøker for å kontakte veilederen din.",
+    "Du må være registrert som arbeidssøker for å kontakte din veileder.",
   "kontaktoss.kontaktveileder.knapp":
-    "Kontakt din veileder (innlogget tjeneste)",
+    "Logg inn og kontakt din veileder",
 
   "kontaktoss.facebook.tittel": "Spør oss på Facebook",
   "kontaktoss.facebook.foreldrepenger": "Foreldrepenger på Facebook",
@@ -161,8 +161,10 @@ export default {
   "kontaktoss.navkontor.tittel": "Finn ditt NAV-kontor",
   "kontaktoss.navkontor.beskrivelse":
     "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
-  "kontaktoss.navkontor.knapp":
-    "Se hvilket NAV-kontor du tilhører (innlogget tjeneste)",
+  "kontaktoss.navkontor.lenke":
+    "Logg inn og se hvilket NAV-kontor du tilhører",
+  "kontaktoss.hjelpemiddelsentral.lenke":
+    "Finn din hjelpemiddelsentral",
 
   "kontaktoss.tolketjenesten.tittel": "Tolketjenesten",
   "kontaktoss.tolketjenesten.link":
@@ -174,7 +176,7 @@ export default {
   "kontaktoss.klage.beskrivelse":
     "Du kan klage hvis du har fått helt eller delvis avslag på søknaden din, og hvis du har hatt en negativ" +
     " opplevelse i møte med NAV",
-  "kontaktoss.klage.knapp": "Slik går du frem for å klage",
+  "kontaktoss.klage.knapp": "Slik går du frem for å klage eller gi tilbakemeldinger",
 
   "kontaktoss.tekniskfeil.tittel": "Teknisk feil på nav.no",
   "kontaktoss.tekniskfeil.link.losselv": "Prøv å løse problemet selv",

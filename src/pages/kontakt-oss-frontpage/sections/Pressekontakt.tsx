@@ -5,7 +5,7 @@ import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 import { urls } from "../../../Config";
 
 import ikon from "assets/forside-presse-ikon.svg";
-import RouterLenkeNoChevron from "../../../components/routerlenke/RouterLenkeMedChevron";
+import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
 
 const Pressekontakt = () => {
   const tittel = <FormattedMessage id={"kontaktoss.presse.tittel"} />;
@@ -13,13 +13,13 @@ const Pressekontakt = () => {
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
       <>
-        <RouterLenkeNoChevron
+        <RouterLenke
           href={urls.presseKontakt}
           isExternal={true}
           className={"frontpage__lenke"}
         >
           <FormattedMessage id="kontaktoss.presse.link" />
-        </RouterLenkeNoChevron>
+        </RouterLenke>
       </>
     </IkonPanel>
   );
