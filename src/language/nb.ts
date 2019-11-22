@@ -31,8 +31,7 @@ export default {
   "breadcrumb.bestilling-av-samtale":
     "Jearaldat bagadallama oažžut sámegillii telefovnnas",
 
-  "skrivtiloss.disabled":
-    "Tjenesten er ikke tilgjengelig for øyeblikket.",
+  "skrivtiloss.disabled": "Tjenesten er ikke tilgjengelig for øyeblikket.",
   "skrivtiloss.tittel": "Skriv til oss",
   "skrivtiloss.description":
     "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Normal svartid" +
@@ -152,7 +151,8 @@ export default {
   "kontaktoss.kontaktveileder.tittel": "Dialog med veileder",
   "kontaktoss.kontaktveileder.beskrivelse":
     "Du må være registrert som arbeidssøker for å kontakte veilederen din.",
-  "kontaktoss.kontaktveileder.knapp": "Kontakt din veileder (innlogget tjeneste)",
+  "kontaktoss.kontaktveileder.knapp":
+    "Kontakt din veileder (innlogget tjeneste)",
 
   "kontaktoss.facebook.tittel": "Spør oss på Facebook",
   "kontaktoss.facebook.foreldrepenger": "Foreldrepenger på Facebook",
@@ -161,7 +161,8 @@ export default {
   "kontaktoss.navkontor.tittel": "Finn ditt NAV-kontor",
   "kontaktoss.navkontor.beskrivelse":
     "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
-  "kontaktoss.navkontor.knapp": "Se hvilket NAV-kontor du tilhører (innlogget tjeneste)",
+  "kontaktoss.navkontor.knapp":
+    "Se hvilket NAV-kontor du tilhører (innlogget tjeneste)",
 
   "kontaktoss.tolketjenesten.tittel": "Tolketjenesten",
   "kontaktoss.tolketjenesten.link":
@@ -218,7 +219,7 @@ export default {
   "tilbakemeldinger.feilogmangler.link": "Meld fra om feil og mangler",
   "tilbakemeldinger.feilogmangler.form.tittel": "Feil og mangler",
   "tilbakemeldinger.feilogmangler.form.veileder":
-    "Takk for at du sier ifra. Vi sørger for at meldingen kommer fram til riktig person.",
+    "Her kan du melde ifra om tekniske feil og mangler. Du kan ikke sende inn generelle spørsmål eller henvendelser om saken din.",
   "tilbakemeldinger.feilogmangler.form.overskrift":
     "Send inn feil og mangler på nav.no",
 
@@ -337,12 +338,13 @@ export default {
     "Send klage på service hos NAV. Hva gjelder tilbakemeldingen og hvem skriver du på vegne av?",
 
   "chat.forside.tittel": "Chat med oss",
-  "chat.forside.ingress":
-    "På chat svarer vi ikke på spørsmål om saken din.",
+  "chat.forside.ingress": "På chat svarer vi ikke på spørsmål om saken din.",
 
-  "chat.startknapp": "Start chat",
-  "chat.disabledknapp": "Chat utilgjengelig",
-  "chat.stengt.info": "Chatten er ikke åpen, prøv senere!",
+  "chat.knapp.start": "Start chat",
+  "chat.knapp.paagaar": "Chat pågår",
+  "chat.knapp.stengt": "Chat utilgjengelig",
+
+  "chat.stengt.info": "Denne chatten er utenfor åpningstid.",
   "chat.advarsel.personvern":
     "<p>Chatten er ikke innlogget. Ikke oppgi navn, fødselsnummer eller sensitive opplysninger som helseforhold eller" +
     " diagnoser.</p>",
@@ -373,7 +375,7 @@ export default {
   "chat.sosialhjelp.ingressKort":
     "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
   "chat.sosialhjelp.ingress":
-    "<p>Veilederne våre er tilgjengelige på hverdager 10.00 - 14.30.</p>",
+    "<p>Veilederne våre er tilgjengelige på hverdager 09.00 - 14.30.</p>",
 
   "chat.okonomi.tittel": "Økonomi og gjeldsrådgivning",
   "chat.okonomi.ingressKort": "Budsjett, økonomi og gjeldsrådgivning.",

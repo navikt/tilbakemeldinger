@@ -17,9 +17,8 @@ const ChatRouter = () => {
       <Route
         exact={true}
         path={urls.chat.forside}
-      >
-        <ChatForside />
-      </Route>
+        component={ChatForside}
+      />
       <Route
         exact={true}
         path={urls.chat.jobbsoker.temaside}
