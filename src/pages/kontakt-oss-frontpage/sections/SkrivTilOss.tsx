@@ -8,9 +8,14 @@ import { urls } from "../../../Config";
 
 import ikon from "assets/forside-skrivtiloss-ikon.svg";
 import RouterLenke from "../../../components/routerlenke/RouterLenke";
+import { logEvent } from "../../../utils/logger";
 
 const SkrivTilOss = () => {
   const tittel = <FormattedMessage id={"kontaktoss.skrivtiloss.tittel"} />;
+
+  const onClick = () => {
+    logEvent({ event: "skriv-til-oss" });
+  };
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
@@ -29,6 +34,7 @@ const SkrivTilOss = () => {
         <RouterLenke
           href={urls.skrivTilOss.forside}
           className={"lenke__avstand-over"}
+          onClick={onClick}
         >
           <FormattedMessage id={"kontaktoss.skrivtiloss.knapp"} />
         </RouterLenke>
