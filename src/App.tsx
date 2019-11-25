@@ -27,7 +27,6 @@ import { forsidePath, noRedirectUrlSegment, urls, vars } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import ABTest from "./utils/abtest";
-import Environment from "./Environments";
 
 const GammelForsideRedirect = () => {
   window.location.replace(urls.gammel.forside);
@@ -46,10 +45,11 @@ const GammelBeskjedRedirect = () => {
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
+  const pathname = window.location.pathname;
+  const noRedirect = pathname.includes(noRedirectUrlSegment);
 
   const [tekniskProblem, setTekniskProblem] = useState(vars.unleash.tekniskProblemDefault);
-  const [redirectTilGammel, setRedirectTilGammel] = useState(
-    vars.unleash.redirectDefault && Environment().miljo !== "LOCAL");
+  const [redirectTilGammel, setRedirectTilGammel] = useState(!noRedirect && vars.unleash.redirectDefault);
   const [unleashResponded, setUnleashResponded] = useState(false);
 
   useEffect(() => {
@@ -100,10 +100,10 @@ const App = () => {
           const testBrukerResult = features[testBrukerFeatureName];
           const abGruppeResult = features[abGruppeFeatureName];
           ABTest.setTestVariant(testBrukerResult, abGruppeResult);
-          setRedirectTilGammel(!testBrukerResult || abGruppeResult);
+          setRedirectTilGammel(!noRedirect && (!testBrukerResult || abGruppeResult));
         } else {
-          setRedirectTilGammel(
-            testVariant === ABTest.kontrollGruppeVariant || testVariant === ABTest.ikkeTesterVariant);
+          setRedirectTilGammel(!noRedirect &&
+            (testVariant === ABTest.kontrollGruppeVariant || testVariant === ABTest.ikkeTesterVariant));
         }
         setUnleashResponded(true);
       }
