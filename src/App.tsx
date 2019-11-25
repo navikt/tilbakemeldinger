@@ -77,7 +77,6 @@ const App = () => {
     Unleash.getFeatureToggleStatusMultiple(
       [tekniskProblemFeature, testBrukerFeature, abGruppeFeature],
       (features, error) => {
-        setUnleashResponded(true);
         if (error) {
           console.log(`Unleash error: ${error}`);
           return;
@@ -95,6 +94,7 @@ const App = () => {
           setErTestBruker(testState !== ABTest.ikkeTesterGruppeNavn);
           setErIKontrollGruppe(testState === ABTest.aGruppeNavn);
         }
+        setUnleashResponded(true);
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
