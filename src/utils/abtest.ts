@@ -4,20 +4,18 @@ const testSluttTid = new Date("2019-11-27T10:00:00+01:00");
 const cookieName = "kontakt-ab";
 const aGruppeNavn = "gammel";
 const bGruppeNavn = "ny";
-const ikkeTesterNavn = "ikke-tester";
+const ikkeTesterGruppeNavn = "ikke-tester";
 
 const setTestState = (erTestBruker: boolean, erIKontrollGruppe: boolean) => {
   const value = erTestBruker
     ? (erIKontrollGruppe ? aGruppeNavn : bGruppeNavn)
-    : ikkeTesterNavn;
+    : ikkeTesterGruppeNavn;
 
   Cookies.set(cookieName, value, {expires: testSluttTid});
 };
 
 const getTestState = () => {
-  const value = Cookies.get(cookieName);
-  console.log(value);
-  return value;
+  return Cookies.get(cookieName);
 };
 
 export default {
@@ -25,5 +23,5 @@ export default {
   getTestState,
   aGruppeNavn,
   bGruppeNavn,
-  ikkeTesterGruppeNavn: ikkeTesterNavn,
+  ikkeTesterGruppeNavn,
 };
