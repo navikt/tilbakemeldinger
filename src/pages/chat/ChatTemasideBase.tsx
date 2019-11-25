@@ -11,15 +11,16 @@ import PanelBase from "nav-frontend-paneler";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import Apningstider from "../../utils/apningstider";
 import { fetchServerTidOffset } from "../../clients/apiClient";
+import { logEvent } from "../../utils/logger";
 
 type ChatTemaProps = {
-  chatTemaData: ChatTemaData,
-  children: ReactNode,
+  chatTemaData: ChatTemaData;
+  children: ReactNode;
 };
 
 const cssPrefix = "chat-tema";
 
-const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
+const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
   const [chatButtonClicked, setChatButtonClicked] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
 
@@ -27,30 +28,36 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
     fetchServerTidOffset(setServerTidOffset);
   }, []);
 
-  const documentTitle = `${useIntl().formatMessage({id: chatTemaData.tittelTekstId})} - www.nav.no`;
+  const documentTitle = `${useIntl().formatMessage({
+    id: chatTemaData.tittelTekstId
+  })} - www.nav.no`;
   useEffect(() => {
     document.title = documentTitle;
   }, [documentTitle]);
 
-  const temaButtonHandlers: {[key in ChatTema]: Function} = {
+  const temaButtonHandlers: { [key in ChatTema]: Function } = {
     [ChatTema.Familie]: () => setChatButtonClicked(Date.now()),
     [ChatTema.AAP]: () => setChatButtonClicked(Date.now()),
     [ChatTema.Jobbsoker]: () => setChatButtonClicked(Date.now()),
     [ChatTema.Sosial]: () => setChatButtonClicked(Date.now()),
     [ChatTema.Okonomi]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat),
+    [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat)
   };
 
   const chatIApningstid = chatTemaData.apningstider
-    ? Apningstider.isOpenNow(chatTemaData.apningstider, vars.chatBot.stengteDager, serverTidOffset)
+    ? Apningstider.isOpenNow(
+        chatTemaData.apningstider,
+        vars.chatBot.stengteDager,
+        serverTidOffset
+      )
     : true;
 
   const chatbotConfig = vars.chatBot.temaConfigs[chatTemaData.chatTema];
 
-  return(
+  return (
     <>
       <div className={`${cssPrefix} pagecontent`}>
-        <BreadcrumbsWrapper/>
+        <BreadcrumbsWrapper />
         <PanelBase className={cssPrefix}>
           <div className={`${cssPrefix}__header`}>
             <Systemtittel>
@@ -68,12 +75,15 @@ const ChatTemaSideBase = ({chatTemaData, children}: ChatTemaProps) => {
           <div className={`${cssPrefix}__panel-start-knapp`}>
             <Hovedknapp
               htmlType={"button"}
-              onClick={
-                () => temaButtonHandlers[chatTemaData.chatTema]()
-              }
+              onClick={() => {
+                logEvent({ event: chatTemaData.chatTema });
+                temaButtonHandlers[chatTemaData.chatTema]();
+              }}
               disabled={!chatIApningstid}
             >
-              <FormattedMessage id={chatIApningstid ? "chat.knapp.start" : "chat.knapp.stengt"} />
+              <FormattedMessage
+                id={chatIApningstid ? "chat.knapp.start" : "chat.knapp.stengt"}
+              />
             </Hovedknapp>
           </div>
         </PanelBase>
