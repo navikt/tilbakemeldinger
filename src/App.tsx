@@ -88,9 +88,9 @@ const App = () => {
         const testState = ABTest.getTestState();
 
         if (!testState) {
+          ABTest.setTestState(features[testBrukerFeature], features[abGruppeFeature]);
           setErTestBruker(features[testBrukerFeature]);
           setErIKontrollGruppe(features[abGruppeFeature]);
-          ABTest.setTestState(erTestBruker, erIKontrollGruppe);
         } else {
           setErTestBruker(testState !== ABTest.ikkeTesterGruppeNavn);
           setErIKontrollGruppe(testState === ABTest.aGruppeNavn);
