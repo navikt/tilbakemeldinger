@@ -5,7 +5,7 @@ import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 import { urls } from "../../../Config";
 
 import ikon from "assets/forside-tolk-ikon.svg";
-import RouterLenke from "../../../components/routerlenke/RouterLenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
 
 const Tolketjenesten = () => {
   const tittel = <FormattedMessage id={"kontaktoss.tolketjenesten.tittel"} />;

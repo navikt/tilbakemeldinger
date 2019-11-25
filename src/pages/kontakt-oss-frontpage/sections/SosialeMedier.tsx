@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 
 import ikon from "assets/forside-sosialemedier-ikon.svg";
-import RouterLenke from "../../../components/routerlenke/RouterLenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
 
 const SosialeMedier = () => {
   const tittel = <FormattedMessage id={"kontaktoss.sosialemedier.tittel"} />;

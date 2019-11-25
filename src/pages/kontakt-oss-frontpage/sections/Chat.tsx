@@ -1,12 +1,10 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-
-import { urls } from "../../../Config";
-import IkonPanel from "../../../components/ikonpanel/IkonPanel";
-
+import { urls } from "Config";
+import IkonPanel from "components/ikonpanel/IkonPanel";
 import ikon from "assets/forside-chat-ikon.svg";
-import RouterLenke from "../../../components/routerlenke/RouterLenke";
-import { logEvent } from "../../../utils/logger";
+import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
+import { logEvent } from "utils/logger";
 
 const Chat = () => {
   const tittel = <FormattedMessage id={"kontaktoss.chat.tittel"} />;

@@ -3,13 +3,13 @@ import { FormattedMessage } from "react-intl";
 
 import { urls } from "../../../Config";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
-import RouterLenke from "../../../components/routerlenke/RouterLenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
 
 const FeilOgMangler = () => {
   const tittel = <FormattedMessage id={"kontaktoss.tekniskfeil.tittel"} />;
 
   return (
-    <IkonPanel tittel={tittel}>
+    <IkonPanel tittel={tittel} className="feil-og-mangler">
       <RouterLenke
         href={urls.tekniskBrukerstotte.selvhjelp}
         className={"lenke__avstand-under"}
