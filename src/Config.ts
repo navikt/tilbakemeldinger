@@ -166,23 +166,23 @@ export const vars = {
     apningsTider: {
       jobbsoker: {
         [Ukedager.Mandag]: {
-          start: "10:00",
+          start: "09:00",
           end: "14:30",
         },
         [Ukedager.Tirsdag]: {
-          start: "10:00",
+          start: "09:00",
           end: "14:30",
         },
         [Ukedager.Onsdag]: {
-          start: "10:00",
+          start: "09:00",
           end: "14:30",
         },
         [Ukedager.Torsdag]: {
-          start: "10:00",
+          start: "09:00",
           end: "14:30",
         },
         [Ukedager.Fredag]: {
-          start: "10:00",
+          start: "09:00",
           end: "14:30",
         },
         [Ukedager.Lordag]: null,
