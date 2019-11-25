@@ -6,41 +6,57 @@ import { Link } from "react-router-dom";
 import { Normaltekst, Undertittel } from "nav-frontend-typografi";
 import { FormattedMessage } from "react-intl";
 import React from "react";
+import { logEvent } from "../../utils/logger";
 
 type Props = {
   lenkePanelData: LenkepanelData;
   cssPrefix: string;
 };
 
-const TemaLenkepanel = ({ lenkePanelData, cssPrefix }: Props) => (
-  <LenkepanelBase
-    border={true}
-    className={`${cssPrefix}__temalenke linkbox__container`}
-    href={"#"}
-    linkCreator={props => {
-      return lenkePanelData.external ? (
-        <a href={lenkePanelData.url} className={props.className}>
-          {props.children}
-        </a>
-      ) : (
-        <Link to={lenkePanelData.url} className={props.className}>
-          {props.children}
-        </Link>
-      );
-    }}
-  >
-    <div>
-      {lenkePanelData.ikon ? <div>{lenkePanelData.ikon}</div> : null}
+const TemaLenkepanel = ({ lenkePanelData, cssPrefix }: Props) => {
+  const onClick = () => {
+    logEvent({ event: lenkePanelData.grafanaId });
+  };
+  return (
+    <LenkepanelBase
+      border={true}
+      className={`${cssPrefix}__temalenke linkbox__container`}
+      href={"#"}
+      linkCreator={props => {
+        return lenkePanelData.external ? (
+          <a
+            href={lenkePanelData.url}
+            className={props.className}
+            onClick={onClick}
+          >
+            {props.children}
+          </a>
+        ) : (
+          <Link
+            to={lenkePanelData.url}
+            className={props.className}
+            onClick={onClick}
+          >
+            {props.children}
+          </Link>
+        );
+      }}
+    >
       <div>
-        <Undertittel className={`${cssPrefix}__temalenke-header lenkepanel__heading`}>
-          <FormattedMessage id={lenkePanelData.tittelId} />
-        </Undertittel>
-        <Normaltekst className={`${cssPrefix}__lenkepanel-ingress`}>
-          {lenkePanelData.ingress}
-        </Normaltekst>
+        {lenkePanelData.ikon ? <div>{lenkePanelData.ikon}</div> : null}
+        <div>
+          <Undertittel
+            className={`${cssPrefix}__temalenke-header lenkepanel__heading`}
+          >
+            <FormattedMessage id={lenkePanelData.tittelId} />
+          </Undertittel>
+          <Normaltekst className={`${cssPrefix}__lenkepanel-ingress`}>
+            {lenkePanelData.ingress}
+          </Normaltekst>
+        </div>
       </div>
-    </div>
-  </LenkepanelBase>
-);
+    </LenkepanelBase>
+  );
+};
 
 export default TemaLenkepanel;
