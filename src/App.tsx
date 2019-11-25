@@ -47,7 +47,7 @@ const App = () => {
   const [{ auth }, dispatch] = useStore();
 
   const [tekniskProblem, setTekniskProblem] = useState(vars.unleash.tekniskProblemDefault);
-  const [redirectTilGammel, setSetRedirectTilGammel] = useState(vars.unleash.abGruppeDefault);
+  const [redirectTilGammel, setSetRedirectTilGammel] = useState(vars.unleash.redirectDefault);
   const [unleashResponded, setUnleashResponded] = useState(false);
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const App = () => {
         .catch((error: HTTPError) => console.error(error));
     }
 
-    const tekniskProblemFeatureName = vars.unleash.tekniskProblemName;
+    const tekniskProblemFeatureName = vars.unleash.tekniskProblemFeatureName;
     const testBrukerFeatureName = vars.unleash.testBrukerFeatureName;
     const abGruppeFeatureName = vars.unleash.abGruppeFeatureName;
 
@@ -92,15 +92,16 @@ const App = () => {
 
         setTekniskProblem(features[tekniskProblemFeatureName]);
 
-        const testState = ABTest.getTestState();
+        const testVariant = ABTest.getTestGruppe();
 
-        if (!testState) {
+        if (!testVariant) {
           const testBrukerResult = features[testBrukerFeatureName];
           const abGruppeResult = features[abGruppeFeatureName];
-          ABTest.setTestState(testBrukerResult, abGruppeResult);
+          ABTest.setTestVariant(testBrukerResult, abGruppeResult);
           setSetRedirectTilGammel(!testBrukerResult || abGruppeResult);
         } else {
-          setSetRedirectTilGammel(testState === ABTest.aGruppeNavn || testState === ABTest.ikkeTesterGruppeNavn);
+          setSetRedirectTilGammel(
+            testVariant === ABTest.kontrollGruppeVariant || testVariant === ABTest.ikkeTesterVariant);
         }
       }
     );
