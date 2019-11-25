@@ -27,6 +27,7 @@ import { forsidePath, noRedirectUrlSegment, urls, vars } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import ABTest from "./utils/abtest";
+import Environment from "./Environments";
 
 const GammelForsideRedirect = () => {
   window.location.replace(urls.gammel.forside);
@@ -47,7 +48,8 @@ const App = () => {
   const [{ auth }, dispatch] = useStore();
 
   const [tekniskProblem, setTekniskProblem] = useState(vars.unleash.tekniskProblemDefault);
-  const [redirectTilGammel, setRedirectTilGammel] = useState(vars.unleash.redirectDefault);
+  const [redirectTilGammel, setRedirectTilGammel] = useState(
+    vars.unleash.redirectDefault && Environment().miljo !== "LOCAL");
   const [unleashResponded, setUnleashResponded] = useState(false);
 
   useEffect(() => {

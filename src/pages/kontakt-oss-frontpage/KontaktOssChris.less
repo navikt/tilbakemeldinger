@@ -1,6 +1,9 @@
 @import (reference) "../../components/ikonpanel/IkonPanelChris.less";
 @import (reference) "../../index.less";
 
+@tilbakemeldinger-farge: #ECEFCC;
+@tekniskfeil-farge: #E7E9E9;
+
 .frontpage {
   @margin-vertical: 1.5rem;
   @margin-horizontal: 1rem;
@@ -99,7 +102,7 @@
     &__vismer {
       display: flex;
       align-items: center;
-      margin: 0.5rem 0;
+      margin-top: 0.5rem;
       padding: 0;
       border: 0;
       &-content {
@@ -109,12 +112,12 @@
 
   .feil-og-mangler {
     box-shadow: none;
-    background-color: @navGra20;
+    background-color: @tekniskfeil-farge;
   }
 
   .klage-og-tilbakemeldinger {
     box-shadow: none;
-    background-color: @navGronnLighten80;
+    background-color: @tilbakemeldinger-farge;
   }
 
   .svartid {

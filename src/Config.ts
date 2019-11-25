@@ -90,6 +90,7 @@ export const urls = {
   samtykke: `${navUrl}/no/NAV+og+samfunn/Om+NAV/Relatert+informasjon/taushetsplikt-og-samtykke`,
   fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
+  aktivitetsplanDialog: `https://aktivitetsplan.nav.no/dialog`,
   faq: {
     utbetalinger: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Utbetalinger/Utbetalinger`,
     utbetalingsoversikt: `${tjenesteUrl}/utbetalingsoversikt/`,
@@ -105,6 +106,7 @@ export const urls = {
   tolketjenesten: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Tolketjenesten`,
   spraktolk: `${navUrl}/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Oppfolging+fra+NAV/trenger-du-spr%C3%A5ktolk`,
   finnDittNavKontor: `${navUrl}/person/personopplysninger#ditt-nav-kontor`,
+  finnDinHjelpemiddelsentral: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Hjelpemidler/Kontakt+hjelpemiddelsentralen`,
   sosialeMedier: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/kontakt-nav-p%C3%A5-facebook-eller-twitter`,
   chatMedNav: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/chat-med-nav`,
   tekniskBrukerstotte: {

@@ -15,7 +15,6 @@ const KlageOgTilbakemeldinger = () => {
       <Normaltekst>
         <RouterLenke
           href={urls.tilbakemeldinger.forside}
-          className={"frontpage__lenke"}
         >
           <FormattedMessage id="kontaktoss.klage.knapp" />
         </RouterLenke>
