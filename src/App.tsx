@@ -47,7 +47,7 @@ const App = () => {
   const [{ auth }, dispatch] = useStore();
 
   const [tekniskProblem, setTekniskProblem] = useState(vars.unleash.tekniskProblemDefault);
-  const [redirectTilGammel, setSetRedirectTilGammel] = useState(vars.unleash.redirectDefault);
+  const [redirectTilGammel, setRedirectTilGammel] = useState(vars.unleash.redirectDefault);
   const [unleashResponded, setUnleashResponded] = useState(false);
 
   useEffect(() => {
@@ -84,9 +84,9 @@ const App = () => {
     Unleash.getFeatureToggleStatusMultiple(
       [tekniskProblemFeatureName, testBrukerFeatureName, abGruppeFeatureName],
       (features, error) => {
-        setUnleashResponded(true);
         if (error) {
           console.log(`Unleash error: ${error}`);
+          setUnleashResponded(true);
           return;
         }
 
@@ -98,11 +98,12 @@ const App = () => {
           const testBrukerResult = features[testBrukerFeatureName];
           const abGruppeResult = features[abGruppeFeatureName];
           ABTest.setTestVariant(testBrukerResult, abGruppeResult);
-          setSetRedirectTilGammel(!testBrukerResult || abGruppeResult);
+          setRedirectTilGammel(!testBrukerResult || abGruppeResult);
         } else {
-          setSetRedirectTilGammel(
+          setRedirectTilGammel(
             testVariant === ABTest.kontrollGruppeVariant || testVariant === ABTest.ikkeTesterVariant);
         }
+        setUnleashResponded(true);
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
