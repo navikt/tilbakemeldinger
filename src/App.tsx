@@ -28,8 +28,18 @@ import ChatRouter from "./pages/chat/ChatRouter";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import ABTest from "./utils/abtest";
 
-const RedirectTilGammel = () => {
-  window.location.replace(urls.gamleKontaktOss);
+const GammelForsideRedirect = () => {
+  window.location.replace(urls.gammel.forside);
+  return null;
+};
+
+const GammelChatRedirect = () => {
+  window.location.replace(urls.gammel.chat);
+  return null;
+};
+
+const GammelBeskjedRedirect = () => {
+  window.location.replace(urls.gammel.skrivTilOss);
   return null;
 };
 
@@ -37,11 +47,8 @@ const App = () => {
   const [{ auth }, dispatch] = useStore();
 
   const [tekniskProblem, setTekniskProblem] = useState(vars.unleash.tekniskProblemDefault);
-  const [erTestBruker, setErTestBruker] = useState(vars.unleash.testBrukerDefault);
-  const [erIKontrollGruppe, setErIKontrollGruppe] = useState(vars.unleash.abGruppeDefault);
+  const [redirectTilGammel, setSetRedirectTilGammel] = useState(vars.unleash.abGruppeDefault);
   const [unleashResponded, setUnleashResponded] = useState(false);
-
-  const redirectTilGammel = !erTestBruker || erIKontrollGruppe;
 
   useEffect(() => {
     if (!auth.authenticated) {
@@ -70,12 +77,12 @@ const App = () => {
         .catch((error: HTTPError) => console.error(error));
     }
 
-    const tekniskProblemFeature = vars.unleash.tekniskProblemName;
-    const testBrukerFeature = vars.unleash.testBrukerFeatureName;
-    const abGruppeFeature = vars.unleash.abGruppeFeatureName;
+    const tekniskProblemFeatureName = vars.unleash.tekniskProblemName;
+    const testBrukerFeatureName = vars.unleash.testBrukerFeatureName;
+    const abGruppeFeatureName = vars.unleash.abGruppeFeatureName;
 
     Unleash.getFeatureToggleStatusMultiple(
-      [tekniskProblemFeature, testBrukerFeature, abGruppeFeature],
+      [tekniskProblemFeatureName, testBrukerFeatureName, abGruppeFeatureName],
       (features, error) => {
         setUnleashResponded(true);
         if (error) {
@@ -83,19 +90,17 @@ const App = () => {
           return;
         }
 
-        setTekniskProblem(features[tekniskProblemFeature]);
+        setTekniskProblem(features[tekniskProblemFeatureName]);
 
         const testState = ABTest.getTestState();
 
         if (!testState) {
-          const testBrukerResult = features[testBrukerFeature];
-          const abGruppeResult = features[abGruppeFeature];
+          const testBrukerResult = features[testBrukerFeatureName];
+          const abGruppeResult = features[abGruppeFeatureName];
           ABTest.setTestState(testBrukerResult, abGruppeResult);
-          setErTestBruker(testBrukerResult);
-          setErIKontrollGruppe(abGruppeResult);
+          setSetRedirectTilGammel(testBrukerResult || abGruppeResult);
         } else {
-          setErTestBruker(testState !== ABTest.ikkeTesterGruppeNavn);
-          setErIKontrollGruppe(testState === ABTest.aGruppeNavn);
+          setSetRedirectTilGammel(testState === ABTest.aGruppeNavn || testState === ABTest.ikkeTesterGruppeNavn);
         }
       }
     );
@@ -119,7 +124,7 @@ const App = () => {
             <Route
               exact={true}
               path={`(|${forsidePath})`}
-              component={redirectTilGammel ? RedirectTilGammel : KontaktOssFrontpage}
+              component={redirectTilGammel ? GammelForsideRedirect : KontaktOssFrontpage}
             />
             <Route
               exact={true}
@@ -129,12 +134,12 @@ const App = () => {
             <Route
               exact={false}
               path={urls.skrivTilOss.forside}
-              component={SkrivTilOssRouter}
+              component={redirectTilGammel ? GammelBeskjedRedirect : SkrivTilOssRouter}
             />
             <Route
               exact={false}
               path={urls.chat.forside}
-              component={ChatRouter}
+              component={redirectTilGammel ? GammelChatRedirect : ChatRouter}
             />
             <Route
               exact={true}
