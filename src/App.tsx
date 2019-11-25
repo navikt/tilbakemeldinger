@@ -26,6 +26,7 @@ import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/Bestilling
 import { forsidePath, noRedirectUrlSegment, urls, vars } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
 import NavFrontendSpinner from "nav-frontend-spinner";
+import ABTest from "./utils/abtest";
 
 const RedirectTilGammel = () => {
   window.location.replace(urls.gamleKontaktOss);
@@ -34,9 +35,13 @@ const RedirectTilGammel = () => {
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
+
   const [tekniskProblem, setTekniskProblem] = useState(vars.unleash.tekniskProblemDefault);
-  const [redirectTilGammel, setRedirectTilGammel] = useState (vars.unleash.redirectDefault);
+  const [erTestBruker, setErTestBruker] = useState(vars.unleash.testBrukerDefault);
+  const [erIKontrollGruppe, setErIKontrollGruppe] = useState(vars.unleash.abGruppeDefault);
   const [unleashResponded, setUnleashResponded] = useState(false);
+
+  const redirectTilGammel = !erTestBruker || erIKontrollGruppe;
 
   useEffect(() => {
     if (!auth.authenticated) {
@@ -66,18 +71,30 @@ const App = () => {
     }
 
     const tekniskProblemFeature = vars.unleash.tekniskProblemName;
-    const redirectFeature = vars.unleash.redirectName;
+    const testBrukerFeature = vars.unleash.testBrukerFeatureName;
+    const abGruppeFeature = vars.unleash.abGruppeFeatureName;
 
     Unleash.getFeatureToggleStatusMultiple(
-      [tekniskProblemFeature, redirectFeature],
+      [tekniskProblemFeature, testBrukerFeature, abGruppeFeature],
       (features, error) => {
         setUnleashResponded(true);
         if (error) {
           console.log(`Unleash error: ${error}`);
           return;
         }
+
         setTekniskProblem(features[tekniskProblemFeature]);
-        setRedirectTilGammel(features[redirectFeature]);
+
+        const testState = ABTest.getTestState();
+
+        if (!testState) {
+          setErTestBruker(features[testBrukerFeature]);
+          setErIKontrollGruppe(features[abGruppeFeature]);
+          ABTest.setTestState(erTestBruker, erIKontrollGruppe);
+        } else {
+          setErTestBruker(testState !== ABTest.ikkeTesterGruppeNavn);
+          setErIKontrollGruppe(testState === ABTest.aGruppeNavn);
+        }
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -123,6 +123,10 @@ export const vars = {
     tekniskProblemName: "kontakt-oss.teknisk-problem",
     redirectDefault: false,
     redirectName: "kontakt-oss.redirect",
+    testBrukerDefault: true,
+    testBrukerFeatureName: "kontakt-oss.test-pool",
+    abGruppeDefault: false,
+    abGruppeFeatureName: "kontakt-oss.ab",
   },
   chatBot: {
     customerKey: "41155",
