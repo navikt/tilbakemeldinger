@@ -5,7 +5,7 @@ import { urls } from "../../../Config";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 
 import ikon from "assets/forside-chat-ikon.svg";
-import RouterLenke from "../../../components/routerlenke/RouterLenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
 
 const Chat = () => {
   const tittel = <FormattedMessage id={"kontaktoss.chat.tittel"} />;

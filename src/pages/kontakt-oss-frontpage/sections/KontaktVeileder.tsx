@@ -7,7 +7,7 @@ import { Normaltekst } from "nav-frontend-typografi";
 import { urls } from "../../../Config";
 
 import ikon from "assets/forside-veileder-ikon.svg";
-import RouterLenke from "../../../components/routerlenke/RouterLenke";
+import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
 
 const KontaktVeileder = () => {
   const tittel = <FormattedMessage id={"kontaktoss.kontaktveileder.tittel"} />;
