@@ -67,21 +67,21 @@ const Ingress = () => {
 
 const lenker: LenkepanelData[] = [
   {
-    grafanaId: "arbeidssoker",
+    grafanaId: "skrivtiloss.arbeidssoker",
     tittelId: "skrivtiloss.arbeidssoker.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.arbeidssoker.lenke.ingress"} />,
     url: urls.skrivTilOss.arbeidssoker,
     external: true
   },
   {
-    grafanaId: "syk",
+    grafanaId: "skrivtiloss.syk",
     tittelId: "skrivtiloss.syk.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.syk.lenke.ingress"} />,
     url: urls.skrivTilOss.syk,
     external: true
   },
   {
-    grafanaId: "familieogbarn",
+    grafanaId: "skrivtiloss.familieogbarn",
     tittelId: "skrivtiloss.familieogbarn.lenke.tittel",
     ingress: (
       <FormattedMessage id={"skrivtiloss.familieogbarn.lenke.ingress"} />
@@ -90,21 +90,21 @@ const lenker: LenkepanelData[] = [
     external: true
   },
   {
-    grafanaId: "pensjonist",
+    grafanaId: "skrivtiloss.pensjonist",
     tittelId: "skrivtiloss.pensjonist.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.pensjonist.lenke.ingress"} />,
     url: urls.skrivTilOss.pensjonist,
     external: true
   },
   {
-    grafanaId: "ufor",
+    grafanaId: "skrivtiloss.ufor",
     tittelId: "skrivtiloss.ufor.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.ufor.lenke.ingress"} />,
     url: urls.skrivTilOss.ufor,
     external: true
   },
   {
-    grafanaId: "hjelpemidler",
+    grafanaId: "skrivtiloss.hjelpemidler",
     tittelId: "skrivtiloss.hjelpemidler.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.hjelpemidler.lenke.ingress"} />,
     url: urls.skrivTilOss.hjelpemidler
