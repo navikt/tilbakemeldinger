@@ -13,7 +13,9 @@ const Ingress = () => {
       <title>{intl.messages["skrivtiloss.hjelpemidler.tittel"]}</title>
       <meta
         name="description"
-        content={intl.messages["skrivtiloss.hjelpemidler.description"] as string}
+        content={
+          intl.messages["skrivtiloss.hjelpemidler.description"] as string
+        }
       />
     </MetaTags>
   );
@@ -21,23 +23,30 @@ const Ingress = () => {
 
 const lenker: LenkepanelData[] = [
   {
+    grafanaId: "hjelpemidler.generelt",
     tittelId: "skrivtiloss.hjelpemidler.generelt.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.hjelpemidler.generelt.ingress"} />,
+    ingress: (
+      <FormattedMessage id={"skrivtiloss.hjelpemidler.generelt.ingress"} />
+    ),
     url: urls.skrivTilOss.temaHjelpemidler.generelt,
     external: true
   },
   {
+    grafanaId: "hjelpemidler.ortopediske",
     tittelId: "skrivtiloss.hjelpemidler.ortopediske.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.hjelpemidler.ortopediske.ingress"} />,
+    ingress: (
+      <FormattedMessage id={"skrivtiloss.hjelpemidler.ortopediske.ingress"} />
+    ),
     url: urls.skrivTilOss.temaHjelpemidler.ortopediske,
     external: true
   },
   {
+    grafanaId: "hjelpemidler.bil",
     tittelId: "skrivtiloss.hjelpemidler.bil.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.hjelpemidler.bil.ingress"} />,
     url: urls.skrivTilOss.temaHjelpemidler.bil,
     external: true
-  },
+  }
 ];
 
 const TemaHjelpemidler = () => (

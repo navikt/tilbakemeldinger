@@ -6,16 +6,22 @@ type Props = {
   href: string;
   children: React.ReactNode;
   isExternal?: boolean;
+  onClick?: () => void;
   className?: string;
 };
 
-const RouterLenke = ({ href, children, isExternal, className }: Props) => {
+const RouterLenke = (props: Props) => {
+  const { href, children, isExternal, className, onClick } = props;
   return isExternal ? (
-    <Lenke href={href} className={`routerlenke ${className}`}>
+    <Lenke href={href} className={`routerlenke ${className}`} onClick={onClick}>
       {children}
     </Lenke>
   ) : (
-    <Link to={href} className={`routerlenke lenke ${className}`}>
+    <Link
+      to={href}
+      className={`routerlenke lenke ${className}`}
+      onClick={onClick}
+    >
       {children}
     </Link>
   );

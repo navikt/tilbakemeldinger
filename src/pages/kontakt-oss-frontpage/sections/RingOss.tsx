@@ -1,17 +1,21 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import IkonPanel from "../../../components/ikonpanel/IkonPanel";
-
+import IkonPanel from "components/ikonpanel/IkonPanel";
 import ikon from "assets/forside-ringoss-ikon.svg";
-import { urls } from "../../../Config";
-import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
+import { urls } from "Config";
+import { logEvent } from "utils/logger";
+import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
 
 const RingOss = () => {
   const tittel = <FormattedMessage id={"kontaktoss.ringoss.tittel"} />;
 
+  const onClick = () => {
+    logEvent({ event: "ring-oss" });
+  };
+
   return (
     <IkonPanel ikon={ikon} tittel={tittel} className="ringoss">
-      <RouterLenke isExternal={true} href={urls.ringOss}>
+      <RouterLenke isExternal={true} href={urls.ringOss} onClick={onClick}>
         <FormattedMessage id={"kontaktoss.ringoss.knapp"} />
       </RouterLenke>
     </IkonPanel>
