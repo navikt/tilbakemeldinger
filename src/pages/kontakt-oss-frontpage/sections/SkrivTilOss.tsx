@@ -1,14 +1,11 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-
-import IkonPanel from "../../../components/ikonpanel/IkonPanel";
-
+import IkonPanel from "components/ikonpanel/IkonPanel";
 import { Normaltekst } from "nav-frontend-typografi";
-import { urls } from "../../../Config";
-
+import { urls } from "Config";
 import ikon from "assets/forside-skrivtiloss-ikon.svg";
-import RouterLenke from "../../../components/routerlenke/RouterLenke";
-import { logEvent } from "../../../utils/logger";
+import RouterLenke from "components/routerlenke/RouterLenke";
+import { logEvent } from "utils/logger";
 
 const SkrivTilOss = () => {
   const tittel = <FormattedMessage id={"kontaktoss.skrivtiloss.tittel"} />;
