@@ -98,7 +98,7 @@ const App = () => {
           const testBrukerResult = features[testBrukerFeatureName];
           const abGruppeResult = features[abGruppeFeatureName];
           ABTest.setTestState(testBrukerResult, abGruppeResult);
-          setSetRedirectTilGammel(testBrukerResult || abGruppeResult);
+          setSetRedirectTilGammel(!testBrukerResult || abGruppeResult);
         } else {
           setSetRedirectTilGammel(testState === ABTest.aGruppeNavn || testState === ABTest.ikkeTesterGruppeNavn);
         }
