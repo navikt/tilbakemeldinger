@@ -27,7 +27,7 @@ const KontaktVeileder = () => {
           </Normaltekst>
         </div>
         <RouterLenke
-          href={urls.aktivitetsplan}
+          href={urls.aktivitetsplanDialog}
           className={"lenke__avstand-over"}
           isExternal={true}
         >

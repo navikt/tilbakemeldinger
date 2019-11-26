@@ -1,5 +1,5 @@
-@paddingy: 1.5em;
-@paddingx: @paddingy * 1.62;
+@paddingy: 2.5em;
+@paddingx: @paddingy;
 
 @ikonSize: 3em;
 @ikonPadding: 1em;
@@ -11,6 +11,7 @@
 .ikonpanel {
   padding: @paddingy @paddingx;
   margin-top: @ikonContainerSize/2;
+
   .setPanelBorder();
 
   &__ikon-container {
@@ -33,6 +34,7 @@
   }
 
   &__innhold {
+    padding: 0;
   }
 
   &__innhold-header {
@@ -41,8 +43,7 @@
   &__innhold-body {
     display: flex;
     flex-direction: column;
-
-    margin: 0.75em 0;
+    margin-top: 0.75em;
 
     & > * {
       &:not(:last-child) {

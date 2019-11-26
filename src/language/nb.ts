@@ -43,27 +43,25 @@ export default {
   "skrivtiloss.ingress":
     "Send oss spørsmål eller nye opplysninger i saken din.",
 
-  "skrivtiloss.arbeidssoker.lenke.tittel": "Arbeidssøker",
+  "skrivtiloss.arbeidssoker.lenke.tittel": "Jobbsøker",
   "skrivtiloss.arbeidssoker.lenke.ingress":
-    "Dagpenger, arbeidsavklaringspenger, tiltakspenger, yrkesskade/ménerstatning, hjelp og veiledning for å komme i" +
-    " arbeid og aktivitet, med mer.",
+    "Dagpenger, arbeidsavklaringspenger, tiltakspenger, melde deg som jobbsøker, CV.",
 
   "skrivtiloss.syk.lenke.tittel": "Syk",
   "skrivtiloss.syk.lenke.ingress":
-    "Sykemeldt, sykepenger, arbeidsavklaringspenger, pleiepenger, yrkesskade/ménerstatning, hjelp og veiledning for å" +
-    " komme i arbeid og aktivitet, med mer.",
+    "Sykmeldt, sykepenger, arbeidsavklaringspenger, yrkesskade/ménerstatning.",
 
   "skrivtiloss.familieogbarn.lenke.tittel": "Familie, barn og familie",
   "skrivtiloss.familieogbarn.lenke.ingress":
-    "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag og pleiepenger med mer.",
+    "Foreldrepenger, overgangsstønad, kontantstøtte, svangerskapspenger, barnetrygd, barnebidrag, pleiepenger.",
 
   "skrivtiloss.pensjonist.lenke.tittel": "Pensjonist",
   "skrivtiloss.pensjonist.lenke.ingress":
-    "Alderspensjon, barnepensjon, etterlattepensjon og krigspensjon, med mer.",
+    "Alderspensjon, barnepensjon, etterlattepensjon, krigspensjon.",
 
   "skrivtiloss.ufor.lenke.tittel": "Ufør",
   "skrivtiloss.ufor.lenke.ingress":
-    "Uføretrygd, barnetillegg og gjenlevendetillegg, med mer.",
+    "Uføretrygd, barnetillegg og gjenlevendetillegg.",
 
   "skrivtiloss.hjelpemidler.lenke.tittel": "Hjelpemidler",
   "skrivtiloss.hjelpemidler.lenke.ingress":
@@ -150,7 +148,7 @@ export default {
 
   "kontaktoss.kontaktveileder.tittel": "Kontakt din veileder",
   "kontaktoss.kontaktveileder.beskrivelse":
-    "Du må være registrert som arbeidssøker for å kontakte din veileder.",
+    "Du må være registrert som arbeidssøker for å kontakte veilederen din.",
   "kontaktoss.kontaktveileder.knapp":
     "Logg inn og kontakt din veileder",
 
@@ -348,30 +346,24 @@ export default {
 
   "chat.stengt.info": "Denne chatten er utenfor åpningstid.",
   "chat.advarsel.personvern":
-    "<p>Chatten er ikke innlogget. Ikke oppgi navn, fødselsnummer eller sensitive opplysninger som helseforhold eller" +
-    " diagnoser.</p>",
+    "<p>Chatten er ikke innlogget. Husk at du ikke kan skrive personlig informasjon som navn, personnummer eller" +
+    " helseforhold.</p>",
   "chat.chatbotinfo":
     "<p>Du møter først en chatrobot, men kan bli satt videre til chat med en veileder (hverdager 09.00-14.30).</p>",
 
-  "chat.familie.tittel": "Foreldre, barn og familie",
-  "chat.familie.ingressKort":
-    "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger med mer.",
-  "chat.familie.ingress":
-    "<p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
-    "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
+  "chat.jobbsoker.tittel": "Jobbsøker",
+  "chat.jobbsoker.ingressKort":
+    "Dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
+  "chat.jobbsoker.ingress":
+    "<p>Veilederne våre er tilgjengelige på hverdager 09.00 - 14.30.</p>",
 
   "chat.aap.tittel": "Arbeidsavklaringspenger",
   "chat.aap.ingressKort":
-    "Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.",
-  "chat.aap.ingress":
-    "<p>Vår chatrobot Frida sitter klar til å svare deg på generelle spørsmål.</p>" +
-    "<p>Veileder er tilgjengelig hverdager fra kl. 09.00 til 14.30.</p>",
+    "Arbeidsavklaringspenger og veiledning for å komme i jobb eller aktivitet.",
 
-  "chat.jobbsoker.tittel": "Jobbsøker",
-  "chat.jobbsoker.ingressKort":
-    "Dagpenger, arbeidsavklaringspenger, tiltakspenger, tiltak eller veiledning for å komme i jobb eller aktivitet.",
-  "chat.jobbsoker.ingress":
-    "<p>Veilederne våre er tilgjengelige på hverdager 10.00 - 14.30.</p>",
+  "chat.familie.tittel": "Foreldre, barn og familie",
+  "chat.familie.ingressKort":
+    "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger.",
 
   "chat.sosialhjelp.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.ingressKort":
@@ -380,14 +372,14 @@ export default {
     "<p>Veilederne våre er tilgjengelige på hverdager 09.00 - 14.30.</p>",
 
   "chat.okonomi.tittel": "Økonomi og gjeldsrådgivning",
-  "chat.okonomi.ingressKort": "Budsjett, økonomi og gjeldsrådgivning.",
+  "chat.okonomi.ingressKort": "Budsjett, økonomi, gjeldsrådgivning.",
   "chat.okonomi.ingress":
     "<p>Veilederne våre er tilgjengelige på hverdager 10.00 - 15.00 (14.30 torsdager).</p>",
 
   "chat.eures.tittel": "EURES",
   "chat.eures.ingressKort":
-    "Chat om jobb og rekruttering fra EU/EØS og Sveits. EURES svarer på spørsmål fra arbeidssøkere og" +
-    " arbeidsgivere.",
+    "Spør EURES om jobb og rekruttering i i EØS-området. EURES svarer på spørsmål fra jobbsøkere og arbeidsgivere om" +
+    " arbeid og opphold i EU/EØS og Sveits.",
   "chat.eures.ingress":
     "<p>Arbeidssøker: Spør oss om arbeid og opphold i EU/EØS og Sveits, eller om jobb i Norge hvis du er en" +
     " arbeidssøker fra EU/EØS og Sveits.</p>" +

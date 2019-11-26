@@ -16,7 +16,6 @@ const Pressekontakt = () => {
         <RouterLenke
           href={urls.presseKontakt}
           isExternal={true}
-          className={"frontpage__lenke"}
         >
           <FormattedMessage id="kontaktoss.presse.link" />
         </RouterLenke>

@@ -16,14 +16,13 @@ const FinnNavKontor = () => {
         <RouterLenke
           href={urls.finnDittNavKontor}
           isExternal={true}
-          className={"frontpage__lenke"}
+          className={"lenke__avstand-under"}
         >
           <FormattedMessage id="kontaktoss.navkontor.lenke" />
         </RouterLenke>
         <RouterLenke
-          href={urls.finnDittNavKontor}
+          href={urls.finnDinHjelpemiddelsentral}
           isExternal={true}
-          className={"frontpage__lenke"}
         >
           <FormattedMessage id="kontaktoss.hjelpemiddelsentral.lenke" />
         </RouterLenke>
