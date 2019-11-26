@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 
 import { Normaltekst } from "nav-frontend-typografi";
-import { urls } from "../../../Config";
+import { urls, vars } from "../../../Config";
 
 import ikon from "assets/forside-veileder-ikon.svg";
 import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
@@ -19,7 +19,7 @@ const KontaktVeileder = () => {
           <Normaltekst className="svartid">
             <FormattedMessage
               id={"kontaktoss.svartiddager"}
-              values={{ antall: 2 }}
+              values={{ antall: vars.svartid.kontaktVeileder }}
             />
           </Normaltekst>
           <Normaltekst>
