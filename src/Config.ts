@@ -20,9 +20,9 @@ export const varsler: Varsel[] = [];
 
 export const urls = {
   gammel: {
-    forside: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt-oss`,
-    chat: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt-oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/chat-med-nav`,
-    skrivTilOss: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt-oss/skriv%20til%20oss`,
+    forside: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss`,
+    chat: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/chat-med-nav`,
+    skrivTilOss: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/skriv%20til%20oss`,
   },
   baseAppPath: baseAppPath,
   tilbakemeldinger: {
@@ -97,18 +97,18 @@ export const urls = {
     saksbehandlingstider: `${navUrl}/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV`,
     endreKontonummer: `${navUrl}/person/personopplysninger#utbetaling`,
     saksoversikt: `${tjenesteUrl}/saksoversikt/`,
-    postTilAnnenAdresse: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt-oss/vil-du-ha-post-fra-nav-til-en-annen-adresse`,
-    eosReglerSak: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt-oss/Feiltolkning+av+E%C3%98S-reglene`
+    postTilAnnenAdresse: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/vil-du-ha-post-fra-nav-til-en-annen-adresse`,
+    eosReglerSak: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Feiltolkning+av+E%C3%98S-reglene`
   },
   veteraner: `${navUrl}/veteraner`,
-  ringOss: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt-oss/kontakt-nav-p%C3%A5-telefon`,
+  ringOss: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/kontakt-nav-p%C3%A5-telefon`,
   arbeidssoker: `${tjenesteUrl}/veiledearbeidssoker/mistet-jobben/registrering-arbeidssoker`,
   tolketjenesten: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Tolketjenesten`,
   spraktolk: `${navUrl}/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Oppfolging+fra+NAV/trenger-du-spr%C3%A5ktolk`,
   finnDittNavKontor: `${navUrl}/person/personopplysninger#ditt-nav-kontor`,
   finnDinHjelpemiddelsentral: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Hjelpemidler/Kontakt+hjelpemiddelsentralen`,
-  sosialeMedier: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt-oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/kontakt-nav-p%C3%A5-facebook-eller-twitter`,
-  chatMedNav: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt-oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/chat-med-nav`,
+  sosialeMedier: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/kontakt-nav-p%C3%A5-facebook-eller-twitter`,
+  chatMedNav: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/chat-med-nav`,
   tekniskBrukerstotte: {
     selvhjelp: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Teknisk+brukerstotte/hjelp-til-personbruker?kap=398749`,
     ring: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Relatert+informasjon/kontakt-teknisk-brukerst%C3%B8tte-nav.no`
