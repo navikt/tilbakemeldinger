@@ -117,8 +117,11 @@ export const urls = {
 };
 
 export const vars = {
-  svartidDager: 2,
   maksLengdeMelding: 10000,
+  svartid: {
+    skrivTilOss: 2,
+    kontaktVeileder: 2,
+  },
   unleash: {
     timeout: 3000,
     skrivTilOssEnabledDefault: true,
@@ -127,7 +130,7 @@ export const vars = {
     langSvartidName: "kontakt-oss.skriv-til-oss.lang-svartid",
     tekniskProblemDefault: false,
     tekniskProblemFeatureName: "kontakt-oss.teknisk-problem",
-    redirectDefault: true,
+    redirectDefault: false,
     redirectName: "kontakt-oss.redirect",
     testBrukerDefault: true,
     testBrukerFeatureName: "kontakt-oss.test-pool",
