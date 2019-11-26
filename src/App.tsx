@@ -26,8 +26,6 @@ import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/Bestilling
 import { forsidePath, noRedirectUrlSegment, urls, vars } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
 import NavFrontendSpinner from "nav-frontend-spinner";
-import ABTest from "./utils/abtest";
-import Cookies from "js-cookie";
 
 const GammelForsideRedirect = () => {
   window.location.replace(urls.gammel.forside);
@@ -46,11 +44,8 @@ const GammelBeskjedRedirect = () => {
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
-  const pathname = window.location.pathname;
-  const noRedirect = pathname.includes(noRedirectUrlSegment);
-
+  const redirectTilGammel = false;
   const [tekniskProblem, setTekniskProblem] = useState(vars.unleash.tekniskProblemDefault);
-  const [redirectTilGammel, setRedirectTilGammel] = useState(!noRedirect && vars.unleash.redirectDefault);
   const [unleashResponded, setUnleashResponded] = useState(false);
 
   useEffect(() => {
@@ -81,33 +76,17 @@ const App = () => {
     }
 
     const tekniskProblemFeatureName = vars.unleash.tekniskProblemFeatureName;
-    const testBrukerFeatureName = vars.unleash.testBrukerFeatureName;
-    const abGruppeFeatureName = vars.unleash.abGruppeFeatureName;
 
     Unleash.getFeatureToggleStatusMultiple(
-      [tekniskProblemFeatureName, testBrukerFeatureName, abGruppeFeatureName],
+      [tekniskProblemFeatureName],
       (features, error) => {
-        Cookies.remove("kontakt-ab");
+        setUnleashResponded(true);
         if (error) {
           console.log(`Unleash error: ${error}`);
-          setUnleashResponded(true);
           return;
         }
 
         setTekniskProblem(features[tekniskProblemFeatureName]);
-
-        const testVariant = ABTest.getTestGruppe();
-
-        if (!testVariant) {
-          const testBrukerResult = features[testBrukerFeatureName];
-          const abGruppeResult = features[abGruppeFeatureName];
-          ABTest.setTestVariant(testBrukerResult, abGruppeResult);
-          setRedirectTilGammel(!noRedirect && (!testBrukerResult || abGruppeResult));
-        } else {
-          setRedirectTilGammel(!noRedirect &&
-            (testVariant === ABTest.kontrollGruppeVariant || testVariant === ABTest.ikkeTesterVariant));
-        }
-        setUnleashResponded(true);
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
