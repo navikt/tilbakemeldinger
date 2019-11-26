@@ -19,6 +19,11 @@ interface Varsel {
 export const varsler: Varsel[] = [];
 
 export const urls = {
+  gammel: {
+    forside: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss`,
+    chat: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/chat-med-nav`,
+    skrivTilOss: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt%20oss/skriv%20til%20oss`,
+  },
   baseAppPath: baseAppPath,
   tilbakemeldinger: {
     forside: `${baseAppPath}/tilbakemeldinger`,
@@ -100,7 +105,6 @@ export const urls = {
   tolketjenesten: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Tolketjenesten`,
   spraktolk: `${navUrl}/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Oppfolging+fra+NAV/trenger-du-spr%C3%A5ktolk`,
   finnDittNavKontor: `${navUrl}/person/personopplysninger#ditt-nav-kontor`,
-  gamleKontaktOss: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss`,
   sosialeMedier: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/kontakt-nav-p%C3%A5-facebook-eller-twitter`,
   chatMedNav: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/chat-med-nav`,
   tekniskBrukerstotte: {
@@ -120,9 +124,13 @@ export const vars = {
     langSvartidDefault: false,
     langSvartidName: "kontakt-oss.skriv-til-oss.lang-svartid",
     tekniskProblemDefault: false,
-    tekniskProblemName: "kontakt-oss.teknisk-problem",
-    redirectDefault: false,
+    tekniskProblemFeatureName: "kontakt-oss.teknisk-problem",
+    redirectDefault: true,
     redirectName: "kontakt-oss.redirect",
+    testBrukerDefault: true,
+    testBrukerFeatureName: "kontakt-oss.test-pool",
+    abGruppeDefault: true,
+    abGruppeFeatureName: "kontakt-oss.ab",
   },
   chatBot: {
     customerKey: "41155",

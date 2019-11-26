@@ -26,16 +26,30 @@ import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/Bestilling
 import { forsidePath, noRedirectUrlSegment, urls, vars } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
 import NavFrontendSpinner from "nav-frontend-spinner";
+import ABTest from "./utils/abtest";
 
-const RedirectTilGammel = () => {
-  window.location.replace(urls.gamleKontaktOss);
+const GammelForsideRedirect = () => {
+  window.location.replace(urls.gammel.forside);
+  return null;
+};
+
+const GammelChatRedirect = () => {
+  window.location.replace(urls.gammel.chat);
+  return null;
+};
+
+const GammelBeskjedRedirect = () => {
+  window.location.replace(urls.gammel.skrivTilOss);
   return null;
 };
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
+  const pathname = window.location.pathname;
+  const noRedirect = pathname.includes(noRedirectUrlSegment);
+
   const [tekniskProblem, setTekniskProblem] = useState(vars.unleash.tekniskProblemDefault);
-  const [redirectTilGammel, setRedirectTilGammel] = useState (vars.unleash.redirectDefault);
+  const [redirectTilGammel, setRedirectTilGammel] = useState(!noRedirect && vars.unleash.redirectDefault);
   const [unleashResponded, setUnleashResponded] = useState(false);
 
   useEffect(() => {
@@ -65,19 +79,33 @@ const App = () => {
         .catch((error: HTTPError) => console.error(error));
     }
 
-    const tekniskProblemFeature = vars.unleash.tekniskProblemName;
-    const redirectFeature = vars.unleash.redirectName;
+    const tekniskProblemFeatureName = vars.unleash.tekniskProblemFeatureName;
+    const testBrukerFeatureName = vars.unleash.testBrukerFeatureName;
+    const abGruppeFeatureName = vars.unleash.abGruppeFeatureName;
 
     Unleash.getFeatureToggleStatusMultiple(
-      [tekniskProblemFeature, redirectFeature],
+      [tekniskProblemFeatureName, testBrukerFeatureName, abGruppeFeatureName],
       (features, error) => {
-        setUnleashResponded(true);
         if (error) {
           console.log(`Unleash error: ${error}`);
+          setUnleashResponded(true);
           return;
         }
-        setTekniskProblem(features[tekniskProblemFeature]);
-        setRedirectTilGammel(features[redirectFeature]);
+
+        setTekniskProblem(features[tekniskProblemFeatureName]);
+
+        const testVariant = ABTest.getTestGruppe();
+
+        if (!testVariant) {
+          const testBrukerResult = features[testBrukerFeatureName];
+          const abGruppeResult = features[abGruppeFeatureName];
+          ABTest.setTestVariant(testBrukerResult, abGruppeResult);
+          setRedirectTilGammel(!noRedirect && (!testBrukerResult || abGruppeResult));
+        } else {
+          setRedirectTilGammel(!noRedirect &&
+            (testVariant === ABTest.kontrollGruppeVariant || testVariant === ABTest.ikkeTesterVariant));
+        }
+        setUnleashResponded(true);
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,7 +128,7 @@ const App = () => {
             <Route
               exact={true}
               path={`(|${forsidePath})`}
-              component={redirectTilGammel ? RedirectTilGammel : KontaktOssFrontpage}
+              component={redirectTilGammel ? GammelForsideRedirect : KontaktOssFrontpage}
             />
             <Route
               exact={true}
@@ -110,12 +138,12 @@ const App = () => {
             <Route
               exact={false}
               path={urls.skrivTilOss.forside}
-              component={SkrivTilOssRouter}
+              component={redirectTilGammel ? GammelBeskjedRedirect : SkrivTilOssRouter}
             />
             <Route
               exact={false}
               path={urls.chat.forside}
-              component={ChatRouter}
+              component={redirectTilGammel ? GammelChatRedirect : ChatRouter}
             />
             <Route
               exact={true}
