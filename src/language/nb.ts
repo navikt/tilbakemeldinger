@@ -376,10 +376,9 @@ export default {
   "chat.okonomi.ingress":
     "<p>Veilederne våre er tilgjengelige på hverdager 10.00 - 15.00 (14.30 torsdager).</p>",
 
-  "chat.eures.tittel": "EURES",
+  "chat.eures.tittel": "Spør EURES om jobb og rekruttering i i EØS-området",
   "chat.eures.ingressKort":
-    "Spør EURES om jobb og rekruttering i i EØS-området. EURES svarer på spørsmål fra jobbsøkere og arbeidsgivere om" +
-    " arbeid og opphold i EU/EØS og Sveits.",
+    "EURES svarer på spørsmål fra jobbsøkere og arbeidsgivere om arbeid og opphold i EU/EØS og Sveits.",
   "chat.eures.ingress":
     "<p>Arbeidssøker: Spør oss om arbeid og opphold i EU/EØS og Sveits, eller om jobb i Norge hvis du er en" +
     " arbeidssøker fra EU/EØS og Sveits.</p>" +
