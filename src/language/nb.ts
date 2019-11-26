@@ -355,7 +355,7 @@ export default {
   "chat.jobbsoker.ingressKort":
     "Dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
   "chat.jobbsoker.ingress":
-    "<p>Veilederne våre er tilgjengelige på hverdager 09.00 - 14.30.</p>",
+    "<p>Chatboten kobler deg direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 09.00 - 14.30.</p>",
 
   "chat.aap.tittel": "Arbeidsavklaringspenger",
   "chat.aap.ingressKort":
@@ -369,12 +369,12 @@ export default {
   "chat.sosialhjelp.ingressKort":
     "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
   "chat.sosialhjelp.ingress":
-    "<p>Veilederne våre er tilgjengelige på hverdager 09.00 - 14.30.</p>",
+    "<p>Chatboten kobler deg direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 09.00 - 14.30.</p>",
 
   "chat.okonomi.tittel": "Økonomi og gjeldsrådgivning",
   "chat.okonomi.ingressKort": "Budsjett, økonomi, gjeldsrådgivning.",
   "chat.okonomi.ingress":
-    "<p>Veilederne våre er tilgjengelige på hverdager 10.00 - 15.00 (14.30 torsdager).</p>",
+    "<p>Chatboten kobler deg direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 10.00 - 15.00 (14.30 torsdager).</p>",
 
   "chat.eures.tittel": "Spør EURES om jobb og rekruttering i i EØS-området",
   "chat.eures.ingressKort":
