@@ -27,6 +27,7 @@ import { forsidePath, noRedirectUrlSegment, urls, vars } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import ABTest from "./utils/abtest";
+import Cookies from "js-cookie";
 
 const GammelForsideRedirect = () => {
   window.location.replace(urls.gammel.forside);
@@ -86,6 +87,7 @@ const App = () => {
     Unleash.getFeatureToggleStatusMultiple(
       [tekniskProblemFeatureName, testBrukerFeatureName, abGruppeFeatureName],
       (features, error) => {
+        Cookies.remove("kontakt-ab");
         if (error) {
           console.log(`Unleash error: ${error}`);
           setUnleashResponded(true);
