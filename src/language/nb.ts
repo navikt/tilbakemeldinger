@@ -383,7 +383,7 @@ export default {
     "<p>Arbeidssøker: Spør oss om arbeid og opphold i EU/EØS og Sveits, eller om jobb i Norge hvis du er en" +
     " arbeidssøker fra EU/EØS og Sveits.</p>" +
     "<p>Arbeidsgiver: Spør oss om rekruttering fra EU/EØS og Sveits.</p>" +
-    "<p>Chatten er åpen hver fredag fra kl. 10.00–13.00 (ikke helligdager) og foregår på Den europeiske" +
+    "<p>Chatten er åpen hver fredag kl. 10.00–13.00 (ikke helligdager) og foregår på Den europeiske" +
     " jobbmobilitetsportalen.</p>",
 
   "takk.melding": "Meldingen din er sendt",
