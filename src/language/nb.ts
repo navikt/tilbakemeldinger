@@ -108,8 +108,8 @@ export default {
   "kontaktoss.ringoss.knapp": "Alle telefonnumre",
   "kontaktoss.ringoss.beskrivelse":
     "Vi hjelper deg med generelle spørsmål og veiledning hverdager mellom " +
-    "08:00 - 15:00. Svartiden varierer, men det er kortest ventetid mellom " +
-    "10:00-13:00",
+    "08.00–15.00. Svartiden varierer, men det er kortest ventetid mellom " +
+    "10.00–13.00",
   "kontaktoss.ringoss.skjultlf": "Skjul telefonnumre og tastevalg",
   "kontaktoss.ringoss.vistlf": "Vis telefonnumre og tastevalg",
   "kontaktoss.ringoss.tlf": "Personbruker: 55 55 33 33",
@@ -342,20 +342,20 @@ export default {
 
   "chat.knapp.start": "Start chat",
   "chat.knapp.paagaar": "Chat pågår",
-  "chat.knapp.stengt": "Chat utilgjengelig",
+  "chat.knapp.stengt": "Chatten er stengt",
 
   "chat.stengt.info": "Denne chatten er utenfor åpningstid.",
   "chat.advarsel.personvern":
     "<p>Chatten er ikke innlogget. Husk at du ikke kan skrive personlig informasjon som navn, personnummer eller" +
     " helseforhold.</p>",
   "chat.chatbotinfo":
-    "<p>Du møter først en chatrobot, men kan bli satt videre til chat med en veileder (hverdager 09.00-14.30).</p>",
+    "<p>Du møter først en chatrobot, men kan bli satt videre til chat med en veileder (hverdager 09.00–14.30).</p>",
 
   "chat.jobbsoker.tittel": "Jobbsøker",
   "chat.jobbsoker.ingressKort":
     "Dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
   "chat.jobbsoker.ingress":
-    "<p>Chatboten kobler deg direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 09.00 - 14.30.</p>",
+    "<p>Chatboten kobler deg direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 09.00–14.30.</p>",
 
   "chat.aap.tittel": "Arbeidsavklaringspenger",
   "chat.aap.ingressKort":
@@ -369,12 +369,12 @@ export default {
   "chat.sosialhjelp.ingressKort":
     "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
   "chat.sosialhjelp.ingress":
-    "<p>Chatboten kobler deg direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 09.00 - 14.30.</p>",
+    "<p>Chatboten kobler deg direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 09.00–14.30.</p>",
 
   "chat.okonomi.tittel": "Økonomi og gjeldsrådgivning",
   "chat.okonomi.ingressKort": "Budsjett, økonomi, gjeldsrådgivning.",
   "chat.okonomi.ingress":
-    "<p>Chatboten kobler deg direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 10.00 - 15.00 (14.30 torsdager).</p>",
+    "<p>Chatboten kobler deg direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 10.00–15.00 (14.30 torsdager).</p>",
 
   "chat.eures.tittel": "Spør EURES om jobb og rekruttering i i EØS-området",
   "chat.eures.ingressKort":
@@ -383,7 +383,7 @@ export default {
     "<p>Arbeidssøker: Spør oss om arbeid og opphold i EU/EØS og Sveits, eller om jobb i Norge hvis du er en" +
     " arbeidssøker fra EU/EØS og Sveits.</p>" +
     "<p>Arbeidsgiver: Spør oss om rekruttering fra EU/EØS og Sveits.</p>" +
-    "<p>Chatten er åpen hver fredag fra kl. 10-13 (ikke helligdager) og foregår på Den europeiske" +
+    "<p>Chatten er åpen hver fredag kl. 10.00–13.00 (ikke helligdager) og foregår på Den europeiske" +
     " jobbmobilitetsportalen.</p>",
 
   "takk.melding": "Meldingen din er sendt",
