@@ -221,7 +221,8 @@ export default {
     "Her kan du melde ifra om tekniske feil og mangler. Du kan ikke sende inn generelle spørsmål eller henvendelser om saken din.",
   "tilbakemeldinger.feilogmangler.form.overskrift":
     "Send inn feil og mangler på nav.no",
-  "tilbakemeldinger.feilogmangler.svartid": "Du vil få svar innen 3 dager",
+  "tilbakemeldinger.feilogmangler.svartid":
+    "Du vil få et svar per e-post i løpet av to virkedager",
 
   "tilbakemeldinger.ros.tittel": "Ros til NAV",
   "tilbakemeldinger.ros.beskrivelse":
