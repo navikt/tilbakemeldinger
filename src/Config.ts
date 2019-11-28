@@ -92,7 +92,7 @@ export const urls = {
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
   aktivitetsplanDialog: `https://aktivitetsplan.nav.no/dialog`,
   faq: {
-    utbetalinger: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Utbetalinger/Utbetalinger`,
+    utbetalinger: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Utbetalinger`,
     utbetalingsoversikt: `${tjenesteUrl}/utbetalingsoversikt/`,
     saksbehandlingstider: `${navUrl}/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV`,
     endreKontonummer: `${navUrl}/person/personopplysninger#utbetaling`,
