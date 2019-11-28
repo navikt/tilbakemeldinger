@@ -1,8 +1,9 @@
 import React from "react";
-import { useIntl } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { Validation } from "calidation";
 import { useStore } from "providers/Provider";
 import InputField from "components/input-fields/InputField";
+import { AlertStripeInfo } from "nav-frontend-alertstriper";
 
 const FeilOgManglerEpost = () => {
   const intl = useIntl();
@@ -42,6 +43,13 @@ const FeilOgManglerEpost = () => {
               onChange={v => setField({ epost: v })}
               submitted={submitted}
             />
+            <div className="tilbakemeldinger__svartid">
+              <AlertStripeInfo>
+                <FormattedMessage
+                  id={"tilbakemeldinger.feilogmangler.svartid"}
+                />
+              </AlertStripeInfo>
+            </div>
           </div>
         );
       }}

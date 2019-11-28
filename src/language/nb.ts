@@ -143,14 +143,14 @@ export default {
   "kontaktoss.ringoss.forandre": "Ringer du på vegne av en annen?",
 
   "kontaktoss.skrivtiloss.tittel": "Skriv til oss",
-  "kontaktoss.skrivtiloss.beskrivelse": "Dette er et sikkert alternativ til e-post.",
+  "kontaktoss.skrivtiloss.beskrivelse":
+    "Dette er et sikkert alternativ til e-post.",
   "kontaktoss.skrivtiloss.knapp": "Logg inn og skriv til oss",
 
   "kontaktoss.kontaktveileder.tittel": "Kontakt din veileder",
   "kontaktoss.kontaktveileder.beskrivelse":
     "Du må være registrert som arbeidssøker for å kontakte veilederen din.",
-  "kontaktoss.kontaktveileder.knapp":
-    "Logg inn og kontakt din veileder",
+  "kontaktoss.kontaktveileder.knapp": "Logg inn og kontakt din veileder",
 
   "kontaktoss.facebook.tittel": "Spør oss på Facebook",
   "kontaktoss.facebook.foreldrepenger": "Foreldrepenger på Facebook",
@@ -159,10 +159,8 @@ export default {
   "kontaktoss.navkontor.tittel": "Finn ditt NAV-kontor",
   "kontaktoss.navkontor.beskrivelse":
     "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
-  "kontaktoss.navkontor.lenke":
-    "Logg inn og se hvilket NAV-kontor du tilhører",
-  "kontaktoss.hjelpemiddelsentral.lenke":
-    "Finn din hjelpemiddelsentral",
+  "kontaktoss.navkontor.lenke": "Logg inn og se hvilket NAV-kontor du tilhører",
+  "kontaktoss.hjelpemiddelsentral.lenke": "Finn din hjelpemiddelsentral",
 
   "kontaktoss.tolketjenesten.tittel": "Tolketjenesten",
   "kontaktoss.tolketjenesten.link":
@@ -174,7 +172,8 @@ export default {
   "kontaktoss.klage.beskrivelse":
     "Du kan klage hvis du har fått helt eller delvis avslag på søknaden din, og hvis du har hatt en negativ" +
     " opplevelse i møte med NAV",
-  "kontaktoss.klage.knapp": "Slik går du frem for å klage eller gi tilbakemeldinger",
+  "kontaktoss.klage.knapp":
+    "Slik går du frem for å klage eller gi tilbakemeldinger",
 
   "kontaktoss.tekniskfeil.tittel": "Teknisk feil på nav.no",
   "kontaktoss.tekniskfeil.link.losselv": "Prøv å løse problemet selv",
@@ -222,6 +221,8 @@ export default {
     "Her kan du melde ifra om tekniske feil og mangler. Du kan ikke sende inn generelle spørsmål eller henvendelser om saken din.",
   "tilbakemeldinger.feilogmangler.form.overskrift":
     "Send inn feil og mangler på nav.no",
+  "tilbakemeldinger.feilogmangler.svartid":
+    "Du vil få et svar per e-post i løpet av to virkedager",
 
   "tilbakemeldinger.ros.tittel": "Ros til NAV",
   "tilbakemeldinger.ros.beskrivelse":
