@@ -345,7 +345,7 @@ export default {
   "chat.knapp.paagaar": "Chat pågår",
   "chat.knapp.stengt": "Chatten er stengt",
 
-  "chat.stengt.info": "Denne chatten er utenfor åpningstid.",
+  "chat.stengt.info": "Chatten er stengt, se åpningstider under.",
   "chat.advarsel.personvern":
     "<p>Chatten er ikke innlogget. Husk at du ikke kan skrive personlig informasjon som navn, personnummer eller" +
     " helseforhold.</p>",
