@@ -119,7 +119,7 @@ export const urls = {
 export const vars = {
   maksLengdeMelding: 10000,
   svartid: {
-    skrivTilOss: 2,
+    skrivTilOss: 3,
     kontaktVeileder: 2,
   },
   unleash: {
