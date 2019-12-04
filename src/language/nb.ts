@@ -350,13 +350,13 @@ export default {
     "<p>Chatten er ikke innlogget. Husk at du ikke kan skrive personlig informasjon som navn, personnummer eller" +
     " helseforhold.</p>",
   "chat.chatbotinfo":
-    "<p>Du møter først en chatrobot, men kan bli satt videre til chat med en veileder (hverdager 09.00–14.30).</p>",
+    "<p>Du møter først en chatbot, men kan bli satt videre til chat med en veileder (hverdager 09.00–14.30).</p>",
 
   "chat.jobbsoker.tittel": "Jobbsøker",
   "chat.jobbsoker.ingressKort":
     "Dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
   "chat.jobbsoker.ingress":
-    "<p>Chatboten kobler deg direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 09.00–14.30.</p>",
+    "<p>Du blir koblet direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 09.00–14.30.</p>",
 
   "chat.aap.tittel": "Arbeidsavklaringspenger",
   "chat.aap.ingressKort":
@@ -370,12 +370,14 @@ export default {
   "chat.sosialhjelp.ingressKort":
     "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
   "chat.sosialhjelp.ingress":
-    "<p>Chatboten kobler deg direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 09.00–14.30.</p>",
+    "<p>Du blir koblet direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 09.00–14.30.</p>",
 
   "chat.okonomi.tittel": "Økonomi og gjeldsrådgivning",
   "chat.okonomi.ingressKort": "Budsjett, økonomi, gjeldsrådgivning.",
   "chat.okonomi.ingress":
-    "<p>Chatboten kobler deg direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 10.00–15.00 (14.30 torsdager).</p>",
+    "<p>Vi svarer deg på spørsmål om budsjett, økonomi og gjeldsrådgivning. Dine spørsmål blir besvart av erfarne gjeldsrådgivere.</p>" +
+    "<p>Vi har ikke tilgang til å se dine utbetalinger, eller personlige opplysninger som gjelder dine saker hos NAV.</p>" +
+    "<p>Våre rådgivere er tilgjengelige på hverdager 10.00–15.00 (14.30 torsdager).</p>",
 
   "chat.eures.tittel": "Spør EURES om jobb og rekruttering i i EØS-området",
   "chat.eures.ingressKort":
