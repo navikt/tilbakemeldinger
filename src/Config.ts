@@ -19,16 +19,11 @@ interface Varsel {
 export const varsler: Varsel[] = [];
 
 export const urls = {
-  gammel: {
-    forside: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss`,
-    chat: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/chat-med-nav`,
-    skrivTilOss: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/skriv%20til%20oss`,
-  },
   baseAppPath: baseAppPath,
   tilbakemeldinger: {
     forside: `${baseAppPath}/tilbakemeldinger`,
     klagepavedtak: `${navUrl}/soknader/nb/klage`,
-    klagerettigheter: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Klage+ris+og+ros/Klagerettigheter`,
+    klagerettigheter: `${navUrl}/no/nav-og-samfunn/kontakt-nav/klage-ris-og-ros/klagerettigheter`,
     serviceklage: {
       form: `${baseAppPath}/tilbakemeldinger/serviceklage`,
       login: `${baseAppPath}/tilbakemeldinger/serviceklage/login`
@@ -67,12 +62,10 @@ export const urls = {
       temaside: `${baseAppPath}/chat/aap`
     },
     sosialhjelp: {
-      temaside: `${baseAppPath}/chat/sosialhjelp`,
-      chat: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-sosialetjenester`
+      temaside: `${baseAppPath}/chat/sosialhjelp`
     },
     okonomi: {
-      temaside: `${baseAppPath}/chat/okonomi`,
-      chat: `${navUrl}/no/Person/Flere+tema/Sosiale+tjenester/Relatert+innhold/chatside-gjeldsradgivning`
+      temaside: `${baseAppPath}/chat/okonomi`
     },
     eures: {
       temaside: `${baseAppPath}/chat/eures`,
@@ -87,33 +80,32 @@ export const urls = {
     foreldrepenger: "https://www.facebook.com/navforeldrepenger",
     jobblyst: "https://www.facebook.com/navjobblyst"
   },
-  samtykke: `${navUrl}/no/NAV+og+samfunn/Om+NAV/Relatert+informasjon/taushetsplikt-og-samtykke`,
+  samtykke: `${navUrl}/no/nav-og-samfunn/om-nav/relatert-informasjon/taushetsplikt-og-samtykke`,
   fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
   aktivitetsplanDialog: `https://aktivitetsplan.nav.no/dialog`,
   faq: {
-    utbetalinger: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Utbetalinger`,
+    utbetalinger: `${navUrl}/no/nav-og-samfunn/kontakt-nav/utbetalinger`,
     utbetalingsoversikt: `${tjenesteUrl}/utbetalingsoversikt/`,
-    saksbehandlingstider: `${navUrl}/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV`,
+    saksbehandlingstider: `${navUrl}/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav`,
     endreKontonummer: `${navUrl}/person/personopplysninger#utbetaling`,
     saksoversikt: `${tjenesteUrl}/saksoversikt/`,
-    postTilAnnenAdresse: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/vil-du-ha-post-fra-nav-til-en-annen-adresse`,
-    eosReglerSak: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Feiltolkning+av+E%C3%98S-reglene`
+    postTilAnnenAdresse: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/vil-du-ha-post-fra-nav-til-en-annen-adresse2`,
+    eosReglerSak: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/feiltolkning-av-eos-reglene`
   },
   veteraner: `${navUrl}/veteraner`,
-  ringOss: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/kontakt-nav-p%C3%A5-telefon`,
+  ringOss: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/kontakt-nav-pa-telefon2`,
   arbeidssoker: `${tjenesteUrl}/veiledearbeidssoker/mistet-jobben/registrering-arbeidssoker`,
-  tolketjenesten: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Tolketjenesten`,
-  spraktolk: `${navUrl}/no/Person/Arbeid/Oppfolging+og+tiltak+for+a+komme+i+jobb/Oppfolging+fra+NAV/trenger-du-spr%C3%A5ktolk`,
+  tolketjenesten: `${navUrl}/no/person/hjelpemidler/tjenester-og-produkter/tolketjenesten`,
+  spraktolk: `${navUrl}/no/person/arbeid/oppfolging-og-tiltak-for-a-komme-i-jobb/oppfolging-fra-nav/trenger-du-språktolk`,
   finnDittNavKontor: `${navUrl}/person/personopplysninger#ditt-nav-kontor`,
-  finnDinHjelpemiddelsentral: `${navUrl}/no/Person/Hjelpemidler/Tjenester+og+produkter/Hjelpemidler/Kontakt+hjelpemiddelsentralen`,
-  sosialeMedier: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/kontakt-nav-p%C3%A5-facebook-eller-twitter`,
-  chatMedNav: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Kontakt+NAV+p%C3%A5+chat+Facebook+og+Twitter/chat-med-nav`,
+  finnDinHjelpemiddelsentral: `${navUrl}/no/person/hjelpemidler/tjenester-og-produkter/hjelpemidler/kontakt-hjelpemiddelsentralen`,
+  sosialeMedier: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/kontakt-nav-på-chat-facebook-og-twitter/kontakt-nav-pa-facebook-eller-twitter`,
   tekniskBrukerstotte: {
-    selvhjelp: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Teknisk+brukerstotte/hjelp-til-personbruker?kap=398749`,
-    ring: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Relatert+informasjon/kontakt-teknisk-brukerst%C3%B8tte-nav.no`
+    selvhjelp: `${navUrl}/no/nav-og-samfunn/kontakt-nav/teknisk-brukerstotte/hjelp-til-personbruker`,
+    ring: `${navUrl}/no/nav-og-samfunn/kontakt-nav/relatert-informasjon/kontakt-teknisk-brukerstotte-nav.no`
   },
-  presseKontakt: `${navUrl}/no/NAV+og+samfunn/Kontakt+NAV/Presse/Pressekontakt`
+  presseKontakt: `${navUrl}/no/nav-og-samfunn/kontakt-nav/presse/pressekontakt`
 };
 
 export const vars = {
