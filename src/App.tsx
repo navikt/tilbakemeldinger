@@ -23,28 +23,12 @@ import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOss";
 import SkrivTilOssRouter from "./pages/skriv-til-oss/SkrivTilOssRouter";
 import Unleash from "./utils/unleash";
 import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
-import { forsidePath, noRedirectUrlSegment, urls, vars } from "./Config";
+import { forsidePath, urls, vars } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
 import NavFrontendSpinner from "nav-frontend-spinner";
 
-const GammelForsideRedirect = () => {
-  window.location.replace(urls.gammel.forside);
-  return null;
-};
-
-const GammelChatRedirect = () => {
-  window.location.replace(urls.gammel.chat);
-  return null;
-};
-
-const GammelBeskjedRedirect = () => {
-  window.location.replace(urls.gammel.skrivTilOss);
-  return null;
-};
-
 const App = () => {
   const [{ auth }, dispatch] = useStore();
-  const redirectTilGammel = false;
   const [tekniskProblem, setTekniskProblem] = useState(vars.unleash.tekniskProblemDefault);
   const [unleashResponded, setUnleashResponded] = useState(false);
 
@@ -109,22 +93,17 @@ const App = () => {
             <Route
               exact={true}
               path={`(|${forsidePath})`}
-              component={redirectTilGammel ? GammelForsideRedirect : KontaktOssFrontpage}
-            />
-            <Route
-              exact={true}
-              path={`${forsidePath}${noRedirectUrlSegment}`}
               component={KontaktOssFrontpage}
             />
             <Route
               exact={false}
               path={urls.skrivTilOss.forside}
-              component={redirectTilGammel ? GammelBeskjedRedirect : SkrivTilOssRouter}
+              component={SkrivTilOssRouter}
             />
             <Route
               exact={false}
               path={urls.chat.forside}
-              component={redirectTilGammel ? GammelChatRedirect : ChatRouter}
+              component={ChatRouter}
             />
             <Route
               exact={true}
