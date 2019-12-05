@@ -90,17 +90,17 @@ const lenker: LenkepanelData[] = [
     external: true
   },
   {
-    grafanaId: "skrivtiloss.pensjonist",
-    tittelId: "skrivtiloss.pensjonist.lenke.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.pensjonist.lenke.ingress"} />,
-    url: urls.skrivTilOss.pensjonist,
-    external: true
-  },
-  {
     grafanaId: "skrivtiloss.ufor",
     tittelId: "skrivtiloss.ufor.lenke.tittel",
     ingress: <FormattedMessage id={"skrivtiloss.ufor.lenke.ingress"} />,
     url: urls.skrivTilOss.ufor,
+    external: true
+  },
+  {
+    grafanaId: "skrivtiloss.pensjonist",
+    tittelId: "skrivtiloss.pensjonist.lenke.tittel",
+    ingress: <FormattedMessage id={"skrivtiloss.pensjonist.lenke.ingress"} />,
+    url: urls.skrivTilOss.pensjonist,
     external: true
   },
   {
