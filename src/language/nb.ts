@@ -51,7 +51,7 @@ export default {
   "skrivtiloss.syk.lenke.ingress":
     "Sykmeldt, sykepenger, arbeidsavklaringspenger, yrkesskade/ménerstatning.",
 
-  "skrivtiloss.familieogbarn.lenke.tittel": "Familie, barn og familie",
+  "skrivtiloss.familieogbarn.lenke.tittel": "Foreldre, barn og familie",
   "skrivtiloss.familieogbarn.lenke.ingress":
     "Foreldrepenger, overgangsstønad, kontantstøtte, svangerskapspenger, barnetrygd, barnebidrag, pleiepenger.",
 
