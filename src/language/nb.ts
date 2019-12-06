@@ -242,6 +242,7 @@ export default {
   "validering.epost.pakrevd": "E-post er nødvendig",
   "validering.epost.gyldig": "Må være en gyldig e-postadresse",
   "validering.tlf.pakrevd": "Telefonnummer er nødvendig",
+  "validering.klagetype.utdypning.pakrevd": "Du må utdype hva klagen gjelder",
   "validering.feiltype.pakrevd":
     "Du må velge hvilken type feil eller mangel du fant",
   "validering.melding.pakrevd": "Melding er nødvendig",
