@@ -68,6 +68,7 @@ const ServiceKlage = () => {
       const outboundBase: OutboundServiceKlageBase = {
         klagetekst: fields.melding,
         klagetyper: fields.klagetyper,
+        klagetypeUtdypning: fields.klagetypeUtdypning,
         oenskerAaKontaktes: fields.onskerKontakt,
         ...(fields.klagetyper.includes("LOKALT_NAV_KONTOR") && {
           gjelderSosialhjelp: fields.gjelderSosialhjelp
