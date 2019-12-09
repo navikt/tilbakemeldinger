@@ -20,26 +20,26 @@ const ServiceKlageOnskerAaKontaktes = () => {
         return (
           <SkjemaGruppe
             title={intl.formatMessage({
-              id: "felter.onskerkontakt"
+              id: "tilbakemeldinger.serviceklage.form.onskersvar"
             })}
             feil={sjekkForFeil(submitted, errors.onskerKontakt)}
           >
             <Radio
               label={intl.formatMessage({
-                id: "felter.onskerkontakt.ja"
+                id: "tilbakemeldinger.serviceklage.form.onskersvar.ja"
               })}
               name={intl.formatMessage({
-                id: "felter.onskerkontakt.ja"
+                id: "tilbakemeldinger.serviceklage.form.onskersvar.ja"
               })}
               checked={fields.onskerKontakt === true}
               onChange={() => setField({ onskerKontakt: true })}
             />
             <Radio
               label={intl.formatMessage({
-                id: "felter.onskerkontakt.nei"
+                id: "tilbakemeldinger.serviceklage.form.onskersvar.nei"
               })}
               name={intl.formatMessage({
-                id: "felter.onskerkontakt.nei"
+                id: "tilbakemeldinger.serviceklage.form.onskersvar.nei"
               })}
               checked={fields.onskerKontakt === false}
               onChange={() => setField({ onskerKontakt: false })}
