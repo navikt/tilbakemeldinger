@@ -30,6 +30,7 @@ import { sjekkForFeil } from "utils/validators";
 import { triggerHotjar } from "utils/hotjar";
 import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
 import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
+import ServiceKlageTypeUtdypning from "./ServiceKlageTypeUtdypning";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageExtend;
@@ -67,6 +68,7 @@ const ServiceKlage = () => {
       const outboundBase: OutboundServiceKlageBase = {
         klagetekst: fields.melding,
         klagetyper: fields.klagetyper,
+        klagetypeUtdypning: fields.klagetypeUtdypning,
         oenskerAaKontaktes: fields.onskerKontakt,
         ...(fields.klagetyper.includes("LOKALT_NAV_KONTOR") && {
           gjelderSosialhjelp: fields.gjelderSosialhjelp
@@ -255,6 +257,9 @@ const ServiceKlage = () => {
                         checked={fields.klagetyper.includes("ANNET")}
                         onChange={() => toggleklagetyper("ANNET")}
                       />
+                      {fields.klagetyper.includes("ANNET") && (
+                        <ServiceKlageTypeUtdypning />
+                      )}
                     </SkjemaGruppe>
                     {fields.klagetyper.includes("LOKALT_NAV_KONTOR") && (
                       <ServiceKlageGjelderSosialhjelp />
