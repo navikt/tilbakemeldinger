@@ -369,8 +369,6 @@ export default {
   "chat.sosialhjelp.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.ingressKort":
     "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
-  "chat.sosialhjelp.ingress":
-    "<p>Du blir koblet direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 09.00–14.30.</p>",
 
   "chat.okonomi.tittel": "Økonomi og gjeldsrådgivning",
   "chat.okonomi.ingressKort": "Budsjett, økonomi, gjeldsrådgivning.",

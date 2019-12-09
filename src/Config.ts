@@ -151,8 +151,8 @@ export const vars = {
         queueKey: "Q_CHAT_AAP",
       },
       [ChatTema.Sosial]: {
-        configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
-        queueKey: "Q_CHAT_SOSIALE_TJENESTER",
+        configId: "6564b567-b70b-48e1-b2c5-957c0bc624de",
+        queueKey: "Q_CHAT_BOT",
       },
       [ChatTema.Okonomi]: {
         configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
@@ -162,30 +162,6 @@ export const vars = {
     },
     apningsTider: {
       jobbsoker: {
-        [Ukedager.Mandag]: {
-          start: "09:00",
-          end: "14:30",
-        },
-        [Ukedager.Tirsdag]: {
-          start: "09:00",
-          end: "14:30",
-        },
-        [Ukedager.Onsdag]: {
-          start: "09:00",
-          end: "14:30",
-        },
-        [Ukedager.Torsdag]: {
-          start: "09:00",
-          end: "14:30",
-        },
-        [Ukedager.Fredag]: {
-          start: "09:00",
-          end: "14:30",
-        },
-        [Ukedager.Lordag]: null,
-        [Ukedager.Sondag]: null,
-      },
-      sosial: {
         [Ukedager.Mandag]: {
           start: "09:00",
           end: "14:30",
