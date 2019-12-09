@@ -9,7 +9,7 @@ const chatTemaData: ChatTemaData = {
 };
 
 const ChatSosial = () => {
-  return(
+  return (
     <ChatTemaSideBase
       chatTemaData={chatTemaData}
     >
