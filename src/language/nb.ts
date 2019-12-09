@@ -210,6 +210,11 @@ export default {
     "Her kan du klage på servicen du har fått. Du vil få svar innen 3 uker.",
   "tilbakemeldinger.serviceklage.form.tittel": "Klage på service",
   "tilbakemeldinger.serviceklage.form.overskrift": "Send inn klage på service",
+  "tilbakemeldinger.serviceklage.form.onskersvar":
+    "Ønsker du et svar fra oss på serviceklagen?",
+  "tilbakemeldinger.serviceklage.form.onskersvar.ja": "Ja, jeg ønsker et svar",
+  "tilbakemeldinger.serviceklage.form.onskersvar.nei":
+    "Nei, jeg ville bare si ifra",
 
   "tilbakemeldinger.feilogmangler.tittel": "Feil og mangler på nav.no",
   "tilbakemeldinger.feilogmangler.beskrivelse":
