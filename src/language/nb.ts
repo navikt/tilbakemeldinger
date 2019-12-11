@@ -370,7 +370,7 @@ export default {
 
   "chat.familie.tittel": "Foreldre, barn og familie",
   "chat.familie.ingressKort":
-    "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger.",
+    "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger i livets sluttfase.",
 
   "chat.sosialhjelp.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.ingressKort":
