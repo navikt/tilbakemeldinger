@@ -196,7 +196,7 @@ export const vars = {
         },
         [Ukedager.Onsdag]: {
           start: "10:00",
-          end: "15:00",
+          end: "11:00",   // TODO: sett tilbake til 15:00 etter 18.12
         },
         [Ukedager.Torsdag]: {
           start: "10:00",
@@ -212,6 +212,7 @@ export const vars = {
     },
     stengteDager: new Set<string>([
       "25-12-2019",
+      "26-12-2019",
       "01-01-2020",
     ]),
   }
