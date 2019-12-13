@@ -382,6 +382,7 @@ export default {
     "<p>Vi svarer deg på spørsmål om budsjett, økonomi og gjeldsrådgivning. Dine spørsmål blir besvart av erfarne gjeldsrådgivere.</p>" +
     "<p>Vi har ikke tilgang til å se dine utbetalinger, eller personlige opplysninger som gjelder dine saker hos NAV.</p>" +
     "<p>Våre rådgivere er tilgjengelige på hverdager 10.00–15.00 (14.30 torsdager).</p>",
+  "chat.okonomi.tidligstengtvarsel": "Onsdag 18. desember stenger chatten kl. 11.00.",
 
   "chat.eures.tittel": "Spør EURES om jobb og rekruttering i i EØS-området",
   "chat.eures.ingressKort":
