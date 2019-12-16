@@ -28,6 +28,7 @@
     "calidation": "^1.16.2",
     "classnames": "^2.2.6",
     "fetch-mock": "^7.4.0",
+    "intl": "^1.2.5",
     "js-cookie": "^2.2.1",
     "less-plugin-npm-import": "^2.1.0",
     "less-watch-compiler": "^1.14.1",
@@ -71,7 +72,7 @@
     "react-intl": "^3.3.2",
     "react-meta-tags": "^0.7.4",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.1.2",
+    "react-scripts": "^3.3.0",
     "react-select": "^3.0.7",
     "typescript": "3.6.3",
     "unleash-client": "^3.3.1"
