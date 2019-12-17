@@ -1,8 +1,8 @@
 @import (reference) "../../components/ikonpanel/IkonPanelChris.less";
 @import (reference) "../../index.less";
 
-@tilbakemeldinger-farge: #ECEFCC;
-@tekniskfeil-farge: #E7E9E9;
+@tilbakemeldinger-farge: #ecefcc;
+@tekniskfeil-farge: #e7e9e9;
 
 .frontpage {
   @margin-vertical: 1.5rem;
@@ -38,15 +38,11 @@
 
   &__row {
     display: flex;
-    flex-direction: row;
-
-    & > * {
-      flex-grow: 1;
-      flex-shrink: 1;
-      flex-basis: 50%;
-    }
+    width: 100%;
 
     @media @minDesktop {
+      flex-direction: row;
+
       > :not(:last-child) {
         margin-right: @margin-horizontal;
       }
