@@ -25,14 +25,19 @@ const isOpenNow = (apningstider: ApningsTider, helligdager?: Set<string>, timeOf
   return naaTid.isBetween(apner, lukker);
 };
 
-const makeAvvikstiderStrings = (apningstider: ApningsTider, antallDager: number, timeOffsetMs = 0, timeZone = "Europe/Oslo"): Array<DatoTidsrom> => {
+const makeAvvikstiderStrings =
+  (apningstider: ApningsTider, antallDager: number, helligdager?: Set<string>, timeOffsetMs = 0, timeZone = "Europe/Oslo")
+    : Array<DatoTidsrom> => {
   const naaTid = moment().add(timeOffsetMs, "ms").tz(timeZone);
   return range(antallDager).reduce((acc, i) => {
-    const dato = naaTid.add(i, "day").format("DD-MM-YYYY");
+    const dato = naaTid.format("DD-MM-YYYY");
     const avvikstider = apningstider.avviksDatoer[dato];
-    if (avvikstider !== undefined) {
+    if (helligdager && helligdager.has(dato)) {
+      acc.push({dato: dato, tidsrom: null});
+    } else if (avvikstider !== undefined) {
       acc.push({dato: dato, tidsrom: avvikstider});
     }
+    naaTid.add(1, "day");
     return acc;
   }, [] as DatoTidsrom[]);
 };

@@ -185,25 +185,24 @@ export const vars = {
         [Ukedager.Lordag]: null,
         [Ukedager.Sondag]: null,
 
-        avviksDatoer:
-          {
-            "24-12-2019": {
-              start: "08.00",
-              end: "11.30",
-            },
-            "27-12-2019": {
-              start: "10.00",
-              end: "14.30",
-            },
-            "30-01-2020": {
-              start: "10.00",
-              end: "14.30",
-            },
-            "31-01-2020": {
-              start: "10.00",
-              end: "11.30",
-            },
+        avviksDatoer: {
+          "24-12-2019": {
+            start: "08.00",
+            end: "11.30",
           },
+          "27-12-2019": {
+            start: "10.00",
+            end: "14.30",
+          },
+          "30-12-2019": {
+            start: "10.00",
+            end: "14.30",
+          },
+          "31-12-2019": {
+            start: "10.00",
+            end: "11.30",
+          },
+        },
       },
       okonomi: {
         [Ukedager.Mandag]: {
@@ -229,17 +228,16 @@ export const vars = {
         [Ukedager.Lordag]: null,
         [Ukedager.Sondag]: null,
 
-        avviksDatoer:
-          {
-            "18-12-2019": {
-              start: "10.00",
-              end: "11.00",
-            },
-            "24-12-2019": null,
-            "27-12-2019": null,
-            "30-01-2020": null,
-            "31-01-2020": null,
+        avviksDatoer: {
+          "18-12-2019": {
+            start: "10.00",
+            end: "11.00",
           },
+          "24-12-2019": null,
+          "27-12-2019": null,
+          "30-12-2019": null,
+          "31-12-2019": null,
+        },
       },
     },
     helligdager: new Set<string>([
@@ -247,6 +245,6 @@ export const vars = {
       "26-12-2019",
       "01-01-2020",
     ]),
-    visSpesielleTiderForAntallFremtidigeDager: 14,
+    visSpesielleTiderForAntallFremtidigeDager: 30,
   },
 };
