@@ -382,7 +382,6 @@ export default {
     "<p>Vi svarer deg på spørsmål om budsjett, økonomi og gjeldsrådgivning. Dine spørsmål blir besvart av erfarne gjeldsrådgivere.</p>" +
     "<p>Vi har ikke tilgang til å se dine utbetalinger, eller personlige opplysninger som gjelder dine saker hos NAV.</p>" +
     "<p>Våre rådgivere er tilgjengelige på hverdager 10.00–15.00 (14.30 torsdager).</p>",
-  "chat.okonomi.tidligstengtvarsel": "Onsdag 18. desember stenger chatten kl. 11.00.",
 
   "chat.eures.tittel": "Spør EURES om jobb og rekruttering i i EØS-området",
   "chat.eures.ingressKort":
@@ -391,9 +390,13 @@ export default {
     "<p>Arbeidssøker: Spør oss om arbeid og opphold i EU/EØS og Sveits, eller om jobb i Norge hvis du er en" +
     " arbeidssøker fra EU/EØS og Sveits.</p>" +
     "<p>Arbeidsgiver: Spør oss om rekruttering fra EU/EØS og Sveits.</p>" +
-    "<p>Chatten er åpen hver fredag kl. 10.00–13.00 (ikke helligdager) og foregår på Den europeiske" +
-    " jobbmobilitetsportalen.</p>",
+    "<p>Chatten foregår på Den europeiske jobbmobilitetsportalen. Åpningstider varierer fra land til land," +
+    " hovedsaklig ca. 10–14 på fredager.</p>",
 
   "takk.melding": "Meldingen din er sendt",
-  "takk.knapp": "Gå til nav.no"
+  "takk.knapp": "Gå til nav.no",
+
+  "apningstid.avvik": "<p>Avvikende åpningstider:</p>",
+  "apningstid.avvik.stengt": "<p>{dato} - Stengt</p>",
+  "apningstid.avvik.apent": "<p>{dato} - kl. {start}–{end}</p>",
 };

@@ -163,57 +163,90 @@ export const vars = {
     apningsTider: {
       jobbsoker: {
         [Ukedager.Mandag]: {
-          start: "09:00",
-          end: "14:30",
+          start: "09.00",
+          end: "14.30",
         },
         [Ukedager.Tirsdag]: {
-          start: "09:00",
-          end: "14:30",
+          start: "09.00",
+          end: "14.30",
         },
         [Ukedager.Onsdag]: {
-          start: "09:00",
-          end: "14:30",
+          start: "09.00",
+          end: "14.30",
         },
         [Ukedager.Torsdag]: {
-          start: "09:00",
-          end: "14:30",
+          start: "09.00",
+          end: "14.30",
         },
         [Ukedager.Fredag]: {
-          start: "09:00",
-          end: "14:30",
+          start: "09.00",
+          end: "14.30",
         },
         [Ukedager.Lordag]: null,
         [Ukedager.Sondag]: null,
+
+        avviksDatoer:
+          {
+            "24-12-2019": {
+              start: "08.00",
+              end: "11.30",
+            },
+            "27-12-2019": {
+              start: "10.00",
+              end: "14.30",
+            },
+            "30-01-2020": {
+              start: "10.00",
+              end: "14.30",
+            },
+            "31-01-2020": {
+              start: "10.00",
+              end: "11.30",
+            },
+          },
       },
       okonomi: {
         [Ukedager.Mandag]: {
-          start: "10:00",
-          end: "15:00",
+          start: "10.00",
+          end: "15.00",
         },
         [Ukedager.Tirsdag]: {
-          start: "10:00",
-          end: "15:00",
+          start: "10.00",
+          end: "15.00",
         },
         [Ukedager.Onsdag]: {
-          start: "10:00",
-          end: "11:00",   // TODO: sett tilbake til 15:00 etter 18.12
+          start: "10.00",
+          end: "15.00",
         },
         [Ukedager.Torsdag]: {
-          start: "10:00",
-          end: "14:30",
+          start: "10.00",
+          end: "14.30",
         },
         [Ukedager.Fredag]: {
-          start: "10:00",
-          end: "15:00",
+          start: "10.00",
+          end: "15.00",
         },
         [Ukedager.Lordag]: null,
         [Ukedager.Sondag]: null,
+
+        avviksDatoer:
+          {
+            "18-12-2019": {
+              start: "10.00",
+              end: "11.00",
+            },
+            "24-12-2019": null,
+            "27-12-2019": null,
+            "30-01-2020": null,
+            "31-01-2020": null,
+          },
       },
     },
-    stengteDager: new Set<string>([
+    helligdager: new Set<string>([
       "25-12-2019",
       "26-12-2019",
       "01-01-2020",
     ]),
-  }
+    visSpesielleTiderForAntallFremtidigeDager: 14,
+  },
 };

@@ -1,15 +1,19 @@
 import moment from "moment-timezone";
-import { ApningsTider, Ukedager } from "../types/datotid";
+import { range } from "lodash";
+import { ApningsTider, DatoTidsrom, Ukedager } from "../types/datotid";
 
-const isOpenNow = (apningstider: ApningsTider, stengteDager?: Set<string>, timeOffsetMs = 0, timeZone = "Europe/Oslo") => {
+const isOpenNow = (apningstider: ApningsTider, helligdager?: Set<string>, timeOffsetMs = 0, timeZone = "Europe/Oslo") => {
   const naaTid = moment().add(timeOffsetMs, "ms").tz(timeZone);
 
-  if (stengteDager && stengteDager.has(naaTid.format("DD-MM-YYYY"))) {
+  const dato = naaTid.format("DD-MM-YYYY");
+  const avvikstider = apningstider.avviksDatoer[dato];
+
+  if ((helligdager && helligdager.has(dato)) || avvikstider === null) {
     return false;
   }
 
-  const dag = (naaTid.day()) as Ukedager;
-  const dagensApningstid = apningstider[dag];
+  const ukedag = (naaTid.day()) as Ukedager;
+  const dagensApningstid = avvikstider || apningstider[ukedag];
 
   if (!dagensApningstid) {
     return false;
@@ -21,6 +25,19 @@ const isOpenNow = (apningstider: ApningsTider, stengteDager?: Set<string>, timeO
   return naaTid.isBetween(apner, lukker);
 };
 
+const makeAvvikstiderStrings = (apningstider: ApningsTider, antallDager: number, timeOffsetMs = 0, timeZone = "Europe/Oslo"): Array<DatoTidsrom> => {
+  const naaTid = moment().add(timeOffsetMs, "ms").tz(timeZone);
+  return range(antallDager).reduce((acc, i) => {
+    const dato = naaTid.add(i, "day").format("DD-MM-YYYY");
+    const avvikstider = apningstider.avviksDatoer[dato];
+    if (avvikstider !== undefined) {
+      acc.push({dato: dato, tidsrom: avvikstider});
+    }
+    return acc;
+  }, [] as DatoTidsrom[]);
+};
+
 export default {
   isOpenNow,
+  makeAvvikstiderStrings,
 };

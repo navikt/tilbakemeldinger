@@ -10,7 +10,20 @@ export enum Ukedager {
   Lordag,
 }
 
-export type ApningsTider = {[key in Ukedager]: {
+export type DatoTidsrom = {
+  dato: string,
+  tidsrom: Tidsrom
+};
+
+export type Tidsrom =
+{
   start: string,
   end: string,
-} | null};
+} | null;
+
+export interface ApningsTider {
+  [key: number]: Tidsrom;
+  avviksDatoer: {
+    [key: string]: Tidsrom;
+  };
+}
