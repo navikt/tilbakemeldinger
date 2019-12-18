@@ -27,7 +27,7 @@ type AvvikProps = {
 const cssPrefix = "chat-tema";
 
 const ApningstiderAvvik = ({apningstider}: AvvikProps) => {
-  const apningstiderAvvik = apningstider && Apningstider.makeAvvikstiderStrings(
+  const apningstiderAvvik = apningstider && Apningstider.getAvvikstider(
     apningstider,
     vars.chatBot.visSpesielleTiderForAntallFremtidigeDager,
     vars.chatBot.helligdager
