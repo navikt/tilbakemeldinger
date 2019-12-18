@@ -13,7 +13,6 @@ import Apningstider from "../../utils/apningstider";
 import { fetchServerTidOffset } from "../../clients/apiClient";
 import { logEvent } from "../../utils/logger";
 import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
-import { ApningsTider } from "types/datotid";
 
 type ChatTemaProps = {
   chatTemaData: ChatTemaData;
@@ -21,17 +20,13 @@ type ChatTemaProps = {
 };
 
 type AvvikProps = {
-  apningstider: ApningsTider;
+  apningstider: Apningstider;
 };
 
 const cssPrefix = "chat-tema";
 
 const ApningstiderAvvik = ({apningstider}: AvvikProps) => {
-  const apningstiderAvvik = apningstider && Apningstider.getAvvikstider(
-    apningstider,
-    vars.chatBot.visSpesielleTiderForAntallFremtidigeDager,
-    vars.chatBot.helligdager
-  );
+  const apningstiderAvvik = apningstider && apningstider.getAktuelleAvvikstider();
 
   return apningstiderAvvik && (
     <div className={`${cssPrefix}__avvik`}>
@@ -81,11 +76,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
   };
 
   const chatIApningstid = chatTemaData.apningstider
-    ? Apningstider.isOpenNow(
-        chatTemaData.apningstider,
-        vars.chatBot.helligdager,
-        serverTidOffset
-      )
+    ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
     : true;
 
   const chatbotConfig = vars.chatBot.temaConfigs[chatTemaData.chatTema];

@@ -15,15 +15,16 @@ export type DatoTidsrom = {
   tidsrom: Tidsrom
 };
 
-export type Tidsrom =
-{
+export type Tidsrom = {
   start: string,
   end: string,
 } | null;
 
-export interface ApningsTider {
-  [key: number]: Tidsrom;
-  avviksDatoer: {
-    [key: string]: Tidsrom;
-  };
-}
+export type AvviksPeriode = {
+  visFraDato: string,
+  datoer: {[dato: string]: Tidsrom},
+};
+
+export type ApningstiderUke = {
+  [dag in Ukedager]: Tidsrom
+};

@@ -1,4 +1,4 @@
-import { ApningsTider } from "./datotid";
+import ApningsTider from "../utils/apningstider";
 
 export enum ChatTema {
   Familie = "familie",

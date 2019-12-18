@@ -396,7 +396,7 @@ export default {
   "takk.melding": "Meldingen din er sendt",
   "takk.knapp": "Gå til nav.no",
 
-  "apningstid.avvik": "<p>Avvikende åpningstider:</p>",
+  "apningstid.avvik": "<p>Spesielle åpningstider:</p>",
   "apningstid.avvik.stengt": "<p>{dato} - Stengt</p>",
   "apningstid.avvik.apent": "<p>{dato} - kl. {start}–{end}</p>",
 };
