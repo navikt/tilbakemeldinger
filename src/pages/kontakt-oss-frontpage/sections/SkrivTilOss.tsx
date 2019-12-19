@@ -2,10 +2,11 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import IkonPanel from "components/ikonpanel/IkonPanel";
 import { Normaltekst } from "nav-frontend-typografi";
-import { urls, vars } from "Config";
+import { urls, vars, visApningstiderJul } from "Config";
 import ikon from "assets/forside-skrivtiloss-ikon.svg";
 import { logEvent } from "utils/logger";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
+import TidsbestemtVisning from "../../../utils/TidsbestemtVisning";
 
 const SkrivTilOss = () => {
   const tittel = <FormattedMessage id={"kontaktoss.skrivtiloss.tittel"} />;
@@ -19,13 +20,24 @@ const SkrivTilOss = () => {
       <>
         <div>
           <Normaltekst className="svartid">
-            <FormattedMessage
-              id={"kontaktoss.svartiddager"}
-              values={{ antall: vars.svartid.skrivTilOss }}
-            />
+            <TidsbestemtVisning fra={"01-01-2019"} til={visApningstiderJul.fraDato}>
+              <FormattedMessage
+                id={"kontaktoss.svartiddager"}
+                values={{ antall: vars.svartid.skrivTilOss }}
+              />
+            </TidsbestemtVisning>
+            <TidsbestemtVisning fra={visApningstiderJul.fraDato} til={visApningstiderJul.tilDato}>
+              <FormattedMessage id={"apningstid.avvik.skrivtiloss.svartid"} />
+            </TidsbestemtVisning>
+            <TidsbestemtVisning fra={visApningstiderJul.tilDato} til={"01-01-2050"}>
+              <FormattedMessage
+                id={"kontaktoss.svartiddager"}
+                values={{ antall: vars.svartid.skrivTilOss }}
+              />
+            </TidsbestemtVisning>
           </Normaltekst>
           <Normaltekst>
-            <FormattedMessage id={"kontaktoss.skrivtiloss.beskrivelse"} />
+              <FormattedMessage id={"kontaktoss.skrivtiloss.beskrivelse"} />
           </Normaltekst>
         </div>
         <RouterLenke
