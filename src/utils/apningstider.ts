@@ -49,7 +49,7 @@ export default class ApningsTider {
   getAktuelleAvvikstider = (timeOffsetMs: number = 0): Array<DatoTidsrom> => {
     const naaTid = moment().add(timeOffsetMs, "ms").tz(this._timeZone);
 
-    return this.avviksPerioder.reduce((acc, periode, index) => {
+    return this.avviksPerioder.reduce((acc, periode) => {
       if (naaTid.isBefore(moment.tz(periode.visFraDato, "DD-MM-YYYY", this._timeZone))) {
         return acc;
       }
@@ -62,7 +62,9 @@ export default class ApningsTider {
       );
 
       return acc;
-    }, [] as DatoTidsrom[]);
+    }, [] as DatoTidsrom[]).sort(
+      (a: DatoTidsrom, b: DatoTidsrom) =>
+        moment(a.dato, "DD-MM-YYYY").isBefore(moment(b.dato, "DD-MM-YYYY")) ? -1 : 1);
   };
 
   private isTimeInRange = (time: Moment, start: string, end: string, format: string): boolean => {

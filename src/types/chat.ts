@@ -13,6 +13,7 @@ export type ChatTemaData = {
   tittelTekstId: string,
   chatTema: ChatTema,
   apningstider?: ApningsTider,
+  harChatbot?: boolean
 };
 
 export type ChatConfig = {

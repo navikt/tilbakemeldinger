@@ -7,7 +7,8 @@ import { apningsTider } from "../../../Config";
 const chatTemaData: ChatTemaData = {
   tittelTekstId: "chat.okonomi.tittel",
   chatTema: ChatTema.Okonomi,
-  apningstider: apningsTider.okonomi,
+  apningstider: apningsTider[ChatTema.Okonomi],
+  harChatbot: false
 };
 
 const ChatOkonomi = () => {

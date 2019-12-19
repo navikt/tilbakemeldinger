@@ -15,22 +15,25 @@ import { logEvent } from "../../utils/logger";
 import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
 
 type ChatTemaProps = {
-  chatTemaData: ChatTemaData;
-  children: ReactNode;
+  chatTemaData: ChatTemaData,
+  children: ReactNode
 };
 
 type AvvikProps = {
-  apningstider: Apningstider;
+  apningstider: Apningstider,
+  harChatbot?: boolean
 };
 
 const cssPrefix = "chat-tema";
 
-const ApningstiderAvvik = ({apningstider}: AvvikProps) => {
-  const apningstiderAvvik = apningstider && apningstider.getAktuelleAvvikstider();
+const ApningstiderAvvik = ({apningstider, harChatbot = false}: AvvikProps) => {
+  const apningstiderAvvik = apningstider.getAktuelleAvvikstider();
 
-  return apningstiderAvvik && (
+  return apningstiderAvvik.length > 0 ? (
     <div className={`${cssPrefix}__avvik`}>
-      <span className={`${cssPrefix}__avvik-header`}><FormattedMsgMedParagrafer id="apningstid.avvik" /></span>
+      <span className={`${cssPrefix}__avvik-header`}>
+        <FormattedMsgMedParagrafer id={harChatbot ? "apningstid.avvik.chatbot" : "apningstid.avvik"} />
+      </span>
       {apningstiderAvvik.map((datoTidsrom, index) => (
         datoTidsrom.tidsrom ? (
             <FormattedMsgMedParagrafer
@@ -48,7 +51,7 @@ const ApningstiderAvvik = ({apningstider}: AvvikProps) => {
           )
       ))}
     </div>
-  );
+  ) : null;
 };
 
 const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
@@ -78,6 +81,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
   const chatIApningstid = chatTemaData.apningstider
     ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
     : true;
+  const chatErApen = chatIApningstid || chatTemaData.harChatbot;
 
   const chatbotConfig = vars.chatBot.temaConfigs[chatTemaData.chatTema];
 
@@ -92,7 +96,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
             </Systemtittel>
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
-            {!chatIApningstid && (
+            {!chatErApen && (
               <AlertStripeInfo>
                 <FormattedMessage id="chat.stengt.info" />
               </AlertStripeInfo>
@@ -101,7 +105,12 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
               {children}
             </Normaltekst>
           </div>
-          {chatTemaData.apningstider && <ApningstiderAvvik apningstider={chatTemaData.apningstider} />}
+          {chatTemaData.apningstider && (
+            <ApningstiderAvvik
+              apningstider={chatTemaData.apningstider}
+              harChatbot={chatTemaData.harChatbot}
+            />
+          )}
           <div className={`${cssPrefix}__panel-start-knapp`}>
             <Hovedknapp
               htmlType={"button"}
@@ -109,10 +118,10 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
                 logEvent({ event: chatTemaData.chatTema });
                 temaButtonHandlers[chatTemaData.chatTema]();
               }}
-              disabled={!chatIApningstid}
+              disabled={!chatErApen}
             >
               <FormattedMessage
-                id={chatIApningstid ? "chat.knapp.start" : "chat.knapp.stengt"}
+                id={chatErApen ? "chat.knapp.start" : "chat.knapp.stengt"}
               />
             </Hovedknapp>
           </div>

@@ -5,7 +5,8 @@ import FormattedMsgMedParagrafer from "../../../components/intl-msg-med-paragraf
 
 const chatTemaData: ChatTemaData = {
   tittelTekstId: "chat.eures.tittel",
-  chatTema: ChatTema.EURES
+  chatTema: ChatTema.EURES,
+  harChatbot: false
 };
 
 const ChatEURES = () => {

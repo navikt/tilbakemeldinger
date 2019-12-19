@@ -397,6 +397,7 @@ export default {
   "takk.knapp": "Gå til nav.no",
 
   "apningstid.avvik": "<p>Spesielle åpningstider:</p>",
+  "apningstid.avvik.chatbot": "<p>Spesielle åpningstider for veileder (chatbot er døgnåpen):</p>",
   "apningstid.avvik.stengt": "<p>{dato} - Stengt</p>",
   "apningstid.avvik.apent": "<p>{dato} - kl. {start}–{end}</p>",
 };
