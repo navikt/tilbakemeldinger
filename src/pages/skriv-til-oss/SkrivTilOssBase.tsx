@@ -35,7 +35,7 @@ const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
       <div className={`${cssPrefix}__ingress`}>
         {children}
       </div>
-      <TidsbestemtVisning fra={visApningstiderJul.fraDato} til={visApningstiderJul.tilDato}>
+      <TidsbestemtVisning fra={visApningstiderJul.fra} til={visApningstiderJul.til}>
         <AlertStripeInfo className={`${cssPrefix}__varsel`}>
           <FormattedMessage id="apningstid.avvik.skrivtiloss" />
         </AlertStripeInfo>

@@ -1,17 +1,21 @@
 import moment from "moment-timezone";
 import { ApningstiderUke, AvviksPeriode, DatoTidsrom, Tidsrom, Ukedager } from "../types/datotid";
 import { Moment } from "moment-timezone/moment-timezone";
+import { vars } from "../Config";
 
 export default class ApningsTider {
-  constructor(ukedager: ApningstiderUke, avviksPerioder: Array<AvviksPeriode> = [], timeZone: string = "Europe/Oslo") {
+  constructor(ukedager: ApningstiderUke, avviksPerioder: Array<AvviksPeriode> = [], timeZone: string = "Europe/Oslo",
+              datoTidFormat: string = vars.defaultDatoTidFormat) {
     this._ukedager = ukedager;
     this._avviksPerioder = avviksPerioder;
     this._timeZone = timeZone;
+    this._datoTidFormat = datoTidFormat;
   }
 
   private readonly _ukedager: {[dag in Ukedager]: Tidsrom};
   private readonly _avviksPerioder: Array<AvviksPeriode>;
   private readonly _timeZone: string;
+  private readonly _datoTidFormat: string;
 
   get ukedager(): {[dag in Ukedager]: Tidsrom} {
     return this._ukedager;
@@ -23,7 +27,7 @@ export default class ApningsTider {
 
   public isOpenNow = (timeOffsetMs = 0) => {
     const naaTid = moment().add(timeOffsetMs, "ms").tz(this._timeZone);
-    const dato = naaTid.format("DD-MM-YYYY");
+    const dato = naaTid.format(this._datoTidFormat);
 
     for (let i = 0; i < this.avviksPerioder.length; i++) {
       const avviksTidsrom = this.avviksPerioder[i].datoer[dato];
@@ -50,13 +54,13 @@ export default class ApningsTider {
     const naaTid = moment().add(timeOffsetMs, "ms").tz(this._timeZone);
 
     return this.avviksPerioder.reduce((acc, periode) => {
-      if (naaTid.isBefore(moment.tz(periode.visFraDato, "DD-MM-YYYY", this._timeZone))) {
+      if (naaTid.isBefore(moment.tz(periode.visFraDato, this._datoTidFormat, this._timeZone))) {
         return acc;
       }
 
       const datoer = Object.keys(periode.datoer);
       datoer.forEach(dato =>
-        naaTid.isSameOrBefore(moment.tz(dato, "DD-MM-YYYY", this._timeZone), "day")
+        naaTid.isSameOrBefore(moment.tz(dato, "DD-MM-YYYY", this._timeZone))
           ? acc.push({dato: dato, tidsrom: periode.datoer[dato]})
           : null
       );

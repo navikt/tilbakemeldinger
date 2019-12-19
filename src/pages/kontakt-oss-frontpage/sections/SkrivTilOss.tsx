@@ -20,16 +20,16 @@ const SkrivTilOss = () => {
       <>
         <div>
           <Normaltekst className="svartid">
-            <TidsbestemtVisning fra={"01-01-2019"} til={visApningstiderJul.fraDato}>
+            <TidsbestemtVisning fra={"00:00 01-01-2019"} til={visApningstiderJul.fra}>
               <FormattedMessage
                 id={"kontaktoss.svartiddager"}
                 values={{ antall: vars.svartid.skrivTilOss }}
               />
             </TidsbestemtVisning>
-            <TidsbestemtVisning fra={visApningstiderJul.fraDato} til={visApningstiderJul.tilDato}>
+            <TidsbestemtVisning fra={visApningstiderJul.fra} til={visApningstiderJul.til}>
               <FormattedMessage id={"apningstid.avvik.skrivtiloss.svartid"} />
             </TidsbestemtVisning>
-            <TidsbestemtVisning fra={visApningstiderJul.tilDato} til={"01-01-2050"}>
+            <TidsbestemtVisning fra={visApningstiderJul.til} til={"00:00 01-01-2050"}>
               <FormattedMessage
                 id={"kontaktoss.svartiddager"}
                 values={{ antall: vars.svartid.skrivTilOss }}

@@ -1,6 +1,7 @@
 import moment from "moment-timezone";
 import React, { ReactNode } from "react";
 import { unitOfTime } from "moment";
+import { vars } from "../Config";
 
 type Props = {
   fra: string,
@@ -12,7 +13,7 @@ type Props = {
 };
 
 const TidsbestemtVisning = ({ fra, til,
-                                     format = "DD-MM-YYYY",
+                                     format = vars.defaultDatoTidFormat,
                                      granularity, inclusivity,
                                      children}: Props) => {
   const isInTimeRange = moment().isBetween(

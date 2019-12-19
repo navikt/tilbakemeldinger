@@ -19,25 +19,6 @@ interface Varsel {
 /* Viktige meldinger her */
 export const varsler: Varsel[] = [];
 
-const stengteDagerJul = {
-  "25-12-2019": null,
-  "26-12-2019": null,
-  "01-01-2020": null,
-};
-
-const apningstiderJulChatVeileder = {
-  "24-12-2019": {start: "08.00", end: "11.30"},
-  "27-12-2019": {start: "10.00", end: "14.30"},
-  "30-12-2019": {start: "10.00", end: "14.30"},
-  "31-12-2019": {start: "10.00", end: "11.30"},
-  ...stengteDagerJul
-};
-
-export const visApningstiderJul = {
-  fraDato: "18-12-2019",
-  tilDato: "02-01-2020",
-};
-
 export const urls = {
   apningstiderJulTlf: "#",
   baseAppPath: baseAppPath,
@@ -130,6 +111,7 @@ export const urls = {
 };
 
 export const vars = {
+  defaultDatoTidFormat: "HH:mm DD-MM-YYYY",
   maksLengdeMelding: 10000,
   svartid: {
     skrivTilOss: 2,
@@ -184,6 +166,26 @@ export const vars = {
   },
 };
 
+const stengteDagerJul = {
+  "25-12-2019": null,
+  "26-12-2019": null,
+  "01-01-2020": null,
+};
+
+const apningstiderJulChatVeileder = {
+  "24-12-2019": {start: "08.00", end: "11.30"},
+  "27-12-2019": {start: "10.00", end: "14.30"},
+  "30-12-2019": {start: "10.00", end: "14.30"},
+  "31-12-2019": {start: "10.00", end: "11.30"},
+  ...stengteDagerJul
+};
+
+export const visApningstiderJul = {
+  format: vars.defaultDatoTidFormat,
+  fra: "11:00 19-12-2019",
+  til: "06:00 02-01-2020",
+};
+
 export const apningsTider = {
   [ChatTema.Jobbsoker]: new ApningsTider(
     {
@@ -212,7 +214,7 @@ export const apningsTider = {
     },
     [
       {
-        visFraDato: visApningstiderJul.fraDato,
+        visFraDato: visApningstiderJul.fra,
         datoer: apningstiderJulChatVeileder
       },
     ]),
@@ -243,7 +245,7 @@ export const apningsTider = {
     },
     [
       {
-        visFraDato: visApningstiderJul.fraDato,
+        visFraDato: visApningstiderJul.fra,
         datoer: apningstiderJulChatVeileder
       },
     ]),
@@ -274,7 +276,7 @@ export const apningsTider = {
     },
     [
       {
-        visFraDato: visApningstiderJul.fraDato,
+        visFraDato: visApningstiderJul.fra,
         datoer: apningstiderJulChatVeileder
       },
     ]),
@@ -305,7 +307,7 @@ export const apningsTider = {
     },
     [
       {
-        visFraDato: visApningstiderJul.fraDato,
+        visFraDato: visApningstiderJul.fra,
         datoer: apningstiderJulChatVeileder
       },
     ]),
@@ -342,7 +344,7 @@ export const apningsTider = {
         },
       },
       {
-        visFraDato: visApningstiderJul.fraDato,
+        visFraDato: visApningstiderJul.fra,
         datoer: {
           "24-12-2019": null,
           "27-12-2019": null,

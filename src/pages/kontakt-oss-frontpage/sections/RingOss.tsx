@@ -19,7 +19,7 @@ const RingOss = () => {
       <RouterLenke isExternal={true} href={urls.ringOss} onClick={onClick}>
         <FormattedMessage id={"kontaktoss.ringoss.knapp"} />
       </RouterLenke>
-      <TidsbestemtVisning fra={visApningstiderJul.fraDato} til={visApningstiderJul.tilDato}>
+      <TidsbestemtVisning fra={visApningstiderJul.fra} til={visApningstiderJul.til}>
         <RouterLenke isExternal={true} href={urls.apningstiderJulTlf} onClick={onClick}>
           <FormattedMessage id={"apningstid.avvik.ringoss.lenke"} />
         </RouterLenke>
