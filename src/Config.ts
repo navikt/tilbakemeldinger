@@ -20,7 +20,8 @@ interface Varsel {
 export const varsler: Varsel[] = [];
 
 export const urls = {
-  apningstiderJulTlf: "#",
+  apningstiderJulKontaktOss: `https://www.nav.no/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/kontakt-nav-pa-telefon2/_/attachment/download/b81d91fd-66f7-48c6-a6ad-94c39e314bd1:0e16b3f9664e48a91f8d6caef1c0ecf81f6bc59d/Tilgjengelighet%20julen%202019%20kontakt%20oss.pdf`,
+  apningstiderJulTlf: `https://www.nav.no/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/kontakt-nav-pa-telefon2/_/attachment/download/65865361-82fb-4475-92c6-abd5811dd7ea:883d9cfa6c677c98b291b9e9b17eb3c468e534e5/Tilgjengelighet%20julen%202019%20telefon.pdf `,
   baseAppPath: baseAppPath,
   tilbakemeldinger: {
     forside: `${baseAppPath}/tilbakemeldinger`,
