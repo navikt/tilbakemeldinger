@@ -145,7 +145,7 @@ export default {
 
   "kontaktoss.skrivtiloss.tittel": "Skriv til oss",
   "kontaktoss.skrivtiloss.beskrivelse":
-    "Dette er et sikkert alternativ til e-post.",
+    "'Skriv til oss' er et sikkert alternativ til e-post.",
   "kontaktoss.skrivtiloss.knapp": "Logg inn og skriv til oss",
 
   "kontaktoss.kontaktveileder.tittel": "Kontakt din veileder",
@@ -406,7 +406,7 @@ export default {
   "apningstid.avvik.forside.lenke": "se oversikt.",
   "apningstid.avvik.skrivtiloss": "Ring oss gjerne hvis det haster: På grunn av helligdager og" +
     " redusert åpningstid i romjulen vil svartiden i 'Skriv til oss' være inntil 14 dager.",
-  "apningstid.avvik.skrivtiloss.svartid": "Svartid vil variere i julen",
+  "apningstid.avvik.skrivtiloss.svartid": "På grunn av redusert åpningstid i julen, kan svartiden være inntil 14 dager.",
   "apningstid.avvik.ringoss.lenke": "Åpningstider i julen",
 
 };
