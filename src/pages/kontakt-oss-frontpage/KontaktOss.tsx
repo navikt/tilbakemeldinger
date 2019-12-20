@@ -68,7 +68,7 @@ const KontaktOssFrontpage = () => {
           <TidsbestemtVisning fra={visApningstiderJul.fra} til={visApningstiderJul.til}>
             <AlertStripeInfo>
               <FormattedMessage id="apningstid.avvik.forside" />
-              <Lenke href={urls.apningstiderJulKontaktOss}>
+              <Lenke href={urls.apningstiderJul}>
                 <FormattedMessage id="apningstid.avvik.forside.lenke" />
               </Lenke>
             </AlertStripeInfo>
