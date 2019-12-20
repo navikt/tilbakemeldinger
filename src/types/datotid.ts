@@ -10,7 +10,21 @@ export enum Ukedager {
   Lordag,
 }
 
-export type ApningsTider = {[key in Ukedager]: {
+export type DatoTidsrom = {
+  dato: string,
+  tidsrom: Tidsrom
+};
+
+export type Tidsrom = {
   start: string,
   end: string,
-} | null};
+} | null;
+
+export type AvviksPeriode = {
+  visFraDato: string,
+  datoer: {[dato: string]: Tidsrom},
+};
+
+export type ApningstiderUke = {
+  [dag in Ukedager]: Tidsrom
+};

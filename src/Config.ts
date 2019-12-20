@@ -1,6 +1,7 @@
 import Environment from "./Environments";
 import { Ukedager } from "./types/datotid";
 import { ChatTema } from "./types/chat";
+import ApningsTider from "./utils/apningstider";
 
 export const forsidePath = "/person/kontakt-oss";
 export const noRedirectUrlSegment = "/test";
@@ -19,6 +20,8 @@ interface Varsel {
 export const varsler: Varsel[] = [];
 
 export const urls = {
+  apningstiderJulKontaktOss: `https://www.nav.no/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/kontakt-nav-pa-telefon2/_/attachment/download/b81d91fd-66f7-48c6-a6ad-94c39e314bd1:0e16b3f9664e48a91f8d6caef1c0ecf81f6bc59d/Tilgjengelighet%20julen%202019%20kontakt%20oss.pdf`,
+  apningstiderJulTlf: `https://www.nav.no/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/kontakt-nav-pa-telefon2/_/attachment/download/65865361-82fb-4475-92c6-abd5811dd7ea:883d9cfa6c677c98b291b9e9b17eb3c468e534e5/Tilgjengelighet%20julen%202019%20telefon.pdf `,
   baseAppPath: baseAppPath,
   tilbakemeldinger: {
     forside: `${baseAppPath}/tilbakemeldinger`,
@@ -109,6 +112,7 @@ export const urls = {
 };
 
 export const vars = {
+  defaultDatoTidFormat: "HH:mm DD-MM-YYYY",
   maksLengdeMelding: 10000,
   svartid: {
     skrivTilOss: 2,
@@ -160,60 +164,195 @@ export const vars = {
       },
       [ChatTema.EURES]: null,
     },
-    apningsTider: {
-      jobbsoker: {
-        [Ukedager.Mandag]: {
-          start: "09:00",
-          end: "14:30",
-        },
-        [Ukedager.Tirsdag]: {
-          start: "09:00",
-          end: "14:30",
-        },
-        [Ukedager.Onsdag]: {
-          start: "09:00",
-          end: "14:30",
-        },
-        [Ukedager.Torsdag]: {
-          start: "09:00",
-          end: "14:30",
-        },
-        [Ukedager.Fredag]: {
-          start: "09:00",
-          end: "14:30",
-        },
-        [Ukedager.Lordag]: null,
-        [Ukedager.Sondag]: null,
+  },
+};
+
+const stengteDagerJul = {
+  "25-12-2019": null,
+  "26-12-2019": null,
+  "01-01-2020": null,
+};
+
+const apningstiderJulChatVeileder = {
+  "24-12-2019": {start: "08.00", end: "11.30"},
+  "27-12-2019": {start: "10.00", end: "14.30"},
+  "30-12-2019": {start: "10.00", end: "14.30"},
+  "31-12-2019": {start: "10.00", end: "11.30"},
+  ...stengteDagerJul
+};
+
+export const visApningstiderJul = {
+  format: vars.defaultDatoTidFormat,
+  fra: "11:00 20-12-2019",
+  til: "06:00 02-01-2020",
+};
+
+export const apningsTider = {
+  [ChatTema.Jobbsoker]: new ApningsTider(
+    {
+      [Ukedager.Mandag]: {
+        start: "09.00",
+        end: "14.30",
       },
-      okonomi: {
-        [Ukedager.Mandag]: {
-          start: "10:00",
-          end: "15:00",
-        },
-        [Ukedager.Tirsdag]: {
-          start: "10:00",
-          end: "15:00",
-        },
-        [Ukedager.Onsdag]: {
-          start: "10:00",
-          end: "11:00",   // TODO: sett tilbake til 15:00 etter 18.12
-        },
-        [Ukedager.Torsdag]: {
-          start: "10:00",
-          end: "14:30",
-        },
-        [Ukedager.Fredag]: {
-          start: "10:00",
-          end: "15:00",
-        },
-        [Ukedager.Lordag]: null,
-        [Ukedager.Sondag]: null,
+      [Ukedager.Tirsdag]: {
+        start: "09.00",
+        end: "14.30",
       },
+      [Ukedager.Onsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Torsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Fredag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Lordag]: null,
+      [Ukedager.Sondag]: null,
     },
-    stengteDager: new Set<string>([
-      "25-12-2019",
-      "26-12-2019",
-      "01-01-2020",
+    [
+      {
+        visFraDato: visApningstiderJul.fra,
+        datoer: apningstiderJulChatVeileder
+      },
     ]),
-  }
+  [ChatTema.AAP]: new ApningsTider(
+    {
+      [Ukedager.Mandag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Tirsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Onsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Torsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Fredag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Lordag]: null,
+      [Ukedager.Sondag]: null,
+    },
+    [
+      {
+        visFraDato: visApningstiderJul.fra,
+        datoer: apningstiderJulChatVeileder
+      },
+    ]),
+  [ChatTema.Familie]: new ApningsTider(
+    {
+      [Ukedager.Mandag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Tirsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Onsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Torsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Fredag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Lordag]: null,
+      [Ukedager.Sondag]: null,
+    },
+    [
+      {
+        visFraDato: visApningstiderJul.fra,
+        datoer: apningstiderJulChatVeileder
+      },
+    ]),
+  [ChatTema.Sosial]: new ApningsTider(
+    {
+      [Ukedager.Mandag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Tirsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Onsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Torsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Fredag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Lordag]: null,
+      [Ukedager.Sondag]: null,
+    },
+    [
+      {
+        visFraDato: visApningstiderJul.fra,
+        datoer: apningstiderJulChatVeileder
+      },
+    ]),
+  [ChatTema.Okonomi]: new ApningsTider(
+    {
+      [Ukedager.Mandag]: {
+        start: "10.00",
+        end: "15.00",
+      },
+      [Ukedager.Tirsdag]: {
+        start: "10.00",
+        end: "15.00",
+      },
+      [Ukedager.Onsdag]: {
+        start: "10.00",
+        end: "15.00",
+      },
+      [Ukedager.Torsdag]: {
+        start: "10.00",
+        end: "14.30",
+      },
+      [Ukedager.Fredag]: {
+        start: "10.00",
+        end: "15.00",
+      },
+      [Ukedager.Lordag]: null,
+      [Ukedager.Sondag]: null,
+    },
+    [
+      {
+        visFraDato: "16-12-2019",
+        datoer: {
+          "18-12-2019": {start: "10.00", end: "11.00"},
+        },
+      },
+      {
+        visFraDato: visApningstiderJul.fra,
+        datoer: {
+          "24-12-2019": null,
+          "27-12-2019": null,
+          "30-12-2019": null,
+          "31-12-2019": null,
+          ...stengteDagerJul
+        }
+      }
+    ]),
 };
