@@ -100,6 +100,7 @@ export default {
   "kontaktoss.svartiddager": "Svartid: {antall} arbeidsdager",
 
   "kontaktoss.chat.tittel": "Chat med oss",
+  "kontaktoss.chat.ingress": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg.",
   "kontaktoss.chat.beskrivelse":
     "På chat kan vi ikke svare på saken din, men vi hjelper deg gjerne med generelle spørsmål.",
   "kontaktoss.chat.knapp": "Chat med oss",
@@ -353,6 +354,7 @@ export default {
 
   "chat.stengt.info": "Chatten er stengt, se åpningstider under.",
   "chat.advarsel.personvern":
+    "<p>Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring.</p>" +
     "<p>Chatten er ikke innlogget. Husk at du ikke kan skrive personlig informasjon som navn, personnummer eller" +
     " helseforhold.</p>",
   "chat.chatbotinfo":
@@ -382,7 +384,6 @@ export default {
     "<p>Vi svarer deg på spørsmål om budsjett, økonomi og gjeldsrådgivning. Dine spørsmål blir besvart av erfarne gjeldsrådgivere.</p>" +
     "<p>Vi har ikke tilgang til å se dine utbetalinger, eller personlige opplysninger som gjelder dine saker hos NAV.</p>" +
     "<p>Våre rådgivere er tilgjengelige på hverdager 10.00–15.00 (14.30 torsdager).</p>",
-  "chat.okonomi.tidligstengtvarsel": "Onsdag 18. desember stenger chatten kl. 11.00.",
 
   "chat.eures.tittel": "Spør EURES om jobb og rekruttering i i EØS-området",
   "chat.eures.ingressKort":
@@ -391,9 +392,21 @@ export default {
     "<p>Arbeidssøker: Spør oss om arbeid og opphold i EU/EØS og Sveits, eller om jobb i Norge hvis du er en" +
     " arbeidssøker fra EU/EØS og Sveits.</p>" +
     "<p>Arbeidsgiver: Spør oss om rekruttering fra EU/EØS og Sveits.</p>" +
-    "<p>Chatten er åpen hver fredag kl. 10.00–13.00 (ikke helligdager) og foregår på Den europeiske" +
-    " jobbmobilitetsportalen.</p>",
+    "<p>Chatten foregår på Den europeiske jobbmobilitetsportalen. Åpningstider varierer fra land til land," +
+    " hovedsaklig ca. 10–14 på fredager.</p>",
 
   "takk.melding": "Meldingen din er sendt",
-  "takk.knapp": "Gå til nav.no"
+  "takk.knapp": "Gå til nav.no",
+
+  "apningstid.avvik": "<p>Spesielle åpningstider i julen:</p>",
+  "apningstid.avvik.chatbot": "<p>Chatbot er døgnåpen. For veileder gjelder spesielle åpningstider i julen:</p>",
+  "apningstid.avvik.stengt": "<p>{dato} - Stengt</p>",
+  "apningstid.avvik.apent": "<p>{dato} - kl. {start}–{end}</p>",
+  "apningstid.avvik.forside": "Åpningstidene avviker i julen, ",
+  "apningstid.avvik.forside.lenke": "se oversikt.",
+  "apningstid.avvik.skrivtiloss": "Ring oss gjerne hvis det haster: På grunn av helligdager og" +
+    " redusert åpningstid i romjulen vil svartiden i 'Skriv til oss' være inntil 14 dager.",
+  "apningstid.avvik.skrivtiloss.svartid": "Svartid vil variere i julen",
+  "apningstid.avvik.ringoss.lenke": "Åpningstider i julen",
+
 };

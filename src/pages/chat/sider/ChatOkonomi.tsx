@@ -2,12 +2,13 @@ import React from "react";
 import ChatTemaSideBase from "../ChatTemasideBase";
 import { ChatTema, ChatTemaData } from "../../../types/chat";
 import FormattedMsgMedParagrafer from "../../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
-import { vars } from "../../../Config";
+import { apningsTider } from "../../../Config";
 
 const chatTemaData: ChatTemaData = {
   tittelTekstId: "chat.okonomi.tittel",
   chatTema: ChatTema.Okonomi,
-  apningstider: vars.chatBot.apningsTider.okonomi,
+  apningstider: apningsTider[ChatTema.Okonomi],
+  harChatbot: false
 };
 
 const ChatOkonomi = () => {
@@ -17,8 +18,6 @@ const ChatOkonomi = () => {
     >
       <>
         <FormattedMsgMedParagrafer id={"chat.okonomi.ingress"} />
-        <b><FormattedMsgMedParagrafer id={"chat.okonomi.tidligstengtvarsel"} /></b>
-        <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
       </>
     </ChatTemaSideBase>
   );

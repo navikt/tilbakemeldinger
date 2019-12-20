@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { Systemtittel } from "nav-frontend-typografi";
+import { Systemtittel, Normaltekst } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import ChatbotWrapper from "./ChatbotWrapper";
 import { ChatTema, ChatTemaData } from "../../types/chat";
@@ -9,13 +9,14 @@ import { Hovedknapp } from "nav-frontend-knapper";
 import { urls, vars } from "../../Config";
 import PanelBase from "nav-frontend-paneler";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
-import Apningstider from "../../utils/apningstider";
 import { fetchServerTidOffset } from "../../clients/apiClient";
 import { logEvent } from "../../utils/logger";
+import ApningstiderAvvik from "../../components/apningstider/ApningstiderAvvik";
+import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
 
 type ChatTemaProps = {
-  chatTemaData: ChatTemaData;
-  children: ReactNode;
+  chatTemaData: ChatTemaData,
+  children: ReactNode
 };
 
 const cssPrefix = "chat-tema";
@@ -45,12 +46,9 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
   };
 
   const chatIApningstid = chatTemaData.apningstider
-    ? Apningstider.isOpenNow(
-        chatTemaData.apningstider,
-        vars.chatBot.stengteDager,
-        serverTidOffset
-      )
+    ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
     : true;
+  const chatErApen = chatIApningstid || chatTemaData.harChatbot;
 
   const chatbotConfig = vars.chatBot.temaConfigs[chatTemaData.chatTema];
 
@@ -65,13 +63,22 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
             </Systemtittel>
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
-            {!chatIApningstid && (
+            {!chatErApen && (
               <AlertStripeInfo>
-                <FormattedMessage id={"chat.stengt.info"} />
+                <FormattedMessage id="chat.stengt.info" />
               </AlertStripeInfo>
             )}
-            {children}
+            <Normaltekst>
+              {children}
+              <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
+            </Normaltekst>
           </div>
+          {chatTemaData.apningstider && (
+            <ApningstiderAvvik
+              apningstider={chatTemaData.apningstider}
+              harChatbot={chatTemaData.harChatbot}
+            />
+          )}
           <div className={`${cssPrefix}__panel-start-knapp`}>
             <Hovedknapp
               htmlType={"button"}
@@ -79,10 +86,10 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
                 logEvent({ event: chatTemaData.chatTema });
                 temaButtonHandlers[chatTemaData.chatTema]();
               }}
-              disabled={!chatIApningstid}
+              disabled={!chatErApen}
             >
               <FormattedMessage
-                id={chatIApningstid ? "chat.knapp.start" : "chat.knapp.stengt"}
+                id={chatErApen ? "chat.knapp.start" : "chat.knapp.stengt"}
               />
             </Hovedknapp>
           </div>
