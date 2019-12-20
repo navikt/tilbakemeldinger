@@ -13,6 +13,7 @@ import Apningstider from "../../utils/apningstider";
 import { fetchServerTidOffset } from "../../clients/apiClient";
 import { logEvent } from "../../utils/logger";
 import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
+import moment from "moment-timezone";
 
 type ChatTemaProps = {
   chatTemaData: ChatTemaData,
@@ -28,6 +29,7 @@ const cssPrefix = "chat-tema";
 
 const ApningstiderAvvik = ({apningstider, harChatbot = false}: AvvikProps) => {
   const apningstiderAvvik = apningstider.getAktuelleAvvikstider();
+  const datoFormat = (dato: string) => moment(dato, "DD-MM-YYYY").format("DD.MM.");
 
   return apningstiderAvvik.length > 0 ? (
     <div className={`${cssPrefix}__avvik`}>
@@ -38,14 +40,14 @@ const ApningstiderAvvik = ({apningstider, harChatbot = false}: AvvikProps) => {
         datoTidsrom.tidsrom ? (
             <FormattedMsgMedParagrafer
               id="apningstid.avvik.apent"
-              values={{dato: datoTidsrom.dato, start: datoTidsrom.tidsrom.start, end: datoTidsrom.tidsrom.end}}
+              values={{dato: datoFormat(datoTidsrom.dato), start: datoTidsrom.tidsrom.start, end: datoTidsrom.tidsrom.end}}
               key={`tid${index}`}
             />
           )
           : (
             <FormattedMsgMedParagrafer
               id="apningstid.avvik.stengt"
-              values={{dato: datoTidsrom.dato}}
+              values={{dato: datoFormat(datoTidsrom.dato)}}
               key={`tid${index}`}
             />
           )

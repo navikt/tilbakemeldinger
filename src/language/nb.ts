@@ -396,15 +396,15 @@ export default {
   "takk.melding": "Meldingen din er sendt",
   "takk.knapp": "Gå til nav.no",
 
-  "apningstid.avvik": "<p>Spesielle åpningstider:</p>",
-  "apningstid.avvik.chatbot": "<p>Spesielle åpningstider for veileder (chatbot er døgnåpen):</p>",
+  "apningstid.avvik": "<p>Spesielle åpningstider i julen:</p>",
+  "apningstid.avvik.chatbot": "<p>Chatbot er døgnåpen. For veileder gjelder spesielle åpningstider i julen:</p>",
   "apningstid.avvik.stengt": "<p>{dato} - Stengt</p>",
   "apningstid.avvik.apent": "<p>{dato} - kl. {start}–{end}</p>",
   "apningstid.avvik.forside": "Åpningstidene avviker i julen, ",
-  "apningstid.avvik.forside.lenke": "se oversikt for perioden 24. desember til og med 1. januar.",
-  "apningstid.avvik.skrivtiloss": "Hvis henvendelsen din haster ber vi deg ringe oss. På grunn av helligdager og" +
-    " redusert åpningstid i romjulen vil svartiden være inntil 14 dager.",
-  "apningstid.avvik.skrivtiloss.svartid": "Svartid: inntil 14 dager",
-  "apningstid.avvik.ringoss.lenke": "Åpningstider for julen 2019",
+  "apningstid.avvik.forside.lenke": "se oversikt.",
+  "apningstid.avvik.skrivtiloss": "Ring oss gjerne hvis det haster: På grunn av helligdager og" +
+    " redusert åpningstid i romjulen vil svartiden i \'Skriv til oss\' være inntil 14 dager.",
+  "apningstid.avvik.skrivtiloss.svartid": "Svartid vil variere i julen",
+  "apningstid.avvik.ringoss.lenke": "Åpningstider i julen",
 
 };
