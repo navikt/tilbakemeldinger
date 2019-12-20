@@ -100,6 +100,7 @@ export default {
   "kontaktoss.svartiddager": "Svartid: {antall} arbeidsdager",
 
   "kontaktoss.chat.tittel": "Chat med oss",
+  "kontaktoss.chat.ingress": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg.",
   "kontaktoss.chat.beskrivelse":
     "På chat kan vi ikke svare på saken din, men vi hjelper deg gjerne med generelle spørsmål.",
   "kontaktoss.chat.knapp": "Chat med oss",
