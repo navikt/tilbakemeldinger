@@ -403,7 +403,7 @@ export default {
   "apningstid.avvik.forside": "Åpningstidene avviker i julen, ",
   "apningstid.avvik.forside.lenke": "se oversikt.",
   "apningstid.avvik.skrivtiloss": "Ring oss gjerne hvis det haster: På grunn av helligdager og" +
-    " redusert åpningstid i romjulen vil svartiden i \'Skriv til oss\' være inntil 14 dager.",
+    " redusert åpningstid i romjulen vil svartiden i 'Skriv til oss' være inntil 14 dager.",
   "apningstid.avvik.skrivtiloss.svartid": "Svartid vil variere i julen",
   "apningstid.avvik.ringoss.lenke": "Åpningstider i julen",
 
