@@ -353,6 +353,7 @@ export default {
 
   "chat.stengt.info": "Chatten er stengt, se åpningstider under.",
   "chat.advarsel.personvern":
+    "<p>Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring.</p>" +
     "<p>Chatten er ikke innlogget. Husk at du ikke kan skrive personlig informasjon som navn, personnummer eller" +
     " helseforhold.</p>",
   "chat.chatbotinfo":

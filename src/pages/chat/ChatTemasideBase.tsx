@@ -12,6 +12,7 @@ import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import { fetchServerTidOffset } from "../../clients/apiClient";
 import { logEvent } from "../../utils/logger";
 import ApningstiderAvvik from "../../components/apningstider/ApningstiderAvvik";
+import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
 
 type ChatTemaProps = {
   chatTemaData: ChatTemaData,
@@ -69,6 +70,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
             )}
             <Normaltekst>
               {children}
+              <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
             </Normaltekst>
           </div>
           {chatTemaData.apningstider && (

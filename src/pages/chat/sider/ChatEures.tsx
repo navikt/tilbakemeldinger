@@ -16,7 +16,6 @@ const ChatEURES = () => {
     >
       <>
         <FormattedMsgMedParagrafer id={"chat.eures.ingress"} />
-        <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
       </>
     </ChatTemaSideBase>
   );

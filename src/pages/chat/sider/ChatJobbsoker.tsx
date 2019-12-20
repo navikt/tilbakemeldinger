@@ -18,7 +18,6 @@ const ChatJobbsoker = () => {
     >
       <>
         <FormattedMsgMedParagrafer id={"chat.jobbsoker.ingress"} />
-        <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
       </>
     </ChatTemaSideBase>
   );

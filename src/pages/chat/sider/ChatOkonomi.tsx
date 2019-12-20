@@ -18,7 +18,6 @@ const ChatOkonomi = () => {
     >
       <>
         <FormattedMsgMedParagrafer id={"chat.okonomi.ingress"} />
-        <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
       </>
     </ChatTemaSideBase>
   );
