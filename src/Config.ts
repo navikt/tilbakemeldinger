@@ -183,7 +183,7 @@ const apningstiderJulChatVeileder = {
 
 export const visApningstiderJul = {
   format: vars.defaultDatoTidFormat,
-  fra: "09:00 20-12-2019",
+  fra: "11:00 20-12-2019",
   til: "06:00 02-01-2020",
 };
 
