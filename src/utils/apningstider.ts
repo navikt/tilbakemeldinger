@@ -27,7 +27,7 @@ export default class ApningsTider {
 
   public isOpenNow = (timeOffsetMs = 0) => {
     const naaTid = moment().add(timeOffsetMs, "ms").tz(this._timeZone);
-    const dato = naaTid.format(this._datoTidFormat);
+    const dato = naaTid.format("DD-MM-YYYY");
 
     for (let i = 0; i < this.avviksPerioder.length; i++) {
       const avviksTidsrom = this.avviksPerioder[i].datoer[dato];
@@ -60,7 +60,7 @@ export default class ApningsTider {
 
       const datoer = Object.keys(periode.datoer);
       datoer.forEach(dato =>
-        naaTid.isSameOrBefore(moment.tz(dato, "DD-MM-YYYY", this._timeZone))
+        naaTid.isSameOrBefore(moment.tz(dato, "DD-MM-YYYY", this._timeZone), "day")
           ? acc.push({dato: dato, tidsrom: periode.datoer[dato]})
           : null
       );
