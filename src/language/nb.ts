@@ -302,7 +302,7 @@ export default {
   "felter.hvemfra": "Hvem skriver du på vegne av?",
   "felter.hvemfra.megselv": "Meg selv som privatperson",
   "felter.hvemfra.enannen": "På vegne av en annen privatperson",
-  "felter.hvemfra.virksomhet": "På vegne av en virksomhet",
+  "felter.hvemfra.virksomhet": "Arbeidsgiver eller samarbeidspartner",
   "felter.onskerkontakt": "Ønsker du at vi kontakter deg?",
   "felter.onskerkontakt.ja": "Ja, jeg ønsker å kontaktes",
   "felter.onskerkontakt.nei": "Nei, jeg ville bare si ifra",
