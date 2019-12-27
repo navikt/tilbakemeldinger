@@ -100,7 +100,8 @@ export default {
   "kontaktoss.svartiddager": "Svartid: {antall} arbeidsdager",
 
   "kontaktoss.chat.tittel": "Chat med oss",
-  "kontaktoss.chat.ingress": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg.",
+  "kontaktoss.chat.ingress":
+    "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg.",
   "kontaktoss.chat.beskrivelse":
     "På chat kan vi ikke svare på saken din, men vi hjelper deg gjerne med generelle spørsmål.",
   "kontaktoss.chat.knapp": "Chat med oss",
@@ -167,7 +168,7 @@ export default {
   "kontaktoss.tolketjenesten.link":
     "Kontakt tolketjenesten for døve, døvblinde og hørselshemmede",
   "kontaktoss.tolketjenesten.link.spraktolk":
-    "Språktolk til veiledningssamtaler",
+    "Språktolk til samtale med veileder",
 
   "kontaktoss.klage.tittel": "Klage og tilbakemeldinger",
   "kontaktoss.klage.beskrivelse":
@@ -399,14 +400,16 @@ export default {
   "takk.knapp": "Gå til nav.no",
 
   "apningstid.avvik": "<p>Spesielle åpningstider i julen:</p>",
-  "apningstid.avvik.chatbot": "<p>Chatbot er døgnåpen. For veileder gjelder spesielle åpningstider i julen:</p>",
+  "apningstid.avvik.chatbot":
+    "<p>Chatbot er døgnåpen. For veileder gjelder spesielle åpningstider i julen:</p>",
   "apningstid.avvik.stengt": "<p>{dato} - Stengt</p>",
   "apningstid.avvik.apent": "<p>{dato} - kl. {start}–{end}</p>",
   "apningstid.avvik.forside": "Åpningstidene avviker i julen, ",
   "apningstid.avvik.forside.lenke": "se oversikt.",
-  "apningstid.avvik.skrivtiloss": "Ring oss gjerne hvis det haster: På grunn av helligdager og" +
+  "apningstid.avvik.skrivtiloss":
+    "Ring oss gjerne hvis det haster: På grunn av helligdager og" +
     " redusert åpningstid i romjulen vil svartiden i 'Skriv til oss' være inntil 14 dager.",
-  "apningstid.avvik.skrivtiloss.svartid": "På grunn av redusert åpningstid i julen, kan svartiden være inntil 14 dager.",
-  "apningstid.avvik.ringoss.lenke": "Åpningstider i julen",
-
+  "apningstid.avvik.skrivtiloss.svartid":
+    "På grunn av redusert åpningstid i julen, kan svartiden være inntil 14 dager.",
+  "apningstid.avvik.ringoss.lenke": "Åpningstider i julen"
 };
