@@ -14,40 +14,8 @@ const svartidName = vars.unleash.langSvartidName;
 const enabledName = vars.unleash.skrivTilOssEnabledName;
 const enabledDefault = vars.unleash.skrivTilOssEnabledDefault;
 
-// TODO: Unleash toggle skal skjule lenker
-
 const Ingress = () => {
   const intl = useIntl();
-
-  const [unleashResponded, setUnleashResponded] = useState(false);
-  const [skrivTilOssEnabled, setSkrivTilOssEnabled] = useState(enabledDefault);
-
-  useEffect(() => {
-    Unleash.getFeatureToggleStatusMultiple(
-      [svartidName, enabledName],
-      (unleashToggles, error) => {
-        setUnleashResponded(true);
-        if (error) {
-          console.log(`Unleash error: ${error}`);
-          return;
-        }
-
-        setSkrivTilOssEnabled(unleashToggles[enabledName]);
-      }
-    );
-  }, []);
-
-  if (!unleashResponded) {
-    return <NavFrontendSpinner negativ={true} />;
-  }
-
-  if (!skrivTilOssEnabled) {
-    return (
-      <AlertStripe type="advarsel">
-        <FormattedMessage id={"skrivtiloss.disabled"} />
-      </AlertStripe>
-    );
-  }
 
   return (
     <>
@@ -111,10 +79,42 @@ const lenker: LenkepanelData[] = [
   }
 ];
 
-const SkrivTilOssForside = () => (
-  <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenker={lenker}>
-    <Ingress />
-  </SkrivTilOssBase>
-);
+const SkrivTilOssForside = () => {
+  const [unleashResponded, setUnleashResponded] = useState(false);
+  const [skrivTilOssEnabled, setSkrivTilOssEnabled] = useState(enabledDefault);
+
+  useEffect(() => {
+    Unleash.getFeatureToggleStatusMultiple(
+      [svartidName, enabledName],
+      (unleashToggles, error) => {
+        setUnleashResponded(true);
+        if (error) {
+          console.log(`Unleash error: ${error}`);
+          return;
+        }
+
+        setSkrivTilOssEnabled(unleashToggles[enabledName]);
+      }
+    );
+  }, []);
+
+  if (!unleashResponded) {
+    return <NavFrontendSpinner negativ={true} />;
+  }
+
+  if (!skrivTilOssEnabled) {
+    return (
+      <AlertStripe type="advarsel">
+        <FormattedMessage id={"skrivtiloss.disabled"} />
+      </AlertStripe>
+    );
+  }
+
+  return (
+    <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenker={lenker}>
+      <Ingress />
+    </SkrivTilOssBase>
+  );
+};
 
 export default SkrivTilOssForside;

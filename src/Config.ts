@@ -20,7 +20,6 @@ interface Varsel {
 export const varsler: Varsel[] = [];
 
 export const urls = {
-  apningstiderJul: `https://www.nav.no/no/person/innhold-til-person-forside/apningstider-i-julen`,
   baseAppPath: baseAppPath,
   tilbakemeldinger: {
     forside: `${baseAppPath}/tilbakemeldinger`,
@@ -112,6 +111,7 @@ export const urls = {
 
 export const vars = {
   defaultDatoTidFormat: "HH:mm DD-MM-YYYY",
+  defaultDatoFormat: "DD-MM-YYYY",
   maksLengdeMelding: 10000,
   svartid: {
     skrivTilOss: 2,
@@ -166,26 +166,6 @@ export const vars = {
   },
 };
 
-const stengteDagerJul = {
-  "25-12-2019": null,
-  "26-12-2019": null,
-  "01-01-2020": null,
-};
-
-const apningstiderJulChatVeileder = {
-  "24-12-2019": {start: "08.00", end: "11.30"},
-  "27-12-2019": {start: "10.00", end: "14.30"},
-  "30-12-2019": {start: "10.00", end: "14.30"},
-  "31-12-2019": {start: "10.00", end: "11.30"},
-  ...stengteDagerJul
-};
-
-export const visApningstiderJul = {
-  format: vars.defaultDatoTidFormat,
-  fra: "11:00 20-12-2019",
-  til: "06:00 02-01-2020",
-};
-
 export const apningsTider = {
   [ChatTema.Jobbsoker]: new ApningsTider(
     {
@@ -211,13 +191,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    },
-    [
-      {
-        visFraDato: visApningstiderJul.fra,
-        datoer: apningstiderJulChatVeileder
-      },
-    ]),
+    }),
   [ChatTema.AAP]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -242,13 +216,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    },
-    [
-      {
-        visFraDato: visApningstiderJul.fra,
-        datoer: apningstiderJulChatVeileder
-      },
-    ]),
+    }),
   [ChatTema.Familie]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -273,13 +241,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    },
-    [
-      {
-        visFraDato: visApningstiderJul.fra,
-        datoer: apningstiderJulChatVeileder
-      },
-    ]),
+    }),
   [ChatTema.Sosial]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -304,13 +266,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    },
-    [
-      {
-        visFraDato: visApningstiderJul.fra,
-        datoer: apningstiderJulChatVeileder
-      },
-    ]),
+    }),
   [ChatTema.Okonomi]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -335,23 +291,5 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    },
-    [
-      {
-        visFraDato: "16-12-2019",
-        datoer: {
-          "18-12-2019": {start: "10.00", end: "11.00"},
-        },
-      },
-      {
-        visFraDato: visApningstiderJul.fra,
-        datoer: {
-          "24-12-2019": null,
-          "27-12-2019": null,
-          "30-12-2019": null,
-          "31-12-2019": null,
-          ...stengteDagerJul
-        }
-      }
-    ]),
+    }),
 };
