@@ -27,7 +27,7 @@ export default class ApningsTider {
 
   public isOpenNow = (timeOffsetMs = 0) => {
     const naaTid = moment().add(timeOffsetMs, "ms").tz(this._timeZone);
-    const dato = naaTid.format("DD-MM-YYYY");
+    const dato = naaTid.format(vars.defaultDatoFormat);
 
     for (let i = 0; i < this.avviksPerioder.length; i++) {
       const avviksTidsrom = this.avviksPerioder[i].datoer[dato];
@@ -60,7 +60,7 @@ export default class ApningsTider {
 
       const datoer = Object.keys(periode.datoer);
       datoer.forEach(dato =>
-        naaTid.isSameOrBefore(moment.tz(dato, "DD-MM-YYYY", this._timeZone), "day")
+        naaTid.isSameOrBefore(moment.tz(dato, vars.defaultDatoFormat, this._timeZone), "day")
           ? acc.push({dato: dato, tidsrom: periode.datoer[dato]})
           : null
       );
@@ -68,7 +68,7 @@ export default class ApningsTider {
       return acc;
     }, [] as DatoTidsrom[]).sort(
       (a: DatoTidsrom, b: DatoTidsrom) =>
-        moment(a.dato, "DD-MM-YYYY").isBefore(moment(b.dato, "DD-MM-YYYY")) ? -1 : 1);
+        moment(a.dato, vars.defaultDatoFormat).isBefore(moment(b.dato, vars.defaultDatoFormat)) ? -1 : 1);
   };
 
   private isTimeInRange = (time: Moment, start: string, end: string, format: string): boolean => {
