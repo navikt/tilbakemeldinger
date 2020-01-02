@@ -17,9 +17,8 @@ import KontaktVeileder from "./sections/KontaktVeileder";
 import Pressekontakt from "./sections/Pressekontakt";
 import SosialeMedier from "./sections/SosialeMedier";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
-import { urls, varsler, visApningstiderJul } from "Config";
+import { varsler } from "Config";
 import Lenke from "nav-frontend-lenker";
-import TidsbestemtVisning from "../../utils/TidsbestemtVisning";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
@@ -65,14 +64,6 @@ const KontaktOssFrontpage = () => {
               )}
             </AlertStripeInfo>
           ))}
-          <TidsbestemtVisning fra={visApningstiderJul.fra} til={visApningstiderJul.til}>
-            <AlertStripeInfo>
-              <FormattedMessage id="apningstid.avvik.forside" />
-              <Lenke href={urls.apningstiderJul}>
-                <FormattedMessage id="apningstid.avvik.forside.lenke" />
-              </Lenke>
-            </AlertStripeInfo>
-          </TidsbestemtVisning>
           <div className="frontpage__content">
             <Chat />
             <div className="frontpage__row">

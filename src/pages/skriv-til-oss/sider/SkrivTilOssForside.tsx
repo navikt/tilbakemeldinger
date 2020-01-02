@@ -14,57 +14,6 @@ const svartidName = vars.unleash.langSvartidName;
 const enabledName = vars.unleash.skrivTilOssEnabledName;
 const enabledDefault = vars.unleash.skrivTilOssEnabledDefault;
 
-// TODO: Unleash toggle skal skjule lenker
-
-const Ingress = () => {
-  const intl = useIntl();
-
-  const [unleashResponded, setUnleashResponded] = useState(false);
-  const [skrivTilOssEnabled, setSkrivTilOssEnabled] = useState(enabledDefault);
-
-  useEffect(() => {
-    Unleash.getFeatureToggleStatusMultiple(
-      [svartidName, enabledName],
-      (unleashToggles, error) => {
-        setUnleashResponded(true);
-        if (error) {
-          console.log(`Unleash error: ${error}`);
-          return;
-        }
-
-        setSkrivTilOssEnabled(unleashToggles[enabledName]);
-      }
-    );
-  }, []);
-
-  if (!unleashResponded) {
-    return <NavFrontendSpinner negativ={true} />;
-  }
-
-  if (!skrivTilOssEnabled) {
-    return (
-      <AlertStripe type="advarsel">
-        <FormattedMessage id={"skrivtiloss.disabled"} />
-      </AlertStripe>
-    );
-  }
-
-  return (
-    <>
-      <MetaTags>
-        <title>{intl.messages["skrivtiloss.tittel"]}</title>
-        <meta
-          name="description"
-          content={intl.messages["skrivtiloss.description"] as string}
-        />
-      </MetaTags>
-      <Normaltekst>
-        <FormattedMessage id="skrivtiloss.ingress" />
-      </Normaltekst>
-    </>
-  );
-};
-
 const lenker: LenkepanelData[] = [
   {
     grafanaId: "skrivtiloss.arbeidssoker",
@@ -111,10 +60,63 @@ const lenker: LenkepanelData[] = [
   }
 ];
 
-const SkrivTilOssForside = () => (
-  <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenker={lenker}>
-    <Ingress />
-  </SkrivTilOssBase>
-);
+const Ingress = () => {
+  const intl = useIntl();
+
+  return (
+    <>
+      <MetaTags>
+        <title>{intl.messages["skrivtiloss.tittel"]}</title>
+        <meta
+          name="description"
+          content={intl.messages["skrivtiloss.description"] as string}
+        />
+      </MetaTags>
+      <Normaltekst>
+        <FormattedMessage id="skrivtiloss.ingress" />
+      </Normaltekst>
+    </>
+  );
+};
+
+const SkrivTilOssForside = () => {
+  const [unleashResponded, setUnleashResponded] = useState(false);
+  const [skrivTilOssEnabled, setSkrivTilOssEnabled] = useState(enabledDefault);
+
+  useEffect(() => {
+    Unleash.getFeatureToggleStatusMultiple(
+      [svartidName, enabledName],
+      (unleashToggles, error) => {
+        setUnleashResponded(true);
+        if (error) {
+          console.log(`Unleash error: ${error}`);
+          return;
+        }
+
+        setSkrivTilOssEnabled(unleashToggles[enabledName]);
+      }
+    );
+  }, []);
+
+  if (!unleashResponded) {
+    return <NavFrontendSpinner negativ={true} />;
+  }
+
+  if (!skrivTilOssEnabled) {
+    return (
+      <SkrivTilOssBase tittel={"skrivtiloss.tittel"}>
+        <AlertStripe type="advarsel">
+          <FormattedMessage id={"skrivtiloss.disabled"} />
+        </AlertStripe>
+      </SkrivTilOssBase>
+    );
+  }
+
+  return (
+    <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenker={lenker}>
+      <Ingress />
+    </SkrivTilOssBase>
+  );
+};
 
 export default SkrivTilOssForside;

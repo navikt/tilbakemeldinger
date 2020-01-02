@@ -2,10 +2,9 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import IkonPanel from "components/ikonpanel/IkonPanel";
 import ikon from "assets/forside-ringoss-ikon.svg";
-import { urls, visApningstiderJul } from "Config";
+import { urls } from "Config";
 import { logEvent } from "utils/logger";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
-import TidsbestemtVisning from "../../../utils/TidsbestemtVisning";
 
 const RingOss = () => {
   const tittel = <FormattedMessage id={"kontaktoss.ringoss.tittel"} />;
@@ -19,11 +18,6 @@ const RingOss = () => {
       <RouterLenke isExternal={true} href={urls.ringOss} onClick={onClick}>
         <FormattedMessage id={"kontaktoss.ringoss.knapp"} />
       </RouterLenke>
-      <TidsbestemtVisning fra={visApningstiderJul.fra} til={visApningstiderJul.til}>
-        <RouterLenke isExternal={true} href={urls.apningstiderJul} onClick={onClick}>
-          <FormattedMessage id={"apningstid.avvik.ringoss.lenke"} />
-        </RouterLenke>
-      </TidsbestemtVisning>
     </IkonPanel>
   );
 };

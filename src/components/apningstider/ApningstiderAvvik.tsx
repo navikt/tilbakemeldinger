@@ -2,6 +2,7 @@ import moment from "moment-timezone";
 import FormattedMsgMedParagrafer from "../intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
 import React from "react";
 import Apningstider from "../../utils/apningstider";
+import { vars } from "../../Config";
 
 type Props = {
   apningstider: Apningstider,
@@ -10,7 +11,7 @@ type Props = {
 
 const ApningstiderAvvik = ({apningstider, harChatbot = false}: Props) => {
   const apningstiderAvvik = apningstider.getAktuelleAvvikstider();
-  const datoFormat = (dato: string) => moment(dato, "DD-MM-YYYY").format("DD.MM.");
+  const datoFormat = (dato: string) => moment(dato, vars.defaultDatoFormat).format("DD.MM.");
 
   return apningstiderAvvik.length > 0 ? (
     <div className={`apningstider-avvik`}>
