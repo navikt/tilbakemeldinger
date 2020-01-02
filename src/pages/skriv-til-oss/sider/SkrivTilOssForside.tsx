@@ -14,25 +14,6 @@ const svartidName = vars.unleash.langSvartidName;
 const enabledName = vars.unleash.skrivTilOssEnabledName;
 const enabledDefault = vars.unleash.skrivTilOssEnabledDefault;
 
-const Ingress = () => {
-  const intl = useIntl();
-
-  return (
-    <>
-      <MetaTags>
-        <title>{intl.messages["skrivtiloss.tittel"]}</title>
-        <meta
-          name="description"
-          content={intl.messages["skrivtiloss.description"] as string}
-        />
-      </MetaTags>
-      <Normaltekst>
-        <FormattedMessage id="skrivtiloss.ingress" />
-      </Normaltekst>
-    </>
-  );
-};
-
 const lenker: LenkepanelData[] = [
   {
     grafanaId: "skrivtiloss.arbeidssoker",
@@ -79,6 +60,25 @@ const lenker: LenkepanelData[] = [
   }
 ];
 
+const Ingress = () => {
+  const intl = useIntl();
+
+  return (
+    <>
+      <MetaTags>
+        <title>{intl.messages["skrivtiloss.tittel"]}</title>
+        <meta
+          name="description"
+          content={intl.messages["skrivtiloss.description"] as string}
+        />
+      </MetaTags>
+      <Normaltekst>
+        <FormattedMessage id="skrivtiloss.ingress" />
+      </Normaltekst>
+    </>
+  );
+};
+
 const SkrivTilOssForside = () => {
   const [unleashResponded, setUnleashResponded] = useState(false);
   const [skrivTilOssEnabled, setSkrivTilOssEnabled] = useState(enabledDefault);
@@ -104,9 +104,11 @@ const SkrivTilOssForside = () => {
 
   if (!skrivTilOssEnabled) {
     return (
-      <AlertStripe type="advarsel">
-        <FormattedMessage id={"skrivtiloss.disabled"} />
-      </AlertStripe>
+      <SkrivTilOssBase tittel={"skrivtiloss.tittel"}>
+        <AlertStripe type="advarsel">
+          <FormattedMessage id={"skrivtiloss.disabled"} />
+        </AlertStripe>
+      </SkrivTilOssBase>
     );
   }
 
