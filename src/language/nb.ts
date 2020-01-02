@@ -399,9 +399,9 @@ export default {
   "takk.melding": "Meldingen din er sendt",
   "takk.knapp": "Gå til nav.no",
 
-  "apningstid.avvik": "<p>Spesielle åpningstider i julen:</p>",
+  "apningstid.avvik": "<p>Spesielle åpningstider:</p>",
   "apningstid.avvik.chatbot":
-    "<p>Chatbot er døgnåpen. For veileder gjelder spesielle åpningstider i julen:</p>",
+    "<p>Chatbot er døgnåpen. For veileder gjelder spesielle åpningstider:</p>",
   "apningstid.avvik.stengt": "<p>{dato} - Stengt</p>",
   "apningstid.avvik.apent": "<p>{dato} - kl. {start}–{end}</p>",
   "apningstid.avvik.forside": "Åpningstidene avviker i julen, ",
