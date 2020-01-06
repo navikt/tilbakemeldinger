@@ -22,7 +22,7 @@ export default {
   "breadcrumb.okonomi": "Økonomi",
   "breadcrumb.eures": "EURES",
 
-  "breadcrumb.tilbakemeldinger": "Tilbakemeldinger",
+  "breadcrumb.tilbakemeldinger": "Tilbakemelding",
   "breadcrumb.serviceklage": "Klage på service",
   "breadcrumb.login": "Innlogging",
   "breadcrumb.feil-og-mangler": "Feil og mangler",
@@ -170,12 +170,12 @@ export default {
   "kontaktoss.tolketjenesten.link.spraktolk":
     "Språktolk til samtale med veileder",
 
-  "kontaktoss.klage.tittel": "Klage og tilbakemeldinger",
+  "kontaktoss.klage.tittel": "Klage og tilbakemelding",
   "kontaktoss.klage.beskrivelse":
     "Du kan klage hvis du har fått helt eller delvis avslag på søknaden din, og hvis du har hatt en negativ" +
     " opplevelse i møte med NAV",
   "kontaktoss.klage.knapp":
-    "Slik går du frem for å klage eller gi tilbakemeldinger",
+    "Slik går du frem for å klage eller gi tilbakemelding",
 
   "kontaktoss.tekniskfeil.tittel": "Teknisk feil på nav.no",
   "kontaktoss.tekniskfeil.link.losselv": "Prøv å løse problemet selv",
@@ -188,7 +188,7 @@ export default {
   "kontaktoss.sosialemedier.tittel": "NAV i sosiale medier",
   "kontaktoss.sosialemedier.link": "NAV i sosiale medier",
 
-  "tilbakemeldinger.sidetittel": "Klage og tilbakemeldinger",
+  "tilbakemeldinger.sidetittel": "Klage og tilbakemelding",
   "tilbakemeldinger.klageanke.tittel": "Klage eller anke på vedtak",
   "tilbakemeldinger.klageanke.beskrivelse":
     "Har du fått helt eller delvis avslag på søknaden din, kan du klage på avslaget. " +
@@ -331,10 +331,10 @@ export default {
   "seo.kontaktoss.tittel": "Kontakt oss - www.nav.no",
   "seo.kontaktoss.description":
     "Kontakt NAV via chat, skriv til oss, telefon eller sosiale medier. Finn ditt NAV-kontor, kontakt tolketjenesten," +
-    " send klage eller tilbakemeldinger.",
-  "seo.tilbakemeldinger.tittel": "Tilbakemeldinger til NAV - www.nav.no",
+    " send klage eller tilbakemelding.",
+  "seo.tilbakemeldinger.tittel": "Tilbakemelding til NAV - www.nav.no",
   "seo.tilbakemeldinger.description":
-    "Her kan du gi tilbakemeldinger til NAV, klage eller anke på vedtak, service og melde fra om feil og mangler på" +
+    "Her kan du gi tilbakemelding til NAV, klage eller anke på vedtak, service og melde fra om feil og mangler på" +
     " nav.no. Du kan også gi oss ros om våre tjenester og medarbeidere.",
   "seo.rostilnav.tittel": "Ros til NAV - www.nav.no",
   "seo.rostilnav.description":
