@@ -356,8 +356,7 @@ export default {
   "chat.stengt.info": "Chatten er stengt, se åpningstider under.",
   "chat.advarsel.personvern":
     "<p>Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring.</p>" +
-    "<p>Chatten er ikke innlogget. Husk at du ikke kan skrive personlig informasjon som navn, personnummer eller" +
-    " helseforhold.</p>",
+    "<p>Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg.</p>",
   "chat.chatbotinfo":
     "<p>Du møter først en chatbot, men kan bli satt videre til chat med en veileder (hverdager 09.00–14.30).</p>",
 
