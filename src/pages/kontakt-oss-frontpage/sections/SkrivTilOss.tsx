@@ -2,12 +2,16 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import IkonPanel from "components/ikonpanel/IkonPanel";
 import { Normaltekst } from "nav-frontend-typografi";
-import { urls, vars } from "Config";
+import { urls } from "Config";
 import ikon from "assets/forside-skrivtiloss-ikon.svg";
 import { logEvent } from "utils/logger";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
 
-const SkrivTilOss = () => {
+type Props = {
+  svartid: number
+};
+
+const SkrivTilOss = ({svartid}: Props) => {
   const tittel = <FormattedMessage id={"kontaktoss.skrivtiloss.tittel"} />;
 
   const onClick = () => {
@@ -21,7 +25,7 @@ const SkrivTilOss = () => {
           <Normaltekst className="svartid">
             <FormattedMessage
               id={"kontaktoss.svartiddager"}
-              values={{ antall: vars.svartid.skrivTilOss }}
+              values={{ antall: svartid }}
             />
           </Normaltekst>
           <Normaltekst>
