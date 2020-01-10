@@ -24,7 +24,7 @@ const SkrivTilOss = ({svartid}: Props) => {
         <div>
           <Normaltekst className="svartid">
             <FormattedMessage
-              id={"kontaktoss.svartiddager"}
+              id={svartid === 1 ? "kontaktoss.svartidendag" : "kontaktoss.svartiddager"}
               values={{ antall: svartid }}
             />
           </Normaltekst>
