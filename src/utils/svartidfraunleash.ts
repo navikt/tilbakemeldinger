@@ -2,7 +2,7 @@ import Unleash, { Features } from "./unleash";
 
 type CallbackType = (n: number) => void;
 
-const bitArrayFeatures = ["kontakt-oss.svartid-1", "kontakt-oss.svartid-2", "kontakt-oss.svartid-3"];
+const bitArrayFeatures = ["kontakt-oss.svartid1", "kontakt-oss.svartid2", "kontakt-oss.svartid3"];
 
 const bitArrayToDecimal = (bitArray: Array<boolean>): number => {
   return bitArray.reduce(
