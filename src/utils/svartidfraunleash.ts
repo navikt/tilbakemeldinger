@@ -10,7 +10,8 @@ const bitArrayToDecimal = (bitArray: Array<boolean>): number => {
 };
 
 const unleashCallback = (callback: CallbackType) => (features: Features) => {
-  const svartid = bitArrayToDecimal(Object.values(features));
+  const svartid = bitArrayToDecimal(
+    Object.keys(features).sort().map(key => features[key]));
   svartid > 0 && callback(svartid);
 };
 
