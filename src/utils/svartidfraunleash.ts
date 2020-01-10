@@ -6,7 +6,7 @@ const bitArrayFeatures = ["kontakt-oss.svartid-1", "kontakt-oss.svartid-2", "kon
 
 const bitArrayToDecimal = (bitArray: Array<boolean>): number => {
   return bitArray.reduce(
-    (sum, currentBit, index) => (currentBit ? sum += (2 ** index) : sum), 0);
+    (sum, currentBit, index) => (currentBit ? sum + (2 ** index) : sum), 0);
 };
 
 const unleashCallback = (callback: CallbackType) => (features: Features) => {
