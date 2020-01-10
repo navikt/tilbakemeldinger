@@ -114,7 +114,7 @@ export const vars = {
   defaultDatoFormat: "DD-MM-YYYY",
   maksLengdeMelding: 10000,
   svartid: {
-    skrivTilOss: 4,
+    skrivTilOss: 5,
     kontaktVeileder: 2,
   },
   unleash: {
