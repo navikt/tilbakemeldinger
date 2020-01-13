@@ -8,7 +8,7 @@ const chatTemaData: ChatTemaData = {
   tittelTekstId: "chat.jobbsoker.tittel",
   chatTema: ChatTema.Jobbsoker,
   apningstider: apningsTider[ChatTema.Jobbsoker],
-  harChatbot: false
+  harChatbot: true
 };
 
 const ChatJobbsoker = () => {
@@ -17,7 +17,7 @@ const ChatJobbsoker = () => {
       chatTemaData={chatTemaData}
     >
       <>
-        <FormattedMsgMedParagrafer id={"chat.jobbsoker.ingress"} />
+        <FormattedMsgMedParagrafer id={"chat.chatbotinfo"} />
       </>
     </ChatTemaSideBase>
   );
