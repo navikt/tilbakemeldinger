@@ -1,4 +1,4 @@
-import Unleash, { Features } from "./unleash";
+import Unleash, { Features } from "../../../utils/unleash";
 
 type CallbackType = (n: number) => void;
 
@@ -15,6 +15,6 @@ const unleashCallback = (callback: CallbackType) => (features: Features) => {
   svartid > 0 && callback(svartid);
 };
 
-export const svartidFraUnleash = (callback: CallbackType) => {
+export const skrivTilOssSvartidFraUnleash = (callback: CallbackType) => {
   Unleash.getFeatureToggleStatusMultiple(bitArrayFeatures, unleashCallback(callback));
 };

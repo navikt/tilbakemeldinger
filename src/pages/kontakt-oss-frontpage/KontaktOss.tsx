@@ -19,7 +19,7 @@ import SosialeMedier from "./sections/SosialeMedier";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import { vars, varsler } from "Config";
 import Lenke from "nav-frontend-lenker";
-import { svartidFraUnleash } from "../../utils/svartidfraunleash";
+import { skrivTilOssSvartidFraUnleash } from "./sections/SkrivTilOss-SvartidFraUnleash";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
@@ -39,7 +39,7 @@ const KontaktOssFrontpage = () => {
   }, []);
 
   useEffect(() => {
-    svartidFraUnleash(setSvartid);
+    skrivTilOssSvartidFraUnleash(setSvartid);
   }, [setSvartid]);
 
   return (
