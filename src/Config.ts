@@ -83,6 +83,7 @@ export const urls = {
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
   aktivitetsplanDialog: `https://aktivitetsplan.nav.no/dialog`,
   faq: {
+    skatt: `${navUrl}/no/nav-og-samfunn/kontakt-nav/utbetalinger/skattetrekk-pa-ytelser-fra-nav`,
     utbetalinger: `${navUrl}/no/nav-og-samfunn/kontakt-nav/utbetalinger`,
     utbetalingsoversikt: `${tjenesteUrl}/utbetalingsoversikt/`,
     saksbehandlingstider: `${navUrl}/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav`,
