@@ -11,12 +11,6 @@ const chatTemaLenker: Array<LenkepanelData> = [
     url: urls.chat.jobbsoker.temaside
   },
   {
-    grafanaId: "chat.aap",
-    tittelId: "chat.aap.tittel",
-    ingress: <FormattedMessage id={"chat.aap.ingressKort"} />,
-    url: urls.chat.aap.temaside
-  },
-  {
     grafanaId: "chat.familie",
     tittelId: "chat.familie.tittel",
     ingress: <FormattedMessage id={"chat.familie.ingressKort"} />,

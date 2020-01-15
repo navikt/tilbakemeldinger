@@ -7,6 +7,10 @@ export interface Lenke {
 
 export const lenkerFAQ: Lenke[] = [
   {
+    lenke: urls.faq.skatt,
+    lenkeTekst: "faq.skatt"
+  },
+  {
     lenke: urls.faq.utbetalingsoversikt,
     lenkeTekst: "faq.utbetalingsoversikt"
   },

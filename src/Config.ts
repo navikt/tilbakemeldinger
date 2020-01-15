@@ -59,9 +59,6 @@ export const urls = {
     jobbsoker: {
       temaside: `${baseAppPath}/chat/jobbsoker`
     },
-    aap: {
-      temaside: `${baseAppPath}/chat/aap`
-    },
     sosialhjelp: {
       temaside: `${baseAppPath}/chat/sosialhjelp`
     },
@@ -86,6 +83,7 @@ export const urls = {
   aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
   aktivitetsplanDialog: `https://aktivitetsplan.nav.no/dialog`,
   faq: {
+    skatt: `${navUrl}/no/nav-og-samfunn/kontakt-nav/utbetalinger/skattetrekk-pa-ytelser-fra-nav`,
     utbetalinger: `${navUrl}/no/nav-og-samfunn/kontakt-nav/utbetalinger`,
     utbetalingsoversikt: `${tjenesteUrl}/utbetalingsoversikt/`,
     saksbehandlingstider: `${navUrl}/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav`,
@@ -145,13 +143,9 @@ export const vars = {
         configId: "c3372a51-6434-4770-a0aa-6e4edba3471e",
         queueKey: "Q_CHAT_BOT",
       },
-      [ChatTema.AAP]: {
-        configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
-        queueKey: "Q_CHAT_BOT",
-      },
       [ChatTema.Jobbsoker]: {
         configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
-        queueKey: "Q_CHAT_AAP",
+        queueKey: "Q_CHAT_BOT",
       },
       [ChatTema.Sosial]: {
         configId: "6564b567-b70b-48e1-b2c5-957c0bc624de",
@@ -168,31 +162,6 @@ export const vars = {
 
 export const apningsTider = {
   [ChatTema.Jobbsoker]: new ApningsTider(
-    {
-      [Ukedager.Mandag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Tirsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Onsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Torsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Fredag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Lordag]: null,
-      [Ukedager.Sondag]: null,
-    }),
-  [ChatTema.AAP]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
         start: "09.00",
