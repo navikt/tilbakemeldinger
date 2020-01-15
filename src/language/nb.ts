@@ -87,6 +87,7 @@ export default {
   "faq.intro": "Nå lurer mange på",
   "faq.visflere": "Vis flere",
   "faq.visfaerre": "Vis færre",
+  "faq.skatt": "Skattetrekk",
   "faq.utbetalingsoversikt": "Sjekk utbetalingene dine",
   "faq.saksoversikt": "Hvordan går det med saken min?",
   "faq.eosreglersak": "Feiltolking av EØS-regelene",
