@@ -90,7 +90,7 @@ export default {
   "faq.skatt": "Skattetrekk",
   "faq.utbetalingsoversikt": "Sjekk utbetalingene dine",
   "faq.saksoversikt": "Hvordan går det med saken min?",
-  "faq.eosreglersak": "Feiltolking av EØS-regelene",
+  "faq.eosreglersak": "Feiltolking av EØS-reglene",
   "faq.nesteutbetaling": "Utbetalingsdatoer",
   "faq.saksbehandlingstider": "Saksbehandlingstider",
   "faq.endrekontonummer": "Endre kontonummer",
