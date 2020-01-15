@@ -15,12 +15,12 @@ export const lenkerFAQ: Lenke[] = [
     lenkeTekst: "faq.utbetalingsoversikt"
   },
   {
-    lenke: urls.faq.eosReglerSak,
-    lenkeTekst: "faq.eosreglersak",
-  },
-  {
     lenke: urls.faq.saksoversikt,
     lenkeTekst: "faq.saksoversikt"
+  },
+  {
+    lenke: urls.faq.eosReglerSak,
+    lenkeTekst: "faq.eosreglersak",
   },
   {
     lenke: urls.faq.utbetalinger,
