@@ -6,7 +6,6 @@ import NotFound from "../404/404";
 import ChatFamilie from "./sider/ChatFamilie";
 import ChatForside from "./sider/ChatForside";
 import ChatJobbsoker from "./sider/ChatJobbsoker";
-import ChatAAP from "./sider/ChatAap";
 import ChatSosial from "./sider/ChatSosial";
 import ChatOkonomi from "./sider/ChatOkonomi";
 import ChatEURES from "./sider/ChatEures";
@@ -23,11 +22,6 @@ const ChatRouter = () => {
         exact={true}
         path={urls.chat.jobbsoker.temaside}
         component={ChatJobbsoker}
-      />
-      <Route
-        exact={true}
-        path={urls.chat.aap.temaside}
-        component={ChatAAP}
       />
       <Route
         exact={true}

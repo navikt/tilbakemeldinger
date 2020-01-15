@@ -17,7 +17,6 @@ export default {
   "breadcrumb.chat": "Chat",
   "breadcrumb.familie": "Familie",
   "breadcrumb.jobbsoker": "Jobbsøker",
-  "breadcrumb.aap": "Arbeidsavklaringspenger",
   "breadcrumb.sosialhjelp": "Sosiale tjenester",
   "breadcrumb.okonomi": "Økonomi",
   "breadcrumb.eures": "EURES",
@@ -362,13 +361,7 @@ export default {
 
   "chat.jobbsoker.tittel": "Jobbsøker",
   "chat.jobbsoker.ingressKort":
-    "Dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
-  "chat.jobbsoker.ingress":
-    "<p>Du blir koblet direkte til en veileder. Våre veiledere er tilgjengelige på hverdager 09.00–14.30.</p>",
-
-  "chat.aap.tittel": "Arbeidsavklaringspenger",
-  "chat.aap.ingressKort":
-    "Arbeidsavklaringspenger og veiledning for å komme i jobb eller aktivitet.",
+    "Arbeidsavklaringspenger, dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
 
   "chat.familie.tittel": "Foreldre, barn og familie",
   "chat.familie.ingressKort":
