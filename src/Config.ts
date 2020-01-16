@@ -99,6 +99,7 @@ export const urls = {
   spraktolk: `${navUrl}/no/person/arbeid/oppfolging-og-tiltak-for-a-komme-i-jobb/oppfolging-fra-nav/trenger-du-språktolk`,
   finnDittNavKontor: `${navUrl}/person/personopplysninger#ditt-nav-kontor`,
   finnDinHjelpemiddelsentral: `${navUrl}/no/person/hjelpemidler/tjenester-og-produkter/hjelpemidler/kontakt-hjelpemiddelsentralen`,
+  finnDittNavKontorXls: `${navUrl}/no/nav-og-samfunn/kontakt-nav/relatert-informasjon/finn-ditt-nav-kontor/_/attachment/download/aa68508e-53f8-4353-a966-8c6517dc5f08:2343aa18570d17da0eaa73b942bf7833c506edfb/postnummer-1-jan-2020-med-nav-kontor.xlsx`,
   sosialeMedier: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/kontakt-nav-på-chat-facebook-og-twitter/kontakt-nav-pa-facebook-eller-twitter`,
   tekniskBrukerstotte: {
     selvhjelp: `${navUrl}/no/nav-og-samfunn/kontakt-nav/teknisk-brukerstotte/hjelp-til-personbruker`,
