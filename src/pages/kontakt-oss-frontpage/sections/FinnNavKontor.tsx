@@ -14,7 +14,7 @@ const FinnNavKontor = () => {
     <IkonPanel ikon={ikon} tittel={tittel}>
       <>
         <RouterLenke
-          href={urls.finnDittNavKontor}
+          href={urls.finnDittNavKontorOversikt}
           isExternal={true}
           className={"lenke__avstand-under"}
         >
@@ -26,12 +26,6 @@ const FinnNavKontor = () => {
           className={"lenke__avstand-under"}
         >
           <FormattedMessage id="kontaktoss.hjelpemiddelsentral.lenke" />
-        </RouterLenke>
-        <RouterLenke
-          href={urls.finnDittNavKontorXls}
-          isExternal={true}
-        >
-          <FormattedMessage id="kontaktoss.navkontor.xls.lenke" />
         </RouterLenke>
       </>
     </IkonPanel>

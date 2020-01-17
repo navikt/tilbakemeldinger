@@ -97,6 +97,7 @@ export const urls = {
   arbeidssoker: `${tjenesteUrl}/veiledearbeidssoker/mistet-jobben/registrering-arbeidssoker`,
   tolketjenesten: `${navUrl}/no/person/hjelpemidler/tjenester-og-produkter/tolketjenesten`,
   spraktolk: `${navUrl}/no/person/arbeid/oppfolging-og-tiltak-for-a-komme-i-jobb/oppfolging-fra-nav/trenger-du-språktolk`,
+  finnDittNavKontorOversikt: `${navUrl}/no/nav-og-samfunn/kontakt-nav/relatert-informasjon/finn-ditt-nav-kontor`,
   finnDittNavKontor: `${navUrl}/person/personopplysninger#ditt-nav-kontor`,
   finnDinHjelpemiddelsentral: `${navUrl}/no/person/hjelpemidler/tjenester-og-produkter/hjelpemidler/kontakt-hjelpemiddelsentralen`,
   finnDittNavKontorXls: `${navUrl}/no/nav-og-samfunn/kontakt-nav/relatert-informasjon/finn-ditt-nav-kontor/_/attachment/download/aa68508e-53f8-4353-a966-8c6517dc5f08:2343aa18570d17da0eaa73b942bf7833c506edfb/postnummer-1-jan-2020-med-nav-kontor.xlsx`,
