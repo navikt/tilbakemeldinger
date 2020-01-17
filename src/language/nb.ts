@@ -21,6 +21,8 @@ export default {
   "breadcrumb.okonomi": "Økonomi",
   "breadcrumb.eures": "EURES",
 
+  "breadcrumb.finnkontor": "Finn NAV-kontor",
+
   "breadcrumb.tilbakemeldinger": "Tilbakemelding",
   "breadcrumb.serviceklage": "Klage på service",
   "breadcrumb.login": "Innlogging",
@@ -165,6 +167,7 @@ export default {
   "kontaktoss.navkontor.lenke": "Logg inn og se hvilket NAV-kontor du tilhører",
   "kontaktoss.hjelpemiddelsentral.lenke": "Finn din hjelpemiddelsentral",
   "kontaktoss.navkontor.xls.lenke": "Last ned oversikt over NAV-kontor (Excel)",
+  "kontaktoss.navkontor.uinnlogget.lenke": "Søk etter kontor på postnummer",
 
   "kontaktoss.tolketjenesten.tittel": "Tolketjenesten",
   "kontaktoss.tolketjenesten.link":

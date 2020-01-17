@@ -26,6 +26,7 @@ import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/Bestilling
 import { forsidePath, urls, vars } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
 import NavFrontendSpinner from "nav-frontend-spinner";
+import FinnNavKontorPage from "./pages/finn-nav-kontor/FinnNavKontorPage";
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
@@ -104,6 +105,11 @@ const App = () => {
               exact={false}
               path={urls.chat.forside}
               component={ChatRouter}
+            />
+            <Route
+              exact={true}
+              path={urls.finnDittNavKontorUinnlogget}
+              component={FinnNavKontorPage}
             />
             <Route
               exact={true}

@@ -28,10 +28,10 @@ const FinnNavKontor = () => {
           <FormattedMessage id="kontaktoss.hjelpemiddelsentral.lenke" />
         </RouterLenke>
         <RouterLenke
-          href={urls.finnDittNavKontorXls}
-          isExternal={true}
+          href={urls.finnDittNavKontorUinnlogget}
+          isExternal={false}
         >
-          <FormattedMessage id="kontaktoss.navkontor.xls.lenke" />
+          <FormattedMessage id="kontaktoss.navkontor.uinnlogget.lenke" />
         </RouterLenke>
       </>
     </IkonPanel>
