@@ -163,9 +163,8 @@ export default {
   "kontaktoss.navkontor.beskrivelse":
     "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
   "kontaktoss.navkontor.innlogget.lenke": "Logg inn og se hvilket NAV-kontor du tilhører",
-  "kontaktoss.navkontor.lenke": "Finn ditt NAV-kontor",
+  "kontaktoss.navkontor.lenke": "Se oversikt over NAV-kontor",
   "kontaktoss.hjelpemiddelsentral.lenke": "Finn din hjelpemiddelsentral",
-  "kontaktoss.navkontor.xls.lenke": "Last ned oversikt over NAV-kontor (Excel)",
 
   "kontaktoss.tolketjenesten.tittel": "Tolketjenesten",
   "kontaktoss.tolketjenesten.link":
