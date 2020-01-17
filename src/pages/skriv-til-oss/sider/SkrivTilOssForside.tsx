@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
 
@@ -6,14 +6,10 @@ import SkrivTilOssBase from "../SkrivTilOssBase";
 import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
 import { urls, vars } from "../../../Config";
-import Unleash from "../../../utils/unleash";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import AlertStripe from "nav-frontend-alertstriper";
-import { skrivTilOssSvartidFraUnleash } from "../../kontakt-oss-frontpage/sections/SkrivTilOss-SvartidFraUnleash";
-
-const svartidName = vars.unleash.langSvartidName;
-const enabledName = vars.unleash.skrivTilOssEnabledName;
-const enabledDefault = vars.unleash.skrivTilOssEnabledDefault;
+import { skrivTilOssSvartidFraUnleash } from "../../../utils/skrivTilOssSvartidFraUnleash";
+import { useStore } from "../../../providers/Provider";
 
 const lenker: LenkepanelData[] = [
   {
@@ -81,32 +77,8 @@ const Ingress = () => {
 };
 
 const SkrivTilOssForside = () => {
-  const [unleashResponded, setUnleashResponded] = useState(false);
-  const [skrivTilOssEnabled, setSkrivTilOssEnabled] = useState(enabledDefault);
-  const [svartid, setSvartid] = useState();
-
-  useEffect(() => {
-    Unleash.getFeatureToggleStatusMultiple(
-      [svartidName, enabledName],
-      (unleashToggles, error) => {
-        setUnleashResponded(true);
-        if (error) {
-          console.log(`Unleash error: ${error}`);
-          return;
-        }
-
-        setSkrivTilOssEnabled(unleashToggles[enabledName]);
-      }
-    );
-  }, []);
-
-  useEffect(() => {
-    skrivTilOssSvartidFraUnleash(setSvartid);
-  }, [setSvartid]);
-
-  if (!unleashResponded) {
-    return <NavFrontendSpinner negativ={true} />;
-  }
+  const [{ unleashFeatures }] = useStore();
+  const skrivTilOssEnabled = unleashFeatures[vars.unleash.features.skrivTilOssEnabled.name];
 
   if (!skrivTilOssEnabled) {
     return (
@@ -117,6 +89,8 @@ const SkrivTilOssForside = () => {
       </SkrivTilOssBase>
     );
   }
+
+  const svartid = skrivTilOssSvartidFraUnleash(unleashFeatures);
 
   return (
     <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenker={lenker}>
