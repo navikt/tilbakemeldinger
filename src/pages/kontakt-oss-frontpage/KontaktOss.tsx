@@ -23,7 +23,7 @@ import { skrivTilOssSvartidFraUnleash } from "./sections/SkrivTilOss-SvartidFraU
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
-  const [svartid, setSvartid] = useState();
+  const [svartidSkrivTilOss, setSvartidSkrivTilOss] = useState();
 
   useEffect(() => {
     /*
@@ -39,8 +39,8 @@ const KontaktOssFrontpage = () => {
   }, []);
 
   useEffect(() => {
-    skrivTilOssSvartidFraUnleash(setSvartid);
-  }, [setSvartid]);
+    skrivTilOssSvartidFraUnleash(setSvartidSkrivTilOss);
+  }, [setSvartidSkrivTilOss]);
 
   return (
     <div className="frontpage__wrapper">
@@ -76,7 +76,7 @@ const KontaktOssFrontpage = () => {
               <RingOss />
               <FAQ />
             </div>
-            <SkrivTilOss svartid={svartid} />
+            <SkrivTilOss svartid={svartidSkrivTilOss} />
             <KontaktVeileder />
             <Facebook />
             <FinnNavKontor />
