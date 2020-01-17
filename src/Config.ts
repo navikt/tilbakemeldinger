@@ -114,23 +114,33 @@ export const vars = {
   defaultDatoFormat: "DD-MM-YYYY",
   maksLengdeMelding: 10000,
   svartid: {
-    skrivTilOss: 5,
+    skrivTilOss: 3,
     kontaktVeileder: 2,
   },
   unleash: {
-    timeout: 3000,
-    skrivTilOssEnabledDefault: true,
-    skrivTilOssEnabledName: "kontakt-oss.skriv-til-oss",
-    langSvartidDefault: false,
-    langSvartidName: "kontakt-oss.skriv-til-oss.lang-svartid",
-    tekniskProblemDefault: false,
-    tekniskProblemFeatureName: "kontakt-oss.teknisk-problem",
-    redirectDefault: false,
-    redirectName: "kontakt-oss.redirect",
-    testBrukerDefault: true,
-    testBrukerFeatureName: "kontakt-oss.test-pool",
-    abGruppeDefault: true,
-    abGruppeFeatureName: "kontakt-oss.ab",
+    timeout: 2000,
+    features: {
+      skrivTilOssEnabled: {
+        name: "kontakt-oss.skriv-til-oss",
+        default: true,
+      },
+      visTekniskProblemMelding: {
+        name: "kontakt-oss.teknisk-problem",
+        default: false,
+      },
+      skrivTilOssSvartidBit1: {
+        name: "kontakt-oss.svartid1",
+        default: false,
+      },
+      skrivTilOssSvartidBit2: {
+        name: "kontakt-oss.svartid2",
+        default: false,
+      },
+      skrivTilOssSvartidBit3: {
+        name: "kontakt-oss.svartid3",
+        default: false,
+      }
+    },
   },
   chatBot: {
     customerKey: "41155",

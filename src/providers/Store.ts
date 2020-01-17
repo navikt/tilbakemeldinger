@@ -4,14 +4,20 @@ import { Sprak } from "../types/sprak";
 import sprak from "../language/provider";
 import { Enheter, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../components/error/Error";
+import { Features } from "../utils/unleash";
+import { vars } from "../Config";
 
 export const initialState = {
   fodselsnr: "",
   language: sprak,
   locale: "nb" as "nb",
-  enheter: { status: "LOADING" } as FetchEnheter,
-  auth: { authenticated: false } as AuthInfo,
-  kontaktInfo: { mobiltelefonnummer: "" }
+  enheter: {status: "LOADING"} as FetchEnheter,
+  auth: {authenticated: false} as AuthInfo,
+  kontaktInfo: {mobiltelefonnummer: ""},
+  unleashFeatures: Object.entries(vars.unleash.features).reduce(
+    (defaults, feature) => (
+      {...defaults, [feature[1].name]: feature[1].default}
+  ), {})
 };
 
 export interface Store {
@@ -21,31 +27,36 @@ export interface Store {
   fodselsnr: string;
   kontaktInfo: KontaktInfo;
   enheter: FetchEnheter;
+  unleashFeatures: Features;
 }
 
 export type Action =
   | {
-      type: "SETT_ENHETER_RESULT";
-      payload: Enheter[];
-    }
+  type: "SETT_ENHETER_RESULT";
+  payload: Enheter[];
+}
   | {
-      type: "SETT_ENHETER_ERROR";
-      payload: HTTPError;
-    }
+  type: "SETT_ENHETER_ERROR";
+  payload: HTTPError;
+}
   | {
-      type: "SETT_AUTH_RESULT";
-      payload: AuthInfo;
-    }
+  type: "SETT_AUTH_RESULT";
+  payload: AuthInfo;
+}
   | {
-      type: "SETT_FODSELSNR";
-      payload: {
-        fodselsnr: string;
-      };
-    }
+  type: "SETT_FODSELSNR";
+  payload: {
+    fodselsnr: string;
+  };
+}
   | {
-      type: "SETT_KONTAKT_INFO_RESULT";
-      payload: KontaktInfo;
-    };
+  type: "SETT_KONTAKT_INFO_RESULT";
+  payload: KontaktInfo;
+}
+  | {
+  type: "SETT_FEATURE_TOGGLES";
+  payload: Features;
+};
 
 export const reducer = (state: Store, action: Action) => {
   switch (action.type) {
@@ -79,6 +90,11 @@ export const reducer = (state: Store, action: Action) => {
       return {
         ...state,
         kontaktInfo: action.payload as KontaktInfo
+      };
+    case "SETT_FEATURE_TOGGLES":
+      return {
+        ...state,
+        unleashFeatures: action.payload as Features
       };
     default:
       return state;

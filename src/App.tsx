@@ -29,9 +29,8 @@ import NavFrontendSpinner from "nav-frontend-spinner";
 import FinnNavKontorPage from "./pages/finn-nav-kontor/FinnNavKontorPage";
 
 const App = () => {
-  const [{ auth }, dispatch] = useStore();
-  const [tekniskProblem, setTekniskProblem] = useState(vars.unleash.tekniskProblemDefault);
-  const [unleashResponded, setUnleashResponded] = useState(false);
+  const [{ auth, unleashFeatures }, dispatch] = useStore();
+  const [unleashResponded, setUnleashResponded] = useState();
 
   useEffect(() => {
     if (!auth.authenticated) {
@@ -60,18 +59,18 @@ const App = () => {
         .catch((error: HTTPError) => console.error(error));
     }
 
-    const tekniskProblemFeatureName = vars.unleash.tekniskProblemFeatureName;
-
     Unleash.getFeatureToggleStatusMultiple(
-      [tekniskProblemFeatureName],
+      Object.keys(unleashFeatures),
       (features, error) => {
         setUnleashResponded(true);
         if (error) {
           console.log(`Unleash error: ${error}`);
           return;
         }
-
-        setTekniskProblem(features[tekniskProblemFeatureName]);
+        dispatch({
+          type: "SETT_FEATURE_TOGGLES",
+          payload: features
+        });
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -81,9 +80,11 @@ const App = () => {
     return <NavFrontendSpinner />;
   }
 
+  const visTekniskProblemMelding = unleashFeatures[vars.unleash.features.visTekniskProblemMelding.name];
+
   return (
     <>
-      {tekniskProblem && (
+      {visTekniskProblemMelding && (
         <AlertStripe type="feil" className="teknisk-problem-stripe">
           <FormattedMessage id="teknisk-problem" />
         </AlertStripe>
