@@ -1,7 +1,7 @@
 import Environment from "../Environments";
 import { vars } from "../Config";
 
-type Features = {
+export type Features = {
   [key: string]: boolean;
 };
 
