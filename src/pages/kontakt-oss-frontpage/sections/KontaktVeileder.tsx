@@ -11,15 +11,17 @@ import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
 
 const KontaktVeileder = () => {
   const tittel = <FormattedMessage id={"kontaktoss.kontaktveileder.tittel"} />;
+  const svartid = vars.svartid.kontaktVeileder;
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
       <>
         <div>
           <Normaltekst className="svartid">
+            <FormattedMessage id={"kontaktoss.svartid"} />
             <FormattedMessage
-              id={"kontaktoss.svartiddager"}
-              values={{ antall: vars.svartid.kontaktVeileder }}
+              id={svartid === 1 ? "kontaktoss.svartidendag" : "kontaktoss.svartiddager"}
+              values={{ antall: svartid }}
             />
           </Normaltekst>
           <Normaltekst>
