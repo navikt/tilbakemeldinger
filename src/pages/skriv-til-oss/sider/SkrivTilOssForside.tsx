@@ -9,6 +9,7 @@ import { urls, vars } from "../../../Config";
 import Unleash from "../../../utils/unleash";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import AlertStripe from "nav-frontend-alertstriper";
+import { skrivTilOssSvartidFraUnleash } from "../../kontakt-oss-frontpage/sections/SkrivTilOss-SvartidFraUnleash";
 
 const svartidName = vars.unleash.langSvartidName;
 const enabledName = vars.unleash.skrivTilOssEnabledName;
@@ -82,6 +83,7 @@ const Ingress = () => {
 const SkrivTilOssForside = () => {
   const [unleashResponded, setUnleashResponded] = useState(false);
   const [skrivTilOssEnabled, setSkrivTilOssEnabled] = useState(enabledDefault);
+  const [svartid, setSvartid] = useState();
 
   useEffect(() => {
     Unleash.getFeatureToggleStatusMultiple(
@@ -97,6 +99,10 @@ const SkrivTilOssForside = () => {
       }
     );
   }, []);
+
+  useEffect(() => {
+    skrivTilOssSvartidFraUnleash(setSvartid);
+  }, [setSvartid]);
 
   if (!unleashResponded) {
     return <NavFrontendSpinner negativ={true} />;
@@ -114,7 +120,18 @@ const SkrivTilOssForside = () => {
 
   return (
     <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenker={lenker}>
-      <Ingress />
+      <>
+        <Normaltekst className={"svartid"}>
+          <FormattedMessage id={"kontaktoss.svartid"} />
+          {svartid ? (
+            <FormattedMessage
+              id={svartid === 1 ? "kontaktoss.svartidendag" : "kontaktoss.svartiddager"}
+              values={{ antall: svartid }}
+            />
+          ) : <NavFrontendSpinner type={"XXS"}/>}
+        </Normaltekst>
+        <Ingress />
+      </>
     </SkrivTilOssBase>
   );
 };
