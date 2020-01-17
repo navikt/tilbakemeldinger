@@ -1,4 +1,5 @@
 import Unleash, { Features } from "../../../utils/unleash";
+import { vars } from "../../../Config";
 
 type CallbackType = (n: number) => void;
 
@@ -11,8 +12,8 @@ const bitArrayToDecimal = (bitArray: Array<boolean>): number => {
 
 const unleashCallback = (callback: CallbackType) => (features: Features) => {
   const svartid = bitArrayToDecimal(
-    Object.keys(features).sort().map(key => features[key]));
-  svartid > 0 && callback(svartid);
+    Object.keys(features).sort().map(key => features[key])) || vars.svartid.skrivTilOss;
+  callback(svartid);
 };
 
 export const skrivTilOssSvartidFraUnleash = (callback: CallbackType) => {

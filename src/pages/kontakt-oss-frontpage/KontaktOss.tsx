@@ -17,13 +17,13 @@ import KontaktVeileder from "./sections/KontaktVeileder";
 import Pressekontakt from "./sections/Pressekontakt";
 import SosialeMedier from "./sections/SosialeMedier";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
-import { vars, varsler } from "Config";
+import { varsler } from "Config";
 import Lenke from "nav-frontend-lenker";
 import { skrivTilOssSvartidFraUnleash } from "./sections/SkrivTilOss-SvartidFraUnleash";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
-  const [svartid, setSvartid] = useState(vars.svartid.skrivTilOss);
+  const [svartid, setSvartid] = useState();
 
   useEffect(() => {
     /*

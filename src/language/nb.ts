@@ -97,8 +97,9 @@ export default {
   "faq.posttilannenadresse": "Vil du ha NAV-post til en annen adresse?",
 
   "kontaktoss.tittel": "Kontakt oss",
-  "kontaktoss.svartiddager": "Svartid: {antall} arbeidsdager",
-  "kontaktoss.svartidendag": "Svartid: én arbeidsdag",
+  "kontaktoss.svartid": "Svartid: ",
+  "kontaktoss.svartiddager": "{antall} arbeidsdager",
+  "kontaktoss.svartidendag": "én arbeidsdag",
 
   "kontaktoss.chat.tittel": "Chat med oss",
   "kontaktoss.chat.ingress":

@@ -116,7 +116,7 @@ export const vars = {
     kontaktVeileder: 2,
   },
   unleash: {
-    timeout: 3000,
+    timeout: 2000,
     skrivTilOssEnabledDefault: true,
     skrivTilOssEnabledName: "kontakt-oss.skriv-til-oss",
     langSvartidDefault: false,
