@@ -7,13 +7,13 @@ import ikon from "assets/forside-skrivtiloss-ikon.svg";
 import { logEvent } from "utils/logger";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
 import NavFrontendSpinner from "nav-frontend-spinner";
+import { useStore } from "../../../providers/Provider";
+import { skrivTilOssSvartidFraUnleash } from "../../../utils/skrivTilOssSvartidFraUnleash";
 
-type Props = {
-  svartid: number | null
-};
-
-const SkrivTilOss = ({svartid}: Props) => {
+const SkrivTilOss = () => {
+  const [{ unleashFeatures }] = useStore();
   const tittel = <FormattedMessage id={"kontaktoss.skrivtiloss.tittel"} />;
+  const svartid = skrivTilOssSvartidFraUnleash(unleashFeatures);
 
   const onClick = () => {
     logEvent({ event: "skriv-til-oss" });

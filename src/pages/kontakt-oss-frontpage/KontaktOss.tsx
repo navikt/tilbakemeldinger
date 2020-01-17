@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Sidetittel, Undertittel } from "nav-frontend-typografi";
 import FAQ from "./sections/FAQ";
 import FeilOgMangler from "./sections/FeilOgMangler";
@@ -19,11 +19,9 @@ import SosialeMedier from "./sections/SosialeMedier";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import { varsler } from "Config";
 import Lenke from "nav-frontend-lenker";
-import { skrivTilOssSvartidFraUnleash } from "./sections/SkrivTilOss-SvartidFraUnleash";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
-  const [svartidSkrivTilOss, setSvartidSkrivTilOss] = useState();
 
   useEffect(() => {
     /*
@@ -37,10 +35,6 @@ const KontaktOssFrontpage = () => {
       document.body.removeChild(script);
     };
   }, []);
-
-  useEffect(() => {
-    skrivTilOssSvartidFraUnleash(setSvartidSkrivTilOss);
-  }, [setSvartidSkrivTilOss]);
 
   return (
     <div className="frontpage__wrapper">
@@ -76,7 +70,7 @@ const KontaktOssFrontpage = () => {
               <RingOss />
               <FAQ />
             </div>
-            <SkrivTilOss svartid={svartidSkrivTilOss} />
+            <SkrivTilOss />
             <KontaktVeileder />
             <Facebook />
             <FinnNavKontor />
