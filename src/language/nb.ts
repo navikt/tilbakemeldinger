@@ -100,7 +100,9 @@ export default {
   "faq.posttilannenadresse": "Vil du ha NAV-post til en annen adresse?",
 
   "kontaktoss.tittel": "Kontakt oss",
-  "kontaktoss.svartiddager": "Svartid: {antall} arbeidsdager",
+  "kontaktoss.svartid": "Svartid: ",
+  "kontaktoss.svartiddager": "{antall} arbeidsdager",
+  "kontaktoss.svartidendag": "én arbeidsdag",
 
   "kontaktoss.chat.tittel": "Chat med oss",
   "kontaktoss.chat.ingress":
@@ -164,10 +166,11 @@ export default {
   "kontaktoss.navkontor.tittel": "Finn ditt NAV-kontor",
   "kontaktoss.navkontor.beskrivelse":
     "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
-  "kontaktoss.navkontor.lenke": "Logg inn og se hvilket NAV-kontor du tilhører",
-  "kontaktoss.hjelpemiddelsentral.lenke": "Finn din hjelpemiddelsentral",
-  "kontaktoss.navkontor.xls.lenke": "Last ned oversikt over NAV-kontor (Excel)",
+  "kontaktoss.navkontor.innlogget.lenke": "Logg inn og se hvilket NAV-kontor du tilhører",
   "kontaktoss.navkontor.uinnlogget.lenke": "Søk etter kontor på postnummer",
+  "kontaktoss.hjelpemiddelsentral.lenke": "Finn din hjelpemiddelsentral",
+  "kontaktoss.navkontor.lenke": "Se oversikt over NAV-kontor",
+  "kontaktoss.navkontor.xls.lenke": "Last ned oversikt over NAV-kontor (Excel)",
 
   "kontaktoss.tolketjenesten.tittel": "Tolketjenesten",
   "kontaktoss.tolketjenesten.link":

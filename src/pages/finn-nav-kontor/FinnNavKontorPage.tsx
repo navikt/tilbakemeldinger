@@ -25,7 +25,7 @@ const FinnNavKontorPage = () => {
         </Sidetittel>
       </div>
       <RouterLenke
-        href={urls.finnDittNavKontorXls}
+        href={urls.finnDittNavKontorUinnlogget}
         isExternal={true}
       >
         <FormattedMessage id="kontaktoss.navkontor.xls.lenke" />
