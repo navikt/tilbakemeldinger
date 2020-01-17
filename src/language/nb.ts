@@ -56,7 +56,8 @@ export default {
 
   "skrivtiloss.pensjonist.lenke.tittel": "Pensjonist",
   "skrivtiloss.pensjonist.lenke.ingress":
-    "Alderspensjon, barnepensjon, etterlattepensjon, krigspensjon.",
+    "Alderspensjon, barnepensjon, etterlattepensjon, krigspensjon, AFP fra Statens pensjonskasse mellom 62 og 65 år," +
+    " AFP i privat sektor.",
 
   "skrivtiloss.ufor.lenke.tittel": "Ufør",
   "skrivtiloss.ufor.lenke.ingress":
@@ -163,7 +164,8 @@ export default {
   "kontaktoss.navkontor.tittel": "Finn ditt NAV-kontor",
   "kontaktoss.navkontor.beskrivelse":
     "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
-  "kontaktoss.navkontor.lenke": "Logg inn og se hvilket NAV-kontor du tilhører",
+  "kontaktoss.navkontor.innlogget.lenke": "Logg inn og se hvilket NAV-kontor du tilhører",
+  "kontaktoss.navkontor.lenke": "Se oversikt over NAV-kontor",
   "kontaktoss.hjelpemiddelsentral.lenke": "Finn din hjelpemiddelsentral",
 
   "kontaktoss.tolketjenesten.tittel": "Tolketjenesten",
