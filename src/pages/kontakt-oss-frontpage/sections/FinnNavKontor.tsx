@@ -18,7 +18,7 @@ const FinnNavKontor = () => {
           isExternal={true}
           className={"lenke__avstand-under"}
         >
-          <FormattedMessage id="kontaktoss.navkontor.lenke" />
+          <FormattedMessage id="kontaktoss.navkontor.innlogget.lenke" />
         </RouterLenke>
         <RouterLenke
           href={urls.finnDinHjelpemiddelsentral}

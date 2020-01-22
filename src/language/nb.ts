@@ -21,7 +21,7 @@ export default {
   "breadcrumb.okonomi": "Økonomi",
   "breadcrumb.eures": "EURES",
 
-  "breadcrumb.finnkontor": "Finn NAV-kontor",
+  "breadcrumb.finnkontor": "Finn NAV kontor",
 
   "breadcrumb.tilbakemeldinger": "Tilbakemelding",
   "breadcrumb.serviceklage": "Klage på service",
@@ -167,10 +167,8 @@ export default {
   "kontaktoss.navkontor.beskrivelse":
     "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
   "kontaktoss.navkontor.innlogget.lenke": "Logg inn og se hvilket NAV-kontor du tilhører",
-  "kontaktoss.navkontor.uinnlogget.lenke": "Søk etter kontor på postnummer",
+  "kontaktoss.navkontor.uinnlogget.lenke": "Søk etter NAV kontor på postnummer",
   "kontaktoss.hjelpemiddelsentral.lenke": "Finn din hjelpemiddelsentral",
-  "kontaktoss.navkontor.lenke": "Se oversikt over NAV-kontor",
-  "kontaktoss.navkontor.xls.lenke": "Last ned oversikt over NAV-kontor (Excel)",
 
   "kontaktoss.tolketjenesten.tittel": "Tolketjenesten",
   "kontaktoss.tolketjenesten.link":
@@ -412,5 +410,10 @@ export default {
     " redusert åpningstid i romjulen vil svartiden i 'Skriv til oss' være inntil 14 dager.",
   "apningstid.avvik.skrivtiloss.svartid":
     "På grunn av redusert åpningstid i julen, kan svartiden være inntil 14 dager.",
-  "apningstid.avvik.ringoss.lenke": "Åpningstider i julen"
+  "apningstid.avvik.ringoss.lenke": "Åpningstider i julen",
+
+  "finnkontor.tittel": "Søk etter NAV kontor",
+  "finnkontor.dittkontor": "Ditt NAV kontor er: ",
+  "finnkontor.ugyldig.postnr": "Ugyldig postnummer.",
+  "finnkontor.feil1": "Teknisk feil kode 1"
 };

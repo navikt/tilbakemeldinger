@@ -1,13 +1,22 @@
-import React, { useEffect } from "react";
-import { Sidetittel } from "nav-frontend-typografi";
-import { FormattedMessage, useIntl } from "react-intl";
+import React, { useEffect, useState } from "react";
+import { useIntl } from "react-intl";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
+import { Input } from "nav-frontend-skjema";
+import { KontorInfoSeksjon } from "./KontorInfoSeksjon";
+import IkonPanel from "../../components/ikonpanel/IkonPanel";
 
 const cssPrefix = "finn-kontor";
 
 const FinnNavKontorPage = () => {
+  const updatePostnr = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value.toString();
+    const nyttPostnr = !isNaN(Number(postnr)) ? input.replace(".", "") : postnr;
+    setPostnr(nyttPostnr);
+  };
+  const [postnr, setPostnr] = useState("");
+
   const tittel = useIntl().formatMessage({
-    id: "kontaktoss.navkontor.uinnlogget.lenke"
+    id: "finnkontor.tittel"
   });
   const documentTitle = `${tittel} - www.nav.no`;
   useEffect(() => {
@@ -16,13 +25,24 @@ const FinnNavKontorPage = () => {
 
   return (
     <div className={`${cssPrefix} pagecontent`}>
-      <BreadcrumbsWrapper />
-      <div className={`${cssPrefix}__header`}>
-        <Sidetittel>
-          <FormattedMessage id={tittel} />
-        </Sidetittel>
-      </div>
+      <BreadcrumbsWrapper/>
+      <IkonPanel tittel={tittel}>
+        <Input
+          label={"Skriv inn postnummer"}
+          bredde={"XS"}
+          maxLength={4}
+          type={"text"}
+          value={postnr}
+          onChange={updatePostnr}
+        />
 
+        { postnr && postnr.length === 4 && (
+          <KontorInfoSeksjon
+            className={"kontor-info"}
+            postnr={postnr}
+          />
+        )}
+      </IkonPanel>
     </div>
   );
 };
