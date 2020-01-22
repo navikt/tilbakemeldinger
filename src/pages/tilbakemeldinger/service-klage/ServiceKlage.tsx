@@ -203,7 +203,7 @@ const ServiceKlage = () => {
                 return (
                   <div className="skjema__content">
                     <SkjemaGruppe
-                      title={intl.formatMessage({ id: "felter.klagetyper" })}
+                      legend={intl.formatMessage({ id: "felter.klagetyper" })}
                       feil={sjekkForFeil(submitted, errors.klagetyper)}
                     >
                       <div className={"felter__melding-advarsel"}>
@@ -265,7 +265,7 @@ const ServiceKlage = () => {
                       <ServiceKlageGjelderSosialhjelp />
                     )}
                     <SkjemaGruppe
-                      title={intl.formatMessage({ id: "felter.hvemfra" })}
+                      legend={intl.formatMessage({ id: "felter.hvemfra" })}
                       feil={sjekkForFeil(submitted, errors.hvemFra)}
                     >
                       <Radio

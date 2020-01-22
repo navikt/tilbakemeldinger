@@ -9,7 +9,6 @@ const postnrTilEnhetsnr = require("./postnr-til-enhetsnr.json");
 
 type Props = {
   postnr: string
-  className?: string
 };
 
 const urlifyKontorNavn = (navn: string) => navn
@@ -24,7 +23,7 @@ const urlifyKontorNavn = (navn: string) => navn
   .replace("valer (innlandet)", "valer-i-hedmark")
   .replace("valer (ost-viken)", "valer");
 
-export const KontorInfoSeksjon = ({postnr, className= ""}: Props) => {
+export const KontorInfoSeksjon = ({postnr}: Props) => {
   const postnrUtenLedendeNull = parseInt(postnr, 10).toString();
   const enhetsnr = postnrTilEnhetsnr[postnrUtenLedendeNull];
   if (!enhetsnr) {
@@ -39,13 +38,13 @@ export const KontorInfoSeksjon = ({postnr, className= ""}: Props) => {
   const url = `${urls.navKontorSidePrefix}${urlifyKontorNavn(kontorNavn)}`;
 
   return (
-    <div className={className}>
+    <>
       <Normaltekst>
         <FormattedMessage id={"finnkontor.dittkontor"}/>
       </Normaltekst>
-      <RouterLenkeMedChevron href={url} isExternal={true}>
+      <RouterLenkeMedChevron href={url} isExternal={true} className={"kontor-info-lenke"}>
         {kontorNavn}
       </RouterLenkeMedChevron>
-    </div>
+    </>
   );
 };

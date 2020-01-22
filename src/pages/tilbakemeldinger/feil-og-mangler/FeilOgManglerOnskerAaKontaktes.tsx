@@ -18,7 +18,7 @@ const FeilgOgManglerOnskerAaKontaktes = () => {
       {({ errors, fields, submitted, setField }) => {
         return (
           <SkjemaGruppe
-            title={intl.formatMessage({
+            legend={intl.formatMessage({
               id: "felter.onskerkontakt"
             })}
             feil={sjekkForFeil(submitted, errors.onskerKontakt)}

@@ -413,7 +413,8 @@ export default {
   "apningstid.avvik.ringoss.lenke": "Åpningstider i julen",
 
   "finnkontor.tittel": "Søk etter NAV kontor",
-  "finnkontor.dittkontor": "Ditt NAV kontor er: ",
+  "finnkontor.skriv.postnr": "Skriv inn postnummer:",
+  "finnkontor.dittkontor": "NAV kontor for dette postnummeret: ",
   "finnkontor.ugyldig.postnr": "Ugyldig postnummer.",
   "finnkontor.feil1": "Teknisk feil kode 1"
 };

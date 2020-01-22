@@ -73,7 +73,7 @@ const ServiceKlageForAnnenPerson = () => {
               onChange={v => setField({ paaVegneAvFodselsnr: v })}
             />
             <SkjemaGruppe
-              title={intl.formatMessage({
+              legend={intl.formatMessage({
                 id: "felter.fullmakt"
               })}
               feil={sjekkForFeil(submitted, errors.innmelderHarFullmakt)}
