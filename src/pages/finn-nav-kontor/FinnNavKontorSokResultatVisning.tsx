@@ -46,6 +46,7 @@ export const FinnNavKontorSokResultatVisning = ({result, query}: ResultProps) =>
         return true;
       }
       console.log("Error: kontornavn ikke funnet for enhetsnr " + enhetsnr);
+      return false;
     })
     .sort((a, b) => enhetsnrTilKontor[a].localeCompare(enhetsnrTilKontor[b]))
     .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
