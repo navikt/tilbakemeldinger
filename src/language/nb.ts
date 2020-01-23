@@ -417,6 +417,6 @@ export default {
   "finnkontor.ugyldig.postnr": "Ugyldig postnummer",
   "finnkontor.ingen.treff": "Ingen resultater for \"{query}\"",
   "finnkontor.resultat": "Søkeresultat for \"{query}\" ({antall}):",
-  "finnkontor.visalle": "Liste over samtlige kontorer i databasen:",
+  "finnkontor.visalle": "Liste over samtlige kontorer i databasen ({antall}):",
   "finnkontor.feil1": "Teknisk feil kode 1"
 };

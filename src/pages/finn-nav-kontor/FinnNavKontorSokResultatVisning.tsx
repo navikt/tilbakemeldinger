@@ -59,7 +59,7 @@ const VisAlle = () => {
   return (
     <>
       <Normaltekst>
-        <FormattedMessage id={"finnkontor.visalle"} values={{antall: Object.keys(enhetsnrTilKontor).length}} />
+        <FormattedMessage id={"finnkontor.visalle"} values={{antall: kontorLenker.length}} />
       </Normaltekst>
       <div className={"finn-kontor__kontorliste"}>
         {kontorLenker}
