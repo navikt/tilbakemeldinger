@@ -24,11 +24,7 @@ const urlifyKontorNavn = (navn: string) => sanitizeQuery(navn)
   .replace("valer-(ost-viken)", "valer");
 
 const KontorLenke = ({enhetsnr}: KontorProps) => {
-  const kontorNavn = enhetsnr && enhetsnrTilKontor[enhetsnr];
-  if (!kontorNavn) {
-    return <FormattedMessage id={"finnkontor.feil1"} />;
-  }
-
+  const kontorNavn = enhetsnrTilKontor[enhetsnr];
   const url = `${urls.navKontorSidePrefix}${urlifyKontorNavn(kontorNavn)}`;
 
   return (
@@ -43,7 +39,16 @@ export const FinnNavKontorSokResultatVisning = ({result, query}: ResultProps) =>
     return <FormattedMessage id={"finnkontor.ingen.treff"} values={{query}} />;
   }
 
-  const kontorLenker = result.map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
+  const kontorLenker = result
+    .filter(enhetsnr => {
+      const kontorNavn = enhetsnrTilKontor[enhetsnr];
+      if (kontorNavn) {
+        return true;
+      }
+      console.log("Error: kontornavn ikke funnet for enhetsnr " + enhetsnr);
+    })
+    .sort((a, b) => enhetsnrTilKontor[a].localeCompare(enhetsnrTilKontor[b]))
+    .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
 
   return (
     <>

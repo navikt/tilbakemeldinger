@@ -8,7 +8,7 @@ const sanitizeString = (str) => str
   .replace(/á/g, "a")
   .replace(/ü/g, "u");
 
-const sourceFile = "navkontor-postnummer.xlsx";
+const sourceFile = "navkontor.xlsx";
 const enhetsnrTilKontorFile = "./src/pages/finn-nav-kontor/enhetsnr-til-enhetsnavn.json";
 const postnrTilEnhetsnrFile = "./src/pages/finn-nav-kontor/postnr-til-enhetsnr.json";
 const stedsnavnTilEnhetsnrFile = "./src/pages/finn-nav-kontor/stedsnavn-til-enhetsnr.json";
