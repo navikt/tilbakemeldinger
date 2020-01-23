@@ -36,10 +36,10 @@ const sheetNames = Object.keys(excelToJson({sourceFile: sourceFile, columnToKey:
 
 const enhetsnrTilKontor = sheetToJson(
   sourceFile,
-  sheetNames[0],
+  sheetNames[1],
   {
-    A: "enhetsnr",
-    B: "enhetsnavn",
+    I: "enhetsnavn",
+    J: "enhetsnr"
   }
 );
 

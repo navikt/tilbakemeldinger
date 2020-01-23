@@ -21,7 +21,7 @@ const urlifyKontorNavn = (navn: string) => sanitizeQuery(navn)
   .replace(/ø/g, "o")
   .replace(/å/g, "a")
   .replace("valer-(innlandet)", "valer-i-hedmark")
-  .replace("valer-(ost-viken)", "valer");
+  .replace("valer-(viken)", "valer");
 
 const KontorLenke = ({enhetsnr}: KontorProps) => {
   const kontorNavn = enhetsnrTilKontor[enhetsnr];
