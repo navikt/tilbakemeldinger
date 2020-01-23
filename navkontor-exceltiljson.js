@@ -4,7 +4,7 @@ const fs = require("fs");
 const sanitizeString = (str) => str
   .toLowerCase()
   .replace(/\. /g, ".")
-  .replace(/[ \/]/g, "-")
+  .replace(/[ /]/g, "-")
   .replace(/á/g, "a")
   .replace(/ü/g, "u");
 

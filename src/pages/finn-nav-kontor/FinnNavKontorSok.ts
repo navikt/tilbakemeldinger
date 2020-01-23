@@ -11,9 +11,9 @@ const isValidPostnrFormat = (postnr: string) => {
 export const sanitizeQuery = (query: string) => query
   .toLowerCase()
   .replace(/\. /g, ".")
-  .replace(/[ \/]/g, "-")
-  .replace(/á/g, "a")
-  .replace(/ü/g, "u");
+  .replace(/[ /]/g, "-")
+  .replace(/[áàâãä]/g, "a")
+  .replace(/[ûùúü]/g, "u");
 
 export const generateSearchResult = (query: string, callback: Function) => {
   if (!query) {
