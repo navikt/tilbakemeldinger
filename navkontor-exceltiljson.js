@@ -1,6 +1,13 @@
 const excelToJson = require("convert-excel-to-json");
 const fs = require("fs");
 
+const sanitizeString = (str) => str
+  .toLowerCase()
+  .replace(/\. /g, ".")
+  .replace(/[ \/]/g, "-")
+  .replace(/á/g, "a")
+  .replace(/ü/g, "u");
+
 const sourceFile = "navkontor-postnummer.xlsx";
 const enhetsnrTilKontorFile = "./src/pages/finn-nav-kontor/enhetsnr-til-enhetsnavn.json";
 const postnrTilEnhetsnrFile = "./src/pages/finn-nav-kontor/postnr-til-enhetsnr.json";
@@ -51,6 +58,7 @@ const stedsnavnTilEnhetsnr = sheetToJson(
   {
     B: "poststed",
     H: "kommune",
+    I: "kontornavn",
     J: "enhetsnr"
   }
 );
@@ -70,8 +78,15 @@ const stedsnavnJsonToFile = (stedsnavnJson) => {
   };
 
   Object.values(stedsnavnJson).forEach((element) => {
-    addValue(element.poststed, element.enhetsnr);
-    addValue(element.kommune, element.enhetsnr);
+    if (element.poststed) {
+      addValue(sanitizeString(element.poststed), element.enhetsnr);
+    }
+    if (element.kommune) {
+      addValue(sanitizeString(element.kommune), element.enhetsnr);
+    }
+    if (element.kontornavn) {
+      addValue(sanitizeString(element.kontornavn).replace("nav-", ""), element.enhetsnr);
+    }
   });
 
   jsonToFile(stedsnavnObj, stedsnavnTilEnhetsnrFile);

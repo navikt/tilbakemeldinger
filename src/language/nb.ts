@@ -167,7 +167,7 @@ export default {
   "kontaktoss.navkontor.beskrivelse":
     "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
   "kontaktoss.navkontor.innlogget.lenke": "Logg inn og se hvilket NAV-kontor du tilhører",
-  "kontaktoss.navkontor.uinnlogget.lenke": "Søk etter NAV kontor på postnummer",
+  "kontaktoss.navkontor.uinnlogget.lenke": "Søk etter NAV kontor (uinnlogget)",
   "kontaktoss.hjelpemiddelsentral.lenke": "Finn din hjelpemiddelsentral",
 
   "kontaktoss.tolketjenesten.tittel": "Tolketjenesten",
@@ -412,9 +412,10 @@ export default {
     "På grunn av redusert åpningstid i julen, kan svartiden være inntil 14 dager.",
   "apningstid.avvik.ringoss.lenke": "Åpningstider i julen",
 
-  "finnkontor.tittel": "Finn NAV kontor for postnummer",
-  "finnkontor.skriv.postnr": "Postnummer:",
-  "finnkontor.dittkontor": "NAV kontoret for dette postnummeret: ",
+  "finnkontor.tittel": "Finn NAV kontor",
+  "finnkontor.sok.label": "Søk på postnummer, poststed, kommune eller bydel:",
   "finnkontor.ugyldig.postnr": "Ugyldig postnummer",
+  "finnkontor.ingen.treff": "Ingen resultater for \"{query}\"",
+  "finnkontor.resultat": "Søkeresultat for \"{query}\" ({antall}):",
   "finnkontor.feil1": "Teknisk feil kode 1"
 };
