@@ -1,7 +1,7 @@
 const excelToJson = require("convert-excel-to-json");
 const fs = require("fs");
 
-const sourceFile = "postnummer-navkontor.xlsx";
+const sourceFile = "navkontor-postnummer.xlsx";
 const enhetsnrTilKontorFile = "./src/pages/finn-nav-kontor/enhetsnr-til-enhetsnavn.json";
 const postnrTilEnhetsnrFile = "./src/pages/finn-nav-kontor/postnr-til-enhetsnr.json";
 

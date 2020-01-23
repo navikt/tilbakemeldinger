@@ -5,23 +5,31 @@ import { Input, Label } from "nav-frontend-skjema";
 import { KontorInfoSeksjon } from "./KontorInfoSeksjon";
 import IkonPanel from "../../components/ikonpanel/IkonPanel";
 
+const postnrTilEnhetsnr = require("./postnr-til-enhetsnr.json");
+
 const cssPrefix = "finn-kontor";
 
 const FinnNavKontorPage = () => {
   const filterInputAndUpdatePostnr = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value.toString();
-    const nyttPostnr = !isNaN(Number(postnr)) ? input.replace(".", "") : postnr;
+    const nyttPostnr = !isNaN(Number(input))
+        ? input
+            .replace(".", "")
+            .replace("-", "")
+        : postnr;
     setPostnr(nyttPostnr);
   };
   const [postnr, setPostnr] = useState("");
 
-  const tittel = useIntl().formatMessage({
-    id: "finnkontor.tittel"
-  });
+  const tittel = useIntl().formatMessage({id: "finnkontor.tittel"});
   const documentTitle = `${tittel} - www.nav.no`;
   useEffect(() => {
     document.title = documentTitle;
   }, [documentTitle]);
+
+  const postnrFormatIsValid = postnr && postnr.length === 4;
+  const postnrUtenLedendeNull = parseInt(postnr, 10).toString();
+  const postnrIsValid = postnrFormatIsValid && postnrTilEnhetsnr[postnrUtenLedendeNull];
 
   return (
     <div className={`${cssPrefix} pagecontent`}>
@@ -30,24 +38,22 @@ const FinnNavKontorPage = () => {
         <Label htmlFor={"postnr-input"}>
           <FormattedMessage id={"finnkontor.skriv.postnr"}/>
         </Label>
-        <div className={"kontor-info-content"}>
-          <Input
-            id={"postnr-input"}
-            bredde={"XS"}
-            maxLength={4}
-            type={"text"}
-            value={postnr}
-            onChange={filterInputAndUpdatePostnr}
-          />
+        <Input
+          id={"postnr-input"}
+          bredde={"XS"}
+          maxLength={4}
+          type={"text"}
+          value={postnr}
+          onChange={filterInputAndUpdatePostnr}
+          autoFocus={true}
+          className={postnrFormatIsValid && !postnrIsValid ? "postnr-input-feil" : ""}
+        />
 
-          { postnr && postnr.length === 4 && (
-            <div className={"kontor-info-result"}>
-              <KontorInfoSeksjon
-                postnr={postnr}
-              />
-            </div>
-          )}
-        </div>
+        {postnrFormatIsValid && (
+          <div className={"kontor-info-result"}>
+            <KontorInfoSeksjon postnr={postnr}/>
+          </div>
+        )}
       </IkonPanel>
     </div>
   );

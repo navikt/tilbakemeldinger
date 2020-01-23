@@ -412,9 +412,9 @@ export default {
     "På grunn av redusert åpningstid i julen, kan svartiden være inntil 14 dager.",
   "apningstid.avvik.ringoss.lenke": "Åpningstider i julen",
 
-  "finnkontor.tittel": "Søk etter NAV kontor",
-  "finnkontor.skriv.postnr": "Skriv inn postnummer:",
-  "finnkontor.dittkontor": "NAV kontor for dette postnummeret: ",
-  "finnkontor.ugyldig.postnr": "Ugyldig postnummer.",
+  "finnkontor.tittel": "Finn NAV kontor for postnummer",
+  "finnkontor.skriv.postnr": "Postnummer:",
+  "finnkontor.dittkontor": "NAV kontoret for dette postnummeret: ",
+  "finnkontor.ugyldig.postnr": "Ugyldig postnummer",
   "finnkontor.feil1": "Teknisk feil kode 1"
 };

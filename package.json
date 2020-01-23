@@ -10,10 +10,10 @@
     "start:lint": "tslint src/**/*.ts*",
     "start:ts": "react-scripts start",
     "start:less": "less-watch-compiler",
-    "start:exceltiljson": "node exceltiljson.js",
+    "start:exceltiljson": "node navkontor-exceltiljson.js",
     "build:css": "less-watch-compiler --run-once",
     "build:js": "react-scripts build",
-    "build:exceltiljson": "node exceltiljson.js",
+    "build:exceltiljson": "node navkontor-exceltiljson.js",
     "build": "npm-run-all -p build:*",
     "docker-build": "docker build . -t tilbakemeldinger",
     "docker-start": "docker run --name tilbakemeldinger -p 8080:8080 -t -d tilbakemeldinger",
@@ -96,8 +96,8 @@
     "@types/react-router-dom": "^5.1.0",
     "@types/react-select": "^3.0.4",
     "prettier": "^1.18.2",
-    "tslint": "^5.20.0",
-    "tslint-react": "^4.1.0"
+    "tslint": "^6.0.0",
+    "tslint-react": "^4.2.0"
   },
   "eslintConfig": {
     "extends": "react-app"

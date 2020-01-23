@@ -13,12 +13,13 @@ type Props = {
 
 const urlifyKontorNavn = (navn: string) => navn
   .toLowerCase()
+  .replace(". ", ".")
   .replace(" ", "-")
+  .replace("/", "-")
   .replace("æ", "ae")
   .replace("ø", "o")
   .replace("å", "a")
   .replace("ü", "u")
-  .replace("/", "-")
   .replace("á", "a")
   .replace("valer (innlandet)", "valer-i-hedmark")
   .replace("valer (ost-viken)", "valer");
