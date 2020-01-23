@@ -4,9 +4,12 @@ const fs = require("fs");
 const sanitizeString = (str) => str
   .toLowerCase()
   .replace(/\. /g, ".")
-  .replace(/[ /]/g, "-")
+  .replace(/[ /–]/g, "-")
+  .replace(/,/g, "")
   .replace(/á/g, "a")
-  .replace(/ü/g, "u");
+  .replace(/ü/g, "u")
+  .replace(/š/g, "s")
+  .replace(/ŋ/g, "n");
 
 const sourceFile = "navkontor.xlsx";
 const enhetsnrTilKontorFile = "./src/pages/finn-nav-kontor/enhetsnr-til-enhetsnavn.json";

@@ -11,9 +11,12 @@ const isValidPostnrFormat = (postnr: string) => {
 export const sanitizeQuery = (query: string) => query
   .toLowerCase()
   .replace(/\. /g, ".")
-  .replace(/[ /]/g, "-")
+  .replace(/[ /–]/g, "-")
+  .replace(/,/g, "")
   .replace(/[áàâãä]/g, "a")
-  .replace(/[ûùúü]/g, "u");
+  .replace(/[ûùúü]/g, "u")
+  .replace(/š/g, "s")
+  .replace(/ŋ/g, "n");
 
 export const generateSearchResult = (query: string, callback: Function) => {
   if (!query) {
@@ -30,6 +33,10 @@ export const generateSearchResult = (query: string, callback: Function) => {
   }
 
   const stedQuery = sanitizeQuery(query);
+
+  if (!stedQuery) {
+    return;
+  }
 
   const result = Object.keys(stedsnavnTilEnhetsnr)
     .filter(stedsnavn => (stedsnavn.includes(stedQuery)))

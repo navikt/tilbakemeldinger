@@ -21,7 +21,12 @@ const urlifyKontorNavn = (navn: string) => sanitizeQuery(navn)
   .replace(/ø/g, "o")
   .replace(/å/g, "a")
   .replace("valer-(innlandet)", "valer-i-hedmark")
-  .replace("valer-(viken)", "valer");
+  .replace("valer-(viken)", "valer")
+  .replace(/porsanger.+/, "porsanger")
+  .replace(/salangen.+/, "salangen")
+  .replace("balsfjord-og-storfjord", "balsfjord-storfjord")
+  .replace("bo-(nordland)", "bo")
+  .replace("-aremark", "");
 
 const KontorLenke = ({enhetsnr}: KontorProps) => {
   const kontorNavn = enhetsnrTilKontor[enhetsnr];
