@@ -6,6 +6,7 @@ import RouterLenkeMedChevron from "../../components/routerlenke/RouterLenkeMedCh
 import {sanitizeQuery} from "./FinnNavKontorSok";
 
 const enhetsnrTilKontor = require("./enhetsnr-til-enhetsnavn.json");
+const norskSort = new Intl.Collator("no", { usage: "sort" }).compare;
 
 type KontorProps = {
   enhetsnr: string
@@ -49,7 +50,7 @@ const sortertKontorListe = (enhetsnrArray: Array<string>) => enhetsnrArray
     console.log("Error: kontornavn ikke funnet for enhetsnr " + enhetsnr);
     return false;
   })
-  .sort((a, b) => enhetsnrTilKontor[a].localeCompare(enhetsnrTilKontor[b]))
+  .sort((a, b) => norskSort(enhetsnrTilKontor[a], enhetsnrTilKontor[b]))
   .reduce((acc: Array<string>, curr, index, arr) =>
     (index > 0 && enhetsnrTilKontor[arr[index-1]] === enhetsnrTilKontor[arr[index]] ? acc : [...acc, curr]), [])
   .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
