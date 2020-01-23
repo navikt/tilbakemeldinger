@@ -6,7 +6,7 @@ import RouterLenkeMedChevron from "../../components/routerlenke/RouterLenkeMedCh
 import {sanitizeQuery} from "./FinnNavKontorSok";
 
 const enhetsnrTilKontor = require("./enhetsnr-til-enhetsnavn.json");
-const norskSort = new Intl.Collator("no", { usage: "sort" }).compare;
+const norskSort = new Intl.Collator(["no", "nb", "nn"], { usage: "sort" }).compare;
 
 type KontorProps = {
   enhetsnr: string
