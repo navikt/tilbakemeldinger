@@ -1,14 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import { Input, Label } from "nav-frontend-skjema";
-import { FinnNavKontorSokResultatVisning } from "./FinnNavKontorSokResultatVisning";
+import { FinnNavKontorResultat } from "./FinnNavKontorResultat";
 import IkonPanel from "../../components/ikonpanel/IkonPanel";
-import {generateSearchResult} from "./FinnNavKontorSok";
-import {Form} from "calidation";
-import {Knapp} from "nav-frontend-knapper";
-
-const cssPrefix = "finn-kontor";
+import { generateSearchResult, SearchResult } from "./FinnNavKontorSok";
+import { Form } from "calidation";
+import { Knapp } from "nav-frontend-knapper";
 
 const FinnNavKontorPage = () => {
   const tittel = useIntl().formatMessage({id: "finnkontor.tittel"});
@@ -17,19 +15,15 @@ const FinnNavKontorPage = () => {
     document.title = documentTitle;
   }, [documentTitle]);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchQueryOnSubmit, setSearchQueryOnSubmit] = useState("");
-  const [searchResult, setSearchResult] = useState();
+  const [inputElement, setInputElement] = useState<HTMLInputElement>();
+  const [searchResult, setSearchResult] = useState<SearchResult>();
 
   return (
-    <div className={`${cssPrefix} pagecontent`}>
+    <div className={`finn-kontor pagecontent`}>
       <BreadcrumbsWrapper/>
       <IkonPanel tittel={tittel}>
-        <Form onSubmit={() => {
-          setSearchQueryOnSubmit(searchQuery);
-          generateSearchResult(searchQuery, setSearchResult);
-        }}>
-          <Label htmlFor={"postnr-input"}>
+        <Form onSubmit={() => inputElement && setSearchResult(generateSearchResult(inputElement.value))}>
+          <Label htmlFor={"finn-kontor-input"}>
             <FormattedMessage id={"finnkontor.sok.label"}/>
           </Label>
           <Input
@@ -37,21 +31,22 @@ const FinnNavKontorPage = () => {
             bredde={"M"}
             type={"text"}
             autoFocus={true}
-            onChange={e => setSearchQuery(e.target.value)}
+            onFocus={e => setInputElement(e.target)}
           />
-          <Knapp htmlType={"submit"} type={"standard"} className={`${cssPrefix}__knapp`}>
+          <Knapp
+            htmlType={"submit"}
+            type={"standard"}
+            className={`finn-kontor__knapp`}
+          >
             {"Søk"}
           </Knapp>
         </Form>
 
-        { searchQueryOnSubmit &&
-          <div className={`${cssPrefix}__resultat`}>
-              <FinnNavKontorSokResultatVisning
-                result={searchResult}
-                query={searchQueryOnSubmit}
-              />
+        {searchResult && (
+          <div className={`finn-kontor__resultat`}>
+            <FinnNavKontorResultat resultat={searchResult}/>
           </div>
-        }
+        )}
       </IkonPanel>
     </div>
   );

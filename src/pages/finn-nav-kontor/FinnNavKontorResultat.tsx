@@ -3,18 +3,17 @@ import { FormattedMessage } from "react-intl";
 import React from "react";
 import { urls } from "../../Config";
 import RouterLenkeMedChevron from "../../components/routerlenke/RouterLenkeMedChevron";
-import {sanitizeQuery} from "./FinnNavKontorSok";
+import { minQueryLength, sanitizeQuery, SearchResult, SearchStatus } from "./FinnNavKontorSok";
 
 const enhetsnrTilKontor = require("./enhetsnr-til-enhetsnavn.json");
-const norskSort = new Intl.Collator(["no", "nb", "nn"], { usage: "sort" }).compare;
+const norskSort = new Intl.Collator(["no", "nb", "nn"], {usage: "sort"}).compare;
 
 type KontorProps = {
   enhetsnr: string
 };
 
 type ResultProps = {
-  result: Array<string>,
-  query: string
+  resultat: SearchResult
 };
 
 const urlifyKontorNavn = (navn: string) => sanitizeQuery(navn)
@@ -28,7 +27,17 @@ const urlifyKontorNavn = (navn: string) => sanitizeQuery(navn)
   .replace("balsfjord-og-storfjord", "balsfjord-storfjord")
   .replace("bo-(nordland)", "bo")
   .replace("-aremark", "")
-  .replace("vest-telemark", "tokke");
+  .replace("vest-telemark", "tokke")
+  .replace(/leka|bindal|naeroysund/, "naeroy")
+  .replace("fensfjorden", "masfjorden")
+  .replace("hallingdal", "halllingdal")
+  .replace("lindesnes", "mandal")
+  .replace("ullensvang", "odda")
+  .replace("sorreisa", "senja")
+  .replace(/sirdal|farsund|flekkefjord|lyngdal/, "kvinesdal")
+  .replace("rindal", "orkland")
+  .replace(/flatanger|overhalla/, "namsos")
+  .replace(/^nav-nes$/, "nav-nes-i-akershus");
 
 const KontorLenke = ({enhetsnr}: KontorProps) => {
   const kontorNavn = enhetsnrTilKontor[parseInt(enhetsnr, 10)];
@@ -52,7 +61,7 @@ const sortertKontorListe = (enhetsnrArray: Array<string>) => enhetsnrArray
   })
   .sort((a, b) => norskSort(enhetsnrTilKontor[a], enhetsnrTilKontor[b]))
   .reduce((acc: Array<string>, curr, index, arr) =>
-    (index > 0 && enhetsnrTilKontor[arr[index-1]] === enhetsnrTilKontor[arr[index]] ? acc : [...acc, curr]), [])
+    (index > 0 && enhetsnrTilKontor[arr[index - 1]] === enhetsnrTilKontor[arr[index]] ? acc : [...acc, curr]), [])
   .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
 
 const VisAlle = () => {
@@ -60,7 +69,7 @@ const VisAlle = () => {
   return (
     <>
       <Normaltekst>
-        <FormattedMessage id={"finnkontor.visalle"} values={{antall: kontorLenker.length}} />
+        <FormattedMessage id={"finnkontor.visalle"} values={{antall: kontorLenker.length}}/>
       </Normaltekst>
       <div className={"finn-kontor__kontorliste"}>
         {kontorLenker}
@@ -69,21 +78,29 @@ const VisAlle = () => {
   );
 };
 
-export const FinnNavKontorSokResultatVisning = ({result, query}: ResultProps) => {
-  if (query === ":visalle") {
+export const FinnNavKontorResultat = ({resultat}: ResultProps) => {
+  if (resultat.status === SearchStatus.visAlle) {
     return <VisAlle/>;
   }
 
-  if (!result || result.length === 0) {
-    return <FormattedMessage id={"finnkontor.ingen.treff"} values={{query}} />;
+  if (resultat.status === SearchStatus.queryFeil) {
+    return <FormattedMessage id={"finnkontor.query.feil"} values={{min: minQueryLength}}/>;
   }
 
-  const kontorLenker = sortertKontorListe(result);
+  if (resultat.status === SearchStatus.ugyldigPostnr) {
+    return <FormattedMessage id={"finnkontor.ugyldig.postnr"} values={{nummer: resultat.query}}/>;
+  }
+
+  if (resultat.status === SearchStatus.ingenTreff) {
+    return <FormattedMessage id={"finnkontor.ingen.treff"} values={{query: resultat.query}}/>;
+  }
+
+  const kontorLenker = sortertKontorListe(resultat.hits);
 
   return (
     <>
       <Normaltekst>
-        <FormattedMessage id={"finnkontor.resultat"} values={{query: query, antall: result.length}} />
+        <FormattedMessage id={"finnkontor.resultat"} values={{query: resultat.query, antall: resultat.hits.length}}/>
       </Normaltekst>
       <div className={"finn-kontor__kontorliste"}>
         {kontorLenker}

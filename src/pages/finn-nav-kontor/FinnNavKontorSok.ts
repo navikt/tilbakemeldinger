@@ -1,11 +1,27 @@
 const postnrTilEnhetsnr = require("./postnr-til-enhetsnr.json");
 const stedsnavnTilEnhetsnr = require("./stedsnavn-til-enhetsnr.json");
 
-const isValidPostnrFormat = (postnr: string) => {
-  const postnrSanitized = postnr
+export const minQueryLength = 2;
+
+export enum SearchStatus {
+  OK,
+  ingenTreff,
+  queryFeil,
+  ugyldigPostnr,
+  visAlle
+}
+
+export type SearchResult = {
+  hits: Array<string>,
+  query: string,
+  status: SearchStatus
+}
+
+const isValidPostnrFormat = (nr: string) => {
+  const nrSanitized = nr
     .replace(".", "")
     .replace("-", "");
-  return postnr && postnr.length === 4 && postnr === postnrSanitized && !isNaN(Number(postnr));
+  return nr && nr.length === 4 && nr === nrSanitized && !isNaN(Number(nr));
 };
 
 export const sanitizeQuery = (query: string) => query
@@ -18,29 +34,36 @@ export const sanitizeQuery = (query: string) => query
   .replace(/š/g, "s")
   .replace(/ŋ/g, "n");
 
-export const generateSearchResult = (query: string, callback: Function) => {
-  if (!query) {
-    return;
+export const generateSearchResult = (query: string) => {
+  if (query === ":visalle") {
+    return {hits: [], query, status: SearchStatus.visAlle};
   }
 
-  if (isValidPostnrFormat(query)) {
-    const postnrUtenLedendeNull = parseInt(query, 10).toString();
-    const enhetsnr = postnrTilEnhetsnr[postnrUtenLedendeNull];
-    if (enhetsnr) {
-      callback([enhetsnr]);
+  if (!query || query.length < minQueryLength) {
+    return {hits: [], query, status: SearchStatus.queryFeil};
+  }
+
+  if (!isNaN(Number(query))) {
+    if (!isValidPostnrFormat(query)) {
+      return {hits: [], query, status: SearchStatus.queryFeil};
     }
-    return;
+
+    const nrUtenLedendeNull = parseInt(query, 10).toString();
+    const enhetsnr = postnrTilEnhetsnr[nrUtenLedendeNull];
+    return enhetsnr
+      ? {hits: [enhetsnr], query, status: SearchStatus.OK}
+      : {hits: [], query, status: SearchStatus.ugyldigPostnr};
   }
 
   const stedQuery = sanitizeQuery(query);
 
   if (!stedQuery) {
-    return;
+    return {hits: [], query, status: SearchStatus.queryFeil};
   }
 
-  const result = Object.keys(stedsnavnTilEnhetsnr)
+  const hits = Object.keys(stedsnavnTilEnhetsnr)
     .filter(stedsnavn => (stedsnavn.includes(stedQuery)))
-    .reduce((acc: Array<number>, stedsnavn) => ([...acc, ...stedsnavnTilEnhetsnr[stedsnavn]]), [])
-    .reduce((acc: Array<number>, enhetsnr) => (acc.includes(enhetsnr) ? acc : [...acc, enhetsnr]), []);
-  callback(result);
+    .reduce((acc: Array<string>, stedsnavn) => ([...acc, ...stedsnavnTilEnhetsnr[stedsnavn]]), [])
+    .reduce((acc: Array<string>, enhetsnr) => (acc.includes(enhetsnr) ? acc : [...acc, enhetsnr]), []);
+  return {hits: hits, query, status: hits.length > 0 ? SearchStatus.OK : SearchStatus.ingenTreff};
 };

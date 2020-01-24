@@ -37,28 +37,11 @@ const jsonToFile = (jsonObj, destFile) => (
 
 const sheetNames = Object.keys(excelToJson({sourceFile: sourceFile, columnToKey: {}}));
 
-const enhetsnrTilKontor = sheetToJson(
-  sourceFile,
-  sheetNames[1],
-  {
-    I: "enhetsnavn",
-    J: "enhetsnr"
-  }
-);
-
-const postnrTilEnhetsnr = sheetToJson(
+const kontorInfoJson = sheetToJson(
   sourceFile,
   sheetNames[1],
   {
     A: "postnr",
-    J: "enhetsnr"
-  }
-);
-
-const stedsnavnTilEnhetsnr = sheetToJson(
-  sourceFile,
-  sheetNames[1],
-  {
     B: "poststed",
     H: "kommune",
     I: "kontornavn",
@@ -66,7 +49,7 @@ const stedsnavnTilEnhetsnr = sheetToJson(
   }
 );
 
-const stedsnavnJsonToFile = (stedsnavnJson) => {
+const stedsnavnJsonToFile = (jsonObj) => {
   const stedsnavnObj = {};
   const addValue = (key, value) => {
     if (!key || !value) {
@@ -80,7 +63,7 @@ const stedsnavnJsonToFile = (stedsnavnJson) => {
     }
   };
 
-  Object.values(stedsnavnJson).forEach((element) => {
+  Object.values(jsonObj).forEach((element) => {
     if (element.poststed) {
       addValue(sanitizeString(element.poststed), element.enhetsnr);
     }
@@ -95,10 +78,10 @@ const stedsnavnJsonToFile = (stedsnavnJson) => {
   jsonToFile(stedsnavnObj, stedsnavnTilEnhetsnrFile);
 };
 
-stedsnavnJsonToFile(stedsnavnTilEnhetsnr);
+stedsnavnJsonToFile(kontorInfoJson);
 
-jsonToFile(Object.values(enhetsnrTilKontor).reduce((acc, curr) => ({
-  ...acc, [parseInt(curr.enhetsnr, 10)]: curr.enhetsnavn}), {}), enhetsnrTilKontorFile);
+jsonToFile(Object.values(kontorInfoJson).reduce((acc, curr) => ({
+  ...acc, [parseInt(curr.enhetsnr, 10)]: curr.kontornavn}), {}), enhetsnrTilKontorFile);
 
-jsonToFile(Object.values(postnrTilEnhetsnr).reduce((acc, curr) => ({
+jsonToFile(Object.values(kontorInfoJson).reduce((acc, curr) => ({
   ...acc, [parseInt(curr.postnr, 10)]: curr.enhetsnr}), {}), postnrTilEnhetsnrFile);
