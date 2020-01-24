@@ -16,7 +16,7 @@ type ResultProps = {
   resultat: SearchResult
 };
 
-const urlifyKontorNavn = (navn: string) => sanitizeQuery(navn)
+export const urlifyKontorNavn = (navn: string) => sanitizeQuery(navn)
   .replace(/æ/g, "ae")
   .replace(/ø/g, "o")
   .replace(/å/g, "a")
@@ -50,7 +50,7 @@ const KontorLenke = ({enhetsnr}: KontorProps) => {
   );
 };
 
-const sortertKontorListe = (enhetsnrArray: Array<string>) => enhetsnrArray
+export const sorterEnhetsnrPaaKontornavn = (enhetsnrArray: Array<string>) => enhetsnrArray
   .filter(enhetsnr => {
     const kontorNavn = enhetsnrTilKontor[enhetsnr];
     if (kontorNavn) {
@@ -61,11 +61,11 @@ const sortertKontorListe = (enhetsnrArray: Array<string>) => enhetsnrArray
   })
   .sort((a, b) => norskSort(enhetsnrTilKontor[a], enhetsnrTilKontor[b]))
   .reduce((acc: Array<string>, curr, index, arr) =>
-    (index > 0 && enhetsnrTilKontor[arr[index - 1]] === enhetsnrTilKontor[arr[index]] ? acc : [...acc, curr]), [])
-  .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
+    (index > 0 && enhetsnrTilKontor[arr[index - 1]] === enhetsnrTilKontor[arr[index]] ? acc : [...acc, curr]), []);
 
 const VisAlle = () => {
-  const kontorLenker = sortertKontorListe(Object.keys(enhetsnrTilKontor));
+  const kontorLenker = sorterEnhetsnrPaaKontornavn(Object.keys(enhetsnrTilKontor))
+    .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
   return (
     <>
       <Normaltekst>
@@ -95,7 +95,8 @@ export const FinnNavKontorResultat = ({resultat}: ResultProps) => {
     return <FormattedMessage id={"finnkontor.ingen.treff"} values={{query: resultat.query}}/>;
   }
 
-  const kontorLenker = sortertKontorListe(resultat.hits);
+  const kontorLenker = sorterEnhetsnrPaaKontornavn(resultat.hits)
+    .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
 
   return (
     <>

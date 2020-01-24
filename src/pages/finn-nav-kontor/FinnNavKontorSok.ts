@@ -4,7 +4,8 @@ const stedsnavnTilEnhetsnr = require("./stedsnavn-til-enhetsnr.json");
 export const minQueryLength = 2;
 
 export enum SearchStatus {
-  OK,
+  stedsnavnTreff,
+  postnrTreff,
   ingenTreff,
   queryFeil,
   ugyldigPostnr,
@@ -15,7 +16,7 @@ export type SearchResult = {
   hits: Array<string>,
   query: string,
   status: SearchStatus
-}
+};
 
 const isValidPostnrFormat = (nr: string) => {
   const nrSanitized = nr
@@ -51,7 +52,7 @@ export const generateSearchResult = (query: string) => {
     const nrUtenLedendeNull = parseInt(query, 10).toString();
     const enhetsnr = postnrTilEnhetsnr[nrUtenLedendeNull];
     return enhetsnr
-      ? {hits: [enhetsnr], query, status: SearchStatus.OK}
+      ? {hits: [enhetsnr], query, status: SearchStatus.postnrTreff}
       : {hits: [], query, status: SearchStatus.ugyldigPostnr};
   }
 
@@ -65,5 +66,5 @@ export const generateSearchResult = (query: string) => {
     .filter(stedsnavn => (stedsnavn.includes(stedQuery)))
     .reduce((acc: Array<string>, stedsnavn) => ([...acc, ...stedsnavnTilEnhetsnr[stedsnavn]]), [])
     .reduce((acc: Array<string>, enhetsnr) => (acc.includes(enhetsnr) ? acc : [...acc, enhetsnr]), []);
-  return {hits: hits, query, status: hits.length > 0 ? SearchStatus.OK : SearchStatus.ingenTreff};
+  return {hits: hits, query, status: hits.length > 0 ? SearchStatus.stedsnavnTreff : SearchStatus.ingenTreff};
 };

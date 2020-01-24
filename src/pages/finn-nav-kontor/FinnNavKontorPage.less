@@ -1,6 +1,8 @@
-
 .finn-kontor__lenke {
-  margin-top: 0.25em;
+  padding: 0.25em 0;
+  &:last-of-type {
+    padding-bottom: 0;
+  }
 }
 
 .finn-kontor__resultat {
@@ -15,4 +17,37 @@
 
 .finn-kontor__knapp {
   margin-top: 0.5em;
+}
+
+.finn-kontor__preview {
+  @padx: 1.6em;
+  @pady: 1em;
+
+  position: absolute;
+  background-color: white;
+  padding: @pady @padx;
+  margin-top: 0.4em;
+
+  border: 1px solid @navGra60;
+  border-radius: @border-radius-base;
+  z-index: 1000;
+
+  max-height: 20em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  white-space: nowrap;
+
+  .finn-kontor__kontorliste {
+    margin: 0;
+
+    .finn-kontor__lenke {
+      padding: 0.25em @padx;
+      margin: 0 -@padx;
+
+      &:hover {
+        background-color: @navBlaLighten80;
+      }
+    }
+  }
+
 }
