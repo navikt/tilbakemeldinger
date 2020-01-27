@@ -166,8 +166,8 @@ export default {
   "kontaktoss.navkontor.tittel": "Finn ditt NAV-kontor",
   "kontaktoss.navkontor.beskrivelse":
     "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
-  "kontaktoss.navkontor.innlogget.lenke": "Logg inn og se hvilket NAV-kontor du tilhører",
-  "kontaktoss.navkontor.uinnlogget.lenke": "Søk etter NAV kontor (uinnlogget)",
+  "kontaktoss.navkontor.innlogget.lenke": "Se hvilket NAV-kontor du tilhører (innlogget)",
+  "kontaktoss.navkontor.uinnlogget.lenke": "Finn NAV-kontoret ditt (uinnlogget)",
   "kontaktoss.hjelpemiddelsentral.lenke": "Finn din hjelpemiddelsentral",
 
   "kontaktoss.tolketjenesten.tittel": "Tolketjenesten",
@@ -417,6 +417,7 @@ export default {
   "finnkontor.ugyldig.postnr": "Fant ingen NAV kontor tilknyttet \"{nummer}\". Postnummeret kan være ugyldig.",
   "finnkontor.query.feil": "Feil: Skriv inn minst {min} bokstaver eller et gyldig postnummer.",
   "finnkontor.ingen.treff": "Ingen resultater for \"{query}\"",
-  "finnkontor.resultat": "Søkeresultat for \"{query}\" ({antall}):",
+  "finnkontor.resultat.stedsnavn": "Søkeresultat for \"{query}\" ({antall}):",
+  "finnkontor.resultat.postnr": "NAV-kontor for postnummer ",
   "finnkontor.visalle": "Liste over samtlige kontorer ({antall}):"
 };

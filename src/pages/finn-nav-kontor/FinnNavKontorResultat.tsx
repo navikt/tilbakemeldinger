@@ -1,22 +1,22 @@
-import { Normaltekst } from "nav-frontend-typografi";
+import { Element, Normaltekst } from "nav-frontend-typografi";
 import { FormattedMessage } from "react-intl";
 import React from "react";
 import { urls } from "../../Config";
 import RouterLenkeMedChevron from "../../components/routerlenke/RouterLenkeMedChevron";
-import { minQueryLength, sanitizeQuery, SearchResult, SearchStatus } from "./FinnNavKontorSok";
+import { minQueryLength, sanitizeQuery, SearchHit, SearchResult, SearchStatus } from "./FinnNavKontorSok";
 
 const enhetsnrTilKontor = require("./enhetsnr-til-enhetsnavn.json");
 const norskSort = new Intl.Collator(["no", "nb", "nn"], {usage: "sort"}).compare;
 
 type KontorProps = {
-  enhetsnr: string
+  enhetsnr: number
 };
 
 type ResultProps = {
   resultat: SearchResult
 };
 
-export const urlifyKontorNavn = (navn: string) => sanitizeQuery(navn)
+const urlifyKontorNavn = (navn: string) => sanitizeQuery(navn)
   .replace(/æ/g, "ae")
   .replace(/ø/g, "o")
   .replace(/å/g, "a")
@@ -40,7 +40,7 @@ export const urlifyKontorNavn = (navn: string) => sanitizeQuery(navn)
   .replace(/^nav-nes$/, "nav-nes-i-akershus");
 
 const KontorLenke = ({enhetsnr}: KontorProps) => {
-  const kontorNavn = enhetsnrTilKontor[parseInt(enhetsnr, 10)];
+  const kontorNavn = enhetsnrTilKontor[enhetsnr];
   const url = `${urls.navKontorSidePrefix}${urlifyKontorNavn(kontorNavn)}`;
 
   return (
@@ -50,7 +50,12 @@ const KontorLenke = ({enhetsnr}: KontorProps) => {
   );
 };
 
-export const sorterEnhetsnrPaaKontornavn = (enhetsnrArray: Array<string>) => enhetsnrArray
+const sortByRelevance = (hits: Array<SearchHit>) => hits
+    .sort((a, b) => norskSort(a.stedsnavn, b.stedsnavn))
+    .sort((a, b) =>
+      a.hitIndex === 0 ? (b.hitIndex === 0 && a.stedsnavn.length >= b.stedsnavn.length ? 0 : -1) : 0);
+
+const sorterEnheterPaaKontornavn = (enhetsnrArray: Array<number>) => enhetsnrArray
   .filter(enhetsnr => {
     const kontorNavn = enhetsnrTilKontor[enhetsnr];
     if (kontorNavn) {
@@ -60,11 +65,11 @@ export const sorterEnhetsnrPaaKontornavn = (enhetsnrArray: Array<string>) => enh
     return false;
   })
   .sort((a, b) => norskSort(enhetsnrTilKontor[a], enhetsnrTilKontor[b]))
-  .reduce((acc: Array<string>, curr, index, arr) =>
+  .reduce((acc: Array<number>, curr, index, arr) =>
     (index > 0 && enhetsnrTilKontor[arr[index - 1]] === enhetsnrTilKontor[arr[index]] ? acc : [...acc, curr]), []);
 
 const VisAlle = () => {
-  const kontorLenker = sorterEnhetsnrPaaKontornavn(Object.keys(enhetsnrTilKontor))
+  const kontorLenker = sorterEnheterPaaKontornavn(Object.keys(enhetsnrTilKontor).map(Number))
     .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
   return (
     <>
@@ -74,6 +79,26 @@ const VisAlle = () => {
       <div className={"finn-kontor__kontorliste"}>
         {kontorLenker}
       </div>
+    </>
+  );
+};
+
+const StedsnavnHit = (hit: SearchHit, len: number) => {
+  const hitStart = hit.hitIndex || 0;
+  const hitEnd = hitStart + len;
+  const navn = hit.stedsnavn || "";
+
+  const kontorLenker = sorterEnheterPaaKontornavn(hit.enhetsnr)
+    .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
+
+  return (
+    <>
+      <Element className={"finnkontor-hit-stedsnavn"}>
+        <span className={"finnkontor-hit-faded"}>{navn.slice(0, hitStart)}</span>
+        <span className={"finnkontor-hit-uthevet"}>{navn.slice(hitStart, hitEnd)}</span>
+        <span className={"finnkontor-hit-faded"}>{navn.slice(hitEnd)}</span>
+      </Element>
+      {kontorLenker}
     </>
   );
 };
@@ -95,17 +120,32 @@ export const FinnNavKontorResultat = ({resultat}: ResultProps) => {
     return <FormattedMessage id={"finnkontor.ingen.treff"} values={{query: resultat.query}}/>;
   }
 
-  const kontorLenker = sorterEnhetsnrPaaKontornavn(resultat.hits)
-    .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
+  if (resultat.status === SearchStatus.postnrTreff) {
+    return (
+      <>
+        <Normaltekst>
+          <FormattedMessage id={"finnkontor.resultat.postnr"}/>
+          <span className={"finnkontor-postnr"}>{resultat.query}</span>{":"}
+        </Normaltekst>
+        <div className={"finn-kontor__kontorliste"}>
+          <KontorLenke enhetsnr={resultat.hits[0].enhetsnr[0]}/>
+        </div>
+      </>
+    );
+  }
 
-  return (
-    <>
-      <Normaltekst>
-        <FormattedMessage id={"finnkontor.resultat"} values={{query: resultat.query, antall: resultat.hits.length}}/>
-      </Normaltekst>
-      <div className={"finn-kontor__kontorliste"}>
-        {kontorLenker}
-      </div>
-    </>
-  );
+  if (resultat.status === SearchStatus.stedsnavnTreff) {
+    return (
+      <>
+        <Normaltekst>
+          <FormattedMessage id={"finnkontor.resultat.stedsnavn"} values={{query: resultat.query, antall: resultat.hits.length}}/>
+        </Normaltekst>
+        <div className={"finn-kontor__kontorliste"}>
+          {sortByRelevance(resultat.hits).map(hit => StedsnavnHit(hit, resultat.query.length))}
+        </div>
+      </>
+    );
+  }
+
+  return null;
 };

@@ -4,10 +4,9 @@ import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper"
 import { Input, Label } from "nav-frontend-skjema";
 import { FinnNavKontorResultat } from "./FinnNavKontorResultat";
 import IkonPanel from "../../components/ikonpanel/IkonPanel";
-import { generateSearchResult, minQueryLength, SearchResult, SearchStatus } from "./FinnNavKontorSok";
+import { generateSearchResult, SearchResult } from "./FinnNavKontorSok";
 import { Form } from "calidation";
 import { Knapp } from "nav-frontend-knapper";
-import { FinnNavKontorPreview } from "./FinnNavKontorPreview";
 
 const FinnNavKontorPage = () => {
   const tittel = useIntl().formatMessage({id: "finnkontor.tittel"});
@@ -17,30 +16,32 @@ const FinnNavKontorPage = () => {
   }, [documentTitle]);
 
   const [inputElement, setInputElement] = useState<HTMLInputElement>();
-  const [searchResult, setSearchResult] = useState<SearchResult>();
-  const [searchPreview, setSearchPreview] = useState<SearchResult | null>();
+  const [searchResult, setSearchResult] = useState<SearchResult | null>();
+  // const [searchPreview, setSearchPreview] = useState<SearchResult | null>();
 
   return (
     <div className={`finn-kontor pagecontent`}>
       <BreadcrumbsWrapper/>
       <IkonPanel tittel={tittel}>
-        <Form onSubmit={() => {
-          inputElement && setSearchResult(generateSearchResult(inputElement.value));
-          setSearchPreview(null);
-        }}>
+        <Form
+          onSubmit={() => {
+            inputElement && setSearchResult(generateSearchResult(inputElement.value));
+            // setSearchPreview(null);
+          }}
+        >
           <Label htmlFor={"finn-kontor-input"}>
             <FormattedMessage id={"finnkontor.sok.label"}/>
           </Label>
           <Input
             id={"finn-kontor-input"}
-            bredde={"M"}
+            bredde={"L"}
             type={"text"}
             autoFocus={true}
             autoComplete={"off"}
             onFocus={e => setInputElement(e.target)}
-            onChange={e =>
-              setSearchPreview(e.target.value.length >= minQueryLength ? generateSearchResult(e.target.value) : null)
-            }
+            // onChange={e =>
+            //   setSearchPreview(e.target.value.length >= minQueryLength ? generateSearchResult(e.target.value) : null)
+            // }
           />
           <Knapp
             htmlType={"submit"}
@@ -49,12 +50,12 @@ const FinnNavKontorPage = () => {
           >
             {"Søk"}
           </Knapp>
-          { searchPreview &&
-          (searchPreview.status === SearchStatus.stedsnavnTreff || searchPreview.status === SearchStatus.ingenTreff) && (
-            <div className={"finn-kontor__preview"}>
-              <FinnNavKontorPreview resultat={searchPreview}/>
-            </div>
-          )}
+          {/*{ searchPreview &&*/}
+          {/*(searchPreview.status === SearchStatus.stedsnavnTreff || searchPreview.status === SearchStatus.ingenTreff) && (*/}
+          {/*  <div className={"finn-kontor__preview"}>*/}
+          {/*    <FinnNavKontorPreview resultat={searchPreview}/>*/}
+          {/*  </div>*/}
+          {/*)}*/}
         </Form>
 
         {searchResult && (

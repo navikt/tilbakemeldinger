@@ -12,8 +12,14 @@ export enum SearchStatus {
   visAlle
 }
 
+export type SearchHit = {
+  enhetsnr: Array<number>,
+  stedsnavn: string,
+  hitIndex: number
+};
+
 export type SearchResult = {
-  hits: Array<string>,
+  hits: Array<SearchHit>,
   query: string,
   status: SearchStatus
 };
@@ -35,36 +41,48 @@ export const sanitizeQuery = (query: string) => query
   .replace(/š/g, "s")
   .replace(/ŋ/g, "n");
 
+const generateQueryFeilResult = (query: string) => {
+  return {hits: [], query, status: SearchStatus.queryFeil};
+};
+
+const generatePostnrHitResult = (query: string) => {
+  if (!isValidPostnrFormat(query)) {
+    return generateQueryFeilResult(query);
+  }
+
+  const nrUtenLedendeNull = parseInt(query, 10).toString();
+  const enhetsnr = postnrTilEnhetsnr[nrUtenLedendeNull];
+  return enhetsnr
+    ? {hits: [{enhetsnr: [enhetsnr], stedsnavn: query, hitIndex: 0}], query, status: SearchStatus.postnrTreff}
+    : {hits: [], query, status: SearchStatus.ugyldigPostnr};
+};
+
+const generateStedsnavnHitResult = (query: string) => {
+  const stedQuery = sanitizeQuery(query);
+
+  const hits = Object.keys(stedsnavnTilEnhetsnr)
+    .reduce((acc: Array<SearchHit>, stedsnavn) => {
+      const hitIndex = sanitizeQuery(stedsnavn).indexOf(stedQuery);
+      return hitIndex > -1
+        ? [...acc, {enhetsnr: stedsnavnTilEnhetsnr[stedsnavn], stedsnavn: stedsnavn, hitIndex: hitIndex}] : acc;
+      }, []);
+    // .reduce((acc: Array<SearchHit>, enhetsnr) => (acc.includes(enhetsnr) ? acc : [...acc, enhetsnr]), []);
+
+  return {hits: hits, query, status: hits.length > 0 ? SearchStatus.stedsnavnTreff : SearchStatus.ingenTreff};
+};
+
 export const generateSearchResult = (query: string) => {
   if (query === ":visalle") {
-    return {hits: [], query, status: SearchStatus.visAlle};
+    return generateQueryFeilResult(query);
   }
 
   if (!query || query.length < minQueryLength) {
-    return {hits: [], query, status: SearchStatus.queryFeil};
+    return generateQueryFeilResult(query);
   }
 
   if (!isNaN(Number(query))) {
-    if (!isValidPostnrFormat(query)) {
-      return {hits: [], query, status: SearchStatus.queryFeil};
-    }
-
-    const nrUtenLedendeNull = parseInt(query, 10).toString();
-    const enhetsnr = postnrTilEnhetsnr[nrUtenLedendeNull];
-    return enhetsnr
-      ? {hits: [enhetsnr], query, status: SearchStatus.postnrTreff}
-      : {hits: [], query, status: SearchStatus.ugyldigPostnr};
+    return generatePostnrHitResult(query);
   }
 
-  const stedQuery = sanitizeQuery(query);
-
-  if (!stedQuery) {
-    return {hits: [], query, status: SearchStatus.queryFeil};
-  }
-
-  const hits = Object.keys(stedsnavnTilEnhetsnr)
-    .filter(stedsnavn => (stedsnavn.includes(stedQuery)))
-    .reduce((acc: Array<string>, stedsnavn) => ([...acc, ...stedsnavnTilEnhetsnr[stedsnavn]]), [])
-    .reduce((acc: Array<string>, enhetsnr) => (acc.includes(enhetsnr) ? acc : [...acc, enhetsnr]), []);
-  return {hits: hits, query, status: hits.length > 0 ? SearchStatus.stedsnavnTreff : SearchStatus.ingenTreff};
+  return generateStedsnavnHitResult(query);
 };

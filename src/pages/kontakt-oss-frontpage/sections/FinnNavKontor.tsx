@@ -21,17 +21,17 @@ const FinnNavKontor = () => {
           <FormattedMessage id="kontaktoss.navkontor.innlogget.lenke" />
         </RouterLenke>
         <RouterLenke
-          href={urls.finnDinHjelpemiddelsentral}
-          isExternal={true}
-          className={"lenke__avstand-under"}
-        >
-          <FormattedMessage id="kontaktoss.hjelpemiddelsentral.lenke" />
-        </RouterLenke>
-        <RouterLenke
           href={urls.finnDittNavKontorUinnlogget}
           isExternal={false}
+          className={"lenke__avstand-under"}
         >
           <FormattedMessage id="kontaktoss.navkontor.uinnlogget.lenke" />
+        </RouterLenke>
+        <RouterLenke
+          href={urls.finnDinHjelpemiddelsentral}
+          isExternal={true}
+        >
+          <FormattedMessage id="kontaktoss.hjelpemiddelsentral.lenke" />
         </RouterLenke>
       </>
     </IkonPanel>

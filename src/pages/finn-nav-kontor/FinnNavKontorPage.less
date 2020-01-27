@@ -1,8 +1,20 @@
-.finn-kontor__lenke {
-  padding: 0.25em 0;
-  &:last-of-type {
-    padding-bottom: 0;
+.finnkontor-hit-stedsnavn {
+  &:not(:first-of-type) {
+    margin-top: 0.25em;
   }
+
+  .finnkontor-hit-uthevet {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+
+  .finnkontor-hit-faded {
+    color: @navGra60;
+  }
+}
+
+.finnkontor-postnr {
+  font-weight: bold;
 }
 
 .finn-kontor__resultat {
@@ -13,6 +25,10 @@
   display: flex;
   flex-direction: column;
   margin-top: 0.25em;
+
+  .finn-kontor__lenke {
+    padding: 0.25em 0;
+  }
 }
 
 .finn-kontor__knapp {
@@ -31,6 +47,8 @@
   border: 1px solid @navGra60;
   border-radius: @border-radius-base;
   z-index: 1000;
+
+  .input--l;
 
   max-height: 20em;
   overflow-y: auto;
