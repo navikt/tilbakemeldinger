@@ -3,10 +3,23 @@ import { FormattedMessage, useIntl } from "react-intl";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import { Input, Label } from "nav-frontend-skjema";
 import { FinnNavKontorResultat, FinnNavKontorResultatDynamisk } from "./FinnNavKontorResultat";
-import IkonPanel from "../../components/ikonpanel/IkonPanel";
 import { generateSearchResult, minQueryLength, SearchResult } from "./FinnNavKontorSok";
 import { Form } from "calidation";
 import { Knapp } from "nav-frontend-knapper";
+import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
+
+const cssPrefix = "finn-kontor";
+
+const Header = () => (
+  <div className={`${cssPrefix}__header`}>
+    <Sidetittel>
+      <FormattedMessage id={"finnkontor.tittel"}/>
+    </Sidetittel>
+    <Normaltekst className={`${cssPrefix}__ingress`}>
+      <FormattedMessage id={"finnkontor.ingress"}/>
+    </Normaltekst>
+  </div>
+);
 
 const FinnNavKontorPage = () => {
   const tittel = useIntl().formatMessage({id: "finnkontor.tittel"});
@@ -20,9 +33,11 @@ const FinnNavKontorPage = () => {
   const [searchResultDynamic, setSearchResultDynamic] = useState<SearchResult | null>();
 
   return (
-    <div className={`finn-kontor pagecontent`}>
+    <div className={`${cssPrefix} pagecontent`}>
       <BreadcrumbsWrapper/>
-      <IkonPanel tittel={tittel}>
+      <Header/>
+
+      <div className={`${cssPrefix}__innhold`}>
         <Form
           onSubmit={() => {
             inputElement && setSearchResult(generateSearchResult(inputElement.value));
@@ -32,10 +47,10 @@ const FinnNavKontorPage = () => {
           <Label htmlFor={"finn-kontor-input-id"}>
             <FormattedMessage id={"finnkontor.sok.label"}/>
           </Label>
-          <div className={"finn-kontor__input-og-knapp"}>
+          <div className={`${cssPrefix}__input-og-knapp`}>
             <Input
               id={"finn-kontor-input-id"}
-              className={"finn-kontor__input"}
+              className={`${cssPrefix}__input`}
               type={"text"}
               autoFocus={true}
               autoComplete={"off"}
@@ -47,7 +62,7 @@ const FinnNavKontorPage = () => {
             <Knapp
               htmlType={"submit"}
               type={"standard"}
-              className={"finn-kontor__knapp"}
+              className={`${cssPrefix}__knapp`}
               form={"kompakt"}
               mini={true}
             >
@@ -56,18 +71,18 @@ const FinnNavKontorPage = () => {
           </div>
 
           {searchResultDynamic && searchResultDynamic.query.length >= minQueryLength && (
-            <div className={"finn-kontor__preview-container"}>
+            <div className={`${cssPrefix}__preview-container`}>
               <FinnNavKontorResultatDynamisk resultat={searchResultDynamic}/>
             </div>
           )}
         </Form>
 
         {searchResult && (
-          <div className={`finn-kontor__resultat-container`}>
+          <div className={`${cssPrefix}__resultat-container`}>
             <FinnNavKontorResultat resultat={searchResult}/>
           </div>
         )}
-      </IkonPanel>
+      </div>
     </div>
   );
 };
