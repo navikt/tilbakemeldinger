@@ -163,7 +163,7 @@ export default {
   "kontaktoss.facebook.foreldrepenger": "Foreldrepenger på Facebook",
   "kontaktoss.facebook.jobblyst": "Jobblyst på Facebook",
 
-  "kontaktoss.navkontor.tittel": "Finn ditt NAV-kontor",
+  "kontaktoss.navkontor.tittel": "Finn NAV-kontor",
   "kontaktoss.navkontor.beskrivelse":
     "På NAV-kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
   "kontaktoss.navkontor.innlogget.lenke": "Finn ditt NAV-kontor (innlogget)",

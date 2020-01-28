@@ -6,7 +6,8 @@ import RouterLenkeMedChevron from "../../components/routerlenke/RouterLenkeMedCh
 import { minQueryLength, sanitizeQuery, SearchHit, SearchResult, SearchStatus } from "./FinnNavKontorSok";
 
 const enhetsnrTilKontor = require("./enhetsnr-til-enhetsnavn.json");
-const norskSort = new Intl.Collator(["no", "nb", "nn"], {usage: "sort"}).compare;
+
+const cssPrefix = "finn-kontor";
 
 type KontorProps = {
   enhetsnr: number
@@ -44,47 +45,9 @@ const KontorLenke = ({enhetsnr}: KontorProps) => {
   const url = `${urls.navKontorSidePrefix}${urlifyKontorNavn(kontorNavn)}`;
 
   return (
-    <RouterLenkeMedChevron href={url} isExternal={true} className={"finn-kontor__kontorlenke"}>
+    <RouterLenkeMedChevron href={url} isExternal={true} className={`${cssPrefix}__kontorlenke`}>
       {kontorNavn}
     </RouterLenkeMedChevron>
-  );
-};
-
-const sortByRelevance = (hits: Array<SearchHit>) => {
-  const topHits = hits.filter(hit => hit.hitIndex === 0)
-    .sort((a, b) => norskSort(a.treffnavn, b.treffnavn))
-    .sort((a, b) => a.treffnavn.length - b.treffnavn.length);
-  const rest = hits.filter(hit => hit.hitIndex !== 0)
-    .sort((a, b) => norskSort(a.treffnavn, b.treffnavn));
-
-  return [...topHits, ...rest];
-};
-
-const sorterEnheterPaaKontornavn = (enhetsnrArray: Array<number>) => enhetsnrArray
-  .filter(enhetsnr => {
-    const kontorNavn = enhetsnrTilKontor[enhetsnr];
-    if (kontorNavn) {
-      return true;
-    }
-    console.log("Error: kontornavn ikke funnet for enhetsnr " + enhetsnr);
-    return false;
-  })
-  .sort((a, b) => norskSort(enhetsnrTilKontor[a], enhetsnrTilKontor[b]))
-  .reduce((acc: Array<number>, curr, index, arr) =>
-    (index > 0 && enhetsnrTilKontor[arr[index - 1]] === enhetsnrTilKontor[arr[index]] ? acc : [...acc, curr]), []);
-
-const visAlle = () => {
-  const kontorLenker = sorterEnheterPaaKontornavn(Object.keys(enhetsnrTilKontor).map(Number))
-    .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
-  return (
-    <>
-      <Normaltekst>
-        <FormattedMessage id={"finnkontor.visalle"} values={{antall: kontorLenker.length}}/>
-      </Normaltekst>
-      <div className={"finn-kontor__kontorliste"}>
-        {kontorLenker}
-      </div>
-    </>
   );
 };
 
@@ -93,17 +56,17 @@ const stedsnavnTreff = (hit: SearchHit, len: number) => {
   const hitEnd = hitStart + len;
   const navn = hit.treffnavn || "";
 
-  const kontorLenker = sorterEnheterPaaKontornavn(hit.enhetsnr)
+  const kontorLenker = hit.enhetsnr
     .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
 
   return (
-    <div className={"finn-kontor__resultat"} key={navn}>
+    <div className={`${cssPrefix}__resultat`} key={navn}>
       <Element>
-        <span className={"finn-kontor__treff-faded"}>{navn.slice(0, hitStart)}</span>
-        <span className={"finn-kontor__treff-uthevet"}>{navn.slice(hitStart, hitEnd)}</span>
-        <span className={"finn-kontor__treff-faded"}>{navn.slice(hitEnd)}</span>
+        <span className={`${cssPrefix}__treff-faded`}>{navn.slice(0, hitStart)}</span>
+        <span className={`${cssPrefix}__treff-uthevet`}>{navn.slice(hitStart, hitEnd)}</span>
+        <span className={`${cssPrefix}__treff-faded`}>{navn.slice(hitEnd)}</span>
       </Element>
-      <div className={"finn-kontor__kontorliste"}>
+      <div className={`${cssPrefix}__kontorliste`}>
         {kontorLenker}
       </div>
     </div>
@@ -111,22 +74,18 @@ const stedsnavnTreff = (hit: SearchHit, len: number) => {
 };
 
 const postnrTreff = ({enhetsnr, treffnavn}: SearchHit) => (
-  <div className={"finn-kontor__resultat"}>
+  <div className={`${cssPrefix}__resultat`}>
     <Normaltekst>
       <FormattedMessage id={"finnkontor.resultat.postnr"}/>
-      <span className={"finn-kontor__treff-uthevet"}>{treffnavn}</span><span>{":"}</span>
+      <span className={`${cssPrefix}__treff-uthevet`}>{treffnavn}</span><span>{":"}</span>
     </Normaltekst>
-    <div className={"finn-kontor__kontorliste"}>
+    <div className={`${cssPrefix}__kontorliste`}>
       <KontorLenke enhetsnr={enhetsnr[0]}/>
     </div>
   </div>
 );
 
 export const FinnNavKontorResultat = ({resultat}: ResultProps) => {
-  if (resultat.status === SearchStatus.VisAlle) {
-    return visAlle();
-  }
-
   if (resultat.status === SearchStatus.QueryFeil) {
     return <FormattedMessage id={"finnkontor.query.feil"} values={{min: minQueryLength}}/>;
   }
@@ -149,8 +108,8 @@ export const FinnNavKontorResultat = ({resultat}: ResultProps) => {
         <Normaltekst>
           <FormattedMessage id={"finnkontor.resultat.stedsnavn"} values={{query: resultat.query, antall: resultat.hits.length}}/>
         </Normaltekst>
-        <div className={"finn-kontor__resultatliste"}>
-          {sortByRelevance(resultat.hits).map(hit => stedsnavnTreff(hit, resultat.query.length))}
+        <div className={`${cssPrefix}__resultatliste`}>
+          {resultat.hits.map(hit => stedsnavnTreff(hit, resultat.query.length))}
         </div>
       </>
     );
@@ -174,8 +133,8 @@ export const FinnNavKontorResultatDynamisk = ({resultat}: ResultProps) => {
 
   if (resultat.status === SearchStatus.StedsnavnTreff) {
     return (
-      <div className={"finn-kontor__resultatliste"}>
-        {sortByRelevance(resultat.hits).map(hit => stedsnavnTreff(hit, resultat.query.length))}
+      <div className={`${cssPrefix}__resultatliste`}>
+        {resultat.hits.map(hit => stedsnavnTreff(hit, resultat.query.length))}
       </div>
     );
   }
