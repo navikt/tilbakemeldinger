@@ -50,10 +50,15 @@ const KontorLenke = ({enhetsnr}: KontorProps) => {
   );
 };
 
-const sortByRelevance = (hits: Array<SearchHit>) => hits
+const sortByRelevance = (hits: Array<SearchHit>) => {
+  const topHits = hits.filter(hit => hit.hitIndex === 0)
     .sort((a, b) => norskSort(a.treffnavn, b.treffnavn))
-    .sort((a, b) =>
-      a.hitIndex === 0 ? (b.hitIndex === 0 && a.treffnavn.length >= b.treffnavn.length ? 0 : -1) : 0);
+    .sort((a, b) => a.treffnavn.length - b.treffnavn.length);
+  const rest = hits.filter(hit => hit.hitIndex !== 0)
+    .sort((a, b) => norskSort(a.treffnavn, b.treffnavn));
+
+  return [...topHits, ...rest];
+};
 
 const sorterEnheterPaaKontornavn = (enhetsnrArray: Array<number>) => enhetsnrArray
   .filter(enhetsnr => {

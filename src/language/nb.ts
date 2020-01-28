@@ -21,7 +21,7 @@ export default {
   "breadcrumb.okonomi": "Økonomi",
   "breadcrumb.eures": "EURES",
 
-  "breadcrumb.finnkontor": "Finn NAV kontor",
+  "breadcrumb.finnkontor": "Søk opp NAV-kontor",
 
   "breadcrumb.tilbakemeldinger": "Tilbakemelding",
   "breadcrumb.serviceklage": "Klage på service",
@@ -152,12 +152,12 @@ export default {
   "kontaktoss.skrivtiloss.tittel": "Skriv til oss",
   "kontaktoss.skrivtiloss.beskrivelse":
     "'Skriv til oss' er et sikkert alternativ til e-post.",
-  "kontaktoss.skrivtiloss.knapp": "Logg inn og skriv til oss",
+  "kontaktoss.skrivtiloss.knapp": "Skriv til oss (innlogget)",
 
   "kontaktoss.kontaktveileder.tittel": "Kontakt din veileder",
   "kontaktoss.kontaktveileder.beskrivelse":
     "Du må være registrert som arbeidssøker for å kontakte veilederen din.",
-  "kontaktoss.kontaktveileder.knapp": "Logg inn og kontakt din veileder",
+  "kontaktoss.kontaktveileder.knapp": "Kontakt din veileder (innlogget)",
 
   "kontaktoss.facebook.tittel": "Spør oss på Facebook",
   "kontaktoss.facebook.foreldrepenger": "Foreldrepenger på Facebook",
@@ -165,10 +165,10 @@ export default {
 
   "kontaktoss.navkontor.tittel": "Finn ditt NAV-kontor",
   "kontaktoss.navkontor.beskrivelse":
-    "På NAV kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
-  "kontaktoss.navkontor.innlogget.lenke": "Finn ditt NAV-kontor (krever innlogging)",
-  "kontaktoss.navkontor.uinnlogget.lenke": "Søk etter NAV-kontor (uinnlogget)",
-  "kontaktoss.hjelpemiddelsentral.lenke": "Finn din hjelpemiddelsentral",
+    "På NAV-kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
+  "kontaktoss.navkontor.innlogget.lenke": "Finn ditt NAV-kontor (innlogget)",
+  "kontaktoss.navkontor.uinnlogget.lenke": "Søk opp NAV-kontor",
+  "kontaktoss.hjelpemiddelsentral.lenke": "Finn hjelpemiddelsentral",
 
   "kontaktoss.tolketjenesten.tittel": "Tolketjenesten",
   "kontaktoss.tolketjenesten.link":
@@ -412,11 +412,12 @@ export default {
     "På grunn av redusert åpningstid i julen, kan svartiden være inntil 14 dager.",
   "apningstid.avvik.ringoss.lenke": "Åpningstider i julen",
 
-  "finnkontor.tittel": "Finn NAV kontor",
-  "finnkontor.ingress": "Mangler du elektronisk ID eller skal du finne NAV-kontor på vegne av andre?",
+  "finnkontor.tittel": "Søk opp NAV-kontor",
+  "finnkontor.ingress": "Mangler du elektronisk ID? Eller skal du finne NAV-kontor på vegne av noen andre?\n" +
+    "Da kan du søke opp NAV-kontor ved hjelp av postnummer, poststed, kommune eller bydel.",
   "finnkontor.sok.knapp": "Søk",
-  "finnkontor.sok.label": "Oppgi postnummer, poststed, kommune eller bydel",
-  "finnkontor.ugyldig.postnr": "Fant ingen NAV kontor tilknyttet \"{nummer}\". Postnummeret kan være ugyldig.",
+  "finnkontor.sok.label": "Skriv inn et postnummer eller sted",
+  "finnkontor.ugyldig.postnr": "Fant ingen NAV-kontor tilknyttet \"{nummer}\". Postnummeret kan være ugyldig.",
   "finnkontor.query.feil": "Skriv inn minst {min} bokstaver eller et gyldig postnummer.",
   "finnkontor.query.feil.kort": "Skriv minst {min} bokstaver eller et postnr.",
   "finnkontor.ingen.treff": "Ingen resultater for \"{query}\"",

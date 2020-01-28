@@ -63,7 +63,6 @@ const FinnNavKontorPage = () => {
               htmlType={"submit"}
               type={"standard"}
               className={`${cssPrefix}__knapp`}
-              form={"kompakt"}
               mini={true}
             >
               <FormattedMessage id={"finnkontor.sok.knapp"}/>
