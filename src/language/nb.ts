@@ -414,14 +414,13 @@ export default {
 
   "finnkontor.tittel": "Søk opp NAV-kontor",
   "finnkontor.ingress": "Mangler du elektronisk ID? Eller skal du finne NAV-kontor på vegne av noen andre?\n" +
-    "Da kan du søke opp NAV-kontor ved hjelp av postnummer, poststed, kommune eller bydel.",
+    "Da kan du søke opp NAV-kontor ved hjelp av postnummer eller sted/by.",
   "finnkontor.sok.knapp": "Søk",
-  "finnkontor.sok.label": "Skriv inn et postnummer eller sted",
+  "finnkontor.sok.label": "Skriv inn et postnummer eller sted/by",
   "finnkontor.ugyldig.postnr": "Fant ingen NAV-kontor tilknyttet \"{nummer}\". Postnummeret kan være ugyldig.",
   "finnkontor.query.feil": "Skriv inn minst {min} bokstaver eller et gyldig postnummer.",
   "finnkontor.query.feil.kort": "Skriv minst {min} bokstaver eller et postnr.",
   "finnkontor.ingen.treff": "Ingen resultater for \"{query}\"",
   "finnkontor.resultat.stedsnavn": "Søkeresultat for \"{query}\" ({antall}):",
-  "finnkontor.resultat.postnr": "NAV-kontor for ",
-  "finnkontor.visalle": "Liste over samtlige kontorer ({antall}):"
+  "finnkontor.resultat.postnr": "NAV-kontor for "
 };

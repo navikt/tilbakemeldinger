@@ -12,8 +12,7 @@ export enum SearchStatus {
   PostnrTreff,
   IngenTreff,
   QueryFeil,
-  UgyldigPostnr,
-  VisAlle
+  UgyldigPostnr
 }
 
 export type SearchHit = {

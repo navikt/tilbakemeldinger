@@ -29,16 +29,19 @@ const urlifyKontorNavn = (navn: string) => sanitizeQuery(navn)
   .replace("bo-(nordland)", "bo")
   .replace("-aremark", "")
   .replace("vest-telemark", "tokke")
-  .replace(/leka|bindal|naeroysund/, "naeroy")
+  .replace("naeroysund", "naeroy")
   .replace("fensfjorden", "masfjorden")
   .replace("hallingdal", "halllingdal")
   .replace("lindesnes", "mandal")
   .replace("ullensvang", "odda")
-  .replace("sorreisa", "senja")
-  .replace(/sirdal|farsund|flekkefjord|lyngdal/, "kvinesdal")
-  .replace("rindal", "orkland")
-  .replace(/flatanger|overhalla/, "namsos")
-  .replace(/^nav-nes$/, "nav-nes-i-akershus");
+  .replace("senja-sorreisa", "senja")
+  .replace("lister", "kvinesdal")
+  .replace("midtre-namdal", "namsos")
+  .replace(/^nav-nes$/, "nav-nes-i-akershus")
+  .replace("vannylven", "vanylven")
+  .replace("karmoy-og-bokn", "karmoy-bokn")
+  .replace("vindafjord-etne", "vindafjord")
+  .replace("midt-agder", "vennesla");
 
 const KontorLenke = ({enhetsnr}: KontorProps) => {
   const kontorNavn = enhetsnrTilKontor[enhetsnr];

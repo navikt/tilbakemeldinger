@@ -10,17 +10,6 @@ import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
 
 const cssPrefix = "finn-kontor";
 
-const Header = () => (
-  <div className={`${cssPrefix}__header`}>
-    <Sidetittel>
-      <FormattedMessage id={"finnkontor.tittel"}/>
-    </Sidetittel>
-    <Normaltekst className={`${cssPrefix}__ingress`}>
-      <FormattedMessage id={"finnkontor.ingress"}/>
-    </Normaltekst>
-  </div>
-);
-
 const FinnNavKontorPage = () => {
   const tittel = useIntl().formatMessage({id: "finnkontor.tittel"});
   const documentTitle = `${tittel} - www.nav.no`;
@@ -35,7 +24,15 @@ const FinnNavKontorPage = () => {
   return (
     <div className={`${cssPrefix} pagecontent`}>
       <BreadcrumbsWrapper/>
-      <Header/>
+
+      <div className={`${cssPrefix}__header`}>
+        <Sidetittel>
+          <FormattedMessage id={"finnkontor.tittel"}/>
+        </Sidetittel>
+        <Normaltekst className={`${cssPrefix}__ingress`}>
+          <FormattedMessage id={"finnkontor.ingress"}/>
+        </Normaltekst>
+      </div>
 
       <div className={`${cssPrefix}__innhold`}>
         <Form

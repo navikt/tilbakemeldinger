@@ -3,10 +3,10 @@ const fs = require("fs");
 
 const sourceFile = "navkontor.xlsx";
 const enhetsnrTilKontorFile = "./src/pages/finn-nav-kontor/enhetsnr-til-enhetsnavn.json";
-const postnrTilEnhetsnrOgPoststed = "./src/pages/finn-nav-kontor/postnr-til-enhetsnr-og-poststed.json";
+const postnrTilEnhetsnrOgPoststedFile = "./src/pages/finn-nav-kontor/postnr-til-enhetsnr-og-poststed.json";
 const stedsnavnTilEnhetsnrFile = "./src/pages/finn-nav-kontor/stedsnavn-til-enhetsnr.json";
 
-const sanitizeNavn = navn => navn
+const sanitizeString = navn => navn
   .toLowerCase()
   .replace(/\. /g, ".")
   .replace(/[ /–]/g, "-")
@@ -15,7 +15,6 @@ const sanitizeNavn = navn => navn
   .replace(/[ûùúü]/g, "u")
   .replace(/š/g, "s")
   .replace(/ŋ/g, "n");
-
 
 const sheetToJson = (fileName, sheetName, columnKeys) => (
   excelToJson({
@@ -54,9 +53,9 @@ const stedsnavnJsonToFile = (jsonObj) => {
   const stedsnavnObj = {};
 
   const getEquivalentKeyIfExists = key => {
-    const sanitizedNavn = sanitizeNavn(key);
+    const sanitizedKey = sanitizeString(key);
     for (const key of Object.keys(stedsnavnObj)) {
-      if (sanitizeNavn(key) === sanitizedNavn) {
+      if (sanitizeString(key) === sanitizedKey) {
         return key;
       }
     }
@@ -98,4 +97,4 @@ jsonToFile(Object.values(kontorInfoJson).reduce((acc, curr) => ({
   ...acc, [parseInt(curr.enhetsnr, 10)]: curr.kontornavn}), {}), enhetsnrTilKontorFile);
 
 jsonToFile(Object.values(kontorInfoJson).reduce((acc, curr) => ({
-  ...acc, [parseInt(curr.postnr, 10)]: {enhetsnr: curr.enhetsnr, poststed: curr.poststed}}), {}), postnrTilEnhetsnrOgPoststed);
+  ...acc, [parseInt(curr.postnr, 10)]: {enhetsnr: curr.enhetsnr, poststed: curr.poststed}}), {}), postnrTilEnhetsnrOgPoststedFile);
