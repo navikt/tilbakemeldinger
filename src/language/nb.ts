@@ -413,11 +413,13 @@ export default {
   "apningstid.avvik.ringoss.lenke": "Åpningstider i julen",
 
   "finnkontor.tittel": "Finn NAV kontor",
+  "finnkontor.sok.knapp": "Søk",
   "finnkontor.sok.label": "Skriv inn et postnummer eller søk på poststed, kommune eller bydel.",
   "finnkontor.ugyldig.postnr": "Fant ingen NAV kontor tilknyttet \"{nummer}\". Postnummeret kan være ugyldig.",
-  "finnkontor.query.feil": "Feil: Skriv inn minst {min} bokstaver eller et gyldig postnummer.",
+  "finnkontor.query.feil": "Skriv inn minst {min} bokstaver eller et gyldig postnummer.",
+  "finnkontor.query.feil.kort": "Skriv minst {min} bokstaver eller et postnr.",
   "finnkontor.ingen.treff": "Ingen resultater for \"{query}\"",
   "finnkontor.resultat.stedsnavn": "Søkeresultat for \"{query}\" ({antall}):",
-  "finnkontor.resultat.postnr": "NAV-kontor for postnummer ",
+  "finnkontor.resultat.postnr": "NAV-kontor for ",
   "finnkontor.visalle": "Liste over samtlige kontorer ({antall}):"
 };

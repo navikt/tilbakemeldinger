@@ -1,43 +1,57 @@
-.finnkontor-hit-stedsnavn {
-  &:not(:first-of-type) {
-    margin-top: 0.25em;
+@import (reference) "~nav-frontend-skjema-style";
+
+@spacing: 0.25em;
+
+.finn-kontor__input-og-knapp {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  .finn-kontor__input {
+    .input--m;
   }
 
-  .finnkontor-hit-uthevet {
-    text-decoration: underline;
-    font-weight: bold;
-  }
-
-  .finnkontor-hit-faded {
-    color: @navGra60;
+  .finn-kontor__knapp {
+    margin-left: 0.5em;
   }
 }
 
-.finnkontor-postnr {
+.finn-kontor__treff-uthevet {
+  text-decoration: underline;
   font-weight: bold;
 }
 
-.finn-kontor__resultat {
-  margin-top: 1em;
+.finn-kontor__treff-faded {
+  color: @navGra60;
 }
 
 .finn-kontor__kontorliste {
   display: flex;
   flex-direction: column;
-  margin-top: 0.25em;
 
-  .finn-kontor__lenke {
-    padding: 0.25em 0;
+  .finn-kontor__kontorlenke {
+    padding: @spacing 0;
   }
 }
 
-.finn-kontor__knapp {
-  margin-top: 0.5em;
+.finn-kontor__resultatliste {
+  display: flex;
+  flex-direction: column;
+
+  .finn-kontor__resultat {
+    margin-top: @spacing * 2;
+  }
 }
 
-.finn-kontor__preview {
+.finn-kontor__resultat-container {
+  margin-top: @spacing * 4;
+}
+
+.finn-kontor__preview-container {
   @padx: 1.6em;
   @pady: 1em;
+
+  .input--l;
 
   position: absolute;
   background-color: white;
@@ -48,17 +62,16 @@
   border-radius: @border-radius-base;
   z-index: 1000;
 
-  .input--l;
-
   max-height: 20em;
   overflow-y: auto;
   overflow-x: hidden;
-  white-space: nowrap;
+
+  * > .finn-kontor__resultat:first-of-type {
+    margin-top: 0;
+  }
 
   .finn-kontor__kontorliste {
-    margin: 0;
-
-    .finn-kontor__lenke {
+    .finn-kontor__kontorlenke {
       padding: 0.25em @padx;
       margin: 0 -@padx;
 
@@ -67,5 +80,4 @@
       }
     }
   }
-
 }

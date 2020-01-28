@@ -3,8 +3,19 @@ const fs = require("fs");
 
 const sourceFile = "navkontor.xlsx";
 const enhetsnrTilKontorFile = "./src/pages/finn-nav-kontor/enhetsnr-til-enhetsnavn.json";
-const postnrTilEnhetsnrFile = "./src/pages/finn-nav-kontor/postnr-til-enhetsnr.json";
+const postnrTilEnhetsnrOgPoststed = "./src/pages/finn-nav-kontor/postnr-til-enhetsnr-og-poststed.json";
 const stedsnavnTilEnhetsnrFile = "./src/pages/finn-nav-kontor/stedsnavn-til-enhetsnr.json";
+
+const sanitizeNavn = navn => navn
+  .toLowerCase()
+  .replace(/\. /g, ".")
+  .replace(/[ /–]/g, "-")
+  .replace(/,/g, "")
+  .replace(/[áàâãä]/g, "a")
+  .replace(/[ûùúü]/g, "u")
+  .replace(/š/g, "s")
+  .replace(/ŋ/g, "n");
+
 
 const sheetToJson = (fileName, sheetName, columnKeys) => (
   excelToJson({
@@ -41,15 +52,28 @@ const kontorInfoJson = sheetToJson(
 
 const stedsnavnJsonToFile = (jsonObj) => {
   const stedsnavnObj = {};
+
+  const getEquivalentKeyIfExists = key => {
+    const sanitizedNavn = sanitizeNavn(key);
+    for (const key of Object.keys(stedsnavnObj)) {
+      if (sanitizeNavn(key) === sanitizedNavn) {
+        return key;
+      }
+    }
+    return null;
+  };
+
   const addValue = (key, value) => {
     if (!key || !value) {
       return;
     }
-    if (!stedsnavnObj[key]) {
-      stedsnavnObj[key] = []
-    }
-    if (!stedsnavnObj[key].includes(value)) {
+    const eqKey = getEquivalentKeyIfExists(key);
+    if (!eqKey) {
+      stedsnavnObj[key] = [];
       stedsnavnObj[key].push(value);
+    }
+    else if (!stedsnavnObj[eqKey].includes(value)) {
+      stedsnavnObj[eqKey].push(value);
     }
   };
 
@@ -74,4 +98,4 @@ jsonToFile(Object.values(kontorInfoJson).reduce((acc, curr) => ({
   ...acc, [parseInt(curr.enhetsnr, 10)]: curr.kontornavn}), {}), enhetsnrTilKontorFile);
 
 jsonToFile(Object.values(kontorInfoJson).reduce((acc, curr) => ({
-  ...acc, [parseInt(curr.postnr, 10)]: curr.enhetsnr}), {}), postnrTilEnhetsnrFile);
+  ...acc, [parseInt(curr.postnr, 10)]: {enhetsnr: curr.enhetsnr, poststed: curr.poststed}}), {}), postnrTilEnhetsnrOgPoststed);

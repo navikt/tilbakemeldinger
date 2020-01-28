@@ -1,20 +1,20 @@
-const postnrTilEnhetsnr = require("./postnr-til-enhetsnr.json");
+const postnrTilEnhetsnrOgPoststed = require("./postnr-til-enhetsnr-og-poststed.json");
 const stedsnavnTilEnhetsnr = require("./stedsnavn-til-enhetsnr.json");
 
 export const minQueryLength = 2;
 
 export enum SearchStatus {
-  stedsnavnTreff,
-  postnrTreff,
-  ingenTreff,
-  queryFeil,
-  ugyldigPostnr,
-  visAlle
+  StedsnavnTreff,
+  PostnrTreff,
+  IngenTreff,
+  QueryFeil,
+  UgyldigPostnr,
+  VisAlle
 }
 
 export type SearchHit = {
   enhetsnr: Array<number>,
-  stedsnavn: string,
+  treffnavn: string,
   hitIndex: number
 };
 
@@ -22,13 +22,6 @@ export type SearchResult = {
   hits: Array<SearchHit>,
   query: string,
   status: SearchStatus
-};
-
-const isValidPostnrFormat = (nr: string) => {
-  const nrSanitized = nr
-    .replace(".", "")
-    .replace("-", "");
-  return nr && nr.length === 4 && nr === nrSanitized && !isNaN(Number(nr));
 };
 
 export const sanitizeQuery = (query: string) => query
@@ -41,8 +34,15 @@ export const sanitizeQuery = (query: string) => query
   .replace(/š/g, "s")
   .replace(/ŋ/g, "n");
 
+const isValidPostnrFormat = (nr: string) => {
+  const nrSanitized = nr
+    .replace(".", "")
+    .replace("-", "");
+  return nr && nr.length === 4 && nr === nrSanitized && !isNaN(Number(nr));
+};
+
 const generateQueryFeilResult = (query: string) => {
-  return {hits: [], query, status: SearchStatus.queryFeil};
+  return {hits: [], query, status: SearchStatus.QueryFeil};
 };
 
 const generatePostnrHitResult = (query: string) => {
@@ -51,10 +51,10 @@ const generatePostnrHitResult = (query: string) => {
   }
 
   const nrUtenLedendeNull = parseInt(query, 10).toString();
-  const enhetsnr = postnrTilEnhetsnr[nrUtenLedendeNull];
-  return enhetsnr
-    ? {hits: [{enhetsnr: [enhetsnr], stedsnavn: query, hitIndex: 0}], query, status: SearchStatus.postnrTreff}
-    : {hits: [], query, status: SearchStatus.ugyldigPostnr};
+  const postnrMapping = postnrTilEnhetsnrOgPoststed[nrUtenLedendeNull];
+  return postnrMapping
+    ? {hits: [{enhetsnr: [postnrMapping.enhetsnr], treffnavn: `${query} ${postnrMapping.poststed}`, hitIndex: 0}], query, status: SearchStatus.PostnrTreff}
+    : {hits: [], query, status: SearchStatus.UgyldigPostnr};
 };
 
 const generateStedsnavnHitResult = (query: string) => {
@@ -64,16 +64,15 @@ const generateStedsnavnHitResult = (query: string) => {
     .reduce((acc: Array<SearchHit>, stedsnavn) => {
       const hitIndex = sanitizeQuery(stedsnavn).indexOf(stedQuery);
       return hitIndex > -1
-        ? [...acc, {enhetsnr: stedsnavnTilEnhetsnr[stedsnavn], stedsnavn: stedsnavn, hitIndex: hitIndex}] : acc;
+        ? [...acc, {enhetsnr: stedsnavnTilEnhetsnr[stedsnavn], treffnavn: stedsnavn, hitIndex: hitIndex}] : acc;
       }, []);
-    // .reduce((acc: Array<SearchHit>, enhetsnr) => (acc.includes(enhetsnr) ? acc : [...acc, enhetsnr]), []);
 
-  return {hits: hits, query, status: hits.length > 0 ? SearchStatus.stedsnavnTreff : SearchStatus.ingenTreff};
+  return {hits: hits, query, status: hits.length > 0 ? SearchStatus.StedsnavnTreff : SearchStatus.IngenTreff};
 };
 
 export const generateSearchResult = (query: string) => {
   if (query === ":visalle") {
-    return generateQueryFeilResult(query);
+    return {hits: [], query, status: SearchStatus.VisAlle};
   }
 
   if (!query || query.length < minQueryLength) {

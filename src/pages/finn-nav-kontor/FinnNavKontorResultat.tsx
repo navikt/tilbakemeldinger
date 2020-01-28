@@ -44,16 +44,16 @@ const KontorLenke = ({enhetsnr}: KontorProps) => {
   const url = `${urls.navKontorSidePrefix}${urlifyKontorNavn(kontorNavn)}`;
 
   return (
-    <RouterLenkeMedChevron href={url} isExternal={true} className={"finn-kontor__lenke"}>
+    <RouterLenkeMedChevron href={url} isExternal={true} className={"finn-kontor__kontorlenke"}>
       {kontorNavn}
     </RouterLenkeMedChevron>
   );
 };
 
 const sortByRelevance = (hits: Array<SearchHit>) => hits
-    .sort((a, b) => norskSort(a.stedsnavn, b.stedsnavn))
+    .sort((a, b) => norskSort(a.treffnavn, b.treffnavn))
     .sort((a, b) =>
-      a.hitIndex === 0 ? (b.hitIndex === 0 && a.stedsnavn.length >= b.stedsnavn.length ? 0 : -1) : 0);
+      a.hitIndex === 0 ? (b.hitIndex === 0 && a.treffnavn.length >= b.treffnavn.length ? 0 : -1) : 0);
 
 const sorterEnheterPaaKontornavn = (enhetsnrArray: Array<number>) => enhetsnrArray
   .filter(enhetsnr => {
@@ -68,7 +68,7 @@ const sorterEnheterPaaKontornavn = (enhetsnrArray: Array<number>) => enhetsnrArr
   .reduce((acc: Array<number>, curr, index, arr) =>
     (index > 0 && enhetsnrTilKontor[arr[index - 1]] === enhetsnrTilKontor[arr[index]] ? acc : [...acc, curr]), []);
 
-const VisAlle = () => {
+const visAlle = () => {
   const kontorLenker = sorterEnheterPaaKontornavn(Object.keys(enhetsnrTilKontor).map(Number))
     .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
   return (
@@ -83,67 +83,95 @@ const VisAlle = () => {
   );
 };
 
-const StedsnavnHit = (hit: SearchHit, len: number) => {
+const stedsnavnTreff = (hit: SearchHit, len: number) => {
   const hitStart = hit.hitIndex || 0;
   const hitEnd = hitStart + len;
-  const navn = hit.stedsnavn || "";
+  const navn = hit.treffnavn || "";
 
   const kontorLenker = sorterEnheterPaaKontornavn(hit.enhetsnr)
     .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
 
   return (
-    <>
-      <Element className={"finnkontor-hit-stedsnavn"}>
-        <span className={"finnkontor-hit-faded"}>{navn.slice(0, hitStart)}</span>
-        <span className={"finnkontor-hit-uthevet"}>{navn.slice(hitStart, hitEnd)}</span>
-        <span className={"finnkontor-hit-faded"}>{navn.slice(hitEnd)}</span>
+    <div className={"finn-kontor__resultat"} key={navn}>
+      <Element>
+        <span className={"finn-kontor__treff-faded"}>{navn.slice(0, hitStart)}</span>
+        <span className={"finn-kontor__treff-uthevet"}>{navn.slice(hitStart, hitEnd)}</span>
+        <span className={"finn-kontor__treff-faded"}>{navn.slice(hitEnd)}</span>
       </Element>
-      {kontorLenker}
-    </>
+      <div className={"finn-kontor__kontorliste"}>
+        {kontorLenker}
+      </div>
+    </div>
   );
 };
 
+const postnrTreff = ({enhetsnr, treffnavn}: SearchHit) => (
+  <div className={"finn-kontor__resultat"}>
+    <Normaltekst>
+      <FormattedMessage id={"finnkontor.resultat.postnr"}/>
+      <span className={"finn-kontor__treff-uthevet"}>{treffnavn}</span><span>{":"}</span>
+    </Normaltekst>
+    <div className={"finn-kontor__kontorliste"}>
+      <KontorLenke enhetsnr={enhetsnr[0]}/>
+    </div>
+  </div>
+);
+
 export const FinnNavKontorResultat = ({resultat}: ResultProps) => {
-  if (resultat.status === SearchStatus.visAlle) {
-    return <VisAlle/>;
+  if (resultat.status === SearchStatus.VisAlle) {
+    return visAlle();
   }
 
-  if (resultat.status === SearchStatus.queryFeil) {
+  if (resultat.status === SearchStatus.QueryFeil) {
     return <FormattedMessage id={"finnkontor.query.feil"} values={{min: minQueryLength}}/>;
   }
 
-  if (resultat.status === SearchStatus.ugyldigPostnr) {
+  if (resultat.status === SearchStatus.UgyldigPostnr) {
     return <FormattedMessage id={"finnkontor.ugyldig.postnr"} values={{nummer: resultat.query}}/>;
   }
 
-  if (resultat.status === SearchStatus.ingenTreff) {
+  if (resultat.status === SearchStatus.IngenTreff) {
     return <FormattedMessage id={"finnkontor.ingen.treff"} values={{query: resultat.query}}/>;
   }
 
-  if (resultat.status === SearchStatus.postnrTreff) {
-    return (
-      <>
-        <Normaltekst>
-          <FormattedMessage id={"finnkontor.resultat.postnr"}/>
-          <span className={"finnkontor-postnr"}>{resultat.query}</span>{":"}
-        </Normaltekst>
-        <div className={"finn-kontor__kontorliste"}>
-          <KontorLenke enhetsnr={resultat.hits[0].enhetsnr[0]}/>
-        </div>
-      </>
-    );
+  if (resultat.status === SearchStatus.PostnrTreff) {
+    return postnrTreff(resultat.hits[0]);
   }
 
-  if (resultat.status === SearchStatus.stedsnavnTreff) {
+  if (resultat.status === SearchStatus.StedsnavnTreff) {
     return (
       <>
         <Normaltekst>
           <FormattedMessage id={"finnkontor.resultat.stedsnavn"} values={{query: resultat.query, antall: resultat.hits.length}}/>
         </Normaltekst>
-        <div className={"finn-kontor__kontorliste"}>
-          {sortByRelevance(resultat.hits).map(hit => StedsnavnHit(hit, resultat.query.length))}
+        <div className={"finn-kontor__resultatliste"}>
+          {sortByRelevance(resultat.hits).map(hit => stedsnavnTreff(hit, resultat.query.length))}
         </div>
       </>
+    );
+  }
+
+  return null;
+};
+
+export const FinnNavKontorResultatDynamisk = ({resultat}: ResultProps) => {
+  if (resultat.status === SearchStatus.UgyldigPostnr || resultat.status === SearchStatus.IngenTreff) {
+    return <FormattedMessage id={"finnkontor.ingen.treff"} values={{query: resultat.query}}/>;
+  }
+
+  if (resultat.status === SearchStatus.QueryFeil) {
+    return <FormattedMessage id={"finnkontor.query.feil.kort"} values={{min: minQueryLength}}/>;
+  }
+
+  if (resultat.status === SearchStatus.PostnrTreff) {
+    return postnrTreff(resultat.hits[0]);
+  }
+
+  if (resultat.status === SearchStatus.StedsnavnTreff) {
+    return (
+      <div className={"finn-kontor__resultatliste"}>
+        {sortByRelevance(resultat.hits).map(hit => stedsnavnTreff(hit, resultat.query.length))}
+      </div>
     );
   }
 
