@@ -20,7 +20,7 @@ const ServiceKlageGjelderSosialhjelp = () => {
         return (
           <div className="serviceKlage__ekspandert">
             <SkjemaGruppe
-              title={intl.formatMessage({
+              legend={intl.formatMessage({
                 id: "felter.gjeldersosialhjelp"
               })}
               feil={sjekkForFeil(submitted, errors.gjelderSosialhjelp)}

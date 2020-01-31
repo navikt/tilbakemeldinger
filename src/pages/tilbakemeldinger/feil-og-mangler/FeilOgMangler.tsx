@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "assets/Veileder.svg";
 import { Knapp } from "nav-frontend-knapper";
-import { Link, withRouter, RouteComponentProps } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import InputMelding from "components/input-fields/InputMelding";
 import { postFeilOgMangler } from "clients/apiClient";
 import { HTTPError } from "components/error/Error";
@@ -28,7 +28,7 @@ export interface OutboundFeilOgMangler {
   melding: string;
 }
 
-const FOM = (props: RouteComponentProps) => {
+const FOM = () => {
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState();
@@ -114,7 +114,7 @@ const FOM = (props: RouteComponentProps) => {
             {({ errors, fields, submitted, setField, isValid }) => (
               <div className={"skjema__content"}>
                 <SkjemaGruppe
-                  title={intl.formatMessage({
+                  legend={intl.formatMessage({
                     id: "felter.typefeil.tittel"
                   })}
                   feil={sjekkForFeil(submitted, errors.feiltype)}

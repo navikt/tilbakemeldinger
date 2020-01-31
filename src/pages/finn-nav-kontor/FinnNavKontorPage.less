@@ -1,0 +1,103 @@
+@import (reference) "~nav-frontend-skjema-style";
+
+@spacing: 0.25em;
+
+.finn-kontor__header {
+  text-align: center;
+
+  .finn-kontor__ingress {
+    margin-top: 1rem;
+    white-space: pre-line;
+  }
+}
+
+.finn-kontor__innhold {
+  padding: 1.8rem 2.4rem 2rem 2.4rem;
+  border-radius: @border-radius-base;
+  border: 0;
+  background-color: @white;
+  margin-top: 1.5rem;
+}
+
+.finn-kontor__input-og-knapp {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  .finn-kontor__input {
+    .input--l;
+  }
+
+  .finn-kontor__knapp {
+    margin-left: 0.5em;
+  }
+}
+
+.finn-kontor__treff-uthevet {
+  font-weight: bold;
+}
+
+.finn-kontor__treff-faded {
+  color: @navGra40;
+}
+
+.finn-kontor__kontorliste {
+  display: flex;
+  flex-direction: column;
+
+  .finn-kontor__kontorlenke {
+    padding: @spacing 0;
+  }
+}
+
+.finn-kontor__resultatliste {
+  display: flex;
+  flex-direction: column;
+
+  .finn-kontor__resultat {
+    margin-top: @spacing * 2;
+  }
+
+  .finn-kontor__flere-treff {
+    margin-top: 0.5em;
+  }
+}
+
+.finn-kontor__resultat-container {
+  margin-top: @spacing * 4;
+}
+
+.finn-kontor__preview-container {
+  @padx: 1.6em;
+  @pady: 1em;
+
+  .input--l;
+
+  position: absolute;
+  background-color: @white;
+  padding: @pady @padx;
+  margin-top: 0.4em;
+
+  border: 1px solid @navGra60;
+  border-radius: @border-radius-base;
+  z-index: 1000;
+
+  max-height: 20em;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  * > .finn-kontor__resultat:first-of-type {
+    margin-top: 0;
+  }
+
+  .finn-kontor__kontorliste {
+    .finn-kontor__kontorlenke {
+      padding: 0.25em @padx;
+      margin: 0 -@padx;
+
+      &:hover {
+        background-color: @navBlaLighten80;
+      }
+    }
+  }
+}
