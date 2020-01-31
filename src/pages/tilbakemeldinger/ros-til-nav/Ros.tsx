@@ -140,7 +140,7 @@ const Ros = () => {
                 return (
                   <div className={"skjema__content"}>
                     <SkjemaGruppe
-                      title={intl.formatMessage({
+                      legend={intl.formatMessage({
                         id: "felter.hvemroses.tittel"
                       })}
                       feil={sjekkForFeil(submitted, errors.hvemRoses)}

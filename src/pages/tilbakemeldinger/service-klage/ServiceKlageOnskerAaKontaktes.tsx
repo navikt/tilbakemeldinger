@@ -19,7 +19,7 @@ const ServiceKlageOnskerAaKontaktes = () => {
       {({ errors, fields, submitted, setField }) => {
         return (
           <SkjemaGruppe
-            title={intl.formatMessage({
+            legend={intl.formatMessage({
               id: "tilbakemeldinger.serviceklage.form.onskersvar"
             })}
             feil={sjekkForFeil(submitted, errors.onskerKontakt)}
