@@ -3,11 +3,13 @@ import { FormattedMessage } from "react-intl";
 import React from "react";
 import { urls } from "../../Config";
 import RouterLenkeMedChevron from "../../components/routerlenke/RouterLenkeMedChevron";
-import { minQueryLength, sanitizeQuery, SearchHit, SearchResult, SearchStatus } from "./FinnNavKontorSok";
+import { minQueryLength, SearchHit, SearchResult, SearchStatus } from "./FinnNavKontorSok";
 
-const enhetsnrTilKontor = require("./enhetsnr-til-enhetsnavn.json");
+const enhetsnrTilEnhetsinfo = require("./enhetsnr-til-enhetsinfo.json");
 
 const cssPrefix = "finn-kontor";
+
+const maxAntallDynamiskeTreff = 10;
 
 type KontorProps = {
   enhetsnr: number
@@ -17,39 +19,18 @@ type ResultProps = {
   resultat: SearchResult
 };
 
-const urlifyKontorNavn = (navn: string) => sanitizeQuery(navn)
-  .replace(/æ/g, "ae")
-  .replace(/ø/g, "o")
-  .replace(/å/g, "a")
-  .replace("valer-(innlandet)", "valer-i-hedmark")
-  .replace("valer-(viken)", "valer")
-  .replace(/porsanger.+/, "porsanger")
-  .replace(/salangen.+/, "salangen")
-  .replace("balsfjord-og-storfjord", "balsfjord-storfjord")
-  .replace("bo-(nordland)", "bo")
-  .replace("-aremark", "")
-  .replace("vest-telemark", "tokke")
-  .replace("naeroysund", "naeroy")
-  .replace("fensfjorden", "masfjorden")
-  .replace("hallingdal", "halllingdal")
-  .replace("lindesnes", "mandal")
-  .replace("ullensvang", "odda")
-  .replace("senja-sorreisa", "senja")
-  .replace("lister", "kvinesdal")
-  .replace("midtre-namdal", "namsos")
-  .replace(/^nav-nes$/, "nav-nes-i-akershus")
-  .replace("vannylven", "vanylven")
-  .replace("karmoy-og-bokn", "karmoy-bokn")
-  .replace("vindafjord-etne", "vindafjord")
-  .replace("midt-agder", "vennesla");
+type KontorInfo = {
+  navn: string,
+  url: string
+};
 
 const KontorLenke = ({enhetsnr}: KontorProps) => {
-  const kontorNavn = enhetsnrTilKontor[enhetsnr];
-  const url = `${urls.navKontorSidePrefix}${urlifyKontorNavn(kontorNavn)}`;
+  const kontorInfo = enhetsnrTilEnhetsinfo[enhetsnr] as KontorInfo;
+  const url = `${urls.navKontorSidePrefix}${kontorInfo.url}`;
 
   return (
     <RouterLenkeMedChevron href={url} isExternal={true} className={`${cssPrefix}__kontorlenke`}>
-      {kontorNavn}
+      {kontorInfo.navn}
     </RouterLenkeMedChevron>
   );
 };
@@ -135,9 +116,16 @@ export const FinnNavKontorResultatDynamisk = ({resultat}: ResultProps) => {
   }
 
   if (resultat.status === SearchStatus.StedsnavnTreff) {
+    const antallTreff = resultat.hits.length;
+
     return (
       <div className={`${cssPrefix}__resultatliste`}>
-        {resultat.hits.map(hit => stedsnavnTreff(hit, resultat.query.length))}
+        {resultat.hits.slice(0, maxAntallDynamiskeTreff).map(hit => stedsnavnTreff(hit, resultat.query.length))}
+        {antallTreff > maxAntallDynamiskeTreff && (
+          <div className={`${cssPrefix}__flere-treff`}>
+            <FormattedMessage id={"finnkontor.flere.treff"} values={{antall: antallTreff}}/>
+          </div>
+        )}
       </div>
     );
   }

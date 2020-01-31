@@ -27,3 +27,4 @@ yarn-error.log*
 /public/index.css
 
 /src/pages/finn-nav-kontor/*.json
+/~$navkontor.xlsx

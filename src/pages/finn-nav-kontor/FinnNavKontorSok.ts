@@ -1,6 +1,6 @@
 const postnrTilEnhetsnrOgPoststed = require("./postnr-til-enhetsnr-og-poststed.json");
 const stedsnavnTilEnhetsnr = require("./stedsnavn-til-enhetsnr.json");
-const enhetsnrTilKontor = require("./enhetsnr-til-enhetsnavn.json");
+const enhetsnrTilEnhetsinfo = require("./enhetsnr-til-enhetsinfo.json");
 
 const stedsnavnArray = Object.keys(stedsnavnTilEnhetsnr);
 const norskSort = new Intl.Collator(["no", "nb", "nn"], {usage: "sort"}).compare;
@@ -54,19 +54,6 @@ const sortByRelevance = (hits: Array<SearchHit>) => {
   return [...topHits, ...rest];
 };
 
-const sorterEnheterPaaKontornavn = (enhetsnrArray: Array<number>) => enhetsnrArray
-  .filter(enhetsnr => {
-    const kontorNavn = enhetsnrTilKontor[enhetsnr];
-    if (kontorNavn) {
-      return true;
-    }
-    console.log("Error: kontornavn ikke funnet for enhetsnr " + enhetsnr);
-    return false;
-  })
-  .sort((a, b) => norskSort(enhetsnrTilKontor[a], enhetsnrTilKontor[b]))
-  .reduce((acc: Array<number>, curr, index, arr) =>
-    (index > 0 && enhetsnrTilKontor[arr[index - 1]] === enhetsnrTilKontor[arr[index]] ? acc : [...acc, curr]), []);
-
 const generateQueryFeilResult = (query: string) => {
   return {hits: [], query, status: SearchStatus.QueryFeil};
 };
@@ -93,9 +80,8 @@ const generateStedsnavnHitResult = (query: string) => {
   const hits = stedsnavnArray
     .reduce((acc: Array<SearchHit>, stedsnavn) => {
       const hitIndex = sanitizeQuery(stedsnavn).indexOf(stedQuery);
-      const enheterSorted = sorterEnheterPaaKontornavn(stedsnavnTilEnhetsnr[stedsnavn]);
       return hitIndex > -1
-        ? [...acc, {enhetsnr: enheterSorted, treffnavn: stedsnavn, hitIndex: hitIndex}] : acc;
+        ? [...acc, {enhetsnr: stedsnavnTilEnhetsnr[stedsnavn], treffnavn: stedsnavn, hitIndex: hitIndex}] : acc;
     }, []);
 
   return {hits: sortByRelevance(hits), query, status: hits.length > 0 ? SearchStatus.StedsnavnTreff : SearchStatus.IngenTreff};
@@ -104,7 +90,7 @@ const generateStedsnavnHitResult = (query: string) => {
 export const generateSearchResult = (query: string) => {
   if (query === ":visalle") {
     return {
-      hits: [{enhetsnr: sorterEnheterPaaKontornavn(Object.keys(enhetsnrTilKontor).map(Number)),
+      hits: [{enhetsnr: Object.keys(enhetsnrTilEnhetsinfo).map(Number),
         treffnavn: "Alle kontorer", hitIndex: 0}],
       query: "Alle kontorer", status: SearchStatus.StedsnavnTreff
     };

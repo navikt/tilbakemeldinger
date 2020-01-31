@@ -2,11 +2,13 @@ const excelToJson = require("convert-excel-to-json");
 const fs = require("fs");
 
 const sourceFile = "navkontor.xlsx";
-const enhetsnrTilKontorFile = "./src/pages/finn-nav-kontor/enhetsnr-til-enhetsnavn.json";
-const postnrTilEnhetsnrOgPoststedFile = "./src/pages/finn-nav-kontor/postnr-til-enhetsnr-og-poststed.json";
+const enhetsnrTilEnhetsinfoFile = "./src/pages/finn-nav-kontor/enhetsnr-til-enhetsinfo.json";
+const postnrTilStedOgEnhetsnrFile = "./src/pages/finn-nav-kontor/postnr-til-enhetsnr-og-poststed.json";
 const stedsnavnTilEnhetsnrFile = "./src/pages/finn-nav-kontor/stedsnavn-til-enhetsnr.json";
 
-const sanitizeString = navn => navn
+const norskSort = new Intl.Collator(["no", "nb", "nn"], {usage: "sort"}).compare;
+
+const sanitizeString = str => str
   .toLowerCase()
   .replace(/\. /g, ".")
   .replace(/[ /–]/g, "-")
@@ -15,6 +17,45 @@ const sanitizeString = navn => navn
   .replace(/[ûùúü]/g, "u")
   .replace(/š/g, "s")
   .replace(/ŋ/g, "n");
+
+const urlifyKontorNavn = navn => sanitizeString(navn)
+  .replace(/æ/g, "ae")
+  .replace(/ø/g, "o")
+  .replace(/å/g, "a")
+  .replace("valer-(innlandet)", "valer-i-hedmark")
+  .replace("valer-(viken)", "valer")
+  .replace(/porsanger.+/, "porsanger")
+  .replace(/salangen.+/, "salangen")
+  .replace("balsfjord-og-storfjord", "balsfjord-storfjord")
+  .replace("bo-(nordland)", "bo")
+  .replace("-aremark", "")
+  .replace("vest-telemark", "tokke")
+  .replace("naeroysund", "naeroy")
+  .replace("fensfjorden", "masfjorden")
+  .replace("hallingdal", "halllingdal")
+  .replace("lindesnes", "mandal")
+  .replace("ullensvang", "odda")
+  .replace("senja-sorreisa", "senja")
+  .replace("lister", "kvinesdal")
+  .replace("midtre-namdal", "namsos")
+  .replace(/^nav-nes$/, "nav-nes-i-akershus")
+  .replace("vannylven", "vanylven")
+  .replace("karmoy-og-bokn", "karmoy-bokn")
+  .replace("vindafjord-etne", "vindafjord")
+  .replace("midt-agder", "vennesla");
+
+const sorterEnheterPaaKontornavn = (enhetsnrArray, enhetsnrTilKontor) => !enhetsnrArray ? [] : enhetsnrArray
+  .filter(enhetsnr => {
+    const kontorNavn = enhetsnrTilKontor[enhetsnr];
+    if (kontorNavn) {
+      return true;
+    }
+    console.log("Error: kontornavn ikke funnet for enhetsnr " + enhetsnr);
+    return false;
+  })
+  .sort((a, b) => norskSort(enhetsnrTilKontor[a].navn, enhetsnrTilKontor[b].navn))
+  .reduce((acc, curr, index, arr) =>
+    (index > 0 && enhetsnrTilKontor[arr[index - 1]].navn === enhetsnrTilKontor[arr[index]].navn ? acc : [...acc, curr]), []);
 
 const sheetToJson = (fileName, sheetName, columnKeys) => (
   excelToJson({
@@ -32,7 +73,7 @@ const sheetToJson = (fileName, sheetName, columnKeys) => (
 );
 
 const jsonToFile = (jsonObj, destFile) => (
-  fs.writeFile(destFile, JSON.stringify(jsonObj),e => e && console.log("Error: " + e))
+  fs.writeFile(destFile, JSON.stringify(jsonObj), e => e && console.log("Error: " + e))
 );
 
 const sheetNames = Object.keys(excelToJson({sourceFile: sourceFile, columnToKey: {}}));
@@ -49,12 +90,22 @@ const kontorInfoJson = sheetToJson(
   }
 );
 
-const stedsnavnJsonToFile = (jsonObj) => {
-  const stedsnavnObj = {};
+const enhetsnrTilEnhetsInfo = Object.values(kontorInfoJson)
+  .reduce((acc, curr) => (
+    curr && curr.enhetsnr && curr.kontornavn ?
+      {...acc, [parseInt(curr.enhetsnr, 10)]: {navn: curr.kontornavn, url: urlifyKontorNavn(curr.kontornavn)}}
+      : acc), {});
+
+const postnrTilStedOgEnhetsnr = Object.values(kontorInfoJson).reduce((acc, curr) => ({
+  ...acc, [parseInt(curr.postnr, 10)]: {enhetsnr: curr.enhetsnr, poststed: curr.poststed}
+}), {});
+
+const makeStedsnavnTilEnhetsnr = (kontorInfo) => {
+  const stedsnavnTilEnhetsnr = {};
 
   const getEquivalentKeyIfExists = key => {
     const sanitizedKey = sanitizeString(key);
-    for (const key of Object.keys(stedsnavnObj)) {
+    for (const key of Object.keys(stedsnavnTilEnhetsnr)) {
       if (sanitizeString(key) === sanitizedKey) {
         return key;
       }
@@ -68,33 +119,32 @@ const stedsnavnJsonToFile = (jsonObj) => {
     }
     const eqKey = getEquivalentKeyIfExists(key);
     if (!eqKey) {
-      stedsnavnObj[key] = [];
-      stedsnavnObj[key].push(value);
-    }
-    else if (!stedsnavnObj[eqKey].includes(value)) {
-      stedsnavnObj[eqKey].push(value);
+      stedsnavnTilEnhetsnr[key] = [];
+      stedsnavnTilEnhetsnr[key].push(value);
+    } else if (!stedsnavnTilEnhetsnr[eqKey].includes(value)) {
+      stedsnavnTilEnhetsnr[eqKey].push(value);
     }
   };
 
-  Object.values(jsonObj).forEach((element) => {
-    if (element.poststed) {
-      addValue(element.poststed, element.enhetsnr);
+  Object.values(kontorInfo).forEach((enhet) => {
+    if (enhet.poststed) {
+      addValue(enhet.poststed, enhet.enhetsnr);
     }
-    if (element.kommune) {
-      addValue(element.kommune, element.enhetsnr);
+    if (enhet.kommune) {
+      addValue(enhet.kommune, enhet.enhetsnr);
     }
-    if (element.kontornavn) {
-      addValue(element.kontornavn.replace("NAV ", "").toUpperCase(), element.enhetsnr);
+    if (enhet.kontornavn) {
+      addValue(enhet.kontornavn.replace("NAV ", "").toUpperCase(), enhet.enhetsnr);
     }
   });
 
-  jsonToFile(stedsnavnObj, stedsnavnTilEnhetsnrFile);
+  for (const key of Object.keys(stedsnavnTilEnhetsnr)) {
+    stedsnavnTilEnhetsnr[key] = sorterEnheterPaaKontornavn(stedsnavnTilEnhetsnr[key], enhetsnrTilEnhetsInfo);
+  }
+
+  return stedsnavnTilEnhetsnr;
 };
 
-stedsnavnJsonToFile(kontorInfoJson);
-
-jsonToFile(Object.values(kontorInfoJson).reduce((acc, curr) => ({
-  ...acc, [parseInt(curr.enhetsnr, 10)]: curr.kontornavn}), {}), enhetsnrTilKontorFile);
-
-jsonToFile(Object.values(kontorInfoJson).reduce((acc, curr) => ({
-  ...acc, [parseInt(curr.postnr, 10)]: {enhetsnr: curr.enhetsnr, poststed: curr.poststed}}), {}), postnrTilEnhetsnrOgPoststedFile);
+jsonToFile(makeStedsnavnTilEnhetsnr(kontorInfoJson), stedsnavnTilEnhetsnrFile);
+jsonToFile(enhetsnrTilEnhetsInfo, enhetsnrTilEnhetsinfoFile);
+jsonToFile(postnrTilStedOgEnhetsnr, postnrTilStedOgEnhetsnrFile);
