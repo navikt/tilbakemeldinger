@@ -3,20 +3,20 @@ import { FormattedMessage } from "react-intl";
 import React from "react";
 import { urls } from "../../Config";
 import RouterLenkeMedChevron from "../../components/routerlenke/RouterLenkeMedChevron";
-import { minQueryLength, SearchHit, SearchResult, SearchStatus } from "./FinnNavKontorSok";
+import { minQueryLength, SokeTreff, SokeResultat, SokeStatus } from "./FinnNavKontorSok";
 
 const enhetsnrTilEnhetsinfo = require("./enhetsnr-til-enhetsinfo.json");
 
 const cssPrefix = "finn-kontor";
 
-const maxAntallDynamiskeTreff = 10;
+const maxAntallDynamiskeTreffVisning = 10;
 
 type KontorProps = {
   enhetsnr: number
 };
 
 type ResultProps = {
-  resultat: SearchResult
+  resultat: SokeResultat
 };
 
 type KontorInfo = {
@@ -35,20 +35,20 @@ const KontorLenke = ({enhetsnr}: KontorProps) => {
   );
 };
 
-const stedsnavnTreff = (hit: SearchHit, len: number) => {
-  const hitStart = hit.hitIndex || 0;
-  const hitEnd = hitStart + len;
-  const navn = hit.treffnavn || "";
+const stedsnavnTreff = (treff: SokeTreff, len: number) => {
+  const treffStart = treff.treffIndex || 0;
+  const treffSlutt = treffStart + len;
+  const navn = treff.treffString || "";
 
-  const kontorLenker = hit.enhetsnr
+  const kontorLenker = treff.enhetsnrArray
     .map(enhetsnr => <KontorLenke enhetsnr={enhetsnr} key={enhetsnr}/>);
 
   return (
     <div className={`${cssPrefix}__resultat`} key={navn}>
       <Element>
-        <span className={`${cssPrefix}__treff-faded`}>{navn.slice(0, hitStart)}</span>
-        <span className={`${cssPrefix}__treff-uthevet`}>{navn.slice(hitStart, hitEnd)}</span>
-        <span className={`${cssPrefix}__treff-faded`}>{navn.slice(hitEnd)}</span>
+        <span className={`${cssPrefix}__treff-faded`}>{navn.slice(0, treffStart)}</span>
+        <span className={`${cssPrefix}__treff-uthevet`}>{navn.slice(treffStart, treffSlutt)}</span>
+        <span className={`${cssPrefix}__treff-faded`}>{navn.slice(treffSlutt)}</span>
       </Element>
       <div className={`${cssPrefix}__kontorliste`}>
         {kontorLenker}
@@ -57,43 +57,43 @@ const stedsnavnTreff = (hit: SearchHit, len: number) => {
   );
 };
 
-const postnrTreff = ({enhetsnr, treffnavn}: SearchHit) => (
+const postnrTreff = ({enhetsnrArray, treffString}: SokeTreff) => (
   <div className={`${cssPrefix}__resultat`}>
     <Normaltekst>
       <FormattedMessage id={"finnkontor.resultat.postnr"}/>
-      <span className={`${cssPrefix}__treff-uthevet`}>{treffnavn}</span><span>{":"}</span>
+      <span className={`${cssPrefix}__treff-uthevet`}>{treffString}</span><span>{":"}</span>
     </Normaltekst>
     <div className={`${cssPrefix}__kontorliste`}>
-      <KontorLenke enhetsnr={enhetsnr[0]}/>
+      <KontorLenke enhetsnr={enhetsnrArray[0]}/>
     </div>
   </div>
 );
 
 export const FinnNavKontorResultat = ({resultat}: ResultProps) => {
-  if (resultat.status === SearchStatus.QueryFeil) {
+  if (resultat.status === SokeStatus.QueryFeil) {
     return <FormattedMessage id={"finnkontor.query.feil"} values={{min: minQueryLength}}/>;
   }
 
-  if (resultat.status === SearchStatus.UgyldigPostnr) {
+  if (resultat.status === SokeStatus.UgyldigPostnr) {
     return <FormattedMessage id={"finnkontor.ugyldig.postnr"} values={{nummer: resultat.query}}/>;
   }
 
-  if (resultat.status === SearchStatus.IngenTreff) {
+  if (resultat.status === SokeStatus.IngenTreff) {
     return <FormattedMessage id={"finnkontor.ingen.treff"} values={{query: resultat.query}}/>;
   }
 
-  if (resultat.status === SearchStatus.PostnrTreff) {
-    return postnrTreff(resultat.hits[0]);
+  if (resultat.status === SokeStatus.PostnrTreff) {
+    return postnrTreff(resultat.treffArray[0]);
   }
 
-  if (resultat.status === SearchStatus.StedsnavnTreff) {
+  if (resultat.status === SokeStatus.StedsnavnTreff) {
     return (
       <>
         <Normaltekst>
-          <FormattedMessage id={"finnkontor.resultat.stedsnavn"} values={{query: resultat.query, antall: resultat.hits.length}}/>
+          <FormattedMessage id={"finnkontor.resultat.stedsnavn"} values={{query: resultat.query, antall: resultat.treffArray.length}}/>
         </Normaltekst>
         <div className={`${cssPrefix}__resultatliste`}>
-          {resultat.hits.map(hit => stedsnavnTreff(hit, resultat.query.length))}
+          {resultat.treffArray.map(hit => stedsnavnTreff(hit, resultat.query.length))}
         </div>
       </>
     );
@@ -103,25 +103,25 @@ export const FinnNavKontorResultat = ({resultat}: ResultProps) => {
 };
 
 export const FinnNavKontorResultatDynamisk = ({resultat}: ResultProps) => {
-  if (resultat.status === SearchStatus.UgyldigPostnr || resultat.status === SearchStatus.IngenTreff) {
+  if (resultat.status === SokeStatus.UgyldigPostnr || resultat.status === SokeStatus.IngenTreff) {
     return <FormattedMessage id={"finnkontor.ingen.treff"} values={{query: resultat.query}}/>;
   }
 
-  if (resultat.status === SearchStatus.QueryFeil) {
+  if (resultat.status === SokeStatus.QueryFeil) {
     return <FormattedMessage id={"finnkontor.query.feil.kort"} values={{min: minQueryLength}}/>;
   }
 
-  if (resultat.status === SearchStatus.PostnrTreff) {
-    return postnrTreff(resultat.hits[0]);
+  if (resultat.status === SokeStatus.PostnrTreff) {
+    return postnrTreff(resultat.treffArray[0]);
   }
 
-  if (resultat.status === SearchStatus.StedsnavnTreff) {
-    const antallTreff = resultat.hits.length;
+  if (resultat.status === SokeStatus.StedsnavnTreff) {
+    const antallTreff = resultat.treffArray.length;
 
     return (
       <div className={`${cssPrefix}__resultatliste`}>
-        {resultat.hits.slice(0, maxAntallDynamiskeTreff).map(hit => stedsnavnTreff(hit, resultat.query.length))}
-        {antallTreff > maxAntallDynamiskeTreff && (
+        {resultat.treffArray.slice(0, maxAntallDynamiskeTreffVisning).map(hit => stedsnavnTreff(hit, resultat.query.length))}
+        {antallTreff > maxAntallDynamiskeTreffVisning && (
           <div className={`${cssPrefix}__flere-treff`}>
             <FormattedMessage id={"finnkontor.flere.treff"} values={{antall: antallTreff}}/>
           </div>

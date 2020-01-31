@@ -44,7 +44,7 @@ const urlifyKontorNavn = navn => sanitizeString(navn)
   .replace("vindafjord-etne", "vindafjord")
   .replace("midt-agder", "vennesla");
 
-const sorterEnheterPaaKontornavn = (enhetsnrArray, enhetsnrTilKontor) => !enhetsnrArray ? [] : enhetsnrArray
+const sorterEnheterPaaKontornavnOgFjernDuplikater = (enhetsnrArray, enhetsnrTilKontor) => !enhetsnrArray ? [] : enhetsnrArray
   .filter(enhetsnr => {
     const kontorNavn = enhetsnrTilKontor[enhetsnr];
     if (kontorNavn) {
@@ -126,7 +126,7 @@ const makeStedsnavnTilEnhetsnr = (kontorInfo) => {
     }
   };
 
-  Object.values(kontorInfo).forEach((enhet) => {
+  Object.values(kontorInfo).forEach(enhet => {
     if (enhet.poststed) {
       addValue(enhet.poststed, enhet.enhetsnr);
     }
@@ -139,7 +139,7 @@ const makeStedsnavnTilEnhetsnr = (kontorInfo) => {
   });
 
   for (const key of Object.keys(stedsnavnTilEnhetsnr)) {
-    stedsnavnTilEnhetsnr[key] = sorterEnheterPaaKontornavn(stedsnavnTilEnhetsnr[key], enhetsnrTilEnhetsInfo);
+    stedsnavnTilEnhetsnr[key] = sorterEnheterPaaKontornavnOgFjernDuplikater(stedsnavnTilEnhetsnr[key], enhetsnrTilEnhetsInfo);
   }
 
   return stedsnavnTilEnhetsnr;

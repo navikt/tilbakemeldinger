@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import { Input, Label } from "nav-frontend-skjema";
 import { FinnNavKontorResultat, FinnNavKontorResultatDynamisk } from "./FinnNavKontorResultat";
-import { generateSearchResult, minQueryLength, SearchResult } from "./FinnNavKontorSok";
+import { kjorSokOgReturnerResultat, minQueryLength, SokeResultat } from "./FinnNavKontorSok";
 import { Form } from "calidation";
 import { Knapp } from "nav-frontend-knapper";
 import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
@@ -18,8 +18,8 @@ const FinnNavKontorPage = () => {
   }, [documentTitle]);
 
   const [inputElement, setInputElement] = useState<HTMLInputElement>();
-  const [searchResult, setSearchResult] = useState<SearchResult | null>();
-  const [searchResultDynamic, setSearchResultDynamic] = useState<SearchResult | null>();
+  const [sokeResultat, setSokeResultat] = useState<SokeResultat | null>();
+  const [sokeResultatDynamisk, setSokeResultatDynamisk] = useState<SokeResultat | null>();
 
   return (
     <div className={`${cssPrefix} pagecontent`}>
@@ -37,8 +37,8 @@ const FinnNavKontorPage = () => {
       <div className={`${cssPrefix}__innhold`}>
         <Form
           onSubmit={() => {
-            inputElement && setSearchResult(generateSearchResult(inputElement.value));
-            setSearchResultDynamic(null);
+            inputElement && setSokeResultat(kjorSokOgReturnerResultat(inputElement.value));
+            setSokeResultatDynamisk(null);
           }}
         >
           <Label htmlFor={"finn-kontor-input-id"}>
@@ -53,7 +53,7 @@ const FinnNavKontorPage = () => {
               autoComplete={"off"}
               onFocus={e => setInputElement(e.target)}
               onChange={e =>
-                setSearchResultDynamic(generateSearchResult(e.target.value))
+                setSokeResultatDynamisk(kjorSokOgReturnerResultat(e.target.value))
               }
             />
             <Knapp
@@ -66,16 +66,16 @@ const FinnNavKontorPage = () => {
             </Knapp>
           </div>
 
-          {searchResultDynamic && searchResultDynamic.query.length >= minQueryLength && (
+          {sokeResultatDynamisk && sokeResultatDynamisk.query.length >= minQueryLength && (
             <div className={`${cssPrefix}__preview-container`}>
-              <FinnNavKontorResultatDynamisk resultat={searchResultDynamic}/>
+              <FinnNavKontorResultatDynamisk resultat={sokeResultatDynamisk}/>
             </div>
           )}
         </Form>
 
-        {searchResult && (
+        {sokeResultat && (
           <div className={`${cssPrefix}__resultat-container`}>
-            <FinnNavKontorResultat resultat={searchResult}/>
+            <FinnNavKontorResultat resultat={sokeResultat}/>
           </div>
         )}
       </div>

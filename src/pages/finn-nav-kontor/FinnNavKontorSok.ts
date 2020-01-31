@@ -7,7 +7,7 @@ const norskSort = new Intl.Collator(["no", "nb", "nn"], {usage: "sort"}).compare
 
 export const minQueryLength = 2;
 
-export enum SearchStatus {
+export enum SokeStatus {
   StedsnavnTreff,
   PostnrTreff,
   IngenTreff,
@@ -15,16 +15,16 @@ export enum SearchStatus {
   UgyldigPostnr
 }
 
-export type SearchHit = {
-  enhetsnr: Array<number>,
-  treffnavn: string,
-  hitIndex: number
+export type SokeTreff = {
+  enhetsnrArray: Array<number>,
+  treffString: string,
+  treffIndex: number
 };
 
-export type SearchResult = {
-  hits: Array<SearchHit>,
+export type SokeResultat = {
+  treffArray: Array<SokeTreff>,
   query: string,
-  status: SearchStatus
+  status: SokeStatus
 };
 
 export const sanitizeQuery = (query: string) => query
@@ -44,65 +44,75 @@ const isValidPostnrFormat = (nr: string) => {
   return nr && nr.length === 4 && nr === nrSanitized && !isNaN(Number(nr));
 };
 
-const sortByRelevance = (hits: Array<SearchHit>) => {
-  const topHits = hits.filter(hit => hit.hitIndex === 0)
-    .sort((a, b) => norskSort(a.treffnavn, b.treffnavn))
-    .sort((a, b) => a.treffnavn.length - b.treffnavn.length);
-  const rest = hits.filter(hit => hit.hitIndex !== 0)
-    .sort((a, b) => norskSort(a.treffnavn, b.treffnavn));
+const sortByRelevance = (treffArray: Array<SokeTreff>) => {
+  const toppTreff = treffArray.filter(treff => treff.treffIndex === 0)
+    .sort((a, b) => norskSort(a.treffString, b.treffString))
+    .sort((a, b) => a.treffString.length - b.treffString.length);
+  const andreTreff = treffArray.filter(treff => treff.treffIndex !== 0)
+    .sort((a, b) => norskSort(a.treffString, b.treffString));
 
-  return [...topHits, ...rest];
+  return [...toppTreff, ...andreTreff];
 };
 
-const generateQueryFeilResult = (query: string) => {
-  return {hits: [], query, status: SearchStatus.QueryFeil};
+const getQueryFeilResultat = (query: string): SokeResultat => {
+  return {treffArray: [], query, status: SokeStatus.QueryFeil};
 };
 
-const generatePostnrHitResult = (query: string) => {
+const kjorPostnrSok = (query: string): SokeResultat => {
   if (!isValidPostnrFormat(query)) {
-    return generateQueryFeilResult(query);
+    return getQueryFeilResultat(query);
   }
 
   const nrUtenLedendeNull = parseInt(query, 10).toString();
   const postnrMapping = postnrTilEnhetsnrOgPoststed[nrUtenLedendeNull];
   return postnrMapping
     ? {
-      hits: [{enhetsnr: [postnrMapping.enhetsnr], treffnavn: `${query} ${postnrMapping.poststed}`, hitIndex: 0}],
+      treffArray: [{
+        enhetsnrArray: [postnrMapping.enhetsnr],
+        treffString: `${query} ${postnrMapping.poststed}`,
+        treffIndex: 0
+      }],
       query,
-      status: SearchStatus.PostnrTreff
+      status: SokeStatus.PostnrTreff
     }
-    : {hits: [], query, status: SearchStatus.UgyldigPostnr};
+    : {treffArray: [], query, status: SokeStatus.UgyldigPostnr};
 };
 
-const generateStedsnavnHitResult = (query: string) => {
+const kjorStedsnavnSok = (query: string): SokeResultat => {
   const stedQuery = sanitizeQuery(query);
 
-  const hits = stedsnavnArray
-    .reduce((acc: Array<SearchHit>, stedsnavn) => {
+  const treff = stedsnavnArray
+    .reduce((acc: Array<SokeTreff>, stedsnavn) => {
       const hitIndex = sanitizeQuery(stedsnavn).indexOf(stedQuery);
       return hitIndex > -1
-        ? [...acc, {enhetsnr: stedsnavnTilEnhetsnr[stedsnavn], treffnavn: stedsnavn, hitIndex: hitIndex}] : acc;
+        ? [...acc, {enhetsnrArray: stedsnavnTilEnhetsnr[stedsnavn], treffString: stedsnavn, treffIndex: hitIndex}] : acc;
     }, []);
 
-  return {hits: sortByRelevance(hits), query, status: hits.length > 0 ? SearchStatus.StedsnavnTreff : SearchStatus.IngenTreff};
+  return {
+    treffArray: sortByRelevance(treff),
+    query,
+    status: treff.length > 0 ? SokeStatus.StedsnavnTreff : SokeStatus.IngenTreff
+  };
 };
 
-export const generateSearchResult = (query: string) => {
+export const kjorSokOgReturnerResultat = (query: string): SokeResultat => {
   if (query === ":visalle") {
     return {
-      hits: [{enhetsnr: Object.keys(enhetsnrTilEnhetsinfo).map(Number),
-        treffnavn: "Alle kontorer", hitIndex: 0}],
-      query: "Alle kontorer", status: SearchStatus.StedsnavnTreff
+      treffArray: [{
+        enhetsnrArray: Object.keys(enhetsnrTilEnhetsinfo).map(Number),
+        treffString: "Alle kontorer", treffIndex: 0
+      }],
+      query: "Alle kontorer", status: SokeStatus.StedsnavnTreff
     };
   }
 
   if (!query || query.length < minQueryLength) {
-    return generateQueryFeilResult(query);
+    return getQueryFeilResultat(query);
   }
 
   if (!isNaN(Number(query))) {
-    return generatePostnrHitResult(query);
+    return kjorPostnrSok(query);
   }
 
-  return generateStedsnavnHitResult(query);
+  return kjorStedsnavnSok(query);
 };
