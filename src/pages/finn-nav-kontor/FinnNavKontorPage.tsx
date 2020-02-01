@@ -40,6 +40,7 @@ const FinnNavKontorPage = () => {
             inputElement && setSokeResultat(kjorSokOgReturnerResultat(inputElement.value));
             setSokeResultatDynamisk(null);
           }}
+          className={`${cssPrefix}__input-gruppe`}
         >
           <Label htmlFor={"finn-kontor-input-id"}>
             <FormattedMessage id={"finnkontor.sok.label"}/>
@@ -52,22 +53,26 @@ const FinnNavKontorPage = () => {
               autoFocus={true}
               autoComplete={"off"}
               onFocus={e => setInputElement(e.target)}
-              onChange={e =>
-                setSokeResultatDynamisk(kjorSokOgReturnerResultat(e.target.value))
-              }
+              onChange={e => setSokeResultatDynamisk(kjorSokOgReturnerResultat(e.target.value))}
+              onKeyDown={e => e.key === "Escape" && e.currentTarget.blur()}
             />
             <Knapp
               htmlType={"submit"}
               type={"standard"}
               className={`${cssPrefix}__knapp`}
               mini={true}
+              id={"finn-kontor-knapp-id"}
             >
               <FormattedMessage id={"finnkontor.sok.knapp"}/>
             </Knapp>
           </div>
 
           {sokeResultatDynamisk && sokeResultatDynamisk.query.length >= minQueryLength && (
-            <div className={`${cssPrefix}__preview-container`}>
+            <div
+              className={`${cssPrefix}__preview-container`}
+              id={"preview-container-id"}
+              tabIndex={-1}
+            >
               <FinnNavKontorResultatDynamisk resultat={sokeResultatDynamisk}/>
             </div>
           )}

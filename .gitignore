@@ -28,3 +28,4 @@ yarn-error.log*
 
 /src/pages/finn-nav-kontor/*.json
 /~$navkontor.xlsx
+/tilbakemeldinger.iml

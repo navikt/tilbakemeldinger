@@ -90,6 +90,10 @@
     margin-top: 0;
   }
 
+  .finn-kontor__resultatliste > :last-child {
+    padding-bottom: @pady;
+  }
+
   .finn-kontor__kontorliste {
     .finn-kontor__kontorlenke {
       padding: 0.25em @padx;
@@ -99,5 +103,11 @@
         background-color: @navBlaLighten80;
       }
     }
+  }
+}
+
+.finn-kontor__input-gruppe:not(:focus-within) {
+  .finn-kontor__preview-container {
+    visibility: hidden;
   }
 }
