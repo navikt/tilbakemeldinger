@@ -12,37 +12,13 @@ type Props = {
   resultat: SokeResultat
 };
 
+const focusElement = (element: HTMLElement) => {
+  element.focus();
+  const parent = document.getElementById("preview-container-id");
+  parent && parent.scrollTo(0, element.offsetTop - parent.offsetHeight / 3);
+};
+
 export const ResultatvisningDynamisk = ({resultat}: Props) => {
-  const focusElement = (element: HTMLElement) => {
-    element.focus();
-    const parent = document.getElementById("preview-container-id");
-    parent && parent.scrollTo(0, element.offsetTop - parent.offsetHeight / 3);
-  };
-
-  const keyHandler = (e: KeyboardEvent) => {
-    if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setKontorValg(Math.max(kontorValgRef.current - 1, -1));
-    } else if (e.key === "ArrowDown") {
-      e.preventDefault();
-      const antallVisteKontorer = resultatRef.current.treffArray
-        .slice(0, maxAntallDynamiskeTreff)
-        .reduce((counter, treff) => counter + treff.enhetsnrArray.length, 0);
-      const maxValue = resultatRef.current.treffArray.length > maxAntallDynamiskeTreff
-        ? antallVisteKontorer
-        : antallVisteKontorer - 1;
-      setKontorValg(Math.min(kontorValgRef.current + 1, maxValue));
-    } else {
-      return;
-    }
-
-    const valgtElement = document.getElementById(`kontor-id-${kontorValgRef.current}`)
-      || document.getElementById(kontorValgRef.current === -1 ? "finn-kontor-input-id" : "finn-kontor-sok-lenke");
-    if (valgtElement) {
-      focusElement(valgtElement);
-    }
-  };
-
   const resultatRef = useRef(resultat);
   resultatRef.current = resultat;
 
@@ -54,6 +30,30 @@ export const ResultatvisningDynamisk = ({resultat}: Props) => {
   };
 
   useEffect(() => {
+    const keyHandler = (e: KeyboardEvent) => {
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setKontorValg(Math.max(kontorValgRef.current - 1, -1));
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const antallVisteKontorer = resultatRef.current.treffArray
+          .slice(0, maxAntallDynamiskeTreff)
+          .reduce((counter, treff) => counter + treff.enhetsnrArray.length, 0);
+        const maxValue = resultatRef.current.treffArray.length > maxAntallDynamiskeTreff
+          ? antallVisteKontorer
+          : antallVisteKontorer - 1;
+        setKontorValg(Math.min(kontorValgRef.current + 1, maxValue));
+      } else {
+        return;
+      }
+
+      const valgtElement = document.getElementById(`kontor-id-${kontorValgRef.current}`)
+        || document.getElementById(kontorValgRef.current === -1 ? "finn-kontor-input-id" : "finn-kontor-sok-lenke");
+      if (valgtElement) {
+        focusElement(valgtElement);
+      }
+    };
+
     window.document.addEventListener("keydown", keyHandler);
     return () => {
       window.document.removeEventListener("keydown", keyHandler);
