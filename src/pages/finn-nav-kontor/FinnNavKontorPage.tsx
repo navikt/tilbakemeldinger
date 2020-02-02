@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import { Input, Label } from "nav-frontend-skjema";
-import { FinnNavKontorResultat, FinnNavKontorResultatDynamisk } from "./FinnNavKontorResultat";
-import { kjorSokOgReturnerResultat, minQueryLength, SokeResultat } from "./FinnNavKontorSok";
 import { Form } from "calidation";
 import { Knapp } from "nav-frontend-knapper";
 import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
+
+import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
+import { ResultatvisningVedSubmit } from "./components/ResultatvisningVedSubmit";
+import { ResultatvisningDynamisk } from "./components/ResultatvisningDynamisk";
+import { kjorSokOgReturnerResultat, minQueryLength, SokeResultat } from "./FinnNavKontorSok";
 
 const cssPrefix = "finn-kontor";
 
@@ -73,14 +75,14 @@ const FinnNavKontorPage = () => {
               id={"preview-container-id"}
               tabIndex={-1}
             >
-              <FinnNavKontorResultatDynamisk resultat={sokeResultatDynamisk}/>
+              <ResultatvisningDynamisk resultat={sokeResultatDynamisk}/>
             </div>
           )}
         </Form>
 
         {sokeResultat && (
           <div className={`${cssPrefix}__resultat-container`}>
-            <FinnNavKontorResultat resultat={sokeResultat}/>
+            <ResultatvisningVedSubmit resultat={sokeResultat}/>
           </div>
         )}
       </div>

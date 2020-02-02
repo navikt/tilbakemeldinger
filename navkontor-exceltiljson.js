@@ -2,9 +2,9 @@ const excelToJson = require("convert-excel-to-json");
 const fs = require("fs");
 
 const sourceFile = "navkontor.xlsx";
-const enhetsnrTilEnhetsinfoFile = "./src/pages/finn-nav-kontor/enhetsnr-til-enhetsinfo.json";
-const postnrTilStedOgEnhetsnrFile = "./src/pages/finn-nav-kontor/postnr-til-enhetsnr-og-poststed.json";
-const stedsnavnTilEnhetsnrFile = "./src/pages/finn-nav-kontor/stedsnavn-til-enhetsnr.json";
+const enhetsnrTilEnhetsinfoFile = "./src/pages/finn-nav-kontor/data/enhetsnr-til-enhetsinfo.json";
+const postnrTilStedOgEnhetsnrFile = "./src/pages/finn-nav-kontor/data/postnr-til-enhetsnr-og-poststed.json";
+const stedsnavnTilEnhetsnrFile = "./src/pages/finn-nav-kontor/data/stedsnavn-til-enhetsnr.json";
 
 const norskSort = new Intl.Collator(["no", "nb", "nn"], {usage: "sort"}).compare;
 
