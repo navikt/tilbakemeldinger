@@ -12,18 +12,6 @@ type ResultProps = {
 };
 
 export const ResultatvisningVedSubmit = ({resultat}: ResultProps) => {
-  if (resultat.status === SokeStatus.QueryFeil) {
-    return <FormattedMessage id={"finnkontor.query.feil"} values={{min: minQueryLength}}/>;
-  }
-
-  if (resultat.status === SokeStatus.UgyldigPostnr) {
-    return <FormattedMessage id={"finnkontor.ugyldig.postnr"} values={{nummer: resultat.query}}/>;
-  }
-
-  if (resultat.status === SokeStatus.IngenTreff) {
-    return <FormattedMessage id={"finnkontor.ingen.treff"} values={{query: resultat.query}}/>;
-  }
-
   if (resultat.status === SokeStatus.PostnrTreff) {
     return (
       <TreffPostnummer
@@ -55,6 +43,18 @@ export const ResultatvisningVedSubmit = ({resultat}: ResultProps) => {
         </div>
       </>
     );
+  }
+
+  if (resultat.status === SokeStatus.QueryFeil) {
+    return <FormattedMessage id={"finnkontor.query.feil"} values={{min: minQueryLength}}/>;
+  }
+
+  if (resultat.status === SokeStatus.UgyldigPostnr) {
+    return <FormattedMessage id={"finnkontor.ugyldig.postnr"} values={{nummer: resultat.query}}/>;
+  }
+
+  if (resultat.status === SokeStatus.IngenTreff) {
+    return <FormattedMessage id={"finnkontor.ingen.treff"} values={{query: resultat.query}}/>;
   }
 
   return null;

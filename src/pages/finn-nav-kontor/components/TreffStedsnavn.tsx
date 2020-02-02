@@ -26,7 +26,7 @@ export const TreffStedsnavn = ({treff, query, kontorIdStart}: Props) => {
     ));
 
   return (
-    <div className={`${cssPrefix}__resultat`} key={stedsnavn}>
+    <div className={`${cssPrefix}__resultat`}>
       <Element>
         <span className={`${cssPrefix}__treff-faded`}>{stedsnavn.slice(0, treffStart)}</span>
         <span className={`${cssPrefix}__treff-uthevet`}>{stedsnavn.slice(treffStart, treffSlutt)}</span>

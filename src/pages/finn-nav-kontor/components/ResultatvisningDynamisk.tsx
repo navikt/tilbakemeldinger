@@ -6,17 +6,13 @@ import { TreffPostnummer } from "./TreffPostnummer";
 import { TreffStedsnavn } from "./TreffStedsnavn";
 
 const cssPrefix = "finn-kontor";
-const maxAntallDynamiskeTreffVist = 10;
+const maxAntallDynamiskeTreff = 10;
 
 type Props = {
   resultat: SokeResultat
 };
 
 export const ResultatvisningDynamisk = ({resultat}: Props) => {
-  const getAntallVisteKontorer = () => resultatRef.current.treffArray
-    .slice(0, maxAntallDynamiskeTreffVist)
-    .reduce((counter, treff) => counter + treff.enhetsnrArray.length, 0);
-
   const focusElement = (element: HTMLElement) => {
     const parent = document.getElementById("preview-container-id");
     element.focus();
@@ -29,8 +25,10 @@ export const ResultatvisningDynamisk = ({resultat}: Props) => {
       setKontorValg(Math.max(kontorValgRef.current - 1, -1));
     } else if (e.key === "ArrowDown") {
       e.preventDefault();
-      const antallVisteKontorer = getAntallVisteKontorer();
-      const maxValue = resultatRef.current.treffArray.length > maxAntallDynamiskeTreffVist
+      const antallVisteKontorer = resultatRef.current.treffArray
+        .slice(0, maxAntallDynamiskeTreff)
+        .reduce((counter, treff) => counter + treff.enhetsnrArray.length, 0);
+      const maxValue = resultatRef.current.treffArray.length > maxAntallDynamiskeTreff
         ? antallVisteKontorer
         : antallVisteKontorer - 1;
       setKontorValg(Math.min(kontorValgRef.current + 1, maxValue));
@@ -60,14 +58,6 @@ export const ResultatvisningDynamisk = ({resultat}: Props) => {
     };
   }, []);
 
-  if (resultat.status === SokeStatus.UgyldigPostnr || resultat.status === SokeStatus.IngenTreff) {
-    return <FormattedMessage id={"finnkontor.ingen.treff"} values={{query: resultat.query}}/>;
-  }
-
-  if (resultat.status === SokeStatus.QueryFeil) {
-    return <FormattedMessage id={"finnkontor.query.feil.kort"} values={{min: minQueryLength}}/>;
-  }
-
   if (resultat.status === SokeStatus.PostnrTreff) {
     return (
       <TreffPostnummer
@@ -81,13 +71,14 @@ export const ResultatvisningDynamisk = ({resultat}: Props) => {
     let idCounter = 0;
     const antallTreff = resultat.treffArray.length;
     const treffVisning = resultat.treffArray
-      .slice(0, maxAntallDynamiskeTreffVist)
+      .slice(0, maxAntallDynamiskeTreff)
       .map(treff => {
         const treffVisning = (
           <TreffStedsnavn
             treff={treff}
             query={resultat.query}
             kontorIdStart={idCounter}
+            key={treff.treffString}
           />
         );
         idCounter += treff.enhetsnrArray.length;
@@ -97,7 +88,7 @@ export const ResultatvisningDynamisk = ({resultat}: Props) => {
     return (
       <div className={`${cssPrefix}__resultatliste`}>
         {treffVisning}
-        {antallTreff > maxAntallDynamiskeTreffVist && (
+        {antallTreff > maxAntallDynamiskeTreff && (
           <div className={`${cssPrefix}__flere-treff`}>
             <Lenke
               href="#"
@@ -114,6 +105,14 @@ export const ResultatvisningDynamisk = ({resultat}: Props) => {
         )}
       </div>
     );
+  }
+
+  if (resultat.status === SokeStatus.UgyldigPostnr || resultat.status === SokeStatus.IngenTreff) {
+    return <FormattedMessage id={"finnkontor.ingen.treff"} values={{query: resultat.query}}/>;
+  }
+
+  if (resultat.status === SokeStatus.QueryFeil) {
+    return <FormattedMessage id={"finnkontor.query.feil.kort"} values={{min: minQueryLength}}/>;
   }
 
   return null;
