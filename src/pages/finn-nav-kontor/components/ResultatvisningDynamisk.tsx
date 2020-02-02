@@ -14,8 +14,8 @@ type Props = {
 
 export const ResultatvisningDynamisk = ({resultat}: Props) => {
   const focusElement = (element: HTMLElement) => {
-    const parent = document.getElementById("preview-container-id");
     element.focus();
+    const parent = document.getElementById("preview-container-id");
     parent && parent.scrollTo(0, element.offsetTop - parent.offsetHeight / 3);
   };
 
@@ -38,7 +38,9 @@ export const ResultatvisningDynamisk = ({resultat}: Props) => {
 
     const valgtElement = document.getElementById(`kontor-id-${kontorValgRef.current}`)
       || document.getElementById(kontorValgRef.current === -1 ? "finn-kontor-input-id" : "finn-kontor-sok-lenke");
-    valgtElement && focusElement(valgtElement);
+    if (valgtElement) {
+      focusElement(valgtElement);
+    }
   };
 
   const resultatRef = useRef(resultat);
