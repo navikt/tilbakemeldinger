@@ -18,7 +18,7 @@ import ServiceKlage from "./pages/tilbakemeldinger/service-klage/ServiceKlage";
 import ServiceKlageLogin from "./pages/tilbakemeldinger/service-klage/ServiceKlageLogin";
 import { KontaktInfo } from "./types/kontaktInfo";
 import { Fodselsnr } from "./types/fodselsnr";
-import ScrollToTop from "./components/scroll-to-top/ScrollToTopp";
+import ScrollToTop from "./components/scroll-to-top/ScrollToTopOrAnchor";
 import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOss";
 import SkrivTilOssRouter from "./pages/skriv-til-oss/SkrivTilOssRouter";
 import Unleash from "./utils/unleash";
