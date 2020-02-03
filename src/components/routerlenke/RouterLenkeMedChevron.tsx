@@ -9,6 +9,7 @@ type Props = {
   onClick?: () => void;
   isExternal?: boolean;
   className?: string;
+  id?: string;
 };
 
 const lenkeTekstMedChevron = (tekst: React.ReactNode) => (
@@ -19,7 +20,7 @@ const lenkeTekstMedChevron = (tekst: React.ReactNode) => (
 );
 
 const RouterLenkeMedChevron = (props: Props) => {
-  const { href, children, isExternal, className, onClick } = props;
+  const { href, children, isExternal, className, id, onClick } = props;
   const lenkeTekst = lenkeTekstMedChevron(children);
 
   return isExternal ? (
@@ -27,6 +28,7 @@ const RouterLenkeMedChevron = (props: Props) => {
       href={href}
       className={`chevronlenke ${className}`}
       onClick={onClick}
+      id={id}
     >
       {lenkeTekst}
     </Lenke>
@@ -35,6 +37,7 @@ const RouterLenkeMedChevron = (props: Props) => {
       to={href}
       className={`chevronlenke ${className} lenke`}
       onClick={onClick}
+      id={id}
     >
       {lenkeTekst}
     </Link>
