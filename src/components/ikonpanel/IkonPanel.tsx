@@ -8,17 +8,18 @@ type Props = {
   tittel: React.ReactNode;
   children: React.ReactNode;
   className?: string;
+  id?: string;
 };
 
 const cssPrefix = "ikonpanel";
 
-const IkonPanel = ({ ikon, tittel, children, className }: Props) => {
+const IkonPanel = ({ikon, tittel, children, className, id}: Props) => {
   return (
-    <Panel className={`${cssPrefix}${className ? ` ${className}` : ""}`}>
+    <Panel className={`${cssPrefix}${className ? ` ${className}` : ""}`} id={id}>
       <div>
         {ikon && (
           <div className={`${cssPrefix}__ikon-container`}>
-            <img src={ikon} alt="" className={`${cssPrefix}__ikon`} />
+            <img src={ikon} alt="" className={`${cssPrefix}__ikon`}/>
           </div>
         )}
       </div>

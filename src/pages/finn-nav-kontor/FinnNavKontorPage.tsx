@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import { Input, Label } from "nav-frontend-skjema";
-import { FinnNavKontorResultat, FinnNavKontorResultatDynamisk } from "./FinnNavKontorResultat";
-import { kjorSokOgReturnerResultat, minQueryLength, SokeResultat } from "./FinnNavKontorSok";
 import { Form } from "calidation";
 import { Knapp } from "nav-frontend-knapper";
 import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
+
+import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
+import { ResultatvisningVedSubmit } from "./components/ResultatvisningVedSubmit";
+import { ResultatvisningDynamisk } from "./components/ResultatvisningDynamisk";
+import { kjorSokOgReturnerResultat, minQueryLength, SokeResultat } from "./FinnNavKontorSok";
 
 const cssPrefix = "finn-kontor";
 
@@ -40,6 +42,7 @@ const FinnNavKontorPage = () => {
             inputElement && setSokeResultat(kjorSokOgReturnerResultat(inputElement.value));
             setSokeResultatDynamisk(null);
           }}
+          className={`${cssPrefix}__input-gruppe`}
         >
           <Label htmlFor={"finn-kontor-input-id"}>
             <FormattedMessage id={"finnkontor.sok.label"}/>
@@ -52,30 +55,34 @@ const FinnNavKontorPage = () => {
               autoFocus={true}
               autoComplete={"off"}
               onFocus={e => setInputElement(e.target)}
-              onChange={e =>
-                setSokeResultatDynamisk(kjorSokOgReturnerResultat(e.target.value))
-              }
+              onChange={e => setSokeResultatDynamisk(kjorSokOgReturnerResultat(e.target.value))}
+              onKeyDown={e => e.key === "Escape" && e.currentTarget.blur()}
             />
             <Knapp
               htmlType={"submit"}
               type={"standard"}
               className={`${cssPrefix}__knapp`}
               mini={true}
+              id={"finn-kontor-knapp-id"}
             >
               <FormattedMessage id={"finnkontor.sok.knapp"}/>
             </Knapp>
           </div>
 
           {sokeResultatDynamisk && sokeResultatDynamisk.query.length >= minQueryLength && (
-            <div className={`${cssPrefix}__preview-container`}>
-              <FinnNavKontorResultatDynamisk resultat={sokeResultatDynamisk}/>
+            <div
+              className={`${cssPrefix}__preview-container`}
+              id={"preview-container-id"}
+              tabIndex={-1}
+            >
+              <ResultatvisningDynamisk resultat={sokeResultatDynamisk}/>
             </div>
           )}
         </Form>
 
         {sokeResultat && (
           <div className={`${cssPrefix}__resultat-container`}>
-            <FinnNavKontorResultat resultat={sokeResultat}/>
+            <ResultatvisningVedSubmit resultat={sokeResultat}/>
           </div>
         )}
       </div>
