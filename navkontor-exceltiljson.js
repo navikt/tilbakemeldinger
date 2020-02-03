@@ -147,7 +147,9 @@ const makeStedsnavnTilEnhetsnr = (kontorInfo) => {
   return stedsnavnTilEnhetsnr;
 };
 
-fs.mkdirSync(destDir);
+if (!fs.existsSync(destDir)) {
+  fs.mkdirSync(destDir);
+}
 
 jsonToFile(makeStedsnavnTilEnhetsnr(kontorInfoJson), stedsnavnTilEnhetsnrFile);
 jsonToFile(enhetsnrTilEnhetsInfo, enhetsnrTilEnhetsinfoFile);
