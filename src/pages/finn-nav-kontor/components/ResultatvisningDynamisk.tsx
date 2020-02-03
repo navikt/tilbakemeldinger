@@ -15,7 +15,7 @@ type Props = {
 const focusElement = (element: HTMLElement) => {
   element.focus();
   const parent = document.getElementById("preview-container-id");
-  parent && parent.scrollTo(0, element.offsetTop - parent.offsetHeight / 3);
+  parent && parent.scrollTo && parent.scrollTo(0, element.offsetTop - parent.offsetHeight / 3);
 };
 
 export const ResultatvisningDynamisk = ({resultat}: Props) => {
