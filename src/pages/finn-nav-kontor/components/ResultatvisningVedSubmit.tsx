@@ -15,8 +15,8 @@ export const ResultatvisningVedSubmit = ({resultat}: ResultProps) => {
   if (resultat.status === SokeStatus.PostnrTreff) {
     return (
       <TreffPostnummer
-        enhetsnrArray={resultat.treffArray[0].enhetsnrArray}
-        postnummer={resultat.treffArray[0].treffString}
+        enhetsnr={resultat.treffArray[0].enhetsnrArray[0]}
+        postnr={resultat.treffArray[0].treffString}
       />
     );
   }

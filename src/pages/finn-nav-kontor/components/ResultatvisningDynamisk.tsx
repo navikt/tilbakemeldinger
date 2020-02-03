@@ -19,9 +19,6 @@ const focusElement = (element: HTMLElement) => {
 };
 
 export const ResultatvisningDynamisk = ({resultat}: Props) => {
-  const resultatRef = useRef(resultat);
-  resultatRef.current = resultat;
-
   const [kontorValg, _setKontorValg] = useState(-1);
   const kontorValgRef = useRef(kontorValg);
   const setKontorValg = (value: number) => {
@@ -36,10 +33,10 @@ export const ResultatvisningDynamisk = ({resultat}: Props) => {
         setKontorValg(Math.max(kontorValgRef.current - 1, -1));
       } else if (e.key === "ArrowDown") {
         e.preventDefault();
-        const antallVisteKontorer = resultatRef.current.treffArray
+        const antallVisteKontorer = resultat.treffArray
           .slice(0, maxAntallDynamiskeTreff)
           .reduce((counter, treff) => counter + treff.enhetsnrArray.length, 0);
-        const maxValue = resultatRef.current.treffArray.length > maxAntallDynamiskeTreff
+        const maxValue = resultat.treffArray.length > maxAntallDynamiskeTreff
           ? antallVisteKontorer
           : antallVisteKontorer - 1;
         setKontorValg(Math.min(kontorValgRef.current + 1, maxValue));
@@ -58,13 +55,13 @@ export const ResultatvisningDynamisk = ({resultat}: Props) => {
     return () => {
       window.document.removeEventListener("keydown", keyHandler);
     };
-  }, []);
+  }, [resultat]);
 
   if (resultat.status === SokeStatus.PostnrTreff) {
     return (
       <TreffPostnummer
-        enhetsnrArray={resultat.treffArray[0].enhetsnrArray}
-        postnummer={resultat.treffArray[0].treffString}
+        enhetsnr={resultat.treffArray[0].enhetsnrArray[0]}
+        postnr={resultat.treffArray[0].treffString}
       />
     );
   }
@@ -72,10 +69,10 @@ export const ResultatvisningDynamisk = ({resultat}: Props) => {
   if (resultat.status === SokeStatus.StedsnavnTreff) {
     let idCounter = 0;
     const antallTreff = resultat.treffArray.length;
-    const treffVisning = resultat.treffArray
+    const resultatListe = resultat.treffArray
       .slice(0, maxAntallDynamiskeTreff)
       .map(treff => {
-        const treffVisning = (
+        const treffStedsnavn = (
           <TreffStedsnavn
             treff={treff}
             query={resultat.query}
@@ -84,12 +81,12 @@ export const ResultatvisningDynamisk = ({resultat}: Props) => {
           />
         );
         idCounter += treff.enhetsnrArray.length;
-        return treffVisning;
+        return treffStedsnavn;
       });
 
     return (
       <div className={`${cssPrefix}__resultatliste`}>
-        {treffVisning}
+        {resultatListe}
         {antallTreff > maxAntallDynamiskeTreff && (
           <div className={`${cssPrefix}__flere-treff`}>
             <Lenke

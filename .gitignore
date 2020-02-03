@@ -26,6 +26,6 @@ yarn-error.log*
 .idea
 /public/index.css
 
-/src/pages/finn-nav-kontor/data
+/src/pages/finn-nav-kontor/data/*.json
 /~$navkontor.xlsx
 /tilbakemeldinger.iml
