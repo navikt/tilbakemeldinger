@@ -11,7 +11,7 @@ const FinnNavKontor = () => {
   const tittel = <FormattedMessage id={"kontaktoss.navkontor.tittel"} />;
 
   return (
-    <IkonPanel ikon={ikon} tittel={tittel}>
+    <IkonPanel ikon={ikon} tittel={tittel} id={"finn-nav-kontor"}>
       <>
         <RouterLenke
           href={urls.finnDittNavKontor}

@@ -1,6 +1,6 @@
-const postnrTilEnhetsnrOgPoststed = require("./postnr-til-enhetsnr-og-poststed.json");
-const stedsnavnTilEnhetsnr = require("./stedsnavn-til-enhetsnr.json");
-const enhetsnrTilEnhetsinfo = require("./enhetsnr-til-enhetsinfo.json");
+const postnrTilEnhetsnrOgPoststed = require("./data/postnr-til-enhetsnr-og-poststed.json");
+const stedsnavnTilEnhetsnr = require("./data/stedsnavn-til-enhetsnr.json");
+const enhetsnrTilEnhetsinfo = require("./data/enhetsnr-til-enhetsinfo.json");
 
 const stedsnavnArray = Object.keys(stedsnavnTilEnhetsnr);
 const norskSort = new Intl.Collator(["no", "nb", "nn"], {usage: "sort"}).compare;

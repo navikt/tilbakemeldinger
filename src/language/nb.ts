@@ -421,7 +421,7 @@ export default {
   "finnkontor.query.feil": "Skriv inn minst {min} bokstaver eller et gyldig postnummer.",
   "finnkontor.query.feil.kort": "Skriv minst {min} bokstaver eller et postnr.",
   "finnkontor.ingen.treff": "Ingen resultater for \"{query}\"",
-  "finnkontor.flere.treff": "Trykk \"Søk\" for å vise alle treff ({antall})",
+  "finnkontor.flere.treff": "Vis alle treff ({antall})",
   "finnkontor.resultat.stedsnavn": "Søkeresultat for \"{query}\" ({antall}):",
   "finnkontor.resultat.postnr": "NAV-kontor for "
 };
