@@ -64,7 +64,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
             {!chatErApen && (
-              <AlertStripeInfo>
+              <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert`}>
                 <FormattedMessage id="chat.stengt.info" />
               </AlertStripeInfo>
             )}

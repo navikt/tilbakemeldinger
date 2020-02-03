@@ -1,8 +1,8 @@
 import React from "react";
 import ChatTemaSideBase from "../ChatTemasideBase";
 import { ChatTema, ChatTemaData } from "../../../types/chat";
-import FormattedMsgMedParagrafer from "../../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
 import { apningsTider } from "../../../Config";
+import { FormattedMessage } from "react-intl";
 
 const chatTemaData: ChatTemaData = {
   tittelTekstId: "chat.syk.tittel",
@@ -17,7 +17,7 @@ const ChatSyk = () => {
       chatTemaData={chatTemaData}
     >
       <>
-        <FormattedMsgMedParagrafer id={"chat.syk.ingress"} />
+        <FormattedMessage id={"chat.syk.ingress"} />
       </>
     </ChatTemaSideBase>
   );
