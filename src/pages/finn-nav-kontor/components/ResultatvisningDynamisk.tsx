@@ -28,10 +28,10 @@ export const ResultatvisningDynamisk = ({resultat}: Props) => {
 
   useEffect(() => {
     const keyHandler = (e: KeyboardEvent) => {
-      if (e.key === "ArrowUp") {
+      if (e.key === "ArrowUp" || e.keyCode === 38) {
         e.preventDefault();
         setKontorValg(Math.max(kontorValgRef.current - 1, -1));
-      } else if (e.key === "ArrowDown") {
+      } else if (e.key === "ArrowDown" || e.keyCode === 40) {
         e.preventDefault();
         const antallVisteKontorer = resultat.treffArray
           .slice(0, maxAntallDynamiskeTreff)
