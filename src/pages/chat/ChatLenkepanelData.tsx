@@ -11,6 +11,12 @@ const chatTemaLenker: Array<LenkepanelData> = [
     url: urls.chat.jobbsoker.temaside
   },
   {
+    grafanaId: "chat.syk",
+    tittelId: "chat.syk.tittel",
+    ingress: <FormattedMessage id={"chat.syk.ingressKort"} />,
+    url: urls.chat.syk.temaside
+  },
+  {
     grafanaId: "chat.familie",
     tittelId: "chat.familie.tittel",
     ingress: <FormattedMessage id={"chat.familie.ingressKort"} />,
