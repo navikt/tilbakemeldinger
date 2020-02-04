@@ -100,7 +100,7 @@ const enhetsnrTilEnhetsInfo = Object.values(kontorInfoJson)
 
 const postnrTilStedOgEnhetsnr = Object.values(kontorInfoJson)
   .reduce((acc, curr) => (
-    curr && curr.enhetsnr && curr.poststed ?
+    curr && curr.postnr && curr.enhetsnr && curr.poststed ?
       {...acc, [parseInt(curr.postnr, 10)]: {enhetsnr: curr.enhetsnr, poststed: curr.poststed}}
       : acc), {});
 
