@@ -56,6 +56,9 @@ export const urls = {
     familie: {
       temaside: `${baseAppPath}/chat/familie`
     },
+    syk: {
+      temaside: `${baseAppPath}/chat/syk`
+    },
     jobbsoker: {
       temaside: `${baseAppPath}/chat/jobbsoker`
     },
@@ -155,6 +158,10 @@ export const vars = {
         configId: "c3372a51-6434-4770-a0aa-6e4edba3471e",
         queueKey: "Q_CHAT_BOT",
       },
+      [ChatTema.Syk]: {
+        configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
+        queueKey: "Q_CHAT_SYK",
+      },
       [ChatTema.Jobbsoker]: {
         configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
         queueKey: "Q_CHAT_BOT",
@@ -174,6 +181,31 @@ export const vars = {
 
 export const apningsTider = {
   [ChatTema.Jobbsoker]: new ApningsTider(
+    {
+      [Ukedager.Mandag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Tirsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Onsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Torsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Fredag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Lordag]: null,
+      [Ukedager.Sondag]: null,
+    }),
+  [ChatTema.Syk]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
         start: "09.00",

@@ -9,6 +9,7 @@ import ChatJobbsoker from "./sider/ChatJobbsoker";
 import ChatSosial from "./sider/ChatSosial";
 import ChatOkonomi from "./sider/ChatOkonomi";
 import ChatEURES from "./sider/ChatEures";
+import ChatSyk from "./sider/ChatSyk";
 
 const ChatRouter = () => {
   return (
@@ -22,6 +23,11 @@ const ChatRouter = () => {
         exact={true}
         path={urls.chat.jobbsoker.temaside}
         component={ChatJobbsoker}
+      />
+      <Route
+        exact={true}
+        path={urls.chat.syk.temaside}
+        component={ChatSyk}
       />
       <Route
         exact={true}

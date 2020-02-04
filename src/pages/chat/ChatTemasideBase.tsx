@@ -38,6 +38,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
 
   const temaButtonHandlers: { [key in ChatTema]: Function } = {
     [ChatTema.Familie]: () => setChatButtonClicked(Date.now()),
+    [ChatTema.Syk]: () => setChatButtonClicked(Date.now()),
     [ChatTema.Jobbsoker]: () => setChatButtonClicked(Date.now()),
     [ChatTema.Sosial]: () => setChatButtonClicked(Date.now()),
     [ChatTema.Okonomi]: () => setChatButtonClicked(Date.now()),
@@ -63,7 +64,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
             {!chatErApen && (
-              <AlertStripeInfo>
+              <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert`}>
                 <FormattedMessage id="chat.stengt.info" />
               </AlertStripeInfo>
             )}

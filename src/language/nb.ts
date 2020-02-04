@@ -370,6 +370,11 @@ export default {
   "chat.jobbsoker.ingressKort":
     "Arbeidsavklaringspenger, dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
 
+  "chat.syk.tittel": "Syk",
+  "chat.syk.ingressKort":
+    "Sykmeldt, sykepenger, arbeidsavklaringspenger, yrkesskade/ménerstatning.",
+  "chat.syk.ingress": "Chat med en veileder (hverdager 09.00–14.30).",
+
   "chat.familie.tittel": "Foreldre, barn og familie",
   "chat.familie.ingressKort":
     "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger i livets sluttfase.",
