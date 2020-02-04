@@ -372,7 +372,7 @@ export default {
 
   "chat.syk.tittel": "Syk",
   "chat.syk.ingressKort":
-    "Sykmeldt, sykepenger, arbeidsavklaringspenger, yrkesskade/ménerstatning.",
+    "Sykmeldt, sykepenger, yrkesskade/ménerstatning.",
   "chat.syk.ingress": "Chat med en veileder (hverdager 09.00–14.30).",
 
   "chat.familie.tittel": "Foreldre, barn og familie",
