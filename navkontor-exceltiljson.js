@@ -98,9 +98,11 @@ const enhetsnrTilEnhetsInfo = Object.values(kontorInfoJson)
       {...acc, [parseInt(curr.enhetsnr, 10)]: {navn: curr.kontornavn, url: urlifyKontorNavn(curr.kontornavn)}}
       : acc), {});
 
-const postnrTilStedOgEnhetsnr = Object.values(kontorInfoJson).reduce((acc, curr) => ({
-  ...acc, [parseInt(curr.postnr, 10)]: {enhetsnr: curr.enhetsnr, poststed: curr.poststed}
-}), {});
+const postnrTilStedOgEnhetsnr = Object.values(kontorInfoJson)
+  .reduce((acc, curr) => (
+    curr && curr.postnr && curr.enhetsnr && curr.poststed ?
+      {...acc, [parseInt(curr.postnr, 10)]: {enhetsnr: curr.enhetsnr, poststed: curr.poststed}}
+      : acc), {});
 
 const makeStedsnavnTilEnhetsnr = (kontorInfo) => {
   const stedsnavnTilEnhetsnr = {};
