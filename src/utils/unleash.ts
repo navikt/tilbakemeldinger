@@ -13,11 +13,13 @@ const getFeatureDefaults = (): Features => Object.entries(vars.unleash.features)
     {...defaults, [feature[1].name]: feature[1].default}
   ), {});
 
-const getValidFeatures = (features: Features): Features => {
-  const defaults = getFeatureDefaults() as Features;
-  return Object.keys(defaults).reduce((acc, feature) => {
+const getValidFeatureToggles = (features: Features): Features => {
+  const defaultToggles = getFeatureDefaults() as Features;
+  return Object.keys(defaultToggles).reduce((acc, feature) => {
     const toggle = features[feature];
-    return toggle === undefined || toggle === null ? {...acc, [feature]: defaults[feature]} : {...acc, [feature]: toggle};
+    // noinspection PointlessBooleanExpressionJS
+    const validToggle = toggle === true || toggle === false ? toggle : defaultToggles[feature];
+    return {...acc, [feature]: validToggle};
   }, {});
 };
 
@@ -56,5 +58,5 @@ export default {
   getFeatureToggleStatus,
   getFeatureToggleStatusMultiple,
   getFeatureDefaults,
-  getValidFeatures,
+  getValidFeatureToggles,
 };

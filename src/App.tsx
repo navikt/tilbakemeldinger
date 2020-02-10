@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import AlertStripe from "nav-frontend-alertstriper";
@@ -18,19 +18,16 @@ import ServiceKlage from "./pages/tilbakemeldinger/service-klage/ServiceKlage";
 import ServiceKlageLogin from "./pages/tilbakemeldinger/service-klage/ServiceKlageLogin";
 import { KontaktInfo } from "./types/kontaktInfo";
 import { Fodselsnr } from "./types/fodselsnr";
-import ScrollToTop from "./components/scroll-to-top-or-id/ScrollToTopOrId";
+import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOss";
 import SkrivTilOssRouter from "./pages/skriv-til-oss/SkrivTilOssRouter";
-import Unleash from "./utils/unleash";
 import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
 import { forsidePath, urls, vars } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
-import NavFrontendSpinner from "nav-frontend-spinner";
 import FinnNavKontorPage from "./pages/finn-nav-kontor/FinnNavKontorPage";
 
 const App = () => {
   const [{ auth, unleashFeatures }, dispatch] = useStore();
-  const [unleashResponded, setUnleashResponded] = useState();
 
   useEffect(() => {
     if (!auth.authenticated) {
@@ -58,27 +55,8 @@ const App = () => {
         })
         .catch((error: HTTPError) => console.error(error));
     }
-
-    Unleash.getFeatureToggleStatusMultiple(
-      Object.keys(unleashFeatures),
-      (features, error) => {
-        setUnleashResponded(true);
-        if (error) {
-          console.log(`Unleash error: ${error}`);
-          return;
-        }
-        dispatch({
-          type: "SETT_FEATURE_TOGGLES",
-          payload: features
-        });
-      }
-    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (!unleashResponded) {
-    return <NavFrontendSpinner />;
-  }
 
   const visTekniskProblemMelding = unleashFeatures[vars.unleash.features.visTekniskProblemMelding.name];
 

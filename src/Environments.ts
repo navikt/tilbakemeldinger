@@ -35,7 +35,7 @@ const Environment = () => {
       tjenesteUrl: `https://tjenester-${env}.nav.no`,
       loginUrl: `https://loginservice-q.nav.no/login`,
       logoutUrl: `https://loginservice-q.nav.no/slo`,
-      unleashUrl: `https://www-${env}.nav.no/person/dittnav/api/feature`
+      unleashUrl: `#`
     };
   }
 
@@ -49,7 +49,7 @@ const Environment = () => {
     tjenesteUrl: `https://tjenester.nav.no`,
     loginUrl: `https://loginservice.nav.no/login`,
     logoutUrl: `https://loginservice.nav.no/slo`,
-    unleashUrl: `https://www.nav.no/person/dittnav/api/feature`
+    unleashUrl: `#`
   };
 };
 
