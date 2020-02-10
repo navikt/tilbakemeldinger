@@ -5,7 +5,7 @@ import MetaTags from "react-meta-tags";
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
-import { urls, vars } from "../../../Config";
+import { urls } from "../../../Config";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import AlertStripe from "nav-frontend-alertstriper";
 import { skrivTilOssSvartidFraUnleash } from "../../../utils/skrivTilOssSvartidFraUnleash";
@@ -78,7 +78,7 @@ const Ingress = () => {
 
 const SkrivTilOssForside = () => {
   const [{ unleashFeatures }] = useStore();
-  const skrivTilOssEnabled = unleashFeatures[vars.unleash.features.skrivTilOssEnabled.name];
+  const skrivTilOssEnabled = true; // unleashFeatures[vars.unleash.features.skrivTilOssEnabled.name];
 
   if (!skrivTilOssEnabled) {
     return (
