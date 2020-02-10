@@ -15,13 +15,10 @@ const getFeatureDefaults = (): Features => Object.entries(vars.unleash.features)
 
 const getValidFeatures = (features: Features): Features => {
   const defaults = getFeatureDefaults() as Features;
-  const validFeatures = Object.keys(defaults).reduce((acc, feature) => {
+  return Object.keys(defaults).reduce((acc, feature) => {
     const toggle = features[feature];
-    console.log(toggle);
-    return toggle === undefined || toggle === null ? {...acc, feature: defaults[feature]} : {...acc, feature: toggle};
+    return toggle === undefined || toggle === null ? {...acc, [feature]: defaults[feature]} : {...acc, [feature]: toggle};
   }, {});
-  console.log(validFeatures);
-  return validFeatures;
 };
 
 const fetchUnleashFeatures = (features: Array<string>) => {
