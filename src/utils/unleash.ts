@@ -8,6 +8,21 @@ export type Features = {
 type CallbackTypeSingle = (isEnabled: boolean, error?: any) => void;
 type CallbackTypeMultiple = (features: Features, error?: any) => void;
 
+const getFeatureDefaults = (): Features => Object.entries(vars.unleash.features).reduce(
+  (defaults, feature) => (
+    {...defaults, [feature[1].name]: feature[1].default}
+  ), {});
+
+const getValidFeatureToggles = (features: Features): Features => {
+  const defaultToggles = getFeatureDefaults() as Features;
+  return Object.keys(defaultToggles).reduce((acc, feature) => {
+    const toggle = features[feature];
+    // noinspection PointlessBooleanExpressionJS
+    const validToggle = toggle === true || toggle === false ? toggle : defaultToggles[feature];
+    return {...acc, [feature]: validToggle};
+  }, {});
+};
+
 const fetchUnleashFeatures = (features: Array<string>) => {
   const url = `${Environment().unleashUrl}?${features.map(f => `feature=${f}`).join("&")}`;
   return Promise.race([
@@ -42,4 +57,6 @@ const getFeatureToggleStatus = (featureToggleName: string, callback: CallbackTyp
 export default {
   getFeatureToggleStatus,
   getFeatureToggleStatusMultiple,
+  getFeatureDefaults,
+  getValidFeatureToggles,
 };
