@@ -4,8 +4,7 @@ import { Sprak } from "../types/sprak";
 import sprak from "../language/provider";
 import { Enheter, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../components/error/Error";
-import { Features } from "../utils/unleash";
-import { vars } from "../Config";
+import Unleash, { Features } from "../utils/unleash";
 
 export const initialState = {
   fodselsnr: "",
@@ -14,10 +13,7 @@ export const initialState = {
   enheter: {status: "LOADING"} as FetchEnheter,
   auth: {authenticated: false} as AuthInfo,
   kontaktInfo: {mobiltelefonnummer: ""},
-  unleashFeatures: Object.entries(vars.unleash.features).reduce(
-    (defaults, feature) => (
-      {...defaults, [feature[1].name]: feature[1].default}
-  ), {})
+  unleashFeatures: Unleash.getFeatureDefaults() as Features
 };
 
 export interface Store {
@@ -94,7 +90,7 @@ export const reducer = (state: Store, action: Action) => {
     case "SETT_FEATURE_TOGGLES":
       return {
         ...state,
-        unleashFeatures: action.payload as Features
+        unleashFeatures: Unleash.getVerifiedFeatures(action.payload as Features)
       };
     default:
       return state;

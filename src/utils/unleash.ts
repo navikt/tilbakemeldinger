@@ -8,6 +8,19 @@ export type Features = {
 type CallbackTypeSingle = (isEnabled: boolean, error?: any) => void;
 type CallbackTypeMultiple = (features: Features, error?: any) => void;
 
+const getFeatureDefaults = (): Features => Object.entries(vars.unleash.features).reduce(
+  (defaults, feature) => (
+    {...defaults, [feature[1].name]: feature[1].default}
+  ), {});
+
+const getVerifiedFeatures = (features: Features): Features => {
+  const defaults = getFeatureDefaults() as Features;
+  return Object.keys(defaults).reduce((acc, feature) => {
+    const toggle = features[feature];
+    return toggle === true || toggle === false ? {...acc, feature: toggle} : {...acc, feature: defaults[feature]};
+  }, {});
+};
+
 const fetchUnleashFeatures = (features: Array<string>) => {
   const url = `${Environment().unleashUrl}?${features.map(f => `feature=${f}`).join("&")}`;
   return Promise.race([
@@ -42,4 +55,6 @@ const getFeatureToggleStatus = (featureToggleName: string, callback: CallbackTyp
 export default {
   getFeatureToggleStatus,
   getFeatureToggleStatusMultiple,
+  getFeatureDefaults,
+  getVerifiedFeatures,
 };
