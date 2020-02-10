@@ -90,7 +90,7 @@ export const reducer = (state: Store, action: Action) => {
     case "SETT_FEATURE_TOGGLES":
       return {
         ...state,
-        unleashFeatures: Unleash.getVerifiedFeatures(action.payload as Features)
+        unleashFeatures: Unleash.getValidFeatures(action.payload as Features)
       };
     default:
       return state;
