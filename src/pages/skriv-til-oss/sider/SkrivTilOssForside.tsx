@@ -6,7 +6,6 @@ import SkrivTilOssBase from "../SkrivTilOssBase";
 import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
 import { urls, vars } from "../../../Config";
-import NavFrontendSpinner from "nav-frontend-spinner";
 import AlertStripe from "nav-frontend-alertstriper";
 import { skrivTilOssSvartidFraUnleash } from "../../../utils/skrivTilOssSvartidFraUnleash";
 import { useStore } from "../../../providers/Provider";
@@ -97,12 +96,10 @@ const SkrivTilOssForside = () => {
       <>
         <Normaltekst className={"svartid"}>
           <FormattedMessage id={"kontaktoss.svartid"} />
-          {svartid ? (
-            <FormattedMessage
-              id={svartid === 1 ? "kontaktoss.svartidendag" : "kontaktoss.svartiddager"}
-              values={{ antall: svartid }}
-            />
-          ) : <NavFrontendSpinner type={"XXS"}/>}
+          <FormattedMessage
+            id={svartid === 1 ? "kontaktoss.svartidendag" : "kontaktoss.svartiddager"}
+            values={{ antall: svartid }}
+          />
         </Normaltekst>
         <Ingress />
       </>
