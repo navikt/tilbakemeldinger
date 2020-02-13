@@ -15,8 +15,9 @@ export default {
   "breadcrumb.hjelpemidler": "Hjelpemidler",
 
   "breadcrumb.chat": "Chat",
-  "breadcrumb.familie": "Familie",
   "breadcrumb.jobbsoker": "Jobbsøker",
+  "breadcrumb.ufor": "Ufør",
+  "breadcrumb.familie": "Familie",
   "breadcrumb.sosialhjelp": "Sosiale tjenester",
   "breadcrumb.okonomi": "Økonomi",
   "breadcrumb.eures": "EURES",
@@ -378,6 +379,11 @@ export default {
   "chat.familie.tittel": "Foreldre, barn og familie",
   "chat.familie.ingressKort":
     "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger i livets sluttfase.",
+
+  "chat.ufor.tittel": "Ufør",
+  "chat.ufor.ingressKort":
+    "Uføretrygd, barnetillegg, gjenlevendetillegg.",
+  "chat.ufor.ingress": "Chat med en veileder (hverdager 09.00–14.30).",
 
   "chat.sosialhjelp.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.ingressKort":

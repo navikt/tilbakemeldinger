@@ -53,14 +53,17 @@ export const urls = {
   },
   chat: {
     forside: `${baseAppPath}/chat`,
-    familie: {
-      temaside: `${baseAppPath}/chat/familie`
+    jobbsoker: {
+      temaside: `${baseAppPath}/chat/jobbsoker`
     },
     syk: {
       temaside: `${baseAppPath}/chat/syk`
     },
-    jobbsoker: {
-      temaside: `${baseAppPath}/chat/jobbsoker`
+    familie: {
+      temaside: `${baseAppPath}/chat/familie`
+    },
+    ufor: {
+      temaside: `${baseAppPath}/chat/ufor`
     },
     sosialhjelp: {
       temaside: `${baseAppPath}/chat/sosialhjelp`
@@ -117,7 +120,7 @@ export const vars = {
   defaultDatoFormat: "DD-MM-YYYY",
   maksLengdeMelding: 10000,
   svartid: {
-    skrivTilOss: 2,
+    skrivTilOss: 3,
     kontaktVeileder: 2,
   },
   unleash: {
@@ -154,17 +157,21 @@ export const vars = {
       mailTimeout: "chatbot-frida_mail-timeout",
     },
     temaConfigs: {
-      [ChatTema.Familie]: {
-        configId: "c3372a51-6434-4770-a0aa-6e4edba3471e",
+      [ChatTema.Jobbsoker]: {
+        configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
         queueKey: "Q_CHAT_BOT",
       },
       [ChatTema.Syk]: {
         configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
         queueKey: "Q_CHAT_SYK",
       },
-      [ChatTema.Jobbsoker]: {
-        configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
+      [ChatTema.Familie]: {
+        configId: "c3372a51-6434-4770-a0aa-6e4edba3471e",
         queueKey: "Q_CHAT_BOT",
+      },
+      [ChatTema.Ufor]: {
+        configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
+        queueKey: "Q_CHAT_UFORE",
       },
       [ChatTema.Sosial]: {
         configId: "6564b567-b70b-48e1-b2c5-957c0bc624de",
@@ -231,6 +238,31 @@ export const apningsTider = {
       [Ukedager.Sondag]: null,
     }),
   [ChatTema.Familie]: new ApningsTider(
+    {
+      [Ukedager.Mandag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Tirsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Onsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Torsdag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Fredag]: {
+        start: "09.00",
+        end: "14.30",
+      },
+      [Ukedager.Lordag]: null,
+      [Ukedager.Sondag]: null,
+    }),
+  [ChatTema.Ufor]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
         start: "09.00",
