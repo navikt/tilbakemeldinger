@@ -6,6 +6,7 @@ import { urls } from "Config";
 import ikon from "assets/forside-skrivtiloss-ikon.svg";
 import { logEvent } from "utils/logger";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
+import NavFrontendSpinner from "nav-frontend-spinner";
 import { useStore } from "../../../providers/Provider";
 import { skrivTilOssSvartidFraUnleash } from "../../../utils/skrivTilOssSvartidFraUnleash";
 
@@ -24,10 +25,12 @@ const SkrivTilOss = () => {
         <div>
           <Normaltekst className="svartid">
             <FormattedMessage id={"kontaktoss.svartid"} />
-            <FormattedMessage
-              id={svartid === 1 ? "kontaktoss.svartidendag" : "kontaktoss.svartiddager"}
-              values={{ antall: svartid }}
-            />
+            {svartid ? (
+              <FormattedMessage
+                id={svartid === 1 ? "kontaktoss.svartidendag" : "kontaktoss.svartiddager"}
+                values={{ antall: svartid }}
+              />
+            ) : <NavFrontendSpinner type={"XXS"}/>}
           </Normaltekst>
           <Normaltekst>
               <FormattedMessage id={"kontaktoss.skrivtiloss.beskrivelse"} />
