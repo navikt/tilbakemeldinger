@@ -23,6 +23,12 @@ const chatTemaLenker: Array<LenkepanelData> = [
     url: urls.chat.familie.temaside
   },
   {
+    grafanaId: "chat.ufor",
+    tittelId: "chat.ufor.tittel",
+    ingress: <FormattedMessage id={"chat.ufor.ingressKort"} />,
+    url: urls.chat.ufor.temaside
+  },
+  {
     grafanaId: "chat.sosialhjelp",
     tittelId: "chat.sosialhjelp.tittel",
     ingress: <FormattedMessage id={"chat.sosialhjelp.ingressKort"} />,
