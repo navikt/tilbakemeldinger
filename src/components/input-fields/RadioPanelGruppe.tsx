@@ -16,7 +16,7 @@ const RPG = (props: Props) => {
         onChange={(event: React.SyntheticEvent<EventTarget>, value: string) =>
           onChange(value)
         }
-        feil={submitted && error ? { feilmelding: error } : undefined}
+        feil={submitted && error ? error : undefined}
         {...newProps}
       />
     </div>

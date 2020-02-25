@@ -28,7 +28,7 @@ const InputMelding = (props: Props) => {
         value={value}
         defaultValue={""}
         maxLength={vars.maksLengdeMelding}
-        feil={error && (blur || submitted) ? { feilmelding: error } : undefined}
+        feil={error && (blur || submitted) ? error : undefined}
         onBlur={() => settBlur(true)}
         onKeyUp={(e: KeyboardEvent<HTMLTextAreaElement>) => {
           if (e.target instanceof HTMLTextAreaElement) {

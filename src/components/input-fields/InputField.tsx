@@ -15,7 +15,7 @@ const InputField = (props: Props) => {
   return (
     <Input
       onChange={event => onChange(event.currentTarget.value)}
-      feil={error && (submitted || blur) ? { feilmelding: error } : undefined}
+      feil={error && (submitted || blur) ? error : undefined}
       onBlur={() => settBlur(true)}
       {...newProps}
     />
