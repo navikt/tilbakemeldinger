@@ -314,11 +314,10 @@ export const apningsTider = {
     }),
   [ChatTema.Okonomi]: new ApningsTider(
     {
-      [Ukedager.Mandag]: null,
-      //   {
-      //   start: "10.00",
-      //   end: "15.00",
-      // },
+      [Ukedager.Mandag]: {
+        start: "10.00",
+        end: "15.00",
+      },
       [Ukedager.Tirsdag]: {
         start: "10.00",
         end: "15.00",
@@ -337,5 +336,9 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    },
+    [{
+      visFraDato: "02-03-2020",
+      datoer: {"02-03-2020": null}}]
+  ),
 };
