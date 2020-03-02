@@ -17,6 +17,7 @@ const ChatOkonomi = () => {
       chatTemaData={chatTemaData}
     >
       <>
+        <b>{"Chatten er dessverre stengt i dag."}</b>
         <FormattedMsgMedParagrafer id={"chat.okonomi.ingress"} />
       </>
     </ChatTemaSideBase>

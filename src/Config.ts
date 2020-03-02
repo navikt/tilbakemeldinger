@@ -314,10 +314,11 @@ export const apningsTider = {
     }),
   [ChatTema.Okonomi]: new ApningsTider(
     {
-      [Ukedager.Mandag]: {
-        start: "10.00",
-        end: "15.00",
-      },
+      [Ukedager.Mandag]: null,
+      //   {
+      //   start: "10.00",
+      //   end: "15.00",
+      // },
       [Ukedager.Tirsdag]: {
         start: "10.00",
         end: "15.00",
