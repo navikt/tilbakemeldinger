@@ -337,9 +337,5 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    },
-    [{
-      visFraDato: "02-03-2020",
-      datoer: {"02-03-2020": null}}]
-  ),
+    }),
 };
