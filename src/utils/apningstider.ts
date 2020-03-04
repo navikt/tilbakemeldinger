@@ -4,18 +4,20 @@ import { Moment } from "moment-timezone/moment-timezone";
 import { vars } from "../Config";
 
 export default class ApningsTider {
-  constructor(ukedager: ApningstiderUke, avviksPerioder: Array<AvviksPeriode> = [], timeZone: string = "Europe/Oslo",
+  constructor(ukedager: ApningstiderUke, avviksPerioder: Array<AvviksPeriode> = [], chatbotStengt: boolean = false, timeZone: string = "Europe/Oslo",
               datoTidFormat: string = vars.defaultDatoTidFormat) {
     this._ukedager = ukedager;
     this._avviksPerioder = avviksPerioder;
     this._timeZone = timeZone;
     this._datoTidFormat = datoTidFormat;
+    this._chatbotStengt = chatbotStengt;
   }
 
   private readonly _ukedager: {[dag in Ukedager]: Tidsrom};
   private readonly _avviksPerioder: Array<AvviksPeriode>;
   private readonly _timeZone: string;
   private readonly _datoTidFormat: string;
+  private readonly _chatbotStengt: boolean;
 
   get ukedager(): {[dag in Ukedager]: Tidsrom} {
     return this._ukedager;
@@ -23,6 +25,10 @@ export default class ApningsTider {
 
   get avviksPerioder(): Array<AvviksPeriode> {
     return this._avviksPerioder;
+  }
+
+  public getChatbotStengt(): boolean {
+    return this._chatbotStengt;
   }
 
   public isOpenNow = (timeOffsetMs = 0) => {

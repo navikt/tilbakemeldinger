@@ -6,7 +6,7 @@ import ApningsTider from "./utils/apningstider";
 export const forsidePath = "/person/kontakt-oss";
 export const noRedirectUrlSegment = "/test";
 
-const { tjenesteUrl, baseAppPath } = Environment();
+const {tjenesteUrl, baseAppPath} = Environment();
 const navUrl = Environment().baseUrl;
 
 interface Varsel {
@@ -187,6 +187,16 @@ export const vars = {
   },
 };
 
+const stengtTider = {
+  visFraDato: "04-03-2020",
+  datoer: {
+    "04-03-2020": {
+      start: "13:30",
+      end: "14:30"
+    }
+  }
+};
+
 export const apningsTider = {
   [ChatTema.Jobbsoker]: new ApningsTider(
     {
@@ -212,7 +222,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    }, [stengtTider], true),
   [ChatTema.Syk]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -237,7 +247,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    }, [stengtTider], true),
   [ChatTema.Familie]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -262,7 +272,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    }, [stengtTider], true),
   [ChatTema.Ufor]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -287,7 +297,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    }, [stengtTider], true),
   [ChatTema.Sosial]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -312,7 +322,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    }, [stengtTider], true),
   [ChatTema.Okonomi]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -337,5 +347,15 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    }, [
+      {
+        visFraDato: "04-03-2020",
+        datoer: {
+          "04-03-2020": {
+            start: "13:30",
+            end: "15:00"
+          }
+        }
+      }
+    ], true),
 };

@@ -8,11 +8,12 @@ import { ChatTema, ChatTemaData } from "../../types/chat";
 import { Hovedknapp } from "nav-frontend-knapper";
 import { urls, vars } from "../../Config";
 import PanelBase from "nav-frontend-paneler";
-import { AlertStripeInfo } from "nav-frontend-alertstriper";
+import { AlertStripeAdvarsel, AlertStripeInfo } from "nav-frontend-alertstriper";
 import { fetchServerTidOffset } from "../../clients/apiClient";
 import { logEvent } from "../../utils/logger";
 import ApningstiderAvvik from "../../components/apningstider/ApningstiderAvvik";
 import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
+import TidsbestemtVisning from "../../utils/TidsbestemtVisning";
 
 type ChatTemaProps = {
   chatTemaData: ChatTemaData,
@@ -49,7 +50,8 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
   const chatIApningstid = chatTemaData.apningstider
     ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
     : true;
-  const chatErApen = chatIApningstid || chatTemaData.harChatbot;
+  const chatbotErApen = (chatTemaData.harChatbot && chatTemaData.apningstider && !chatTemaData.apningstider.getChatbotStengt());
+  const chatErApen = chatIApningstid || chatbotErApen;
 
   const chatbotConfig = vars.chatBot.temaConfigs[chatTemaData.chatTema];
 
@@ -64,11 +66,18 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
             </Systemtittel>
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
-            {!chatErApen && (
-              <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert`}>
-                <FormattedMessage id="chat.stengt.info" />
-              </AlertStripeInfo>
-            )}
+            <TidsbestemtVisning fra={"11:00 04-03-2020"} til={"13:30 04-03-2020"}>
+              <AlertStripeAdvarsel className={`${cssPrefix}__chat-stengt-alert`}>
+                {"Chat er stengt fra kl. 12:15 til 13:30 på grunn av møte."}
+              </AlertStripeAdvarsel>
+            </TidsbestemtVisning>
+            <TidsbestemtVisning fra={"13:30 04-03-2020"}>
+              {!chatErApen && (
+                <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert`}>
+                  <FormattedMessage id="chat.stengt.info" />
+                </AlertStripeInfo>
+              )}
+            </TidsbestemtVisning>
             <Normaltekst>
               {children}
               <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
@@ -77,7 +86,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
           {chatTemaData.apningstider && (
             <ApningstiderAvvik
               apningstider={chatTemaData.apningstider}
-              harChatbot={chatTemaData.harChatbot}
+              harChatbot={chatbotErApen}
             />
           )}
           <div className={`${cssPrefix}__panel-start-knapp`}>
