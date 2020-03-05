@@ -6,7 +6,7 @@ import ApningsTider from "./utils/apningstider";
 export const forsidePath = "/person/kontakt-oss";
 export const noRedirectUrlSegment = "/test";
 
-const { tjenesteUrl, baseAppPath } = Environment();
+const {tjenesteUrl, baseAppPath} = Environment();
 const navUrl = Environment().baseUrl;
 
 interface Varsel {
@@ -96,7 +96,8 @@ export const urls = {
     endreKontonummer: `${navUrl}/person/personopplysninger#utbetaling`,
     saksoversikt: `${tjenesteUrl}/saksoversikt/`,
     postTilAnnenAdresse: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/vil-du-ha-post-fra-nav-til-en-annen-adresse2`,
-    eosReglerSak: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/feiltolkning-av-eos-reglene`
+    eosReglerSak: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/feiltolkning-av-eos-reglene`,
+    koronavirus: `${navUrl}/no/nav-og-samfunn/samarbeid/leger-og-andre-behandlere/nyheter/sykmeldinger-i-forbindelse-med-koronaviruset`
   },
   veteraner: `${navUrl}/veteraner`,
   ringOss: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/kontakt-nav-pa-telefon2`,
@@ -186,6 +187,16 @@ export const vars = {
   },
 };
 
+const stengtTider = {
+  visFraDato: "04-03-2020",
+  datoer: {
+    "04-03-2020": {
+      start: "13:30",
+      end: "14:30"
+    }
+  }
+};
+
 export const apningsTider = {
   [ChatTema.Jobbsoker]: new ApningsTider(
     {
@@ -211,7 +222,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    }, [stengtTider], true),
   [ChatTema.Syk]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -236,7 +247,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    }, [stengtTider], true),
   [ChatTema.Familie]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -261,7 +272,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    }, [stengtTider], true),
   [ChatTema.Ufor]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -286,7 +297,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    }, [stengtTider], true),
   [ChatTema.Sosial]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -311,7 +322,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    }, [stengtTider], true),
   [ChatTema.Okonomi]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -336,5 +347,15 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    }, [
+      {
+        visFraDato: "04-03-2020",
+        datoer: {
+          "04-03-2020": {
+            start: "13:30",
+            end: "15:00"
+          }
+        }
+      }
+    ], true),
 };

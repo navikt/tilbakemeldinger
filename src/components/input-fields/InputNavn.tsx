@@ -30,7 +30,7 @@ const InputNavn = (props: Props) => {
       value={value}
       onChange={event => onChange(event.currentTarget.value)}
       onBlur={() => settBlur(true)}
-      feil={error && (blur || submitted) ? { feilmelding: error } : undefined}
+      feil={error && (blur || submitted) ? error : undefined}
     />
   );
 };

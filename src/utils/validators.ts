@@ -33,7 +33,7 @@ export const extraValidators: Validators = {
 };
 
 export const sjekkForFeil = (submitted: boolean, error: string | null) =>
-  submitted && error ? { feilmelding: error } : undefined;
+  submitted && error ? error : undefined;
 
 /*
   Overridden types
