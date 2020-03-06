@@ -287,7 +287,12 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    }, [{
+      visFraDato: "06-03-2020",
+      datoer: {
+        "11-03-2020": null
+      }
+    }]),
   [ChatTema.Sosial]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -337,5 +342,13 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }),
+    }, [{
+      visFraDato: "06-03-2020",
+      datoer: {
+        "06-03-2020": {
+          start: "10.00",
+          end: "13.30"
+        }
+      }
+    }]),
 };
