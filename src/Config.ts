@@ -95,12 +95,12 @@ export const urls = {
     saksbehandlingstider: `${navUrl}/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav`,
     endreKontonummer: `${navUrl}/person/personopplysninger#utbetaling`,
     saksoversikt: `${tjenesteUrl}/saksoversikt/`,
-    postTilAnnenAdresse: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/vil-du-ha-post-fra-nav-til-en-annen-adresse2`,
-    eosReglerSak: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/feiltolkning-av-eos-reglene`,
+    postTilAnnenAdresse: `${navUrl}/no/nav-og-samfunn/kontakt-nav/vil-du-ha-post-fra-nav-til-en-annen-adresse2`,
+    eosReglerSak: `${navUrl}/no/nav-og-samfunn/kontakt-nav/feiltolkning-av-eos-reglene`,
     koronavirus: `${navUrl}/no/nav-og-samfunn/samarbeid/leger-og-andre-behandlere/nyheter/sykmeldinger-i-forbindelse-med-koronaviruset`
   },
   veteraner: `${navUrl}/veteraner`,
-  ringOss: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/kontakt-nav-pa-telefon2`,
+  ringOss: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-nav-pa-telefon2`,
   arbeidssoker: `${tjenesteUrl}/veiledearbeidssoker/mistet-jobben/registrering-arbeidssoker`,
   tolketjenesten: `${navUrl}/no/person/hjelpemidler/tjenester-og-produkter/tolketjenesten`,
   spraktolk: `${navUrl}/no/person/arbeid/oppfolging-og-tiltak-for-a-komme-i-jobb/oppfolging-fra-nav/trenger-du-språktolk`,
@@ -108,7 +108,7 @@ export const urls = {
   finnDinHjelpemiddelsentral: `${navUrl}/no/person/hjelpemidler/tjenester-og-produkter/hjelpemidler/kontakt-hjelpemiddelsentralen`,
   finnDittNavKontorUinnlogget: `${baseAppPath}/finnkontor`,
   navKontorUrlPrefix: `https://www.nav.no/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/kontorer/`,
-  sosialeMedier: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/kontakt-nav-på-chat-facebook-og-twitter/kontakt-nav-pa-facebook-eller-twitter`,
+  sosialeMedier: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-nav-pa-facebook-eller-twitter`,
   tekniskBrukerstotte: {
     selvhjelp: `${navUrl}/no/nav-og-samfunn/kontakt-nav/teknisk-brukerstotte/hjelp-til-personbruker`,
     ring: `${navUrl}/no/nav-og-samfunn/kontakt-nav/teknisk-brukerstotte/kontakt-teknisk-brukerstotte-nav.no`
