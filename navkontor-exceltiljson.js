@@ -27,25 +27,14 @@ const urlifyKontorNavn = navn => sanitizeString(navn)
   .replace("valer-(innlandet)", "valer-i-hedmark")
   .replace("valer-(viken)", "valer")
   .replace(/porsanger.+/, "porsanger")
-  .replace(/salangen.+/, "salangen")
   .replace("balsfjord-og-storfjord", "balsfjord-storfjord")
   .replace("bo-(nordland)", "bo")
-  .replace("-aremark", "")
-  .replace("vest-telemark", "tokke")
-  .replace("naeroysund", "naeroy")
-  .replace("fensfjorden", "masfjorden")
-  .replace("hallingdal", "halllingdal")
-  .replace("lindesnes", "mandal")
-  .replace("ullensvang", "odda")
-  .replace("senja-sorreisa", "senja")
-  .replace("lister", "kvinesdal")
-  .replace("midtre-namdal", "namsos")
   .replace(/^nav-nes$/, "nav-nes-i-akershus")
   .replace("vannylven", "vanylven")
   .replace("karmoy-og-bokn", "karmoy-bokn")
   .replace("vindafjord-etne", "vindafjord")
-  .replace("midt-agder", "vennesla")
-  .replace(/^nav-fjord$/, "nav-alesund");
+  .replace(/^nav-fjord$/, "nav-alesund")
+  .replace(/^nav-eigersund$/, "nav-eigersund-bjerkreim");
 
 const sorterEnheterPaaKontornavnOgFjernDuplikater = (enhetsnrArray, enhetsnrTilKontor) => !enhetsnrArray ? [] : enhetsnrArray
   .filter(enhetsnr => {

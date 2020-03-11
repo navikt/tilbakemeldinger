@@ -107,7 +107,7 @@ export const urls = {
   finnDittNavKontor: `${navUrl}/person/personopplysninger#ditt-nav-kontor`,
   finnDinHjelpemiddelsentral: `${navUrl}/no/person/hjelpemidler/tjenester-og-produkter/hjelpemidler/kontakt-hjelpemiddelsentralen`,
   finnDittNavKontorUinnlogget: `${baseAppPath}/finnkontor`,
-  navKontorUrlPrefix: `https://www.nav.no/no/nav-og-samfunn/kontakt-nav/kontakt-oss_2/kontorer/`,
+  navKontorUrlPrefix: `https://www.nav.no/no/nav-og-samfunn/kontakt-nav/kontorer/`,
   sosialeMedier: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-nav-pa-facebook-eller-twitter`,
   tekniskBrukerstotte: {
     selvhjelp: `${navUrl}/no/nav-og-samfunn/kontakt-nav/teknisk-brukerstotte/hjelp-til-personbruker`,
