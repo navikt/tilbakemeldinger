@@ -6,7 +6,6 @@ import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
 import TemaLenkepanel from "../../../components/lenkepanel/TemaLenkepanel";
 import { LenkepanelData } from "../../../types/lenker";
-import { AlertStripeAdvarsel } from "nav-frontend-alertstriper";
 
 const cssPrefix = "chat-med-oss";
 const sideTittelId = "chat.forside.tittel";
@@ -30,9 +29,6 @@ const ChatForside = () => {
           <Normaltekst>
             <FormattedMessage id="chat.forside.ingress"/>
           </Normaltekst>
-          <AlertStripeAdvarsel className={`${cssPrefix}__chat-stengt-alert`}>
-            {"Vi har for øyeblikket tekniske problemer med chat med veileder."}
-          </AlertStripeAdvarsel>
         </div>
         <div className={`${cssPrefix}__temapanel-seksjon`}>
           {
