@@ -187,13 +187,6 @@ export const vars = {
   },
 };
 
-const stengtChat = {
-  visFraDato: "11-03-2020",
-  datoer: {
-    "11-03-2020": null
-  }
-};
-
 export const apningsTider = {
   [ChatTema.Jobbsoker]: new ApningsTider(
     {
@@ -219,7 +212,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }, [stengtChat]),
+    }),
   [ChatTema.Syk]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -244,7 +237,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }, [stengtChat]),
+    }),
   [ChatTema.Familie]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -269,7 +262,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }, [stengtChat]),
+    }),
   [ChatTema.Ufor]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -324,7 +317,7 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }, [stengtChat]),
+    }),
   [ChatTema.Okonomi]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
@@ -349,5 +342,5 @@ export const apningsTider = {
       },
       [Ukedager.Lordag]: null,
       [Ukedager.Sondag]: null,
-    }, [stengtChat]),
+    }),
 };
