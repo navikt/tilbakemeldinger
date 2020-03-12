@@ -8,7 +8,7 @@ import { ChatTema, ChatTemaData } from "../../types/chat";
 import { Hovedknapp } from "nav-frontend-knapper";
 import { urls, vars } from "../../Config";
 import PanelBase from "nav-frontend-paneler";
-import { AlertStripeInfo } from "nav-frontend-alertstriper";
+import { AlertStripeAdvarsel, AlertStripeInfo } from "nav-frontend-alertstriper";
 import { fetchServerTidOffset } from "../../clients/apiClient";
 import { logEvent } from "../../utils/logger";
 import ApningstiderAvvik from "../../components/apningstider/ApningstiderAvvik";
@@ -65,6 +65,9 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
             </Systemtittel>
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
+            <AlertStripeAdvarsel>
+              <FormattedMessage id={"mye-paagang"} />
+            </AlertStripeAdvarsel>
              {!chatErApen && (
                 <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert`}>
                   <FormattedMessage id="chat.stengt.info" />

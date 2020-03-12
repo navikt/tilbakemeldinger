@@ -16,7 +16,7 @@ import KlageOgTilbakemeldinger from "./sections/KlageOgTilbakemeldinger";
 import KontaktVeileder from "./sections/KontaktVeileder";
 import Pressekontakt from "./sections/Pressekontakt";
 import SosialeMedier from "./sections/SosialeMedier";
-import { AlertStripeInfo } from "nav-frontend-alertstriper";
+import { AlertStripeAdvarsel, AlertStripeInfo } from "nav-frontend-alertstriper";
 import { varsler } from "Config";
 import Lenke from "nav-frontend-lenker";
 
@@ -55,6 +55,9 @@ const KontaktOssFrontpage = () => {
               </Sidetittel>
             </div>
           </header>
+          <AlertStripeAdvarsel>
+            <FormattedMessage id={"mye-paagang"} />
+          </AlertStripeAdvarsel>
           {varsler.map(varsel => (
             <AlertStripeInfo key={varsel.tittel}>
               <Undertittel>{varsel.tittel}</Undertittel>
