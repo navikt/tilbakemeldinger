@@ -5,7 +5,23 @@ import { LenkepanelBase } from "nav-frontend-lenkepanel/lib";
 
 const className = "korona-varsel";
 
-export const KoronaVirusVarsel = () => (
+export type KoronaVirusVarselInnhold = {
+  tittel: JSX.Element;
+  ingress: JSX.Element;
+  datoTid: string;
+}
+
+const defaultInnhold: KoronaVirusVarselInnhold = {
+  tittel: <>{"Koronavirus"}</>,
+  ingress: <>{"Her finner du oppdatert informasjon fra NAV om sykmeldinger, permitteringer og behov for akuttolk."}</>,
+  datoTid: "13.03.2020, kl. 00.09"
+};
+
+type Props = {
+  innhold?: KoronaVirusVarselInnhold
+}
+
+export const KoronaVirusVarsel = ({ innhold = defaultInnhold }: Props) => (
   <LenkepanelBase className={className} href={urls.faq.koronavirus} border={true}>
     <div className={`${className}__ikon-rad`}>
       <div className={`${className}__pulse`}>
@@ -14,13 +30,13 @@ export const KoronaVirusVarsel = () => (
     </div>
     <div className={`${className}__tekst-rad`}>
       <Systemtittel className={`lenkepanel__heading ${className}__tittel`}>
-        {"Koronavirus"}
+        {innhold.tittel}
       </Systemtittel>
       <Normaltekst className={`${className}__ingress`}>
-        {"Her finner du oppdatert informasjon fra NAV om sykmeldinger, permitteringer og behov for akuttolk."}
+        {innhold.ingress}
       </Normaltekst>
       <Undertekst className={`${className}__dato-tid`}>
-        {"Oppdatert: 13.03.2020, kl. 00.09"}
+        {`Oppdatert: ${innhold.datoTid}`}
       </Undertekst>
     </div>
   </LenkepanelBase>
