@@ -4,6 +4,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { LenkepanelData } from "../../types/lenker";
 import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
+import { AlertStripeAdvarsel } from "nav-frontend-alertstriper";
 
 const cssPrefix = "skriv-til-oss";
 
@@ -31,6 +32,9 @@ const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
       </div>
       <div className={`${cssPrefix}__ingress`}>
         {children}
+        <AlertStripeAdvarsel>
+          <FormattedMessage id={"mye-paagang"} />
+        </AlertStripeAdvarsel>
       </div>
       {lenker && (
         <div className={`${cssPrefix}__lenke-seksjon`}>

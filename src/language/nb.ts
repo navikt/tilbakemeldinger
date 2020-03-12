@@ -5,6 +5,8 @@ export default {
     "Vi har for øyeblikket tekniske problemer med disse sidene.",
   "header.navperson": "NAV privatperson",
 
+  "mye-paagang": "Det er for tiden mange som kontakter oss. Hvis henvendelsen din ikke haster, ber vi deg ta kontakt senere.",
+
   "breadcrumb.nav-no": "nav.no",
   "breadcrumb.": "Kontakt oss",
 
@@ -93,7 +95,7 @@ export default {
   "faq.visfaerre": "Vis færre",
   "faq.utbetalingsoversikt": "Sjekk utbetalingene dine",
   "faq.saksoversikt": "Hvordan går det med saken min?",
-  "faq.koronavirus": "Koronaviruset og sykmelding",
+  "faq.koronavirus": "Koronavirus – informasjon fra NAV",
   "faq.eosreglersak": "Feiltolking av EØS-reglene",
   "faq.nesteutbetaling": "Utbetalingsdatoer",
   "faq.saksbehandlingstider": "Saksbehandlingstider",

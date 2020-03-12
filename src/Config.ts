@@ -97,7 +97,7 @@ export const urls = {
     saksoversikt: `${tjenesteUrl}/saksoversikt/`,
     postTilAnnenAdresse: `${navUrl}/no/nav-og-samfunn/kontakt-nav/vil-du-ha-post-fra-nav-til-en-annen-adresse2`,
     eosReglerSak: `${navUrl}/no/nav-og-samfunn/kontakt-nav/feiltolkning-av-eos-reglene`,
-    koronavirus: `${navUrl}/no/nav-og-samfunn/samarbeid/leger-og-andre-behandlere/nyheter/sykmeldinger-i-forbindelse-med-koronaviruset`
+    koronavirus: `${navUrl}/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav`
   },
   veteraner: `${navUrl}/veteraner`,
   ringOss: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-nav-pa-telefon2`,
