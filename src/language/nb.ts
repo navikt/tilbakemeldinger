@@ -93,7 +93,7 @@ export default {
   "faq.visfaerre": "Vis færre",
   "faq.utbetalingsoversikt": "Sjekk utbetalingene dine",
   "faq.saksoversikt": "Hvordan går det med saken min?",
-  "faq.koronavirus": "Koronaviruset og sykmelding",
+  "faq.koronavirus": "Koronavirus – informasjon fra NAV",
   "faq.eosreglersak": "Feiltolking av EØS-reglene",
   "faq.nesteutbetaling": "Utbetalingsdatoer",
   "faq.saksbehandlingstider": "Saksbehandlingstider",
