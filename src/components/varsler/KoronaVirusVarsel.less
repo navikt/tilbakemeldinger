@@ -1,15 +1,78 @@
+@import (reference) "~nav-frontend-core/less/_variabler";
 
 .korona-varsel {
-  padding: 1.25rem;
-  margin-top: 1rem;
-  text-align: left;
-}
+  @spacing: 0.75rem;
+  @sirkel-diameter: 24px;
+  @pulse-diameter: 72px;
 
-.korona-lenke {
-  margin-top: 1rem;
-  color: @navBla;
-}
+  display: flex;
+  flex-direction: row;
 
-.korona-tekst {
-  font-weight: bold;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-color: black;
+
+  &__ikon-rad {
+    display: flex;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    min-width: @pulse-diameter;
+    min-height: @pulse-diameter;
+  }
+
+  &__sirkel {
+    width: @sirkel-diameter;
+    height: @sirkel-diameter;
+    border-radius: 50%;
+
+    background-color: @navOransjeLighten20;
+  }
+
+  &__pulse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    animation-name: pulserende-sirkel;
+    animation-direction: normal;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+  }
+
+  &__tekst-rad {
+    padding: 1.25rem 1rem;
+    text-align: left;
+  }
+
+  &__tittel {
+  }
+
+  &__ingress {
+    margin-top: @spacing;
+  }
+
+  &__dato-tid {
+    color: @navGra40;
+    margin-top: @spacing;
+  }
+
+  @keyframes pulserende-sirkel {
+    from {
+      background-color: @navOransjeLighten60;
+      width: @sirkel-diameter;
+      height: @sirkel-diameter;
+    }
+
+    50% {
+      background-color: transparent;
+      width: @pulse-diameter;
+      height: @pulse-diameter;
+    }
+  }
 }

@@ -20,6 +20,7 @@ import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import { varsler } from "Config";
 import Lenke from "nav-frontend-lenker";
 import { KoronaVirusVarsel } from "../../components/varsler/KoronaVirusVarsel";
+import { StorPaagangVarsel } from "../../components/varsler/StorPaagangVarsel";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
@@ -57,6 +58,7 @@ const KontaktOssFrontpage = () => {
             </div>
           </header>
           <KoronaVirusVarsel />
+          <StorPaagangVarsel />
           {varsler.map(varsel => (
             <AlertStripeInfo key={varsel.tittel}>
               <Undertittel>{varsel.tittel}</Undertittel>

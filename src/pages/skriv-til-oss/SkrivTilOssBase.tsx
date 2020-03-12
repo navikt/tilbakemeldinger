@@ -5,6 +5,7 @@ import { LenkepanelData } from "../../types/lenker";
 import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import { KoronaVirusVarsel } from "../../components/varsler/KoronaVirusVarsel";
+import { StorPaagangVarsel } from "../../components/varsler/StorPaagangVarsel";
 
 const cssPrefix = "skriv-til-oss";
 
@@ -33,6 +34,7 @@ const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
       <div className={`${cssPrefix}__ingress`}>
         {children}
         <KoronaVirusVarsel />
+        <StorPaagangVarsel />
       </div>
       {lenker && (
         <div className={`${cssPrefix}__lenke-seksjon`}>
