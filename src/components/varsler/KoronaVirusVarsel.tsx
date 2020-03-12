@@ -6,15 +6,17 @@ import { LenkepanelBase } from "nav-frontend-lenkepanel/lib";
 const className = "korona-varsel";
 
 export type KoronaVirusVarselInnhold = {
-  tittel: JSX.Element;
-  ingress: JSX.Element;
-  datoTid: string;
+  tittel: JSX.Element,
+  ingress: JSX.Element,
+  datoTid: string,
+  href: string,
 }
 
 const defaultInnhold: KoronaVirusVarselInnhold = {
   tittel: <>{"Koronavirus"}</>,
   ingress: <>{"Her finner du oppdatert informasjon fra NAV om sykmeldinger, permitteringer og behov for akuttolk."}</>,
-  datoTid: "13.03.2020, kl. 00.09"
+  datoTid: "13.03.2020, kl. 00.09",
+  href: urls.faq.koronavirus,
 };
 
 type Props = {
@@ -22,7 +24,7 @@ type Props = {
 }
 
 export const KoronaVirusVarsel = ({ innhold = defaultInnhold }: Props) => (
-  <LenkepanelBase className={className} href={urls.faq.koronavirus} border={true}>
+  <LenkepanelBase className={className} href={innhold.href} border={true}>
     <div className={`${className}__ikon-rad`}>
       <div className={`${className}__pulse`}>
         <div className={`${className}__sirkel`}/>
