@@ -16,9 +16,10 @@ import KlageOgTilbakemeldinger from "./sections/KlageOgTilbakemeldinger";
 import KontaktVeileder from "./sections/KontaktVeileder";
 import Pressekontakt from "./sections/Pressekontakt";
 import SosialeMedier from "./sections/SosialeMedier";
-import { AlertStripeAdvarsel, AlertStripeInfo } from "nav-frontend-alertstriper";
+import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import { varsler } from "Config";
 import Lenke from "nav-frontend-lenker";
+import { KoronaVirusVarsel } from "../../components/varsler/KoronaVirusVarsel";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
@@ -55,9 +56,7 @@ const KontaktOssFrontpage = () => {
               </Sidetittel>
             </div>
           </header>
-          <AlertStripeAdvarsel>
-            <FormattedMessage id={"mye-paagang"} />
-          </AlertStripeAdvarsel>
+          <KoronaVirusVarsel />
           {varsler.map(varsel => (
             <AlertStripeInfo key={varsel.tittel}>
               <Undertittel>{varsel.tittel}</Undertittel>

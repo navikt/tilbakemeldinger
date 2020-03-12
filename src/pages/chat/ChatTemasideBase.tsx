@@ -8,11 +8,12 @@ import { ChatTema, ChatTemaData } from "../../types/chat";
 import { Hovedknapp } from "nav-frontend-knapper";
 import { urls, vars } from "../../Config";
 import PanelBase from "nav-frontend-paneler";
-import { AlertStripeAdvarsel, AlertStripeInfo } from "nav-frontend-alertstriper";
+import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import { fetchServerTidOffset } from "../../clients/apiClient";
 import { logEvent } from "../../utils/logger";
 import ApningstiderAvvik from "../../components/apningstider/ApningstiderAvvik";
 import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
+import { KoronaVirusVarsel } from "../../components/varsler/KoronaVirusVarsel";
 
 type ChatTemaProps = {
   chatTemaData: ChatTemaData,
@@ -65,9 +66,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
             </Systemtittel>
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
-            <AlertStripeAdvarsel>
-              <FormattedMessage id={"mye-paagang"} />
-            </AlertStripeAdvarsel>
+            <KoronaVirusVarsel />
              {!chatErApen && (
                 <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert`}>
                   <FormattedMessage id="chat.stengt.info" />
