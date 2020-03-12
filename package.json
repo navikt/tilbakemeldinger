@@ -1,5 +1,5 @@
 {
-  "name": "tilbakemeldinger",
+  "name": "pb-kontakt-oss",
   "version": "1.2.6",
   "private": true,
   "author": "NAV",
@@ -14,11 +14,11 @@
     "build:js": "react-scripts build",
     "build": "npm run navkontorexceltiljson && npm-run-all -p build:*",
     "navkontorexceltiljson": "node navkontor-exceltiljson.js",
-    "docker-build": "docker build . -t tilbakemeldinger",
-    "docker-start": "docker run --name tilbakemeldinger -p 8080:8080 -t -d tilbakemeldinger",
+    "docker-build": "docker build . -t pb-kontakt-oss",
+    "docker-start": "docker run --name pb-kontakt-oss -p 8080:8080 -t -d tilbakemeldinger",
     "docker-kill": "npm run docker-stop && npm run docker-rm",
-    "docker-rm": "docker rm tilbakemeldinger",
-    "docker-stop": "docker stop tilbakemeldinger"
+    "docker-rm": "docker rm pb-kontakt-oss",
+    "docker-stop": "docker stop pb-kontakt-oss"
   },
   "dependencies": {
     "@navikt/nav-chatbot": "^1.1.8",
