@@ -5,6 +5,7 @@ import sprak from "../language/provider";
 import { Enheter, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../components/error/Error";
 import Unleash, { Features } from "../utils/unleash";
+import { Alert, alertMock } from "../types/alert";
 
 export const initialState = {
   fodselsnr: "",
@@ -13,7 +14,8 @@ export const initialState = {
   enheter: {status: "LOADING"} as FetchEnheter,
   auth: {authenticated: false} as AuthInfo,
   kontaktInfo: {mobiltelefonnummer: ""},
-  unleashFeatures: Unleash.getFeatureDefaults() as Features
+  unleashFeatures: Unleash.getFeatureDefaults() as Features,
+  varsler: alertMock
 };
 
 export interface Store {
@@ -24,6 +26,7 @@ export interface Store {
   kontaktInfo: KontaktInfo;
   enheter: FetchEnheter;
   unleashFeatures: Features;
+  varsler: Array<Alert>;
 }
 
 export type Action =
@@ -52,6 +55,9 @@ export type Action =
   | {
   type: "SETT_FEATURE_TOGGLES";
   payload: Features;
+} | {
+  type: "SETT_ALERTS";
+  payload: Array<Alert>;
 };
 
 export const reducer = (state: Store, action: Action) => {
@@ -91,6 +97,11 @@ export const reducer = (state: Store, action: Action) => {
       return {
         ...state,
         unleashFeatures: Unleash.getValidFeatureToggles(action.payload as Features)
+      };
+    case "SETT_ALERTS":
+      return {
+        ...state,
+        alerts: action.payload
       };
     default:
       return state;
