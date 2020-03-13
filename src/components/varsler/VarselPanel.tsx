@@ -10,13 +10,15 @@ type Props = {
   type: AlertStripeType
 };
 
-export const VarselPanel = ({ tittel, tekst, type }: Props) => (
+export const VarselPanel = ({tittel, tekst, type}: Props) => (
   <AlertStripe className={className} type={type}>
+    {tittel &&
       <Systemtittel className={`${className}__tittel`}>
         {tittel}
       </Systemtittel>
-      <Normaltekst className={`${className}__tekst`}>
-        {tekst}
-      </Normaltekst>
+    }
+    <Normaltekst className={`${className}__tekst`}>
+      {tekst}
+    </Normaltekst>
   </AlertStripe>
 );

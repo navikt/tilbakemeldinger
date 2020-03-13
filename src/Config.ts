@@ -9,16 +9,6 @@ export const noRedirectUrlSegment = "/test";
 const {tjenesteUrl, baseAppPath} = Environment();
 const navUrl = Environment().baseUrl;
 
-interface Varsel {
-  tittel: string;
-  beskrivelse: string;
-  lenke: string;
-  lenkeTekst: string;
-}
-
-/* Viktige meldinger her */
-export const varsler: Varsel[] = [];
-
 export const urls = {
   baseAppPath: baseAppPath,
   tilbakemeldinger: {

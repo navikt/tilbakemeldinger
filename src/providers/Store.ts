@@ -5,7 +5,7 @@ import sprak from "../language/provider";
 import { Enheter, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../components/error/Error";
 import Unleash, { Features } from "../utils/unleash";
-import { Alert, alertMock } from "../types/alert";
+import { Alert } from "../types/alert";
 
 export const initialState = {
   fodselsnr: "",
@@ -98,13 +98,11 @@ export const reducer = (state: Store, action: Action) => {
         ...state,
         unleashFeatures: Unleash.getValidFeatureToggles(action.payload as Features)
       };
-    case "SETT_ALERTS": {
-      console.log(action);
+    case "SETT_ALERTS":
       return {
         ...state,
-        alerts: action.payload
+        varsler: action.payload
       };
-    }
     default:
       return state;
   }
