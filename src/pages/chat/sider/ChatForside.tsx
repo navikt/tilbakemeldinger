@@ -6,7 +6,8 @@ import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
 import TemaLenkepanel from "../../../components/lenkepanel/TemaLenkepanel";
 import { LenkepanelData } from "../../../types/lenker";
-import { KoronaVirusVarsel } from "../../../components/varsler/KoronaVirusVarsel";
+import { KoronaVirusVarsel } from "../../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
+import { StorPaagangVarsel } from "../../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 
 const cssPrefix = "chat-med-oss";
 const sideTittelId = "chat.forside.tittel";
@@ -31,6 +32,7 @@ const ChatForside = () => {
             <FormattedMessage id="chat.forside.ingress"/>
           </Normaltekst>
           <KoronaVirusVarsel />
+          <StorPaagangVarsel />
         </div>
         <div className={`${cssPrefix}__temapanel-seksjon`}>
           {

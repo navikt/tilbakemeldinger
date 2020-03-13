@@ -5,8 +5,6 @@ export default {
     "Vi har for øyeblikket tekniske problemer med disse sidene.",
   "header.navperson": "NAV privatperson",
 
-  "mye-paagang": "Det er for tiden mange som kontakter oss. Hvis henvendelsen din ikke haster, ber vi deg ta kontakt senere.",
-
   "breadcrumb.nav-no": "nav.no",
   "breadcrumb.": "Kontakt oss",
 
