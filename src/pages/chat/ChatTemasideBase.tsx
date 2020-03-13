@@ -13,6 +13,7 @@ import { fetchServerTidOffset } from "../../clients/apiClient";
 import { logEvent } from "../../utils/logger";
 import ApningstiderAvvik from "../../components/apningstider/ApningstiderAvvik";
 import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
+import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 
 type ChatTemaProps = {
   chatTemaData: ChatTemaData,
@@ -65,6 +66,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
             </Systemtittel>
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
+            <StorPaagangVarsel />
              {!chatErApen && (
                 <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert`}>
                   <FormattedMessage id="chat.stengt.info" />

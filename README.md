@@ -1,4 +1,4 @@
-# Tilbakemeldinger
+# Kontakt oss
 
 For klage, anke og ros
 

@@ -16,7 +16,7 @@ const InputMelding = (props: Props) => {
   const { error, value, label, submitted } = props;
   return (
     <div>
-      <div className={"skjema__legend"}>{label}</div>
+      <div className={"skjemagruppe__legend"}>{label}</div>
       <div className={"felter__melding-advarsel"}>
         <AlertStripeAdvarsel>
           <FormattedMessage id={"felter.melding.beskrivelse"} />
