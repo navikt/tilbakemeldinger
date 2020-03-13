@@ -16,8 +16,6 @@ import KlageOgTilbakemeldinger from "./sections/KlageOgTilbakemeldinger";
 import KontaktVeileder from "./sections/KontaktVeileder";
 import Pressekontakt from "./sections/Pressekontakt";
 import SosialeMedier from "./sections/SosialeMedier";
-import { KoronaVirusVarsel } from "../../components/varsler/KoronaVirusVarsel";
-import { StorPaagangVarsel } from "../../components/varsler/StorPaagangVarsel";
 import { VarselPanel } from "../../components/varsler/VarselPanel";
 import { useStore } from "../../providers/Provider";
 import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
@@ -25,9 +23,6 @@ import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
   const [{varsler}] = useStore();
-
-  const varselVisning = varsler.map(varsel =>
-    <VarselPanel tekst={varsel.tekst} type={varsel.type}/>);
 
   useEffect(() => {
     /*
@@ -62,8 +57,8 @@ const KontaktOssFrontpage = () => {
             </div>
           </header>
           <KoronaVirusVarsel/>
-          <StorPaagangVarsel/>
-          {varselVisning}
+          {varsler.map(varsel =>
+            <VarselPanel tekst={varsel.tekst} type={varsel.type}/>)}
           <div className="frontpage__content">
             <Chat/>
             <div className="frontpage__row">
