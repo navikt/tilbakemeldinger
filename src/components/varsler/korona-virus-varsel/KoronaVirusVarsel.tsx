@@ -1,4 +1,4 @@
-import { urls } from "../../Config";
+import { urls } from "../../../Config";
 import React from "react";
 import { Normaltekst, Systemtittel, Undertekst } from "nav-frontend-typografi";
 import { LenkepanelBase } from "nav-frontend-lenkepanel/lib";
@@ -10,18 +10,18 @@ export type KoronaVirusVarselInnhold = {
   ingress: JSX.Element,
   datoTid: string,
   href: string,
-}
-
-const defaultInnhold: KoronaVirusVarselInnhold = {
-  tittel: <>{"Koronavirus"}</>,
-  ingress: <>{"Her finner du oppdatert informasjon fra NAV om sykmeldinger, permitteringer og behov for akuttolk."}</>,
-  datoTid: "13.03.2020, kl. 00.09",
-  href: urls.faq.koronavirus,
 };
 
 type Props = {
   innhold?: KoronaVirusVarselInnhold
-}
+};
+
+const defaultInnhold: KoronaVirusVarselInnhold = {
+  tittel: <>{"Koronavirus"}</>,
+  ingress: <>{"Her finner du oppdatert informasjon fra NAV om sykmeldinger, omsorgspenger, permitteringer og behov for akuttolk."}</>,
+  datoTid: "13.03.2020, kl. 11.46",
+  href: urls.faq.koronavirus,
+};
 
 export const KoronaVirusVarsel = ({ innhold = defaultInnhold }: Props) => (
   <LenkepanelBase className={className} href={innhold.href} border={true}>

@@ -19,8 +19,8 @@ import SosialeMedier from "./sections/SosialeMedier";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import { varsler } from "Config";
 import Lenke from "nav-frontend-lenker";
-import { KoronaVirusVarsel } from "../../components/varsler/KoronaVirusVarsel";
-import { StorPaagangVarsel } from "../../components/varsler/StorPaagangVarsel";
+import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
+import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
