@@ -20,6 +20,7 @@ import { KoronaVirusVarsel } from "../../components/varsler/KoronaVirusVarsel";
 import { StorPaagangVarsel } from "../../components/varsler/StorPaagangVarsel";
 import { VarselPanel } from "../../components/varsler/VarselPanel";
 import { useStore } from "../../providers/Provider";
+import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();

@@ -4,8 +4,8 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { LenkepanelData } from "../../types/lenker";
 import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
-import { KoronaVirusVarsel } from "../../components/varsler/KoronaVirusVarsel";
-import { StorPaagangVarsel } from "../../components/varsler/StorPaagangVarsel";
+import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
+import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 
 const cssPrefix = "skriv-til-oss";
 

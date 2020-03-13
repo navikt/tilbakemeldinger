@@ -13,7 +13,7 @@ import { fetchServerTidOffset } from "../../clients/apiClient";
 import { logEvent } from "../../utils/logger";
 import ApningstiderAvvik from "../../components/apningstider/ApningstiderAvvik";
 import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
-import { StorPaagangVarsel } from "../../components/varsler/StorPaagangVarsel";
+import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 
 type ChatTemaProps = {
   chatTemaData: ChatTemaData,
