@@ -74,7 +74,9 @@ const App = () => {
       .then((faqJson: Array<FAQ>) => {
           dispatch({
             type: "SETT_FAQ",
-            payload: faqJson.map(faqJson => faqJson as FAQ)
+            payload: faqJson
+              .map(faqJson => faqJson as FAQ)
+              .sort((a, b) => b.priority - a.priority),
           });
         }
       );
