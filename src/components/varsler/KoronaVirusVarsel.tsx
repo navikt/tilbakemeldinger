@@ -26,12 +26,11 @@ type Props = {
 export const KoronaVirusVarsel = ({ innhold = defaultInnhold }: Props) => (
   <LenkepanelBase className={className} href={innhold.href} border={true}>
     <div className={`${className}__ikon-rad`}>
-      <div className={`${className}__pulse`}>
-        <div className={`${className}__sirkel`}/>
-      </div>
+      <div className={`${className}__pulse`}/>
+      <div className={`${className}__sirkel`}/>
     </div>
     <div className={`${className}__tekst-rad`}>
-      <Systemtittel className={`lenkepanel__heading ${className}__tittel`}>
+      <Systemtittel className={`lenkepanel__heading`}>
         {innhold.tittel}
       </Systemtittel>
       <Normaltekst className={`${className}__ingress`}>

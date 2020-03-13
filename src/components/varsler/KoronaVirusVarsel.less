@@ -2,8 +2,12 @@
 
 .korona-varsel {
   @spacing: 0.75rem;
+  @pulse-scale: 3;
+  @compress-scale: 0.85;
   @sirkel-diameter: 24px;
-  @pulse-diameter: 72px;
+  @pulse-diameter: @sirkel-diameter * @pulse-scale;
+  @sirkel-farge: @navOransjeLighten20;
+  @pulse-farge: @navOransjeLighten60;
 
   display: flex;
   flex-direction: row;
@@ -12,7 +16,16 @@
   margin: 1rem 0;
   border-color: black;
 
+  .animation-props() {
+    animation-direction: normal;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+  }
+
   &__ikon-rad {
+    position: relative;
+
     display: flex;
     align-self: flex-start;
     align-items: center;
@@ -24,33 +37,31 @@
   }
 
   &__sirkel {
+    position: absolute;
+    z-index: 1;
+
     width: @sirkel-diameter;
     height: @sirkel-diameter;
     border-radius: 50%;
 
     background-color: @navOransjeLighten20;
+
+    animation-name: compression;
+    .animation-props();
   }
 
   &__pulse {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     border-radius: 50%;
+    width: @sirkel-diameter;
+    height: @sirkel-diameter;
 
-    animation-name: pulserende-sirkel;
-    animation-direction: normal;
-    animation-duration: 2.5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-out;
+    animation-name: shockwave;
+    .animation-props();
   }
 
   &__tekst-rad {
     padding: 1.25rem 1rem;
     text-align: left;
-  }
-
-  &__tittel {
   }
 
   &__ingress {
@@ -62,17 +73,38 @@
     margin-top: @spacing;
   }
 
-  @keyframes pulserende-sirkel {
-    from {
-      background-color: @navOransjeLighten60;
-      width: @sirkel-diameter;
-      height: @sirkel-diameter;
+  @keyframes compression {
+    0% {
+      transform: scale(1);
+    }
+
+    15% {
+      transform: scale(@compress-scale);
+    }
+
+    20% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes shockwave {
+    0% {
+      background-color: @pulse-farge;
+      transform: scale(@compress-scale);
+    }
+
+    15% {
+      transform: scale(@compress-scale);
+    }
+
+    20% {
+      background-color: @pulse-farge;
+      transform: scale(1);
     }
 
     50% {
       background-color: transparent;
-      width: @pulse-diameter;
-      height: @pulse-diameter;
+      transform: scale(@pulse-scale);
     }
   }
 }
