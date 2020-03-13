@@ -4,6 +4,7 @@ import fodselsnr from "./data/fodselsnr.json";
 import kontaktInfo from "./data/kontaktInfo.json";
 import enheter from "./data/enheter.json";
 import alerts from "./data/alerts.json";
+import faq from "./data/faq.json";
 import Environment from "../../Environments";
 
 const { baseUrl, apiUrl, personInfoApiUrl } = Environment();
@@ -14,6 +15,7 @@ const mockFodselsnr = true;
 const mockKontaktInfo = true;
 const mockEnheter = true;
 const mockAlerts = true;
+const mockFaq = true;
 
 export const setUpMock = async () => {
   mockAuthInfo &&
@@ -32,6 +34,8 @@ export const setUpMock = async () => {
     );
   mockAlerts &&
     fetchMock.get(`${apiUrl}/alerts`, delay(400, 500).then(() => alerts));
+  mockFaq &&
+    fetchMock.get(`${apiUrl}/faq`, delay(400, 500).then(() => faq));
 };
 
 const delay = (min: number, max: number) => {

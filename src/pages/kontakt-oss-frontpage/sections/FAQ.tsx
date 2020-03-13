@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { lenkerFAQ } from "./FAQLenker";
 import VisMer from "./FAQLenkerVisMer";
 import { FormattedMessage } from "react-intl";
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 
 import ikon from "assets/forside-faq-ikon.svg";
 import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
+import { useStore } from "../../../providers/Provider";
 
 const FAQ = () => {
   const [visFlereFAQ, settVisFlereFAQ] = useState(false);
@@ -13,6 +13,7 @@ const FAQ = () => {
   const toggleVisFlereFAQ = () => settVisFlereFAQ(!visFlereFAQ);
   // const toggleVisFlereMinSide = () => settVisFlereMinside(!visFlereMinside);
   const visElementer = 3;
+  const [{faq: lenkerFAQ}] = useStore();
 
   const tittel = <FormattedMessage id={"faq.intro"} />;
 
@@ -20,14 +21,14 @@ const FAQ = () => {
     <IkonPanel ikon={ikon} tittel={tittel} className={"faq"}>
       {lenkerFAQ
         .slice(0, visFlereFAQ ? lenkerFAQ.length : visElementer)
-        .map(({ lenke, lenkeTekst }) => (
+        .map(({ lenke, tittel }) => (
           <RouterLenke
             href={lenke}
             className={"lenke__avstand-under"}
             isExternal={true}
-            key={lenkeTekst}
+            key={tittel}
           >
-            <FormattedMessage id={lenkeTekst} />
+            {tittel}
           </RouterLenke>
         ))}
       {lenkerFAQ.length > visElementer && (

@@ -41,9 +41,9 @@ export const fetchKontaktInfo = () =>
 
 export const fetchAlerts = () => hentJson(`${apiUrl}/alerts`);
 
-export const fetchChannelInfo = () => hentJson(`${apiUrl}/channels`);
-
 export const fetchFaq = () => hentJson(`${apiUrl}/faq`);
+
+export const fetchChannelInfo = () => hentJson(`${apiUrl}/channels`);
 
 export const fetchServerTidOffset = (callback: Function) => {
   fetch(baseUrl, { method: "HEAD" })

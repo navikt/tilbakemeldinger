@@ -6,6 +6,7 @@ import { Enheter, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../components/error/Error";
 import Unleash, { Features } from "../utils/unleash";
 import { Alert } from "../types/alert";
+import { FAQ } from "../types/faq";
 
 export const initialState = {
   fodselsnr: "",
@@ -15,7 +16,8 @@ export const initialState = {
   auth: {authenticated: false} as AuthInfo,
   kontaktInfo: {mobiltelefonnummer: ""},
   unleashFeatures: Unleash.getFeatureDefaults() as Features,
-  varsler: []
+  varsler: [],
+  faq: []
 };
 
 export interface Store {
@@ -27,37 +29,36 @@ export interface Store {
   enheter: FetchEnheter;
   unleashFeatures: Features;
   varsler: Array<Alert>;
+  faq: Array<FAQ>;
 }
 
 export type Action =
   | {
   type: "SETT_ENHETER_RESULT";
   payload: Enheter[];
-}
-  | {
+} | {
   type: "SETT_ENHETER_ERROR";
   payload: HTTPError;
-}
-  | {
+} | {
   type: "SETT_AUTH_RESULT";
   payload: AuthInfo;
-}
-  | {
+} | {
   type: "SETT_FODSELSNR";
   payload: {
     fodselsnr: string;
   };
-}
-  | {
+} | {
   type: "SETT_KONTAKT_INFO_RESULT";
   payload: KontaktInfo;
-}
-  | {
+} | {
   type: "SETT_FEATURE_TOGGLES";
   payload: Features;
 } | {
   type: "SETT_ALERTS";
   payload: Array<Alert>;
+} | {
+  type: "SETT_FAQ";
+  payload: Array<FAQ>;
 };
 
 export const reducer = (state: Store, action: Action) => {
@@ -102,6 +103,11 @@ export const reducer = (state: Store, action: Action) => {
       return {
         ...state,
         varsler: action.payload
+      };
+    case "SETT_FAQ":
+      return {
+        ...state,
+        faq: action.payload
       };
     default:
       return state;

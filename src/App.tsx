@@ -9,7 +9,7 @@ import FeilOgMangler from "./pages/tilbakemeldinger/feil-og-mangler/FeilOgMangle
 import {
   fetchAuthInfo,
   fetchKontaktInfo,
-  fetchFodselsnr, fetchAlerts
+  fetchFodselsnr, fetchAlerts, fetchFaq
 } from "./clients/apiClient";
 import { useStore } from "./providers/Provider";
 import { AuthInfo } from "./types/authInfo";
@@ -26,6 +26,7 @@ import { forsidePath, urls, vars } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
 import FinnNavKontorPage from "./pages/finn-nav-kontor/FinnNavKontorPage";
 import { Alert, AlertJson, jsonToAlert } from "./types/alert";
+import { FAQ } from "./types/faq";
 
 const App = () => {
   const [{ auth, unleashFeatures }, dispatch] = useStore();
@@ -65,6 +66,15 @@ const App = () => {
               const alert = jsonToAlert(json);
               return alert ? acc.concat(alert) : acc;
             }, [] as Array<Alert>)
+          });
+        }
+      );
+
+    fetchFaq()
+      .then((faqJson: Array<FAQ>) => {
+          dispatch({
+            type: "SETT_FAQ",
+            payload: faqJson.map(faqJson => faqJson as FAQ)
           });
         }
       );
