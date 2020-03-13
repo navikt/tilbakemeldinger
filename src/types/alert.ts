@@ -1,25 +1,46 @@
+import { AlertStripeType } from "nav-frontend-alertstriper";
+
 export type Alert = {
+  tekst: string
+  type: AlertStripeType
+};
+
+export type AlertJson = {
   "_createdAt": string,
   "_id": string,
   "_rev": string,
   "_type": string,
   "_updatedAt": string,
-  "description": [{
+  "description": Array<{
     "_key": string,
     "_type": string,
-    "children": [{
+    "children": Array<{
       "_key": string,
       "_type": string,
       "marks": Array<string>,
       "text": string
-    }],
+    }>,
     "markDefs": Array<string>,
     "style": string
-  }],
-  "type": string
-}
+  }>,
+  "type": AlertStripeType
+};
 
-export const alertMock: Array<Alert> = [{
+export const jsonToAlert = (json: AlertJson): Alert | null => {
+  if (!json.description
+    || !json.description[0]
+    || !json.description[0].children
+    || !json.description[0].children[0]) {
+    return null;
+  }
+
+  return {
+    tekst: json.description[0].children[0].text,
+    type: json.type
+  };
+};
+
+export const alertMock: Array<AlertJson> = [{
   "_createdAt": "2020-03-12T15:45:08Z",
   "_id": "4a1e55e6-643b-453b-8c95-423311c6cf83",
   "_rev": "rmWzzr2BwZU43esqF1GdIC",

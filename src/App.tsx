@@ -9,7 +9,7 @@ import FeilOgMangler from "./pages/tilbakemeldinger/feil-og-mangler/FeilOgMangle
 import {
   fetchAuthInfo,
   fetchKontaktInfo,
-  fetchFodselsnr
+  fetchFodselsnr, fetchAlerts
 } from "./clients/apiClient";
 import { useStore } from "./providers/Provider";
 import { AuthInfo } from "./types/authInfo";
@@ -25,6 +25,7 @@ import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/Bestilling
 import { forsidePath, urls, vars } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
 import FinnNavKontorPage from "./pages/finn-nav-kontor/FinnNavKontorPage";
+import { Alert, AlertJson, jsonToAlert } from "./types/alert";
 
 const App = () => {
   const [{ auth, unleashFeatures }, dispatch] = useStore();
@@ -55,6 +56,18 @@ const App = () => {
         })
         .catch((error: HTTPError) => console.error(error));
     }
+
+    fetchAlerts()
+      .then((alertsJson: Array<AlertJson>) => {
+          dispatch({
+            type: "SETT_ALERTS",
+            payload: alertsJson.reduce((acc, json) => {
+              const alert = jsonToAlert(json);
+              return alert ? acc.concat(alert) : acc;
+            }, [] as Array<Alert>)
+          });
+        }
+      );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

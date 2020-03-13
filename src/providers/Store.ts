@@ -15,7 +15,7 @@ export const initialState = {
   auth: {authenticated: false} as AuthInfo,
   kontaktInfo: {mobiltelefonnummer: ""},
   unleashFeatures: Unleash.getFeatureDefaults() as Features,
-  varsler: alertMock
+  varsler: []
 };
 
 export interface Store {
@@ -98,11 +98,13 @@ export const reducer = (state: Store, action: Action) => {
         ...state,
         unleashFeatures: Unleash.getValidFeatureToggles(action.payload as Features)
       };
-    case "SETT_ALERTS":
+    case "SETT_ALERTS": {
+      console.log(action);
       return {
         ...state,
         alerts: action.payload
       };
+    }
     default:
       return state;
   }

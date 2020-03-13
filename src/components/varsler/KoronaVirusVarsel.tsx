@@ -10,7 +10,7 @@ export type KoronaVirusVarselInnhold = {
   ingress: JSX.Element,
   datoTid: string,
   href: string,
-}
+};
 
 const defaultInnhold: KoronaVirusVarselInnhold = {
   tittel: <>{"Koronavirus"}</>,
@@ -21,7 +21,7 @@ const defaultInnhold: KoronaVirusVarselInnhold = {
 
 type Props = {
   innhold?: KoronaVirusVarselInnhold
-}
+};
 
 export const KoronaVirusVarsel = ({ innhold = defaultInnhold }: Props) => (
   <LenkepanelBase className={className} href={innhold.href} border={true}>

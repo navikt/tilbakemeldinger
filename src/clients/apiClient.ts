@@ -30,7 +30,34 @@ const hentJson = (url: string) =>
     });
 
 export const fetchEnheter = () => hentJson(`${apiUrl}/enheter`);
+
 export const fetchFodselsnr = () => hentJson(`${apiUrl}/fodselsnr`);
+
+export const fetchAuthInfo = () =>
+  hentJson(`${baseUrl}/innloggingslinje-api/auth`);
+
+export const fetchKontaktInfo = () =>
+  hentJson(`${personInfoApiUrl}/kontaktinformasjon`);
+
+export const fetchAlerts = () => hentJson(`${apiUrl}/alerts`);
+
+export const fetchChannelInfo = () => hentJson(`${apiUrl}/channels`);
+
+export const fetchFaq = () => hentJson(`${apiUrl}/faq`);
+
+export const fetchServerTidOffset = (callback: Function) => {
+  fetch(baseUrl, { method: "HEAD" })
+    .then(res => {
+      const date = res.headers.get("date");
+      if (!date) {
+        console.log("Couldn't fetch server time!");
+        callback(0);
+        return;
+      }
+      callback(Date.parse(date) - Date.now());
+    })
+    .catch(e => console.log(e));
+};
 
 /*
     POST
@@ -62,12 +89,6 @@ const sendJson = (url: string, data: Outbound) => {
     });
 };
 
-export const fetchAuthInfo = () =>
-  hentJson(`${baseUrl}/innloggingslinje-api/auth`);
-
-export const fetchKontaktInfo = () =>
-  hentJson(`${personInfoApiUrl}/kontaktinformasjon`);
-
 export const postRosTilNav = (data: OutboundRosTilNav) =>
   sendJson(`${apiUrl}/mottak/ros`, data);
 
@@ -79,20 +100,6 @@ export const postFeilOgMangler = (data: OutboundFeilOgMangler) =>
 
 export const postSamiskBestillSamtale = (data: OutboundBestillingAvSamtale) =>
   sendJson(`${apiUrl}/mottak/bestilling-av-samtale`, data);
-
-export const fetchServerTidOffset = (callback: Function) => {
-  fetch(baseUrl, { method: "HEAD" })
-    .then(res => {
-      const date = res.headers.get("date");
-      if (!date) {
-        console.log("Couldn't fetch server time!");
-        callback(0);
-        return;
-      }
-      callback(Date.parse(date) - Date.now());
-    })
-    .catch(e => console.log(e));
-};
 
 /*
     Utils
