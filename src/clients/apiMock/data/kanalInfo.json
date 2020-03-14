@@ -42,7 +42,7 @@
     "_type": "channel",
     "_updatedAt": "2020-03-13T14:11:36Z",
     "answer_time": "3 arbeidsdager",
-    "closed": false,
+    "closed": true,
     "description": [
       {
         "_key": "29e78e310f93",

@@ -5,23 +5,22 @@ import MetaTags from "react-meta-tags";
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
-import { urls, vars } from "../../../Config";
+import { urls } from "../../../Config";
 import AlertStripe from "nav-frontend-alertstriper";
-import { skrivTilOssSvartidFraUnleash } from "../../../utils/skrivTilOssSvartidFraUnleash";
 import { useStore } from "../../../providers/Provider";
 
 const lenker: LenkepanelData[] = [
   {
     grafanaId: "skrivtiloss.arbeidssoker",
     tittelId: "skrivtiloss.arbeidssoker.lenke.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.arbeidssoker.lenke.ingress"} />,
+    ingress: <FormattedMessage id={"skrivtiloss.arbeidssoker.lenke.ingress"}/>,
     url: urls.skrivTilOss.arbeidssoker,
     external: true
   },
   {
     grafanaId: "skrivtiloss.syk",
     tittelId: "skrivtiloss.syk.lenke.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.syk.lenke.ingress"} />,
+    ingress: <FormattedMessage id={"skrivtiloss.syk.lenke.ingress"}/>,
     url: urls.skrivTilOss.syk,
     external: true
   },
@@ -29,7 +28,7 @@ const lenker: LenkepanelData[] = [
     grafanaId: "skrivtiloss.familieogbarn",
     tittelId: "skrivtiloss.familieogbarn.lenke.tittel",
     ingress: (
-      <FormattedMessage id={"skrivtiloss.familieogbarn.lenke.ingress"} />
+      <FormattedMessage id={"skrivtiloss.familieogbarn.lenke.ingress"}/>
     ),
     url: urls.skrivTilOss.familieogbarn,
     external: true
@@ -37,21 +36,21 @@ const lenker: LenkepanelData[] = [
   {
     grafanaId: "skrivtiloss.ufor",
     tittelId: "skrivtiloss.ufor.lenke.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.ufor.lenke.ingress"} />,
+    ingress: <FormattedMessage id={"skrivtiloss.ufor.lenke.ingress"}/>,
     url: urls.skrivTilOss.ufor,
     external: true
   },
   {
     grafanaId: "skrivtiloss.pensjonist",
     tittelId: "skrivtiloss.pensjonist.lenke.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.pensjonist.lenke.ingress"} />,
+    ingress: <FormattedMessage id={"skrivtiloss.pensjonist.lenke.ingress"}/>,
     url: urls.skrivTilOss.pensjonist,
     external: true
   },
   {
     grafanaId: "skrivtiloss.hjelpemidler",
     tittelId: "skrivtiloss.hjelpemidler.lenke.tittel",
-    ingress: <FormattedMessage id={"skrivtiloss.hjelpemidler.lenke.ingress"} />,
+    ingress: <FormattedMessage id={"skrivtiloss.hjelpemidler.lenke.ingress"}/>,
     url: urls.skrivTilOss.hjelpemidler
   }
 ];
@@ -69,39 +68,34 @@ const Ingress = () => {
         />
       </MetaTags>
       <Normaltekst>
-        <FormattedMessage id="skrivtiloss.ingress" />
+        <FormattedMessage id="skrivtiloss.ingress"/>
       </Normaltekst>
     </>
   );
 };
 
+const StengtMelding = () => (
+  <AlertStripe type="advarsel" className={'varsel-panel'}>
+    <FormattedMessage id={"skrivtiloss.disabled"}/>
+  </AlertStripe>
+);
+
 const SkrivTilOssForside = () => {
-  const [{ unleashFeatures }] = useStore();
-  const skrivTilOssEnabled = unleashFeatures[vars.unleash.features.skrivTilOssEnabled.name];
+  const [{channelProps: {write: channelProps}}] = useStore();
 
-  if (!skrivTilOssEnabled) {
-    return (
-      <SkrivTilOssBase tittel={"skrivtiloss.tittel"}>
-        <AlertStripe type="advarsel">
-          <FormattedMessage id={"skrivtiloss.disabled"} />
-        </AlertStripe>
-      </SkrivTilOssBase>
-    );
-  }
-
-  const svartid = skrivTilOssSvartidFraUnleash(unleashFeatures);
+  const isClosed = channelProps.closed;
 
   return (
-    <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenker={lenker}>
+    <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenker={isClosed ? undefined : lenker}>
       <>
-        <Normaltekst className={"svartid"}>
-          <FormattedMessage id={"kontaktoss.svartid"} />
-          <FormattedMessage
-            id={svartid === 1 ? "kontaktoss.svartidendag" : "kontaktoss.svartiddager"}
-            values={{ antall: svartid }}
-          />
-        </Normaltekst>
-        <Ingress />
+        {!isClosed && (
+          <Normaltekst className={"svartid"}>
+            <FormattedMessage id={"kontaktoss.svartid"}/>
+            {channelProps.answer_time}
+          </Normaltekst>
+        )}
+        <Ingress/>
+        {isClosed && <StengtMelding/>}
       </>
     </SkrivTilOssBase>
   );

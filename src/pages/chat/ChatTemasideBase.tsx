@@ -14,6 +14,7 @@ import { logEvent } from "../../utils/logger";
 import ApningstiderAvvik from "../../components/apningstider/ApningstiderAvvik";
 import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
+import { useStore } from "../../providers/Provider";
 
 type ChatTemaProps = {
   chatTemaData: ChatTemaData,
@@ -25,6 +26,8 @@ const cssPrefix = "chat-tema";
 const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
   const [chatButtonClicked, setChatButtonClicked] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
+  const [{channelProps}] = useStore();
+  const {harChatbot} = chatTemaData;
 
   useEffect(() => {
     fetchServerTidOffset(setServerTidOffset);
@@ -47,11 +50,13 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
     [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat)
   };
 
-  const chatIApningstid = chatTemaData.apningstider
+  const chatErIApningstid = chatTemaData.apningstider
     ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
     : true;
-  // const chatbotErApen = (chatTemaData.harChatbot && chatTemaData.apningstider && !chatTemaData.apningstider.getChatbotStengt());
-  const chatErApen = chatIApningstid || chatTemaData.harChatbot;
+  const chatErNormaltApen = chatErIApningstid || harChatbot;
+  const chatErStengtAvAdmin = channelProps.chat.closed;
+  const chatMedVeilederErStengt = chatErStengtAvAdmin && chatErIApningstid;
+  const chatErApen = !chatMedVeilederErStengt || harChatbot;
 
   const chatbotConfig = vars.chatBot.temaConfigs[chatTemaData.chatTema];
 
@@ -66,12 +71,17 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
             </Systemtittel>
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
-            <StorPaagangVarsel />
-             {!chatErApen && (
-                <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert`}>
+             {!chatErNormaltApen && (
+                <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert varsel-panel`}>
                   <FormattedMessage id="chat.stengt.info" />
                 </AlertStripeInfo>
               )}
+            {chatMedVeilederErStengt && (
+              <AlertStripeInfo className={`varsel-panel`}>
+                {'Chat med veileder er for øyeblikket utilgjengelig.'}
+              </AlertStripeInfo>
+            )}
+            <StorPaagangVarsel />
             <Normaltekst>
               {children}
               <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />

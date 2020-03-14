@@ -56,10 +56,6 @@ const blockSerializer = (block: { node: TextBlock }) => {
   )
 };
 
-const lenkePanelSerializer = (lenke: LenkeData) => {
-  return null;
-};
-
 export const serializers = {
   types: {
     alert: alertSerializer,
