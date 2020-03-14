@@ -9,10 +9,13 @@ export type ChannelProps = {
 }
 
 export type Channels = {
-  telephone: ChannelProps,
-  chat: ChannelProps,
-  tutor: ChannelProps,
-  write: ChannelProps
+  isLoaded: boolean;
+  types: {
+    telephone: ChannelProps,
+    chat: ChannelProps,
+    tutor: ChannelProps,
+    write: ChannelProps
+  }
 }
 
 type Theme = {

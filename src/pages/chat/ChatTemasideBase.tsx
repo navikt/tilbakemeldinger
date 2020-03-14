@@ -54,7 +54,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
     ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
     : true;
   const chatErNormaltApen = chatErIApningstid || harChatbot;
-  const chatErStengtAvAdmin = channelProps.chat.closed;
+  const chatErStengtAvAdmin = channelProps.types.chat.closed;
   const chatMedVeilederErStengt = chatErStengtAvAdmin && chatErIApningstid;
   const chatErApen = !chatMedVeilederErStengt || harChatbot;
 

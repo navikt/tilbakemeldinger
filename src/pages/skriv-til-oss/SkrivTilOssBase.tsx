@@ -34,7 +34,7 @@ const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
       <div className={`${cssPrefix}__ingress`}>
         {children}
         <KoronaVirusVarsel />
-        <StorPaagangVarsel/>
+        <StorPaagangVarsel />
       </div>
       {lenker && (
         <div className={`${cssPrefix}__lenke-seksjon`}>

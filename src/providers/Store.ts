@@ -20,11 +20,14 @@ export const initialState = {
   varsler: [],
   faq: [],
   channelProps: {
-    telephone: {type: "telephone"},
-    chat: {type: "chat"},
-    tutor: {type: "tutor"},
-    write: {type: "write"},
-  }
+    isLoaded: false,
+    types: {
+      telephone: {type: "telephone"},
+      chat: {type: "chat"},
+      tutor: {type: "tutor"},
+      write: {type: "write"},
+    }
+  } as Channels,
 };
 
 export interface Store {
@@ -37,7 +40,7 @@ export interface Store {
   unleashFeatures: Features;
   varsler: Array<Alert>;
   faq: Array<FAQ>;
-  channelProps: Channels;
+  channelProps: Channels
 }
 
 export type Action =
@@ -120,11 +123,12 @@ export const reducer = (state: Store, action: Action) => {
         ...state,
         faq: action.payload
       };
-    case "SETT_CHANNEL_PROPS":{
+    case "SETT_CHANNEL_PROPS": {
       return {
         ...state,
         channelProps: action.payload
-      };}
+      };
+    }
     default:
       return state;
   }

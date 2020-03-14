@@ -81,9 +81,9 @@ const StengtMelding = () => (
 );
 
 const SkrivTilOssForside = () => {
-  const [{channelProps: {write: channelProps}}] = useStore();
+  const [{channelProps}] = useStore();
 
-  const isClosed = channelProps.closed;
+  const isClosed = channelProps.types.write.closed;
 
   return (
     <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenker={isClosed ? undefined : lenker}>
@@ -91,7 +91,7 @@ const SkrivTilOssForside = () => {
         {!isClosed && (
           <Normaltekst className={"svartid"}>
             <FormattedMessage id={"kontaktoss.svartid"}/>
-            {channelProps.answer_time}
+            {channelProps.types.write.answer_time}
           </Normaltekst>
         )}
         <Ingress/>

@@ -79,12 +79,14 @@ const App = () => {
       .then((channels: Array<ChannelProps>) => {
           dispatch({
             type: "SETT_CHANNEL_PROPS",
-            payload: channels
+            payload: {
+              isLoaded: true,
+              types: channels
               .reduce((acc, channel) => {
                 return {...acc,
                   [channel.type]: channel
                 }
-              }, {}) as Channels
+              }, {})} as Channels
           });
         }
       );
