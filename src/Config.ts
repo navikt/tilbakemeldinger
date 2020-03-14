@@ -6,7 +6,7 @@ import ApningsTider from "./utils/apningstider";
 export const forsidePath = "/person/kontakt-oss";
 export const noRedirectUrlSegment = "/test";
 
-const {tjenesteUrl, baseAppPath} = Environment();
+const { tjenesteUrl, baseAppPath } = Environment();
 const navUrl = Environment().baseUrl;
 
 interface Varsel {
@@ -97,7 +97,8 @@ export const urls = {
     saksoversikt: `${tjenesteUrl}/saksoversikt/`,
     postTilAnnenAdresse: `${navUrl}/no/nav-og-samfunn/kontakt-nav/vil-du-ha-post-fra-nav-til-en-annen-adresse2`,
     eosReglerSak: `${navUrl}/no/nav-og-samfunn/kontakt-nav/feiltolkning-av-eos-reglene`,
-    koronavirus: `${navUrl}/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav`
+    koronavirus: `${navUrl}/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav`,
+    koronaVirusDialog: `${navUrl}/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav/dialog-med-nav-i-forbindelse-med-koronaviruset`
   },
   veteraner: `${navUrl}/veteraner`,
   ringOss: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-nav-pa-telefon2`,
@@ -122,32 +123,32 @@ export const vars = {
   maksLengdeMelding: 10000,
   svartid: {
     skrivTilOss: 3,
-    kontaktVeileder: 2,
+    kontaktVeileder: 2
   },
   unleash: {
     timeout: 2000,
     features: {
       skrivTilOssEnabled: {
         name: "kontakt-oss.skriv-til-oss",
-        default: true,
+        default: true
       },
       visTekniskProblemMelding: {
         name: "kontakt-oss.teknisk-problem",
-        default: false,
+        default: false
       },
       skrivTilOssSvartidBit1: {
         name: "kontakt-oss.svartid1",
-        default: false,
+        default: false
       },
       skrivTilOssSvartidBit2: {
         name: "kontakt-oss.svartid2",
-        default: false,
+        default: false
       },
       skrivTilOssSvartidBit3: {
         name: "kontakt-oss.svartid3",
-        default: false,
+        default: false
       }
-    },
+    }
   },
   chatBot: {
     customerKey: "41155",
@@ -155,192 +156,191 @@ export const vars = {
       config: "chatbot-frida_config",
       openState: "chatbot-frida_apen",
       history: "chatbot-frida_historie",
-      mailTimeout: "chatbot-frida_mail-timeout",
+      mailTimeout: "chatbot-frida_mail-timeout"
     },
     temaConfigs: {
       [ChatTema.Jobbsoker]: {
         configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
-        queueKey: "Q_CHAT_BOT",
+        queueKey: "Q_CHAT_BOT"
       },
       [ChatTema.Syk]: {
         configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
-        queueKey: "Q_CHAT_SYK",
+        queueKey: "Q_CHAT_SYK"
       },
       [ChatTema.Familie]: {
         configId: "c3372a51-6434-4770-a0aa-6e4edba3471e",
-        queueKey: "Q_CHAT_BOT",
+        queueKey: "Q_CHAT_BOT"
       },
       [ChatTema.Ufor]: {
         configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
-        queueKey: "Q_CHAT_UFORE",
+        queueKey: "Q_CHAT_UFORE"
       },
       [ChatTema.Sosial]: {
         configId: "6564b567-b70b-48e1-b2c5-957c0bc624de",
-        queueKey: "Q_CHAT_BOT",
+        queueKey: "Q_CHAT_BOT"
       },
       [ChatTema.Okonomi]: {
         configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
-        queueKey: "Q_CHAT_GJELDSRADGIVNING",
+        queueKey: "Q_CHAT_GJELDSRADGIVNING"
       },
-      [ChatTema.EURES]: null,
-    },
-  },
+      [ChatTema.EURES]: null
+    }
+  }
 };
 
 export const apningsTider = {
-  [ChatTema.Jobbsoker]: new ApningsTider(
-    {
-      [Ukedager.Mandag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Tirsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Onsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Torsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Fredag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Lordag]: null,
-      [Ukedager.Sondag]: null,
-    }),
-  [ChatTema.Syk]: new ApningsTider(
-    {
-      [Ukedager.Mandag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Tirsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Onsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Torsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Fredag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Lordag]: null,
-      [Ukedager.Sondag]: null,
-    }),
-  [ChatTema.Familie]: new ApningsTider(
-    {
-      [Ukedager.Mandag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Tirsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Onsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Torsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Fredag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Lordag]: null,
-      [Ukedager.Sondag]: null,
-    }),
+  [ChatTema.Jobbsoker]: new ApningsTider({
+    [Ukedager.Mandag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Tirsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Onsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Torsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Fredag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Lordag]: null,
+    [Ukedager.Sondag]: null
+  }),
+  [ChatTema.Syk]: new ApningsTider({
+    [Ukedager.Mandag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Tirsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Onsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Torsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Fredag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Lordag]: null,
+    [Ukedager.Sondag]: null
+  }),
+  [ChatTema.Familie]: new ApningsTider({
+    [Ukedager.Mandag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Tirsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Onsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Torsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Fredag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Lordag]: null,
+    [Ukedager.Sondag]: null
+  }),
   [ChatTema.Ufor]: new ApningsTider(
     {
       [Ukedager.Mandag]: {
         start: "09.00",
-        end: "14.30",
+        end: "14.30"
       },
       [Ukedager.Tirsdag]: {
         start: "09.00",
-        end: "14.30",
+        end: "14.30"
       },
       [Ukedager.Onsdag]: {
         start: "09.00",
-        end: "14.30",
+        end: "14.30"
       },
       [Ukedager.Torsdag]: {
         start: "09.00",
-        end: "14.30",
+        end: "14.30"
       },
       [Ukedager.Fredag]: {
         start: "09.00",
-        end: "14.30",
+        end: "14.30"
       },
       [Ukedager.Lordag]: null,
-      [Ukedager.Sondag]: null,
-    }, [{
-      visFraDato: "06-03-2020",
-      datoer: {
-        "11-03-2020": null
+      [Ukedager.Sondag]: null
+    },
+    [
+      {
+        visFraDato: "06-03-2020",
+        datoer: {
+          "11-03-2020": null
+        }
       }
-    }]),
-  [ChatTema.Sosial]: new ApningsTider(
-    {
-      [Ukedager.Mandag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Tirsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Onsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Torsdag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Fredag]: {
-        start: "09.00",
-        end: "14.30",
-      },
-      [Ukedager.Lordag]: null,
-      [Ukedager.Sondag]: null,
-    }),
-  [ChatTema.Okonomi]: new ApningsTider(
-    {
-      [Ukedager.Mandag]: {
-        start: "10.00",
-        end: "15.00",
-      },
-      [Ukedager.Tirsdag]: {
-        start: "10.00",
-        end: "15.00",
-      },
-      [Ukedager.Onsdag]: {
-        start: "10.00",
-        end: "15.00",
-      },
-      [Ukedager.Torsdag]: {
-        start: "10.00",
-        end: "14.30",
-      },
-      [Ukedager.Fredag]: {
-        start: "10.00",
-        end: "15.00",
-      },
-      [Ukedager.Lordag]: null,
-      [Ukedager.Sondag]: null,
-    }),
+    ]
+  ),
+  [ChatTema.Sosial]: new ApningsTider({
+    [Ukedager.Mandag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Tirsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Onsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Torsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Fredag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Lordag]: null,
+    [Ukedager.Sondag]: null
+  }),
+  [ChatTema.Okonomi]: new ApningsTider({
+    [Ukedager.Mandag]: {
+      start: "10.00",
+      end: "15.00"
+    },
+    [Ukedager.Tirsdag]: {
+      start: "10.00",
+      end: "15.00"
+    },
+    [Ukedager.Onsdag]: {
+      start: "10.00",
+      end: "15.00"
+    },
+    [Ukedager.Torsdag]: {
+      start: "10.00",
+      end: "14.30"
+    },
+    [Ukedager.Fredag]: {
+      start: "10.00",
+      end: "15.00"
+    },
+    [Ukedager.Lordag]: null,
+    [Ukedager.Sondag]: null
+  })
 };

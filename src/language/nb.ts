@@ -372,8 +372,7 @@ export default {
     "Arbeidsavklaringspenger, dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
 
   "chat.syk.tittel": "Syk",
-  "chat.syk.ingressKort":
-    "Sykmeldt, sykepenger, yrkesskade/ménerstatning.",
+  "chat.syk.ingressKort": "Sykmeldt, sykepenger, yrkesskade/ménerstatning.",
   "chat.syk.ingress": "Chat med en veileder (hverdager 09.00–14.30).",
 
   "chat.familie.tittel": "Foreldre, barn og familie",
@@ -381,8 +380,7 @@ export default {
     "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger i livets sluttfase.",
 
   "chat.ufor.tittel": "Ufør",
-  "chat.ufor.ingressKort":
-    "Uføretrygd, barnetillegg, gjenlevendetillegg.",
+  "chat.ufor.ingressKort": "Uføretrygd, barnetillegg, gjenlevendetillegg.",
   "chat.ufor.ingress": "Chat med en veileder (hverdager 09.00–14.30).",
 
   "chat.sosialhjelp.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
@@ -424,15 +422,18 @@ export default {
   "apningstid.avvik.ringoss.lenke": "Åpningstider i julen",
 
   "finnkontor.tittel": "Søk opp NAV-kontor",
-  "finnkontor.ingress": "Mangler du elektronisk ID? Eller skal du finne NAV-kontor på vegne av noen andre?\n" +
+  "finnkontor.ingress":
+    "Mangler du elektronisk ID? Eller skal du finne NAV-kontor på vegne av noen andre?\n" +
     "Da kan du søke opp NAV-kontor ved hjelp av postnummer eller sted/by.",
   "finnkontor.sok.knapp": "Søk",
   "finnkontor.sok.label": "Skriv inn et postnummer eller sted/by",
-  "finnkontor.ugyldig.postnr": "Fant ingen NAV-kontor tilknyttet \"{nummer}\". Postnummeret kan være ugyldig.",
-  "finnkontor.query.feil": "Skriv inn minst {min} bokstaver eller et gyldig postnummer.",
+  "finnkontor.ugyldig.postnr":
+    'Fant ingen NAV-kontor tilknyttet "{nummer}". Postnummeret kan være ugyldig.',
+  "finnkontor.query.feil":
+    "Skriv inn minst {min} bokstaver eller et gyldig postnummer.",
   "finnkontor.query.feil.kort": "Skriv minst {min} bokstaver eller et postnr.",
-  "finnkontor.ingen.treff": "Ingen resultater for \"{query}\"",
+  "finnkontor.ingen.treff": 'Ingen resultater for "{query}"',
   "finnkontor.flere.treff": "Vis alle treff ({antall})",
-  "finnkontor.resultat.stedsnavn": "Søkeresultat for \"{query}\" ({antall}):",
+  "finnkontor.resultat.stedsnavn": 'Søkeresultat for "{query}" ({antall}):',
   "finnkontor.resultat.postnr": "NAV-kontor for "
 };
