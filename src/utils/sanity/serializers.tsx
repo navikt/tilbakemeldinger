@@ -41,18 +41,23 @@ export type TextWithMarks = {
   text: string
 }
 
-type BlockProps = {
-  node: TextBlock,
+export type LenkeData = {
+  link: string,
+  link_text: TextBlock[]
 }
 
-const blockSerializer = (block: BlockProps) => {
+const blockSerializer = (block: { node: TextBlock }) => {
   const TypoComponent = typoComponents[block.node.style];
 
   return (
     <TypoComponent>
-      {block.node.children.reduce((acc, textWithMarks) => acc+textWithMarks.text, "")}
+      {block.node.children.reduce((acc, textWithMarks) => acc + textWithMarks.text, "")}
     </TypoComponent>
   )
+};
+
+const lenkePanelSerializer = (lenke: LenkeData) => {
+  return null;
 };
 
 export const serializers = {

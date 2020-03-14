@@ -1,10 +1,11 @@
-import { TextBlock } from "../serializers";
+import { LenkeData, TextBlock } from "../serializers";
 
 export type ChannelProps = {
   type: string
   answer_time?: string,
   closed?: boolean,
-  description?: TextBlock[]
+  description?: TextBlock[],
+  themes?: Theme[]
 }
 
 export type Channels = {
@@ -12,4 +13,9 @@ export type Channels = {
   chat: ChannelProps,
   tutor: ChannelProps,
   write: ChannelProps
+}
+
+type Theme = {
+  title: string,
+  link: LenkeData
 }
