@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@navikt/nav-chatbot": "^1.1.8",
+    "@sanity/block-content-to-react": "^2.0.7",
     "@types/js-cookie": "^2.2.4",
     "@types/lodash": "^4.14.149",
     "@types/moment-timezone": "^0.5.12",

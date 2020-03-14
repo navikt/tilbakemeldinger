@@ -16,9 +16,10 @@ import KlageOgTilbakemeldinger from "./sections/KlageOgTilbakemeldinger";
 import KontaktVeileder from "./sections/KontaktVeileder";
 import Pressekontakt from "./sections/Pressekontakt";
 import SosialeMedier from "./sections/SosialeMedier";
-import { VarselPanel } from "../../components/varsler/VarselPanel";
 import { useStore } from "../../providers/Provider";
 import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
+import BlockContent from "@sanity/block-content-to-react";
+import { serializers } from "../../utils/sanity/serializers";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
@@ -57,8 +58,9 @@ const KontaktOssFrontpage = () => {
             </div>
           </header>
           <KoronaVirusVarsel/>
-          {varsler.map(varsel =>
-            <VarselPanel tekst={varsel.tekst} type={varsel.type}/>)}
+          {varsler.map((varsel, index) =>
+            <BlockContent blocks={varsel} serializers={serializers} key={index}/>
+          )}
           <div className="frontpage__content">
             <Chat/>
             <div className="frontpage__row">

@@ -1,0 +1,754 @@
+[
+  {
+    "_createdAt": "2020-03-13T09:52:51Z",
+    "_id": "00f3d255-f67c-4d6f-9ea4-5a0b3db65393",
+    "_rev": "rmWzzr2BwZU43esqF1IzEa",
+    "_type": "channel",
+    "_updatedAt": "2020-03-13T11:35:48Z",
+    "answer_time": "3 arbeidsdager",
+    "closed": true,
+    "type": "telephone"
+  },
+  {
+    "_createdAt": "2020-03-13T11:37:11Z",
+    "_id": "89d710e2-941c-47df-9834-ff312f6bbcd4",
+    "_rev": "ZFNhHaMTICP52SGDpffNfy",
+    "_type": "channel",
+    "_updatedAt": "2020-03-13T14:11:29Z",
+    "answer_time": "2 arbeidsdager",
+    "description": [
+      {
+        "_key": "59c752488e7b",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "59c752488e7b0",
+            "_type": "span",
+            "marks": [],
+            "text": "Du må være registrert som arbeidssøker for å kontakte veilederen din."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "themes": [],
+    "type": "tutor"
+  },
+  {
+    "_createdAt": "2020-03-13T09:53:04Z",
+    "_id": "8dbf4a16-2023-49aa-b649-6932f4a16b85",
+    "_rev": "VkmmBYVNQm7yFO9OvmmtgX",
+    "_type": "channel",
+    "_updatedAt": "2020-03-13T14:11:36Z",
+    "answer_time": "3 arbeidsdager",
+    "closed": false,
+    "description": [
+      {
+        "_key": "29e78e310f93",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "29e78e310f930",
+            "_type": "span",
+            "marks": [],
+            "text": "'Skriv til oss' er et sikkert alternativ til e-post."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "themes": [
+      {
+        "_key": "03debc4bdfa7",
+        "_type": "theme",
+        "link": {
+          "_type": "link_panel",
+          "link": "https://tjenester.nav.no/mininnboks/sporsmal/skriv/ARBD",
+          "link_text": [
+            {
+              "_key": "90b7fc08332a",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "90b7fc08332a0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Dagpenger, arbeidsavklaringspenger, tiltakspenger, melde deg som jobbsøker, CV."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        "title": "Jobbsøker"
+      },
+      {
+        "_key": "faf24dd5e15b",
+        "_type": "theme",
+        "link": {
+          "_type": "link_panel",
+          "link": "https://tjenester.nav.no/mininnboks/sporsmal/skriv/ARBD",
+          "link_text": [
+            {
+              "_key": "8e40d2347e39",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "8e40d2347e390",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Sykmeldt, sykepenger, arbeidsavklaringspenger, yrkesskade/ménerstatning."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        "title": "Syk"
+      },
+      {
+        "_key": "10b19bc2896e",
+        "_type": "theme",
+        "link": {
+          "_type": "link_panel",
+          "link": "https://tjenester.nav.no/mininnboks/sporsmal/skriv/FMLI",
+          "link_text": [
+            {
+              "_key": "ddb865af6ce1",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "ddb865af6ce10",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Foreldrepenger, overgangsstønad, kontantstøtte, svangerskapspenger, barnetrygd, barnebidrag, pleiepenger."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        "title": "Foreldre, barn og familie"
+      },
+      {
+        "_key": "90c46d2839d9",
+        "_type": "theme",
+        "link": {
+          "_type": "link_panel",
+          "link": "https://tjenester.nav.no/mininnboks/sporsmal/skriv/UFRT",
+          "link_text": [
+            {
+              "_key": "8b564f77093e",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "8b564f77093e0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Uføretrygd, barnetillegg og gjenlevendetillegg."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        "title": "Ufør"
+      },
+      {
+        "_key": "8c83bff15251",
+        "_type": "theme",
+        "link": {
+          "_type": "link_panel",
+          "link": "https://tjenester.nav.no/mininnboks/sporsmal/skriv/PENS",
+          "link_text": [
+            {
+              "_key": "7fe4faf7afcf",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "7fe4faf7afcf0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Alderspensjon, barnepensjon, etterlattepensjon, krigspensjon, AFP fra Statens pensjonskasse mellom 62 og 65 år, AFP i privat sektor."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        "title": "Pensjonist"
+      },
+      {
+        "_key": "629009a193e5",
+        "_type": "theme",
+        "link": {
+          "_type": "link_panel",
+          "link": "https://www.nav.no/person/kontakt-oss/skriv-til-oss/hjelpemidler",
+          "link_text": [
+            {
+              "_key": "5ac546bbe940",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "5ac546bbe9400",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk, tilrettelegging og tilpasning."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        "title": "Hjelpemidler"
+      }
+    ],
+    "type": "write"
+  },
+  {
+    "_createdAt": "2020-03-13T09:52:44Z",
+    "_id": "c24b6e05-6a9f-4553-b3f2-14722e87cf19",
+    "_rev": "ZFNhHaMTICP52SGDpffLhw",
+    "_type": "channel",
+    "_updatedAt": "2020-03-13T14:06:36Z",
+    "closed": false,
+    "description": [
+      {
+        "_key": "cd165636e863",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "cd165636e8630",
+            "_type": "span",
+            "marks": [],
+            "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ],
+    "themes": [
+      {
+        "_key": "13d4af5f9e70",
+        "_type": "theme",
+        "description": [
+          {
+            "_key": "eddbf870ba79",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "eddbf870ba790",
+                "_type": "span",
+                "marks": [],
+                "text": "Du møter først en chatbot, men kan bli satt videre til chat med en veileder (hverdager 09.00–14.30)."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "59e23ed6ffe1",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "59e23ed6ffe10",
+                "_type": "span",
+                "marks": [],
+                "text": "Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "d200ca3838f6",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "d200ca3838f60",
+                "_type": "span",
+                "marks": [],
+                "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "link": {
+          "_type": "link_panel",
+          "link": "https://www.nav.no/person/kontakt-oss/chat/jobbsoker",
+          "link_text": [
+            {
+              "_key": "5f6732bffddb",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "5f6732bffddb0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Arbeidsavklaringspenger, dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        "title": "Jobbsøker"
+      },
+      {
+        "_key": "b6fe6e5cb564",
+        "_type": "theme",
+        "description": [
+          {
+            "_key": "c1e478ce6e81",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "c1e478ce6e810",
+                "_type": "span",
+                "marks": [],
+                "text": "Chat med en veileder (hverdager 09.00–14.30)."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "cb62a4896567",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "cb62a48965670",
+                "_type": "span",
+                "marks": [],
+                "text": "Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "c5815105a53c",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "c5815105a53c0",
+                "_type": "span",
+                "marks": [],
+                "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "link": {
+          "_type": "link_panel",
+          "link": "https://www.nav.no/person/kontakt-oss/chat/syk",
+          "link_text": [
+            {
+              "_key": "488e772d6776",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "488e772d67760",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Sykmeldt, sykepenger, yrkesskade/ménerstatning."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        "title": "Syk"
+      },
+      {
+        "_key": "cfb801eccd25",
+        "_type": "theme",
+        "description": [
+          {
+            "_key": "1a0e98e2881e",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "1a0e98e2881e0",
+                "_type": "span",
+                "marks": [],
+                "text": "Du møter først en chatbot, men kan bli satt videre til chat med en veileder (hverdager 09.00–14.30)."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "0b4839a79790",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "0b4839a797900",
+                "_type": "span",
+                "marks": [],
+                "text": "Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "dfc2ee14272c",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "dfc2ee14272c0",
+                "_type": "span",
+                "marks": [],
+                "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "link": {
+          "_type": "link_panel",
+          "link": "https://www.nav.no/person/kontakt-oss/chat/familie",
+          "link_text": [
+            {
+              "_key": "a804ae9aee6d",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "a804ae9aee6d0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger i livets sluttfase."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        "title": "Foreldre, barn og familie"
+      },
+      {
+        "_key": "3a3bb1421b6f",
+        "_type": "theme",
+        "description": [
+          {
+            "_key": "ab87be69cbc5",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "ab87be69cbc50",
+                "_type": "span",
+                "marks": [],
+                "text": "Chat med en veileder (hverdager 09.00–14.30)."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "7240260c55a3",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "7240260c55a30",
+                "_type": "span",
+                "marks": [],
+                "text": "Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "4d3f912c090c",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "4d3f912c090c0",
+                "_type": "span",
+                "marks": [],
+                "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "link": {
+          "_type": "link_panel",
+          "link": "https://www.nav.no/person/kontakt-oss/chat/ufor",
+          "link_text": [
+            {
+              "_key": "b4ee054bc4f9",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "b4ee054bc4f90",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Uføretrygd, barnetillegg, gjenlevendetillegg."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        "title": "Ufør"
+      },
+      {
+        "_key": "4c46d0bef7a7",
+        "_type": "theme",
+        "description": [
+          {
+            "_key": "5bae5268a7a7",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "5bae5268a7a70",
+                "_type": "span",
+                "marks": [],
+                "text": "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "link": {
+          "_type": "link_panel",
+          "link": "https://www.nav.no/person/kontakt-oss/chat/sosialhjelp",
+          "link_text": [
+            {
+              "_key": "883acd86d424",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "883acd86d4240",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Sosiale tjenester og økonomisk sosialhjelp"
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        "title": "Sosiale tjenester og økonomisk sosialhjelp"
+      },
+      {
+        "_key": "2b74eef6a207",
+        "_type": "theme",
+        "description": [
+          {
+            "_key": "c25fffc99fa0",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "c25fffc99fa00",
+                "_type": "span",
+                "marks": [],
+                "text": "Vi svarer deg på spørsmål om budsjett, økonomi og gjeldsrådgivning. Dine spørsmål blir besvart av erfarne gjeldsrådgivere."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "934ae00597a0",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "934ae00597a00",
+                "_type": "span",
+                "marks": [],
+                "text": "Vi har ikke tilgang til å se dine utbetalinger, eller personlige opplysninger som gjelder dine saker hos NAV."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "6e216690c197",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "6e216690c1970",
+                "_type": "span",
+                "marks": [],
+                "text": "Våre rådgivere er tilgjengelige på hverdager 10.00–15.00 (14.30 torsdager)."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "3d13c57d5612",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "3d13c57d56120",
+                "_type": "span",
+                "marks": [],
+                "text": "Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "313dc0052139",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "313dc00521390",
+                "_type": "span",
+                "marks": [],
+                "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "link": {
+          "_type": "link_panel",
+          "link": "https://www.nav.no/person/kontakt-oss/chat/okonomi",
+          "link_text": [
+            {
+              "_key": "32ca915163e1",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "32ca915163e10",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "Budsjett, økonomi, gjeldsrådgivning."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        "title": "Økonomi og gjeldsrådgivning"
+      },
+      {
+        "_key": "270ad9201431",
+        "_type": "theme",
+        "description": [
+          {
+            "_key": "9159c77f1330",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "9159c77f13300",
+                "_type": "span",
+                "marks": [],
+                "text": "Arbeidssøker: Spør oss om arbeid og opphold i EU/EØS og Sveits, eller om jobb i Norge hvis du er en arbeidssøker fra EU/EØS og Sveits."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "659431b0455c",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "659431b0455c0",
+                "_type": "span",
+                "marks": [],
+                "text": "Arbeidsgiver: Spør oss om rekruttering fra EU/EØS og Sveits."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "69359342e566",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "69359342e5660",
+                "_type": "span",
+                "marks": [],
+                "text": "Chatten foregår på Den europeiske jobbmobilitetsportalen. Åpningstider varierer fra land til land, hovedsaklig ca. 10–14 på fredager."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "75891588a999",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "75891588a9990",
+                "_type": "span",
+                "marks": [],
+                "text": "Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "cdc8e63c8cbc",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "cdc8e63c8cbc0",
+                "_type": "span",
+                "marks": [],
+                "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ],
+        "link": {
+          "_type": "link_panel",
+          "link": "https://www.nav.no/person/kontakt-oss/chat/eures",
+          "link_text": [
+            {
+              "_key": "ce29ca118c2f",
+              "_type": "block",
+              "children": [
+                {
+                  "_key": "ce29ca118c2f0",
+                  "_type": "span",
+                  "marks": [],
+                  "text": "EURES svarer på spørsmål fra jobbsøkere og arbeidsgivere om arbeid og opphold i EU/EØS og Sveits."
+                }
+              ],
+              "markDefs": [],
+              "style": "normal"
+            }
+          ]
+        },
+        "title": "Spør EURES om jobb og rekruttering i i EØS-området"
+      }
+    ],
+    "type": "chat"
+  }
+]

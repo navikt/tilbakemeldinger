@@ -2,9 +2,9 @@
   {
     "_createdAt": "2020-03-12T15:45:08Z",
     "_id": "4a1e55e6-643b-453b-8c95-423311c6cf83",
-    "_rev": "rmWzzr2BwZU43esqF1GdIC",
+    "_rev": "rmWzzr2BwZU43esqF1LFJO",
     "_type": "alert",
-    "_updatedAt": "2020-03-13T08:05:13Z",
+    "_updatedAt": "2020-03-13T15:05:15Z",
     "description": [
       {
         "_key": "f9ff37bf3b48",
@@ -21,6 +21,30 @@
         "style": "normal"
       }
     ],
-    "type": "feil"
+    "type": "info"
+  },
+  {
+    "_createdAt": "2020-03-13T21:15:40Z",
+    "_id": "96b3ebeb-f6b3-452c-a034-a90a3bad7292",
+    "_rev": "rmWzzr2BwZU43esqF1OsC8",
+    "_type": "alert",
+    "_updatedAt": "2020-03-13T21:15:56Z",
+    "description": [
+      {
+        "_key": "580538b6faec",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "580538b6faec0",
+            "_type": "span",
+            "marks": [],
+            "text": "Test McTestface"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      }
+    ],
+    "type": "suksess"
   }
 ]

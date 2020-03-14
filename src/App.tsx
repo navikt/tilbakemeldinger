@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { FormattedMessage } from "react-intl";
-import AlertStripe from "nav-frontend-alertstriper";
 import Tilbakemeldinger from "./pages/tilbakemeldinger/Tilbakemeldinger";
 import Ros from "./pages/tilbakemeldinger/ros-til-nav/Ros";
 import PageNotFound from "./pages/404/404";
@@ -9,7 +7,7 @@ import FeilOgMangler from "./pages/tilbakemeldinger/feil-og-mangler/FeilOgMangle
 import {
   fetchAuthInfo,
   fetchKontaktInfo,
-  fetchFodselsnr, fetchAlerts, fetchFaq
+  fetchFodselsnr, fetchAlerts, fetchFaq, fetchChannelInfo
 } from "./clients/apiClient";
 import { useStore } from "./providers/Provider";
 import { AuthInfo } from "./types/authInfo";
@@ -22,20 +20,21 @@ import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOss";
 import SkrivTilOssRouter from "./pages/skriv-til-oss/SkrivTilOssRouter";
 import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
-import { forsidePath, urls, vars } from "./Config";
+import { forsidePath, urls } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
 import FinnNavKontorPage from "./pages/finn-nav-kontor/FinnNavKontorPage";
-import { Alert, AlertJson, jsonToAlert } from "./types/alert";
-import { FAQ } from "./types/faq";
+import { FAQ } from "./utils/sanity/endpoints/faq";
+import { Alert } from "./utils/sanity/endpoints/alert";
+import { ChannelProps, Channels } from "./utils/sanity/endpoints/channel";
 
 const App = () => {
-  const [{ auth, unleashFeatures }, dispatch] = useStore();
+  const [{auth}, dispatch] = useStore();
 
   useEffect(() => {
     if (!auth.authenticated) {
       fetchAuthInfo()
         .then((authInfo: AuthInfo) => {
-          dispatch({ type: "SETT_AUTH_RESULT", payload: authInfo });
+          dispatch({type: "SETT_AUTH_RESULT", payload: authInfo});
           if (authInfo.authenticated) {
             fetchKontaktInfo()
               .then((kontaktInfo: KontaktInfo) =>
@@ -59,13 +58,10 @@ const App = () => {
     }
 
     fetchAlerts()
-      .then((alertsJson: Array<AlertJson>) => {
+      .then((alertsJson: Array<Alert>) => {
           dispatch({
             type: "SETT_ALERTS",
-            payload: alertsJson.reduce((acc, json) => {
-              const alert = jsonToAlert(json);
-              return alert ? acc.concat(alert) : acc;
-            }, [] as Array<Alert>)
+            payload: alertsJson
           });
         }
       );
@@ -74,24 +70,29 @@ const App = () => {
       .then((faqJson: Array<FAQ>) => {
           dispatch({
             type: "SETT_FAQ",
-            payload: faqJson
-              .map(faqJson => faqJson as FAQ)
-              .sort((a, b) => b.priority - a.priority),
+            payload: faqJson.sort((a, b) => b.priority - a.priority),
+          });
+        }
+      );
+
+    fetchChannelInfo()
+      .then((channels: Array<ChannelProps>) => {
+          dispatch({
+            type: "SETT_CHANNEL_PROPS",
+            payload: channels
+              .reduce((acc, channel) => {
+                return {...acc,
+                  [channel.type]: channel
+                }
+              }, {}) as Channels
           });
         }
       );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const visTekniskProblemMelding = unleashFeatures[vars.unleash.features.visTekniskProblemMelding.name];
-
   return (
     <>
-      {visTekniskProblemMelding && (
-        <AlertStripe type="feil" className="teknisk-problem-stripe">
-          <FormattedMessage id="teknisk-problem" />
-        </AlertStripe>
-      )}
       <Router>
         <ScrollToTop>
           <Switch>
@@ -150,7 +151,7 @@ const App = () => {
               path={urls.samegiella.samtale}
               component={BestillingAvSamtale}
             />
-            <Route component={PageNotFound} />
+            <Route component={PageNotFound}/>
           </Switch>
         </ScrollToTop>
       </Router>

@@ -5,8 +5,9 @@ import sprak from "../language/provider";
 import { Enheter, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../components/error/Error";
 import Unleash, { Features } from "../utils/unleash";
-import { Alert } from "../types/alert";
-import { FAQ } from "../types/faq";
+import { Alert } from "../utils/sanity/endpoints/alert";
+import { FAQ } from "../utils/sanity/endpoints/faq";
+import { Channels } from "../utils/sanity/endpoints/channel";
 
 export const initialState = {
   fodselsnr: "",
@@ -17,7 +18,13 @@ export const initialState = {
   kontaktInfo: {mobiltelefonnummer: ""},
   unleashFeatures: Unleash.getFeatureDefaults() as Features,
   varsler: [],
-  faq: []
+  faq: [],
+  channelProps: {
+    telephone: {type: "telephone"},
+    chat: {type: "chat"},
+    tutor: {type: "tutor"},
+    write: {type: "write"},
+  }
 };
 
 export interface Store {
@@ -30,6 +37,7 @@ export interface Store {
   unleashFeatures: Features;
   varsler: Array<Alert>;
   faq: Array<FAQ>;
+  channelProps: Channels;
 }
 
 export type Action =
@@ -59,6 +67,9 @@ export type Action =
 } | {
   type: "SETT_FAQ";
   payload: Array<FAQ>;
+} | {
+  type: "SETT_CHANNEL_PROPS";
+  payload: Channels;
 };
 
 export const reducer = (state: Store, action: Action) => {
@@ -109,6 +120,11 @@ export const reducer = (state: Store, action: Action) => {
         ...state,
         faq: action.payload
       };
+    case "SETT_CHANNEL_PROPS":{
+      return {
+        ...state,
+        channelProps: action.payload
+      };}
     default:
       return state;
   }
