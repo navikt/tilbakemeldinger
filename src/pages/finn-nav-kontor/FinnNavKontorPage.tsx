@@ -8,12 +8,17 @@ import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import { ResultatvisningVedSubmit } from "./components/ResultatvisningVedSubmit";
 import { ResultatvisningDynamisk } from "./components/ResultatvisningDynamisk";
-import { kjorSokOgReturnerResultat, minQueryLength, SokeResultat } from "./FinnNavKontorSok";
+import {
+  kjorSokOgReturnerResultat,
+  minQueryLength,
+  SokeResultat
+} from "./FinnNavKontorSok";
+import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
 
 const cssPrefix = "finn-kontor";
 
 const FinnNavKontorPage = () => {
-  const tittel = useIntl().formatMessage({id: "finnkontor.tittel"});
+  const tittel = useIntl().formatMessage({ id: "finnkontor.tittel" });
   const documentTitle = `${tittel} - www.nav.no`;
   useEffect(() => {
     document.title = documentTitle;
@@ -21,31 +26,51 @@ const FinnNavKontorPage = () => {
 
   const [inputElement, setInputElement] = useState<HTMLInputElement>();
   const [sokeResultat, setSokeResultat] = useState<SokeResultat | null>();
-  const [sokeResultatDynamisk, setSokeResultatDynamisk] = useState<SokeResultat | null>();
+  const [
+    sokeResultatDynamisk,
+    setSokeResultatDynamisk
+  ] = useState<SokeResultat | null>();
 
   return (
     <div className={`${cssPrefix} pagecontent`}>
-      <BreadcrumbsWrapper/>
+      <BreadcrumbsWrapper />
 
       <div className={`${cssPrefix}__header`}>
         <Sidetittel>
-          <FormattedMessage id={"finnkontor.tittel"}/>
+          <FormattedMessage id={"finnkontor.tittel"} />
         </Sidetittel>
         <Normaltekst className={`${cssPrefix}__ingress`}>
-          <FormattedMessage id={"finnkontor.ingress"}/>
+          <FormattedMessage id={"finnkontor.ingress"} />
         </Normaltekst>
       </div>
+
+      <KoronaVirusVarsel
+        innhold={{
+          tittel: <>{"Koronavirus"}</>,
+          ingress: (
+            <>
+              {`For å forhindre spredning av koronaviruset er besøk på NAV-kontoret
+                nå erstattet med at du kan ta kontakt i digitale kanaler.
+                Hvis du er i en krisesituasjon kan du ringe å få en få time hos NAV-kontoret.`}
+            </>
+          ),
+          datoTid: "14.03.2020, kl. 12.00",
+          href:
+            "https://www.nav.no/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav/dialog-med-nav-i-forbindelse-med-koronaviruset"
+        }}
+      />
 
       <div className={`${cssPrefix}__innhold`}>
         <Form
           onSubmit={() => {
-            inputElement && setSokeResultat(kjorSokOgReturnerResultat(inputElement.value));
+            inputElement &&
+              setSokeResultat(kjorSokOgReturnerResultat(inputElement.value));
             setSokeResultatDynamisk(null);
           }}
           className={`${cssPrefix}__input-gruppe`}
         >
           <Label htmlFor={"finn-kontor-input-id"}>
-            <FormattedMessage id={"finnkontor.sok.label"}/>
+            <FormattedMessage id={"finnkontor.sok.label"} />
           </Label>
           <div className={`${cssPrefix}__input-og-knapp`}>
             <Input
@@ -55,7 +80,11 @@ const FinnNavKontorPage = () => {
               autoFocus={true}
               autoComplete={"off"}
               onFocus={e => setInputElement(e.target)}
-              onChange={e => setSokeResultatDynamisk(kjorSokOgReturnerResultat(e.target.value))}
+              onChange={e =>
+                setSokeResultatDynamisk(
+                  kjorSokOgReturnerResultat(e.target.value)
+                )
+              }
               onKeyDown={e => e.key === "Escape" && e.currentTarget.blur()}
             />
             <Knapp
@@ -65,24 +94,25 @@ const FinnNavKontorPage = () => {
               mini={true}
               id={"finn-kontor-knapp-id"}
             >
-              <FormattedMessage id={"finnkontor.sok.knapp"}/>
+              <FormattedMessage id={"finnkontor.sok.knapp"} />
             </Knapp>
           </div>
 
-          {sokeResultatDynamisk && sokeResultatDynamisk.query.length >= minQueryLength && (
-            <div
-              className={`${cssPrefix}__preview-container`}
-              id={"preview-container-id"}
-              tabIndex={-1}
-            >
-              <ResultatvisningDynamisk resultat={sokeResultatDynamisk}/>
-            </div>
-          )}
+          {sokeResultatDynamisk &&
+            sokeResultatDynamisk.query.length >= minQueryLength && (
+              <div
+                className={`${cssPrefix}__preview-container`}
+                id={"preview-container-id"}
+                tabIndex={-1}
+              >
+                <ResultatvisningDynamisk resultat={sokeResultatDynamisk} />
+              </div>
+            )}
         </Form>
 
         {sokeResultat && (
           <div className={`${cssPrefix}__resultat-container`}>
-            <ResultatvisningVedSubmit resultat={sokeResultat}/>
+            <ResultatvisningVedSubmit resultat={sokeResultat} />
           </div>
         )}
       </div>
