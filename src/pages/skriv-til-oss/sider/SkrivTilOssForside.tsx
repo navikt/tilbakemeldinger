@@ -8,6 +8,7 @@ import { Normaltekst } from "nav-frontend-typografi";
 import { urls } from "../../../Config";
 import AlertStripe from "nav-frontend-alertstriper";
 import { useStore } from "../../../providers/Provider";
+import { Language } from "../../../utils/sanity/serializers";
 
 const lenker: LenkepanelData[] = [
   {
@@ -84,6 +85,7 @@ const SkrivTilOssForside = () => {
   const [{channelProps}] = useStore();
 
   const isClosed = channelProps.types.write.closed;
+  const svartid = channelProps.types.write.answer_time;
 
   return (
     <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenker={isClosed ? undefined : lenker}>
@@ -91,7 +93,7 @@ const SkrivTilOssForside = () => {
         {!isClosed && (
           <Normaltekst className={"svartid"}>
             <FormattedMessage id={"kontaktoss.svartid"}/>
-            {channelProps.types.write.answer_time}
+            {svartid && svartid[Language.Bokmaal]}
           </Normaltekst>
         )}
         <Ingress/>

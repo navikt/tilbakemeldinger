@@ -1,6 +1,7 @@
+import { LocaleLink, LocaleString } from "../serializers";
 
 export type FAQ = {
-  lenke: string,
-  tittel: string,
+  lenke: LocaleLink,
+  tittel: LocaleString,
   priority: number
 };

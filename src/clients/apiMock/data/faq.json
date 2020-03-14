@@ -2,81 +2,129 @@
   {
     "_createdAt": "2020-03-13T08:24:35Z",
     "_id": "15b1d822-9f6a-498d-b7d6-03f7ccbfa676",
-    "_rev": "ZFNhHaMTICP52SGDpffmOI",
+    "_rev": "rmWzzr2BwZU43esqF1UBg6",
     "_type": "faq",
-    "_updatedAt": "2020-03-13T14:48:07Z",
-    "lenke": "https://tjenester-q1.nav.no/utbetalingsoversikt",
+    "_updatedAt": "2020-03-14T14:24:24Z",
+    "lenke": {
+      "_type": "localeUrl",
+      "nb": "https://tjenester.nav.no/utbetalingsoversikt"
+    },
     "priority": 90,
-    "tittel": "Sjekk utbetalingene dine"
+    "tittel": {
+      "_type": "localeString",
+      "nb": "Sjekk utbetalingene dine"
+    }
   },
   {
     "_createdAt": "2020-03-13T08:26:41Z",
     "_id": "194d4b6b-a197-44f0-bf10-7fa5919e7579",
-    "_rev": "ZFNhHaMTICP52SGDpffp5c",
+    "_rev": "VkmmBYVNQm7yFO9Ovmx6Th",
     "_type": "faq",
-    "_updatedAt": "2020-03-13T14:50:16Z",
-    "lenke": "https://www-q1.nav.no/no/nav-og-samfunn/kontakt-nav/utbetalinger",
+    "_updatedAt": "2020-03-14T14:25:14Z",
+    "lenke": {
+      "_type": "localeUrl",
+      "nb": "https://www.nav.no/no/nav-og-samfunn/kontakt-nav/utbetalinger"
+    },
     "priority": 60,
-    "tittel": "Utbetalingsdatoer"
+    "tittel": {
+      "_type": "localeString",
+      "nb": "Utbetalingsdatoer"
+    }
   },
   {
     "_createdAt": "2020-03-13T08:26:33Z",
     "_id": "2ab0e76b-015c-4264-a87b-311897c43f06",
-    "_rev": "ZFNhHaMTICP52SGDpffmv0",
+    "_rev": "ZFNhHaMTICP52SGDpfn29I",
     "_type": "faq",
-    "_updatedAt": "2020-03-13T14:48:28Z",
-    "lenke": "https://www-q1.nav.no/no/nav-og-samfunn/kontakt-nav/feiltolkning-av-eos-reglene",
+    "_updatedAt": "2020-03-14T14:25:04Z",
+    "lenke": {
+      "_type": "localeUrl",
+      "nb": "https://www.nav.no/no/nav-og-samfunn/kontakt-nav/feiltolkning-av-eos-reglene"
+    },
     "priority": 70,
-    "tittel": "Feiltolking av EØS-reglene"
+    "tittel": {
+      "_type": "localeString",
+      "nb": "Feiltolking av EØS-reglene"
+    }
   },
   {
     "_createdAt": "2020-03-13T08:25:57Z",
     "_id": "40624606-3294-4fb7-a56d-af7db59d0448",
-    "_rev": "rmWzzr2BwZU43esqF1Ku0K",
+    "_rev": "rmWzzr2BwZU43esqF1UC1U",
     "_type": "faq",
-    "_updatedAt": "2020-03-13T14:48:22Z",
-    "lenke": "https://tjenester-q1.nav.no/saksoversikt",
+    "_updatedAt": "2020-03-14T14:24:53Z",
+    "lenke": {
+      "_type": "localeUrl",
+      "nb": "https://tjenester.nav.no/saksoversikt"
+    },
     "priority": 80,
-    "tittel": "Hvordan går det med saken min?"
+    "tittel": {
+      "_type": "localeString",
+      "nb": "Hvordan går det med saken min?"
+    }
   },
   {
     "_createdAt": "2020-03-13T08:28:43Z",
     "_id": "7b604115-d13c-4f54-867f-a12ca6e4fc7c",
-    "_rev": "VkmmBYVNQm7yFO9OvmnUy1",
+    "_rev": "rmWzzr2BwZU43esqF1UCRo",
     "_type": "faq",
-    "_updatedAt": "2020-03-13T14:50:25Z",
-    "lenke": "https://www-q1.nav.no/person/personopplysninger#utbetaling",
+    "_updatedAt": "2020-03-14T14:25:33Z",
+    "lenke": {
+      "_type": "localeUrl",
+      "nb": "https://www.nav.no/person/personopplysninger#utbetaling"
+    },
     "priority": 40,
-    "tittel": "Endre kontonummer"
+    "tittel": {
+      "_type": "localeString",
+      "nb": "Endre kontonummer"
+    }
   },
   {
     "_createdAt": "2020-03-13T08:21:39Z",
     "_id": "866f06c7-0f0f-4a46-b95d-1ecb7de0e7e8",
-    "_rev": "ZFNhHaMTICP52SGDpffmTK",
+    "_rev": "rmWzzr2BwZU43esqF1UBSw",
     "_type": "faq",
-    "_updatedAt": "2020-03-13T14:48:10Z",
-    "lenke": "https://www-q1.nav.no/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav",
+    "_updatedAt": "2020-03-14T14:24:10Z",
+    "lenke": {
+      "_type": "localeUrl",
+      "nb": "https://www.nav.no/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav"
+    },
     "priority": 100,
-    "tittel": "Koronavirus – informasjon fra NAV"
+    "tittel": {
+      "_type": "localeString",
+      "nb": "Koronavirus – informasjon fra NAV"
+    }
   },
   {
     "_createdAt": "2020-03-13T08:29:13Z",
     "_id": "997b2270-770d-4c6c-97f6-ca354035cc16",
-    "_rev": "ZFNhHaMTICP52SGDpffpR0",
+    "_rev": "VkmmBYVNQm7yFO9Ovmx72v",
     "_type": "faq",
-    "_updatedAt": "2020-03-13T14:50:29Z",
-    "lenke": "https://www-q1.nav.no/no/nav-og-samfunn/kontakt-nav/vil-du-ha-post-fra-nav-til-en-annen-adresse2",
+    "_updatedAt": "2020-03-14T14:26:03Z",
+    "lenke": {
+      "_type": "localeUrl",
+      "nb": "https://www.nav.no/no/nav-og-samfunn/kontakt-nav/vil-du-ha-post-fra-nav-til-en-annen-adresse2"
+    },
     "priority": 30,
-    "tittel": "Vil du ha NAV-post til en annen adresse?"
+    "tittel": {
+      "_type": "localeString",
+      "nb": "Vil du ha NAV-post til en annen adresse?"
+    }
   },
   {
     "_createdAt": "2020-03-13T08:28:27Z",
     "_id": "ef224651-d4b0-47d5-809c-a4a62c5f9391",
-    "_rev": "ZFNhHaMTICP52SGDpffpDA",
+    "_rev": "VkmmBYVNQm7yFO9Ovmx6aP",
     "_type": "faq",
-    "_updatedAt": "2020-03-13T14:50:20Z",
-    "lenke": "https://www-q1.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav",
+    "_updatedAt": "2020-03-14T14:25:23Z",
+    "lenke": {
+      "_type": "localeUrl",
+      "nb": "https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav"
+    },
     "priority": 50,
-    "tittel": "Saksbehandlingstider"
+    "tittel": {
+      "_type": "localeString",
+      "nb": "Saksbehandlingstider"
+    }
   }
 ]

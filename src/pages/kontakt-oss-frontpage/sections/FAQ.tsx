@@ -6,6 +6,9 @@ import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 import ikon from "assets/forside-faq-ikon.svg";
 import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
 import { useStore } from "../../../providers/Provider";
+import { Language } from "../../../utils/sanity/serializers";
+
+const language = Language.Bokmaal;
 
 const FAQ = () => {
   const [visFlereFAQ, settVisFlereFAQ] = useState(false);
@@ -14,6 +17,7 @@ const FAQ = () => {
   // const toggleVisFlereMinSide = () => settVisFlereMinside(!visFlereMinside);
   const visElementer = 3;
   const [{faq: lenkerFAQ}] = useStore();
+  console.log(lenkerFAQ);
 
   const tittel = <FormattedMessage id={"faq.intro"} />;
 
@@ -21,16 +25,16 @@ const FAQ = () => {
     <IkonPanel ikon={ikon} tittel={tittel} className={"faq"}>
       {lenkerFAQ
         .slice(0, visFlereFAQ ? lenkerFAQ.length : visElementer)
-        .map(({ lenke, tittel }) => (
-          <RouterLenke
-            href={lenke}
+        .map(({ lenke, tittel }) => {
+          return (<RouterLenke
+            href={lenke[language]}
             className={"lenke__avstand-under"}
             isExternal={true}
-            key={tittel}
+            key={tittel[language]}
           >
-            {tittel}
-          </RouterLenke>
-        ))}
+            {tittel[language]}
+          </RouterLenke>)
+        })}
       {lenkerFAQ.length > visElementer && (
         <VisMer visFlere={visFlereFAQ} onClick={toggleVisFlereFAQ} />
       )}

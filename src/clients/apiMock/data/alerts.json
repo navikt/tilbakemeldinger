@@ -2,49 +2,28 @@
   {
     "_createdAt": "2020-03-12T15:45:08Z",
     "_id": "4a1e55e6-643b-453b-8c95-423311c6cf83",
-    "_rev": "rmWzzr2BwZU43esqF1LFJO",
+    "_rev": "VkmmBYVNQm7yFO9Ovmx7X7",
     "_type": "alert",
-    "_updatedAt": "2020-03-13T15:05:15Z",
-    "description": [
-      {
-        "_key": "f9ff37bf3b48",
-        "_type": "block",
-        "children": [
-          {
-            "_key": "f9ff37bf3b480",
-            "_type": "span",
-            "marks": [],
-            "text": "Det er for tiden mange som kontakter oss. Hvis henvendelsen din ikke haster, ber vi deg ta kontakt senere."
-          }
-        ],
-        "markDefs": [],
-        "style": "normal"
-      }
-    ],
+    "_updatedAt": "2020-03-14T14:26:18Z",
+    "description": {
+      "_type": "localeBlock",
+      "nb": [
+        {
+          "_key": "9d978bd0a909",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "9d978bd0a9090",
+              "_type": "span",
+              "marks": [],
+              "text": "Det er for tiden mange som kontakter oss. Hvis henvendelsen din ikke haster, ber vi deg ta kontakt senere."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
     "type": "info"
-  },
-  {
-    "_createdAt": "2020-03-13T21:15:40Z",
-    "_id": "96b3ebeb-f6b3-452c-a034-a90a3bad7292",
-    "_rev": "rmWzzr2BwZU43esqF1OsC8",
-    "_type": "alert",
-    "_updatedAt": "2020-03-13T21:15:56Z",
-    "description": [
-      {
-        "_key": "580538b6faec",
-        "_type": "block",
-        "children": [
-          {
-            "_key": "580538b6faec0",
-            "_type": "span",
-            "marks": [],
-            "text": "Test McTestface"
-          }
-        ],
-        "markDefs": [],
-        "style": "h2"
-      }
-    ],
-    "type": "suksess"
   }
 ]

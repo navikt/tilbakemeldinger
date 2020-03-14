@@ -11,7 +11,6 @@ import { alertSerializer } from "./endpoints/alert";
 import React from "react";
 import BlockContent from "@sanity/block-content-to-react";
 
-const language = "nb";
 
 export enum TypoStyle {
   H1 = "h1",
@@ -22,6 +21,12 @@ export enum TypoStyle {
   H6 = "h6",
   Normal = "normal",
 }
+
+export enum Language {
+  Bokmaal = "nb"
+}
+
+const language = Language.Bokmaal;
 
 const typoComponents = {
   [TypoStyle.H1]: Sidetittel,
@@ -38,13 +43,11 @@ export type TextBlock = {
   children: TextWithMarks[]
 }
 
-export type LocaleBlock = {
-  nb: TextBlock
-}
+export type LocaleBlock = {[key in Language]: TextBlock};
 
-export type LocaleString = {
-  nb: string
-}
+export type LocaleString = {[key in Language]: string}
+
+export type LocaleLink = {[key in Language]: string}
 
 // TODO: oppdater med marks
 export type TextWithMarks = {
