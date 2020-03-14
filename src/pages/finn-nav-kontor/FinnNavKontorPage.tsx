@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { Input, Label } from "nav-frontend-skjema";
 import { Form } from "calidation";
 import { Knapp } from "nav-frontend-knapper";
-import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
+import { Normaltekst, Sidetittel, Undertittel } from "nav-frontend-typografi";
 
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import { ResultatvisningVedSubmit } from "./components/ResultatvisningVedSubmit";
@@ -13,7 +13,14 @@ import {
   minQueryLength,
   SokeResultat
 } from "./FinnNavKontorSok";
-import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
+import {
+  AlertStripeAdvarsel,
+  AlertStripeInfo
+} from "nav-frontend-alertstriper";
+import Environment from "../../Environments";
+import RouterLenke from "../../components/routerlenke/RouterLenkeMedChevron";
+import Lenke from "nav-frontend-lenker";
+import { urls } from "../../Config";
 
 const cssPrefix = "finn-kontor";
 
@@ -39,26 +46,27 @@ const FinnNavKontorPage = () => {
         <Sidetittel>
           <FormattedMessage id={"finnkontor.tittel"} />
         </Sidetittel>
+
         <Normaltekst className={`${cssPrefix}__ingress`}>
           <FormattedMessage id={"finnkontor.ingress"} />
         </Normaltekst>
       </div>
 
-      <KoronaVirusVarsel
-        innhold={{
-          tittel: <>{"Koronavirus"}</>,
-          ingress: (
-            <>
-              {`For å forhindre spredning av koronaviruset er besøk på NAV-kontoret
-                nå erstattet med at du kan ta kontakt i digitale kanaler.
-                Hvis du er i en krisesituasjon kan du ringe å få en få time hos NAV-kontoret.`}
-            </>
-          ),
-          datoTid: "14.03.2020, kl. 12.00",
-          href:
-            "https://www.nav.no/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav/dialog-med-nav-i-forbindelse-med-koronaviruset"
-        }}
-      />
+      <div className={"koronavarsel__container"}>
+        <AlertStripeAdvarsel>
+          <div className={"koronavarsel__description"}>
+            <Normaltekst>
+              For å forhindre spredning av koronaviruset er besøk på
+              NAV-kontoret nå erstattet med at du kan ta kontakt i digitale
+              kanaler. Hvis du er i en krisesituasjon kan du ringe å få en få
+              time hos NAV-kontoret.
+            </Normaltekst>
+          </div>
+          <Lenke href={urls.faq.koronaVirusDialog}>
+            Koronavirus - dialog med NAV
+          </Lenke>
+        </AlertStripeAdvarsel>
+      </div>
 
       <div className={`${cssPrefix}__innhold`}>
         <Form
