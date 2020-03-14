@@ -3,22 +3,13 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { Input, Label } from "nav-frontend-skjema";
 import { Form } from "calidation";
 import { Knapp } from "nav-frontend-knapper";
-import { Normaltekst, Sidetittel, Undertittel } from "nav-frontend-typografi";
-
+import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import { ResultatvisningVedSubmit } from "./components/ResultatvisningVedSubmit";
 import { ResultatvisningDynamisk } from "./components/ResultatvisningDynamisk";
-import {
-  kjorSokOgReturnerResultat,
-  minQueryLength,
-  SokeResultat
-} from "./FinnNavKontorSok";
-import {
-  AlertStripeAdvarsel,
-  AlertStripeInfo
-} from "nav-frontend-alertstriper";
-import Environment from "../../Environments";
-import RouterLenke from "../../components/routerlenke/RouterLenkeMedChevron";
+import { kjorSokOgReturnerResultat } from "./FinnNavKontorSok";
+import { minQueryLength, SokeResultat } from "./FinnNavKontorSok";
+import { AlertStripeAdvarsel } from "nav-frontend-alertstriper";
 import Lenke from "nav-frontend-lenker";
 import { urls } from "../../Config";
 
