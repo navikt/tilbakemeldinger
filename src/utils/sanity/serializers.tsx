@@ -9,6 +9,9 @@ import {
 } from "nav-frontend-typografi";
 import { alertSerializer } from "./endpoints/alert";
 import React from "react";
+import BlockContent from "@sanity/block-content-to-react";
+
+const language = "nb";
 
 export enum TypoStyle {
   H1 = "h1",
@@ -35,6 +38,14 @@ export type TextBlock = {
   children: TextWithMarks[]
 }
 
+export type LocaleBlock = {
+  nb: TextBlock
+}
+
+export type LocaleString = {
+  nb: string
+}
+
 // TODO: oppdater med marks
 export type TextWithMarks = {
   marks: string[],
@@ -45,6 +56,10 @@ export type LenkeData = {
   link: string,
   link_text: TextBlock[]
 }
+
+const localeBlockSerializer = (block: { node: LocaleBlock}) => {
+  return <BlockContent blocks={block.node[language]} serializers={serializers}/>;
+};
 
 const blockSerializer = (block: { node: TextBlock }) => {
   const TypoComponent = typoComponents[block.node.style];
@@ -59,7 +74,8 @@ const blockSerializer = (block: { node: TextBlock }) => {
 export const serializers = {
   types: {
     alert: alertSerializer,
-    block: blockSerializer
+    localeBlock: localeBlockSerializer,
+    block: blockSerializer,
   }
 };
 

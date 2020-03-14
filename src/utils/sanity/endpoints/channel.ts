@@ -1,8 +1,8 @@
-import { LenkeData, TextBlock } from "../serializers";
+import { LenkeData, LocaleString, TextBlock } from "../serializers";
 
 export type ChannelProps = {
   type: string
-  answer_time?: string,
+  answer_time?: LocaleString,
   closed?: boolean,
   description?: TextBlock[],
   themes?: Theme[]

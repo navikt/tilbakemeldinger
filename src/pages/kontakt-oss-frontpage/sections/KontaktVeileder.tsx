@@ -13,7 +13,7 @@ const KontaktVeileder = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <KanalVisning channelProps={channelProps.types.tutor}>
+      <KanalVisning isLoaded={channelProps.isLoaded} channelProps={channelProps.types.tutor}>
         <RouterLenke
           href={urls.aktivitetsplanDialog}
           className={"lenke__avstand-over"}

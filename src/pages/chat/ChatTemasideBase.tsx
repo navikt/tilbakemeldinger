@@ -50,13 +50,14 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
     [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat)
   };
 
+  // const chatErIApningstid = true;
   const chatErIApningstid = chatTemaData.apningstider
     ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
     : true;
   const chatErNormaltApen = chatErIApningstid || harChatbot;
   const chatErStengtAvAdmin = channelProps.types.chat.closed;
   const chatMedVeilederErStengt = chatErStengtAvAdmin && chatErIApningstid;
-  const chatErApen = !chatMedVeilederErStengt || harChatbot;
+  const chatErApen = (chatErNormaltApen && !chatMedVeilederErStengt) || harChatbot;
 
   const chatbotConfig = vars.chatBot.temaConfigs[chatTemaData.chatTema];
 

@@ -11,7 +11,7 @@ export type Alert = {
 export const alertSerializer = (props: any) => {
   const alert = props.node as Alert;
   return (
-    <AlertStripe className={"varselpanel"} type={alert.type}>
+    <AlertStripe className={"varsel-panel"} type={alert.type}>
       <BlockContent blocks={alert.description} serializers={serializers}/>
     </AlertStripe>
   )
