@@ -2,9 +2,9 @@
   {
     "_createdAt": "2020-03-13T09:52:51Z",
     "_id": "00f3d255-f67c-4d6f-9ea4-5a0b3db65393",
-    "_rev": "ZFNhHaMTICP52SGDpfn3gu",
+    "_rev": "VkmmBYVNQm7yFO9Ovn39Nh",
     "_type": "channel",
-    "_updatedAt": "2020-03-14T14:27:37Z",
+    "_updatedAt": "2020-03-15T10:23:59Z",
     "answer_time": {
       "_type": "localeString",
       "nb": "3 arbeidsdager"
@@ -15,9 +15,9 @@
   {
     "_createdAt": "2020-03-13T11:37:11Z",
     "_id": "89d710e2-941c-47df-9834-ff312f6bbcd4",
-    "_rev": "rmWzzr2BwZU43esqF1UDh8",
+    "_rev": "VkmmBYVNQm7yFO9Ovn39Bx",
     "_type": "channel",
-    "_updatedAt": "2020-03-14T14:27:09Z",
+    "_updatedAt": "2020-03-15T10:23:47Z",
     "answer_time": {
       "_type": "localeString",
       "nb": "2 arbeidsdager"
@@ -47,9 +47,9 @@
   {
     "_createdAt": "2020-03-13T09:53:04Z",
     "_id": "8dbf4a16-2023-49aa-b649-6932f4a16b85",
-    "_rev": "VkmmBYVNQm7yFO9OvmxCwb",
+    "_rev": "rmWzzr2BwZU43esqF1aL8w",
     "_type": "channel",
-    "_updatedAt": "2020-03-14T14:35:30Z",
+    "_updatedAt": "2020-03-15T10:24:07Z",
     "answer_time": {
       "_type": "localeString",
       "nb": "3 arbeidsdager"
@@ -274,9 +274,9 @@
   {
     "_createdAt": "2020-03-13T09:52:44Z",
     "_id": "c24b6e05-6a9f-4553-b3f2-14722e87cf19",
-    "_rev": "ZFNhHaMTICP52SGDpfn6Gg",
+    "_rev": "ZFNhHaMTICP52SGDpfrVJC",
     "_type": "channel",
-    "_updatedAt": "2020-03-14T14:33:46Z",
+    "_updatedAt": "2020-03-15T10:28:38Z",
     "closed": false,
     "description": {
       "_type": "localeBlock",
@@ -301,6 +301,7 @@
       {
         "_key": "13d4af5f9e70",
         "_type": "theme",
+        "closed": false,
         "link": {
           "_type": "link_panel",
           "description": {
@@ -381,7 +382,8 @@
             "_type": "localeString",
             "nb": "Jobbsøker"
           }
-        }
+        },
+        "theme_id": "chat_arbeid"
       },
       {
         "_key": "b6fe6e5cb564",
@@ -466,7 +468,8 @@
             "_type": "localeString",
             "nb": "Syk"
           }
-        }
+        },
+        "theme_id": "chat_syk"
       },
       {
         "_key": "cfb801eccd25",
@@ -551,7 +554,8 @@
             "_type": "localeString",
             "nb": "Foreldre, barn og familie"
           }
-        }
+        },
+        "theme_id": "chat_familie"
       },
       {
         "_key": "3a3bb1421b6f",
@@ -636,7 +640,8 @@
             "_type": "localeString",
             "nb": "Ufør"
           }
-        }
+        },
+        "theme_id": "chat_ufor"
       },
       {
         "_key": "4c46d0bef7a7",
@@ -721,7 +726,8 @@
             "_type": "localeString",
             "nb": "Sosiale tjenester og økonomisk sosialhjelp"
           }
-        }
+        },
+        "theme_id": "chat_sosial"
       },
       {
         "_key": "2b74eef6a207",
@@ -835,7 +841,7 @@
             "nb": "Økonomi og gjeldsrådgivning"
           }
         },
-        "title": "Økonomi og gjeldsrådgivning"
+        "theme_id": "chat_okonomi"
       },
       {
         "_key": "270ad9201431",
@@ -948,7 +954,8 @@
             "_type": "localeString",
             "nb": "Spør EURES om jobb og rekruttering i i EØS-området"
           }
-        }
+        },
+        "theme_id": "chat_eures"
       }
     ],
     "type": "chat"

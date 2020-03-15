@@ -67,18 +67,18 @@ const KontaktOssFrontpage = () => {
               <RingOss/>
               <FAQ/>
             </div>
-            <SkrivTilOss/>
-            <KontaktVeileder/>
-            <Facebook/>
-            <FinnNavKontor/>
-            <Tolketjenesten/>
-            <KlageOgTilbakemeldinger/>
-            <FeilOgMangler/>
-            <Pressekontakt/>
-            <SosialeMedier/>
+            <KontaktVeileder />
+            <SkrivTilOss />
+            <Facebook />
+            <FinnNavKontor />
+            <Tolketjenesten />
+            <KlageOgTilbakemeldinger />
+            <FeilOgMangler />
+            <Pressekontakt />
+            <SosialeMedier />
           </div>
         </div>
-        <BreadcrumbsWrapper/>
+        <BreadcrumbsWrapper />
       </div>
     </div>
   );
