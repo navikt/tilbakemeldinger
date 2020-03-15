@@ -17,7 +17,6 @@ const FAQ = () => {
   // const toggleVisFlereMinSide = () => settVisFlereMinside(!visFlereMinside);
   const visElementer = 3;
   const [{faq: lenkerFAQ}] = useStore();
-  console.log(lenkerFAQ);
 
   const tittel = <FormattedMessage id={"faq.intro"} />;
 
