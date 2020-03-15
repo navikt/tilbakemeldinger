@@ -64,7 +64,8 @@ const App = () => {
             payload: alertsJson
           });
         }
-      );
+      )
+      .catch(console.error);
 
     fetchFaq()
       .then((faqJson: Array<FAQ>) => {
@@ -73,7 +74,8 @@ const App = () => {
             payload: faqJson.sort((a, b) => b.priority - a.priority),
           });
         }
-      );
+      )
+      .catch(console.error);
 
     fetchChannelInfo()
       .then((channels: Array<ChannelProps>) => {
@@ -82,14 +84,17 @@ const App = () => {
             payload: {
               isLoaded: true,
               types: channels
-              .reduce((acc, channel) => {
-                return {...acc,
-                  [channel.type]: channel
-                }
-              }, {})} as Channels
+                .reduce((acc, channel) => {
+                  return {
+                    ...acc,
+                    [channel.type]: channel
+                  };
+                }, {})
+            } as Channels
           });
         }
-      );
+      )
+      .catch(console.error);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

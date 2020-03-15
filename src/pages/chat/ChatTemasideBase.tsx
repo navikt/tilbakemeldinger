@@ -16,23 +16,21 @@ import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 import { useStore } from "../../providers/Provider";
 import { chatbotIdToSanityId } from "../../utils/sanity/endpoints/channel";
+import NavFrontendSpinner from "nav-frontend-spinner";
+import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
 
-type ChatTemaProps = {
+type Props = {
   chatTemaData: ChatTemaData,
   children: ReactNode
 };
 
 const cssPrefix = "chat-tema";
 
-const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
+// TODO: refaktorer feilsjekking av backend data
+const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
   const [chatButtonClicked, setChatButtonClicked] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
-  const [{channelProps}] = useStore();
-  const {harChatbot} = chatTemaData;
-
-  const themes = channelProps.types.chat.themes;
-  const sanityThemeId = chatbotIdToSanityId[chatTemaData.chatTema];
-  const theme = themes && themes.find(t => t.theme_id === sanityThemeId);
+  const [{ channelProps, visTekniskFeilMelding }, dispatch] = useStore();
 
   useEffect(() => {
     fetchServerTidOffset(setServerTidOffset);
@@ -45,6 +43,15 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
     document.title = documentTitle;
   }, [documentTitle]);
 
+  if (!channelProps.isLoaded) {
+    return <NavFrontendSpinner />;
+  }
+
+  const chatProps = channelProps.types.chat;
+  if (!chatProps) {
+    !visTekniskFeilMelding && dispatch({ type: "SETT_TEKNISK_FEILMELDING" });
+  }
+
   const temaButtonHandlers: { [key in ChatTema]: Function } = {
     [ChatTema.Jobbsoker]: () => setChatButtonClicked(Date.now()),
     [ChatTema.Syk]: () => setChatButtonClicked(Date.now()),
@@ -55,15 +62,20 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
     [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat)
   };
 
+  const { harChatbot, chatTema } = chatTemaData;
+  const sanityTemaId = chatbotIdToSanityId[chatTema];
+  const temaProps = chatProps && chatProps.themes && chatProps.themes.find(t => t.theme_id === sanityTemaId);
+  const temaClosed = temaProps && temaProps.closed;
+
   const chatErIApningstid = (chatTemaData.apningstider
     ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
     : true) || true; // TODO: || true kun for test av stenging fra backend!
   const chatErNormaltApen = chatErIApningstid || harChatbot;
-  const chatErStengtAvAdmin = channelProps.types.chat.closed || (theme && theme.closed);
+  const chatErStengtAvAdmin = (chatProps && chatProps.closed) || temaClosed;
   const chatMedVeilederErStengt = chatErStengtAvAdmin && chatErIApningstid;
   const chatErApen = (chatErNormaltApen && !chatMedVeilederErStengt) || harChatbot;
 
-  const chatbotConfig = vars.chatBot.temaConfigs[chatTemaData.chatTema];
+  const chatbotConfig = vars.chatBot.temaConfigs[chatTema];
 
   return (
     <>
@@ -76,15 +88,16 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
             </Systemtittel>
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
-            <Undertittel>{'Chat er satt til "alltid åpen" med mindre det stenges fra Sanity. Ikke prodsett dette! :)'}</Undertittel>
-             {!chatErNormaltApen && (
-                <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert varsel-panel`}>
-                  <FormattedMessage id="chat.stengt.info" />
-                </AlertStripeInfo>
-              )}
+            <Undertittel>{"Chat er satt til 'alltid åpen' med mindre det stenges fra Sanity. Ikke prodsett dette! :)"}</Undertittel>
+            {visTekniskFeilMelding && <TekniskProblemBackend/>}
+            {!chatErNormaltApen && (
+              <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert varsel-panel`}>
+                <FormattedMessage id="chat.stengt.info" />
+              </AlertStripeInfo>
+            )}
             {chatMedVeilederErStengt && (
               <AlertStripeInfo className={`varsel-panel`}>
-                {'Chat med veileder er for øyeblikket utilgjengelig.'}
+                <FormattedMessage id={"chat.admin-stengt.veileder"} />
               </AlertStripeInfo>
             )}
             <StorPaagangVarsel />

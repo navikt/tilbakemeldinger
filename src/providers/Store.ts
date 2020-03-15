@@ -17,6 +17,7 @@ export const initialState = {
   auth: {authenticated: false} as AuthInfo,
   kontaktInfo: {mobiltelefonnummer: ""},
   unleashFeatures: Unleash.getFeatureDefaults() as Features,
+  visTekniskFeilMelding: false,
   varsler: [],
   faq: [],
   channelProps: {
@@ -38,6 +39,7 @@ export interface Store {
   kontaktInfo: KontaktInfo;
   enheter: FetchEnheter;
   unleashFeatures: Features;
+  visTekniskFeilMelding: boolean;
   varsler: Array<Alert>;
   faq: Array<FAQ>;
   channelProps: Channels
@@ -73,6 +75,8 @@ export type Action =
 } | {
   type: "SETT_CHANNEL_PROPS";
   payload: Channels;
+} | {
+  type: "SETT_TEKNISK_FEILMELDING";
 };
 
 export const reducer = (state: Store, action: Action) => {
@@ -129,6 +133,11 @@ export const reducer = (state: Store, action: Action) => {
         channelProps: action.payload
       };
     }
+    case "SETT_TEKNISK_FEILMELDING" :
+      return {
+        ...state,
+        visTekniskFeilMelding: true
+      };
     default:
       return state;
   }

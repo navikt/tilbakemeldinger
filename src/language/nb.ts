@@ -5,6 +5,8 @@ export default {
     "Vi har for øyeblikket tekniske problemer med disse sidene.",
   "header.navperson": "NAV privatperson",
 
+  "varsel.teknisk.feil": "Det er for øyeblikket tekniske problemer med baksystemene våre. Dette kan føre til at noe informasjon mangler fra sidene.",
+
   "breadcrumb.nav-no": "nav.no",
   "breadcrumb.": "Kontakt oss",
 
@@ -361,6 +363,7 @@ export default {
   "chat.knapp.stengt": "Chatten er stengt",
 
   "chat.stengt.info": "Chatten er stengt, se åpningstider under.",
+  "chat.admin-stengt.veileder": "Chat med veileder er for øyeblikket utilgjengelig.",
   "chat.advarsel.personvern":
     "<p>Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring.</p>" +
     "<p>Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg.</p>",
@@ -428,12 +431,12 @@ export default {
   "finnkontor.sok.knapp": "Søk",
   "finnkontor.sok.label": "Skriv inn et postnummer eller sted/by",
   "finnkontor.ugyldig.postnr":
-    'Fant ingen NAV-kontor tilknyttet "{nummer}". Postnummeret kan være ugyldig.',
+    "Fant ingen NAV-kontor tilknyttet '{nummer}'. Postnummeret kan være ugyldig.",
   "finnkontor.query.feil":
     "Skriv inn minst {min} bokstaver eller et gyldig postnummer.",
   "finnkontor.query.feil.kort": "Skriv minst {min} bokstaver eller et postnr.",
   "finnkontor.ingen.treff": 'Ingen resultater for "{query}"',
   "finnkontor.flere.treff": "Vis alle treff ({antall})",
-  "finnkontor.resultat.stedsnavn": 'Søkeresultat for "{query}" ({antall}):',
+  "finnkontor.resultat.stedsnavn": "Søkeresultat for '{query}' ({antall}):",
   "finnkontor.resultat.postnr": "NAV-kontor for "
 };

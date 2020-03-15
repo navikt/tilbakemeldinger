@@ -5,6 +5,7 @@ import { serializers } from "../../../utils/sanity/serializers";
 import React from "react";
 import { ChannelProps } from "../../../utils/sanity/endpoints/channel";
 import NavFrontendSpinner from "nav-frontend-spinner";
+import { useStore } from "../../../providers/Provider";
 
 const language = "nb";
 
@@ -20,21 +21,38 @@ const StengtMelding = () => (
   </div>
 );
 
-export const KanalVisning = ({channelProps: {answer_time, closed, description}, isLoaded = true, children}: Props) => {
+export const KanalVisning = ({channelProps, isLoaded = true, children}: Props) => {
+  const [{visTekniskFeilMelding}, dispatch] = useStore();
+
+  if (!isLoaded) {
+    return <NavFrontendSpinner/>
+  }
+  if (!channelProps) {
+    !visTekniskFeilMelding && dispatch({type: "SETT_TEKNISK_FEILMELDING"});
+    return (
+      <div>
+        {children}
+      </div>
+    )
+  }
+
+  const {answer_time, closed, description} = channelProps;
+  const svartid = answer_time && answer_time[language];
+
   return (
     isLoaded ? (
       <>
         <div>
-          {answer_time && !closed && (
+          {svartid && !closed && (
             <Normaltekst className="svartid">
               <FormattedMessage id={"kontaktoss.svartid"}/>
-              {answer_time[language]}
+              {svartid}
             </Normaltekst>
           )}
           {description && <BlockContent blocks={description} serializers={serializers}/>}
         </div>
         {closed ? <StengtMelding/> : children}
       </>
-    ) : <NavFrontendSpinner />
+    ) : <NavFrontendSpinner/>
   )
 };
