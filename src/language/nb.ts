@@ -152,7 +152,7 @@ export default {
 
   "kontaktoss.skrivtiloss.tittel": "Skriv til oss",
   "kontaktoss.skrivtiloss.beskrivelse":
-    "'Skriv til oss' er et sikkert alternativ til e-post.",
+    "Send oss spørsmål eller nye opplysninger i saken din. 'Skriv til oss' er et sikkert alternativ til e-post.",
   "kontaktoss.skrivtiloss.knapp": "Skriv til oss (innlogget)",
 
   "kontaktoss.kontaktveileder.tittel": "Kontakt din veileder",
