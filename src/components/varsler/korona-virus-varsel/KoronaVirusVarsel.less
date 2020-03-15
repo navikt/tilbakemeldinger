@@ -23,7 +23,7 @@
     animation-timing-function: ease-out;
   }
 
-  &__ikon-rad {
+  &__ikon-kol {
     position: relative;
 
     display: flex;
@@ -34,6 +34,10 @@
     padding: 0;
     min-width: @pulse-diameter;
     min-height: @pulse-diameter;
+
+    @media (max-width: 768px) {
+      min-width: 40px;
+    }
   }
 
   &__sirkel {
@@ -60,9 +64,10 @@
     .animation-props();
   }
 
-  &__tekst-rad {
+  &__tekst-kol {
     padding: 1.25rem 1rem;
     text-align: left;
+    flex-grow: 1;
   }
 
   &__ingress {
