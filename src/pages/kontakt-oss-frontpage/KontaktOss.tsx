@@ -74,8 +74,8 @@ const KontaktOssFrontpage = () => {
               <RingOss />
               <FAQ />
             </div>
-            <SkrivTilOss />
             <KontaktVeileder />
+            <SkrivTilOss />
             <Facebook />
             <FinnNavKontor />
             <Tolketjenesten />
