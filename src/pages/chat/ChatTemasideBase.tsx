@@ -15,6 +15,7 @@ import ApningstiderAvvik from "../../components/apningstider/ApningstiderAvvik";
 import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 import { useStore } from "../../providers/Provider";
+import { chatbotIdToSanityId } from "../../utils/sanity/endpoints/channel";
 
 type ChatTemaProps = {
   chatTemaData: ChatTemaData,
@@ -28,6 +29,10 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
   const [serverTidOffset, setServerTidOffset] = useState(0);
   const [{channelProps}] = useStore();
   const {harChatbot} = chatTemaData;
+
+  const themes = channelProps.types.chat.themes;
+  const sanityThemeId = chatbotIdToSanityId[chatTemaData.chatTema];
+  const theme = themes && themes.find(t => t.theme_id === sanityThemeId);
 
   useEffect(() => {
     fetchServerTidOffset(setServerTidOffset);
@@ -55,11 +60,12 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
     ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
     : true;
   const chatErNormaltApen = chatErIApningstid || harChatbot;
-  const chatErStengtAvAdmin = channelProps.types.chat.closed;
+  const chatErStengtAvAdmin = channelProps.types.chat.closed || (theme && theme.closed);
   const chatMedVeilederErStengt = chatErStengtAvAdmin && chatErIApningstid;
   const chatErApen = (chatErNormaltApen && !chatMedVeilederErStengt) || harChatbot;
 
   const chatbotConfig = vars.chatBot.temaConfigs[chatTemaData.chatTema];
+
 
   return (
     <>

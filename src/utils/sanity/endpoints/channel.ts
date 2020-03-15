@@ -2,7 +2,7 @@ import { LenkeData, LocaleString, TextBlock } from "../serializers";
 import { ChatTema } from "../../../types/chat";
 
 export type ChannelProps = {
-  type: string
+  type: string,
   answer_time?: LocaleString,
   closed?: boolean,
   description?: TextBlock[],
@@ -19,27 +19,18 @@ export type Channels = {
   }
 }
 
-export enum ThemeId {
-  Jobbsoker = "chat_arbeid",
-  EURES = "chat_eures",
-  Familie = "chat_familie",
-  Okonomi = "chat_okonomi",
-  Sosial = "chat_sosial",
-  Syk = "chat_syk",
-  Ufor = "chat_ufor"
-}
-
-export const sanityIdToChatbotId = {
-  [ThemeId.Jobbsoker]: [ChatTema.Jobbsoker],
-  [ThemeId.EURES]: [ChatTema.EURES],
-  [ThemeId.Familie]: [ChatTema.Familie],
-  [ThemeId.Okonomi]: [ChatTema.Okonomi],
-  [ThemeId.Sosial]: [ChatTema.Sosial],
-  [ThemeId.Syk]: [ChatTema.Syk],
-  [ThemeId.Ufor]: [ChatTema.Ufor],
+export const chatbotIdToSanityId = {
+  [ChatTema.Jobbsoker]: "chat_arbeid",
+  [ChatTema.EURES]: "chat_eures",
+  [ChatTema.Familie]: "chat_familie",
+  [ChatTema.Okonomi]: "chat_okonomi",
+  [ChatTema.Sosial]: "chat_sosial",
+  [ChatTema.Syk]: "chat_syk",
+  [ChatTema.Ufor]: "chat_ufor",
 };
 
 type Theme = {
-  link: LenkeData
-  theme_id: string
+  link: LenkeData,
+  theme_id: string,
+  closed: boolean
 }

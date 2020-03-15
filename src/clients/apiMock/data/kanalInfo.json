@@ -301,7 +301,7 @@
       {
         "_key": "13d4af5f9e70",
         "_type": "theme",
-        "closed": false,
+        "closed": true,
         "link": {
           "_type": "link_panel",
           "description": {
@@ -641,7 +641,8 @@
             "nb": "Ufør"
           }
         },
-        "theme_id": "chat_ufor"
+        "theme_id": "chat_ufor",
+        "closed": true
       },
       {
         "_key": "4c46d0bef7a7",
