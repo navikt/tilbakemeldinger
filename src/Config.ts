@@ -288,9 +288,9 @@ export const apningsTider = {
     },
     [
       {
-        visFraDato: "06-03-2020",
+        visFraDato: "15-03-2020",
         datoer: {
-          "11-03-2020": null
+          "16-03-2020": null
         }
       }
     ]
