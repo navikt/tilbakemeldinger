@@ -55,17 +55,16 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
     [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat)
   };
 
-  // const chatErIApningstid = true;
-  const chatErIApningstid = chatTemaData.apningstider
-    ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
-    : true;
+  const chatErIApningstid = true;   // TODO: dette kun for test av stenging fra backend
+  // const chatErIApningstid = chatTemaData.apningstider
+  //   ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
+  //   : true;
   const chatErNormaltApen = chatErIApningstid || harChatbot;
   const chatErStengtAvAdmin = channelProps.types.chat.closed || (theme && theme.closed);
   const chatMedVeilederErStengt = chatErStengtAvAdmin && chatErIApningstid;
   const chatErApen = (chatErNormaltApen && !chatMedVeilederErStengt) || harChatbot;
 
   const chatbotConfig = vars.chatBot.temaConfigs[chatTemaData.chatTema];
-
 
   return (
     <>
