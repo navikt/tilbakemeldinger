@@ -3,14 +3,15 @@ import { Route, Switch } from "react-router";
 import { urls } from "../../Config";
 
 import NotFound from "../404/404";
-import ChatFamilie from "./sider/ChatFamilie";
-import ChatForside from "./sider/ChatForside";
-import ChatJobbsoker from "./sider/ChatJobbsoker";
-import ChatSosial from "./sider/ChatSosial";
-import ChatOkonomi from "./sider/ChatOkonomi";
-import ChatEURES from "./sider/ChatEures";
-import ChatSyk from "./sider/ChatSyk";
-import ChatUfor from "./sider/ChatUfor";
+import ChatFamilie from "./temasider/ChatFamilie";
+import ChatForside from "./ChatForside";
+import ChatJobbsoker from "./temasider/ChatJobbsoker";
+import ChatSosial from "./temasider/ChatSosial";
+import ChatOkonomi from "./temasider/ChatOkonomi";
+import ChatEURES from "./temasider/ChatEures";
+import ChatSyk from "./temasider/ChatSyk";
+import ChatUfor from "./temasider/ChatUfor";
+import ChatArbeidsgiver from "./temasider/ChatArbeidsgiver";
 
 const ChatRouter = () => {
   return (
@@ -19,6 +20,11 @@ const ChatRouter = () => {
         exact={true}
         path={urls.chat.forside}
         component={ChatForside}
+      />
+      <Route
+        exact={true}
+        path={urls.chat.arbeidsgiver.temaside}
+        component={ChatArbeidsgiver}
       />
       <Route
         exact={true}
@@ -56,7 +62,7 @@ const ChatRouter = () => {
         component={ChatEURES}
       />
       <Route>
-        <NotFound/>
+        <NotFound />
       </Route>
     </Switch>
   );

@@ -1,6 +1,7 @@
 import ApningsTider from "../utils/apningstider";
 
 export enum ChatTema {
+  Arbeidsgiver = "arbeidsgiver",
   Jobbsoker = "jobbsoker",
   Syk = "syk",
   Familie = "familie",

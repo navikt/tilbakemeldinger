@@ -1,7 +1,6 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-
-import { Systemtittel, Normaltekst, Undertittel } from "nav-frontend-typografi";
+import { Systemtittel, Undertittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import ChatbotWrapper from "./ChatbotWrapper";
 import { ChatTema, ChatTemaData } from "../../types/chat";
@@ -52,6 +51,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
   }
 
   const temaButtonHandlers: { [key in ChatTema]: Function } = {
+    [ChatTema.Arbeidsgiver]: () => setChatButtonClicked(Date.now()),
     [ChatTema.Jobbsoker]: () => setChatButtonClicked(Date.now()),
     [ChatTema.Syk]: () => setChatButtonClicked(Date.now()),
     [ChatTema.Familie]: () => setChatButtonClicked(Date.now()),
@@ -100,10 +100,8 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
               </AlertStripeInfo>
             )}
             <StorPaagangVarsel />
-            <Normaltekst>
-              {children}
-              <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
-            </Normaltekst>
+            {children}
+            <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
           </div>
           {chatTemaData.apningstider && (
             <ApningstiderAvvik

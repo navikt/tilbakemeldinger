@@ -5,6 +5,12 @@ import { FormattedMessage } from "react-intl";
 
 const chatTemaLenker: Array<LenkepanelData> = [
   {
+    grafanaId: "chat.arbeidsgiver",
+    tittelId: "chat.arbeidsgiver.tittel",
+    ingress: <FormattedMessage id={"chat.arbeidsgiver.ingressKort"} />,
+    url: urls.chat.arbeidsgiver.temaside
+  },
+  {
     grafanaId: "chat.jobbsoker",
     tittelId: "chat.jobbsoker.tittel",
     ingress: <FormattedMessage id={"chat.jobbsoker.ingressKort"} />,

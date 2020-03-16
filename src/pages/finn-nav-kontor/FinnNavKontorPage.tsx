@@ -49,8 +49,7 @@ const FinnNavKontorPage = () => {
             <Normaltekst>
               For å forhindre spredning av koronaviruset er besøk på
               NAV-kontoret nå erstattet med at du kan ta kontakt i digitale
-              kanaler. Hvis du er i en krisesituasjon kan du ringe å få en få
-              time hos NAV-kontoret.
+              kanaler. Hvis du er i en krisesituasjon, kan du ringe og få en time hos NAV-kontoret.
             </Normaltekst>
           </div>
           <Lenke href={urls.faq.koronaVirusDialog}>
