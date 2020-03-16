@@ -8,9 +8,10 @@ import { Normaltekst } from "nav-frontend-typografi";
 import { urls } from "../../../Config";
 import AlertStripe from "nav-frontend-alertstriper";
 import { useStore } from "../../../providers/Provider";
-import { Language } from "../../../utils/sanity/serializers";
+import { Language, serializers, TextBlock } from "../../../utils/sanity/serializers";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { TekniskProblemBackend } from "../../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
+import BlockContent from "@sanity/block-content-to-react";
 
 const lenker: LenkepanelData[] = [
   {
@@ -58,7 +59,7 @@ const lenker: LenkepanelData[] = [
   }
 ];
 
-const Ingress = () => {
+const Ingress = ({tekst}: {tekst: TextBlock[] | undefined}) => {
   const intl = useIntl();
 
   return (
@@ -71,7 +72,8 @@ const Ingress = () => {
         />
       </MetaTags>
       <Normaltekst>
-        <FormattedMessage id="skrivtiloss.ingress" />
+        <BlockContent blocks={tekst} serializers={serializers}/>
+        {/*<FormattedMessage id="skrivtiloss.ingress" />*/}
       </Normaltekst>
     </>
   );
@@ -93,6 +95,7 @@ const SkrivTilOssForside = () => {
 
   const isClosed = stoProps && stoProps.closed;
   const svartid = stoProps && stoProps.answer_time;
+  const tekstBlokk = stoProps && stoProps.description;
 
   return (
     <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenker={isClosed ? undefined : lenker}>
@@ -104,7 +107,7 @@ const SkrivTilOssForside = () => {
               {svartid && svartid[Language.Bokmaal]}
             </Normaltekst>
           )}
-          <Ingress />
+          <Ingress tekst={tekstBlokk} />
           {visTekniskFeilMelding && <TekniskProblemBackend/>}
           {isClosed && <StengtMelding />}
 
