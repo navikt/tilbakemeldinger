@@ -1,11 +1,11 @@
 import React from "react";
 import AlertStripe, { AlertStripeType } from "nav-frontend-alertstriper";
-import { serializers, TextBlock } from "../serializers";
+import { LocaleBlock, serializers, TextBlock } from "../serializers";
 import BlockContent from "@sanity/block-content-to-react";
 
 export type Alert = {
   type: AlertStripeType,
-  description: TextBlock[]
+  description: LocaleBlock[]
 };
 
 export const alertSerializer = (props: any) => {

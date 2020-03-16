@@ -60,7 +60,7 @@ const App = () => {
     fetchAlerts()
       .then((alertsJson: Array<Alert>) => {
           dispatch({
-            type: "SETT_ALERTS",
+            type: "SETT_VARSLER",
             payload: alertsJson
           });
         }
@@ -77,6 +77,7 @@ const App = () => {
       )
       .catch(console.error);
 
+    // TODO: legg på timeout
     fetchChannelInfo()
       .then((channels: Array<ChannelProps>) => {
           dispatch({

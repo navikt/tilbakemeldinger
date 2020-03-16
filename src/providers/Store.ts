@@ -67,7 +67,7 @@ export type Action =
   type: "SETT_FEATURE_TOGGLES";
   payload: Features;
 } | {
-  type: "SETT_ALERTS";
+  type: "SETT_VARSLER";
   payload: Array<Alert>;
 } | {
   type: "SETT_FAQ";
@@ -117,7 +117,7 @@ export const reducer = (state: Store, action: Action) => {
         ...state,
         unleashFeatures: Unleash.getValidFeatureToggles(action.payload as Features)
       };
-    case "SETT_ALERTS":
+    case "SETT_VARSLER":
       return {
         ...state,
         varsler: action.payload
@@ -128,7 +128,6 @@ export const reducer = (state: Store, action: Action) => {
         faq: action.payload
       };
     case "SETT_CHANNEL_PROPS": {
-      console.log(action.payload);
       return {
         ...state,
         channelProps: action.payload
