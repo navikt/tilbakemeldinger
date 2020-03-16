@@ -8,13 +8,13 @@ import NavFrontendSpinner from "nav-frontend-spinner";
 import { useStore } from "../../../providers/Provider";
 
 type Props = {
-  channelProps: ChannelProps,
-  isLoaded?: boolean,
-  children: JSX.Element
-}
+  channelProps: ChannelProps;
+  isLoaded?: boolean;
+  children: JSX.Element;
+};
 
 const StengtMelding = () => (
-  <div className={'kanal-stengt'}>
+  <div className={"kanal-stengt"}>
     <Element>{"Tjenesten er dessverre stengt, prøv igjen senere."}</Element>
   </div>
 );
@@ -23,7 +23,7 @@ export const KanalVisning = ({channelProps, isLoaded = true, children}: Props) =
   const [{visTekniskFeilMelding}, dispatch] = useStore();
 
   if (!isLoaded) {
-    return <NavFrontendSpinner/>
+    return <NavFrontendSpinner/>;
   }
 
   if (channelProps.error) {
@@ -46,5 +46,5 @@ export const KanalVisning = ({channelProps, isLoaded = true, children}: Props) =
       </div>
       {closed ? <StengtMelding/> : children}
     </>
-  )
+  );
 };

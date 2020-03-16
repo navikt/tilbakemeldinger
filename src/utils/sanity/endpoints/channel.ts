@@ -8,7 +8,7 @@ export type ChannelProps = {
   closed?: boolean;
   description?: TextBlock[];
   themes?: Theme[];
-}
+};
 
 export enum ChannelType {
   Telefon = "telephone",
@@ -22,13 +22,13 @@ export type ChannelTypeList = {[id in ChannelType]: ChannelProps};
 export type Channels = {
   isLoaded: boolean;
   types: ChannelTypeList;
-}
+};
 
 type Theme = {
   _key: string;
   closed: boolean;
   link: LenkeData;
-}
+};
 
 export const channelError = {
   _id: "",
@@ -36,6 +36,7 @@ export const channelError = {
 };
 
 export const chatbotIdToSanityId = {
+  [ChatTema.Arbeidsgiver]: "arbeidsgiver",
   [ChatTema.Jobbsoker]: "jobbsoker",
   [ChatTema.EURES]: "eures",
   [ChatTema.Familie]: "familie",
