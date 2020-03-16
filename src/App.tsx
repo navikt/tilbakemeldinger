@@ -87,7 +87,7 @@ const App = () => {
                 .reduce((acc, channel) => {
                   return {
                     ...acc,
-                    [channel.type]: channel
+                    [channel._id]: channel
                   };
                 }, {})
             } as Channels

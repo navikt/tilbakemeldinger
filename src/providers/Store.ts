@@ -23,10 +23,10 @@ export const initialState = {
   channelProps: {
     isLoaded: false,
     types: {
-      telephone: {type: "telephone"},
-      chat: {type: "chat"},
-      tutor: {type: "tutor"},
-      write: {type: "write"},
+      telephone: {_id: "telephone"},
+      chat: {_id: "chat"},
+      tutor: {_id: "tutor"},
+      write: {_id: "write"},
     }
   } as Channels,
 };
@@ -128,6 +128,7 @@ export const reducer = (state: Store, action: Action) => {
         faq: action.payload
       };
     case "SETT_CHANNEL_PROPS": {
+      console.log(action.payload);
       return {
         ...state,
         channelProps: action.payload

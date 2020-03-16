@@ -64,7 +64,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
 
   const { harChatbot, chatTema } = chatTemaData;
   const sanityTemaId = chatbotIdToSanityId[chatTema];
-  const temaProps = chatProps && chatProps.themes && chatProps.themes.find(t => t.theme_id === sanityTemaId);
+  const temaProps = chatProps && chatProps.themes && chatProps.themes.find(t => t._key === sanityTemaId);
   const temaClosed = temaProps && temaProps.closed;
 
   const chatErIApningstid = (chatTemaData.apningstider

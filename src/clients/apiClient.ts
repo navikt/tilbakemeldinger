@@ -56,7 +56,9 @@ export const fetchServerTidOffset = (callback: Function) => {
       }
       callback(Date.parse(date) - Date.now());
     })
-    .catch(e => console.log(e));
+    .catch(() => {
+      callback(0);
+    });
 };
 
 /*

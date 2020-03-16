@@ -11,7 +11,6 @@ import { alertSerializer } from "./endpoints/alert";
 import React from "react";
 import BlockContent from "@sanity/block-content-to-react";
 
-
 export enum TypoStyle {
   H1 = "h1",
   H2 = "h2",
@@ -81,5 +80,3 @@ export const serializers = {
     block: blockSerializer,
   }
 };
-
-
