@@ -1,13 +1,11 @@
 import { Normaltekst, Element } from "nav-frontend-typografi";
 import { FormattedMessage } from "react-intl";
 import BlockContent from "@sanity/block-content-to-react";
-import { serializers } from "../../../utils/sanity/serializers";
+import { Language, serializers } from "../../../utils/sanity/serializers";
 import React from "react";
 import { ChannelProps } from "../../../utils/sanity/endpoints/channel";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { useStore } from "../../../providers/Provider";
-
-const language = "nb";
 
 type Props = {
   channelProps: ChannelProps,
@@ -27,32 +25,26 @@ export const KanalVisning = ({channelProps, isLoaded = true, children}: Props) =
   if (!isLoaded) {
     return <NavFrontendSpinner/>
   }
-  if (!channelProps) {
+
+  if (channelProps.error) {
     !visTekniskFeilMelding && dispatch({type: "SETT_TEKNISK_FEILMELDING"});
-    return (
-      <div>
-        {children}
-      </div>
-    )
   }
 
   const {answer_time, closed, description} = channelProps;
-  const svartid = answer_time && answer_time[language];
+  const svartid = answer_time && answer_time[Language.Bokmaal];
 
   return (
-    isLoaded ? (
-      <>
-        <div>
-          {svartid && !closed && (
-            <Normaltekst className="svartid">
-              <FormattedMessage id={"kontaktoss.svartid"}/>
-              {svartid}
-            </Normaltekst>
-          )}
-          {description && <BlockContent blocks={description} serializers={serializers}/>}
-        </div>
-        {closed ? <StengtMelding/> : children}
-      </>
-    ) : <NavFrontendSpinner/>
+    <>
+      <div>
+        {svartid && !closed && (
+          <Normaltekst className="svartid">
+            <FormattedMessage id={"kontaktoss.svartid"}/>
+            {svartid}
+          </Normaltekst>
+        )}
+        {description && <BlockContent blocks={description} serializers={serializers}/>}
+      </div>
+      {closed ? <StengtMelding/> : children}
+    </>
   )
 };

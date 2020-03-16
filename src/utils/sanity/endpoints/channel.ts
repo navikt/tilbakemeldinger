@@ -3,6 +3,7 @@ import { ChatTema } from "../../../types/chat";
 
 export type ChannelProps = {
   _id: string;
+  error?: boolean;
   answer_time?: LocaleString;
   closed?: boolean;
   description?: TextBlock[];
@@ -24,6 +25,11 @@ type Theme = {
   closed: boolean;
   link: LenkeData;
 }
+
+export const channelError = {
+  _id: "",
+  error: true
+};
 
 export const chatbotIdToSanityId = {
   [ChatTema.Jobbsoker]: "jobbsoker",

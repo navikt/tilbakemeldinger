@@ -1,6 +1,6 @@
 import React from "react";
 import AlertStripe, { AlertStripeType } from "nav-frontend-alertstriper";
-import { LocaleBlock, serializers, TextBlock } from "../serializers";
+import { LocaleBlock, serializers } from "../serializers";
 import BlockContent from "@sanity/block-content-to-react";
 
 export type Alert = {

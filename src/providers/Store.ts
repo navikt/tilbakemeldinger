@@ -76,6 +76,8 @@ export type Action =
   type: "SETT_CHANNEL_PROPS";
   payload: Channels;
 } | {
+  type: "SETT_CHANNELS_FETCH_FAILED";
+} | {
   type: "SETT_TEKNISK_FEILMELDING";
 };
 
@@ -130,7 +132,17 @@ export const reducer = (state: Store, action: Action) => {
     case "SETT_CHANNEL_PROPS": {
       return {
         ...state,
-        channelProps: action.payload
+        channelProps: {
+          isLoaded: action.payload.isLoaded,
+          types: action.payload.types || state.channelProps.types
+        }
+      };
+    }
+    case "SETT_CHANNELS_FETCH_FAILED": {
+      return {
+        ...state,
+        channelProps: {...state.channelProps, isLoaded: true},
+        visTekniskFeilMelding: true
       };
     }
     case "SETT_TEKNISK_FEILMELDING" :

@@ -122,3 +122,5 @@ const sjekkForFeil = async (url: string, response: Response) => {
     throw error;
   }
 };
+export const timeoutPromise = (ms: number, msg?: string) =>
+  new Promise((_, rej) => setTimeout(() => rej(msg), ms));

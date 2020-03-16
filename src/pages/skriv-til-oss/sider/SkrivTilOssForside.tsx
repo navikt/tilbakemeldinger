@@ -73,7 +73,6 @@ const Ingress = ({tekst}: {tekst: TextBlock[] | undefined}) => {
       </MetaTags>
       <Normaltekst>
         <BlockContent blocks={tekst} serializers={serializers}/>
-        {/*<FormattedMessage id="skrivtiloss.ingress" />*/}
       </Normaltekst>
     </>
   );
@@ -89,13 +88,13 @@ const SkrivTilOssForside = () => {
   const [{ channelProps, visTekniskFeilMelding }, dispatch] = useStore();
   const stoProps = channelProps.types.write;
 
-  if (!stoProps) {
+  if (stoProps.error) {
     !visTekniskFeilMelding && dispatch({type: "SETT_TEKNISK_FEILMELDING"});
   }
 
-  const isClosed = stoProps && stoProps.closed;
-  const svartid = stoProps && stoProps.answer_time;
-  const tekstBlokk = stoProps && stoProps.description;
+  const isClosed = stoProps.closed;
+  const svartid = stoProps.answer_time;
+  const tekstBlokk = stoProps.description;
 
   return (
     <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenker={isClosed ? undefined : lenker}>

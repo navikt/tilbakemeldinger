@@ -26,7 +26,6 @@ type Props = {
 
 const cssPrefix = "chat-tema";
 
-// TODO: refaktorer feilsjekking av backend data
 const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
   const [chatButtonClicked, setChatButtonClicked] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
@@ -48,7 +47,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
   }
 
   const chatProps = channelProps.types.chat;
-  if (!chatProps) {
+  if (chatProps.error) {
     !visTekniskFeilMelding && dispatch({ type: "SETT_TEKNISK_FEILMELDING" });
   }
 
@@ -64,14 +63,14 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
 
   const { harChatbot, chatTema } = chatTemaData;
   const sanityTemaId = chatbotIdToSanityId[chatTema];
-  const temaProps = chatProps && chatProps.themes && chatProps.themes.find(t => t._key === sanityTemaId);
+  const temaProps = chatProps.themes && chatProps.themes.find(t => t._key === sanityTemaId);
   const temaClosed = temaProps && temaProps.closed;
 
   const chatErIApningstid = (chatTemaData.apningstider
     ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
     : true) || true; // TODO: || true kun for test av stenging fra backend!
   const chatErNormaltApen = chatErIApningstid || harChatbot;
-  const chatErStengtAvAdmin = (chatProps && chatProps.closed) || temaClosed;
+  const chatErStengtAvAdmin = chatProps.closed || temaClosed;
   const chatMedVeilederErStengt = chatErStengtAvAdmin && chatErIApningstid;
   const chatErApen = (chatErNormaltApen && !chatMedVeilederErStengt) || harChatbot;
 
