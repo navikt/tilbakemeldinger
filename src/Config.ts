@@ -53,6 +53,9 @@ export const urls = {
   },
   chat: {
     forside: `${baseAppPath}/chat`,
+    arbeidsgiver: {
+      temaside: `${baseAppPath}/chat/arbeidsgiver`
+    },
     jobbsoker: {
       temaside: `${baseAppPath}/chat/jobbsoker`
     },
@@ -159,6 +162,10 @@ export const vars = {
       mailTimeout: "chatbot-frida_mail-timeout"
     },
     temaConfigs: {
+      [ChatTema.Arbeidsgiver]: {
+        configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
+        queueKey: "Q_CHAT_BOT"
+      },
       [ChatTema.Jobbsoker]: {
         configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
         queueKey: "Q_CHAT_BOT"
@@ -189,6 +196,30 @@ export const vars = {
 };
 
 export const apningsTider = {
+  [ChatTema.Arbeidsgiver]: new ApningsTider({
+    [Ukedager.Mandag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Tirsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Onsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Torsdag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Fredag]: {
+      start: "09.00",
+      end: "14.30"
+    },
+    [Ukedager.Lordag]: null,
+    [Ukedager.Sondag]: null
+  }),
   [ChatTema.Jobbsoker]: new ApningsTider({
     [Ukedager.Mandag]: {
       start: "09.00",

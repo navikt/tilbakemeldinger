@@ -15,6 +15,7 @@ export default {
   "breadcrumb.hjelpemidler": "Hjelpemidler",
 
   "breadcrumb.chat": "Chat",
+  "breadcrumb.arbeidsgiver": "Arbeidsgiver og samhandler",
   "breadcrumb.jobbsoker": "Jobbsøker",
   "breadcrumb.ufor": "Ufør",
   "breadcrumb.familie": "Familie",
@@ -367,6 +368,10 @@ export default {
   "chat.chatbotinfo":
     "<p>Du møter først en chatbot, men kan bli satt videre til chat med en veileder (hverdager 09.00–14.30).</p>",
 
+  "chat.arbeidsgiver.tittel": "Arbeidsgiver og samhandler",
+  "chat.arbeidsgiver.ingressKort":
+    "Chat for arbeidsgiver og samhandler",
+
   "chat.jobbsoker.tittel": "Jobbsøker",
   "chat.jobbsoker.ingressKort":
     "Arbeidsavklaringspenger, dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
@@ -428,12 +433,12 @@ export default {
   "finnkontor.sok.knapp": "Søk",
   "finnkontor.sok.label": "Skriv inn et postnummer eller sted/by",
   "finnkontor.ugyldig.postnr":
-    'Fant ingen NAV-kontor tilknyttet "{nummer}". Postnummeret kan være ugyldig.',
+    "Fant ingen NAV-kontor tilknyttet '{nummer}'. Postnummeret kan være ugyldig.",
   "finnkontor.query.feil":
     "Skriv inn minst {min} bokstaver eller et gyldig postnummer.",
   "finnkontor.query.feil.kort": "Skriv minst {min} bokstaver eller et postnr.",
-  "finnkontor.ingen.treff": 'Ingen resultater for "{query}"',
+  "finnkontor.ingen.treff": "Ingen resultater for '{query}'",
   "finnkontor.flere.treff": "Vis alle treff ({antall})",
-  "finnkontor.resultat.stedsnavn": 'Søkeresultat for "{query}" ({antall}):',
+  "finnkontor.resultat.stedsnavn": "Søkeresultat for '{query}' ({antall}):",
   "finnkontor.resultat.postnr": "NAV-kontor for "
 };

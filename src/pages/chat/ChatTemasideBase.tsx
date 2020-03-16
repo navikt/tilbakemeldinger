@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { Systemtittel, Normaltekst } from "nav-frontend-typografi";
+import { Systemtittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import ChatbotWrapper from "./ChatbotWrapper";
 import { ChatTema, ChatTemaData } from "../../types/chat";
@@ -38,6 +38,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
   }, [documentTitle]);
 
   const temaButtonHandlers: { [key in ChatTema]: Function } = {
+    [ChatTema.Arbeidsgiver]: () => setChatButtonClicked(Date.now()),
     [ChatTema.Jobbsoker]: () => setChatButtonClicked(Date.now()),
     [ChatTema.Syk]: () => setChatButtonClicked(Date.now()),
     [ChatTema.Familie]: () => setChatButtonClicked(Date.now()),
@@ -50,7 +51,6 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
   const chatIApningstid = chatTemaData.apningstider
     ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
     : true;
-  // const chatbotErApen = (chatTemaData.harChatbot && chatTemaData.apningstider && !chatTemaData.apningstider.getChatbotStengt());
   const chatErApen = chatIApningstid || chatTemaData.harChatbot;
 
   const chatbotConfig = vars.chatBot.temaConfigs[chatTemaData.chatTema];
@@ -72,10 +72,8 @@ const ChatTemaSideBase = ({ chatTemaData, children }: ChatTemaProps) => {
                   <FormattedMessage id="chat.stengt.info" />
                 </AlertStripeInfo>
               )}
-            <Normaltekst>
-              {children}
-              <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
-            </Normaltekst>
+            {children}
+            <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
           </div>
           {chatTemaData.apningstider && (
             <ApningstiderAvvik
