@@ -23,9 +23,9 @@ import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/Bestilling
 import { forsidePath, urls } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
 import FinnNavKontorPage from "./pages/finn-nav-kontor/FinnNavKontorPage";
-import { FAQ } from "./utils/sanity/endpoints/faq";
+import { FAQLenke } from "./utils/sanity/endpoints/faq";
 import { Alert } from "./utils/sanity/endpoints/alert";
-import { channelError, ChannelProps, Channels } from "./utils/sanity/endpoints/channel";
+import { ChannelProps, ChannelTypeList } from "./utils/sanity/endpoints/channel";
 
 const App = () => {
     const [{ auth }, dispatch] = useStore();
@@ -58,20 +58,20 @@ const App = () => {
       }
 
       fetchAlerts()
-        .then((alertsJson: Array<Alert>) => {
+        .then((alerts: Array<Alert>) => {
             dispatch({
               type: "SETT_VARSLER",
-              payload: alertsJson
+              payload: alerts
             });
           }
         )
         .catch(console.error);
 
       fetchFaq()
-        .then((faqJson: Array<FAQ>) => {
+        .then((faq: Array<FAQLenke>) => {
             dispatch({
               type: "SETT_FAQ",
-              payload: faqJson.sort((a, b) => b.priority - a.priority),
+              payload: faq.sort((a, b) => b.priority - a.priority),
             });
           }
         )
@@ -81,17 +81,9 @@ const App = () => {
         .then((channels: ChannelProps[]) => {
           dispatch({
             type: "SETT_CHANNEL_PROPS",
-            payload: {
-              isLoaded: true,
-              types: channels
-                .reduce((acc, channel) => {
-                  return {
-                    ...acc,
-                    [channel._id]: channel || channelError
-                  };
-                }, {})
-            } as Channels
-          });
+            payload: channels.reduce((acc, channel) =>
+              ({ ...acc, [channel._id]: channel }), {}) as ChannelTypeList
+          })
         })
         .catch(err => {
           dispatch({ type: "SETT_CHANNELS_FETCH_FAILED" });

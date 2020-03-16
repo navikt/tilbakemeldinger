@@ -10,7 +10,7 @@ import { KanalVisning } from "./KanalVisning";
 
 const SkrivTilOss = () => {
   const tittel = <FormattedMessage id={"kontaktoss.skrivtiloss.tittel"}/>;
-  const [{channelProps}] = useStore();
+  const [{channels}] = useStore();
 
   const onClick = () => {
     logEvent({event: "skriv-til-oss"});
@@ -18,7 +18,7 @@ const SkrivTilOss = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <KanalVisning isLoaded={channelProps.isLoaded} channelProps={channelProps.types.write}>
+      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.types.write}>
         <RouterLenke
           href={urls.skrivTilOss.forside}
           className={"lenke__avstand-over"}

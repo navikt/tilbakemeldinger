@@ -6,8 +6,8 @@ import { Enheter, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../components/error/Error";
 import Unleash, { Features } from "../utils/unleash";
 import { Alert } from "../utils/sanity/endpoints/alert";
-import { FAQ } from "../utils/sanity/endpoints/faq";
-import { Channels } from "../utils/sanity/endpoints/channel";
+import { FAQ, FAQLenke } from "../utils/sanity/endpoints/faq";
+import { Channels, ChannelType, ChannelTypeList } from "../utils/sanity/endpoints/channel";
 
 export const initialState = {
   fodselsnr: "",
@@ -19,14 +19,17 @@ export const initialState = {
   unleashFeatures: Unleash.getFeatureDefaults() as Features,
   visTekniskFeilMelding: false,
   varsler: [],
-  faq: [],
-  channelProps: {
+  faq: {
+    isLoaded: false,
+    faqLenker: []
+  } as FAQ,
+  channels: {
     isLoaded: false,
     types: {
-      telephone: {_id: "telephone"},
-      chat: {_id: "chat"},
-      tutor: {_id: "tutor"},
-      write: {_id: "write"},
+      [ChannelType.Telefon]: {_id: ChannelType.Telefon},
+      [ChannelType.Chat]: {_id: ChannelType.Chat},
+      [ChannelType.Veileder]: {_id: ChannelType.Veileder},
+      [ChannelType.SkrivTilOss]: {_id: ChannelType.SkrivTilOss},
     }
   } as Channels,
 };
@@ -41,8 +44,8 @@ export interface Store {
   unleashFeatures: Features;
   visTekniskFeilMelding: boolean;
   varsler: Array<Alert>;
-  faq: Array<FAQ>;
-  channelProps: Channels
+  faq: FAQ;
+  channels: Channels;
 }
 
 export type Action =
@@ -71,10 +74,10 @@ export type Action =
   payload: Array<Alert>;
 } | {
   type: "SETT_FAQ";
-  payload: Array<FAQ>;
+  payload: FAQLenke[];
 } | {
   type: "SETT_CHANNEL_PROPS";
-  payload: Channels;
+  payload: ChannelTypeList;
 } | {
   type: "SETT_CHANNELS_FETCH_FAILED";
 } | {
@@ -127,21 +130,24 @@ export const reducer = (state: Store, action: Action) => {
     case "SETT_FAQ":
       return {
         ...state,
-        faq: action.payload
+        faq: {
+          isLoaded: true,
+          faqLenker: action.payload
+        }
       };
     case "SETT_CHANNEL_PROPS": {
       return {
         ...state,
-        channelProps: {
-          isLoaded: action.payload.isLoaded,
-          types: action.payload.types || state.channelProps.types
+        channels: {
+          isLoaded: true,
+          types: action.payload
         }
       };
     }
     case "SETT_CHANNELS_FETCH_FAILED": {
       return {
         ...state,
-        channelProps: {...state.channelProps, isLoaded: true},
+        channels: {...state.channels, isLoaded: true},
         visTekniskFeilMelding: true
       };
     }

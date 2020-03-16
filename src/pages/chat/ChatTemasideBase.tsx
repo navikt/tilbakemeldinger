@@ -29,7 +29,7 @@ const cssPrefix = "chat-tema";
 const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
   const [chatButtonClicked, setChatButtonClicked] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
-  const [{ channelProps, visTekniskFeilMelding }, dispatch] = useStore();
+  const [{ channels, visTekniskFeilMelding }, dispatch] = useStore();
 
   useEffect(() => {
     fetchServerTidOffset(setServerTidOffset);
@@ -42,11 +42,11 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
     document.title = documentTitle;
   }, [documentTitle]);
 
-  if (!channelProps.isLoaded) {
+  if (!channels.isLoaded) {
     return <NavFrontendSpinner />;
   }
 
-  const chatProps = channelProps.types.chat;
+  const chatProps = channels.types.chat;
   if (chatProps.error) {
     !visTekniskFeilMelding && dispatch({ type: "SETT_TEKNISK_FEILMELDING" });
   }

@@ -10,7 +10,7 @@ import { KanalVisning } from "./KanalVisning";
 
 const Chat = () => {
   const tittel = <FormattedMessage id={"kontaktoss.chat.tittel"}/>;
-  const [{channelProps}] = useStore();
+  const [{channels}] = useStore();
 
   const onClick = () => {
     logEvent({event: "chat"});
@@ -18,7 +18,7 @@ const Chat = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <KanalVisning isLoaded={channelProps.isLoaded} channelProps={channelProps.types.chat}>
+      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.types.chat}>
         <RouterLenke
           href={urls.chat.forside}
           onClick={onClick}

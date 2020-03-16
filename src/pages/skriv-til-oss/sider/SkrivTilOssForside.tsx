@@ -85,8 +85,8 @@ const StengtMelding = () => (
 );
 
 const SkrivTilOssForside = () => {
-  const [{ channelProps, visTekniskFeilMelding }, dispatch] = useStore();
-  const stoProps = channelProps.types.write;
+  const [{ channels, visTekniskFeilMelding }, dispatch] = useStore();
+  const stoProps = channels.types.write;
 
   if (stoProps.error) {
     !visTekniskFeilMelding && dispatch({type: "SETT_TEKNISK_FEILMELDING"});
@@ -98,7 +98,7 @@ const SkrivTilOssForside = () => {
 
   return (
     <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenker={isClosed ? undefined : lenker}>
-      {channelProps.isLoaded ? (
+      {channels.isLoaded ? (
         <>
           {!isClosed && (
             <Normaltekst className={"svartid"}>

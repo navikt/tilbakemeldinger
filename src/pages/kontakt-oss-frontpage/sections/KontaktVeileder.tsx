@@ -9,11 +9,11 @@ import { KanalVisning } from "./KanalVisning";
 
 const KontaktVeileder = () => {
   const tittel = <FormattedMessage id={"kontaktoss.kontaktveileder.tittel"}/>;
-  const [{channelProps}] = useStore();
+  const [{channels}] = useStore();
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <KanalVisning isLoaded={channelProps.isLoaded} channelProps={channelProps.types.tutor}>
+      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.types.tutor}>
         <RouterLenke
           href={urls.aktivitetsplanDialog}
           className={"lenke__avstand-over"}

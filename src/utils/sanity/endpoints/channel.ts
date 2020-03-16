@@ -10,14 +10,18 @@ export type ChannelProps = {
   themes?: Theme[];
 }
 
+export enum ChannelType {
+  Telefon = "telephone",
+  Chat = "chat",
+  Veileder = "tutor",
+  SkrivTilOss = "write"
+}
+
+export type ChannelTypeList = {[id in ChannelType]: ChannelProps};
+
 export type Channels = {
   isLoaded: boolean;
-  types: {
-    telephone: ChannelProps;
-    chat: ChannelProps;
-    tutor: ChannelProps;
-    write: ChannelProps;
-  }
+  types: ChannelTypeList;
 }
 
 type Theme = {

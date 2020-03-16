@@ -7,10 +7,11 @@ import { logEvent } from "utils/logger";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
 import { useStore } from "../../../providers/Provider";
 import { KanalVisning } from "./KanalVisning";
+import { ChannelType } from "../../../utils/sanity/endpoints/channel";
 
 const RingOss = () => {
   const tittel = <FormattedMessage id={"kontaktoss.ringoss.tittel"}/>;
-  const [{channelProps}] = useStore();
+  const [{channels}] = useStore();
 
   const onClick = () => {
     logEvent({event: "ring-oss"});
@@ -18,7 +19,7 @@ const RingOss = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel} className="ringoss">
-      <KanalVisning isLoaded={channelProps.isLoaded} channelProps={channelProps.types.telephone}>
+      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.types[ChannelType.Telefon]}>
         <RouterLenke
           isExternal={true}
           href={urls.ringOss}

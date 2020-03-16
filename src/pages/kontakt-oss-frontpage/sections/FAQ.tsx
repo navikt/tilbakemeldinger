@@ -7,6 +7,7 @@ import ikon from "assets/forside-faq-ikon.svg";
 import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
 import { useStore } from "../../../providers/Provider";
 import { Language } from "../../../utils/sanity/serializers";
+import NavFrontendSpinner from "nav-frontend-spinner";
 
 const language = Language.Bokmaal;
 
@@ -16,12 +17,13 @@ const FAQ = () => {
   const toggleVisFlereFAQ = () => settVisFlereFAQ(!visFlereFAQ);
   // const toggleVisFlereMinSide = () => settVisFlereMinside(!visFlereMinside);
   const visElementer = 3;
-  const [{faq: lenkerFAQ}] = useStore();
+  const [{ faq }] = useStore();
+  const lenkerFAQ = faq.faqLenker;
 
   const tittel = <FormattedMessage id={"faq.intro"} />;
 
-  return (
-    <IkonPanel ikon={ikon} tittel={tittel} className={"faq"}>
+  const innhold = (
+    <>
       {lenkerFAQ
         .slice(0, visFlereFAQ ? lenkerFAQ.length : visElementer)
         .map(({ lenke, tittel }) => {
@@ -33,10 +35,17 @@ const FAQ = () => {
           >
             {tittel[language]}
           </RouterLenke>)
-        })}
+        })
+      }
       {lenkerFAQ.length > visElementer && (
         <VisMer visFlere={visFlereFAQ} onClick={toggleVisFlereFAQ} />
       )}
+    </>
+  );
+
+  return (
+    <IkonPanel ikon={ikon} tittel={tittel} className={"faq"}>
+      {faq.isLoaded ? innhold : <NavFrontendSpinner />}
     </IkonPanel>
   );
 };

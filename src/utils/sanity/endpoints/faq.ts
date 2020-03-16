@@ -1,7 +1,12 @@
 import { LocaleLink, LocaleString } from "../serializers";
 
+export type FAQLenke = {
+  lenke: LocaleLink;
+  tittel: LocaleString;
+  priority: number;
+}
+
 export type FAQ = {
-  lenke: LocaleLink,
-  tittel: LocaleString,
-  priority: number
+  isLoaded: boolean;
+  faqLenker: FAQLenke[];
 };
