@@ -15,22 +15,22 @@ type Props = {
 
 const StengtMelding = () => (
   <div className={"kanal-stengt"}>
-    <Element>{"Tjenesten er dessverre stengt, prøv igjen senere."}</Element>
+    <Element><FormattedMessage id={"kontaktoss.kanal.stengt"} /></Element>
   </div>
 );
 
-export const KanalVisning = ({channelProps, isLoaded = true, children}: Props) => {
-  const [{visTekniskFeilMelding}, dispatch] = useStore();
+export const KanalVisning = ({ channelProps, isLoaded = true, children }: Props) => {
+  const [{ visTekniskFeilMelding }, dispatch] = useStore();
 
   if (!isLoaded) {
-    return <NavFrontendSpinner/>;
+    return <NavFrontendSpinner />;
   }
 
   if (channelProps.error) {
-    !visTekniskFeilMelding && dispatch({type: "SETT_TEKNISK_FEILMELDING"});
+    !visTekniskFeilMelding && dispatch({ type: "SETT_TEKNISK_FEILMELDING" });
   }
 
-  const {answer_time, closed, description} = channelProps;
+  const { answer_time, closed, description } = channelProps;
   const svartid = answer_time && answer_time[Language.Bokmaal];
 
   return (
@@ -38,13 +38,13 @@ export const KanalVisning = ({channelProps, isLoaded = true, children}: Props) =
       <div>
         {svartid && !closed && (
           <Normaltekst className="svartid">
-            <FormattedMessage id={"kontaktoss.svartid"}/>
+            <FormattedMessage id={"kontaktoss.svartid"} />
             {svartid}
           </Normaltekst>
         )}
-        {description && <BlockContent blocks={description} serializers={serializers}/>}
+        {description && <BlockContent blocks={description} serializers={serializers} />}
       </div>
-      {closed ? <StengtMelding/> : children}
+      {closed ? <StengtMelding /> : children}
     </>
   );
 };

@@ -25,7 +25,7 @@ import ChatRouter from "./pages/chat/ChatRouter";
 import FinnNavKontorPage from "./pages/finn-nav-kontor/FinnNavKontorPage";
 import { FAQLenke } from "./utils/sanity/endpoints/faq";
 import { Alert } from "./utils/sanity/endpoints/alert";
-import { ChannelProps, ChannelTypeList } from "./utils/sanity/endpoints/channel";
+import { ChannelProps, ChannelList, createValidChannelList } from "./utils/sanity/endpoints/channel";
 
 const App = () => {
     const [{ auth }, dispatch] = useStore();
@@ -77,18 +77,20 @@ const App = () => {
         )
         .catch(console.error);
 
-      Promise.race<any>([fetchChannelInfo(), timeoutPromise(2000, "fetching channel info failed!")])
+      Promise.race<any>([fetchChannelInfo(), timeoutPromise(2000, "Fetching channel data failed!")])
         .then((channels: ChannelProps[]) => {
+          console.log(createValidChannelList(channels));
           dispatch({
             type: "SETT_CHANNEL_PROPS",
-            payload: channels.reduce((acc, channel) =>
-              ({ ...acc, [channel._id]: channel }), {}) as ChannelTypeList
-          })
+            payload: createValidChannelList(channels)
+              // channels.reduce((acc, channel) =>
+              // ({ ...acc, [channel._id]: channel }), {}) as ChannelList
+          });
         })
         .catch(err => {
           dispatch({ type: "SETT_CHANNELS_FETCH_FAILED" });
           console.error(err);
-        })
+        });
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

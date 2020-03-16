@@ -14,7 +14,7 @@ import ApningstiderAvvik from "../../components/apningstider/ApningstiderAvvik";
 import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 import { useStore } from "../../providers/Provider";
-import { chatbotIdToSanityId } from "../../utils/sanity/endpoints/channel";
+import { chatTemaToSanityId } from "../../utils/sanity/endpoints/channel";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
 
@@ -62,7 +62,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
   };
 
   const { harChatbot, chatTema } = chatTemaData;
-  const sanityTemaId = chatbotIdToSanityId[chatTema];
+  const sanityTemaId = chatTemaToSanityId[chatTema];
   const temaProps = chatProps.themes && chatProps.themes.find(t => t._key === sanityTemaId);
   const temaClosed = temaProps && temaProps.closed;
 

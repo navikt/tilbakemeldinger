@@ -107,6 +107,7 @@ export default {
   "kontaktoss.svartid": "Svartid: ",
   "kontaktoss.svartiddager": "{antall} arbeidsdager",
   "kontaktoss.svartidendag": "én arbeidsdag",
+  "kontaktoss.kanal.stengt": "Tjenesten er for øyeblikket stengt, prøv igjen senere.",
 
   "kontaktoss.chat.tittel": "Chat med oss",
   "kontaktoss.chat.ingress":

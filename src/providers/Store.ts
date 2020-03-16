@@ -7,7 +7,8 @@ import { HTTPError } from "../components/error/Error";
 import Unleash, { Features } from "../utils/unleash";
 import { Alert } from "../utils/sanity/endpoints/alert";
 import { FAQ, FAQLenke } from "../utils/sanity/endpoints/faq";
-import { Channels, ChannelType, ChannelTypeList } from "../utils/sanity/endpoints/channel";
+import { Channels, ChannelList, kanalToSanityId } from "../utils/sanity/endpoints/channel";
+import { Kanal } from "../types/kanaler";
 
 export const initialState = {
   fodselsnr: "",
@@ -26,10 +27,10 @@ export const initialState = {
   channels: {
     isLoaded: false,
     types: {
-      [ChannelType.Telefon]: {_id: ChannelType.Telefon},
-      [ChannelType.Chat]: {_id: ChannelType.Chat},
-      [ChannelType.Veileder]: {_id: ChannelType.Veileder},
-      [ChannelType.SkrivTilOss]: {_id: ChannelType.SkrivTilOss},
+      [Kanal.RingOss]: {_id: kanalToSanityId[Kanal.RingOss]},
+      [Kanal.Chat]: {_id: kanalToSanityId[Kanal.Chat]},
+      [Kanal.Veileder]: {_id: kanalToSanityId[Kanal.Veileder]},
+      [Kanal.SkrivTilOss]: {_id: kanalToSanityId[Kanal.SkrivTilOss]},
     }
   } as Channels,
 };
@@ -77,7 +78,7 @@ export type Action =
   payload: FAQLenke[];
 } | {
   type: "SETT_CHANNEL_PROPS";
-  payload: ChannelTypeList;
+  payload: ChannelList;
 } | {
   type: "SETT_CHANNELS_FETCH_FAILED";
 } | {

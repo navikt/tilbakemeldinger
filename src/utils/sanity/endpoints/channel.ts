@@ -1,41 +1,8 @@
 import { LenkeData, LocaleString, TextBlock } from "../serializers";
 import { ChatTema } from "../../../types/chat";
+import { Kanal } from "../../../types/kanaler";
 
-export type ChannelProps = {
-  _id: string;
-  error?: boolean;
-  answer_time?: LocaleString;
-  closed?: boolean;
-  description?: TextBlock[];
-  themes?: Theme[];
-};
-
-export enum ChannelType {
-  Telefon = "telephone",
-  Chat = "chat",
-  Veileder = "tutor",
-  SkrivTilOss = "write"
-}
-
-export type ChannelTypeList = {[id in ChannelType]: ChannelProps};
-
-export type Channels = {
-  isLoaded: boolean;
-  types: ChannelTypeList;
-};
-
-type Theme = {
-  _key: string;
-  closed: boolean;
-  link: LenkeData;
-};
-
-export const channelError = {
-  _id: "",
-  error: true
-};
-
-export const chatbotIdToSanityId = {
+export const chatTemaToSanityId = {
   [ChatTema.Arbeidsgiver]: "arbeidsgiver",
   [ChatTema.Jobbsoker]: "jobbsoker",
   [ChatTema.EURES]: "eures",
@@ -45,3 +12,41 @@ export const chatbotIdToSanityId = {
   [ChatTema.Syk]: "syk",
   [ChatTema.Ufor]: "ufor",
 };
+
+export const kanalToSanityId = {
+  ringOss: "telephone",
+  skrivTilOss: "write",
+  chat: "chat",
+  veileder: "tutor",
+};
+
+export type ChannelProps = {
+  _id: string;
+  error?: boolean;
+  answer_time?: LocaleString;
+  closed?: boolean;
+  description?: TextBlock[];
+  themes?: ChannelTheme[];
+};
+
+export type ChannelList = {[id: string]: ChannelProps};
+
+export type Channels = {
+  isLoaded: boolean;
+  types: ChannelList;
+};
+
+export type ChannelTheme = {
+  _key: string;
+  closed: boolean;
+  link: LenkeData;
+};
+
+const channelNotFound: ChannelProps = {
+  _id: "",
+  error: true
+};
+
+export const createValidChannelList = (channelProps: ChannelProps[]): ChannelList =>
+  Object.values(kanalToSanityId).reduce((acc, id) =>
+    ({...acc, [id]: channelProps.find(cp => cp._id === id) || channelNotFound}), {});
