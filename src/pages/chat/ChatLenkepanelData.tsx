@@ -11,6 +11,12 @@ const chatTemaLenker: Array<LenkepanelData> = [
     url: urls.chat.jobbsoker.temaside
   },
   {
+    grafanaId: "chat.arbeidsgiver",
+    tittelId: "chat.arbeidsgiver.tittel",
+    ingress: <FormattedMessage id={"chat.arbeidsgiver.ingressKort"} />,
+    url: urls.chat.arbeidsgiver.temaside
+  },
+  {
     grafanaId: "chat.syk",
     tittelId: "chat.syk.tittel",
     ingress: <FormattedMessage id={"chat.syk.ingressKort"} />,
@@ -39,12 +45,6 @@ const chatTemaLenker: Array<LenkepanelData> = [
     tittelId: "chat.okonomi.tittel",
     ingress: <FormattedMessage id={"chat.okonomi.ingressKort"} />,
     url: urls.chat.okonomi.temaside
-  },
-  {
-    grafanaId: "chat.arbeidsgiver",
-    tittelId: "chat.arbeidsgiver.tittel",
-    ingress: <FormattedMessage id={"chat.arbeidsgiver.ingressKort"} />,
-    url: urls.chat.arbeidsgiver.temaside
   },
   {
     grafanaId: "chat.eures",
