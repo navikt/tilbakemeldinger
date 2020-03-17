@@ -1,7 +1,7 @@
 // TODO: Erstatt/merge denne med den andre lenkepanel komponenten
 import { LenkepanelBase } from "nav-frontend-lenkepanel/lib";
 import { Link } from "react-router-dom";
-import { Undertittel } from "nav-frontend-typografi";
+import { Element, Undertittel } from "nav-frontend-typografi";
 import { FormattedMessage } from "react-intl";
 import React from "react";
 import { logEvent } from "../../utils/logger";
@@ -20,8 +20,11 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix }: Props) => {
     logEvent({ event: lenkepanelData.grafanaId });
   };
 
+  const tema = lenkepanelData.tema;
   const [{ themes }] = useStore();
-  const temaProps = themes.props[lenkepanelData.tema];
+  const temaProps = themes.props[tema];
+
+  const disableLink = temaProps.closed && tema.includes("sto-");
   const lenkePanelTekst = temaProps.link;
   const tittel = lenkePanelTekst && lenkePanelTekst.title;
   const ingress = lenkePanelTekst && lenkePanelTekst.description;
@@ -29,18 +32,11 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix }: Props) => {
   return (
     <LenkepanelBase
       border={true}
-      className={`${cssPrefix}__temalenke linkbox__container`}
-      href={"#"}
-      linkCreator={props => {
-        return lenkepanelData.harUndertemaer ? (
-          <Link
-            to={lenkepanelData.url}
-            className={props.className}
-            onClick={onClick}
-          >
-            {props.children}
-          </Link>
-        ) : (
+      className={`${cssPrefix}__temalenke linkbox__container ${disableLink
+        ? ` ${cssPrefix}__lenkepanel-disabled` : ""}`}
+      href={""}
+      linkCreator={!disableLink ? (props => {
+        return lenkepanelData.externalUrl ? (
           <a
             href={lenkepanelData.url}
             className={props.className}
@@ -48,8 +44,16 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix }: Props) => {
           >
             {props.children}
           </a>
+        ) : (
+          <Link
+            to={lenkepanelData.url}
+            className={props.className}
+            onClick={onClick}
+          >
+            {props.children}
+          </Link>
         );
-      }}
+      }) : undefined}
     >
       <div>
         {lenkepanelData.ikon && <div>{lenkepanelData.ikon}</div>}
@@ -62,6 +66,11 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix }: Props) => {
           <div className={`${cssPrefix}__lenkepanel-ingress`}>
             <BlockContent blocks={ingress} serializers={serializers} />
           </div>
+          {disableLink && (
+            <Element className={`${cssPrefix}__stengt-tekst`}>
+              {"Tjenesten er for øyeblikket stengt, prøv igjen senere."}
+            </Element>
+          )}
         </div>
       </div>
     </LenkepanelBase>

@@ -839,7 +839,7 @@
     "_rev": "lrDMfu4dQPEWZuTSwsekKR",
     "_type": "theme",
     "_updatedAt": "2020-03-17T12:08:27Z",
-    "closed": false,
+    "closed": true,
     "channel": {
       "_ref": "skriv-til-oss",
       "_type": "reference"

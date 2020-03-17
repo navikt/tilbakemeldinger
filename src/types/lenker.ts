@@ -6,6 +6,6 @@ export type TemaLenkepanelData = {
   url: string;
   tittelFallbackId: string;
   grafanaId: string;
-  harUndertemaer?: boolean;
+  externalUrl?: boolean;
   ikon?: any;
 };
