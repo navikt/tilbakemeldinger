@@ -2,6 +2,7 @@ import Environment from "./Environments";
 import { Ukedager } from "./types/datotid";
 import { ChatTema } from "./types/chat";
 import ApningsTider from "./utils/apningstider";
+import moment from "moment";
 
 export const forsidePath = "/person/kontakt-oss";
 export const noRedirectUrlSegment = "/test";
@@ -15,6 +16,9 @@ interface Varsel {
   lenke: string;
   lenkeTekst: string;
 }
+
+// TODO: fjern denne etter lansering
+export const sykChatbotErLansert = moment().isAfter(moment("09:00 18-03-2020", "HH:mm DD-MM-YYYY"));
 
 /* Viktige meldinger her */
 export const varsler: Varsel[] = [];
@@ -172,7 +176,7 @@ export const vars = {
       },
       [ChatTema.Syk]: {
         configId: "599f9e7c-7f6b-4569-81a1-27202c419953",
-        queueKey: "Q_CHAT_SYK"
+        queueKey: sykChatbotErLansert ? "Q_CHAT_BOT" : "Q_CHAT_SYK"
       },
       [ChatTema.Familie]: {
         configId: "c3372a51-6434-4770-a0aa-6e4edba3471e",

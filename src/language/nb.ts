@@ -374,7 +374,7 @@ export default {
 
   "chat.jobbsoker.tittel": "Jobbsøker",
   "chat.jobbsoker.ingressKort":
-    "Chat for privatpersoner om arbeidsavklaringspenger, dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
+    "Chat for privatpersoner om permittering, arbeidsavklaringspenger, dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
 
   "chat.syk.tittel": "Syk",
   "chat.syk.ingressKort": "Chat for privatpersoner om sykmelding, sykepenger, yrkesskade/ménerstatning.",
