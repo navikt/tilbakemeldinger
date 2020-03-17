@@ -12,6 +12,7 @@ import { Language, serializers, TextBlock } from "../../../utils/sanity/serializ
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { TekniskProblemBackend } from "../../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
 import BlockContent from "@sanity/block-content-to-react";
+import { Kanal } from "../../../types/kanaler";
 
 const lenker: LenkepanelData[] = [
   {
@@ -86,7 +87,7 @@ const StengtMelding = () => (
 
 const SkrivTilOssForside = () => {
   const [{ channels, visTekniskFeilMelding }, dispatch] = useStore();
-  const stoProps = channels.props.skrivTilOss;
+  const stoProps = channels.props[Kanal.SkrivTilOss];
 
   if (stoProps.error) {
     !visTekniskFeilMelding && dispatch({type: "SETT_TEKNISK_FEILMELDING"});

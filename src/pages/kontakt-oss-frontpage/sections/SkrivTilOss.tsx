@@ -7,6 +7,7 @@ import { logEvent } from "utils/logger";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
 import { useStore } from "../../../providers/Provider";
 import { KanalVisning } from "./KanalVisning";
+import { Kanal } from "../../../types/kanaler";
 
 const SkrivTilOss = () => {
   const tittel = <FormattedMessage id={"kontaktoss.skrivtiloss.tittel"}/>;
@@ -18,7 +19,7 @@ const SkrivTilOss = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.props.skrivTilOss}>
+      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.props[Kanal.SkrivTilOss]}>
         <RouterLenke
           href={urls.skrivTilOss.forside}
           className={"lenke__avstand-over"}

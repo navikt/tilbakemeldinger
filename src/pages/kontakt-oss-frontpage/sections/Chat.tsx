@@ -7,6 +7,7 @@ import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
 import { logEvent } from "utils/logger";
 import { useStore } from "../../../providers/Provider";
 import { KanalVisning } from "./KanalVisning";
+import { Kanal } from "../../../types/kanaler";
 
 const Chat = () => {
   const tittel = <FormattedMessage id={"kontaktoss.chat.tittel"}/>;
@@ -18,7 +19,7 @@ const Chat = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.props.chat}>
+      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.props[Kanal.Chat]}>
         <RouterLenke
           href={urls.chat.forside}
           onClick={onClick}

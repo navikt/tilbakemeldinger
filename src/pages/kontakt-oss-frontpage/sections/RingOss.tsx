@@ -7,6 +7,7 @@ import { logEvent } from "utils/logger";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
 import { useStore } from "../../../providers/Provider";
 import { KanalVisning } from "./KanalVisning";
+import { Kanal } from "../../../types/kanaler";
 
 const RingOss = () => {
   const tittel = <FormattedMessage id={"kontaktoss.ringoss.tittel"}/>;
@@ -18,7 +19,7 @@ const RingOss = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel} className="ringoss">
-      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.props.ringOss}>
+      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.props[Kanal.RingOss]}>
         <RouterLenke
           isExternal={true}
           href={urls.ringOss}

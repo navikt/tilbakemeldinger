@@ -16,21 +16,6 @@ export type Themes = {
 };
 
 export type ThemeList = { [key in ChatTema | STOTema]: ThemeProps };
-//   [ChatTema.Arbeidsgiver]: ThemeProps,
-//   [ChatTema.EURES]: ThemeProps,
-//   [ChatTema.Familie]: ThemeProps,
-//   [ChatTema.Jobbsoker]: ThemeProps,
-//   [ChatTema.Okonomi]: ThemeProps,
-//   [ChatTema.Sosial]: ThemeProps,
-//   [ChatTema.Syk]: ThemeProps,
-//   [ChatTema.Ufor]: ThemeProps,
-//   [STOTema.Familie]: ThemeProps,
-//   [STOTema.Hjelpemidler]: ThemeProps,
-//   [STOTema.Jobbsoker]: ThemeProps,
-//   [STOTema.Pensjon]: ThemeProps,
-//   [STOTema.Syk]: ThemeProps,
-//   [STOTema.Ufor]: ThemeProps,
-// };
 
 export const temaToSanityId = {
   [ChatTema.Arbeidsgiver]: "chat-med-oss-arbeidsgiver",

@@ -6,6 +6,7 @@ import ikon from "assets/forside-veileder-ikon.svg";
 import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
 import { useStore } from "../../../providers/Provider";
 import { KanalVisning } from "./KanalVisning";
+import { Kanal } from "../../../types/kanaler";
 
 const KontaktVeileder = () => {
   const tittel = <FormattedMessage id={"kontaktoss.kontaktveileder.tittel"}/>;
@@ -13,7 +14,7 @@ const KontaktVeileder = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.props.kontaktVeileder}>
+      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.props[Kanal.KontaktVeileder]}>
         <RouterLenke
           href={urls.aktivitetsplanDialog}
           className={"lenke__avstand-over"}

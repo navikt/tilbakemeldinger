@@ -16,6 +16,7 @@ import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/
 import { useStore } from "../../providers/Provider";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
+import { Kanal } from "../../types/kanaler";
 
 type Props = {
   chatTemaData: ChatTemaData,
@@ -27,7 +28,7 @@ const cssPrefix = "chat-tema";
 const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
   const [chatButtonClicked, setChatButtonClicked] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
-  const [{ themes, visTekniskFeilMelding }, dispatch] = useStore();
+  const [{ themes, channels, visTekniskFeilMelding }, dispatch] = useStore();
 
   useEffect(() => {
     fetchServerTidOffset(setServerTidOffset);
@@ -40,12 +41,13 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
     document.title = documentTitle;
   }, [documentTitle]);
 
-  if (!themes.isLoaded) {
+  if (!themes.isLoaded || !channels.isLoaded) {
     return <NavFrontendSpinner />;
   }
 
   const temaProps = themes.props[chatTemaData.chatTema];
-  if (temaProps.error) {
+  const channelProps = channels.props[Kanal.Chat];
+  if (temaProps.error || channelProps.error) {
     !visTekniskFeilMelding && dispatch({ type: "SETT_TEKNISK_FEILMELDING" });
   }
   console.log(temaProps);
@@ -62,13 +64,14 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
   };
 
   const { harChatbot, chatTema } = chatTemaData;
-  const temaClosed = temaProps && temaProps.closed;
+  const temaClosed = temaProps.closed;
+  const channelClosed = channelProps.closed;
 
   const chatErIApningstid = (chatTemaData.apningstider
     ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
     : true) || true; // TODO: || true kun for test av stenging fra backend!
   const chatErNormaltApen = chatErIApningstid || harChatbot;
-  const chatErStengtAvAdmin = temaProps.closed || temaClosed;
+  const chatErStengtAvAdmin = channelClosed || temaClosed;
   const chatMedVeilederErStengt = chatErStengtAvAdmin && chatErIApningstid;
   const chatErApen = (chatErNormaltApen && !chatMedVeilederErStengt) || harChatbot;
 

@@ -1,4 +1,5 @@
 import { LocaleString, TextBlock } from "../serializers";
+import { Kanal } from "../../../types/kanaler";
 
 export type ChannelProps = {
   _id?: string;
@@ -13,18 +14,13 @@ export type Channels = {
   props: ChannelList;
 };
 
-export type ChannelList = {
-  ringOss: ChannelProps;
-  skrivTilOss: ChannelProps;
-  chat: ChannelProps;
-  kontaktVeileder: ChannelProps;
-};
+export type ChannelList = { [key in Kanal]: ChannelProps };
 
 export const kanalToSanityId = {
-  ringOss: "ring-oss",
-  skrivTilOss: "skriv-til-oss",
-  chat: "chat-med-oss",
-  kontaktVeileder: "kontakt-din-veileder",
+  [Kanal.RingOss]: "ring-oss",
+  [Kanal.SkrivTilOss]: "skriv-til-oss",
+  [Kanal.Chat]: "chat-med-oss",
+  [Kanal.KontaktVeileder]: "kontakt-din-veileder",
 };
 
 const initialProps = Object.keys(kanalToSanityId).reduce((acc, kanal) =>
