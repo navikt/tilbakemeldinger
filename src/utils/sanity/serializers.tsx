@@ -50,13 +50,18 @@ export type LocaleLink = { [key in Language]: string };
 
 // TODO: oppdater med marks
 export type TextWithMarks = {
-  marks: string[],
-  text: string
+  marks: string[];
+  text: string;
 };
 
-export type LenkeData = {
-  link: string;
-  link_text: TextBlock[];
+export type Page = {
+  content: LocaleBlock;
+  title: LocaleString;
+};
+
+export type LenkePanel = {
+  description: LocaleBlock;
+  title: LocaleString;
 };
 
 const localeBlockSerializer = (block: { node: LocaleBlock }) => {

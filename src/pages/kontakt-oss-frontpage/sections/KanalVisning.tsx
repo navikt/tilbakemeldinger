@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 import BlockContent from "@sanity/block-content-to-react";
 import { Language, serializers } from "../../../utils/sanity/serializers";
 import React from "react";
-import { ChannelProps } from "../../../utils/sanity/endpoints/channel";
+import { ChannelProps } from "../../../utils/sanity/endpoints/channels";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { useStore } from "../../../providers/Provider";
 

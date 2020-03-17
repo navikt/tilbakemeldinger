@@ -86,7 +86,7 @@ const StengtMelding = () => (
 
 const SkrivTilOssForside = () => {
   const [{ channels, visTekniskFeilMelding }, dispatch] = useStore();
-  const stoProps = channels.types.skrivTilOss;
+  const stoProps = channels.props.skrivTilOss;
 
   if (stoProps.error) {
     !visTekniskFeilMelding && dispatch({type: "SETT_TEKNISK_FEILMELDING"});

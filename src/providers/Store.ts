@@ -6,8 +6,9 @@ import { Enheter, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../components/error/Error";
 import Unleash, { Features } from "../utils/unleash";
 import { Alert } from "../utils/sanity/endpoints/alert";
-import { FAQ, FAQLenke } from "../utils/sanity/endpoints/faq";
-import { Channels, ChannelList } from "../utils/sanity/endpoints/channel";
+import { FAQ, FAQLenke, initialFAQ } from "../utils/sanity/endpoints/faq";
+import { Channels, ChannelList, initialChannels } from "../utils/sanity/endpoints/channels";
+import { initialThemes, ThemeList, Themes } from "../utils/sanity/endpoints/themes";
 
 export const initialState = {
   fodselsnr: "",
@@ -19,19 +20,9 @@ export const initialState = {
   unleashFeatures: Unleash.getFeatureDefaults() as Features,
   visTekniskFeilMelding: false,
   varsler: [],
-  faq: {
-    isLoaded: false,
-    faqLenker: []
-  } as FAQ,
-  channels: {
-    isLoaded: false,
-    types: {
-      ringOss: {},
-      skrivTilOss: {},
-      chat: {},
-      kontaktVeileder: {},
-    }
-  } as Channels,
+  faq: initialFAQ as FAQ,
+  channels: initialChannels as Channels,
+  themes: initialThemes as Themes
 };
 
 export interface Store {
@@ -46,6 +37,7 @@ export interface Store {
   varsler: Array<Alert>;
   faq: FAQ;
   channels: Channels;
+  themes: Themes;
 }
 
 export type Action =
@@ -80,6 +72,11 @@ export type Action =
   payload: ChannelList;
 } | {
   type: "SETT_CHANNELS_FETCH_FAILED";
+} | {
+  type: "SETT_THEME_PROPS";
+  payload: ThemeList;
+} | {
+  type: "SETT_THEMES_FETCH_FAILED";
 } | {
   type: "SETT_TEKNISK_FEILMELDING";
 };
@@ -140,7 +137,7 @@ export const reducer = (state: Store, action: Action) => {
         ...state,
         channels: {
           isLoaded: true,
-          types: action.payload
+          props: action.payload
         }
       };
     }
@@ -148,6 +145,22 @@ export const reducer = (state: Store, action: Action) => {
       return {
         ...state,
         channels: {...state.channels, isLoaded: true},
+        visTekniskFeilMelding: true
+      };
+    }
+    case "SETT_THEME_PROPS": {
+      return {
+        ...state,
+        themes: {
+          isLoaded: true,
+          props: action.payload
+        }
+      };
+    }
+    case "SETT_THEMES_FETCH_FAILED": {
+      return {
+        ...state,
+        themes: {...state.themes, isLoaded: true},
         visTekniskFeilMelding: true
       };
     }

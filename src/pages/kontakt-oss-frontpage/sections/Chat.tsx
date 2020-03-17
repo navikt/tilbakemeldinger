@@ -18,7 +18,7 @@ const Chat = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.types.chat}>
+      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.props.chat}>
         <RouterLenke
           href={urls.chat.forside}
           onClick={onClick}

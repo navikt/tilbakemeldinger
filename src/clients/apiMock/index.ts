@@ -6,6 +6,7 @@ import enheter from "./data/enheter.json";
 import alerts from "./data/alerts.json";
 import faq from "./data/faq.json";
 import channels from "./data/kanalInfo.json";
+import themes from "./data/themes.json";
 import Environment from "../../Environments";
 
 const { baseUrl, apiUrl, personInfoApiUrl } = Environment();
@@ -18,6 +19,7 @@ const mockEnheter = true;
 const mockAlerts = true;
 const mockFaq = true;
 const mockChannels = true;
+const mockThemes = true;
 
 export const setUpMock = async () => {
   mockAuthInfo &&
@@ -40,6 +42,8 @@ export const setUpMock = async () => {
     fetchMock.get(`${apiUrl}/faq`, delay(400, 500).then(() => faq));
   mockChannels &&
     fetchMock.get(`${apiUrl}/channels`, delay(400, 500).then(() => channels));
+  mockThemes &&
+    fetchMock.get(`${apiUrl}/themes`, delay(400, 500).then(() => themes));
 };
 
 const delay = (min: number, max: number) => {

@@ -7,7 +7,7 @@ import FeilOgMangler from "./pages/tilbakemeldinger/feil-og-mangler/FeilOgMangle
 import {
   fetchAuthInfo,
   fetchKontaktInfo,
-  fetchFodselsnr, fetchAlerts, fetchFaq, fetchChannelInfo, timeoutPromise
+  fetchFodselsnr, fetchAlerts, fetchFaq, fetchChannelInfo, timeoutPromise, fetchThemes, fetchTimeoutMs
 } from "./clients/apiClient";
 import { useStore } from "./providers/Provider";
 import { AuthInfo } from "./types/authInfo";
@@ -25,7 +25,8 @@ import ChatRouter from "./pages/chat/ChatRouter";
 import FinnNavKontorPage from "./pages/finn-nav-kontor/FinnNavKontorPage";
 import { FAQLenke } from "./utils/sanity/endpoints/faq";
 import { Alert } from "./utils/sanity/endpoints/alert";
-import { ChannelProps, ChannelList, createCompleteChannelList } from "./utils/sanity/endpoints/channel";
+import { ChannelProps, ChannelList, createCompleteChannelList } from "./utils/sanity/endpoints/channels";
+import { createCompleteThemeList, ThemeList, ThemeProps } from "./utils/sanity/endpoints/themes";
 
 const App = () => {
     const [{ auth }, dispatch] = useStore();
@@ -77,7 +78,7 @@ const App = () => {
         )
         .catch(console.error);
 
-      Promise.race<any>([fetchChannelInfo(), timeoutPromise(2000, "Fetching channel data failed!")])
+      Promise.race<any>([fetchChannelInfo(), timeoutPromise(fetchTimeoutMs, "Fetching channel data failed!")])
         .then((channels: ChannelProps[]) => {
           dispatch({
             type: "SETT_CHANNEL_PROPS",
@@ -88,6 +89,19 @@ const App = () => {
           dispatch({ type: "SETT_CHANNELS_FETCH_FAILED" });
           console.error(err);
         });
+
+      Promise.race<any>([fetchThemes(), timeoutPromise(fetchTimeoutMs, "Fetching theme data failed!")])
+        .then((themes: ThemeProps[]) => {
+          dispatch({
+            type: "SETT_THEME_PROPS",
+            payload: createCompleteThemeList(themes) as ThemeList
+          });
+        })
+        .catch(err => {
+          dispatch({ type: "SETT_THEMES_FETCH_FAILED" });
+          console.error(err);
+        });
+
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

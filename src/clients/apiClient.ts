@@ -8,6 +8,8 @@ import { OutboundBestillingAvSamtale } from "../pages/samisk/bestilling-av-samta
 import { BadRequest } from "../types/errors";
 const { baseUrl, apiUrl, personInfoApiUrl } = Environment();
 
+export const fetchTimeoutMs = 3000;
+
 /*
     GET
  */
@@ -44,6 +46,8 @@ export const fetchAlerts = () => hentJson(`${apiUrl}/alerts`);
 export const fetchFaq = () => hentJson(`${apiUrl}/faq`);
 
 export const fetchChannelInfo = () => hentJson(`${apiUrl}/channels`);
+
+export const fetchThemes = () => hentJson(`${apiUrl}/themes`);
 
 export const fetchServerTidOffset = (callback: Function) => {
   fetch(baseUrl, { method: "HEAD" })

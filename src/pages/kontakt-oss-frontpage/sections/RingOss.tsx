@@ -18,7 +18,7 @@ const RingOss = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel} className="ringoss">
-      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.types.ringOss}>
+      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.props.ringOss}>
         <RouterLenke
           isExternal={true}
           href={urls.ringOss}
