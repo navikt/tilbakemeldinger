@@ -87,12 +87,12 @@ const StengtMelding = () => (
 
 const SkrivTilOssForside = () => {
   const [{ channels, visTekniskFeilMelding }, dispatch] = useStore();
-  const stoProps = channels.props[Kanal.SkrivTilOss];
 
-  if (stoProps.error) {
-    !visTekniskFeilMelding && dispatch({type: "SETT_TEKNISK_FEILMELDING"});
+  if (!channels.isLoaded) {
+    return <NavFrontendSpinner />;
   }
 
+  const stoProps = channels.props[Kanal.SkrivTilOss];
   const isClosed = stoProps.closed;
   const svartid = stoProps.answer_time;
   const tekstBlokk = stoProps.description;

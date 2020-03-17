@@ -47,10 +47,6 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
 
   const temaProps = themes.props[chatTemaData.chatTema];
   const channelProps = channels.props[Kanal.Chat];
-  if (temaProps.error || channelProps.error) {
-    !visTekniskFeilMelding && dispatch({ type: "SETT_TEKNISK_FEILMELDING" });
-  }
-  console.log(temaProps);
 
   const temaButtonHandlers: { [key in ChatTema]: Function } = {
     [ChatTema.Arbeidsgiver]: () => setChatButtonClicked(Date.now()),

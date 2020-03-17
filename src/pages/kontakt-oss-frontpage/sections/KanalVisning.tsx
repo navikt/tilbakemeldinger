@@ -3,13 +3,12 @@ import { FormattedMessage } from "react-intl";
 import BlockContent from "@sanity/block-content-to-react";
 import { Language, serializers } from "../../../utils/sanity/serializers";
 import React from "react";
-import { ChannelProps } from "../../../utils/sanity/endpoints/channels";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { useStore } from "../../../providers/Provider";
+import { Kanal } from "../../../types/kanaler";
 
 type Props = {
-  channelProps: ChannelProps;
-  isLoaded?: boolean;
+  kanal: Kanal;
   children: JSX.Element;
 };
 
@@ -19,16 +18,14 @@ const StengtMelding = () => (
   </div>
 );
 
-export const KanalVisning = ({ channelProps, isLoaded = true, children }: Props) => {
-  const [{ visTekniskFeilMelding }, dispatch] = useStore();
+export const KanalVisning = ({ kanal, children }: Props) => {
+  const [{ channels, visTekniskFeilMelding }, dispatch] = useStore();
 
-  if (!isLoaded) {
+  if (!channels.isLoaded) {
     return <NavFrontendSpinner />;
   }
 
-  if (channelProps.error) {
-    !visTekniskFeilMelding && dispatch({ type: "SETT_TEKNISK_FEILMELDING" });
-  }
+  const channelProps = channels.props[kanal];
 
   const { answer_time, closed, description } = channelProps;
   const svartid = answer_time && answer_time[Language.Bokmaal];

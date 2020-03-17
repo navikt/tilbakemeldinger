@@ -5,13 +5,11 @@ import IkonPanel from "components/ikonpanel/IkonPanel";
 import ikon from "assets/forside-chat-ikon.svg";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
 import { logEvent } from "utils/logger";
-import { useStore } from "../../../providers/Provider";
 import { KanalVisning } from "./KanalVisning";
 import { Kanal } from "../../../types/kanaler";
 
 const Chat = () => {
   const tittel = <FormattedMessage id={"kontaktoss.chat.tittel"}/>;
-  const [{channels}] = useStore();
 
   const onClick = () => {
     logEvent({event: "chat"});
@@ -19,7 +17,7 @@ const Chat = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.props[Kanal.Chat]}>
+      <KanalVisning kanal={Kanal.Chat}>
         <RouterLenke
           href={urls.chat.forside}
           onClick={onClick}

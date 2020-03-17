@@ -4,17 +4,15 @@ import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 import { urls } from "../../../Config";
 import ikon from "assets/forside-veileder-ikon.svg";
 import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
-import { useStore } from "../../../providers/Provider";
 import { KanalVisning } from "./KanalVisning";
 import { Kanal } from "../../../types/kanaler";
 
 const KontaktVeileder = () => {
   const tittel = <FormattedMessage id={"kontaktoss.kontaktveileder.tittel"}/>;
-  const [{channels}] = useStore();
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.props[Kanal.KontaktVeileder]}>
+      <KanalVisning kanal={Kanal.KontaktVeileder}>
         <RouterLenke
           href={urls.aktivitetsplanDialog}
           className={"lenke__avstand-over"}

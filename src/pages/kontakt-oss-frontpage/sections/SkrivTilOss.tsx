@@ -5,13 +5,11 @@ import { urls } from "Config";
 import ikon from "assets/forside-skrivtiloss-ikon.svg";
 import { logEvent } from "utils/logger";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
-import { useStore } from "../../../providers/Provider";
 import { KanalVisning } from "./KanalVisning";
 import { Kanal } from "../../../types/kanaler";
 
 const SkrivTilOss = () => {
   const tittel = <FormattedMessage id={"kontaktoss.skrivtiloss.tittel"}/>;
-  const [{channels}] = useStore();
 
   const onClick = () => {
     logEvent({event: "skriv-til-oss"});
@@ -19,7 +17,7 @@ const SkrivTilOss = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.props[Kanal.SkrivTilOss]}>
+      <KanalVisning kanal={Kanal.SkrivTilOss}>
         <RouterLenke
           href={urls.skrivTilOss.forside}
           className={"lenke__avstand-over"}

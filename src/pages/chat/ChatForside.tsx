@@ -8,6 +8,9 @@ import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
 import { LenkepanelData } from "../../types/lenker";
 import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
+import NavFrontendSpinner from "nav-frontend-spinner";
+import { useStore } from "../../providers/Provider";
+import { Kanal } from "../../types/kanaler";
 
 const cssPrefix = "chat-med-oss";
 const sideTittelId = "chat.forside.tittel";
@@ -17,6 +20,13 @@ const ChatForside = () => {
   useEffect(() => {
     document.title = documentTitle;
   }, [documentTitle]);
+  const [{ channels, visTekniskFeilMelding }, dispatch] = useStore();
+
+  if (!channels.isLoaded) {
+    return <NavFrontendSpinner />;
+  }
+
+  const chatProps = channels.props[Kanal.Chat];
 
   return (
     <>
