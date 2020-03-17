@@ -2,6 +2,6 @@
 export enum Kanal {
   RingOss = "ring-oss",
   SkrivTilOss = "skriv-til-oss",
-  Chat = "chat",
+  Chat = "chat-med-oss",
   KontaktVeileder = "kontakt-veileder"
 }

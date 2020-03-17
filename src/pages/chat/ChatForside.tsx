@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-
 import chatTemaLenker from "./ChatLenkepanelData";
-import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
+import { Sidetittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
 import { LenkepanelData } from "../../types/lenker";
@@ -11,6 +10,9 @@ import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { useStore } from "../../providers/Provider";
 import { Kanal } from "../../types/kanaler";
+import BlockContent from "@sanity/block-content-to-react";
+import { serializers } from "../../utils/sanity/serializers";
+import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
 
 const cssPrefix = "chat-med-oss";
 const sideTittelId = "chat.forside.tittel";
@@ -20,7 +22,7 @@ const ChatForside = () => {
   useEffect(() => {
     document.title = documentTitle;
   }, [documentTitle]);
-  const [{ channels, visTekniskFeilMelding }, dispatch] = useStore();
+  const [{ channels, visTekniskFeilMelding }] = useStore();
 
   if (!channels.isLoaded) {
     return <NavFrontendSpinner />;
@@ -38,9 +40,8 @@ const ChatForside = () => {
           </Sidetittel>
         </div>
         <div className={`${cssPrefix}__ingress`}>
-          <Normaltekst>
-            <FormattedMessage id="chat.forside.ingress" />
-          </Normaltekst>
+          <BlockContent blocks={chatProps.description} serializers={serializers}/>
+          {visTekniskFeilMelding && <TekniskProblemBackend/>}
           <KoronaVirusVarsel />
           <StorPaagangVarsel />
         </div>

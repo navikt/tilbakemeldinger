@@ -1,7 +1,6 @@
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
-
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { LenkepanelData } from "types/lenker";
 import { Normaltekst } from "nav-frontend-typografi";
@@ -72,9 +71,7 @@ const Ingress = ({tekst}: {tekst: TextBlock[] | undefined}) => {
           content={intl.messages["skrivtiloss.description"] as string}
         />
       </MetaTags>
-      <Normaltekst>
-        <BlockContent blocks={tekst} serializers={serializers}/>
-      </Normaltekst>
+      <BlockContent blocks={tekst} serializers={serializers}/>
     </>
   );
 };
@@ -86,7 +83,7 @@ const StengtMelding = () => (
 );
 
 const SkrivTilOssForside = () => {
-  const [{ channels, visTekniskFeilMelding }, dispatch] = useStore();
+  const [{ channels, visTekniskFeilMelding }] = useStore();
 
   if (!channels.isLoaded) {
     return <NavFrontendSpinner />;
@@ -110,7 +107,6 @@ const SkrivTilOssForside = () => {
           <Ingress tekst={tekstBlokk} />
           {visTekniskFeilMelding && <TekniskProblemBackend/>}
           {isClosed && <StengtMelding />}
-
         </>
       ) : <NavFrontendSpinner />}
     </SkrivTilOssBase>

@@ -28,7 +28,7 @@ const cssPrefix = "chat-tema";
 const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
   const [chatButtonClicked, setChatButtonClicked] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
-  const [{ themes, channels, visTekniskFeilMelding }, dispatch] = useStore();
+  const [{ themes, channels, visTekniskFeilMelding }] = useStore();
 
   useEffect(() => {
     fetchServerTidOffset(setServerTidOffset);
@@ -48,17 +48,6 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
   const temaProps = themes.props[chatTemaData.chatTema];
   const channelProps = channels.props[Kanal.Chat];
 
-  const temaButtonHandlers: { [key in ChatTema]: Function } = {
-    [ChatTema.Arbeidsgiver]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.Jobbsoker]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.Syk]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.Familie]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.Ufor]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.Sosial]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.Okonomi]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat)
-  };
-
   const { harChatbot, chatTema } = chatTemaData;
   const temaClosed = temaProps.closed;
   const channelClosed = channelProps.closed;
@@ -72,6 +61,17 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
   const chatErApen = (chatErNormaltApen && !chatMedVeilederErStengt) || harChatbot;
 
   const chatbotConfig = vars.chatBot.temaConfigs[chatTema];
+
+  const temaButtonHandlers: { [key in ChatTema]: Function } = {
+    [ChatTema.Arbeidsgiver]: () => setChatButtonClicked(Date.now()),
+    [ChatTema.Jobbsoker]: () => setChatButtonClicked(Date.now()),
+    [ChatTema.Syk]: () => setChatButtonClicked(Date.now()),
+    [ChatTema.Familie]: () => setChatButtonClicked(Date.now()),
+    [ChatTema.Ufor]: () => setChatButtonClicked(Date.now()),
+    [ChatTema.Sosial]: () => setChatButtonClicked(Date.now()),
+    [ChatTema.Okonomi]: () => setChatButtonClicked(Date.now()),
+    [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat)
+  };
 
   return (
     <>

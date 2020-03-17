@@ -1,14 +1,15 @@
 import ApningsTider from "../utils/apningstider";
 
+// OBS: denne og STOTema må ikke ha overlappende verdier!
 export enum ChatTema {
-  Arbeidsgiver = "arbeidsgiver",
-  Jobbsoker = "jobbsoker",
-  Syk = "syk",
-  Familie = "familie",
-  Ufor = "ufør",
-  Sosial = "sosial",
-  Okonomi = "okonomi",
-  EURES = "eures",
+  Arbeidsgiver = "chat-arbeidsgiver",
+  Jobbsoker = "chat-jobbsoker",
+  Syk = "chat-syk",
+  Familie = "chat-familie",
+  Ufor = "chat-ufør",
+  Sosial = "chat-sosial",
+  Okonomi = "chat-okonomi",
+  EURES = "chat-eures",
 }
 
 export type ChatTemaData = {

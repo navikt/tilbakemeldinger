@@ -1,9 +1,10 @@
 
+// OBS: denne og ChatTema må ikke ha overlappende verdier!
 export enum STOTema {
-  Jobbsoker = "jobbsoker",
-  Syk = "syk",
-  Familie = "familie",
-  Ufor = "ufør",
-  Pensjon = "pensjon",
-  Hjelpemidler = "hjelpemidler",
+  Jobbsoker = "sto-jobbsoker",
+  Syk = "sto-syk",
+  Familie = "sto-familie",
+  Ufor = "sto-ufor",
+  Pensjon = "sto-pensjon",
+  Hjelpemidler = "sto-hjelpemidler",
 }
