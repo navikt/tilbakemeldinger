@@ -13,10 +13,10 @@ export const chatTemaToSanityId = {
 };
 
 export const kanalToSanityId = {
-  ringOss: "telephone",
-  skrivTilOss: "write",
-  chat: "chat",
-  kontaktVeileder: "tutor",
+  ringOss: "ring-oss",
+  skrivTilOss: "skriv-til-oss",
+  chat: "chat-med-oss",
+  kontaktVeileder: "kontakt-din-veileder",
 };
 
 export type ChannelList = {

@@ -38,39 +38,40 @@ const typoComponents = {
 };
 
 export type TextBlock = {
-  style: TypoStyle,
-  children: TextWithMarks[]
-}
+  style: TypoStyle;
+  children: TextWithMarks[];
+};
 
-export type LocaleBlock = {[key in Language]: TextBlock};
+export type LocaleBlock = { [key in Language]: TextBlock };
 
-export type LocaleString = {[key in Language]: string}
+export type LocaleString = { [key in Language]: string };
 
-export type LocaleLink = {[key in Language]: string}
+export type LocaleLink = { [key in Language]: string };
 
 // TODO: oppdater med marks
 export type TextWithMarks = {
   marks: string[],
   text: string
-}
+};
 
 export type LenkeData = {
-  link: string,
-  link_text: TextBlock[]
-}
+  link: string;
+  link_text: TextBlock[];
+};
 
-const localeBlockSerializer = (block: { node: LocaleBlock}) => {
-  return <BlockContent blocks={block.node[language]} serializers={serializers}/>;
+const localeBlockSerializer = (block: { node: LocaleBlock }) => {
+  const blocks = block.node[language];
+  return blocks ? <BlockContent blocks={block.node[language]} serializers={serializers} /> : null;
 };
 
 const blockSerializer = (block: { node: TextBlock }) => {
-  const TypoComponent = typoComponents[block.node.style];
+  const TypoComponent = typoComponents[block.node.style] || typoComponents[TypoStyle.Normal];
 
   return (
     <TypoComponent>
       {block.node.children.reduce((acc, textWithMarks) => acc + textWithMarks.text, "")}
     </TypoComponent>
-  )
+  );
 };
 
 export const serializers = {
