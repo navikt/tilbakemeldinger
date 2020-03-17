@@ -29,7 +29,7 @@ export const initialState = {
       ringOss: {},
       skrivTilOss: {},
       chat: {},
-      veileder: {},
+      kontaktVeileder: {},
     }
   } as Channels,
 };

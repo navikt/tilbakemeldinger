@@ -16,7 +16,14 @@ export const kanalToSanityId = {
   ringOss: "telephone",
   skrivTilOss: "write",
   chat: "chat",
-  veileder: "tutor",
+  kontaktVeileder: "tutor",
+};
+
+export type ChannelList = {
+  ringOss: ChannelProps;
+  skrivTilOss: ChannelProps;
+  chat: ChannelProps;
+  kontaktVeileder: ChannelProps;
 };
 
 export type ChannelProps = {
@@ -26,13 +33,6 @@ export type ChannelProps = {
   closed?: boolean;
   description?: TextBlock[];
   themes?: ChannelTheme[];
-};
-
-export type ChannelList = {
-  ringOss: ChannelProps;
-  skrivTilOss: ChannelProps;
-  chat: ChannelProps;
-  veileder: ChannelProps;
 };
 
 export type Channels = {
@@ -46,6 +46,6 @@ export type ChannelTheme = {
   link: LenkeData;
 };
 
-export const createValidChannelList = (channelProps: ChannelProps[]) =>
-  Object.keys(kanalToSanityId).reduce((acc, id) =>
-    ({...acc, [id]: channelProps.find(cp => cp._id === id) || {}}), {});
+export const createCompleteChannelList = (channelProps: ChannelProps[]) =>
+  Object.entries(kanalToSanityId).reduce((acc, [kanalId, sanityId]) =>
+    ({...acc, [kanalId]: channelProps.find(cp => cp._id === sanityId) || {}}), {});
