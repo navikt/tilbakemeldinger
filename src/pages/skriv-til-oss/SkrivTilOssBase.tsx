@@ -5,7 +5,7 @@ import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
-import { TemaLenkepanelData } from "./SkrivTilOssData";
+import { TemaLenkepanelData } from "../../types/lenker";
 
 const cssPrefix = "skriv-til-oss";
 

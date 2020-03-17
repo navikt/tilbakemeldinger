@@ -10,7 +10,7 @@ import NavFrontendSpinner from "nav-frontend-spinner";
 import { TekniskProblemBackend } from "../../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
 import BlockContent from "@sanity/block-content-to-react";
 import { Kanal } from "../../../types/kanaler";
-import { skrivTilOssLenkepaneler } from "../SkrivTilOssData";
+import { skrivTilOssLenkepaneler } from "../SkrivTilOssLenkerData";
 
 const Ingress = ({tekst}: {tekst: TextBlock[] | undefined}) => {
   const intl = useIntl();

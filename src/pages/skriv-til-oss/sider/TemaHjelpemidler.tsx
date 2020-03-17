@@ -2,7 +2,7 @@ import React from "react";
 import { useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
 import SkrivTilOssBase from "../SkrivTilOssBase";
-import { hjelpemidlerLenkepaneler } from "../SkrivTilOssData";
+import { hjelpemidlerLenkepaneler } from "../SkrivTilOssLenkerData";
 
 const Ingress = () => {
   const intl = useIntl();

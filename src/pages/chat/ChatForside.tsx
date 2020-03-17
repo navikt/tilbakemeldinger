@@ -10,6 +10,9 @@ import { Kanal } from "../../types/kanaler";
 import BlockContent from "@sanity/block-content-to-react";
 import { serializers } from "../../utils/sanity/serializers";
 import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
+import { chatTemaLenkepaneler } from "./ChatLenkerData";
+import { TemaLenkepanelData } from "../../types/lenker";
+import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
 
 const cssPrefix = "chat-med-oss";
 const sideTittelId = "chat.forside.tittel";
@@ -19,12 +22,8 @@ const ChatForside = () => {
   useEffect(() => {
     document.title = documentTitle;
   }, [documentTitle]);
+
   const [{ channels, visTekniskFeilMelding }] = useStore();
-
-  if (!channels.isLoaded) {
-    return <NavFrontendSpinner />;
-  }
-
   const chatProps = channels.props[Kanal.Chat];
 
   return (
@@ -37,21 +36,23 @@ const ChatForside = () => {
           </Sidetittel>
         </div>
         <div className={`${cssPrefix}__ingress`}>
-          <BlockContent blocks={chatProps.description} serializers={serializers}/>
-          {visTekniskFeilMelding && <TekniskProblemBackend/>}
+          {channels.isLoaded
+            ? <BlockContent blocks={chatProps.description} serializers={serializers} />
+            : <NavFrontendSpinner />}
+          {visTekniskFeilMelding && <TekniskProblemBackend />}
           <KoronaVirusVarsel />
           <StorPaagangVarsel />
         </div>
         <div className={`${cssPrefix}__temapanel-seksjon`}>
           {
-            // chatTemaLenker.map((lenkePanelData: LenkepanelData) => (
-            //     <TemaLenkepanel
-            //       lenkepanelData={lenkePanelData}
-            //       cssPrefix={cssPrefix}
-            //       key={lenkePanelData.url}
-            //     />
-            //   )
-            // )
+            chatTemaLenkepaneler.map((lenkePanelData: TemaLenkepanelData) => (
+                <TemaLenkepanel
+                  lenkepanelData={lenkePanelData}
+                  cssPrefix={cssPrefix}
+                  key={lenkePanelData.url}
+                />
+              )
+            )
           }
         </div>
       </div>

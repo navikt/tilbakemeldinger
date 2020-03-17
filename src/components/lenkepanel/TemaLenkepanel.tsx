@@ -5,10 +5,10 @@ import { Undertittel } from "nav-frontend-typografi";
 import { FormattedMessage } from "react-intl";
 import React from "react";
 import { logEvent } from "../../utils/logger";
-import { TemaLenkepanelData } from "../../pages/skriv-til-oss/SkrivTilOssData";
 import { useStore } from "../../providers/Provider";
 import BlockContent from "@sanity/block-content-to-react";
 import { serializers } from "../../utils/sanity/serializers";
+import { TemaLenkepanelData } from "../../types/lenker";
 
 type Props = {
   lenkepanelData: TemaLenkepanelData;

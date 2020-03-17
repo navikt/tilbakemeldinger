@@ -1,15 +1,6 @@
 import { urls } from "../../Config";
 import { STOTema } from "../../types/skrivtiloss";
-import { ChatTema } from "../../types/chat";
-
-export type TemaLenkepanelData = {
-  tema: ChatTema | STOTema;
-  url: string;
-  tittelFallbackId: string;
-  grafanaId: string;
-  harUndertemaer?: boolean;
-  ikon?: any;
-};
+import { TemaLenkepanelData } from "../../types/lenker";
 
 // TODO: data i sanity for disse
 export const hjelpemidlerLenkepaneler: TemaLenkepanelData[] = [
