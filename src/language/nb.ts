@@ -370,30 +370,30 @@ export default {
 
   "chat.arbeidsgiver.tittel": "Arbeidsgiver og samhandler",
   "chat.arbeidsgiver.ingressKort":
-    "Chat for arbeidsgiver og samhandler",
+    "Chat for arbeidsgivere og samhandlere om permittering i forbindelse med koronavirus.",
 
   "chat.jobbsoker.tittel": "Jobbsøker",
   "chat.jobbsoker.ingressKort":
-    "Arbeidsavklaringspenger, dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
+    "Chat for privatpersoner om arbeidsavklaringspenger, dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
 
   "chat.syk.tittel": "Syk",
-  "chat.syk.ingressKort": "Sykmeldt, sykepenger, yrkesskade/ménerstatning.",
+  "chat.syk.ingressKort": "Chat for privatpersoner om sykmelding, sykepenger, yrkesskade/ménerstatning.",
   "chat.syk.ingress": "Chat med en veileder (hverdager 09.00–14.30).",
 
   "chat.familie.tittel": "Foreldre, barn og familie",
   "chat.familie.ingressKort":
-    "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger i livets sluttfase.",
+    "Chat for privatpersoner om foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger i livets sluttfase.",
 
   "chat.ufor.tittel": "Ufør",
-  "chat.ufor.ingressKort": "Uføretrygd, barnetillegg, gjenlevendetillegg.",
+  "chat.ufor.ingressKort": "Chat for privatpersoner om uføretrygd, barnetillegg, gjenlevendetillegg.",
   "chat.ufor.ingress": "Chat med en veileder (hverdager 09.00–14.30).",
 
   "chat.sosialhjelp.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
   "chat.sosialhjelp.ingressKort":
-    "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
+    "Chat for privatpersoner om økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
 
   "chat.okonomi.tittel": "Økonomi og gjeldsrådgivning",
-  "chat.okonomi.ingressKort": "Budsjett, økonomi, gjeldsrådgivning.",
+  "chat.okonomi.ingressKort": "Chat for privatpersoner om budsjett, økonomi, gjeldsrådgivning.",
   "chat.okonomi.ingress":
     "<p>Vi svarer deg på spørsmål om budsjett, økonomi og gjeldsrådgivning. Dine spørsmål blir besvart av erfarne gjeldsrådgivere.</p>" +
     "<p>Vi har ikke tilgang til å se dine utbetalinger, eller personlige opplysninger som gjelder dine saker hos NAV.</p>" +
