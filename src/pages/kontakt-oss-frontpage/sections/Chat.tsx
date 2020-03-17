@@ -5,7 +5,7 @@ import IkonPanel from "components/ikonpanel/IkonPanel";
 import ikon from "assets/forside-chat-ikon.svg";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
 import { logEvent } from "utils/logger";
-import { KanalVisning } from "./KanalVisning";
+import { KanalVisning } from "../KanalVisning";
 import { Kanal } from "../../../types/kanaler";
 
 const Chat = () => {

@@ -49,29 +49,16 @@ export default {
     "Send oss spørsmål eller nye opplysninger i saken din.",
 
   "skrivtiloss.arbeidssoker.lenke.tittel": "Jobbsøker",
-  "skrivtiloss.arbeidssoker.lenke.ingress":
-    "Dagpenger, arbeidsavklaringspenger, tiltakspenger, melde deg som jobbsøker, CV.",
 
   "skrivtiloss.syk.lenke.tittel": "Syk",
-  "skrivtiloss.syk.lenke.ingress":
-    "Sykmeldt, sykepenger, arbeidsavklaringspenger, yrkesskade/ménerstatning.",
 
   "skrivtiloss.familieogbarn.lenke.tittel": "Foreldre, barn og familie",
-  "skrivtiloss.familieogbarn.lenke.ingress":
-    "Foreldrepenger, overgangsstønad, kontantstøtte, svangerskapspenger, barnetrygd, barnebidrag, pleiepenger.",
 
   "skrivtiloss.pensjonist.lenke.tittel": "Pensjonist",
-  "skrivtiloss.pensjonist.lenke.ingress":
-    "Alderspensjon, barnepensjon, etterlattepensjon, krigspensjon, AFP fra Statens pensjonskasse mellom 62 og 65 år," +
-    " AFP i privat sektor.",
 
   "skrivtiloss.ufor.lenke.tittel": "Ufør",
-  "skrivtiloss.ufor.lenke.ingress":
-    "Uføretrygd, barnetillegg og gjenlevendetillegg.",
 
   "skrivtiloss.hjelpemidler.lenke.tittel": "Hjelpemidler",
-  "skrivtiloss.hjelpemidler.lenke.ingress":
-    "Tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk, tilrettelegging og tilpasning.",
 
   "skrivtiloss.hjelpemidler.tittel": "Skriv til oss om hjelpemidler",
   "skrivtiloss.hjelpemidler.description":
@@ -378,7 +365,7 @@ export default {
 
   "chat.jobbsoker.tittel": "Jobbsøker",
   "chat.jobbsoker.ingressKort":
-    "Chat for privatpersoner om arbeidsavklaringspenger, dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
+    "Chat for privatpersoner om arbeidsavklaringspenger, dagpenger, permittering, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
 
   "chat.syk.tittel": "Syk",
   "chat.syk.ingressKort": "Chat for privatpersoner om sykmelding, sykepenger, yrkesskade/ménerstatning.",

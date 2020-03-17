@@ -5,7 +5,7 @@ import { urls } from "Config";
 import ikon from "assets/forside-skrivtiloss-ikon.svg";
 import { logEvent } from "utils/logger";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
-import { KanalVisning } from "./KanalVisning";
+import { KanalVisning } from "../KanalVisning";
 import { Kanal } from "../../../types/kanaler";
 
 const SkrivTilOss = () => {

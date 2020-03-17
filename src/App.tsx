@@ -78,6 +78,7 @@ const App = () => {
         )
         .catch(console.error);
 
+      // TODO: vis varsel for teknisk feil hvis noe feiler her
       Promise.race<any>([fetchChannelInfo(), timeoutPromise(fetchTimeoutMs, "Fetching channel data failed!")])
         .then((channels: ChannelProps[]) => {
           dispatch({

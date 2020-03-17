@@ -64,6 +64,10 @@ export type LenkePanel = {
   title: LocaleString;
 };
 
+const localeStringSerializer = (block: { node: LocaleString }) => {
+  return block.node[language];
+};
+
 const localeBlockSerializer = (block: { node: LocaleBlock }) => {
   const blocks = block.node[language];
   return blocks ? <BlockContent blocks={block.node[language]} serializers={serializers} /> : null;
@@ -83,6 +87,7 @@ export const serializers = {
   types: {
     alert: alertSerializer,
     localeBlock: localeBlockSerializer,
+    localeString: localeStringSerializer,
     block: blockSerializer,
   }
 };

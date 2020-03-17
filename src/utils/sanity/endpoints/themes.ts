@@ -4,7 +4,6 @@ import { STOTema } from "../../../types/skrivtiloss";
 
 export type ThemeProps = {
   _id?: string;
-  error?: boolean;  // TODO: fjern
   closed?: boolean;
   link?: LenkePanel;
   page?: Page;
@@ -27,11 +26,14 @@ export const temaToSanityId = {
   [ChatTema.Syk]: "chat-med-oss-syk",
   [ChatTema.Ufor]: "chat-med-oss-ufor",
   [STOTema.Familie]: "skriv-til-oss-familie",
-  [STOTema.Hjelpemidler]: "skriv-til-oss-hjelpemidler",
   [STOTema.Jobbsoker]: "skriv-til-oss-jobbsoker",
   [STOTema.Pensjon]: "skriv-til-oss-pensjonist",
   [STOTema.Syk]: "skriv-til-oss-syk",
-  [STOTema.Ufor]: "skriv-til-oss-ufor"
+  [STOTema.Ufor]: "skriv-til-oss-ufor",
+  [STOTema.Hjelpemidler]: "skriv-til-oss-hjelpemidler",
+  [STOTema.HjelpemidlerGenerelt]: "skriv-til-oss-hjelpemidler-generelt",
+  [STOTema.HjelpemidlerOrtopedisk]: "skriv-til-oss-hjelpemidler-ortopedisk",
+  [STOTema.HjelpemidlerBil]: "skriv-til-oss-hjelpemidler-bil"
 };
 
 const initialProps = Object.keys(temaToSanityId).reduce((acc, tema) =>

@@ -4,7 +4,7 @@ import IkonPanel from "../../../components/ikonpanel/IkonPanel";
 import { urls } from "../../../Config";
 import ikon from "assets/forside-veileder-ikon.svg";
 import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
-import { KanalVisning } from "./KanalVisning";
+import { KanalVisning } from "../KanalVisning";
 import { Kanal } from "../../../types/kanaler";
 
 const KontaktVeileder = () => {

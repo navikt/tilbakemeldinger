@@ -1,11 +1,11 @@
 import { Normaltekst, Element } from "nav-frontend-typografi";
 import { FormattedMessage } from "react-intl";
 import BlockContent from "@sanity/block-content-to-react";
-import { Language, serializers } from "../../../utils/sanity/serializers";
+import { Language, serializers } from "../../utils/sanity/serializers";
 import React from "react";
 import NavFrontendSpinner from "nav-frontend-spinner";
-import { useStore } from "../../../providers/Provider";
-import { Kanal } from "../../../types/kanaler";
+import { useStore } from "../../providers/Provider";
+import { Kanal } from "../../types/kanaler";
 
 type Props = {
   kanal: Kanal;

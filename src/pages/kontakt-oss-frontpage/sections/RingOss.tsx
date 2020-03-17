@@ -5,7 +5,7 @@ import ikon from "assets/forside-ringoss-ikon.svg";
 import { urls } from "Config";
 import { logEvent } from "utils/logger";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
-import { KanalVisning } from "./KanalVisning";
+import { KanalVisning } from "../KanalVisning";
 import { Kanal } from "../../../types/kanaler";
 
 const RingOss = () => {

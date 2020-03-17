@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import chatTemaLenker from "./ChatLenkepanelData";
 import { Sidetittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
-import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
-import { LenkepanelData } from "../../types/lenker";
 import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 import NavFrontendSpinner from "nav-frontend-spinner";
@@ -47,14 +44,14 @@ const ChatForside = () => {
         </div>
         <div className={`${cssPrefix}__temapanel-seksjon`}>
           {
-            chatTemaLenker.map((lenkePanelData: LenkepanelData) => (
-                <TemaLenkepanel
-                  lenkePanelData={lenkePanelData}
-                  cssPrefix={cssPrefix}
-                  key={lenkePanelData.url}
-                />
-              )
-            )
+            // chatTemaLenker.map((lenkePanelData: LenkepanelData) => (
+            //     <TemaLenkepanel
+            //       lenkepanelData={lenkePanelData}
+            //       cssPrefix={cssPrefix}
+            //       key={lenkePanelData.url}
+            //     />
+            //   )
+            // )
           }
         </div>
       </div>

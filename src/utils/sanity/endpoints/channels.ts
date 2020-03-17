@@ -3,7 +3,6 @@ import { Kanal } from "../../../types/kanaler";
 
 export type ChannelProps = {
   _id?: string;
-  error?: boolean;
   answer_time?: LocaleString;
   closed?: boolean;
   description?: TextBlock[];
