@@ -24,7 +24,7 @@ const defaultInnhold: KoronaVirusVarselInnhold = {
 };
 
 export const KoronaVirusVarsel = ({ innhold = defaultInnhold }: Props) => (
-  <LenkepanelBase className={className} href={innhold.href} border={true}>
+  <LenkepanelBase className={`${className} varsel-panel`} href={innhold.href} border={true}>
     <div className={`${className}__ikon-kol`}>
       <div className={`${className}__pulse`}/>
       <div className={`${className}__sirkel`}/>

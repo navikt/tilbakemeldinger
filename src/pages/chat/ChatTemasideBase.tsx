@@ -41,10 +41,6 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
     document.title = documentTitle;
   }, [documentTitle]);
 
-  if (!themes.isLoaded || !channels.isLoaded) {
-    return <NavFrontendSpinner />;
-  }
-
   const temaProps = themes.props[chatTemaData.chatTema];
   const channelProps = channels.props[Kanal.Chat];
 
@@ -83,43 +79,49 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
               <FormattedMessage id={chatTemaData.tittelTekstId} />
             </Systemtittel>
           </div>
-          <div className={`${cssPrefix}__panel-ingress`}>
-            <Undertittel>{"Chat er satt til 'alltid åpen' med mindre det stenges fra Sanity. Ikke prodsett dette! :)"}</Undertittel>
-            {visTekniskFeilMelding && <TekniskProblemBackend/>}
-            {!chatErNormaltApen && (
-              <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert varsel-panel`}>
-                <FormattedMessage id="chat.stengt.info" />
-              </AlertStripeInfo>
-            )}
-            {chatMedVeilederErStengt && (
-              <AlertStripeInfo className={`varsel-panel`}>
-                <FormattedMessage id={"chat.admin-stengt.veileder"} />
-              </AlertStripeInfo>
-            )}
-            <StorPaagangVarsel />
-            {children}
-            <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
-          </div>
-          {chatTemaData.apningstider && (
-            <ApningstiderAvvik
-              apningstider={chatTemaData.apningstider}
-              harChatbot={chatTemaData.harChatbot}
-            />
-          )}
-          <div className={`${cssPrefix}__panel-start-knapp`}>
-            <Hovedknapp
-              htmlType={"button"}
-              onClick={() => {
-                logEvent({ event: chatTemaData.chatTema });
-                temaButtonHandlers[chatTemaData.chatTema]();
-              }}
-              disabled={!chatErApen}
-            >
-              <FormattedMessage
-                id={chatErApen ? "chat.knapp.start" : "chat.knapp.stengt"}
-              />
-            </Hovedknapp>
-          </div>
+          {(themes.isLoaded && channels.isLoaded) ? (
+            <>
+              <div className={`${cssPrefix}__panel-ingress`}>
+                <Undertittel>{"Chat er satt til 'alltid åpen' med mindre det stenges fra Sanity. Ikke prodsett dette! :)"}</Undertittel>
+                {visTekniskFeilMelding && <TekniskProblemBackend />}
+                {!chatErNormaltApen && (
+                  <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert varsel-panel`}>
+                    <FormattedMessage id="chat.stengt.info" />
+                  </AlertStripeInfo>
+                )}
+                {chatMedVeilederErStengt && (
+                  <AlertStripeInfo className={`varsel-panel`}>
+                    <FormattedMessage id={"chat.admin-stengt.veileder"} />
+                  </AlertStripeInfo>
+                )}
+                <StorPaagangVarsel />
+                {children}
+                <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
+              </div>
+              {
+                chatTemaData.apningstider && (
+                  <ApningstiderAvvik
+                    apningstider={chatTemaData.apningstider}
+                    harChatbot={chatTemaData.harChatbot}
+                  />
+                )
+              }
+              <div className={`${cssPrefix}__panel-start-knapp`}>
+                <Hovedknapp
+                  htmlType={"button"}
+                  onClick={() => {
+                    logEvent({ event: chatTemaData.chatTema });
+                    temaButtonHandlers[chatTemaData.chatTema]();
+                  }}
+                  disabled={!chatErApen}
+                >
+                  <FormattedMessage
+                    id={chatErApen ? "chat.knapp.start" : "chat.knapp.stengt"}
+                  />
+                </Hovedknapp>
+              </div>
+            </>
+          ) : <NavFrontendSpinner />}
         </PanelBase>
       </div>
       {chatbotConfig && (

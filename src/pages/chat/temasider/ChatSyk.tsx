@@ -1,14 +1,15 @@
 import React from "react";
 import ChatTemaSideBase from "../ChatTemasideBase";
 import { ChatTema, ChatTemaData } from "../../../types/chat";
-import { apningsTider } from "../../../Config";
+import { apningsTider, sykChatbotErLansert } from "../../../Config";
 import { FormattedMessage } from "react-intl";
+import FormattedMsgMedParagrafer from "../../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
 
 const chatTemaData: ChatTemaData = {
   tittelTekstId: "chat.syk.tittel",
   chatTema: ChatTema.Syk,
   apningstider: apningsTider[ChatTema.Syk],
-  harChatbot: false
+  harChatbot: sykChatbotErLansert
 };
 
 const ChatSyk = () => {
@@ -17,7 +18,9 @@ const ChatSyk = () => {
       chatTemaData={chatTemaData}
     >
       <>
-        <FormattedMessage id={"chat.syk.ingress"} />
+        {sykChatbotErLansert
+          ? <FormattedMsgMedParagrafer id={"chat.chatbotinfo"} />
+          : <FormattedMessage id={"chat.syk.ingress"} />}
       </>
     </ChatTemaSideBase>
   );
