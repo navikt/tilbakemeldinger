@@ -82,9 +82,7 @@ const App = () => {
           console.log(createValidChannelList(channels));
           dispatch({
             type: "SETT_CHANNEL_PROPS",
-            payload: createValidChannelList(channels)
-              // channels.reduce((acc, channel) =>
-              // ({ ...acc, [channel._id]: channel }), {}) as ChannelList
+            payload: createValidChannelList(channels) as ChannelList
           });
         })
         .catch(err => {

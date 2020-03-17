@@ -1,6 +1,5 @@
 import { LenkeData, LocaleString, TextBlock } from "../serializers";
 import { ChatTema } from "../../../types/chat";
-import { Kanal } from "../../../types/kanaler";
 
 export const chatTemaToSanityId = {
   [ChatTema.Arbeidsgiver]: "arbeidsgiver",
@@ -21,7 +20,7 @@ export const kanalToSanityId = {
 };
 
 export type ChannelProps = {
-  _id: string;
+  _id?: string;
   error?: boolean;
   answer_time?: LocaleString;
   closed?: boolean;
@@ -29,7 +28,12 @@ export type ChannelProps = {
   themes?: ChannelTheme[];
 };
 
-export type ChannelList = {[id: string]: ChannelProps};
+export type ChannelList = {
+  ringOss: ChannelProps;
+  skrivTilOss: ChannelProps;
+  chat: ChannelProps;
+  veileder: ChannelProps;
+};
 
 export type Channels = {
   isLoaded: boolean;
@@ -42,11 +46,6 @@ export type ChannelTheme = {
   link: LenkeData;
 };
 
-const channelNotFound: ChannelProps = {
-  _id: "",
-  error: true
-};
-
-export const createValidChannelList = (channelProps: ChannelProps[]): ChannelList =>
-  Object.values(kanalToSanityId).reduce((acc, id) =>
-    ({...acc, [id]: channelProps.find(cp => cp._id === id) || channelNotFound}), {});
+export const createValidChannelList = (channelProps: ChannelProps[]) =>
+  Object.keys(kanalToSanityId).reduce((acc, id) =>
+    ({...acc, [id]: channelProps.find(cp => cp._id === id) || {}}), {});

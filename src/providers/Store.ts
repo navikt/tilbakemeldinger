@@ -7,8 +7,7 @@ import { HTTPError } from "../components/error/Error";
 import Unleash, { Features } from "../utils/unleash";
 import { Alert } from "../utils/sanity/endpoints/alert";
 import { FAQ, FAQLenke } from "../utils/sanity/endpoints/faq";
-import { Channels, ChannelList, kanalToSanityId } from "../utils/sanity/endpoints/channel";
-import { Kanal } from "../types/kanaler";
+import { Channels, ChannelList } from "../utils/sanity/endpoints/channel";
 
 export const initialState = {
   fodselsnr: "",
@@ -27,10 +26,10 @@ export const initialState = {
   channels: {
     isLoaded: false,
     types: {
-      [Kanal.RingOss]: {_id: kanalToSanityId[Kanal.RingOss]},
-      [Kanal.Chat]: {_id: kanalToSanityId[Kanal.Chat]},
-      [Kanal.Veileder]: {_id: kanalToSanityId[Kanal.Veileder]},
-      [Kanal.SkrivTilOss]: {_id: kanalToSanityId[Kanal.SkrivTilOss]},
+      ringOss: {},
+      skrivTilOss: {},
+      chat: {},
+      veileder: {},
     }
   } as Channels,
 };

@@ -79,14 +79,14 @@ const Ingress = ({tekst}: {tekst: TextBlock[] | undefined}) => {
 };
 
 const StengtMelding = () => (
-  <AlertStripe type="advarsel" className={'varsel-panel'}>
+  <AlertStripe type="advarsel" className={"varsel-panel"}>
     <FormattedMessage id={"skrivtiloss.disabled"} />
   </AlertStripe>
 );
 
 const SkrivTilOssForside = () => {
   const [{ channels, visTekniskFeilMelding }, dispatch] = useStore();
-  const stoProps = channels.types.write;
+  const stoProps = channels.types.skrivTilOss;
 
   if (stoProps.error) {
     !visTekniskFeilMelding && dispatch({type: "SETT_TEKNISK_FEILMELDING"});

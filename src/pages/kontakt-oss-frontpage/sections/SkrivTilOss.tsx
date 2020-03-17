@@ -18,7 +18,7 @@ const SkrivTilOss = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.types.write}>
+      <KanalVisning isLoaded={channels.isLoaded} channelProps={channels.types.skrivTilOss}>
         <RouterLenke
           href={urls.skrivTilOss.forside}
           className={"lenke__avstand-over"}
