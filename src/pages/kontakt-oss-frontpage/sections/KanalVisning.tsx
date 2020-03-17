@@ -19,7 +19,7 @@ const StengtMelding = () => (
 );
 
 export const KanalVisning = ({ kanal, children }: Props) => {
-  const [{ channels, visTekniskFeilMelding }, dispatch] = useStore();
+  const [{ channels }] = useStore();
 
   if (!channels.isLoaded) {
     return <NavFrontendSpinner />;
