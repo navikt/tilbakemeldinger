@@ -1,41 +1,26 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-
 import IkonPanel from "../../../components/ikonpanel/IkonPanel";
-
-import { Normaltekst } from "nav-frontend-typografi";
-import { urls, vars } from "../../../Config";
-
+import { urls } from "../../../Config";
 import ikon from "assets/forside-veileder-ikon.svg";
 import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
+import { KanalVisning } from "../KanalVisning";
+import { Kanal } from "../../../types/kanaler";
 
 const KontaktVeileder = () => {
-  const tittel = <FormattedMessage id={"kontaktoss.kontaktveileder.tittel"} />;
-  const svartid = vars.svartid.kontaktVeileder;
+  const tittel = <FormattedMessage id={"kontaktoss.kontaktveileder.tittel"}/>;
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
-      <>
-        <div>
-          <Normaltekst className="svartid">
-            <FormattedMessage id={"kontaktoss.svartid"} />
-            <FormattedMessage
-              id={svartid === 1 ? "kontaktoss.svartidendag" : "kontaktoss.svartiddager"}
-              values={{ antall: svartid }}
-            />
-          </Normaltekst>
-          <Normaltekst>
-            <FormattedMessage id={"kontaktoss.kontaktveileder.beskrivelse"} />
-          </Normaltekst>
-        </div>
+      <KanalVisning kanal={Kanal.KontaktVeileder}>
         <RouterLenke
           href={urls.aktivitetsplanDialog}
           className={"lenke__avstand-over"}
           isExternal={true}
         >
-          <FormattedMessage id={"kontaktoss.kontaktveileder.knapp"} />
+          <FormattedMessage id={"kontaktoss.kontaktveileder.knapp"}/>
         </RouterLenke>
-      </>
+      </KanalVisning>
     </IkonPanel>
   );
 };

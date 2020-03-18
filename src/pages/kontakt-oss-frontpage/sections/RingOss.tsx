@@ -5,19 +5,28 @@ import ikon from "assets/forside-ringoss-ikon.svg";
 import { urls } from "Config";
 import { logEvent } from "utils/logger";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
+import { KanalVisning } from "../KanalVisning";
+import { Kanal } from "../../../types/kanaler";
 
 const RingOss = () => {
-  const tittel = <FormattedMessage id={"kontaktoss.ringoss.tittel"} />;
+  const tittel = <FormattedMessage id={"kontaktoss.ringoss.tittel"}/>;
 
   const onClick = () => {
-    logEvent({ event: "ring-oss" });
+    logEvent({event: "ring-oss"});
   };
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel} className="ringoss">
-      <RouterLenke isExternal={true} href={urls.ringOss} onClick={onClick}>
-        <FormattedMessage id={"kontaktoss.ringoss.knapp"} />
-      </RouterLenke>
+      <KanalVisning kanal={Kanal.RingOss}>
+        <RouterLenke
+          isExternal={true}
+          href={urls.ringOss}
+          onClick={onClick}
+          className={"lenke__avstand-over"}
+        >
+          <FormattedMessage id={"kontaktoss.ringoss.knapp"}/>
+        </RouterLenke>
+      </KanalVisning>
     </IkonPanel>
   );
 };

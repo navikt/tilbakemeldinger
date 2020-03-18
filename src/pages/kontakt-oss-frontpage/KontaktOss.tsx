@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Sidetittel, Undertittel } from "nav-frontend-typografi";
+import { Sidetittel } from "nav-frontend-typografi";
 import FAQ from "./sections/FAQ";
 import FeilOgMangler from "./sections/FeilOgMangler";
 import Facebook from "./sections/Facebook";
@@ -16,14 +16,15 @@ import KlageOgTilbakemeldinger from "./sections/KlageOgTilbakemeldinger";
 import KontaktVeileder from "./sections/KontaktVeileder";
 import Pressekontakt from "./sections/Pressekontakt";
 import SosialeMedier from "./sections/SosialeMedier";
-import { AlertStripeInfo } from "nav-frontend-alertstriper";
-import { varsler } from "Config";
-import Lenke from "nav-frontend-lenker";
+import { useStore } from "../../providers/Provider";
 import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
-import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
+import BlockContent from "@sanity/block-content-to-react";
+import { serializers } from "../../utils/sanity/serializers";
+import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
+  const [{varsler, visTekniskFeilMelding}] = useStore();
 
   useEffect(() => {
     /*
@@ -41,7 +42,7 @@ const KontaktOssFrontpage = () => {
   return (
     <div className="frontpage__wrapper">
       <div className="pagecontent pagecontent__frontpage">
-        <BreadcrumbsWrapper />
+        <BreadcrumbsWrapper/>
         <div className="frontpage">
           <MetaTags>
             <title>{intl.messages["seo.kontaktoss.tittel"]}</title>
@@ -53,26 +54,20 @@ const KontaktOssFrontpage = () => {
           <header className="frontpage__introduksjon">
             <div className="frontpage__sidetittel">
               <Sidetittel>
-                <FormattedMessage id={"kontaktoss.tittel"} />
+                <FormattedMessage id={"kontaktoss.tittel"}/>
               </Sidetittel>
             </div>
           </header>
-          <KoronaVirusVarsel />
-          <StorPaagangVarsel />
-          {varsler.map(varsel => (
-            <AlertStripeInfo key={varsel.tittel}>
-              <Undertittel>{varsel.tittel}</Undertittel>
-              <div className={"varsel__body"}>{varsel.beskrivelse}</div>
-              {varsel.lenke && varsel.lenkeTekst && (
-                <Lenke href={varsel.lenke}>{varsel.lenkeTekst}</Lenke>
-              )}
-            </AlertStripeInfo>
-          ))}
+          {visTekniskFeilMelding && <TekniskProblemBackend/>}
+          <KoronaVirusVarsel/>
+          {varsler && varsler.map((varsel, index) =>
+            <BlockContent blocks={varsel} serializers={serializers} key={index}/>
+          )}
           <div className="frontpage__content">
-            <Chat />
+            <Chat/>
             <div className="frontpage__row">
-              <RingOss />
-              <FAQ />
+              <RingOss/>
+              <FAQ/>
             </div>
             <KontaktVeileder />
             <SkrivTilOss />

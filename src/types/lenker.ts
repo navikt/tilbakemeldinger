@@ -1,10 +1,11 @@
-import { ReactNode } from "react";
+import { ChatTema } from "./chat";
+import { STOTema } from "./skrivtiloss";
 
-export interface LenkepanelData {
-  grafanaId: string;
-  tittelId: string;
-  ingress: ReactNode;
+export type TemaLenkepanelData = {
+  tema: ChatTema | STOTema;
   url: string;
+  tittelFallbackId: string;
+  grafanaId: string;
+  externalUrl?: boolean;
   ikon?: any;
-  external?: boolean;
-}
+};
