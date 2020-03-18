@@ -1,4 +1,4 @@
-import { Normaltekst, Element } from "nav-frontend-typografi";
+import { Normaltekst } from "nav-frontend-typografi";
 import { FormattedMessage } from "react-intl";
 import BlockContent from "@sanity/block-content-to-react";
 import { Language, serializers } from "../../utils/sanity/serializers";
@@ -6,17 +6,12 @@ import React from "react";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { useStore } from "../../providers/Provider";
 import { Kanal } from "../../types/kanaler";
+import { TjenesteStengtMelding } from "../../components/varsler/tjeneste-stengt/TjenesteStengtMelding";
 
 type Props = {
   kanal: Kanal;
   children: JSX.Element;
 };
-
-const StengtMelding = () => (
-  <div className={"kanal-stengt"}>
-    <Element><FormattedMessage id={"kontaktoss.kanal.stengt"} /></Element>
-  </div>
-);
 
 export const KanalVisning = ({ kanal, children }: Props) => {
   const [{ channels }] = useStore();
@@ -41,7 +36,7 @@ export const KanalVisning = ({ kanal, children }: Props) => {
         )}
         {description && <BlockContent blocks={description} serializers={serializers} />}
       </div>
-      {closed ? <StengtMelding /> : children}
+      {closed ? <TjenesteStengtMelding /> : children}
     </>
   );
 };

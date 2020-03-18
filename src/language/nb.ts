@@ -6,6 +6,8 @@ export default {
   "header.navperson": "NAV privatperson",
 
   "varsel.teknisk.feil": "Det er for øyeblikket tekniske problemer med baksystemene våre. Dette kan føre til at noe informasjon mangler fra sidene.",
+  "tjeneste.stengt": "Tjenesten er for øyeblikket stengt, prøv igjen senere.",
+  "varsel.stor.paagang": "Det er for tiden mange som kontakter oss. Hvis henvendelsen din ikke haster, ber vi deg ta kontakt senere.",
 
   "breadcrumb.nav-no": "nav.no",
   "breadcrumb.": "Kontakt oss",

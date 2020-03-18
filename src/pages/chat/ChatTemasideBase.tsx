@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import { Systemtittel, Undertittel } from "nav-frontend-typografi";
+import { Systemtittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import ChatbotWrapper from "./ChatbotWrapper";
 import { ChatTema, ChatTemaData } from "../../types/chat";
@@ -50,7 +50,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
 
   const chatErIApningstid = (chatTemaData.apningstider
     ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
-    : true) || true; // TODO: || true kun for test av stenging fra backend!
+    : true);
   const chatErNormaltApen = chatErIApningstid || harChatbot;
   const chatErStengtAvAdmin = channelClosed || temaClosed;
   const chatMedVeilederErStengt = chatErStengtAvAdmin && chatErIApningstid;
@@ -82,7 +82,6 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
           {(themes.isLoaded && channels.isLoaded) ? (
             <>
               <div className={`${cssPrefix}__panel-ingress`}>
-                <Undertittel>{"Chat er satt til 'alltid åpen' med mindre det stenges fra Sanity. Ikke prodsett dette! :)"}</Undertittel>
                 {visTekniskFeilMelding && <TekniskProblemBackend />}
                 {!chatErNormaltApen && (
                   <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert varsel-panel`}>

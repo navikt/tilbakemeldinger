@@ -1,7 +1,7 @@
 // TODO: Erstatt/merge denne med den andre lenkepanel komponenten
 import { LenkepanelBase } from "nav-frontend-lenkepanel/lib";
 import { Link } from "react-router-dom";
-import { Element, Undertittel } from "nav-frontend-typografi";
+import { Undertittel } from "nav-frontend-typografi";
 import { FormattedMessage } from "react-intl";
 import React from "react";
 import { logEvent } from "../../utils/logger";
@@ -9,6 +9,7 @@ import { useStore } from "../../providers/Provider";
 import BlockContent from "@sanity/block-content-to-react";
 import { serializers } from "../../utils/sanity/serializers";
 import { TemaLenkepanelData } from "../../types/lenker";
+import { TjenesteStengtMelding } from "../varsler/tjeneste-stengt/TjenesteStengtMelding";
 
 type Props = {
   lenkepanelData: TemaLenkepanelData;
@@ -66,11 +67,7 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix }: Props) => {
           <div className={`${cssPrefix}__lenkepanel-ingress`}>
             <BlockContent blocks={ingress} serializers={serializers} />
           </div>
-          {disableLink && (
-            <Element className={`${cssPrefix}__stengt-tekst`}>
-              {"Tjenesten er for øyeblikket stengt, prøv igjen senere."}
-            </Element>
-          )}
+          {disableLink && <TjenesteStengtMelding />}
         </div>
       </div>
     </LenkepanelBase>
