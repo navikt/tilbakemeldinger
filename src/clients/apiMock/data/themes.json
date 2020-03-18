@@ -871,9 +871,9 @@
   {
     "_createdAt": "2020-03-17T11:47:20Z",
     "_id": "skriv-til-oss-jobbsoker",
-    "_rev": "lrDMfu4dQPEWZuTSwsekKR",
+    "_rev": "uM7R8U1PzurmhiJpgsBkSt",
     "_type": "theme",
-    "_updatedAt": "2020-03-17T12:08:27Z",
+    "_updatedAt": "2020-03-18T09:19:49Z",
     "channel": {
       "_ref": "skriv-til-oss",
       "_type": "reference"
@@ -890,8 +890,66 @@
               {
                 "_key": "57e786eae1fb0",
                 "_type": "span",
+                "marks": [
+                  "strong"
+                ],
+                "text": "Dagpenger"
+              },
+              {
+                "_key": "57e786eae1fb1",
+                "_type": "span",
                 "marks": [],
-                "text": "Dagpenger, arbeidsavklaringspenger, tiltakspenger, melde deg som jobbsøker, CV."
+                "text": ", "
+              },
+              {
+                "_key": "57e786eae1fb2",
+                "_type": "span",
+                "marks": [
+                  "em"
+                ],
+                "text": "arbeidsavklaringspenger"
+              },
+              {
+                "_key": "57e786eae1fb3",
+                "_type": "span",
+                "marks": [],
+                "text": ", "
+              },
+              {
+                "_key": "57e786eae1fb4",
+                "_type": "span",
+                "marks": [
+                  "code"
+                ],
+                "text": "tiltakspenger"
+              },
+              {
+                "_key": "57e786eae1fb5",
+                "_type": "span",
+                "marks": [],
+                "text": ", "
+              },
+              {
+                "_key": "57e786eae1fb6",
+                "_type": "span",
+                "marks": [
+                  "underline"
+                ],
+                "text": "melde deg som jobbsøker"
+              },
+              {
+                "_key": "57e786eae1fb7",
+                "_type": "span",
+                "marks": [],
+                "text": ", "
+              },
+              {
+                "_key": "57e786eae1fb8",
+                "_type": "span",
+                "marks": [
+                  "strike-through"
+                ],
+                "text": "CV. "
               }
             ],
             "markDefs": [],

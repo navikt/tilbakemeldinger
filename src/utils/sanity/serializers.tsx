@@ -11,7 +11,11 @@ import { alertSerializer } from "./endpoints/alert";
 import React from "react";
 import BlockContent from "@sanity/block-content-to-react";
 
-export enum TypoStyle {
+export enum Language {
+  Bokmaal = "nb"
+}
+
+enum TypoStyle {
   H1 = "h1",
   H2 = "h2",
   H3 = "h3",
@@ -19,10 +23,6 @@ export enum TypoStyle {
   H5 = "h5",
   H6 = "h6",
   Normal = "normal",
-}
-
-export enum Language {
-  Bokmaal = "nb"
 }
 
 const language = Language.Bokmaal;
@@ -39,7 +39,7 @@ const typoComponents = {
 
 export type TextBlock = {
   style: TypoStyle;
-  children: TextWithMarks[];
+  children: React.ReactElement[];
 };
 
 export type LocaleBlock = { [key in Language]: TextBlock };
@@ -47,12 +47,6 @@ export type LocaleBlock = { [key in Language]: TextBlock };
 export type LocaleString = { [key in Language]: string };
 
 export type LocaleLink = { [key in Language]: string };
-
-// TODO: oppdater med marks
-export type TextWithMarks = {
-  marks: string[];
-  text: string;
-};
 
 export type Page = {
   content: LocaleBlock;
@@ -73,12 +67,11 @@ const localeBlockSerializer = (block: { node: LocaleBlock }) => {
   return blocks ? <BlockContent blocks={block.node[language]} serializers={serializers} /> : null;
 };
 
-const blockSerializer = (block: { node: TextBlock }) => {
-  const TypoComponent = typoComponents[block.node.style] || typoComponents[TypoStyle.Normal];
-
+const blockSerializer = (block: TextBlock) => {
+  const TypoComponent = typoComponents[block.style] || typoComponents[TypoStyle.Normal];
   return (
     <TypoComponent>
-      {block.node.children.reduce((acc, textWithMarks) => acc + textWithMarks.text, "")}
+      {block.children}
     </TypoComponent>
   );
 };
