@@ -38,10 +38,10 @@ const ChatTemaside = ({ chatTema }: Props) => {
   const temaProps = themes.props[chatTema];
   const channelProps = channels.props[Kanal.Chat];
 
-  const tittel = (temaProps.page && temaProps.page.title[Language.Bokmaal])
+  const text = temaProps.page;
+  const tittel = (text && text.title && text.title[Language.Bokmaal])
     || intl.formatMessage({ id: tittelId });
-  const ingress = temaProps.page
-    && <BlockContent blocks={temaProps.page.content} serializers={serializers} />;
+  const ingress = text && <BlockContent blocks={text.content} serializers={serializers} />;
 
   const documentTitle = `${tittel} - www.nav.no`;
   useEffect(() => {
