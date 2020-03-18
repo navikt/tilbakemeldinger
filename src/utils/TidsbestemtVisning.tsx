@@ -3,19 +3,23 @@ import React, { ReactNode } from "react";
 import { unitOfTime } from "moment";
 import { vars } from "../Config";
 
+type InclusivityType = "()" | "[)" | "(]" | "[]";
+
 type Props = {
   fra?: string,
   til?: string,
   format?: string,
   granularity?: unitOfTime.Base,
-  inclusivity?: "()" | "[)" | "(]" | "[]",
+  inclusivity?: InclusivityType,
   children: ReactNode
 };
 
-const TidsbestemtVisning = ({ fra, til,
+const TidsbestemtVisning = ({
+                              fra, til,
                               format = vars.defaultDatoTidFormat,
                               granularity, inclusivity,
-                              children}: Props) => {
+                              children
+                            }: Props) => {
   if (fra && til) {
     return (moment().isBetween(
       moment(fra, format),

@@ -47,10 +47,10 @@ const SkrivTilOssForside = () => {
     <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenkepanelData={isClosed ? undefined : skrivTilOssLenkepaneler}>
       {channels.isLoaded ? (
         <>
-          {!isClosed && (
+          {!isClosed && svartid && (
             <Normaltekst className={"svartid"}>
               <FormattedMessage id={"kontaktoss.svartid"} />
-              {svartid && svartid[Language.Bokmaal]}
+              {svartid[Language.Bokmaal]}
             </Normaltekst>
           )}
           <Ingress tekst={tekstBlokk} />

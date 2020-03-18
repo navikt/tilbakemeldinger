@@ -5,7 +5,6 @@
     "_rev": "lrDMfu4dQPEWZuTSwsem4v",
     "_type": "theme",
     "_updatedAt": "2020-03-17T12:28:28Z",
-    "closed": true,
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
@@ -40,9 +39,9 @@
   {
     "_createdAt": "2020-03-17T11:39:50Z",
     "_id": "chat-med-oss-eures",
-    "_rev": "lrDMfu4dQPEWZuTSwsekKR",
+    "_rev": "FWkbPeFlPFjjwEQRoAIHz5",
     "_type": "theme",
-    "_updatedAt": "2020-03-17T12:08:27Z",
+    "_updatedAt": "2020-03-18T08:22:49Z",
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
@@ -60,7 +59,7 @@
                 "_key": "4030bcee444e0",
                 "_type": "span",
                 "marks": [],
-                "text": "EURES svarer på spørsmål fra jobbsøkere og arbeidsgivere om arbeid og opphold i EU/EØS og Sveits."
+                "text": "EURES svarer på spørsmål fra jobbsøkere og arbeidsgivere om arbeid og opphold i EU/EØS og Sveits. "
               }
             ],
             "markDefs": [],
@@ -250,14 +249,14 @@
   {
     "_createdAt": "2020-03-17T11:36:58Z",
     "_id": "chat-med-oss-jobbsoker",
-    "_rev": "lrDMfu4dQPEWZuTSwsekKR",
+    "_rev": "uM7R8U1PzurmhiJpgsBdEX",
     "_type": "theme",
-    "_updatedAt": "2020-03-17T12:08:27Z",
-    "closed": true,
+    "_updatedAt": "2020-03-18T08:22:33Z",
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
     },
+    "closed": true,
     "link": {
       "_type": "link_panel",
       "description": {
@@ -272,6 +271,40 @@
                 "_type": "span",
                 "marks": [],
                 "text": "Arbeidsavklaringspenger, dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "7c930601fea8",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "7c930601fea80",
+                "_type": "span",
+                "marks": [],
+                "text": "Stor tekst"
+              }
+            ],
+            "markDefs": [],
+            "style": "h1"
+          },
+          {
+            "_key": "1f9c9dee54cb",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "1f9c9dee54cb0",
+                "_type": "span",
+                "marks": [
+                  "em",
+                  "strong",
+                  "code",
+                  "underline",
+                  "strike-through"
+                ],
+                "text": "Kursiv tekst (virker ikke ennå)"
               }
             ],
             "markDefs": [],
@@ -552,13 +585,14 @@
   {
     "_createdAt": "2020-03-17T11:37:41Z",
     "_id": "chat-med-oss-syk",
-    "_rev": "lrDMfu4dQPEWZuTSwsekKR",
+    "_rev": "ZED4elTJf9J8y6dGmycQkk",
     "_type": "theme",
-    "_updatedAt": "2020-03-17T12:08:27Z",
+    "_updatedAt": "2020-03-17T16:31:58Z",
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
     },
+    "closed": true,
     "link": {
       "_type": "link_panel",
       "description": {
@@ -762,13 +796,14 @@
   {
     "_createdAt": "2020-03-17T11:47:51Z",
     "_id": "skriv-til-oss-familie",
-    "_rev": "lrDMfu4dQPEWZuTSwsekKR",
+    "_rev": "4HSN1iflZZx2rre9qUBb5K",
     "_type": "theme",
-    "_updatedAt": "2020-03-17T12:08:27Z",
+    "_updatedAt": "2020-03-18T07:52:08Z",
     "channel": {
       "_ref": "skriv-til-oss",
       "_type": "reference"
     },
+    "closed": true,
     "link": {
       "_type": "link_panel",
       "description": {
@@ -839,7 +874,6 @@
     "_rev": "lrDMfu4dQPEWZuTSwsekKR",
     "_type": "theme",
     "_updatedAt": "2020-03-17T12:08:27Z",
-    "closed": true,
     "channel": {
       "_ref": "skriv-til-oss",
       "_type": "reference"
@@ -918,9 +952,9 @@
   {
     "_createdAt": "2020-03-17T11:47:32Z",
     "_id": "skriv-til-oss-syk",
-    "_rev": "lrDMfu4dQPEWZuTSwsekKR",
+    "_rev": "FWkbPeFlPFjjwEQRoAIDtj",
     "_type": "theme",
-    "_updatedAt": "2020-03-17T12:08:27Z",
+    "_updatedAt": "2020-03-18T07:51:02Z",
     "channel": {
       "_ref": "skriv-til-oss",
       "_type": "reference"
@@ -938,7 +972,7 @@
                 "_key": "c1a1d1567e140",
                 "_type": "span",
                 "marks": [],
-                "text": "Sykmeldt, sykepenger, arbeidsavklaringspenger, yrkesskade/ménerstatning."
+                "text": "Sykmeldt, sykepenger, arbeidsavklaringspenger, yrkesskade/ménerstatning"
               }
             ],
             "markDefs": [],
@@ -949,6 +983,12 @@
       "title": {
         "_type": "localeString",
         "nb": "Syk"
+      }
+    },
+    "page": {
+      "_type": "page",
+      "title": {
+        "_type": "localeString"
       }
     }
   },
