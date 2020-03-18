@@ -5,7 +5,7 @@ import kontaktInfo from "./data/kontaktInfo.json";
 import enheter from "./data/enheter.json";
 import alerts from "./data/alerts.json";
 import faq from "./data/faq.json";
-import channels from "./data/kanalInfo.json";
+import channels from "./data/channels.json";
 import themes from "./data/themes.json";
 import Environment from "../../Environments";
 

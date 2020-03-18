@@ -37,7 +37,7 @@ const ChatForside = () => {
         </div>
         <div className={`${cssPrefix}__ingress`}>
           {channels.isLoaded
-            ? <BlockContent blocks={chatProps.description} serializers={serializers} />
+            ? <BlockContent blocks={chatProps.preamble} serializers={serializers} />
             : <NavFrontendSpinner />}
           {visTekniskFeilMelding && <TekniskProblemBackend />}
           <KoronaVirusVarsel />

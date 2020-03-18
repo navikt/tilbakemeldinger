@@ -43,9 +43,13 @@
   {
     "_createdAt": "2020-03-17T11:35:23Z",
     "_id": "chat-med-oss",
-    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
+    "_rev": "4HSN1iflZZx2rre9qUBZmg",
     "_type": "channel",
-    "_updatedAt": "2020-03-17T11:35:50Z",
+    "_updatedAt": "2020-03-18T07:45:12Z",
+    "answer_time": {
+      "_type": "localeString"
+    },
+    "closed": false,
     "description": {
       "_type": "localeBlock",
       "nb": [
@@ -57,7 +61,7 @@
               "_key": "65d4a497bc390",
               "_type": "span",
               "marks": [],
-              "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg."
+              "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg"
             }
           ],
           "markDefs": [],
@@ -69,13 +73,14 @@
   {
     "_createdAt": "2020-03-17T11:35:04Z",
     "_id": "kontakt-din-veileder",
-    "_rev": "lrDMfu4dQPEWZuTSwsepB9",
+    "_rev": "FWkbPeFlPFjjwEQRoAICcx",
     "_type": "channel",
-    "_updatedAt": "2020-03-17T12:43:22Z",
+    "_updatedAt": "2020-03-18T07:40:20Z",
     "answer_time": {
       "_type": "localeString",
-      "nb": "3 arbeidsdager"
+      "nb": "1 arbeidsdager."
     },
+    "closed": true,
     "description": {
       "_type": "localeBlock",
       "nb": [
@@ -99,9 +104,10 @@
   {
     "_createdAt": "2020-03-17T11:34:48Z",
     "_id": "ring-oss",
-    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
+    "_rev": "ZED4elTJf9J8y6dGmycSIq",
     "_type": "channel",
-    "_updatedAt": "2020-03-17T11:34:53Z",
+    "_updatedAt": "2020-03-17T16:34:26Z",
+    "closed": false,
     "description": {
       "_type": "localeBlock"
     }
@@ -109,14 +115,14 @@
   {
     "_createdAt": "2020-03-17T11:36:00Z",
     "_id": "skriv-til-oss",
-    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
+    "_rev": "uM7R8U1PzurmhiJpgsBkJd",
     "_type": "channel",
-    "_updatedAt": "2020-03-17T11:36:00Z",
-    "closed": false,
+    "_updatedAt": "2020-03-18T09:17:57Z",
     "answer_time": {
       "_type": "localeString",
       "nb": "3 arbeidsdager"
     },
+    "closed": false,
     "description": {
       "_type": "localeBlock",
       "nb": [

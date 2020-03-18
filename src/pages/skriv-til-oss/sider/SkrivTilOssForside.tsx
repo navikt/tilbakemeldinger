@@ -41,7 +41,7 @@ const SkrivTilOssForside = () => {
   const stoProps = channels.props[Kanal.SkrivTilOss];
   const isClosed = stoProps.closed;
   const svartid = stoProps.answer_time;
-  const tekstBlokk = stoProps.description;
+  const ingressTekstBlokk = stoProps.preamble;
 
   return (
     <SkrivTilOssBase tittel={"skrivtiloss.tittel"} lenkepanelData={isClosed ? undefined : skrivTilOssLenkepaneler}>
@@ -53,7 +53,7 @@ const SkrivTilOssForside = () => {
               {svartid[Language.Bokmaal]}
             </Normaltekst>
           )}
-          <Ingress tekst={tekstBlokk} />
+          <Ingress tekst={ingressTekstBlokk} />
           {visTekniskFeilMelding && <TekniskProblemBackend/>}
           {isClosed && <StengtMelding />}
         </>

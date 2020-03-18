@@ -6,6 +6,7 @@ export type ChannelProps = {
   answer_time?: LocaleString;
   closed?: boolean;
   description?: TextBlock[];
+  preamble?: TextBlock[];
 };
 
 export type Channels = {
