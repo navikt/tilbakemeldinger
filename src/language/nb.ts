@@ -5,6 +5,10 @@ export default {
     "Vi har for øyeblikket tekniske problemer med disse sidene.",
   "header.navperson": "NAV privatperson",
 
+  "varsel.teknisk.feil": "Det er for øyeblikket tekniske problemer med baksystemene våre. Dette kan føre til at noe informasjon mangler fra sidene.",
+  "tjeneste.stengt": "Tjenesten er for øyeblikket stengt, prøv igjen senere.",
+  "varsel.stor.paagang": "Det er for tiden mange som kontakter oss. Hvis henvendelsen din ikke haster, ber vi deg ta kontakt senere.",
+
   "breadcrumb.nav-no": "nav.no",
   "breadcrumb.": "Kontakt oss",
 
@@ -47,29 +51,16 @@ export default {
     "Send oss spørsmål eller nye opplysninger i saken din.",
 
   "skrivtiloss.arbeidssoker.lenke.tittel": "Jobbsøker",
-  "skrivtiloss.arbeidssoker.lenke.ingress":
-    "Dagpenger, arbeidsavklaringspenger, tiltakspenger, melde deg som jobbsøker, CV.",
 
   "skrivtiloss.syk.lenke.tittel": "Syk",
-  "skrivtiloss.syk.lenke.ingress":
-    "Sykmeldt, sykepenger, arbeidsavklaringspenger, yrkesskade/ménerstatning.",
 
   "skrivtiloss.familieogbarn.lenke.tittel": "Foreldre, barn og familie",
-  "skrivtiloss.familieogbarn.lenke.ingress":
-    "Foreldrepenger, overgangsstønad, kontantstøtte, svangerskapspenger, barnetrygd, barnebidrag, pleiepenger.",
 
   "skrivtiloss.pensjonist.lenke.tittel": "Pensjonist",
-  "skrivtiloss.pensjonist.lenke.ingress":
-    "Alderspensjon, barnepensjon, etterlattepensjon, krigspensjon, AFP fra Statens pensjonskasse mellom 62 og 65 år," +
-    " AFP i privat sektor.",
 
   "skrivtiloss.ufor.lenke.tittel": "Ufør",
-  "skrivtiloss.ufor.lenke.ingress":
-    "Uføretrygd, barnetillegg og gjenlevendetillegg.",
 
   "skrivtiloss.hjelpemidler.lenke.tittel": "Hjelpemidler",
-  "skrivtiloss.hjelpemidler.lenke.ingress":
-    "Tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk, tilrettelegging og tilpasning.",
 
   "skrivtiloss.hjelpemidler.tittel": "Skriv til oss om hjelpemidler",
   "skrivtiloss.hjelpemidler.description":
@@ -105,6 +96,7 @@ export default {
   "kontaktoss.svartid": "Svartid: ",
   "kontaktoss.svartiddager": "{antall} arbeidsdager",
   "kontaktoss.svartidendag": "én arbeidsdag",
+  "kontaktoss.kanal.stengt": "Tjenesten er for øyeblikket stengt, prøv igjen senere.",
 
   "kontaktoss.chat.tittel": "Chat med oss",
   "kontaktoss.chat.ingress":
@@ -362,6 +354,7 @@ export default {
   "chat.knapp.stengt": "Chatten er stengt",
 
   "chat.stengt.info": "Chatten er stengt, se åpningstider under.",
+  "chat.admin-stengt.veileder": "Chat med veileder er for øyeblikket utilgjengelig.",
   "chat.advarsel.personvern":
     "<p>Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring.</p>" +
     "<p>Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg.</p>",

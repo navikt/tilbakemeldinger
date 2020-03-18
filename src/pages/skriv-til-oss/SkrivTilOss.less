@@ -35,12 +35,25 @@
     padding: 1em 1.62em;
   }
 
+  &__lenkepanel-disabled {
+    background-color: @navLysGra;
+    pointer-events: none;
+    cursor: default;
+    .lenkepanel__indikator {
+      visibility: hidden;
+    }
+  }
+
   &__lenkepanel-header {
   }
 
   &__lenkepanel-ingress {
     margin-top: 0.5em;
     margin-right: 1em;
+  }
+
+  &__stengt-tekst {
+    margin-top: 0.5rem;
   }
 
   .svartid {

@@ -1,0 +1,193 @@
+[
+  {
+    "_createdAt": "2020-03-17T12:07:05Z",
+    "_id": "chat",
+    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
+    "_type": "channel",
+    "_updatedAt": "2020-03-17T12:08:04Z",
+    "themes": [
+      {
+        "_key": "arbeidsgiver",
+        "_type": "theme"
+      },
+      {
+        "_key": "jobbsoker",
+        "_type": "theme"
+      },
+      {
+        "_key": "syk",
+        "_type": "theme"
+      },
+      {
+        "_key": "familie",
+        "_type": "theme"
+      },
+      {
+        "_key": "ufor",
+        "_type": "theme"
+      },
+      {
+        "_key": "sosialhjelp",
+        "_type": "theme"
+      },
+      {
+        "_key": "okonomi",
+        "_type": "theme"
+      },
+      {
+        "_key": "eures",
+        "_type": "theme"
+      }
+    ]
+  },
+  {
+    "_createdAt": "2020-03-17T11:35:23Z",
+    "_id": "chat-med-oss",
+    "_rev": "4HSN1iflZZx2rre9qUBZmg",
+    "_type": "channel",
+    "_updatedAt": "2020-03-18T07:45:12Z",
+    "answer_time": {
+      "_type": "localeString"
+    },
+    "closed": false,
+    "description": {
+      "_type": "localeBlock",
+      "nb": [
+        {
+          "_key": "65d4a497bc39",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "65d4a497bc390",
+              "_type": "span",
+              "marks": [],
+              "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg"
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    }
+  },
+  {
+    "_createdAt": "2020-03-17T11:35:04Z",
+    "_id": "kontakt-din-veileder",
+    "_rev": "FWkbPeFlPFjjwEQRoAICcx",
+    "_type": "channel",
+    "_updatedAt": "2020-03-18T07:40:20Z",
+    "answer_time": {
+      "_type": "localeString",
+      "nb": "1 arbeidsdager."
+    },
+    "closed": true,
+    "description": {
+      "_type": "localeBlock",
+      "nb": [
+        {
+          "_key": "5aa0de7e5dd3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "5aa0de7e5dd30",
+              "_type": "span",
+              "marks": [],
+              "text": "Du må være registrert som arbeidssøker for å kontakte veilederen din."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    }
+  },
+  {
+    "_createdAt": "2020-03-17T11:34:48Z",
+    "_id": "ring-oss",
+    "_rev": "ZED4elTJf9J8y6dGmycSIq",
+    "_type": "channel",
+    "_updatedAt": "2020-03-17T16:34:26Z",
+    "closed": false,
+    "description": {
+      "_type": "localeBlock"
+    }
+  },
+  {
+    "_createdAt": "2020-03-17T11:36:00Z",
+    "_id": "skriv-til-oss",
+    "_rev": "uM7R8U1PzurmhiJpgsBkJd",
+    "_type": "channel",
+    "_updatedAt": "2020-03-18T09:17:57Z",
+    "answer_time": {
+      "_type": "localeString",
+      "nb": "3 arbeidsdager"
+    },
+    "closed": false,
+    "description": {
+      "_type": "localeBlock",
+      "nb": [
+        {
+          "_key": "1f2e2fa758ad",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "1f2e2fa758ad0",
+              "_type": "span",
+              "marks": [],
+              "text": "Send oss spørsmål eller nye opplysninger i saken din. 'Skriv til oss' er et sikkert alternativ til e-post."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    }
+  },
+  {
+    "_createdAt": "2020-03-17T12:07:05Z",
+    "_id": "telephone",
+    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
+    "_type": "channel",
+    "_updatedAt": "2020-03-17T12:07:05Z"
+  },
+  {
+    "_createdAt": "2020-03-17T12:07:05Z",
+    "_id": "tutor",
+    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
+    "_type": "channel",
+    "_updatedAt": "2020-03-17T12:07:05Z"
+  },
+  {
+    "_createdAt": "2020-03-17T12:07:05Z",
+    "_id": "write",
+    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
+    "_type": "channel",
+    "_updatedAt": "2020-03-17T12:08:04Z",
+    "themes": [
+      {
+        "_key": "jobbsoker",
+        "_type": "theme"
+      },
+      {
+        "_key": "syk",
+        "_type": "theme"
+      },
+      {
+        "_key": "familie",
+        "_type": "theme"
+      },
+      {
+        "_key": "ufor",
+        "_type": "theme"
+      },
+      {
+        "_key": "pensjonist",
+        "_type": "theme"
+      },
+      {
+        "_key": "hjelpemidler",
+        "_type": "theme"
+      }
+    ]
+  }
+]

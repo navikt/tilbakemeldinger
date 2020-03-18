@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { Sidetittel } from "nav-frontend-typografi";
 import { FormattedMessage, useIntl } from "react-intl";
-import { LenkepanelData } from "../../types/lenker";
 import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
+import { TemaLenkepanelData } from "../../types/lenker";
 
 const cssPrefix = "skriv-til-oss";
 
 type Props = {
   tittel: string;
   children: JSX.Element;
-  lenker?: Array<LenkepanelData>;
+  lenkepanelData?: TemaLenkepanelData[];
 };
 
-const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
+const SkrivTilOssBase = ({ tittel, children, lenkepanelData }: Props) => {
   const documentTitle = `${useIntl().formatMessage({
     id: tittel
   })} - www.nav.no`;
@@ -36,10 +36,10 @@ const SkrivTilOssBase = ({ tittel, children, lenker }: Props) => {
         <KoronaVirusVarsel />
         <StorPaagangVarsel />
       </div>
-      {lenker && (
+      {lenkepanelData && (
         <div className={`${cssPrefix}__lenke-seksjon`}>
-          {lenker.map(lenke => (
-            <TemaLenkepanel lenkePanelData={lenke} cssPrefix={cssPrefix} key={lenke.tittelId} />
+          {lenkepanelData.map(lenke => (
+            <TemaLenkepanel lenkepanelData={lenke} cssPrefix={cssPrefix} key={lenke.tema} />
           ))}
         </div>
       )}

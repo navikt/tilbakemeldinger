@@ -5,6 +5,10 @@ import sprak from "../language/provider";
 import { Enheter, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../components/error/Error";
 import Unleash, { Features } from "../utils/unleash";
+import { Alert } from "../utils/sanity/endpoints/alert";
+import { FAQ, FAQLenke, initialFAQ } from "../utils/sanity/endpoints/faq";
+import { Channels, ChannelList, initialChannels } from "../utils/sanity/endpoints/channels";
+import { initialThemes, ThemeList, Themes } from "../utils/sanity/endpoints/themes";
 
 export const initialState = {
   fodselsnr: "",
@@ -13,7 +17,12 @@ export const initialState = {
   enheter: {status: "LOADING"} as FetchEnheter,
   auth: {authenticated: false} as AuthInfo,
   kontaktInfo: {mobiltelefonnummer: ""},
-  unleashFeatures: Unleash.getFeatureDefaults() as Features
+  unleashFeatures: Unleash.getFeatureDefaults() as Features,
+  visTekniskFeilMelding: false,
+  varsler: [],
+  faq: initialFAQ as FAQ,
+  channels: initialChannels as Channels,
+  themes: initialThemes as Themes
 };
 
 export interface Store {
@@ -24,34 +33,52 @@ export interface Store {
   kontaktInfo: KontaktInfo;
   enheter: FetchEnheter;
   unleashFeatures: Features;
+  visTekniskFeilMelding: boolean;
+  varsler: Array<Alert>;
+  faq: FAQ;
+  channels: Channels;
+  themes: Themes;
 }
 
 export type Action =
   | {
   type: "SETT_ENHETER_RESULT";
   payload: Enheter[];
-}
-  | {
+} | {
   type: "SETT_ENHETER_ERROR";
   payload: HTTPError;
-}
-  | {
+} | {
   type: "SETT_AUTH_RESULT";
   payload: AuthInfo;
-}
-  | {
+} | {
   type: "SETT_FODSELSNR";
   payload: {
     fodselsnr: string;
   };
-}
-  | {
+} | {
   type: "SETT_KONTAKT_INFO_RESULT";
   payload: KontaktInfo;
-}
-  | {
+} | {
   type: "SETT_FEATURE_TOGGLES";
   payload: Features;
+} | {
+  type: "SETT_VARSLER";
+  payload: Array<Alert>;
+} | {
+  type: "SETT_FAQ";
+  payload: FAQLenke[];
+} | {
+  type: "SETT_CHANNEL_PROPS";
+  payload: ChannelList;
+} | {
+  type: "SETT_CHANNELS_FETCH_FAILED";
+} | {
+  type: "SETT_THEME_PROPS";
+  payload: ThemeList;
+} | {
+  type: "SETT_THEMES_FETCH_FAILED";
+} | {
+  type: "SETT_TEKNISK_FEILMELDING";
 };
 
 export const reducer = (state: Store, action: Action) => {
@@ -91,6 +118,56 @@ export const reducer = (state: Store, action: Action) => {
       return {
         ...state,
         unleashFeatures: Unleash.getValidFeatureToggles(action.payload as Features)
+      };
+    case "SETT_VARSLER":
+      return {
+        ...state,
+        varsler: action.payload
+      };
+    case "SETT_FAQ":
+      return {
+        ...state,
+        faq: {
+          isLoaded: true,
+          faqLenker: action.payload
+        }
+      };
+    case "SETT_CHANNEL_PROPS": {
+      return {
+        ...state,
+        channels: {
+          isLoaded: true,
+          props: action.payload
+        }
+      };
+    }
+    case "SETT_CHANNELS_FETCH_FAILED": {
+      return {
+        ...state,
+        channels: {...state.channels, isLoaded: true},
+        visTekniskFeilMelding: true
+      };
+    }
+    case "SETT_THEME_PROPS": {
+      return {
+        ...state,
+        themes: {
+          isLoaded: true,
+          props: action.payload
+        }
+      };
+    }
+    case "SETT_THEMES_FETCH_FAILED": {
+      return {
+        ...state,
+        themes: {...state.themes, isLoaded: true},
+        visTekniskFeilMelding: true
+      };
+    }
+    case "SETT_TEKNISK_FEILMELDING" :
+      return {
+        ...state,
+        visTekniskFeilMelding: true
       };
     default:
       return state;
