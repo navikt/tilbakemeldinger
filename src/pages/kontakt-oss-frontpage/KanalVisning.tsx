@@ -10,10 +10,11 @@ import { TjenesteStengtMelding } from "../../components/varsler/tjeneste-stengt/
 
 type Props = {
   kanal: Kanal;
+  visHvisStengt?: boolean;
   children: JSX.Element;
 };
 
-export const KanalVisning = ({ kanal, children }: Props) => {
+export const KanalVisning = ({ kanal, visHvisStengt, children }: Props) => {
   const [{ channels }] = useStore();
 
   if (!channels.isLoaded) {
@@ -36,7 +37,7 @@ export const KanalVisning = ({ kanal, children }: Props) => {
         )}
         {description && <BlockContent blocks={description} serializers={serializers} />}
       </div>
-      {closed ? <TjenesteStengtMelding /> : children}
+      {closed && !visHvisStengt ? <TjenesteStengtMelding /> : children}
     </>
   );
 };
