@@ -8,6 +8,7 @@
   "scripts": {
     "start": "npm run navkontorexceltiljson && npm-run-all -p start:*",
     "start:ts": "react-scripts start",
+    "start:lint": "tslint src/**/*.ts*",
     "start:less": "less-watch-compiler",
     "build:css": "less-watch-compiler --run-once",
     "build:js": "react-scripts build",
