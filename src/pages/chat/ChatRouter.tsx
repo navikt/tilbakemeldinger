@@ -24,46 +24,6 @@ const ChatRouter = () => {
           key={lenke.tema}
         />
       ))}
-      {/*<Route*/}
-      {/*  exact={true}*/}
-      {/*  path={urls.chat.arbeidsgiver.temaside}*/}
-      {/*  component={ChatArbeidsgiver}*/}
-      {/*/>*/}
-      {/*<Route*/}
-      {/*  exact={true}*/}
-      {/*  path={urls.chat.jobbsoker.temaside}*/}
-      {/*  component={ChatJobbsoker}*/}
-      {/*/>*/}
-      {/*<Route*/}
-      {/*  exact={true}*/}
-      {/*  path={urls.chat.syk.temaside}*/}
-      {/*  component={ChatSyk}*/}
-      {/*/>*/}
-      {/*<Route*/}
-      {/*  exact={true}*/}
-      {/*  path={urls.chat.familie.temaside}*/}
-      {/*  component={ChatFamilie}*/}
-      {/*/>*/}
-      {/*<Route*/}
-      {/*  exact={true}*/}
-      {/*  path={urls.chat.ufor.temaside}*/}
-      {/*  component={ChatUfor}*/}
-      {/*/>*/}
-      {/*<Route*/}
-      {/*  exact={true}*/}
-      {/*  path={urls.chat.sosialhjelp.temaside}*/}
-      {/*  component={ChatSosial}*/}
-      {/*/>*/}
-      {/*<Route*/}
-      {/*  exact={true}*/}
-      {/*  path={urls.chat.okonomi.temaside}*/}
-      {/*  component={ChatOkonomi}*/}
-      {/*/>*/}
-      {/*<Route*/}
-      {/*  exact={true}*/}
-      {/*  path={urls.chat.eures.temaside}*/}
-      {/*  component={ChatEURES}*/}
-      {/*/>*/}
       <Route>
         <NotFound />
       </Route>
