@@ -1,6 +1,6 @@
 
 // Følger moment.js index for ukedager
-export enum Ukedager {
+export enum Ukedag {
   Sondag = 0,
   Mandag,
   Tirsdag,
@@ -26,5 +26,5 @@ export type AvviksPeriode = {
 };
 
 export type ApningstiderUke = {
-  [dag in Ukedager]: Tidsrom
+  [dag in Ukedag]: Tidsrom
 };

@@ -8,11 +8,11 @@ import { logEvent } from "../../utils/logger";
 import { useStore } from "../../providers/Provider";
 import BlockContent from "@sanity/block-content-to-react";
 import { serializers } from "../../utils/sanity/serializers";
-import { TemaLenkepanelData } from "../../types/lenker";
 import { TjenesteStengtMelding } from "../varsler/tjeneste-stengt/TjenesteStengtMelding";
+import { TemaLenke } from "../../types/kanaler";
 
 type Props = {
-  lenkepanelData: TemaLenkepanelData;
+  lenkepanelData: TemaLenke;
   cssPrefix: string;
 };
 
@@ -62,7 +62,7 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix }: Props) => {
           <Undertittel className={`${cssPrefix}__temalenke-header lenkepanel__heading`}>
             {tittel
               ? <BlockContent blocks={tittel} serializers={serializers} />
-              : <FormattedMessage id={lenkepanelData.tittelFallbackId} />}
+              : <FormattedMessage id={lenkepanelData.tittelId} />}
           </Undertittel>
           <div className={`${cssPrefix}__lenkepanel-ingress`}>
             <BlockContent blocks={ingress} serializers={serializers} />

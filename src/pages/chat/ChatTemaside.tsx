@@ -1,73 +1,74 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Systemtittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import ChatbotWrapper from "./ChatbotWrapper";
-import { ChatTema, ChatTemaData } from "../../types/chat";
 import { Hovedknapp } from "nav-frontend-knapper";
-import { urls, vars } from "../../Config";
+import Config from "../../Config";
 import PanelBase from "nav-frontend-paneler";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import { fetchServerTidOffset } from "../../clients/apiClient";
 import { logEvent } from "../../utils/logger";
 import ApningstiderAvvik from "../../components/apningstider/ApningstiderAvvik";
-import FormattedMsgMedParagrafer from "../../components/intl-msg-med-paragrafer/FormattedMsgMedParagrafer";
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 import { useStore } from "../../providers/Provider";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
-import { Kanal } from "../../types/kanaler";
+import { ChatTema, Kanal } from "../../types/kanaler";
+import { chatTemaSideData } from "./data/chatTemaSideData";
+import { chatApningstider } from "./data/chatApningtider";
+import { chatClientConfigs } from "./data/chatClientConfigs";
+import { Language } from "../../utils/sanity/serializers";
+import BlockContent from "@sanity/block-content-to-react";
+import { serializers } from "../../utils/sanity/serializers";
 
 type Props = {
-  chatTemaData: ChatTemaData,
-  children: ReactNode
+  chatTema: ChatTema,
 };
 
 const cssPrefix = "chat-tema";
 
-const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
-  const [chatButtonClicked, setChatButtonClicked] = useState();
+const ChatTemaside = ({ chatTema }: Props) => {
+  const [chatButtonClickedTimestamp, setChatButtonClickedTimestamp] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
   const [{ themes, channels, visTekniskFeilMelding }] = useStore();
+  const intl = useIntl();
+
+  const { harChatbot, tittelId, grafanaId } = chatTemaSideData[chatTema];
+  const temaProps = themes.props[chatTema];
+  const channelProps = channels.props[Kanal.Chat];
+
+  const tittel = (temaProps.page && temaProps.page.title[Language.Bokmaal])
+    || intl.formatMessage({ id: tittelId });
+  const ingress = temaProps.page
+    && <BlockContent blocks={temaProps.page.content} serializers={serializers} />;
+
+  const documentTitle = `${tittel} - www.nav.no`;
+  useEffect(() => {
+    document.title = documentTitle;
+  }, [documentTitle]);
 
   useEffect(() => {
     fetchServerTidOffset(setServerTidOffset);
   }, []);
 
-  const documentTitle = `${useIntl().formatMessage({
-    id: chatTemaData.tittelTekstId
-  })} - www.nav.no`;
-  useEffect(() => {
-    document.title = documentTitle;
-  }, [documentTitle]);
-
-  const temaProps = themes.props[chatTemaData.chatTema];
-  const channelProps = channels.props[Kanal.Chat];
-
-  const { harChatbot, chatTema } = chatTemaData;
   const temaClosed = temaProps.closed;
   const channelClosed = channelProps.closed;
+  const apningsTider = chatApningstider[chatTema];
 
-  const chatErIApningstid = (chatTemaData.apningstider
-    ? chatTemaData.apningstider.isOpenNow(serverTidOffset)
-    : true);
+  const chatErIApningstid = apningsTider
+    ? apningsTider.isOpenNow(serverTidOffset)
+    : true;
   const chatErNormaltApen = chatErIApningstid || harChatbot;
   const chatErStengtAvAdmin = channelClosed || temaClosed;
   const chatMedVeilederErStengt = chatErStengtAvAdmin && chatErIApningstid;
   const chatErApen = (chatErNormaltApen && !chatMedVeilederErStengt) || harChatbot;
 
-  const chatbotConfig = vars.chatBot.temaConfigs[chatTema];
+  const chatClientConfig = chatClientConfigs.tema[chatTema];
 
-  const temaButtonHandlers: { [key in ChatTema]: Function } = {
-    [ChatTema.Arbeidsgiver]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.Jobbsoker]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.Syk]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.Familie]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.Ufor]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.Sosial]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.Okonomi]: () => setChatButtonClicked(Date.now()),
-    [ChatTema.EURES]: () => window.location.assign(urls.chat.eures.chat)
-  };
+  const startChat = chatTema === ChatTema.EURES
+    ? () => window.location.assign(Config.urls.chat.eures.chat)
+    : () => setChatButtonClickedTimestamp(Date.now());
 
   return (
     <>
@@ -76,7 +77,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
         <PanelBase className={cssPrefix}>
           <div className={`${cssPrefix}__header`}>
             <Systemtittel>
-              <FormattedMessage id={chatTemaData.tittelTekstId} />
+              {tittel}
             </Systemtittel>
           </div>
           {(themes.isLoaded && channels.isLoaded) ? (
@@ -84,7 +85,7 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
               <div className={`${cssPrefix}__panel-ingress`}>
                 {visTekniskFeilMelding && <TekniskProblemBackend />}
                 {!chatErNormaltApen && (
-                  <AlertStripeInfo className={`${cssPrefix}__chat-stengt-alert varsel-panel`}>
+                  <AlertStripeInfo className={"varsel-panel"}>
                     <FormattedMessage id="chat.stengt.info" />
                   </AlertStripeInfo>
                 )}
@@ -94,14 +95,13 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
                   </AlertStripeInfo>
                 )}
                 <StorPaagangVarsel />
-                {children}
-                <FormattedMsgMedParagrafer id={"chat.advarsel.personvern"} />
+                {ingress}
               </div>
               {
-                chatTemaData.apningstider && (
+                apningsTider && (
                   <ApningstiderAvvik
-                    apningstider={chatTemaData.apningstider}
-                    harChatbot={chatTemaData.harChatbot}
+                    apningstider={apningsTider}
+                    harChatbot={harChatbot}
                   />
                 )
               }
@@ -109,8 +109,8 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
                 <Hovedknapp
                   htmlType={"button"}
                   onClick={() => {
-                    logEvent({ event: chatTemaData.chatTema });
-                    temaButtonHandlers[chatTemaData.chatTema]();
+                    logEvent({ event: grafanaId });
+                    startChat();
                   }}
                   disabled={!chatErApen}
                 >
@@ -123,14 +123,14 @@ const ChatTemaSideBase = ({ chatTemaData, children }: Props) => {
           ) : <NavFrontendSpinner />}
         </PanelBase>
       </div>
-      {chatbotConfig && (
+      {chatClientConfig && (
         <ChatbotWrapper
-          config={chatbotConfig}
-          openChatTimestamp={chatButtonClicked}
+          config={chatClientConfig}
+          openChatTimestamp={chatButtonClickedTimestamp}
         />
       )}
     </>
   );
 };
 
-export default ChatTemaSideBase;
+export default ChatTemaside;

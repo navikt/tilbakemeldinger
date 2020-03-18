@@ -1,12 +1,9 @@
-import { forsidePath, noRedirectUrlSegment } from "./Config";
+import { forsidePath } from "./Config";
 
 const Environment = () => {
   const host = window.location.host;
   const subdomain = host.split(`.`)[0];
-
-  const pathname = window.location.pathname;
-  const noRedirect = pathname.includes(noRedirectUrlSegment);
-  const baseAppPath = `${forsidePath}${noRedirect ? noRedirectUrlSegment : ""}`;
+  const baseAppPath = `${forsidePath}`;
 
   if (process.env.NODE_ENV === `development`) {
     return {
