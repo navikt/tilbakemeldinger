@@ -44,11 +44,11 @@ const ChatForside = () => {
         </div>
         <div className={`${cssPrefix}__temapanel-seksjon`}>
           {
-            chatTemaLenker.map((lenkePanelData: TemaLenke) => (
+            chatTemaLenker.map((lenke: TemaLenke) => (
                 <TemaLenkepanel
-                  lenkepanelData={lenkePanelData}
+                  lenkepanelData={lenke}
                   cssPrefix={cssPrefix}
-                  key={lenkePanelData.url}
+                  key={lenke.url}
                 />
               )
             )

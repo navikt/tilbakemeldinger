@@ -1,7 +1,7 @@
-import { chatClientConfigs } from "./data/chatClientConfigs";
+import { chatConfig } from "./data/chatConfig";
 
 const storageKeys = {
-  ...chatClientConfigs.storageKeys,
+  ...chatConfig.storageKeys,
   temp: "temp-storage",
 };
 

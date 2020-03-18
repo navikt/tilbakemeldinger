@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import NAVChatBot from "@navikt/nav-chatbot";
 import chatbotUtils from "./chatbotUtils";
-import { chatClientConfigs, ChatClientConfig } from "./data/chatClientConfigs";
+import { chatConfig, ChatTemaConfig } from "./data/chatConfig";
 
 type Props = {
-  config: ChatClientConfig;
+  config: ChatTemaConfig;
   openChatTimestamp: number;
 };
 
@@ -25,7 +25,7 @@ const ChatbotWrapper = ({config, openChatTimestamp}: Props) => {
       <NAVChatBot
         configId={config.configId}
         queueKey={config.queueKey}
-        customerKey={chatClientConfigs.customerKey}
+        customerKey={chatConfig.customerKey}
       />
     ) : null
   );

@@ -17,7 +17,7 @@ import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-
 import { ChatTema, Kanal } from "../../types/kanaler";
 import { chatTemaSideData } from "./data/chatTemaSideData";
 import { chatApningstider } from "./data/chatApningtider";
-import { chatClientConfigs } from "./data/chatClientConfigs";
+import { chatConfig } from "./data/chatConfig";
 import { Language } from "../../utils/sanity/serializers";
 import BlockContent from "@sanity/block-content-to-react";
 import { serializers } from "../../utils/sanity/serializers";
@@ -64,7 +64,7 @@ const ChatTemaside = ({ chatTema }: Props) => {
   const chatMedVeilederErStengt = chatErStengtAvAdmin && chatErIApningstid;
   const chatErApen = (chatErNormaltApen && !chatMedVeilederErStengt) || harChatbot;
 
-  const chatClientConfig = chatClientConfigs.tema[chatTema];
+  const chatClientConfig = chatConfig.tema[chatTema];
 
   const startChat = chatTema === ChatTema.EURES
     ? () => window.location.assign(Config.urls.chat.eures.chat)

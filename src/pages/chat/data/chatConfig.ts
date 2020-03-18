@@ -1,11 +1,11 @@
 import { ChatTema } from "../../../types/kanaler";
 
-export type ChatClientConfig = {
+export type ChatTemaConfig = {
   configId: string,
   queueKey: string,
 };
 
-export const chatClientConfigs = {
+export const chatConfig = {
   customerKey: "41155",
   storageKeys: {
     config: "chatbot-frida_config",
