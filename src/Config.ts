@@ -111,5 +111,6 @@ export const vars = {
 
 export default {
   urls,
-  vars
+  vars,
+  forsidePath
 };
