@@ -68,7 +68,7 @@ const App = () => {
         )
         .catch(console.error);
 
-      Promise.race<any>([fetchFaq(), timeoutPromise(1, "Fetching FAQs failed!")])
+      Promise.race<any>([fetchFaq(), timeoutPromise(fetchTimeoutMs, "Fetching FAQs failed!")])
         .then((faq: Array<FAQLenke>) => {
           dispatch({
             type: "SETT_FAQ",
