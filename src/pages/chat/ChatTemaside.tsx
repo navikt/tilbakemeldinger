@@ -76,6 +76,7 @@ const ChatTemaside = ({ chatTema }: Props) => {
     if (harStartParameter && chatErApen) {
       startChat();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
