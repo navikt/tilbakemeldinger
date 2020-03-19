@@ -13,13 +13,13 @@ const Tolketjenesten = () => {
   return (
     <IkonPanel ikon={ikon} tittel={tittel}>
       <RouterLenke
-        href={urls.tolketjenesten}
+        href={urls.tolkeTjenesten.tolketjenesten}
         isExternal={true}
         className={"lenke__avstand-under"}
       >
         <FormattedMessage id={"kontaktoss.tolketjenesten.link"} />
       </RouterLenke>
-      <RouterLenke href={urls.spraktolk} isExternal={true}>
+      <RouterLenke href={urls.tolkeTjenesten.spraktolk} isExternal={true}>
         <FormattedMessage id={"kontaktoss.tolketjenesten.link.spraktolk"} />
       </RouterLenke>
     </IkonPanel>

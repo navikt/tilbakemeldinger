@@ -31,7 +31,7 @@ export const skrivTilOssLenkepaneler: TemaLenke[] = [
     tema: STOTema.Jobbsoker,
     tittelId: "skrivtiloss.arbeidssoker.lenke.tittel",
     grafanaId: "skrivtiloss.arbeidssoker",
-    url: urls.skrivTilOss.arbeidssoker,
+    url: urls.skrivTilOss.jobbsoker,
     externalUrl: true
   },
   {

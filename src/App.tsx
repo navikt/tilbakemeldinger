@@ -129,7 +129,7 @@ const App = () => {
               />
               <Route
                 exact={true}
-                path={urls.finnDittNavKontorUinnlogget}
+                path={urls.finnNavKontor.finnDittNavKontorUinnlogget}
                 component={FinnNavKontorPage}
               />
               <Route

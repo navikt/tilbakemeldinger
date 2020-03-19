@@ -14,20 +14,20 @@ const FinnNavKontor = () => {
     <IkonPanel ikon={ikon} tittel={tittel} id={"finn-nav-kontor"}>
       <>
         <RouterLenke
-          href={urls.finnDittNavKontor}
+          href={urls.finnNavKontor.finnDittNavKontor}
           isExternal={true}
           className={"lenke__avstand-under"}
         >
           <FormattedMessage id="kontaktoss.navkontor.innlogget.lenke" />
         </RouterLenke>
         <RouterLenke
-          href={urls.finnDittNavKontorUinnlogget}
+          href={urls.finnNavKontor.finnDittNavKontorUinnlogget}
           isExternal={false}
           className={"lenke__avstand-under"}
         >
           <FormattedMessage id="kontaktoss.navkontor.uinnlogget.lenke" />
         </RouterLenke>
-        <RouterLenke href={urls.finnDinHjelpemiddelsentral} isExternal={true}>
+        <RouterLenke href={urls.finnNavKontor.finnDinHjelpemiddelsentral} isExternal={true}>
           <FormattedMessage id="kontaktoss.hjelpemiddelsentral.lenke" />
         </RouterLenke>
       </>
