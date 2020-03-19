@@ -71,6 +71,14 @@ const ChatTemaside = ({ chatTema }: Props) => {
 
   const chatClientConfig = chatConfig.tema[chatTema];
 
+  useEffect(() => {
+    const harStartParameter = window.location.search.includes("start");
+    if (harStartParameter && chatErApen) {
+      startChat();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <div className={`${cssPrefix} pagecontent`}>
