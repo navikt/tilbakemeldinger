@@ -43,9 +43,9 @@
   {
     "_createdAt": "2020-03-17T11:35:23Z",
     "_id": "chat-med-oss",
-    "_rev": "4HSN1iflZZx2rre9qUBZmg",
+    "_rev": "uM7R8U1PzurmhiJpgsCPvz",
     "_type": "channel",
-    "_updatedAt": "2020-03-18T07:45:12Z",
+    "_updatedAt": "2020-03-18T15:06:53Z",
     "answer_time": {
       "_type": "localeString"
     },
@@ -68,19 +68,38 @@
           "style": "normal"
         }
       ]
+    },
+    "preamble": {
+      "_type": "localeBlock",
+      "nb": [
+        {
+          "_key": "2d1c6dcdcfc3",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "2d1c6dcdcfc30",
+              "_type": "span",
+              "marks": [],
+              "text": "På chat svarer vi ikke på spørsmål om saken din."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
     }
   },
   {
     "_createdAt": "2020-03-17T11:35:04Z",
     "_id": "kontakt-din-veileder",
-    "_rev": "FWkbPeFlPFjjwEQRoAICcx",
+    "_rev": "uM7R8U1PzurmhiJpgsCHo5",
     "_type": "channel",
-    "_updatedAt": "2020-03-18T07:40:20Z",
+    "_updatedAt": "2020-03-18T14:25:43Z",
     "answer_time": {
       "_type": "localeString",
       "nb": "1 arbeidsdager."
     },
-    "closed": true,
+    "closed": false,
     "description": {
       "_type": "localeBlock",
       "nb": [
@@ -104,9 +123,9 @@
   {
     "_createdAt": "2020-03-17T11:34:48Z",
     "_id": "ring-oss",
-    "_rev": "ZED4elTJf9J8y6dGmycSIq",
+    "_rev": "4HSN1iflZZx2rre9qUDGzG",
     "_type": "channel",
-    "_updatedAt": "2020-03-17T16:34:26Z",
+    "_updatedAt": "2020-03-18T14:26:34Z",
     "closed": false,
     "description": {
       "_type": "localeBlock"
@@ -115,9 +134,9 @@
   {
     "_createdAt": "2020-03-17T11:36:00Z",
     "_id": "skriv-til-oss",
-    "_rev": "uM7R8U1PzurmhiJpgsBkJd",
+    "_rev": "FWkbPeFlPFjjwEQRoAJHrb",
     "_type": "channel",
-    "_updatedAt": "2020-03-18T09:17:57Z",
+    "_updatedAt": "2020-03-18T15:15:52Z",
     "answer_time": {
       "_type": "localeString",
       "nb": "3 arbeidsdager"
@@ -135,6 +154,25 @@
               "_type": "span",
               "marks": [],
               "text": "Send oss spørsmål eller nye opplysninger i saken din. 'Skriv til oss' er et sikkert alternativ til e-post."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    "preamble": {
+      "_type": "localeBlock",
+      "nb": [
+        {
+          "_key": "d3808293afb5",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d3808293afb50",
+              "_type": "span",
+              "marks": [],
+              "text": "Send oss spørsmål eller nye opplysninger i saken din."
             }
           ],
           "markDefs": [],

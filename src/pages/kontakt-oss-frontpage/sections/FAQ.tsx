@@ -27,14 +27,16 @@ const FAQ = () => {
       {lenkerFAQ
         .slice(0, visFlereFAQ ? lenkerFAQ.length : visElementer)
         .map(({ lenke, tittel }) => {
-          return (<RouterLenke
-            href={lenke[language]}
-            className={"lenke__avstand-under"}
-            isExternal={true}
-            key={tittel[language]}
-          >
-            {tittel[language]}
-          </RouterLenke>)
+          return (
+            <RouterLenke
+              href={lenke[language]}
+              className={"lenke__avstand-under"}
+              isExternal={true}
+              key={tittel[language]}
+            >
+              {tittel[language]}
+            </RouterLenke>
+          );
         })
       }
       {lenkerFAQ.length > visElementer && (

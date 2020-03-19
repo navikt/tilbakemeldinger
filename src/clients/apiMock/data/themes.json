@@ -2,9 +2,9 @@
   {
     "_createdAt": "2020-03-17T12:28:28Z",
     "_id": "chat-med-oss-arbeidsgiver",
-    "_rev": "lrDMfu4dQPEWZuTSwsem4v",
+    "_rev": "cwLSauK3hy1spiO8BgxiWL",
     "_type": "theme",
-    "_updatedAt": "2020-03-17T12:28:28Z",
+    "_updatedAt": "2020-03-18T22:29:32Z",
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
@@ -33,6 +33,56 @@
       "title": {
         "_type": "localeString",
         "nb": "Arbeidsgiver og samhandler"
+      }
+    },
+    "page": {
+      "_type": "page",
+      "content": {
+        "_type": "localeBlock",
+        "nb": [
+          {
+            "_key": "e9a8ed9837a6",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "e9a8ed9837a60",
+                "_type": "span",
+                "marks": [],
+                "text": "Du møter først en chatbot, men kan bli satt videre til chat med en veileder (hverdager 09.00–14.30)."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "a724812e7f32",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "a724812e7f320",
+                "_type": "span",
+                "marks": [],
+                "text": "Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          },
+          {
+            "_key": "fc9c51afd2b6",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "fc9c51afd2b60",
+                "_type": "span",
+                "marks": [],
+                "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg."
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
       }
     }
   },
@@ -249,14 +299,14 @@
   {
     "_createdAt": "2020-03-17T11:36:58Z",
     "_id": "chat-med-oss-jobbsoker",
-    "_rev": "uM7R8U1PzurmhiJpgsBdEX",
+    "_rev": "cwLSauK3hy1spiO8BgxWJ7",
     "_type": "theme",
-    "_updatedAt": "2020-03-18T08:22:33Z",
+    "_updatedAt": "2020-03-18T22:23:25Z",
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
     },
-    "closed": true,
+    "closed": false,
     "link": {
       "_type": "link_panel",
       "description": {
@@ -271,31 +321,9 @@
                 "_type": "span",
                 "marks": [],
                 "text": "Arbeidsavklaringspenger, dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet."
-              }
-            ],
-            "markDefs": [],
-            "style": "normal"
-          },
-          {
-            "_key": "7c930601fea8",
-            "_type": "block",
-            "children": [
+              },
               {
-                "_key": "7c930601fea80",
-                "_type": "span",
-                "marks": [],
-                "text": "Stor tekst"
-              }
-            ],
-            "markDefs": [],
-            "style": "h1"
-          },
-          {
-            "_key": "1f9c9dee54cb",
-            "_type": "block",
-            "children": [
-              {
-                "_key": "1f9c9dee54cb0",
+                "_key": "ed14eb2c3bb41",
                 "_type": "span",
                 "marks": [
                   "em",
@@ -304,7 +332,7 @@
                   "underline",
                   "strike-through"
                 ],
-                "text": "Kursiv tekst (virker ikke ennå)"
+                "text": ""
               }
             ],
             "markDefs": [],
@@ -585,14 +613,14 @@
   {
     "_createdAt": "2020-03-17T11:37:41Z",
     "_id": "chat-med-oss-syk",
-    "_rev": "ZED4elTJf9J8y6dGmycQkk",
+    "_rev": "FWkbPeFlPFjjwEQRoALpY7",
     "_type": "theme",
-    "_updatedAt": "2020-03-17T16:31:58Z",
+    "_updatedAt": "2020-03-18T22:24:00Z",
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
     },
-    "closed": true,
+    "closed": false,
     "link": {
       "_type": "link_panel",
       "description": {

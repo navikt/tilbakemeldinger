@@ -1,7 +1,7 @@
-import { vars } from "../Config";
+import { chatConfig } from "./data/chatConfig";
 
 const storageKeys = {
-  ...vars.chatBot.storageKeys,
+  ...chatConfig.storageKeys,
   temp: "temp-storage",
 };
 

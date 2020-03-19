@@ -14,5 +14,5 @@ export const alertSerializer = (props: any) => {
     <AlertStripe className={"varsel-panel"} type={alert.type}>
       <BlockContent blocks={alert.description} serializers={serializers}/>
     </AlertStripe>
-  )
+  );
 };

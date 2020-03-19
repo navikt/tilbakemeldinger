@@ -5,14 +5,14 @@ import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
-import { TemaLenkepanelData } from "../../types/lenker";
+import { TemaLenke } from "../../types/kanaler";
 
 const cssPrefix = "skriv-til-oss";
 
 type Props = {
   tittel: string;
   children: JSX.Element;
-  lenkepanelData?: TemaLenkepanelData[];
+  lenkepanelData?: TemaLenke[];
 };
 
 const SkrivTilOssBase = ({ tittel, children, lenkepanelData }: Props) => {

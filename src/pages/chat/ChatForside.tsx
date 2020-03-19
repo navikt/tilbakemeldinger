@@ -6,12 +6,11 @@ import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { useStore } from "../../providers/Provider";
-import { Kanal } from "../../types/kanaler";
+import { Kanal, TemaLenke } from "../../types/kanaler";
 import BlockContent from "@sanity/block-content-to-react";
 import { serializers } from "../../utils/sanity/serializers";
 import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
-import { chatTemaLenkepaneler } from "./ChatLenkerData";
-import { TemaLenkepanelData } from "../../types/lenker";
+import { chatTemaLenker } from "./data/chatTemaLenker";
 import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
 
 const cssPrefix = "chat-med-oss";
@@ -45,11 +44,11 @@ const ChatForside = () => {
         </div>
         <div className={`${cssPrefix}__temapanel-seksjon`}>
           {
-            chatTemaLenkepaneler.map((lenkePanelData: TemaLenkepanelData) => (
+            chatTemaLenker.map((lenke: TemaLenke) => (
                 <TemaLenkepanel
-                  lenkepanelData={lenkePanelData}
+                  lenkepanelData={lenke}
                   cssPrefix={cssPrefix}
-                  key={lenkePanelData.url}
+                  key={lenke.url}
                 />
               )
             )
