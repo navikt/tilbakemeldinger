@@ -16,7 +16,6 @@ const Environment = () => {
       tjenesteUrl: `https://tjenester.nav.no`,
       loginUrl: `http://localhost:8080/personbruker-api/local/cookie`,
       logoutUrl: `#`,
-      unleashUrl: `#`
     };
   }
   if (subdomain !== `www`) {
@@ -32,7 +31,6 @@ const Environment = () => {
       tjenesteUrl: `https://tjenester-${env}.nav.no`,
       loginUrl: `https://loginservice-q.nav.no/login`,
       logoutUrl: `https://loginservice-q.nav.no/slo`,
-      unleashUrl: `#`
     };
   }
 
@@ -46,7 +44,6 @@ const Environment = () => {
     tjenesteUrl: `https://tjenester.nav.no`,
     loginUrl: `https://loginservice.nav.no/login`,
     logoutUrl: `https://loginservice.nav.no/slo`,
-    unleashUrl: `#`
   };
 };
 

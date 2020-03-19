@@ -1,19 +1,19 @@
 [
   {
-    "_createdAt": "2020-03-12T15:45:08Z",
-    "_id": "4a1e55e6-643b-453b-8c95-423311c6cf83",
-    "_rev": "VkmmBYVNQm7yFO9Ovn5EAD",
+    "_createdAt": "2020-03-17T11:21:00Z",
+    "_id": "66738871-f0f2-443f-98e2-8aa11c8d45e0",
+    "_rev": "WONRbMvf6hbYUecGd7UU64",
     "_type": "alert",
-    "_updatedAt": "2020-03-15T15:34:52Z",
+    "_updatedAt": "2020-03-17T11:21:00Z",
     "description": {
       "_type": "localeBlock",
       "nb": [
         {
-          "_key": "9d978bd0a909",
+          "_key": "1b07f6c7fb82",
           "_type": "block",
           "children": [
             {
-              "_key": "9d978bd0a9090",
+              "_key": "1b07f6c7fb820",
               "_type": "span",
               "marks": [],
               "text": "Det er for tiden mange som kontakter oss. Hvis henvendelsen din ikke haster, ber vi deg ta kontakt senere."
@@ -24,6 +24,6 @@
         }
       ]
     },
-    "type": "info"
+    "type": "advarsel"
   }
 ]

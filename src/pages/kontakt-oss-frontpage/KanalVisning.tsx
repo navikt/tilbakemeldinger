@@ -28,15 +28,13 @@ export const KanalVisning = ({ kanal, visHvisStengt, children }: Props) => {
 
   return (
     <>
-      <div>
-        {svartid && !closed && (
-          <Normaltekst className="svartid">
-            <FormattedMessage id={"kontaktoss.svartid"} />
-            {svartid}
-          </Normaltekst>
-        )}
-        {description && <BlockContent blocks={description} serializers={serializers} />}
-      </div>
+      {svartid && !closed && (
+        <Normaltekst className="svartid">
+          <FormattedMessage id={"kontaktoss.svartid"} />
+          {svartid}
+        </Normaltekst>
+      )}
+      {description && <BlockContent blocks={description} serializers={serializers} />}
       {closed && !visHvisStengt ? <TjenesteStengtMelding /> : children}
     </>
   );

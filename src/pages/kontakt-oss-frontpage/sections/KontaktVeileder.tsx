@@ -14,7 +14,7 @@ const KontaktVeileder = () => {
     <IkonPanel ikon={ikon} tittel={tittel}>
       <KanalVisning kanal={Kanal.KontaktVeileder}>
         <RouterLenke
-          href={urls.aktivitetsplanDialog}
+          href={urls.kontaktVeileder}
           className={"lenke__avstand-over"}
           isExternal={true}
         >

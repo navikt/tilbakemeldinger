@@ -6,18 +6,20 @@ import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper"
 import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 import { TemaLenke } from "../../types/kanaler";
+import NavFrontendSpinner from "nav-frontend-spinner";
 
 const cssPrefix = "skriv-til-oss";
 
 type Props = {
-  tittel: string;
-  children: JSX.Element;
+  tittelId: string;
+  isLoaded?: boolean;
   lenkepanelData?: TemaLenke[];
+  children: JSX.Element;
 };
 
-const SkrivTilOssBase = ({ tittel, children, lenkepanelData }: Props) => {
+const SkrivTilOssBase = ({ tittelId, isLoaded, lenkepanelData, children }: Props) => {
   const documentTitle = `${useIntl().formatMessage({
-    id: tittel
+    id: tittelId
   })} - www.nav.no`;
   useEffect(() => {
     document.title = documentTitle;
@@ -28,21 +30,24 @@ const SkrivTilOssBase = ({ tittel, children, lenkepanelData }: Props) => {
       <BreadcrumbsWrapper />
       <div className={`${cssPrefix}__header`}>
         <Sidetittel>
-          <FormattedMessage id={tittel} />
+          <FormattedMessage id={tittelId} />
         </Sidetittel>
       </div>
-      <div className={`${cssPrefix}__ingress`}>
-        {children}
-        <KoronaVirusVarsel />
-        <StorPaagangVarsel />
-      </div>
-      {lenkepanelData && (
-        <div className={`${cssPrefix}__lenke-seksjon`}>
-          {lenkepanelData.map(lenke => (
-            <TemaLenkepanel lenkepanelData={lenke} cssPrefix={cssPrefix} key={lenke.tema} />
-          ))}
-        </div>
-      )}
+
+      {isLoaded ? (
+        <>
+          <div className={`${cssPrefix}__ingress`}>
+            {children}
+            <KoronaVirusVarsel />
+            <StorPaagangVarsel />
+          </div>
+          <div className={`${cssPrefix}__lenke-seksjon`}>
+            {lenkepanelData && lenkepanelData.map(lenke => (
+              <TemaLenkepanel lenkepanelData={lenke} cssPrefix={cssPrefix} key={lenke.tema} />
+            ))}
+          </div>
+        </>
+      ) : <NavFrontendSpinner />}
     </div>
   );
 };

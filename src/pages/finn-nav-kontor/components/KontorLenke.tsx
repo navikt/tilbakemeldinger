@@ -17,7 +17,7 @@ type Props = {
 
 export const KontorLenke = ({enhetsnr, id}: Props) => {
   const enhetsInfo = enhetsnrTilEnhetsinfo[enhetsnr] as EnhetsInfo;
-  const url = `${urls.navKontorUrlPrefix}${enhetsInfo.url}`;
+  const url = `${urls.finnNavKontor.navKontorUrlPrefix}${enhetsInfo.url}`;
 
   return (
     <RouterLenkeMedChevron

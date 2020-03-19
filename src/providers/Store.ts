@@ -4,7 +4,6 @@ import { Sprak } from "../types/sprak";
 import sprak from "../language/provider";
 import { Enheter, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../components/error/Error";
-import Unleash, { Features } from "../utils/unleash";
 import { Alert } from "../utils/sanity/endpoints/alert";
 import { FAQ, FAQLenke, initialFAQ } from "../utils/sanity/endpoints/faq";
 import { Channels, ChannelList, initialChannels } from "../utils/sanity/endpoints/channels";
@@ -14,10 +13,9 @@ export const initialState = {
   fodselsnr: "",
   language: sprak,
   locale: "nb" as "nb",
-  enheter: {status: "LOADING"} as FetchEnheter,
-  auth: {authenticated: false} as AuthInfo,
-  kontaktInfo: {mobiltelefonnummer: ""},
-  unleashFeatures: Unleash.getFeatureDefaults() as Features,
+  enheter: { status: "LOADING" } as FetchEnheter,
+  auth: { authenticated: false } as AuthInfo,
+  kontaktInfo: { mobiltelefonnummer: "" },
   visTekniskFeilMelding: false,
   varsler: [],
   faq: initialFAQ as FAQ,
@@ -32,7 +30,6 @@ export interface Store {
   fodselsnr: string;
   kontaktInfo: KontaktInfo;
   enheter: FetchEnheter;
-  unleashFeatures: Features;
   visTekniskFeilMelding: boolean;
   varsler: Array<Alert>;
   faq: FAQ;
@@ -59,14 +56,13 @@ export type Action =
   type: "SETT_KONTAKT_INFO_RESULT";
   payload: KontaktInfo;
 } | {
-  type: "SETT_FEATURE_TOGGLES";
-  payload: Features;
-} | {
   type: "SETT_VARSLER";
   payload: Array<Alert>;
 } | {
   type: "SETT_FAQ";
   payload: FAQLenke[];
+} | {
+  type: "SETT_FAQ_FETCH_FAILED";
 } | {
   type: "SETT_CHANNEL_PROPS";
   payload: ChannelList;
@@ -114,24 +110,27 @@ export const reducer = (state: Store, action: Action) => {
         ...state,
         kontaktInfo: action.payload as KontaktInfo
       };
-    case "SETT_FEATURE_TOGGLES":
-      return {
-        ...state,
-        unleashFeatures: Unleash.getValidFeatureToggles(action.payload as Features)
-      };
     case "SETT_VARSLER":
       return {
         ...state,
         varsler: action.payload
       };
-    case "SETT_FAQ":
+    case "SETT_FAQ": {
       return {
         ...state,
         faq: {
           isLoaded: true,
-          faqLenker: action.payload
+          faqLenker: action.payload.sort((a, b) => b.priority - a.priority)
         }
       };
+    }
+    case "SETT_FAQ_FETCH_FAILED": {
+      return {
+        ...state,
+        faq: { ...state.faq, isLoaded: true },
+        visTekniskFeilMelding: true
+      };
+    }
     case "SETT_CHANNEL_PROPS": {
       return {
         ...state,
@@ -144,7 +143,7 @@ export const reducer = (state: Store, action: Action) => {
     case "SETT_CHANNELS_FETCH_FAILED": {
       return {
         ...state,
-        channels: {...state.channels, isLoaded: true},
+        channels: { ...state.channels, isLoaded: true },
         visTekniskFeilMelding: true
       };
     }
@@ -160,7 +159,7 @@ export const reducer = (state: Store, action: Action) => {
     case "SETT_THEMES_FETCH_FAILED": {
       return {
         ...state,
-        themes: {...state.themes, isLoaded: true},
+        themes: { ...state.themes, isLoaded: true },
         visTekniskFeilMelding: true
       };
     }

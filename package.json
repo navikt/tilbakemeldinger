@@ -1,6 +1,6 @@
 {
   "name": "pb-kontakt-oss",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": true,
   "author": "NAV",
   "license": "MIT",
@@ -83,8 +83,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.3.0",
     "react-select": "^3.0.7",
-    "typescript": "3.6.3",
-    "unleash-client": "^3.3.1"
+    "typescript": "3.6.3"
   },
   "devDependencies": {
     "@types/calidation": "^1.16.0",

@@ -2,13 +2,13 @@ import React from "react";
 import { useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
 import SkrivTilOssBase from "../SkrivTilOssBase";
-import { hjelpemidlerLenkepaneler } from "../SkrivTilOssLenkerData";
+import { hjelpemidlerLenkepaneler } from "../skrivTilOssTemaLenker";
 
 const Ingress = () => {
   const intl = useIntl();
   return (
     <MetaTags>
-      <title>{intl.messages["skrivtiloss.hjelpemidler.tittel"]}</title>
+      <title>{intl.messages["skrivtiloss.hjelpemidler.mellomside.tittel"]}</title>
       <meta
         name="description"
         content={
@@ -20,7 +20,11 @@ const Ingress = () => {
 };
 
 const TemaHjelpemidler = () => (
-  <SkrivTilOssBase tittel={"skrivtiloss.hjelpemidler.tittel"} lenkepanelData={hjelpemidlerLenkepaneler}>
+  <SkrivTilOssBase
+    tittelId={"skrivtiloss.hjelpemidler.mellomside.tittel"}
+    isLoaded={true}
+    lenkepanelData={hjelpemidlerLenkepaneler}
+  >
     <Ingress />
   </SkrivTilOssBase>
 );

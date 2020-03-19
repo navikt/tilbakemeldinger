@@ -1,14 +1,16 @@
 import { urls } from "../Config";
 
 export default {
-  "teknisk-problem":
-    "Vi har for øyeblikket tekniske problemer med disse sidene.",
-  "header.navperson": "NAV privatperson",
-
+  //
+  // Varsler
+  //
   "varsel.teknisk.feil": "Det er for øyeblikket tekniske problemer med baksystemene våre. Dette kan føre til at noe informasjon mangler fra sidene.",
-  "tjeneste.stengt": "Tjenesten er for øyeblikket stengt, prøv igjen senere.",
   "varsel.stor.paagang": "Det er for tiden mange som kontakter oss. Hvis henvendelsen din ikke haster, ber vi deg ta kontakt senere.",
+  "tjeneste.stengt": "Tjenesten er for øyeblikket stengt, prøv igjen senere.",
 
+  //
+  // Breadcrumbs
+  //
   "breadcrumb.nav-no": "nav.no",
   "breadcrumb.": "Kontakt oss",
 
@@ -38,65 +40,11 @@ export default {
   "breadcrumb.bestilling-av-samtale":
     "Jearaldat bagadallama oažžut sámegillii telefovnnas",
 
-  "skrivtiloss.disabled": "Tjenesten er ikke tilgjengelig for øyeblikket.",
-  "skrivtiloss.tittel": "Skriv til oss",
-  "skrivtiloss.description":
-    "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Normal svartid" +
-    " er 2 arbeidsdager.",
-  "skrivtiloss.svartid":
-    "Du kan sende oss spørsmål eller informasjon om saken din. Du får normalt svar innen to arbeidsdager.",
-  "skrivtiloss.svartid.lang":
-    " På grunn av stor pågang kan svartiden akkurat nå være noe lengre. Vi beklager dette.",
-  "skrivtiloss.ingress":
-    "Send oss spørsmål eller nye opplysninger i saken din.",
-
-  "skrivtiloss.arbeidssoker.lenke.tittel": "Jobbsøker",
-
-  "skrivtiloss.syk.lenke.tittel": "Syk",
-
-  "skrivtiloss.familieogbarn.lenke.tittel": "Foreldre, barn og familie",
-
-  "skrivtiloss.pensjonist.lenke.tittel": "Pensjonist",
-
-  "skrivtiloss.ufor.lenke.tittel": "Ufør",
-
-  "skrivtiloss.hjelpemidler.lenke.tittel": "Hjelpemidler",
-
-  "skrivtiloss.hjelpemidler.tittel": "Skriv til oss om hjelpemidler",
-  "skrivtiloss.hjelpemidler.description":
-    "Send spørsmål eller opplysninger om tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk," +
-    " tilrettelegging og tilpasning.",
-  "skrivtiloss.hjelpemidler.generelt.tittel": "Generelle spørsmål",
-  "skrivtiloss.hjelpemidler.generelt.ingress":
-    "Gjelder spørsmål om hjelpemidler eller tiltak som bidrar til å reduserer praktiske problemer for personer" +
-    " med nedsatt funksjonsevne.",
-  "skrivtiloss.hjelpemidler.ortopediske.tittel": "Ortopediske hjelpemidler",
-  "skrivtiloss.hjelpemidler.ortopediske.ingress":
-    "Du kan sende oss nye opplysninger knyttet til saken din om høreapparat, parykk, protese, ortose eller" +
-    " ortopediske fottøy.",
-  "skrivtiloss.hjelpemidler.bil.tittel":
-    "Spørsmål om bil og spesialutstyr til bil",
-  "skrivtiloss.hjelpemidler.bil.ingress":
-    "Gjelder spørsmål eller opplysninger om bil og transport for personer med varig nedsatt funksjonsevne som" +
-    " ikke kan bruke offentlig transport til arbeid, skole eller i dagliglivet.",
-
-  "faq.intro": "Nå lurer mange på",
-  "faq.visflere": "Vis flere",
-  "faq.visfaerre": "Vis færre",
-  "faq.utbetalingsoversikt": "Sjekk utbetalingene dine",
-  "faq.saksoversikt": "Hvordan går det med saken min?",
-  "faq.koronavirus": "Koronavirus – informasjon fra NAV",
-  "faq.eosreglersak": "Feiltolking av EØS-reglene",
-  "faq.nesteutbetaling": "Utbetalingsdatoer",
-  "faq.saksbehandlingstider": "Saksbehandlingstider",
-  "faq.endrekontonummer": "Endre kontonummer",
-  "faq.posttilannenadresse": "Vil du ha NAV-post til en annen adresse?",
-
+  //
+  // Forside
+  //
   "kontaktoss.tittel": "Kontakt oss",
   "kontaktoss.svartid": "Svartid: ",
-  "kontaktoss.svartiddager": "{antall} arbeidsdager",
-  "kontaktoss.svartidendag": "én arbeidsdag",
-  "kontaktoss.kanal.stengt": "Tjenesten er for øyeblikket stengt, prøv igjen senere.",
 
   "kontaktoss.chat.tittel": "Chat med oss",
   "kontaktoss.chat.ingress":
@@ -107,41 +55,10 @@ export default {
 
   "kontaktoss.ringoss.tittel": "Ring oss",
   "kontaktoss.ringoss.knapp": "Alle telefonnumre",
-  "kontaktoss.ringoss.beskrivelse":
-    "Vi hjelper deg med generelle spørsmål og veiledning hverdager mellom " +
-    "08.00–15.00. Svartiden varierer, men det er kortest ventetid mellom " +
-    "10.00–13.00",
-  "kontaktoss.ringoss.skjultlf": "Skjul telefonnumre og tastevalg",
-  "kontaktoss.ringoss.vistlf": "Vis telefonnumre og tastevalg",
-  "kontaktoss.ringoss.tlf": "Personbruker: 55 55 33 33",
-  "kontaktoss.ringoss.tastevalg": "Tastevalg",
 
-  "kontaktoss.ringoss.tastevalg.tast1.tittel": "Tast 1",
-  "kontaktoss.ringoss.tastevalg.tast1.beskrivelse":
-    "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester",
-  "kontaktoss.ringoss.tastevalg.tast2.tittel": "Tast 2",
-  "kontaktoss.ringoss.tastevalg.tast2.beskrivelse":
-    "Arbeidssøker, dagpenger, arbeidsavklaringspenger eller sykemeldt",
-  "kontaktoss.ringoss.tastevalg.tast3.tittel": "Tast 3",
-  "kontaktoss.ringoss.tastevalg.tast3.beskrivelse":
-    "Foreldrepenger, engangsstønad, svangerskapspenger, barnebidrag, barnetrygd, kontantstøtte, enslig forsørger," +
-    " pleiepenger og andre familieytelser",
-  "kontaktoss.ringoss.tastevalg.tast4.tittel": "Tast 4",
-  "kontaktoss.ringoss.tastevalg.tast4.beskrivelse": "Uføretrygd og honnørkort",
-  "kontaktoss.ringoss.tastevalg.tast5.tittel": "Tast 5",
-  "kontaktoss.ringoss.tastevalg.tast5.beskrivelse": "Andre henvendelser",
-
-  "kontaktoss.ringoss.spesialnr": "Spesialnumre",
-  "kontaktoss.ringoss.spesialnr.pensjon": "Pensjon",
-  "kontaktoss.ringoss.spesialnr.hjelpemidler": "Hjelpemidler",
-  "kontaktoss.ringoss.spesialnr.teknisk":
-    "Teknisk brukerstøtte / EURES / gjeldsrådgivning",
-  "kontaktoss.ringoss.spesialnr.internasjonalt": "Internasjonalt",
-  "kontaktoss.ringoss.spesialnr.lonnsgaranti": "Lønnsgaranti",
-
-  "kontaktoss.ringoss.forsvaret":
-    "Råd og veiledning for veteraner fra Forsvaret",
-  "kontaktoss.ringoss.forandre": "Ringer du på vegne av en annen?",
+  "faq.intro": "Nå lurer mange på",
+  "faq.visflere": "Vis flere",
+  "faq.visfaerre": "Vis færre",
 
   "kontaktoss.skrivtiloss.tittel": "Skriv til oss",
   "kontaktoss.skrivtiloss.beskrivelse":
@@ -158,8 +75,6 @@ export default {
   "kontaktoss.facebook.jobblyst": "Jobblyst på Facebook",
 
   "kontaktoss.navkontor.tittel": "Finn NAV-kontor",
-  "kontaktoss.navkontor.beskrivelse":
-    "På NAV-kontor kan du låne PC og printer, treffe din veileder for avtalt møte eller be om nødhjelp.",
   "kontaktoss.navkontor.innlogget.lenke": "Finn ditt NAV-kontor (innlogget)",
   "kontaktoss.navkontor.uinnlogget.lenke": "Søk opp NAV-kontor",
   "kontaktoss.hjelpemiddelsentral.lenke": "Finn hjelpemiddelsentral",
@@ -188,6 +103,91 @@ export default {
   "kontaktoss.sosialemedier.tittel": "NAV i sosiale medier",
   "kontaktoss.sosialemedier.link": "NAV i sosiale medier",
 
+  //
+  // Chat
+  //
+  "chat.forside.tittel": "Chat med oss",
+  "chat.forside.ingress": "På chat svarer vi ikke på spørsmål om saken din.",
+
+  "chat.knapp.start": "Start chat",
+  "chat.knapp.paagaar": "Chat pågår",
+  "chat.knapp.stengt": "Chatten er stengt",
+
+  "chat.stengt.info": "Chatten er stengt, se åpningstider under.",
+  "chat.admin-stengt.veileder": "Chat med veileder er for øyeblikket utilgjengelig.",
+
+  "chat.arbeidsgiver.tittel": "Arbeidsgiver og samhandler",
+  "chat.jobbsoker.tittel": "Jobbsøker",
+  "chat.syk.tittel": "Syk",
+  "chat.familie.tittel": "Foreldre, barn og familie",
+  "chat.ufor.tittel": "Ufør",
+  "chat.sosialhjelp.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
+  "chat.okonomi.tittel": "Økonomi og gjeldsrådgivning",
+  "chat.eures.tittel": "Spør EURES om jobb og rekruttering i i EØS-området",
+
+  "apningstid.avvik": "<p>Spesielle åpningstider:</p>",
+  "apningstid.avvik.chatbot":
+    "<p>Chatbot er døgnåpen. For veileder gjelder spesielle åpningstider:</p>",
+  "apningstid.avvik.stengt": "<p>{dato} - Stengt</p>",
+  "apningstid.avvik.apent": "<p>{dato} - kl. {start}–{end}</p>",
+
+  //
+  // Default FAQs
+  //
+  "faq.utbetalingsoversikt": "Sjekk utbetalingene dine",
+  "faq.saksoversikt": "Hvordan går det med saken min?",
+  "faq.nesteutbetaling": "Utbetalingsdatoer",
+  "faq.saksbehandlingstider": "Saksbehandlingstider",
+  "faq.endrekontonummer": "Endre kontonummer",
+  "faq.posttilannenadresse": "Vil du ha NAV-post til en annen adresse?",
+
+  //
+  // Skriv til oss
+  //
+  "skrivtiloss.disabled": "Tjenesten er ikke tilgjengelig for øyeblikket.",
+  "skrivtiloss.tittel": "Skriv til oss",
+  "skrivtiloss.description":
+    "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Normal svartid" +
+    " er 2 arbeidsdager.",
+
+  "skrivtiloss.arbeidssoker.lenke.tittel": "Jobbsøker",
+  "skrivtiloss.syk.lenke.tittel": "Syk",
+  "skrivtiloss.familieogbarn.lenke.tittel": "Foreldre, barn og familie",
+  "skrivtiloss.pensjonist.lenke.tittel": "Pensjonist",
+  "skrivtiloss.ufor.lenke.tittel": "Ufør",
+  "skrivtiloss.hjelpemidler.lenke.tittel": "Hjelpemidler",
+  "skrivtiloss.hjelpemidler.generelt.lenke.tittel": "Generelle spørsmål",
+  "skrivtiloss.hjelpemidler.ortopediske.lenke.tittel": "Ortopediske hjelpemidler",
+  "skrivtiloss.hjelpemidler.bil.lenke.tittel": "Spørsmål om bil og spesialutstyr til bil",
+
+  "skrivtiloss.hjelpemidler.mellomside.tittel": "Skriv til oss om hjelpemidler",
+  "skrivtiloss.hjelpemidler.description":
+    "Send spørsmål eller opplysninger om tekniske hjelpemidler, ortopediske hjelpemidler, bilstønad, tolk," +
+    " tilrettelegging og tilpasning.",
+
+  //
+  // Finn NAV-kontor
+  //
+  "finnkontor.tittel": "Søk opp NAV-kontor",
+  "finnkontor.ingress":
+    "Mangler du elektronisk ID? Eller skal du finne NAV-kontor på vegne av noen andre?\n" +
+    "Da kan du søke opp NAV-kontor ved hjelp av postnummer eller sted/by.",
+  "finnkontor.sok.knapp": "Søk",
+  "finnkontor.sok.label": "Skriv inn et postnummer eller sted/by",
+  "finnkontor.ugyldig.postnr":
+    "Fant ingen NAV-kontor tilknyttet '{nummer}'. Postnummeret kan være ugyldig.",
+  "finnkontor.query.feil":
+    "Skriv inn minst {min} bokstaver eller et gyldig postnummer.",
+  "finnkontor.query.feil.kort": "Skriv minst {min} bokstaver eller et postnr.",
+  "finnkontor.ingen.treff": "Ingen resultater for '{query}'",
+  "finnkontor.flere.treff": "Vis alle treff ({antall})",
+  "finnkontor.resultat.stedsnavn": "Søkeresultat for '{query}' ({antall}):",
+  "finnkontor.resultat.postnr": "NAV-kontor for ",
+
+  //
+  // Klage og tilbakemelding
+  // Feil og mangler
+  //
   "tilbakemeldinger.sidetittel": "Klage og tilbakemelding",
   "tilbakemeldinger.klageanke.tittel": "Klage eller anke på vedtak",
   "tilbakemeldinger.klageanke.beskrivelse":
@@ -317,7 +317,7 @@ export default {
   "felter.fullmakt.nei": "Nei, jeg har ikke fullmakt",
   "felter.fullmakt.advarsel": `
         Vi kan ikke kontakte deg med mindre vi har mottatt en fullmakt fra personen det gjelder.
-        <a href="${urls.fullmaktskjema}" target="_blank">Gå til fullmaktskjema</a>.`,
+        <a href="${urls.tilbakemeldinger.serviceklage.fullmaktskjema}" target="_blank">Gå til fullmaktskjema</a>.`,
   "felter.orgnavn": "Organisasjonsnavn",
   "felter.orgnr": "Organisasjonsnummer (til din lokale enhet)",
   "felter.postadr": "Bedriftens postadresse",
@@ -346,92 +346,6 @@ export default {
   "seo.klagepaservice.description":
     "Send klage på service hos NAV. Hva gjelder tilbakemeldingen og hvem skriver du på vegne av?",
 
-  "chat.forside.tittel": "Chat med oss",
-  "chat.forside.ingress": "På chat svarer vi ikke på spørsmål om saken din.",
-
-  "chat.knapp.start": "Start chat",
-  "chat.knapp.paagaar": "Chat pågår",
-  "chat.knapp.stengt": "Chatten er stengt",
-
-  "chat.stengt.info": "Chatten er stengt, se åpningstider under.",
-  "chat.admin-stengt.veileder": "Chat med veileder er for øyeblikket utilgjengelig.",
-  "chat.advarsel.personvern":
-    "<p>Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring.</p>" +
-    "<p>Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg.</p>",
-  "chat.chatbotinfo":
-    "<p>Du møter først en chatbot, men kan bli satt videre til chat med en veileder (hverdager 09.00–14.30).</p>",
-
-  "chat.arbeidsgiver.tittel": "Arbeidsgiver og samhandler",
-  "chat.arbeidsgiver.ingressKort":
-    "Chat for arbeidsgivere og samhandlere om permittering i forbindelse med koronavirus.",
-
-  "chat.jobbsoker.tittel": "Jobbsøker",
-  "chat.jobbsoker.ingressKort":
-    "Chat for privatpersoner om arbeidsavklaringspenger, dagpenger, permittering, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet.",
-
-  "chat.syk.tittel": "Syk",
-  "chat.syk.ingressKort": "Chat for privatpersoner om sykmelding, sykepenger, yrkesskade/ménerstatning.",
-  "chat.syk.ingress": "Chat med en veileder (hverdager 09.00–14.30).",
-
-  "chat.familie.tittel": "Foreldre, barn og familie",
-  "chat.familie.ingressKort":
-    "Chat for privatpersoner om foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger i livets sluttfase.",
-
-  "chat.ufor.tittel": "Ufør",
-  "chat.ufor.ingressKort": "Chat for privatpersoner om uføretrygd, barnetillegg, gjenlevendetillegg.",
-  "chat.ufor.ingress": "Chat med en veileder (hverdager 09.00–14.30).",
-
-  "chat.sosialhjelp.tittel": "Sosiale tjenester og økonomisk sosialhjelp",
-  "chat.sosialhjelp.ingressKort":
-    "Chat for privatpersoner om økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester.",
-
-  "chat.okonomi.tittel": "Økonomi og gjeldsrådgivning",
-  "chat.okonomi.ingressKort": "Chat for privatpersoner om budsjett, økonomi, gjeldsrådgivning.",
-  "chat.okonomi.ingress":
-    "<p>Vi svarer deg på spørsmål om budsjett, økonomi og gjeldsrådgivning. Dine spørsmål blir besvart av erfarne gjeldsrådgivere.</p>" +
-    "<p>Vi har ikke tilgang til å se dine utbetalinger, eller personlige opplysninger som gjelder dine saker hos NAV.</p>" +
-    "<p>Våre rådgivere er tilgjengelige på hverdager 10.00–15.00 (14.30 torsdager).</p>",
-
-  "chat.eures.tittel": "Spør EURES om jobb og rekruttering i i EØS-området",
-  "chat.eures.ingressKort":
-    "EURES svarer på spørsmål fra jobbsøkere og arbeidsgivere om arbeid og opphold i EU/EØS og Sveits.",
-  "chat.eures.ingress":
-    "<p>Arbeidssøker: Spør oss om arbeid og opphold i EU/EØS og Sveits, eller om jobb i Norge hvis du er en" +
-    " arbeidssøker fra EU/EØS og Sveits.</p>" +
-    "<p>Arbeidsgiver: Spør oss om rekruttering fra EU/EØS og Sveits.</p>" +
-    "<p>Chatten foregår på Den europeiske jobbmobilitetsportalen. Åpningstider varierer fra land til land," +
-    " hovedsaklig ca. 10–14 på fredager.</p>",
-
   "takk.melding": "Meldingen din er sendt",
   "takk.knapp": "Gå til nav.no",
-
-  "apningstid.avvik": "<p>Spesielle åpningstider:</p>",
-  "apningstid.avvik.chatbot":
-    "<p>Chatbot er døgnåpen. For veileder gjelder spesielle åpningstider:</p>",
-  "apningstid.avvik.stengt": "<p>{dato} - Stengt</p>",
-  "apningstid.avvik.apent": "<p>{dato} - kl. {start}–{end}</p>",
-  "apningstid.avvik.forside": "Åpningstidene avviker i julen, ",
-  "apningstid.avvik.forside.lenke": "se oversikt.",
-  "apningstid.avvik.skrivtiloss":
-    "Ring oss gjerne hvis det haster: På grunn av helligdager og" +
-    " redusert åpningstid i romjulen vil svartiden i 'Skriv til oss' være inntil 14 dager.",
-  "apningstid.avvik.skrivtiloss.svartid":
-    "På grunn av redusert åpningstid i julen, kan svartiden være inntil 14 dager.",
-  "apningstid.avvik.ringoss.lenke": "Åpningstider i julen",
-
-  "finnkontor.tittel": "Søk opp NAV-kontor",
-  "finnkontor.ingress":
-    "Mangler du elektronisk ID? Eller skal du finne NAV-kontor på vegne av noen andre?\n" +
-    "Da kan du søke opp NAV-kontor ved hjelp av postnummer eller sted/by.",
-  "finnkontor.sok.knapp": "Søk",
-  "finnkontor.sok.label": "Skriv inn et postnummer eller sted/by",
-  "finnkontor.ugyldig.postnr":
-    "Fant ingen NAV-kontor tilknyttet '{nummer}'. Postnummeret kan være ugyldig.",
-  "finnkontor.query.feil":
-    "Skriv inn minst {min} bokstaver eller et gyldig postnummer.",
-  "finnkontor.query.feil.kort": "Skriv minst {min} bokstaver eller et postnr.",
-  "finnkontor.ingen.treff": "Ingen resultater for '{query}'",
-  "finnkontor.flere.treff": "Vis alle treff ({antall})",
-  "finnkontor.resultat.stedsnavn": "Søkeresultat for '{query}' ({antall}):",
-  "finnkontor.resultat.postnr": "NAV-kontor for "
 };
