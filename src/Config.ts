@@ -64,16 +64,12 @@ export const urls = {
         "https://ec.europa.eu/eures/main.jsp?acro=eures&lang=no&catId=10821&parentCategory=10821"
     }
   },
-  chatBotApi: {
-    sessionConfig: "https://api.puzzel.com/chat/v1/sessions"
-  },
   facebook: {
     foreldrepenger: "https://www.facebook.com/navforeldrepenger",
     jobblyst: "https://www.facebook.com/navjobblyst"
   },
   samtykke: `${navUrl}/no/nav-og-samfunn/om-nav/relatert-informasjon/taushetsplikt-og-samtykke`,
   fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
-  aktivitetsplan: `${tjenesteUrl}/aktivitetsplan/`,
   aktivitetsplanDialog: `https://aktivitetsplan.nav.no/dialog`,
   faq: {
     skatt: `${navUrl}/no/nav-og-samfunn/kontakt-nav/utbetalinger/skattetrekk-pa-ytelser-fra-nav`,
@@ -89,7 +85,6 @@ export const urls = {
   },
   veteraner: `${navUrl}/veteraner`,
   ringOss: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-nav-pa-telefon2`,
-  arbeidssoker: `${tjenesteUrl}/veiledearbeidssoker/mistet-jobben/registrering-arbeidssoker`,
   tolketjenesten: `${navUrl}/no/person/hjelpemidler/tjenester-og-produkter/tolketjenesten`,
   spraktolk: `${navUrl}/no/person/arbeid/oppfolging-og-tiltak-for-a-komme-i-jobb/oppfolging-fra-nav/trenger-du-språktolk`,
   finnDittNavKontor: `${navUrl}/person/personopplysninger#ditt-nav-kontor`,
@@ -108,10 +103,6 @@ export const vars = {
   defaultDatoTidFormat: "HH:mm DD-MM-YYYY",
   defaultDatoFormat: "DD-MM-YYYY",
   maksLengdeMelding: 10000,
-  svartid: {
-    skrivTilOss: 3,
-    kontaktVeileder: 2
-  },
 };
 
 export default {

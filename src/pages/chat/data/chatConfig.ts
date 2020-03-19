@@ -7,6 +7,7 @@ export type ChatTemaConfig = {
 
 export const chatConfig = {
   customerKey: "41155",
+  sessionConfig: "https://api.puzzel.com/chat/v1/sessions",
   storageKeys: {
     config: "chatbot-frida_config",
     openState: "chatbot-frida_apen",
