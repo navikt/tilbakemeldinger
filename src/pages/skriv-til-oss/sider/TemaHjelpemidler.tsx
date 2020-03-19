@@ -20,7 +20,11 @@ const Ingress = () => {
 };
 
 const TemaHjelpemidler = () => (
-  <SkrivTilOssBase tittel={"skrivtiloss.hjelpemidler.mellomside.tittel"} lenkepanelData={hjelpemidlerLenkepaneler}>
+  <SkrivTilOssBase
+    tittelId={"skrivtiloss.hjelpemidler.mellomside.tittel"}
+    isLoaded={true}
+    lenkepanelData={hjelpemidlerLenkepaneler}
+  >
     <Ingress />
   </SkrivTilOssBase>
 );
