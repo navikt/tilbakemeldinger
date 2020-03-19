@@ -112,31 +112,6 @@ export const vars = {
     skrivTilOss: 3,
     kontaktVeileder: 2
   },
-  unleash: {
-    timeout: 2000,
-    features: {
-      skrivTilOssEnabled: {
-        name: "kontakt-oss.skriv-til-oss",
-        default: true
-      },
-      visTekniskProblemMelding: {
-        name: "kontakt-oss.teknisk-problem",
-        default: false
-      },
-      skrivTilOssSvartidBit1: {
-        name: "kontakt-oss.svartid1",
-        default: false
-      },
-      skrivTilOssSvartidBit2: {
-        name: "kontakt-oss.svartid2",
-        default: false
-      },
-      skrivTilOssSvartidBit3: {
-        name: "kontakt-oss.svartid3",
-        default: false
-      }
-    }
-  },
 };
 
 export default {

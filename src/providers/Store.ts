@@ -4,7 +4,6 @@ import { Sprak } from "../types/sprak";
 import sprak from "../language/provider";
 import { Enheter, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../components/error/Error";
-import Unleash, { Features } from "../utils/unleash";
 import { Alert } from "../utils/sanity/endpoints/alert";
 import { FAQ, FAQLenke, initialFAQ } from "../utils/sanity/endpoints/faq";
 import { Channels, ChannelList, initialChannels } from "../utils/sanity/endpoints/channels";
@@ -17,7 +16,6 @@ export const initialState = {
   enheter: {status: "LOADING"} as FetchEnheter,
   auth: {authenticated: false} as AuthInfo,
   kontaktInfo: {mobiltelefonnummer: ""},
-  unleashFeatures: Unleash.getFeatureDefaults() as Features,
   visTekniskFeilMelding: false,
   varsler: [],
   faq: initialFAQ as FAQ,
@@ -32,7 +30,6 @@ export interface Store {
   fodselsnr: string;
   kontaktInfo: KontaktInfo;
   enheter: FetchEnheter;
-  unleashFeatures: Features;
   visTekniskFeilMelding: boolean;
   varsler: Array<Alert>;
   faq: FAQ;
@@ -58,9 +55,6 @@ export type Action =
 } | {
   type: "SETT_KONTAKT_INFO_RESULT";
   payload: KontaktInfo;
-} | {
-  type: "SETT_FEATURE_TOGGLES";
-  payload: Features;
 } | {
   type: "SETT_VARSLER";
   payload: Array<Alert>;
@@ -113,11 +107,6 @@ export const reducer = (state: Store, action: Action) => {
       return {
         ...state,
         kontaktInfo: action.payload as KontaktInfo
-      };
-    case "SETT_FEATURE_TOGGLES":
-      return {
-        ...state,
-        unleashFeatures: Unleash.getValidFeatureToggles(action.payload as Features)
       };
     case "SETT_VARSLER":
       return {
