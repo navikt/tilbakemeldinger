@@ -120,14 +120,15 @@ export const reducer = (state: Store, action: Action) => {
         ...state,
         faq: {
           isLoaded: true,
-          faqLenker: action.payload
+          faqLenker: action.payload.sort((a, b) => b.priority - a.priority)
         }
       };
     }
     case "SETT_FAQ_FETCH_FAILED": {
       return {
         ...state,
-        faq: { ...state.faq, isLoaded: true }
+        faq: { ...state.faq, isLoaded: true },
+        visTekniskFeilMelding: true
       };
     }
     case "SETT_CHANNEL_PROPS": {

@@ -72,7 +72,7 @@ const App = () => {
         .then((faq: Array<FAQLenke>) => {
           dispatch({
             type: "SETT_FAQ",
-            payload: faq.sort((a, b) => b.priority - a.priority),
+            payload: faq
           });
         })
         .catch(err => {
@@ -80,7 +80,6 @@ const App = () => {
           console.error(err);
         });
 
-      // TODO: vis varsel for teknisk feil hvis noe feiler her
       Promise.race<any>([fetchChannelInfo(), timeoutPromise(fetchTimeoutMs, "Fetching channel data failed!")])
         .then((channels: ChannelProps[]) => {
           dispatch({
