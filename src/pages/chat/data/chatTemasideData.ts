@@ -1,6 +1,6 @@
 import { ChatTema } from "../../../types/kanaler";
 
-type ChatTemaSideData = {
+type ChatTemasideData = {
   [key in ChatTema]: {
     tittelId: string,
     grafanaId: string,
@@ -8,7 +8,7 @@ type ChatTemaSideData = {
   }
 };
 
-export const chatTemaSideData: ChatTemaSideData = {
+export const chatTemaSideData: ChatTemasideData = {
   [ChatTema.Jobbsoker]: {
     tittelId: "chat.jobbsoker.tittel",
     grafanaId: "chat.start.jobbsoker",

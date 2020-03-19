@@ -15,7 +15,7 @@ import { useStore } from "../../providers/Provider";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
 import { ChatTema, Kanal } from "../../types/kanaler";
-import { chatTemaSideData } from "./data/chatTemaSideData";
+import { chatTemaSideData } from "./data/chatTemasideData";
 import { chatApningstider } from "./data/chatApningtider";
 import { chatConfig } from "./data/chatConfig";
 import { Language } from "../../utils/sanity/serializers";
@@ -26,6 +26,12 @@ type Props = {
   chatTema: ChatTema,
 };
 
+const Varsel = ({ tekstId }: { tekstId: string }) => (
+  <AlertStripeInfo className={"varsel-panel"}>
+    <FormattedMessage id={tekstId} />
+  </AlertStripeInfo>
+);
+
 const cssPrefix = "chat-tema";
 
 const ChatTemaside = ({ chatTema }: Props) => {
@@ -33,6 +39,10 @@ const ChatTemaside = ({ chatTema }: Props) => {
   const [serverTidOffset, setServerTidOffset] = useState(0);
   const [{ themes, channels, visTekniskFeilMelding }] = useStore();
   const intl = useIntl();
+
+  const startChat = chatTema === ChatTema.EURES
+    ? () => window.location.assign(Config.urls.chat.eures.chat)
+    : () => setChatButtonClickedTimestamp(Date.now());
 
   const { harChatbot, tittelId, grafanaId } = chatTemaSideData[chatTema];
   const temaProps = themes.props[chatTema];
@@ -51,24 +61,15 @@ const ChatTemaside = ({ chatTema }: Props) => {
   useEffect(() => {
     fetchServerTidOffset(setServerTidOffset);
   }, []);
-
-  const temaClosed = temaProps.closed;
-  const channelClosed = channelProps.closed;
   const apningsTider = chatApningstider[chatTema];
-
   const chatErIApningstid = apningsTider
     ? apningsTider.isOpenNow(serverTidOffset)
     : true;
   const chatErNormaltApen = chatErIApningstid || harChatbot;
-  const chatErStengtAvAdmin = channelClosed || temaClosed;
-  const chatMedVeilederErStengt = chatErStengtAvAdmin && chatErIApningstid;
-  const chatErApen = (chatErNormaltApen && !chatMedVeilederErStengt) || harChatbot;
+  const chatVeilederStengtAvAdmin = (channelProps.closed || temaProps.closed) && chatErIApningstid;
+  const chatErApen = (chatErNormaltApen && !chatVeilederStengtAvAdmin) || harChatbot;
 
   const chatClientConfig = chatConfig.tema[chatTema];
-
-  const startChat = chatTema === ChatTema.EURES
-    ? () => window.location.assign(Config.urls.chat.eures.chat)
-    : () => setChatButtonClickedTimestamp(Date.now());
 
   return (
     <>
@@ -84,27 +85,17 @@ const ChatTemaside = ({ chatTema }: Props) => {
             <>
               <div className={`${cssPrefix}__panel-ingress`}>
                 {visTekniskFeilMelding && <TekniskProblemBackend />}
-                {!chatErNormaltApen && (
-                  <AlertStripeInfo className={"varsel-panel"}>
-                    <FormattedMessage id="chat.stengt.info" />
-                  </AlertStripeInfo>
-                )}
-                {chatMedVeilederErStengt && (
-                  <AlertStripeInfo className={`varsel-panel`}>
-                    <FormattedMessage id={"chat.admin-stengt.veileder"} />
-                  </AlertStripeInfo>
-                )}
+                {!chatErNormaltApen && <Varsel tekstId="chat.stengt.info" />}
+                {chatVeilederStengtAvAdmin && <Varsel tekstId={"chat.admin-stengt.veileder"} />}
                 <StorPaagangVarsel />
                 {ingress}
               </div>
-              {
-                apningsTider && (
-                  <ApningstiderAvvik
-                    apningstider={apningsTider}
-                    harChatbot={harChatbot}
-                  />
-                )
-              }
+              {apningsTider && (
+                <ApningstiderAvvik
+                  apningstider={apningsTider}
+                  harChatbot={harChatbot}
+                />
+              )}
               <div className={`${cssPrefix}__panel-start-knapp`}>
                 <Hovedknapp
                   htmlType={"button"}
@@ -114,9 +105,7 @@ const ChatTemaside = ({ chatTema }: Props) => {
                   }}
                   disabled={!chatErApen}
                 >
-                  <FormattedMessage
-                    id={chatErApen ? "chat.knapp.start" : "chat.knapp.stengt"}
-                  />
+                  <FormattedMessage id={chatErApen ? "chat.knapp.start" : "chat.knapp.stengt"} />
                 </Hovedknapp>
               </div>
             </>

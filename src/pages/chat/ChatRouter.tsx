@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router";
 import { urls } from "../../Config";
-
 import NotFound from "../404/404";
 import ChatForside from "./ChatForside";
 import { chatTemaLenker } from "./data/chatTemaLenker";
