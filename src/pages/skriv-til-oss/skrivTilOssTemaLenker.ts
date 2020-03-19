@@ -6,21 +6,21 @@ export const hjelpemidlerLenkepaneler: TemaLenke[] = [
   {
     tema: STOTema.HjelpemidlerGenerelt,
     grafanaId: "hjelpemidler.generelt",
-    tittelId: "skrivtiloss.hjelpemidler.generelt.tittel",
+    tittelId: "skrivtiloss.hjelpemidler.lenke.generelt.tittel",
     url: urls.skrivTilOss.temaHjelpemidler.generelt,
     externalUrl: true
   },
   {
     tema: STOTema.HjelpemidlerOrtopedisk,
     grafanaId: "hjelpemidler.ortopediske",
-    tittelId: "skrivtiloss.hjelpemidler.ortopediske.tittel",
+    tittelId: "skrivtiloss.hjelpemidler.lenke.ortopediske.tittel",
     url: urls.skrivTilOss.temaHjelpemidler.ortopediske,
     externalUrl: true
   },
   {
     tema: STOTema.HjelpemidlerBil,
     grafanaId: "hjelpemidler.bil",
-    tittelId: "skrivtiloss.hjelpemidler.bil.tittel",
+    tittelId: "skrivtiloss.hjelpemidler.lenke.bil.tittel",
     url: urls.skrivTilOss.temaHjelpemidler.bil,
     externalUrl: true
   }
