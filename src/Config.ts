@@ -5,36 +5,6 @@ const navUrl = Environment().baseUrl;
 
 export const urls = {
   baseAppPath: baseAppPath,
-  tilbakemeldinger: {
-    forside: `${baseAppPath}/tilbakemeldinger`,
-    klagepavedtak: `${navUrl}/soknader/nb/klage`,
-    klagerettigheter: `${navUrl}/no/nav-og-samfunn/kontakt-nav/klage-ris-og-ros/klagerettigheter`,
-    serviceklage: {
-      form: `${baseAppPath}/tilbakemeldinger/serviceklage`,
-      login: `${baseAppPath}/tilbakemeldinger/serviceklage/login`
-    },
-    feilogmangler: `${baseAppPath}/tilbakemeldinger/feil-og-mangler`,
-    rostilnav: `${baseAppPath}/tilbakemeldinger/ros-til-nav`
-  },
-  samegiella: {
-    base: `${baseAppPath}/samegiella`,
-    redirect: `${navUrl}/se/Samegiella`,
-    samtale: `${baseAppPath}/samegiella/bestilling-av-samtale`
-  },
-  skrivTilOss: {
-    forside: `${baseAppPath}/skriv-til-oss`,
-    arbeidssoker: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
-    familieogbarn: `${tjenesteUrl}/mininnboks/sporsmal/skriv/FMLI`,
-    pensjonist: `${tjenesteUrl}/mininnboks/sporsmal/skriv/PENS`,
-    syk: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
-    hjelpemidler: `${baseAppPath}/skriv-til-oss/hjelpemidler`,
-    ufor: `${tjenesteUrl}/mininnboks/sporsmal/skriv/UFRT`,
-    temaHjelpemidler: {
-      generelt: `${tjenesteUrl}/mininnboks/sporsmal/skriv/HJLPM`,
-      ortopediske: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ORT_HJE`,
-      bil: `${tjenesteUrl}/mininnboks/sporsmal/skriv/BIL`
-    }
-  },
   chat: {
     forside: `${baseAppPath}/chat`,
     arbeidsgiver: {
@@ -64,6 +34,36 @@ export const urls = {
         "https://ec.europa.eu/eures/main.jsp?acro=eures&lang=no&catId=10821&parentCategory=10821"
     }
   },
+  skrivTilOss: {
+    forside: `${baseAppPath}/skriv-til-oss`,
+    arbeidssoker: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
+    familieogbarn: `${tjenesteUrl}/mininnboks/sporsmal/skriv/FMLI`,
+    pensjonist: `${tjenesteUrl}/mininnboks/sporsmal/skriv/PENS`,
+    syk: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
+    hjelpemidler: `${baseAppPath}/skriv-til-oss/hjelpemidler`,
+    ufor: `${tjenesteUrl}/mininnboks/sporsmal/skriv/UFRT`,
+    temaHjelpemidler: {
+      generelt: `${tjenesteUrl}/mininnboks/sporsmal/skriv/HJLPM`,
+      ortopediske: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ORT_HJE`,
+      bil: `${tjenesteUrl}/mininnboks/sporsmal/skriv/BIL`
+    }
+  },
+  tilbakemeldinger: {
+    forside: `${baseAppPath}/tilbakemeldinger`,
+    klagepavedtak: `${navUrl}/soknader/nb/klage`,
+    klagerettigheter: `${navUrl}/no/nav-og-samfunn/kontakt-nav/klage-ris-og-ros/klagerettigheter`,
+    serviceklage: {
+      form: `${baseAppPath}/tilbakemeldinger/serviceklage`,
+      login: `${baseAppPath}/tilbakemeldinger/serviceklage/login`
+    },
+    feilogmangler: `${baseAppPath}/tilbakemeldinger/feil-og-mangler`,
+    rostilnav: `${baseAppPath}/tilbakemeldinger/ros-til-nav`
+  },
+  samegiella: {
+    base: `${baseAppPath}/samegiella`,
+    redirect: `${navUrl}/se/Samegiella`,
+    samtale: `${baseAppPath}/samegiella/bestilling-av-samtale`
+  },
   facebook: {
     foreldrepenger: "https://www.facebook.com/navforeldrepenger",
     jobblyst: "https://www.facebook.com/navjobblyst"
@@ -71,17 +71,13 @@ export const urls = {
   samtykke: `${navUrl}/no/nav-og-samfunn/om-nav/relatert-informasjon/taushetsplikt-og-samtykke`,
   fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
   aktivitetsplanDialog: `https://aktivitetsplan.nav.no/dialog`,
-  faq: {
-    skatt: `${navUrl}/no/nav-og-samfunn/kontakt-nav/utbetalinger/skattetrekk-pa-ytelser-fra-nav`,
-    utbetalinger: `${navUrl}/no/nav-og-samfunn/kontakt-nav/utbetalinger`,
+  faqDefault: {
     utbetalingsoversikt: `${tjenesteUrl}/utbetalingsoversikt/`,
+    saksoversikt: `${tjenesteUrl}/saksoversikt/`,
+    utbetalinger: `${navUrl}/no/nav-og-samfunn/kontakt-nav/utbetalinger`,
     saksbehandlingstider: `${navUrl}/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav`,
     endreKontonummer: `${navUrl}/person/personopplysninger#utbetaling`,
-    saksoversikt: `${tjenesteUrl}/saksoversikt/`,
     postTilAnnenAdresse: `${navUrl}/no/nav-og-samfunn/kontakt-nav/vil-du-ha-post-fra-nav-til-en-annen-adresse2`,
-    eosReglerSak: `${navUrl}/no/nav-og-samfunn/kontakt-nav/feiltolkning-av-eos-reglene`,
-    koronavirus: `${navUrl}/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav`,
-    koronaVirusDialog: `${navUrl}/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav/dialog-med-nav-i-forbindelse-med-koronaviruset`
   },
   veteraner: `${navUrl}/veteraner`,
   ringOss: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-nav-pa-telefon2`,
@@ -96,7 +92,9 @@ export const urls = {
     selvhjelp: `${navUrl}/no/nav-og-samfunn/kontakt-nav/teknisk-brukerstotte/hjelp-til-personbruker`,
     ring: `${navUrl}/no/nav-og-samfunn/kontakt-nav/teknisk-brukerstotte/kontakt-teknisk-brukerstotte-nav.no`
   },
-  presseKontakt: `${navUrl}/no/nav-og-samfunn/kontakt-nav/presse/pressekontakt`
+  presseKontakt: `${navUrl}/no/nav-og-samfunn/kontakt-nav/presse/pressekontakt`,
+  koronaVarsel: `${navUrl}/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav`,
+  koronaVarselDialog: `${navUrl}/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav/dialog-med-nav-i-forbindelse-med-koronaviruset`
 };
 
 export const vars = {

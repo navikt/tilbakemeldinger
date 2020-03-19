@@ -68,15 +68,17 @@ const App = () => {
         )
         .catch(console.error);
 
-      fetchFaq()
+      Promise.race<any>([fetchFaq(), timeoutPromise(1, "Fetching FAQs failed!")])
         .then((faq: Array<FAQLenke>) => {
-            dispatch({
-              type: "SETT_FAQ",
-              payload: faq.sort((a, b) => b.priority - a.priority),
-            });
-          }
-        )
-        .catch(console.error);
+          dispatch({
+            type: "SETT_FAQ",
+            payload: faq.sort((a, b) => b.priority - a.priority),
+          });
+        })
+        .catch(err => {
+          dispatch({ type: "SETT_FAQ_FETCH_FAILED" });
+          console.error(err);
+        });
 
       // TODO: vis varsel for teknisk feil hvis noe feiler her
       Promise.race<any>([fetchChannelInfo(), timeoutPromise(fetchTimeoutMs, "Fetching channel data failed!")])

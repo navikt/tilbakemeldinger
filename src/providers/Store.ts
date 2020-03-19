@@ -13,9 +13,9 @@ export const initialState = {
   fodselsnr: "",
   language: sprak,
   locale: "nb" as "nb",
-  enheter: {status: "LOADING"} as FetchEnheter,
-  auth: {authenticated: false} as AuthInfo,
-  kontaktInfo: {mobiltelefonnummer: ""},
+  enheter: { status: "LOADING" } as FetchEnheter,
+  auth: { authenticated: false } as AuthInfo,
+  kontaktInfo: { mobiltelefonnummer: "" },
   visTekniskFeilMelding: false,
   varsler: [],
   faq: initialFAQ as FAQ,
@@ -61,6 +61,8 @@ export type Action =
 } | {
   type: "SETT_FAQ";
   payload: FAQLenke[];
+} | {
+  type: "SETT_FAQ_FETCH_FAILED";
 } | {
   type: "SETT_CHANNEL_PROPS";
   payload: ChannelList;
@@ -113,7 +115,7 @@ export const reducer = (state: Store, action: Action) => {
         ...state,
         varsler: action.payload
       };
-    case "SETT_FAQ":
+    case "SETT_FAQ": {
       return {
         ...state,
         faq: {
@@ -121,6 +123,13 @@ export const reducer = (state: Store, action: Action) => {
           faqLenker: action.payload
         }
       };
+    }
+    case "SETT_FAQ_FETCH_FAILED": {
+      return {
+        ...state,
+        faq: { ...state.faq, isLoaded: true }
+      };
+    }
     case "SETT_CHANNEL_PROPS": {
       return {
         ...state,
@@ -133,7 +142,7 @@ export const reducer = (state: Store, action: Action) => {
     case "SETT_CHANNELS_FETCH_FAILED": {
       return {
         ...state,
-        channels: {...state.channels, isLoaded: true},
+        channels: { ...state.channels, isLoaded: true },
         visTekniskFeilMelding: true
       };
     }
@@ -149,7 +158,7 @@ export const reducer = (state: Store, action: Action) => {
     case "SETT_THEMES_FETCH_FAILED": {
       return {
         ...state,
-        themes: {...state.themes, isLoaded: true},
+        themes: { ...state.themes, isLoaded: true },
         visTekniskFeilMelding: true
       };
     }
