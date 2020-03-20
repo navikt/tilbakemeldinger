@@ -2,15 +2,13 @@ import React, { useEffect } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Sidetittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
-import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
-import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 import { useStore } from "../../providers/Provider";
 import { Kanal, TemaLenke } from "../../types/kanaler";
-import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
 import { chatTemaLenker } from "./data/chatTemaLenker";
 import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
 import { SanityBlocks } from "../../components/sanity-blocks/SanityBlocks";
 import { NavContentLoader } from "../../components/content-loader/NavContentLoader";
+import { VarselVisning } from "../../components/varsler/VarselVisning";
 
 const cssPrefix = "chat-med-oss";
 const sideTittelId = "chat.forside.tittel";
@@ -21,7 +19,7 @@ const ChatForside = () => {
     document.title = documentTitle;
   }, [documentTitle]);
 
-  const [{ channels, visTekniskFeilMelding }] = useStore();
+  const [{ channels }] = useStore();
   const chatProps = channels.props[Kanal.Chat];
 
   return (
@@ -37,9 +35,7 @@ const ChatForside = () => {
           {channels.isLoaded
             ? <SanityBlocks blocks={chatProps.preamble} />
             : <NavContentLoader lines={1} />}
-          {visTekniskFeilMelding && <TekniskProblemBackend />}
-          <KoronaVirusVarsel />
-          <StorPaagangVarsel />
+          <VarselVisning kanal={Kanal.Chat} />
         </div>
         <div className={`${cssPrefix}__temapanel-seksjon`}>
           {chatTemaLenker.map((lenke: TemaLenke) => (

@@ -16,6 +16,8 @@ export type Channels = {
 
 export type ChannelList = { [key in Kanal]: ChannelProps };
 
+export const forsideSanityId = "forsiden";
+
 export const kanalToSanityId = {
   [Kanal.RingOss]: "ring-oss",
   [Kanal.SkrivTilOss]: "skriv-til-oss",

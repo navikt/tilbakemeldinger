@@ -46,7 +46,7 @@
     "_rev": "4HSN1iflZZx2rre9qUMrt8",
     "_type": "channel",
     "_updatedAt": "2020-03-19T10:00:38Z",
-    "closed": false,
+    "closed": true,
     "description": {
       "_type": "localeBlock",
       "nb": [
@@ -136,6 +136,7 @@
       "_type": "localeString",
       "nb": "3 arbeidsdager"
     },
+    "closed": true,
     "description": {
       "_type": "localeBlock",
       "nb": [

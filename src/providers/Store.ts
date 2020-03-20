@@ -4,7 +4,7 @@ import { Sprak } from "../types/sprak";
 import sprak from "../language/provider";
 import { Enheter, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../components/error/Error";
-import { Alert } from "../utils/sanity/endpoints/alert";
+import { Alert, Alerts, initialAlerts } from "../utils/sanity/endpoints/alert";
 import { FAQ, FAQLenke, initialFAQ } from "../utils/sanity/endpoints/faq";
 import { Channels, ChannelList, initialChannels } from "../utils/sanity/endpoints/channels";
 import { initialThemes, ThemeList, Themes } from "../utils/sanity/endpoints/themes";
@@ -17,7 +17,7 @@ export const initialState = {
   auth: { authenticated: false } as AuthInfo,
   kontaktInfo: { mobiltelefonnummer: "" },
   visTekniskFeilMelding: false,
-  varsler: [],
+  alerts: initialAlerts as Alerts,
   faq: initialFAQ as FAQ,
   channels: initialChannels as Channels,
   themes: initialThemes as Themes
@@ -31,7 +31,7 @@ export interface Store {
   kontaktInfo: KontaktInfo;
   enheter: FetchEnheter;
   visTekniskFeilMelding: boolean;
-  varsler: Array<Alert>;
+  alerts: Alerts;
   faq: FAQ;
   channels: Channels;
   themes: Themes;
@@ -56,8 +56,10 @@ export type Action =
   type: "SETT_KONTAKT_INFO_RESULT";
   payload: KontaktInfo;
 } | {
-  type: "SETT_VARSLER";
+  type: "SETT_ALERTS";
   payload: Array<Alert>;
+} | {
+  type: "SETT_ALERTS_FETCH_FAILED";
 } | {
   type: "SETT_FAQ";
   payload: FAQLenke[];
@@ -110,11 +112,21 @@ export const reducer = (state: Store, action: Action) => {
         ...state,
         kontaktInfo: action.payload as KontaktInfo
       };
-    case "SETT_VARSLER":
+    case "SETT_ALERTS":
       return {
         ...state,
-        varsler: action.payload
+        alerts: {
+          isLoaded: true,
+          alerts: action.payload
+        }
       };
+    case "SETT_ALERTS_FETCH_FAILED": {
+      return {
+        ...state,
+        alerts: { ...state.alerts, isLoaded: true },
+        visTekniskFeilMelding: true
+      };
+    }
     case "SETT_FAQ": {
       return {
         ...state,

@@ -58,15 +58,17 @@ const App = () => {
           .catch((error: HTTPError) => console.error(error));
       }
 
-      fetchAlerts()
+      Promise.race<any>([fetchAlerts(), timeoutPromise(fetchTimeoutMs, "Fetching alerts failed!")])
         .then((alerts: Array<Alert>) => {
-            dispatch({
-              type: "SETT_VARSLER",
-              payload: alerts
-            });
-          }
-        )
-        .catch(console.error);
+          dispatch({
+            type: "SETT_ALERTS",
+            payload: alerts
+          });
+        })
+        .catch(err => {
+          dispatch({ type: "SETT_ALERTS_FETCH_FAILED" });
+          console.error(err);
+        });
 
       Promise.race<any>([fetchFaq(), timeoutPromise(fetchTimeoutMs, "Fetching FAQs failed!")])
         .then((faq: Array<FAQLenke>) => {
