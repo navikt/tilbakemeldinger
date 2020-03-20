@@ -18,9 +18,8 @@ import Pressekontakt from "./sections/Pressekontakt";
 import SosialeMedier from "./sections/SosialeMedier";
 import { useStore } from "../../providers/Provider";
 import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
-import BlockContent from "@sanity/block-content-to-react";
-import { serializers } from "../../utils/sanity/serializers";
 import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
+import { SanityBlocks } from "../../components/sanity-blocks/SanityBlocks";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
@@ -61,7 +60,7 @@ const KontaktOssFrontpage = () => {
           {visTekniskFeilMelding && <TekniskProblemBackend/>}
           <KoronaVirusVarsel/>
           {varsler && varsler.map((varsel, index) =>
-            <BlockContent blocks={varsel} serializers={serializers} key={index}/>
+            <SanityBlocks blocks={varsel} key={index}/>
           )}
           <div className="frontpage__content">
             <Chat/>
