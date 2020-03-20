@@ -155,6 +155,7 @@ export default {
   "skrivtiloss.familieogbarn.lenke.tittel": "Foreldre, barn og familie",
   "skrivtiloss.pensjonist.lenke.tittel": "Pensjonist",
   "skrivtiloss.ufor.lenke.tittel": "Ufør",
+  "skrivtiloss.sosial.lenke.tittel": "Økonomisk sosialhjelp",
   "skrivtiloss.hjelpemidler.lenke.tittel": "Hjelpemidler",
   "skrivtiloss.hjelpemidler.generelt.lenke.tittel": "Generelle spørsmål",
   "skrivtiloss.hjelpemidler.ortopediske.lenke.tittel": "Ortopediske hjelpemidler",

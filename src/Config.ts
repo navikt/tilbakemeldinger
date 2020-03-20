@@ -51,6 +51,7 @@ export const urls = {
     familieogbarn: `${tjenesteUrl}/mininnboks/sporsmal/skriv/FMLI`,
     ufor: `${tjenesteUrl}/mininnboks/sporsmal/skriv/UFRT`,
     pensjonist: `${tjenesteUrl}/mininnboks/sporsmal/skriv/PENS`,
+    sosialhjelp: `${tjenesteUrl}/mininnboks/sporsmal/skriv/OKSOS`,
     hjelpemidler: `${baseAppPath}/skriv-til-oss/hjelpemidler`,
     temaHjelpemidler: {
       generelt: `${tjenesteUrl}/mininnboks/sporsmal/skriv/HJLPM`,

@@ -29,6 +29,7 @@ export const temaToSanityId = {
   [STOTema.Pensjon]: "skriv-til-oss-pensjonist",
   [STOTema.Syk]: "skriv-til-oss-syk",
   [STOTema.Ufor]: "skriv-til-oss-ufor",
+  [STOTema.Sosial]: "skriv-til-oss-sosialhjelp",
   [STOTema.Hjelpemidler]: "skriv-til-oss-hjelpemidler",
   [STOTema.HjelpemidlerGenerelt]: "skriv-til-oss-hjelpemidler-generelt",
   [STOTema.HjelpemidlerOrtopedisk]: "skriv-til-oss-hjelpemidler-ortopedisk",

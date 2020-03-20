@@ -63,6 +63,13 @@ export const skrivTilOssLenkepaneler: TemaLenke[] = [
     externalUrl: true
   },
   {
+    tema: STOTema.Sosial,
+    tittelId: "skrivtiloss.sosial.lenke.tittel",
+    grafanaId: "skrivtiloss.sosial",
+    url: urls.skrivTilOss.sosialhjelp,
+    externalUrl: true
+  },
+  {
     tema: STOTema.Hjelpemidler,
     tittelId: "skrivtiloss.hjelpemidler.lenke.tittel",
     grafanaId: "skrivtiloss.hjelpemidler",
