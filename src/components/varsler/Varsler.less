@@ -1,24 +1,21 @@
 
 .varsler-container {
-  max-height: 0;
-  overflow-y: hidden;
-  animation-duration: 0.65s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-  margin: 0.5rem 0;
-
-  &--loaded {
-    animation-name: expand;
+  .felles-props() {
+    margin: 0.5rem 0;
+    overflow-y: hidden;
+    transition-duration: 0.65s;
+    transition-timing-function: ease-in-out;
+    transition-property: max-height;
   }
 
-  @keyframes expand {
-    99% {
-      overflow-y: hidden;
-    }
-    to {
-      overflow-y: auto;
-      max-height: 50rem;
-    }
+  &--loading {
+    .felles-props();
+    max-height: 0;
+  }
+
+  &--loaded {
+    .felles-props();
+    max-height: 50rem;
   }
 }
 
