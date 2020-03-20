@@ -65,7 +65,7 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix }: Props) => {
               : <FormattedMessage id={lenkepanelData.tittelId} />}
           </Undertittel>
           <div className={`${cssPrefix}__lenkepanel-ingress`}>
-            {ingress ? <SanityBlocks blocks={ingress} />
+            {themes.isLoaded ? <SanityBlocks blocks={ingress} />
               : <NavContentLoader lines={2} lineHeight={6} />}
           </div>
           {disableLink && <TjenesteStengtMelding />}
