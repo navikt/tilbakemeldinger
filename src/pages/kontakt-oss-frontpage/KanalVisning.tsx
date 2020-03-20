@@ -3,9 +3,9 @@ import { FormattedMessage } from "react-intl";
 import BlockContent from "@sanity/block-content-to-react";
 import { Language, serializers } from "../../utils/sanity/serializers";
 import React from "react";
-import NavFrontendSpinner from "nav-frontend-spinner";
 import { useStore } from "../../providers/Provider";
 import { Kanal } from "../../types/kanaler";
+import { NavContentLoader } from "../../components/content-loader/NavContentLoader";
 
 type Props = {
   kanal: Kanal;
@@ -21,8 +21,8 @@ const StengtMelding = () => (
 export const KanalVisning = ({ kanal, children }: Props) => {
   const [{ channels }] = useStore();
 
-  if (!channels.isLoaded) {
-    return <NavFrontendSpinner />;
+  if (channels.isLoaded) {
+    return <NavContentLoader lines={3} />;
   }
 
   const channelProps = channels.props[kanal];
