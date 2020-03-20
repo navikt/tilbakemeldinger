@@ -4,13 +4,13 @@ import { Sidetittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
 import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
-import NavFrontendSpinner from "nav-frontend-spinner";
 import { useStore } from "../../providers/Provider";
 import { Kanal, TemaLenke } from "../../types/kanaler";
 import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
 import { chatTemaLenker } from "./data/chatTemaLenker";
 import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
 import { SanityBlocks } from "../../components/sanity-blocks/SanityBlocks";
+import { NavContentLoader } from "../../components/content-loader/NavContentLoader";
 
 const cssPrefix = "chat-med-oss";
 const sideTittelId = "chat.forside.tittel";
@@ -36,7 +36,7 @@ const ChatForside = () => {
         <div className={`${cssPrefix}__ingress`}>
           {channels.isLoaded
             ? <SanityBlocks blocks={chatProps.preamble} />
-            : <NavFrontendSpinner />}
+            : <NavContentLoader lines={1} />}
           {visTekniskFeilMelding && <TekniskProblemBackend />}
           <KoronaVirusVarsel />
           <StorPaagangVarsel />

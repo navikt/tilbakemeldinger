@@ -1,47 +1,45 @@
 import React from "react";
-import ContentLoader, { Code, List } from "react-content-loader";
+import ContentLoader from "react-content-loader";
 
 type props = {
   lines: number,
-  width?: number,
-  height?: number
+  lineHeight?: number,
 };
 
-const h = 10;
-
-const Line = ({ i }: { i: number }) => {
-  const lines = [
+const Line = ({ lineIndex, lineHeight }: { lineIndex: number, lineHeight: number }) => {
+  const yPos = lineHeight * 2 * lineIndex;
+  const lineGfx = [
     (
       <>
-        <rect x="0" y="0" rx="3" ry="3" width="67" height={h} />
-        <rect x="76" y="0" rx="3" ry="3" width="140" height={h} />
+        <rect x="0" y={yPos} rx="3" ry="3" width="67" height={lineHeight} />
+        <rect x="76" y={yPos} rx="3" ry="3" width="140" height={lineHeight} />
       </>
     ),
     (
       <>
-        <rect x="18" y="23" rx="3" ry="3" width="140" height={h} />
-        <rect x="166" y="23" rx="3" ry="3" width="173" height={h} />
+        <rect x="18" y={yPos} rx="3" ry="3" width="140" height={lineHeight} />
+        <rect x="166" y={yPos} rx="3" ry="3" width="173" height={lineHeight} />
       </>
     ),
     (
       <>
-        <rect x="127" y="48" rx="3" ry="3" width="53" height={h} />
-        <rect x="187" y="48" rx="3" ry="3" width="72" height={h} />
-        <rect x="18" y="48" rx="3" ry="3" width="100" height={h} />
+        <rect x="127" y={yPos} rx="3" ry="3" width="53" height={lineHeight} />
+        <rect x="187" y={yPos} rx="3" ry="3" width="72" height={lineHeight} />
+        <rect x="18" y={yPos} rx="3" ry="3" width="100" height={lineHeight} />
       </>
     ),
     (
-      <rect x="0" y="71" rx="3" ry="3" width="37" height={h} />
+      <rect x="0" y={yPos} rx="3" ry="3" width="37" height={lineHeight} />
     )
   ];
-  
-  
+
+  return lineGfx[lineIndex % lineGfx.length];
 };
 
-export const NavContentLoader = ({ lines, width, height }: props) => {
+export const NavContentLoader = ({ lines, lineHeight = 10 }: props) => {
   return (
-    <ContentLoader width={width} height={1000}>
-      {[...Array(lines)].map((_, i) => <Line index={i} key={i} />)}
+    <ContentLoader height={lines * lineHeight * 2} className={"nav-content-loader"}>
+      {[...Array(lines)].map((_, index) => <Line lineIndex={index} lineHeight={lineHeight} key={index} />)}
     </ContentLoader>
   );
 };

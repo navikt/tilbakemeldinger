@@ -16,9 +16,8 @@ type Props = {
 
 export const KanalVisning = ({ kanal, visHvisStengt, children }: Props) => {
   const [{ channels }] = useStore();
-
-  if (channels.isLoaded) {
-    return <NavContentLoader lines={7} />;
+  if (!channels.isLoaded) {
+    return <NavContentLoader lines={3} />;
   }
 
   const channelProps = channels.props[kanal];
