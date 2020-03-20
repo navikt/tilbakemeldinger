@@ -64,7 +64,7 @@ export const skrivTilOssLenkepaneler: TemaLenke[] = [
   },
   {
     tema: STOTema.Sosial,
-    tittelId: "skrivtiloss.sosial.lenke.tittel",
+    fallbackTittelId: "skrivtiloss.sosial.lenke.tittel",
     grafanaId: "skrivtiloss.sosial",
     url: urls.skrivTilOss.sosialhjelp,
     externalUrl: true
