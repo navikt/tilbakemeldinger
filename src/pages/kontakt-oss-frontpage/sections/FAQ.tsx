@@ -7,8 +7,8 @@ import ikon from "assets/forside-faq-ikon.svg";
 import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
 import { useStore } from "../../../providers/Provider";
 import { Language } from "../../../utils/sanity/serializers";
-import NavFrontendSpinner from "nav-frontend-spinner";
 import { lenkerFAQDefault } from "./FAQDefaultLenker";
+import { NavContentLoader } from "../../../components/content-loader/NavContentLoader";
 
 const language = Language.Bokmaal;
 
@@ -47,7 +47,7 @@ const FAQ = () => {
 
   return (
     <IkonPanel ikon={ikon} tittel={tittel} className={"faq"}>
-      {faq.isLoaded ? innhold : <NavFrontendSpinner />}
+      {faq.isLoaded ? innhold : <NavContentLoader lines={6} />}
     </IkonPanel>
   );
 };

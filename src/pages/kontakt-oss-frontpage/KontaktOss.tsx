@@ -23,7 +23,7 @@ import { SanityBlocks } from "../../components/sanity-blocks/SanityBlocks";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
-  const [{varsler, visTekniskFeilMelding}] = useStore();
+  const [{ varsler, visTekniskFeilMelding }] = useStore();
 
   useEffect(() => {
     /*
@@ -41,7 +41,7 @@ const KontaktOssFrontpage = () => {
   return (
     <div className="frontpage__wrapper">
       <div className="pagecontent pagecontent__frontpage">
-        <BreadcrumbsWrapper/>
+        <BreadcrumbsWrapper />
         <div className="frontpage">
           <MetaTags>
             <title>{intl.messages["seo.kontaktoss.tittel"]}</title>
@@ -53,20 +53,22 @@ const KontaktOssFrontpage = () => {
           <header className="frontpage__introduksjon">
             <div className="frontpage__sidetittel">
               <Sidetittel>
-                <FormattedMessage id={"kontaktoss.tittel"}/>
+                <FormattedMessage id={"kontaktoss.tittel"} />
               </Sidetittel>
             </div>
           </header>
-          {visTekniskFeilMelding && <TekniskProblemBackend/>}
-          <KoronaVirusVarsel/>
-          {varsler && varsler.map((varsel, index) =>
-            <SanityBlocks blocks={varsel} key={index}/>
-          )}
+          <KoronaVirusVarsel />
+          {visTekniskFeilMelding && <TekniskProblemBackend />}
+          <div className={`varsler-container${varsler.length > 0 ? " varsler-container--loaded" : ""}`}>
+            {varsler && varsler.map((varsel, index) =>
+              <SanityBlocks blocks={varsel} key={index} />
+            )}
+          </div>
           <div className="frontpage__content">
-            <Chat/>
+            <Chat />
             <div className="frontpage__row">
-              <RingOss/>
-              <FAQ/>
+              <RingOss />
+              <FAQ />
             </div>
             <KontaktVeileder />
             <SkrivTilOss />

@@ -12,7 +12,6 @@ import { logEvent } from "../../utils/logger";
 import ApningstiderAvvik from "../../components/apningstider/ApningstiderAvvik";
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 import { useStore } from "../../providers/Provider";
-import NavFrontendSpinner from "nav-frontend-spinner";
 import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
 import { ChatTema, Kanal } from "../../types/kanaler";
 import { chatTemaSideData } from "./data/chatTemasideData";
@@ -20,6 +19,7 @@ import { chatApningstider } from "./data/chatApningtider";
 import { chatConfig } from "./data/chatConfig";
 import { Language } from "../../utils/sanity/serializers";
 import { SanityBlocks } from "../../components/sanity-blocks/SanityBlocks";
+import { NavContentLoader } from "../../components/content-loader/NavContentLoader";
 
 type Props = {
   chatTema: ChatTema,
@@ -46,6 +46,7 @@ const ChatTemaside = ({ chatTema }: Props) => {
   const { harChatbot, tittelId, grafanaId } = chatTemaSideData[chatTema];
   const temaProps = themes.props[chatTema];
   const channelProps = channels.props[Kanal.Chat];
+  const isLoaded = themes.isLoaded && channels.isLoaded;
 
   const text = temaProps.page;
   const tittel = (text && text.title && text.title[Language.Bokmaal])
@@ -88,35 +89,32 @@ const ChatTemaside = ({ chatTema }: Props) => {
               {tittel}
             </Systemtittel>
           </div>
-          {(themes.isLoaded && channels.isLoaded) ? (
-            <>
-              <div className={`${cssPrefix}__panel-ingress`}>
-                {visTekniskFeilMelding && <TekniskProblemBackend />}
-                {!chatErNormaltApen && <Varsel tekstId="chat.stengt.info" />}
-                {chatVeilederStengtAvAdmin && <Varsel tekstId={"chat.admin-stengt.veileder"} />}
-                <StorPaagangVarsel />
-                {ingress}
-              </div>
-              {apningsTider && (
-                <ApningstiderAvvik
-                  apningstider={apningsTider}
-                  harChatbot={harChatbot}
-                />
-              )}
-              <div className={`${cssPrefix}__panel-start-knapp`}>
-                <Hovedknapp
-                  htmlType={"button"}
-                  onClick={() => {
-                    logEvent({ event: grafanaId });
-                    startChat();
-                  }}
-                  disabled={!chatErApen}
-                >
-                  <FormattedMessage id={chatErApen ? "chat.knapp.start" : "chat.knapp.stengt"} />
-                </Hovedknapp>
-              </div>
-            </>
-          ) : <NavFrontendSpinner />}
+          <div className={`${cssPrefix}__panel-ingress`}>
+            {visTekniskFeilMelding && <TekniskProblemBackend />}
+            {!chatErNormaltApen && <Varsel tekstId="chat.stengt.info" />}
+            {chatVeilederStengtAvAdmin && <Varsel tekstId={"chat.admin-stengt.veileder"} />}
+            <StorPaagangVarsel />
+            {(isLoaded) ? ingress
+              : <NavContentLoader lines={5} />}
+          </div>
+          {apningsTider && (
+            <ApningstiderAvvik
+              apningstider={apningsTider}
+              harChatbot={harChatbot}
+            />
+          )}
+          <div className={`${cssPrefix}__panel-start-knapp`}>
+            <Hovedknapp
+              htmlType={"button"}
+              onClick={() => {
+                logEvent({ event: grafanaId });
+                startChat();
+              }}
+              disabled={!chatErApen || !isLoaded}
+            >
+              <FormattedMessage id={chatErApen ? "chat.knapp.start" : "chat.knapp.stengt"} />
+            </Hovedknapp>
+          </div>
         </PanelBase>
       </div>
       {chatClientConfig && (
