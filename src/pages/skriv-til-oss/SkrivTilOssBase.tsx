@@ -3,27 +3,30 @@ import { Sidetittel } from "nav-frontend-typografi";
 import { FormattedMessage, useIntl } from "react-intl";
 import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
 import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
-import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
-import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
-import { TemaLenke } from "../../types/kanaler";
+import { Kanal, TemaLenke } from "../../types/kanaler";
 import NavFrontendSpinner from "nav-frontend-spinner";
+import { VarselVisning } from "../../components/varsler/VarselVisning";
+import { useStore } from "../../providers/Provider";
+import { TjenesteStengtVarsel } from "../../components/varsler/tjeneste-stengt/TjenesteStengtVarsel";
 
 const cssPrefix = "skriv-til-oss";
 
 type Props = {
   tittelId: string;
-  isLoaded?: boolean;
   lenkepanelData?: TemaLenke[];
   children: JSX.Element;
 };
 
-const SkrivTilOssBase = ({ tittelId, isLoaded, lenkepanelData, children }: Props) => {
+const SkrivTilOssBase = ({ tittelId, lenkepanelData, children }: Props) => {
   const documentTitle = `${useIntl().formatMessage({
     id: tittelId
   })} - www.nav.no`;
   useEffect(() => {
     document.title = documentTitle;
   }, [documentTitle]);
+
+  const [{ channels }] = useStore();
+  const isClosed = channels.props[Kanal.SkrivTilOss].closed;
 
   return (
     <div className={`${cssPrefix} pagecontent`}>
@@ -33,18 +36,21 @@ const SkrivTilOssBase = ({ tittelId, isLoaded, lenkepanelData, children }: Props
           <FormattedMessage id={tittelId} />
         </Sidetittel>
       </div>
-      {isLoaded ? (
+      {channels.isLoaded ? (
         <>
           <div className={`${cssPrefix}__ingress`}>
             {children}
-            <KoronaVirusVarsel />
-            <StorPaagangVarsel />
+            <VarselVisning kanal={Kanal.SkrivTilOss}>
+              {isClosed ? <TjenesteStengtVarsel /> : undefined}
+            </VarselVisning>
           </div>
-          <div className={`${cssPrefix}__lenke-seksjon`}>
-            {lenkepanelData && lenkepanelData.map(lenke => (
-              <TemaLenkepanel lenkepanelData={lenke} cssPrefix={cssPrefix} key={lenke.tema} />
-            ))}
-          </div>
+          {!isClosed && (
+            <div className={`${cssPrefix}__lenke-seksjon`}>
+              {lenkepanelData && lenkepanelData.map(lenke => (
+                <TemaLenkepanel lenkepanelData={lenke} cssPrefix={cssPrefix} key={lenke.tema} />
+              ))}
+            </div>
+          )}
         </>
       ) : <NavFrontendSpinner />}
     </div>

@@ -62,10 +62,11 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix }: Props) => {
           <Undertittel className={`${cssPrefix}__temalenke-header lenkepanel__heading`}>
             {tittel
               ? <SanityBlocks blocks={tittel} />
-              : <FormattedMessage id={lenkepanelData.tittelId} />}
+              : <FormattedMessage id={lenkepanelData.fallbackTittelId} />}
           </Undertittel>
           <div className={`${cssPrefix}__lenkepanel-ingress`}>
-            {ingress ? <SanityBlocks blocks={ingress} />
+            {ingress
+              ? <SanityBlocks blocks={ingress} />
               : <NavContentLoader lines={2} lineHeight={6} />}
           </div>
           {disableLink && <TjenesteStengtMelding />}

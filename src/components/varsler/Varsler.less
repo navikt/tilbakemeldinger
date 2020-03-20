@@ -2,7 +2,7 @@
 .varsler-container {
   max-height: 0;
   overflow-y: hidden;
-  animation-duration: 0.75s;
+  animation-duration: 0.65s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 
@@ -11,9 +11,12 @@
   }
 
   @keyframes expand {
-    100% {
+    99% {
+      overflow-y: hidden;
+    }
+    to {
       overflow-y: auto;
-      max-height: 25rem;
+      max-height: 50rem;
     }
   }
 }

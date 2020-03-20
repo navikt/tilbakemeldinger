@@ -144,7 +144,6 @@ export default {
   //
   // Skriv til oss
   //
-  "skrivtiloss.disabled": "Tjenesten er ikke tilgjengelig for øyeblikket.",
   "skrivtiloss.tittel": "Skriv til oss",
   "skrivtiloss.description":
     "Her kan du sende en beskjed om endringer som har betydning for saken og oppfølgingen din fra NAV. Normal svartid" +
