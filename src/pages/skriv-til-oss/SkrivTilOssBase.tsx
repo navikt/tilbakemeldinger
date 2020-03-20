@@ -33,7 +33,6 @@ const SkrivTilOssBase = ({ tittelId, isLoaded, lenkepanelData, children }: Props
           <FormattedMessage id={tittelId} />
         </Sidetittel>
       </div>
-
       {isLoaded ? (
         <>
           <div className={`${cssPrefix}__ingress`}>

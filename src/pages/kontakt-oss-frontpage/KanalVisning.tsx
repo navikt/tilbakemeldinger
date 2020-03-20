@@ -2,11 +2,11 @@ import { Normaltekst } from "nav-frontend-typografi";
 import { FormattedMessage } from "react-intl";
 import { Language } from "../../utils/sanity/serializers";
 import React from "react";
-import NavFrontendSpinner from "nav-frontend-spinner";
 import { useStore } from "../../providers/Provider";
 import { Kanal } from "../../types/kanaler";
 import { TjenesteStengtMelding } from "../../components/varsler/tjeneste-stengt/TjenesteStengtMelding";
 import { SanityBlocks } from "../../components/sanity-blocks/SanityBlocks";
+import { NavContentLoader } from "../../components/content-loader/NavContentLoader";
 
 type Props = {
   kanal: Kanal;
@@ -16,9 +16,8 @@ type Props = {
 
 export const KanalVisning = ({ kanal, visHvisStengt, children }: Props) => {
   const [{ channels }] = useStore();
-
   if (!channels.isLoaded) {
-    return <NavFrontendSpinner />;
+    return <NavContentLoader lines={3} />;
   }
 
   const channelProps = channels.props[kanal];

@@ -1,4 +1,23 @@
 
+.varsler-container {
+  max-height: 0;
+  overflow-y: hidden;
+  animation-duration: 0.75s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+
+  &--loaded {
+    animation-name: expand;
+  }
+
+  @keyframes expand {
+    100% {
+      overflow-y: auto;
+      max-height: 25rem;
+    }
+  }
+}
+
 .varsel-panel {
   margin: 0.5rem 0;
   text-align: left;

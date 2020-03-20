@@ -37,13 +37,13 @@ export const setUpMock = async () => {
       delay(10, 50).then(() => kontaktInfo)
     );
   mockAlerts &&
-    fetchMock.get(`${apiUrl}/alerts`, delay(400, 500).then(() => alerts));
+    fetchMock.get(`${apiUrl}/alerts`, delay(1000, 1500).then(() => alerts));
   mockFaq &&
-    fetchMock.get(`${apiUrl}/faq`, delay(400, 500).then(() => faq));
+    fetchMock.get(`${apiUrl}/faq`, delay(1000, 1500).then(() => faq));
   mockChannels &&
-    fetchMock.get(`${apiUrl}/channels`, delay(400, 500).then(() => channels));
+    fetchMock.get(`${apiUrl}/channels`, delay(1000, 1500).then(() => channels));
   mockThemes &&
-    fetchMock.get(`${apiUrl}/themes`, delay(400, 500).then(() => themes));
+    fetchMock.get(`${apiUrl}/themes`, delay(1000, 1500).then(() => themes));
 };
 
 const delay = (min: number, max: number) => {

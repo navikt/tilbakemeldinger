@@ -9,6 +9,7 @@ import { useStore } from "../../providers/Provider";
 import { TjenesteStengtMelding } from "../varsler/tjeneste-stengt/TjenesteStengtMelding";
 import { TemaLenke } from "../../types/kanaler";
 import { SanityBlocks } from "../sanity-blocks/SanityBlocks";
+import { NavContentLoader } from "../content-loader/NavContentLoader";
 
 type Props = {
   lenkepanelData: TemaLenke;
@@ -64,7 +65,8 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix }: Props) => {
               : <FormattedMessage id={lenkepanelData.tittelId} />}
           </Undertittel>
           <div className={`${cssPrefix}__lenkepanel-ingress`}>
-            <SanityBlocks blocks={ingress} />
+            {ingress ? <SanityBlocks blocks={ingress} />
+              : <NavContentLoader lines={2} lineHeight={6} />}
           </div>
           {disableLink && <TjenesteStengtMelding />}
         </div>

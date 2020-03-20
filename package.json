@@ -1,6 +1,6 @@
 {
   "name": "pb-kontakt-oss",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "private": true,
   "author": "NAV",
   "license": "MIT",
@@ -76,6 +76,7 @@
     "react": "^16.12.0",
     "react-app-polyfill": "^1.0.3",
     "react-collapse": "^5.0.0",
+    "react-content-loader": "^5.0.2",
     "react-dom": "^16.10.1",
     "react-intl": "^3.3.2",
     "react-meta-tags": "^0.7.4",
