@@ -2,7 +2,7 @@
   {
     "_createdAt": "2020-03-17T12:07:05Z",
     "_id": "chat",
-    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
+    "_rev": "WONRbMvf6hbYUecGd7UU64",
     "_type": "channel",
     "_updatedAt": "2020-03-17T12:08:04Z",
     "themes": [
@@ -43,12 +43,9 @@
   {
     "_createdAt": "2020-03-17T11:35:23Z",
     "_id": "chat-med-oss",
-    "_rev": "4HSN1iflZZx2rre9qUBZmg",
+    "_rev": "4HSN1iflZZx2rre9qUMrt8",
     "_type": "channel",
-    "_updatedAt": "2020-03-18T07:45:12Z",
-    "answer_time": {
-      "_type": "localeString"
-    },
+    "_updatedAt": "2020-03-19T10:00:38Z",
     "closed": false,
     "description": {
       "_type": "localeBlock",
@@ -61,7 +58,26 @@
               "_key": "65d4a497bc390",
               "_type": "span",
               "marks": [],
-              "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg"
+              "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
+    },
+    "preamble": {
+      "_type": "localeBlock",
+      "nb": [
+        {
+          "_key": "acf27f5dfa29",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "acf27f5dfa290",
+              "_type": "span",
+              "marks": [],
+              "text": "På chat svarer vi ikke på spørsmål om saken din."
             }
           ],
           "markDefs": [],
@@ -73,14 +89,13 @@
   {
     "_createdAt": "2020-03-17T11:35:04Z",
     "_id": "kontakt-din-veileder",
-    "_rev": "FWkbPeFlPFjjwEQRoAICcx",
+    "_rev": "WONRbMvf6hbYUecGd7UU64",
     "_type": "channel",
-    "_updatedAt": "2020-03-18T07:40:20Z",
+    "_updatedAt": "2020-03-17T11:35:04Z",
     "answer_time": {
       "_type": "localeString",
-      "nb": "1 arbeidsdager."
+      "nb": "2 arbeidsdager"
     },
-    "closed": true,
     "description": {
       "_type": "localeBlock",
       "nb": [
@@ -104,10 +119,9 @@
   {
     "_createdAt": "2020-03-17T11:34:48Z",
     "_id": "ring-oss",
-    "_rev": "ZED4elTJf9J8y6dGmycSIq",
+    "_rev": "FWkbPeFlPFjjwEQRoAJ5Ol",
     "_type": "channel",
-    "_updatedAt": "2020-03-17T16:34:26Z",
-    "closed": false,
+    "_updatedAt": "2020-03-18T14:24:26Z",
     "description": {
       "_type": "localeBlock"
     }
@@ -115,14 +129,13 @@
   {
     "_createdAt": "2020-03-17T11:36:00Z",
     "_id": "skriv-til-oss",
-    "_rev": "uM7R8U1PzurmhiJpgsBkJd",
+    "_rev": "uM7R8U1PzurmhiJpgsCGtD",
     "_type": "channel",
-    "_updatedAt": "2020-03-18T09:17:57Z",
+    "_updatedAt": "2020-03-18T14:24:44Z",
     "answer_time": {
       "_type": "localeString",
       "nb": "3 arbeidsdager"
     },
-    "closed": false,
     "description": {
       "_type": "localeBlock",
       "nb": [
@@ -141,26 +154,45 @@
           "style": "normal"
         }
       ]
+    },
+    "preamble": {
+      "_type": "localeBlock",
+      "nb": [
+        {
+          "_key": "3facb8b64cfd",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "3facb8b64cfd0",
+              "_type": "span",
+              "marks": [],
+              "text": "Send oss spørsmål eller nye opplysninger i saken din."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ]
     }
   },
   {
     "_createdAt": "2020-03-17T12:07:05Z",
     "_id": "telephone",
-    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
+    "_rev": "WONRbMvf6hbYUecGd7UU64",
     "_type": "channel",
     "_updatedAt": "2020-03-17T12:07:05Z"
   },
   {
     "_createdAt": "2020-03-17T12:07:05Z",
     "_id": "tutor",
-    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
+    "_rev": "WONRbMvf6hbYUecGd7UU64",
     "_type": "channel",
     "_updatedAt": "2020-03-17T12:07:05Z"
   },
   {
     "_createdAt": "2020-03-17T12:07:05Z",
     "_id": "write",
-    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
+    "_rev": "WONRbMvf6hbYUecGd7UU64",
     "_type": "channel",
     "_updatedAt": "2020-03-17T12:08:04Z",
     "themes": [

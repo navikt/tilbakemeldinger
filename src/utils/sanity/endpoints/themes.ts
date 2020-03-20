@@ -1,6 +1,5 @@
 import { LenkePanel, Page } from "../serializers";
-import { ChatTema } from "../../../types/chat";
-import { STOTema } from "../../../types/skrivtiloss";
+import { ChatTema, STOTema } from "../../../types/kanaler";
 
 export type ThemeProps = {
   _id?: string;

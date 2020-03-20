@@ -11,7 +11,7 @@ import { kjorSokOgReturnerResultat } from "./FinnNavKontorSok";
 import { minQueryLength, SokeResultat } from "./FinnNavKontorSok";
 import { AlertStripeAdvarsel } from "nav-frontend-alertstriper";
 import Lenke from "nav-frontend-lenker";
-import { urls } from "../../Config";
+import Config from "../../Config";
 
 const cssPrefix = "finn-kontor";
 
@@ -52,7 +52,7 @@ const FinnNavKontorPage = () => {
               kanaler. Hvis du er i en krisesituasjon, kan du ringe og få en time hos NAV-kontoret.
             </Normaltekst>
           </div>
-          <Lenke href={urls.faq.koronaVirusDialog}>
+          <Lenke href={Config.urls.koronaVarselDialog}>
             Koronavirus - dialog med NAV
           </Lenke>
         </AlertStripeAdvarsel>

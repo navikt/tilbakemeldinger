@@ -8,17 +8,17 @@ import RouterLenke from "../../../components/routerlenke/RouterLenkeMedChevron";
 import { useStore } from "../../../providers/Provider";
 import { Language } from "../../../utils/sanity/serializers";
 import NavFrontendSpinner from "nav-frontend-spinner";
+import { lenkerFAQDefault } from "./FAQDefaultLenker";
 
 const language = Language.Bokmaal;
 
 const FAQ = () => {
   const [visFlereFAQ, settVisFlereFAQ] = useState(false);
-  // const [visFlereMinside, settVisFlereMinside] = useState(false);
   const toggleVisFlereFAQ = () => settVisFlereFAQ(!visFlereFAQ);
-  // const toggleVisFlereMinSide = () => settVisFlereMinside(!visFlereMinside);
   const visElementer = 3;
   const [{ faq }] = useStore();
-  const lenkerFAQ = faq.faqLenker;
+  const lenkerFraSanity = faq.faqLenker.length > 0 && faq.faqLenker;
+  const lenkerFAQ = lenkerFraSanity || lenkerFAQDefault;
 
   const tittel = <FormattedMessage id={"faq.intro"} />;
 
@@ -27,14 +27,16 @@ const FAQ = () => {
       {lenkerFAQ
         .slice(0, visFlereFAQ ? lenkerFAQ.length : visElementer)
         .map(({ lenke, tittel }) => {
-          return (<RouterLenke
-            href={lenke[language]}
-            className={"lenke__avstand-under"}
-            isExternal={true}
-            key={tittel[language]}
-          >
-            {tittel[language]}
-          </RouterLenke>)
+          return (
+            <RouterLenke
+              href={lenke[language]}
+              className={"lenke__avstand-under"}
+              isExternal={true}
+              key={tittel[language]}
+            >
+              {lenkerFraSanity ? tittel[language] : <FormattedMessage id={tittel[Language.Bokmaal]} />}
+            </RouterLenke>
+          );
         })
       }
       {lenkerFAQ.length > visElementer && (

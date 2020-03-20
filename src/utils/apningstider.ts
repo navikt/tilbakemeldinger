@@ -1,5 +1,5 @@
 import moment from "moment-timezone";
-import { ApningstiderUke, AvviksPeriode, DatoTidsrom, Tidsrom, Ukedager } from "../types/datotid";
+import { ApningstiderUke, AvviksPeriode, DatoTidsrom, Tidsrom, Ukedag } from "../types/datotid";
 import { Moment } from "moment-timezone/moment-timezone";
 import { vars } from "../Config";
 
@@ -13,13 +13,13 @@ export default class ApningsTider {
     this._chatbotStengt = chatbotStengt;
   }
 
-  private readonly _ukedager: {[dag in Ukedager]: Tidsrom};
+  private readonly _ukedager: {[dag in Ukedag]: Tidsrom};
   private readonly _avviksPerioder: Array<AvviksPeriode>;
   private readonly _timeZone: string;
   private readonly _datoTidFormat: string;
   private readonly _chatbotStengt: boolean;
 
-  get ukedager(): {[dag in Ukedager]: Tidsrom} {
+  get ukedager(): {[dag in Ukedag]: Tidsrom} {
     return this._ukedager;
   }
 
@@ -46,7 +46,7 @@ export default class ApningsTider {
       }
     }
 
-    const ukedag = (naaTid.day()) as Ukedager;
+    const ukedag = (naaTid.day()) as Ukedag;
     const dagensApningstid = this.ukedager[ukedag];
 
     if (!dagensApningstid) {

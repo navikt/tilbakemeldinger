@@ -1,7 +1,7 @@
 import moment from "moment-timezone";
 import React, { ReactNode } from "react";
 import { unitOfTime } from "moment";
-import { vars } from "../Config";
+import { vars } from "../../Config";
 
 type InclusivityType = "()" | "[)" | "(]" | "[]";
 

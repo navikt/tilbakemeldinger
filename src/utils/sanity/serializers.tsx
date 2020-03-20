@@ -38,7 +38,7 @@ const typoComponents = {
 };
 
 export type TextBlock = {
-  style: TypoStyle;
+  node: {style: TypoStyle};
   children: React.ReactElement[];
 };
 
@@ -68,7 +68,7 @@ const localeBlockSerializer = (block: { node: LocaleBlock }) => {
 };
 
 const blockSerializer = (block: TextBlock) => {
-  const TypoComponent = typoComponents[block.style] || typoComponents[TypoStyle.Normal];
+  const TypoComponent = typoComponents[block.node.style] || typoComponents[TypoStyle.Normal];
   return (
     <TypoComponent>
       {block.children}

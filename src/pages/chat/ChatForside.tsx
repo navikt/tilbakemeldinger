@@ -6,13 +6,11 @@ import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/
 import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { useStore } from "../../providers/Provider";
-import { Kanal } from "../../types/kanaler";
-import BlockContent from "@sanity/block-content-to-react";
-import { serializers } from "../../utils/sanity/serializers";
+import { Kanal, TemaLenke } from "../../types/kanaler";
 import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
-import { chatTemaLenkepaneler } from "./ChatLenkerData";
-import { TemaLenkepanelData } from "../../types/lenker";
+import { chatTemaLenker } from "./data/chatTemaLenker";
 import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
+import { SanityBlocks } from "../../components/sanity-blocks/SanityBlocks";
 
 const cssPrefix = "chat-med-oss";
 const sideTittelId = "chat.forside.tittel";
@@ -37,23 +35,20 @@ const ChatForside = () => {
         </div>
         <div className={`${cssPrefix}__ingress`}>
           {channels.isLoaded
-            ? <BlockContent blocks={chatProps.preamble} serializers={serializers} />
+            ? <SanityBlocks blocks={chatProps.preamble} />
             : <NavFrontendSpinner />}
           {visTekniskFeilMelding && <TekniskProblemBackend />}
           <KoronaVirusVarsel />
           <StorPaagangVarsel />
         </div>
         <div className={`${cssPrefix}__temapanel-seksjon`}>
-          {
-            chatTemaLenkepaneler.map((lenkePanelData: TemaLenkepanelData) => (
-                <TemaLenkepanel
-                  lenkepanelData={lenkePanelData}
-                  cssPrefix={cssPrefix}
-                  key={lenkePanelData.url}
-                />
-              )
-            )
-          }
+          {chatTemaLenker.map((lenke: TemaLenke) => (
+            <TemaLenkepanel
+              lenkepanelData={lenke}
+              cssPrefix={cssPrefix}
+              key={lenke.url}
+            />
+          ))}
         </div>
       </div>
     </>

@@ -1,24 +1,20 @@
-import { Normaltekst, Element } from "nav-frontend-typografi";
+import { Normaltekst } from "nav-frontend-typografi";
 import { FormattedMessage } from "react-intl";
-import BlockContent from "@sanity/block-content-to-react";
-import { Language, serializers } from "../../utils/sanity/serializers";
+import { Language } from "../../utils/sanity/serializers";
 import React from "react";
 import { useStore } from "../../providers/Provider";
 import { Kanal } from "../../types/kanaler";
+import { TjenesteStengtMelding } from "../../components/varsler/tjeneste-stengt/TjenesteStengtMelding";
+import { SanityBlocks } from "../../components/sanity-blocks/SanityBlocks";
 import { NavContentLoader } from "../../components/content-loader/NavContentLoader";
 
 type Props = {
   kanal: Kanal;
+  visHvisStengt?: boolean;
   children: JSX.Element;
 };
 
-const StengtMelding = () => (
-  <div className={"kanal-stengt"}>
-    <Element><FormattedMessage id={"kontaktoss.kanal.stengt"} /></Element>
-  </div>
-);
-
-export const KanalVisning = ({ kanal, children }: Props) => {
+export const KanalVisning = ({ kanal, visHvisStengt, children }: Props) => {
   const [{ channels }] = useStore();
 
   if (channels.isLoaded) {
@@ -32,16 +28,14 @@ export const KanalVisning = ({ kanal, children }: Props) => {
 
   return (
     <>
-      <div>
-        {svartid && !closed && (
-          <Normaltekst className="svartid">
-            <FormattedMessage id={"kontaktoss.svartid"} />
-            {svartid}
-          </Normaltekst>
-        )}
-        {description && <BlockContent blocks={description} serializers={serializers} />}
-      </div>
-      {closed ? <StengtMelding /> : children}
+      {svartid && !closed && (
+        <Normaltekst className="svartid">
+          <FormattedMessage id={"kontaktoss.svartid"} />
+          {svartid}
+        </Normaltekst>
+      )}
+      {description && <SanityBlocks blocks={description} />}
+      {closed && !visHvisStengt ? <TjenesteStengtMelding /> : children}
     </>
   );
 };
