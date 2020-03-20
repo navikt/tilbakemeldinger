@@ -1,12 +1,12 @@
 import { Normaltekst } from "nav-frontend-typografi";
 import { FormattedMessage } from "react-intl";
-import BlockContent from "@sanity/block-content-to-react";
-import { Language, serializers } from "../../utils/sanity/serializers";
+import { Language } from "../../utils/sanity/serializers";
 import React from "react";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { useStore } from "../../providers/Provider";
 import { Kanal } from "../../types/kanaler";
 import { TjenesteStengtMelding } from "../../components/varsler/tjeneste-stengt/TjenesteStengtMelding";
+import { SanityBlocks } from "../../components/sanity-blocks/SanityBlocks";
 
 type Props = {
   kanal: Kanal;
@@ -34,7 +34,7 @@ export const KanalVisning = ({ kanal, visHvisStengt, children }: Props) => {
           {svartid}
         </Normaltekst>
       )}
-      {description && <BlockContent blocks={description} serializers={serializers} />}
+      {description && <SanityBlocks blocks={description} />}
       {closed && !visHvisStengt ? <TjenesteStengtMelding /> : children}
     </>
   );

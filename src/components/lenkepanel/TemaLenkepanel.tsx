@@ -6,10 +6,9 @@ import { FormattedMessage } from "react-intl";
 import React from "react";
 import { logEvent } from "../../utils/logger";
 import { useStore } from "../../providers/Provider";
-import BlockContent from "@sanity/block-content-to-react";
-import { serializers } from "../../utils/sanity/serializers";
 import { TjenesteStengtMelding } from "../varsler/tjeneste-stengt/TjenesteStengtMelding";
 import { TemaLenke } from "../../types/kanaler";
+import { SanityBlocks } from "../sanity-blocks/SanityBlocks";
 
 type Props = {
   lenkepanelData: TemaLenke;
@@ -61,11 +60,11 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix }: Props) => {
         <div>
           <Undertittel className={`${cssPrefix}__temalenke-header lenkepanel__heading`}>
             {tittel
-              ? <BlockContent blocks={tittel} serializers={serializers} />
+              ? <SanityBlocks blocks={tittel} />
               : <FormattedMessage id={lenkepanelData.tittelId} />}
           </Undertittel>
           <div className={`${cssPrefix}__lenkepanel-ingress`}>
-            <BlockContent blocks={ingress} serializers={serializers} />
+            <SanityBlocks blocks={ingress} />
           </div>
           {disableLink && <TjenesteStengtMelding />}
         </div>

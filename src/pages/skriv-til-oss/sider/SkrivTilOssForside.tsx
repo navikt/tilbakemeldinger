@@ -5,11 +5,11 @@ import SkrivTilOssBase from "../SkrivTilOssBase";
 import { Normaltekst } from "nav-frontend-typografi";
 import AlertStripe from "nav-frontend-alertstriper";
 import { useStore } from "../../../providers/Provider";
-import { Language, serializers, TextBlock } from "../../../utils/sanity/serializers";
+import { Language, TextBlock } from "../../../utils/sanity/serializers";
 import { TekniskProblemBackend } from "../../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
-import BlockContent from "@sanity/block-content-to-react";
 import { Kanal } from "../../../types/kanaler";
 import { skrivTilOssLenkepaneler } from "../skrivTilOssTemaLenker";
+import { SanityBlocks } from "../../../components/sanity-blocks/SanityBlocks";
 
 const Ingress = ({tekst}: {tekst: TextBlock[] | undefined}) => {
   const intl = useIntl();
@@ -23,7 +23,7 @@ const Ingress = ({tekst}: {tekst: TextBlock[] | undefined}) => {
           content={intl.messages["skrivtiloss.description"] as string}
         />
       </MetaTags>
-      <BlockContent blocks={tekst} serializers={serializers}/>
+      <SanityBlocks blocks={tekst} />
     </>
   );
 };

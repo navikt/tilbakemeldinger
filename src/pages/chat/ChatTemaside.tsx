@@ -19,8 +19,7 @@ import { chatTemaSideData } from "./data/chatTemasideData";
 import { chatApningstider } from "./data/chatApningtider";
 import { chatConfig } from "./data/chatConfig";
 import { Language } from "../../utils/sanity/serializers";
-import BlockContent from "@sanity/block-content-to-react";
-import { serializers } from "../../utils/sanity/serializers";
+import { SanityBlocks } from "../../components/sanity-blocks/SanityBlocks";
 
 type Props = {
   chatTema: ChatTema,
@@ -51,7 +50,7 @@ const ChatTemaside = ({ chatTema }: Props) => {
   const text = temaProps.page;
   const tittel = (text && text.title && text.title[Language.Bokmaal])
     || intl.formatMessage({ id: tittelId });
-  const ingress = text && <BlockContent blocks={text.content} serializers={serializers} />;
+  const ingress = text && <SanityBlocks blocks={text.content} />;
 
   const documentTitle = `${tittel} - www.nav.no`;
   useEffect(() => {
