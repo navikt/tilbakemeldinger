@@ -35,7 +35,7 @@ export enum STOTema {
 export type TemaLenke = {
   tema: ChatTema | STOTema;
   url: string;
-  tittelId: string;
+  fallbackTittelId: string;
   grafanaId: string;
   externalUrl?: boolean;
   ikon?: any;

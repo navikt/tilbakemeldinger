@@ -16,14 +16,10 @@ import KlageOgTilbakemeldinger from "./sections/KlageOgTilbakemeldinger";
 import KontaktVeileder from "./sections/KontaktVeileder";
 import Pressekontakt from "./sections/Pressekontakt";
 import SosialeMedier from "./sections/SosialeMedier";
-import { useStore } from "../../providers/Provider";
-import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
-import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
-import { SanityBlocks } from "../../components/sanity-blocks/SanityBlocks";
+import { VarselVisning } from "../../components/varsler/VarselVisning";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
-  const [{ varsler, visTekniskFeilMelding }] = useStore();
 
   useEffect(() => {
     /*
@@ -57,13 +53,7 @@ const KontaktOssFrontpage = () => {
               </Sidetittel>
             </div>
           </header>
-          <KoronaVirusVarsel />
-          {visTekniskFeilMelding && <TekniskProblemBackend />}
-          <div className={`varsler-container${varsler.length > 0 ? " varsler-container--loaded" : ""}`}>
-            {varsler && varsler.map((varsel, index) =>
-              <SanityBlocks blocks={varsel} key={index} />
-            )}
-          </div>
+          <VarselVisning />
           <div className="frontpage__content">
             <Chat />
             <div className="frontpage__row">

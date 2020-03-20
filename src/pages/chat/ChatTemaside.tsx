@@ -10,9 +10,7 @@ import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import { fetchServerTidOffset } from "../../clients/apiClient";
 import { logEvent } from "../../utils/logger";
 import ApningstiderAvvik from "../../components/apningstider/ApningstiderAvvik";
-import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
 import { useStore } from "../../providers/Provider";
-import { TekniskProblemBackend } from "../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
 import { ChatTema, Kanal } from "../../types/kanaler";
 import { chatTemaSideData } from "./data/chatTemasideData";
 import { chatApningstider } from "./data/chatApningtider";
@@ -20,6 +18,7 @@ import { chatConfig } from "./data/chatConfig";
 import { Language } from "../../utils/sanity/serializers";
 import { SanityBlocks } from "../../components/sanity-blocks/SanityBlocks";
 import { NavContentLoader } from "../../components/content-loader/NavContentLoader";
+import { VarselVisning } from "../../components/varsler/VarselVisning";
 
 type Props = {
   chatTema: ChatTema,
@@ -36,7 +35,7 @@ const cssPrefix = "chat-tema";
 const ChatTemaside = ({ chatTema }: Props) => {
   const [chatButtonClickedTimestamp, setChatButtonClickedTimestamp] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
-  const [{ themes, channels, visTekniskFeilMelding }] = useStore();
+  const [{ themes, channels }] = useStore();
   const intl = useIntl();
 
   const startChat = chatTema === ChatTema.EURES
@@ -90,10 +89,12 @@ const ChatTemaside = ({ chatTema }: Props) => {
             </Systemtittel>
           </div>
           <div className={`${cssPrefix}__panel-ingress`}>
-            {visTekniskFeilMelding && <TekniskProblemBackend />}
-            {!chatErNormaltApen && <Varsel tekstId="chat.stengt.info" />}
-            {chatVeilederStengtAvAdmin && <Varsel tekstId={"chat.admin-stengt.veileder"} />}
-            <StorPaagangVarsel />
+            <VarselVisning kanal={Kanal.Chat}>
+              <>
+                {!chatErNormaltApen && <Varsel tekstId="chat.stengt.info" />}
+                {chatVeilederStengtAvAdmin && <Varsel tekstId={"chat.admin-stengt.veileder"} />}
+              </>
+            </VarselVisning>
             {(isLoaded) ? ingress
               : <NavContentLoader lines={5} />}
           </div>

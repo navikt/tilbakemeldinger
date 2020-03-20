@@ -3,10 +3,8 @@ import { FormattedMessage, useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { Normaltekst } from "nav-frontend-typografi";
-import AlertStripe from "nav-frontend-alertstriper";
 import { useStore } from "../../../providers/Provider";
 import { Language, TextBlock } from "../../../utils/sanity/serializers";
-import { TekniskProblemBackend } from "../../../components/varsler/teknisk-problem-backend/TekniskProblemBackend";
 import { Kanal } from "../../../types/kanaler";
 import { skrivTilOssLenkepaneler } from "../skrivTilOssTemaLenker";
 import { SanityBlocks } from "../../../components/sanity-blocks/SanityBlocks";
@@ -28,14 +26,8 @@ const Ingress = ({tekst}: {tekst: TextBlock[] | undefined}) => {
   );
 };
 
-const StengtMelding = () => (
-  <AlertStripe type="advarsel" className={"varsel-panel"}>
-    <FormattedMessage id={"skrivtiloss.disabled"} />
-  </AlertStripe>
-);
-
 const SkrivTilOssForside = () => {
-  const [{ channels, visTekniskFeilMelding }] = useStore();
+  const [{ channels }] = useStore();
 
   const stoProps = channels.props[Kanal.SkrivTilOss];
   const isClosed = stoProps.closed;
@@ -45,8 +37,7 @@ const SkrivTilOssForside = () => {
   return (
     <SkrivTilOssBase
       tittelId={"skrivtiloss.tittel"}
-      isLoaded={channels.isLoaded}
-      lenkepanelData={isClosed ? undefined : skrivTilOssLenkepaneler}
+      lenkepanelData={skrivTilOssLenkepaneler}
     >
       <>
         {!isClosed && svartid && svartid[Language.Bokmaal] && (
@@ -56,8 +47,6 @@ const SkrivTilOssForside = () => {
           </Normaltekst>
         )}
         <Ingress tekst={ingressTekstBlokk} />
-        {visTekniskFeilMelding && <TekniskProblemBackend/>}
-        {isClosed && <StengtMelding />}
       </>
     </SkrivTilOssBase>
   );

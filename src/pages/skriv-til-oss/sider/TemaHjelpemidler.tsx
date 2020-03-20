@@ -22,7 +22,6 @@ const Ingress = () => {
 const TemaHjelpemidler = () => (
   <SkrivTilOssBase
     tittelId={"skrivtiloss.hjelpemidler.mellomside.tittel"}
-    isLoaded={true}
     lenkepanelData={hjelpemidlerLenkepaneler}
   >
     <Ingress />

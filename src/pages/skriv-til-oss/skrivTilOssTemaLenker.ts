@@ -6,21 +6,21 @@ export const hjelpemidlerLenkepaneler: TemaLenke[] = [
   {
     tema: STOTema.HjelpemidlerGenerelt,
     grafanaId: "hjelpemidler.generelt",
-    tittelId: "skrivtiloss.hjelpemidler.generelt.lenke.tittel",
+    fallbackTittelId: "skrivtiloss.hjelpemidler.generelt.lenke.tittel",
     url: urls.skrivTilOss.temaHjelpemidler.generelt,
     externalUrl: true
   },
   {
     tema: STOTema.HjelpemidlerOrtopedisk,
     grafanaId: "hjelpemidler.ortopediske",
-    tittelId: "skrivtiloss.hjelpemidler.ortopediske.lenke.tittel",
+    fallbackTittelId: "skrivtiloss.hjelpemidler.ortopediske.lenke.tittel",
     url: urls.skrivTilOss.temaHjelpemidler.ortopediske,
     externalUrl: true
   },
   {
     tema: STOTema.HjelpemidlerBil,
     grafanaId: "hjelpemidler.bil",
-    tittelId: "skrivtiloss.hjelpemidler.bil.lenke.tittel",
+    fallbackTittelId: "skrivtiloss.hjelpemidler.bil.lenke.tittel",
     url: urls.skrivTilOss.temaHjelpemidler.bil,
     externalUrl: true
   }
@@ -29,35 +29,35 @@ export const hjelpemidlerLenkepaneler: TemaLenke[] = [
 export const skrivTilOssLenkepaneler: TemaLenke[] = [
   {
     tema: STOTema.Jobbsoker,
-    tittelId: "skrivtiloss.arbeidssoker.lenke.tittel",
+    fallbackTittelId: "skrivtiloss.arbeidssoker.lenke.tittel",
     grafanaId: "skrivtiloss.arbeidssoker",
     url: urls.skrivTilOss.jobbsoker,
     externalUrl: true
   },
   {
     tema: STOTema.Syk,
-    tittelId: "skrivtiloss.syk.lenke.tittel",
+    fallbackTittelId: "skrivtiloss.syk.lenke.tittel",
     grafanaId: "skrivtiloss.syk",
     url: urls.skrivTilOss.syk,
     externalUrl: true
   },
   {
     tema: STOTema.Familie,
-    tittelId: "skrivtiloss.familieogbarn.lenke.tittel",
+    fallbackTittelId: "skrivtiloss.familieogbarn.lenke.tittel",
     grafanaId: "skrivtiloss.familieogbarn",
     url: urls.skrivTilOss.familieogbarn,
     externalUrl: true
   },
   {
     tema: STOTema.Ufor,
-    tittelId: "skrivtiloss.ufor.lenke.tittel",
+    fallbackTittelId: "skrivtiloss.ufor.lenke.tittel",
     grafanaId: "skrivtiloss.ufor",
     url: urls.skrivTilOss.ufor,
     externalUrl: true
   },
   {
     tema: STOTema.Pensjon,
-    tittelId: "skrivtiloss.pensjonist.lenke.tittel",
+    fallbackTittelId: "skrivtiloss.pensjonist.lenke.tittel",
     grafanaId: "skrivtiloss.pensjonist",
     url: urls.skrivTilOss.pensjonist,
     externalUrl: true
@@ -71,7 +71,7 @@ export const skrivTilOssLenkepaneler: TemaLenke[] = [
   },
   {
     tema: STOTema.Hjelpemidler,
-    tittelId: "skrivtiloss.hjelpemidler.lenke.tittel",
+    fallbackTittelId: "skrivtiloss.hjelpemidler.lenke.tittel",
     grafanaId: "skrivtiloss.hjelpemidler",
     url: urls.skrivTilOss.hjelpemidler,
   }
