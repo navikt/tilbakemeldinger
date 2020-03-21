@@ -23,7 +23,7 @@ export const VarselVisning = ({ kanal, children }: Props) => {
       : acc), [] as Alert[]);
 
   return (
-    <div className={`varsler-container${alerts.isLoaded ? " varsler-container--loaded" : ""}`}>
+    <div className={`${alerts.isLoaded ? " varsler-container--loaded" : "varsler-container--loading"}`}>
       {visTekniskFeilMelding && <TekniskProblemBackend />}
       <KoronaVirusVarsel />
       {varslerSomSkalVises.map((varsel, index) => <SanityBlocks blocks={varsel} key={index} />)}
