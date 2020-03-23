@@ -1,5 +1,5 @@
 import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { Normaltekst } from "nav-frontend-typografi";
@@ -42,7 +42,6 @@ const SkrivTilOssForside = () => {
       <>
         {!isClosed && svartid && svartid[Language.Bokmaal] && (
           <Normaltekst className={"svartid"}>
-            <FormattedMessage id={"kontaktoss.svartid"} />
             {svartid[Language.Bokmaal]}
           </Normaltekst>
         )}

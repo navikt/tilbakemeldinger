@@ -1,5 +1,4 @@
 import { Normaltekst } from "nav-frontend-typografi";
-import { FormattedMessage } from "react-intl";
 import { Language } from "../../utils/sanity/serializers";
 import React from "react";
 import { useStore } from "../../providers/Provider";
@@ -29,7 +28,6 @@ export const KanalVisning = ({ kanal, visHvisStengt, children }: Props) => {
     <>
       {svartid && !closed && (
         <Normaltekst className="svartid">
-          <FormattedMessage id={"kontaktoss.svartid"} />
           {svartid}
         </Normaltekst>
       )}
