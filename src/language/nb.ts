@@ -44,7 +44,6 @@ export default {
   // Forside
   //
   "kontaktoss.tittel": "Kontakt oss",
-  "kontaktoss.svartid": "Svartid: ",
 
   "kontaktoss.chat.tittel": "Chat med oss",
   "kontaktoss.chat.ingress":
