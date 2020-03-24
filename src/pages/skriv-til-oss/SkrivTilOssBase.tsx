@@ -26,7 +26,8 @@ const SkrivTilOssBase = ({ tittelId, lenkepanelData, children }: Props) => {
   }, [documentTitle]);
 
   const [{ channels }] = useStore();
-  const isClosed = channels.props[Kanal.SkrivTilOss].closed;
+  const stoProps = channels.props[Kanal.SkrivTilOss];
+  const isClosed = stoProps.status && stoProps.status.closed;
 
   return (
     <div className={`${cssPrefix} pagecontent`}>

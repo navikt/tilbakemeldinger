@@ -30,7 +30,7 @@ const SkrivTilOssForside = () => {
   const [{ channels }] = useStore();
 
   const stoProps = channels.props[Kanal.SkrivTilOss];
-  const isClosed = stoProps.closed;
+  const isClosed = stoProps.status && stoProps.status.closed;
   const svartid = stoProps.answer_time;
   const ingressTekstBlokk = stoProps.preamble;
 

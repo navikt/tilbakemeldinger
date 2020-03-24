@@ -46,6 +46,7 @@ const ChatTemaside = ({ chatTema }: Props) => {
   const temaProps = themes.props[chatTema];
   const channelProps = channels.props[Kanal.Chat];
   const isLoaded = themes.isLoaded && channels.isLoaded;
+  const isClosed = channelProps.status && channelProps.status.closed;
 
   const text = temaProps.page;
   const tittel = (text && text.title && text.title[Language.Bokmaal])
@@ -65,7 +66,7 @@ const ChatTemaside = ({ chatTema }: Props) => {
     ? apningsTider.isOpenNow(serverTidOffset)
     : true;
   const chatErNormaltApen = chatErIApningstid || harChatbot;
-  const chatVeilederStengtAvAdmin = (channelProps.closed || temaProps.closed) && chatErIApningstid;
+  const chatVeilederStengtAvAdmin = (isClosed || temaProps.closed) && chatErIApningstid;
   const chatErApen = (chatErNormaltApen && !chatVeilederStengtAvAdmin) || harChatbot;
 
   const chatClientConfig = chatConfig.tema[chatTema];

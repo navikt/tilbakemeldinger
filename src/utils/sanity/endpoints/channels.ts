@@ -4,7 +4,10 @@ import { Kanal } from "../../../types/kanaler";
 export type ChannelProps = {
   _id?: string;
   answer_time?: LocaleString;
-  closed?: boolean;
+  status?: {
+    closed?: boolean;
+    message?: TextBlock[];
+  }
   description?: TextBlock[];
   preamble?: TextBlock[];
 };
