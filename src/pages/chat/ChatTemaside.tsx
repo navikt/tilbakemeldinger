@@ -43,7 +43,8 @@ const ChatTemaside = ({ chatTema }: Props) => {
   const isLoaded = themes.isLoaded && channels.isLoaded;
   const isClosed = (channelProps.status && channelProps.status.closed)
     || (temaProps.status && temaProps.status.closed);
-  const closedMsg = temaProps.status && temaProps.status.message;
+  const closedMsg = (temaProps.status && temaProps.status.message)
+    || (channelProps.status && channelProps.status.message);
 
   const text = temaProps.page;
   const tittel = (text && text.title && text.title[Language.Bokmaal])

@@ -89,7 +89,7 @@
     },
     "status": {
       "_type": "status",
-      "closed": false,
+      "closed": true,
       "message": {
         "_type": "localeBlock",
         "nb": [
