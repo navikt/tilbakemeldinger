@@ -6,7 +6,6 @@ import ChatbotWrapper from "./ChatbotWrapper";
 import { Hovedknapp } from "nav-frontend-knapper";
 import Config from "../../Config";
 import PanelBase from "nav-frontend-paneler";
-import { AlertStripeInfo } from "nav-frontend-alertstriper";
 import { fetchServerTidOffset } from "../../clients/apiClient";
 import { logEvent } from "../../utils/logger";
 import ApningstiderAvvik from "../../components/apningstider/ApningstiderAvvik";
@@ -19,16 +18,12 @@ import { Language } from "../../utils/sanity/serializers";
 import { SanityBlocks } from "../../components/sanity-blocks/SanityBlocks";
 import { NavContentLoader } from "../../components/content-loader/NavContentLoader";
 import { VarselVisning } from "../../components/varsler/VarselVisning";
+import { SanityVarsel } from "../../components/varsler/SanityVarsel";
+import { Varsel } from "../../components/varsler/Varsel";
 
 type Props = {
   chatTema: ChatTema,
 };
-
-const Varsel = ({ tekstId }: { tekstId: string }) => (
-  <AlertStripeInfo className={"varsel-panel"}>
-    <FormattedMessage id={tekstId} />
-  </AlertStripeInfo>
-);
 
 const cssPrefix = "chat-tema";
 
@@ -46,6 +41,10 @@ const ChatTemaside = ({ chatTema }: Props) => {
   const temaProps = themes.props[chatTema];
   const channelProps = channels.props[Kanal.Chat];
   const isLoaded = themes.isLoaded && channels.isLoaded;
+  const isClosed = (channelProps.status && channelProps.status.closed)
+    || (temaProps.status && temaProps.status.closed);
+  const closedMsg = (temaProps.status && temaProps.status.message)
+    || (channelProps.status && channelProps.status.message);
 
   const text = temaProps.page;
   const tittel = (text && text.title && text.title[Language.Bokmaal])
@@ -65,7 +64,7 @@ const ChatTemaside = ({ chatTema }: Props) => {
     ? apningsTider.isOpenNow(serverTidOffset)
     : true;
   const chatErNormaltApen = chatErIApningstid || harChatbot;
-  const chatVeilederStengtAvAdmin = (channelProps.closed || temaProps.closed) && chatErIApningstid;
+  const chatVeilederStengtAvAdmin = isClosed && chatErIApningstid;
   const chatErApen = (chatErNormaltApen && !chatVeilederStengtAvAdmin) || harChatbot;
 
   const chatClientConfig = chatConfig.tema[chatTema];
@@ -91,8 +90,8 @@ const ChatTemaside = ({ chatTema }: Props) => {
           <div className={`${cssPrefix}__panel-ingress`}>
             <VarselVisning kanal={Kanal.Chat}>
               <>
-                {!chatErNormaltApen && <Varsel tekstId="chat.stengt.info" />}
-                {chatVeilederStengtAvAdmin && <Varsel tekstId={"chat.admin-stengt.veileder"} />}
+                {!chatErNormaltApen && <Varsel tekstId={"chat.stengt.info"} type={"info"} />}
+                {chatVeilederStengtAvAdmin && closedMsg && <SanityVarsel localeBlock={closedMsg} type={"info"} />}
               </>
             </VarselVisning>
             {(isLoaded) ? ingress

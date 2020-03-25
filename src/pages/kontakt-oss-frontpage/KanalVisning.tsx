@@ -3,7 +3,6 @@ import { Language } from "../../utils/sanity/serializers";
 import React from "react";
 import { useStore } from "../../providers/Provider";
 import { Kanal } from "../../types/kanaler";
-import { TjenesteStengtMelding } from "../../components/varsler/tjeneste-stengt/TjenesteStengtMelding";
 import { SanityBlocks } from "../../components/sanity-blocks/SanityBlocks";
 import { NavContentLoader } from "../../components/content-loader/NavContentLoader";
 
@@ -21,8 +20,10 @@ export const KanalVisning = ({ kanal, visHvisStengt, children }: Props) => {
 
   const channelProps = channels.props[kanal];
 
-  const { answer_time, closed, description } = channelProps;
+  const { answer_time, status, description } = channelProps;
   const svartid = answer_time && answer_time[Language.Bokmaal];
+  const closed = status && status.closed;
+  const closedMsg = status && status.message;
 
   return (
     <>
@@ -32,7 +33,8 @@ export const KanalVisning = ({ kanal, visHvisStengt, children }: Props) => {
         </Normaltekst>
       )}
       {description && <SanityBlocks blocks={description} />}
-      {closed && !visHvisStengt ? <TjenesteStengtMelding /> : children}
+      {closed && <SanityBlocks blocks={closedMsg} />}
+      {(!closed || visHvisStengt) && children}
     </>
   );
 };
