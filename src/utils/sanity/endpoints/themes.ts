@@ -1,9 +1,12 @@
-import { LenkePanel, Page } from "../serializers";
+import { LenkePanel, LocaleBlock, Page } from "../serializers";
 import { ChatTema, STOTema } from "../../../types/kanaler";
 
 export type ThemeProps = {
   _id?: string;
-  closed?: boolean;
+  status?: {
+    closed?: boolean;
+    message?: LocaleBlock;
+  }
   link?: LenkePanel;
   page?: Page;
 };

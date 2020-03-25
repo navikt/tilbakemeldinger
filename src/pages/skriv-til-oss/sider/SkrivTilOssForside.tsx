@@ -30,7 +30,6 @@ const SkrivTilOssForside = () => {
   const [{ channels }] = useStore();
 
   const stoProps = channels.props[Kanal.SkrivTilOss];
-  const isClosed = stoProps.status && stoProps.status.closed;
   const svartid = stoProps.answer_time;
   const ingressTekstBlokk = stoProps.preamble;
 
@@ -40,7 +39,7 @@ const SkrivTilOssForside = () => {
       lenkepanelData={skrivTilOssLenkepaneler}
     >
       <>
-        {!isClosed && svartid && svartid[Language.Bokmaal] && (
+        {svartid && svartid[Language.Bokmaal] && (
           <Normaltekst className={"svartid"}>
             {svartid[Language.Bokmaal]}
           </Normaltekst>

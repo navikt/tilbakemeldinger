@@ -7,7 +7,7 @@ import { Kanal, TemaLenke } from "../../types/kanaler";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { VarselVisning } from "../../components/varsler/VarselVisning";
 import { useStore } from "../../providers/Provider";
-import { TjenesteStengtVarsel } from "../../components/varsler/tjeneste-stengt/TjenesteStengtVarsel";
+import { SanityVarsel } from "../../components/varsler/SanityVarsel";
 
 const cssPrefix = "skriv-til-oss";
 
@@ -28,6 +28,7 @@ const SkrivTilOssBase = ({ tittelId, lenkepanelData, children }: Props) => {
   const [{ channels }] = useStore();
   const stoProps = channels.props[Kanal.SkrivTilOss];
   const isClosed = stoProps.status && stoProps.status.closed;
+  const closedMsg = stoProps.status && stoProps.status.message;
 
   return (
     <div className={`${cssPrefix} pagecontent`}>
@@ -42,13 +43,13 @@ const SkrivTilOssBase = ({ tittelId, lenkepanelData, children }: Props) => {
           <div className={`${cssPrefix}__ingress`}>
             {children}
             <VarselVisning kanal={Kanal.SkrivTilOss}>
-              {isClosed ? <TjenesteStengtVarsel /> : undefined}
+              {isClosed && closedMsg ? <SanityVarsel localeBlock={closedMsg} type={"info"}/> : undefined}
             </VarselVisning>
           </div>
           {!isClosed && (
             <div className={`${cssPrefix}__lenke-seksjon`}>
               {lenkepanelData && lenkepanelData.map(lenke => (
-                <TemaLenkepanel lenkepanelData={lenke} cssPrefix={cssPrefix} key={lenke.tema} />
+                <TemaLenkepanel lenkepanelData={lenke} cssPrefix={cssPrefix} disableIfClosed={true} key={lenke.tema} />
               ))}
             </div>
           )}
