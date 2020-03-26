@@ -99,7 +99,7 @@ export const urls = {
   //
   // Midlertidige url'er
   //
-  koronaVarsel: `${navUrl}/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav`,
+  koronaVarsel: `${navUrl}/person/koronaveiviser`,
   koronaVarselDialog: `${navUrl}/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav/dialog-med-nav-i-forbindelse-med-koronaviruset`
 };
 
