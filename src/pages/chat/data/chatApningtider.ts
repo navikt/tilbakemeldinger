@@ -1,6 +1,22 @@
 import ApningsTider from "../../../utils/apningstider";
-import { Ukedag } from "../../../types/datotid";
+import { AvviksPeriode, Ukedag } from "../../../types/datotid";
 import { ChatTema } from "../../../types/kanaler";
+
+const jobbSokerHelgeApent: AvviksPeriode[] = [
+  {
+    visFraDato: "12:00 26-03-2020",
+    datoer: {
+      "28-03-2020": {
+        start: "09.00",
+        end: "14.30"
+      },
+      "29-03-2020": {
+        start: "09.00",
+        end: "14.30"
+      }
+    }
+  }
+];
 
 export const chatApningstider: {[key in ChatTema]: ApningsTider | null} = {
   [ChatTema.Arbeidsgiver]: new ApningsTider({
@@ -50,7 +66,7 @@ export const chatApningstider: {[key in ChatTema]: ApningsTider | null} = {
     },
     [Ukedag.Lordag]: null,
     [Ukedag.Sondag]: null
-  }),
+  }, jobbSokerHelgeApent),
   [ChatTema.Syk]: new ApningsTider({
     [Ukedag.Mandag]: {
       start: "09.00",
