@@ -126,7 +126,7 @@ export default {
 
   "apningstid.avvik": "<p>Spesielle åpningstider:</p>",
   "apningstid.avvik.chatbot":
-    "<p>Chatbot er døgnåpen. For veileder gjelder spesielle åpningstider:</p>",
+    "<p>Spesielle åpningstider for chat med veileder:</p>",
   "apningstid.avvik.stengt": "<p>{dato} - Stengt</p>",
   "apningstid.avvik.apent": "<p>{dato} - kl. {start}–{end}</p>",
 
