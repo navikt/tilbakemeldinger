@@ -8,11 +8,11 @@ const jobbSokerHelgeApent: AvviksPeriode[] = [
     datoer: {
       "28-03-2020": {
         start: "09.00",
-        end: "14.30"
+        end: "13.00"
       },
       "29-03-2020": {
         start: "09.00",
-        end: "14.30"
+        end: "13.00"
       }
     }
   }
