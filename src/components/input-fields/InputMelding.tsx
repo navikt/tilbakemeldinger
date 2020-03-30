@@ -1,8 +1,8 @@
 import { TextareaControlled, TextareaProps } from "nav-frontend-skjema";
 import React, { KeyboardEvent, useState } from "react";
-import { FormattedMessage } from "react-intl";
-import { AlertStripeAdvarsel } from "nav-frontend-alertstriper";
+import { FormattedHTMLMessage } from "react-intl";
 import { vars } from "../../Config";
+import { Varsel } from "../varsler/Varsel";
 
 interface Props extends Omit<TextareaProps, "onChange"> {
   onChange: (value: string) => void;
@@ -18,9 +18,9 @@ const InputMelding = (props: Props) => {
     <div>
       <div className={"skjemagruppe__legend"}>{label}</div>
       <div className={"felter__melding-advarsel"}>
-        <AlertStripeAdvarsel>
-          <FormattedMessage id={"felter.melding.beskrivelse"} />
-        </AlertStripeAdvarsel>
+        <Varsel type={"advarsel"}>
+          <FormattedHTMLMessage id={"felter.melding.beskrivelse"} />
+        </Varsel>
       </div>
       <TextareaControlled
         label={""}

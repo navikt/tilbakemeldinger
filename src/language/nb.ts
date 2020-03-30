@@ -1,4 +1,4 @@
-import { urls } from "../Config";
+import Config, { urls } from "../Config";
 
 export default {
   //
@@ -278,7 +278,7 @@ export default {
   "felter.typefeil.uu": "Feil på siden ved bruk av hjelpemiddelteknologi",
   "felter.melding.tittel": "Din tilbakemelding",
   "felter.melding.beskrivelse":
-    "Unngå sensitive personopplysninger, som for eksempel opplysninger om helseforhold eller diagnoser",
+    `Unngå sensitive personopplysninger, som for eksempel opplysninger om helseforhold eller diagnoser. Du kan ikke spørre om status i saken din, da må du logge inn og sjekke på Ditt NAV under Dine saker. Finner du ikke svaret, kan du sjekke <a href="${Config.urls.tilbakemeldinger.serviceklage.saksbehandlingstider}" class="lenke">saksbehandlingstider</a> eller ta kontakt i <a href="${Config.urls.skrivTilOss.forside}" class="lenke">Skriv til oss</a>.`,
   "felter.noegikkgalt": "Oi! Noe gikk galt:",
   "felter.send": "Send",
   "felter.tilbake": "Tilbake",
