@@ -80,6 +80,7 @@ export const urls = {
       form: `${baseAppPath}/tilbakemeldinger/serviceklage`,
       login: `${baseAppPath}/tilbakemeldinger/serviceklage/login`,
       fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
+      saksbehandlingstider: `${navUrl}/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav`
     },
     feilogmangler: `${baseAppPath}/tilbakemeldinger/feil-og-mangler`,
     rostilnav: `${baseAppPath}/tilbakemeldinger/ros-til-nav`
