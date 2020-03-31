@@ -1,7 +1,6 @@
 import { urls } from "../../Config";
 import { STOTema, TemaLenke } from "../../types/kanaler";
 
-// TODO: data i sanity for disse
 export const hjelpemidlerLenkepaneler: TemaLenke[] = [
   {
     tema: STOTema.HjelpemidlerGenerelt,
