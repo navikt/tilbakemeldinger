@@ -1,14 +1,14 @@
 import Config from "../../../Config";
 import React from "react";
-import { Normaltekst, Systemtittel, Undertekst } from "nav-frontend-typografi";
+import { Normaltekst, Undertekst, Undertittel } from "nav-frontend-typografi";
 import { LenkepanelBase } from "nav-frontend-lenkepanel/lib";
 
 const className = "korona-varsel";
 
 export type KoronaVirusVarselInnhold = {
   tittel: JSX.Element,
-  ingress: JSX.Element,
-  datoTid: string,
+  ingress?: JSX.Element,
+  datoTid?: string,
   href: string,
 };
 
@@ -17,9 +17,7 @@ type Props = {
 };
 
 const defaultInnhold: KoronaVirusVarselInnhold = {
-  tittel: <>{"Koronavirus"}</>,
-  ingress: <>{"Her finner du oppdatert informasjon fra NAV om sykmeldinger, omsorgspenger, permitteringer og behov for akuttolk."}</>,
-  datoTid: "13.03.2020, kl. 11.46",
+  tittel: <>{"Koronavirus - hva gjelder i min situasjon?"}</>,
   href: Config.urls.koronaVarsel,
 };
 
@@ -30,15 +28,19 @@ export const KoronaVirusVarsel = ({ innhold = defaultInnhold }: Props) => (
       <div className={`${className}__sirkel`}/>
     </div>
     <div className={`${className}__tekst-kol`}>
-      <Systemtittel className={`lenkepanel__heading`}>
+      <Undertittel className={`lenkepanel__heading`}>
         {innhold.tittel}
-      </Systemtittel>
-      <Normaltekst className={`${className}__ingress`}>
-        {innhold.ingress}
-      </Normaltekst>
-      <Undertekst className={`${className}__dato-tid`}>
-        {`Oppdatert: ${innhold.datoTid}`}
-      </Undertekst>
+      </Undertittel>
+      {innhold.ingress && (
+        <Normaltekst className={`${className}__ingress`}>
+          {innhold.ingress}
+        </Normaltekst>
+      )}
+      {innhold.datoTid && (
+        <Undertekst className={`${className}__dato-tid`}>
+          {`Oppdatert: ${innhold.datoTid}`}
+        </Undertekst>
+      )}
     </div>
   </LenkepanelBase>
 );

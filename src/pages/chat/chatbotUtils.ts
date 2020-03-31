@@ -7,7 +7,7 @@ const storageKeys = {
 
 // TODO: finn denne ut fra styled-components algoritme som genererer classnames
 const getApneKnappClassName = () => {
-  return "sc-fAjcbJ";
+  return "sc-eqIVtm";
 };
 
 const getButtonFromClassname = (className: string, index = 0) => {

@@ -81,6 +81,8 @@ export const urls = {
       form: `${baseAppPath}/tilbakemeldinger/serviceklage`,
       login: `${baseAppPath}/tilbakemeldinger/serviceklage/login`,
       fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
+      saksbehandlingstider: `${navUrl}/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav`,
+      saksoversikt: `${tjenesteUrl}/saksoversikt/`
     },
     feilogmangler: `${baseAppPath}/tilbakemeldinger/feil-og-mangler`,
     rostilnav: `${baseAppPath}/tilbakemeldinger/ros-til-nav`
@@ -100,7 +102,7 @@ export const urls = {
   //
   // Midlertidige url'er
   //
-  koronaVarsel: `${navUrl}/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav`,
+  koronaVarsel: `${navUrl}/person/koronaveiviser`,
   koronaVarselDialog: `${navUrl}/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav/dialog-med-nav-i-forbindelse-med-koronaviruset`
 };
 

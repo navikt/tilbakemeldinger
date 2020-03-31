@@ -1,5 +1,5 @@
 import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 import MetaTags from "react-meta-tags";
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { Normaltekst } from "nav-frontend-typografi";
@@ -30,7 +30,6 @@ const SkrivTilOssForside = () => {
   const [{ channels }] = useStore();
 
   const stoProps = channels.props[Kanal.SkrivTilOss];
-  const isClosed = stoProps.closed;
   const svartid = stoProps.answer_time;
   const ingressTekstBlokk = stoProps.preamble;
 
@@ -40,9 +39,8 @@ const SkrivTilOssForside = () => {
       lenkepanelData={skrivTilOssLenkepaneler}
     >
       <>
-        {!isClosed && svartid && svartid[Language.Bokmaal] && (
+        {svartid && svartid[Language.Bokmaal] && (
           <Normaltekst className={"svartid"}>
-            <FormattedMessage id={"kontaktoss.svartid"} />
             {svartid[Language.Bokmaal]}
           </Normaltekst>
         )}

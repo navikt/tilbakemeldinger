@@ -1,4 +1,4 @@
-import { urls } from "../Config";
+import Config, { urls } from "../Config";
 
 export default {
   //
@@ -44,7 +44,6 @@ export default {
   // Forside
   //
   "kontaktoss.tittel": "Kontakt oss",
-  "kontaktoss.svartid": "Svartid: ",
 
   "kontaktoss.chat.tittel": "Chat med oss",
   "kontaktoss.chat.ingress":
@@ -127,7 +126,7 @@ export default {
 
   "apningstid.avvik": "<p>Spesielle åpningstider:</p>",
   "apningstid.avvik.chatbot":
-    "<p>Chatbot er døgnåpen. For veileder gjelder spesielle åpningstider:</p>",
+    "<p>Spesielle åpningstider for chat med veileder:</p>",
   "apningstid.avvik.stengt": "<p>{dato} - Stengt</p>",
   "apningstid.avvik.apent": "<p>{dato} - kl. {start}–{end}</p>",
 
@@ -280,7 +279,7 @@ export default {
   "felter.typefeil.uu": "Feil på siden ved bruk av hjelpemiddelteknologi",
   "felter.melding.tittel": "Din tilbakemelding",
   "felter.melding.beskrivelse":
-    "Unngå sensitive personopplysninger, som for eksempel opplysninger om helseforhold eller diagnoser",
+    `Unngå sensitive personopplysninger, som for eksempel opplysninger om helseforhold eller diagnoser. Du kan ikke spørre om status i saken din, da må du logge inn og sjekke på Ditt NAV under <a href="${Config.urls.tilbakemeldinger.serviceklage.saksoversikt}" class="lenke">Dine saker</a>. Finner du ikke svaret, kan du sjekke <a href="${Config.urls.tilbakemeldinger.serviceklage.saksbehandlingstider}" class="lenke">saksbehandlingstider</a> eller ta kontakt i <a href="${Config.urls.skrivTilOss.forside}" class="lenke">Skriv til oss</a>.`,
   "felter.noegikkgalt": "Oi! Noe gikk galt:",
   "felter.send": "Send",
   "felter.tilbake": "Tilbake",

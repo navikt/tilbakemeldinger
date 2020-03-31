@@ -1,26 +1,25 @@
 [
   {
-    "_createdAt": "2020-03-17T12:28:43Z",
+    "_createdAt": "2020-03-17T12:28:28Z",
     "_id": "chat-med-oss-arbeidsgiver",
-    "_rev": "cwLSauK3hy1spiO8Bh0p0T",
+    "_rev": "04GyqxWeUbLYr2t4W54TT7",
     "_type": "theme",
-    "_updatedAt": "2020-03-19T09:11:17Z",
+    "_updatedAt": "2020-03-24T10:42:59Z",
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
     },
-    "closed": false,
     "link": {
       "_type": "link_panel",
       "description": {
         "_type": "localeBlock",
         "nb": [
           {
-            "_key": "4061217b9e5b",
+            "_key": "6168854930d4",
             "_type": "block",
             "children": [
               {
-                "_key": "4061217b9e5b0",
+                "_key": "6168854930d40",
                 "_type": "span",
                 "marks": [],
                 "text": "Chat for arbeidsgivere og samhandlere om permittering i forbindelse med koronavirus."
@@ -42,11 +41,11 @@
         "_type": "localeBlock",
         "nb": [
           {
-            "_key": "b6a25890bf05",
+            "_key": "e9a8ed9837a6",
             "_type": "block",
             "children": [
               {
-                "_key": "b6a25890bf050",
+                "_key": "e9a8ed9837a60",
                 "_type": "span",
                 "marks": [],
                 "text": "Du møter først en chatbot, men kan bli satt videre til chat med en veileder (hverdager 09.00–14.30)."
@@ -56,11 +55,11 @@
             "style": "normal"
           },
           {
-            "_key": "4b495eb78de6",
+            "_key": "a724812e7f32",
             "_type": "block",
             "children": [
               {
-                "_key": "4b495eb78de60",
+                "_key": "a724812e7f320",
                 "_type": "span",
                 "marks": [],
                 "text": "Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring."
@@ -70,11 +69,11 @@
             "style": "normal"
           },
           {
-            "_key": "a22525d320ad",
+            "_key": "fc9c51afd2b6",
             "_type": "block",
             "children": [
               {
-                "_key": "a22525d320ad0",
+                "_key": "fc9c51afd2b60",
                 "_type": "span",
                 "marks": [],
                 "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg."
@@ -86,17 +85,20 @@
         ]
       },
       "title": {
-        "_type": "localeString",
-        "nb": "Arbeidsgiver og samhandler"
+        "_type": "localeString"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
     "_createdAt": "2020-03-17T11:39:50Z",
     "_id": "chat-med-oss-eures",
-    "_rev": "FWkbPeFlPFjjwEQRoAM4S7",
+    "_rev": "04GyqxWeUbLYr2t4W54ThU",
     "_type": "theme",
-    "_updatedAt": "2020-03-18T22:38:45Z",
+    "_updatedAt": "2020-03-24T10:43:05Z",
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
@@ -114,7 +116,7 @@
                 "_key": "4030bcee444e0",
                 "_type": "span",
                 "marks": [],
-                "text": "EURES svarer på spørsmål fra jobbsøkere og arbeidsgivere om arbeid og opphold i EU/EØS og Sveits."
+                "text": "EURES svarer på spørsmål fra jobbsøkere og arbeidsgivere om arbeid og opphold i EU/EØS og Sveits. "
               }
             ],
             "markDefs": [],
@@ -124,7 +126,7 @@
       },
       "title": {
         "_type": "localeString",
-        "nb": "Spør EURES om jobb og rekruttering i EØS-området"
+        "nb": "Spør EURES om jobb og rekruttering i i EØS-området"
       }
     },
     "page": {
@@ -206,35 +208,38 @@
       },
       "title": {
         "_type": "localeString",
-        "nb": "Spør EURES om jobb og rekruttering i EØS-området"
+        "nb": "Spør EURES om jobb og rekruttering i i EØS-området"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
     "_createdAt": "2020-03-17T11:38:08Z",
     "_id": "chat-med-oss-familie",
-    "_rev": "cwLSauK3hy1spiO8Bh0oS3",
+    "_rev": "9lyDtJBYotz3ZVD1nz4BiG",
     "_type": "theme",
-    "_updatedAt": "2020-03-19T09:10:59Z",
+    "_updatedAt": "2020-03-24T10:42:35Z",
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
     },
-    "closed": false,
     "link": {
       "_type": "link_panel",
       "description": {
         "_type": "localeBlock",
         "nb": [
           {
-            "_key": "ddc092aba0fb",
+            "_key": "c1ebc17dba07",
             "_type": "block",
             "children": [
               {
-                "_key": "ddc092aba0fb0",
+                "_key": "c1ebc17dba070",
                 "_type": "span",
                 "marks": [],
-                "text": "Chat for privatpersoner om foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger i livets sluttfase."
+                "text": "Foreldrepenger, overgangsstønad, kontantstøtte, barnetrygd, barnebidrag, pleiepenger i livets sluttfase."
               }
             ],
             "markDefs": [],
@@ -300,19 +305,22 @@
         "_type": "localeString",
         "nb": "Foreldre, barn og familie"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
     "_createdAt": "2020-03-17T11:36:58Z",
     "_id": "chat-med-oss-jobbsoker",
-    "_rev": "FWkbPeFlPFjjwEQRoAOKSB",
+    "_rev": "9lyDtJBYotz3ZVD1nz4BHK",
     "_type": "theme",
-    "_updatedAt": "2020-03-19T09:10:45Z",
+    "_updatedAt": "2020-03-24T10:42:21Z",
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
     },
-    "closed": false,
     "link": {
       "_type": "link_panel",
       "description": {
@@ -326,7 +334,19 @@
                 "_key": "ed14eb2c3bb40",
                 "_type": "span",
                 "marks": [],
-                "text": "Chat for privatpersoner om arbeidsavklaringspenger, dagpenger, permittering, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet."
+                "text": "Arbeidsavklaringspenger, dagpenger, tiltakspenger, tiltak og veiledning for å komme i jobb eller aktivitet."
+              },
+              {
+                "_key": "ed14eb2c3bb41",
+                "_type": "span",
+                "marks": [
+                  "em",
+                  "strong",
+                  "code",
+                  "underline",
+                  "strike-through"
+                ],
+                "text": ""
               }
             ],
             "markDefs": [],
@@ -392,33 +412,36 @@
         "_type": "localeString",
         "nb": "Jobbsøker"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
     "_createdAt": "2020-03-17T11:39:24Z",
     "_id": "chat-med-oss-okonomi",
-    "_rev": "cwLSauK3hy1spiO8Bh0ohh",
+    "_rev": "ssUhVIC0YlcCKh06IromxH",
     "_type": "theme",
-    "_updatedAt": "2020-03-19T09:11:12Z",
+    "_updatedAt": "2020-03-25T10:06:17Z",
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
     },
-    "closed": false,
     "link": {
       "_type": "link_panel",
       "description": {
         "_type": "localeBlock",
         "nb": [
           {
-            "_key": "cc4997a32daf",
+            "_key": "887a9b0ee7fe",
             "_type": "block",
             "children": [
               {
-                "_key": "cc4997a32daf0",
+                "_key": "887a9b0ee7fe0",
                 "_type": "span",
                 "marks": [],
-                "text": "Chat for privatpersoner om budsjett, økonomi, gjeldsrådgivning."
+                "text": "Budsjett, økonomi, gjeldsrådgivning."
               }
             ],
             "markDefs": [],
@@ -512,33 +535,57 @@
         "_type": "localeString",
         "nb": "Økonomi og gjeldsrådgivning"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": true,
+      "message": {
+        "_type": "localeBlock",
+        "nb": [
+          {
+            "_key": "10d3b252cea7",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "10d3b252cea70",
+                "_type": "span",
+                "marks": [
+                  "em"
+                ],
+                "text": "Chatten er stengt, prøv igjen senere"
+              }
+            ],
+            "markDefs": [],
+            "style": "h4"
+          }
+        ]
+      }
     }
   },
   {
     "_createdAt": "2020-03-17T11:38:49Z",
     "_id": "chat-med-oss-sosialhjelp",
-    "_rev": "cwLSauK3hy1spiO8Bh0oeZ",
+    "_rev": "9lyDtJBYotz3ZVD1nz4C3o",
     "_type": "theme",
-    "_updatedAt": "2020-03-19T09:11:07Z",
+    "_updatedAt": "2020-03-24T10:42:47Z",
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
     },
-    "closed": false,
     "link": {
       "_type": "link_panel",
       "description": {
         "_type": "localeBlock",
         "nb": [
           {
-            "_key": "718269f69df0",
+            "_key": "055d8cced800",
             "_type": "block",
             "children": [
               {
-                "_key": "718269f69df00",
+                "_key": "055d8cced8000",
                 "_type": "span",
                 "marks": [],
-                "text": "Chat for privatpersoner om økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester."
+                "text": "Økonomisk sosialhjelp, midlertidig botilbud eller andre sosiale tjenester."
               }
             ],
             "markDefs": [],
@@ -604,33 +651,36 @@
         "_type": "localeString",
         "nb": "Sosiale tjenester og økonomisk sosialhjelp"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
     "_createdAt": "2020-03-17T11:37:41Z",
     "_id": "chat-med-oss-syk",
-    "_rev": "4HSN1iflZZx2rre9qUMcAw",
+    "_rev": "9lyDtJBYotz3ZVD1nz4BXU",
     "_type": "theme",
-    "_updatedAt": "2020-03-19T09:10:50Z",
+    "_updatedAt": "2020-03-24T10:42:28Z",
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
     },
-    "closed": false,
     "link": {
       "_type": "link_panel",
       "description": {
         "_type": "localeBlock",
         "nb": [
           {
-            "_key": "27c885a2fb31",
+            "_key": "3789bd090928",
             "_type": "block",
             "children": [
               {
-                "_key": "27c885a2fb310",
+                "_key": "3789bd0909280",
                 "_type": "span",
                 "marks": [],
-                "text": "Chat for privatpersoner om sykemelding, sykepenger, yrkesskade/ménerstatning."
+                "text": "Sykmeldt, sykepenger, yrkesskade/ménerstatning."
               }
             ],
             "markDefs": [],
@@ -649,11 +699,11 @@
         "_type": "localeBlock",
         "nb": [
           {
-            "_key": "1b0cc57355ba",
+            "_key": "d5ad8921276a",
             "_type": "block",
             "children": [
               {
-                "_key": "1b0cc57355ba0",
+                "_key": "d5ad8921276a0",
                 "_type": "span",
                 "marks": [],
                 "text": "Du møter først en chatbot, men kan bli satt videre til chat med en veileder (hverdager 09.00–14.30)."
@@ -663,11 +713,11 @@
             "style": "normal"
           },
           {
-            "_key": "12927ab37fa0",
+            "_key": "9effe50651e2",
             "_type": "block",
             "children": [
               {
-                "_key": "12927ab37fa00",
+                "_key": "9effe50651e20",
                 "_type": "span",
                 "marks": [],
                 "text": "Alle samtaler blir lagret anonymt i 6 måneder for statistikk og læring."
@@ -677,11 +727,11 @@
             "style": "normal"
           },
           {
-            "_key": "41006cac0734",
+            "_key": "10b190c17160",
             "_type": "block",
             "children": [
               {
-                "_key": "41006cac07340",
+                "_key": "10b190c171600",
                 "_type": "span",
                 "marks": [],
                 "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg."
@@ -696,14 +746,18 @@
         "_type": "localeString",
         "nb": "Syk"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
     "_createdAt": "2020-03-17T11:38:29Z",
     "_id": "chat-med-oss-ufor",
-    "_rev": "4HSN1iflZZx2rre9qUIlcc",
+    "_rev": "04GyqxWeUbLYr2t4W54SXd",
     "_type": "theme",
-    "_updatedAt": "2020-03-18T22:27:10Z",
+    "_updatedAt": "2020-03-24T10:42:41Z",
     "channel": {
       "_ref": "chat-med-oss",
       "_type": "reference"
@@ -714,14 +768,14 @@
         "_type": "localeBlock",
         "nb": [
           {
-            "_key": "7ecb46a4d51c",
+            "_key": "c46b1c2f34e7",
             "_type": "block",
             "children": [
               {
-                "_key": "7ecb46a4d51c0",
+                "_key": "c46b1c2f34e70",
                 "_type": "span",
                 "marks": [],
-                "text": "Chat for privatpersoner om uføretrygd, barnetillegg, gjenlevendetillegg."
+                "text": "Uføretrygd, barnetillegg, gjenlevendetillegg."
               }
             ],
             "markDefs": [],
@@ -787,14 +841,18 @@
         "_type": "localeString",
         "nb": "Ufør"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
     "_createdAt": "2020-03-17T11:47:51Z",
     "_id": "skriv-til-oss-familie",
-    "_rev": "WONRbMvf6hbYUecGd7UUA8",
+    "_rev": "04GyqxWeUbLYr2t4W54QIi",
     "_type": "theme",
-    "_updatedAt": "2020-03-17T12:08:32Z",
+    "_updatedAt": "2020-03-24T10:41:41Z",
     "channel": {
       "_ref": "skriv-til-oss",
       "_type": "reference"
@@ -824,14 +882,18 @@
         "_type": "localeString",
         "nb": "Foreldre, barn og familie"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
     "_createdAt": "2020-03-17T11:48:20Z",
     "_id": "skriv-til-oss-hjelpemidler",
-    "_rev": "qcX24G56U0OlNpp3hJ7UZ5",
+    "_rev": "04GyqxWeUbLYr2t4W54Qzp",
     "_type": "theme",
-    "_updatedAt": "2020-03-19T16:05:37Z",
+    "_updatedAt": "2020-03-24T10:41:57Z",
     "channel": {
       "_ref": "skriv-til-oss",
       "_type": "reference"
@@ -868,14 +930,18 @@
         "_type": "localeString",
         "nb": "Skriv til oss om hjelpemidler"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
-    "_createdAt": "2020-03-19T16:04:58Z",
+    "_createdAt": "2020-03-19T15:49:45Z",
     "_id": "skriv-til-oss-hjelpemidler-bil",
-    "_rev": "u0aCImji0gMopsRIxGHrGG",
+    "_rev": "9lyDtJBYotz3ZVD1nz4Avm",
     "_type": "theme",
-    "_updatedAt": "2020-03-19T16:04:58Z",
+    "_updatedAt": "2020-03-24T10:42:11Z",
     "channel": {
       "_ref": "skriv-til-oss",
       "_type": "reference"
@@ -886,11 +952,11 @@
         "_type": "localeBlock",
         "nb": [
           {
-            "_key": "b6232e69c416",
+            "_key": "b79aba1b1924",
             "_type": "block",
             "children": [
               {
-                "_key": "b6232e69c4160",
+                "_key": "b79aba1b19240",
                 "_type": "span",
                 "marks": [],
                 "text": "Gjelder spørsmål eller opplysninger om bil og transport for personer med varig nedsatt funksjonsevne som ikke kan bruke offentlig transport til arbeid, skole eller i dagliglivet."
@@ -905,14 +971,18 @@
         "_type": "localeString",
         "nb": "Spørsmål om bil og spesialutstyr til bil"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
-    "_createdAt": "2020-03-19T16:04:27Z",
+    "_createdAt": "2020-03-19T15:49:00Z",
     "_id": "skriv-til-oss-hjelpemidler-generelt",
-    "_rev": "EmVbhzgo47g94S28W1XNKu",
+    "_rev": "hT0QN4LUGVlDI3Er6x4zSn",
     "_type": "theme",
-    "_updatedAt": "2020-03-19T16:04:27Z",
+    "_updatedAt": "2020-03-24T10:42:02Z",
     "channel": {
       "_ref": "skriv-til-oss",
       "_type": "reference"
@@ -923,11 +993,11 @@
         "_type": "localeBlock",
         "nb": [
           {
-            "_key": "89ad3515fc04",
+            "_key": "6d1bc5b3595d",
             "_type": "block",
             "children": [
               {
-                "_key": "89ad3515fc040",
+                "_key": "6d1bc5b3595d0",
                 "_type": "span",
                 "marks": [],
                 "text": "Gjelder spørsmål om hjelpemidler eller tiltak som bidrar til å reduserer praktiske problemer for personer med nedsatt funksjonsevne."
@@ -942,14 +1012,18 @@
         "_type": "localeString",
         "nb": "Generelle spørsmål"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
-    "_createdAt": "2020-03-19T16:04:47Z",
+    "_createdAt": "2020-03-19T15:49:28Z",
     "_id": "skriv-til-oss-hjelpemidler-ortopedisk",
-    "_rev": "EmVbhzgo47g94S28W1XNy8",
+    "_rev": "hT0QN4LUGVlDI3Er6x4zW3",
     "_type": "theme",
-    "_updatedAt": "2020-03-19T16:04:47Z",
+    "_updatedAt": "2020-03-24T10:42:06Z",
     "channel": {
       "_ref": "skriv-til-oss",
       "_type": "reference"
@@ -960,11 +1034,11 @@
         "_type": "localeBlock",
         "nb": [
           {
-            "_key": "f89481911167",
+            "_key": "122fbb91d1f8",
             "_type": "block",
             "children": [
               {
-                "_key": "f894819111670",
+                "_key": "122fbb91d1f80",
                 "_type": "span",
                 "marks": [],
                 "text": "Du kan sende oss nye opplysninger knyttet til saken din om høreapparat, parykk, protese, ortose eller ortopediske fottøy."
@@ -979,14 +1053,18 @@
         "_type": "localeString",
         "nb": "Ortopediske hjelpemidler"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
     "_createdAt": "2020-03-17T11:47:20Z",
     "_id": "skriv-til-oss-jobbsoker",
-    "_rev": "WONRbMvf6hbYUecGd7UUA8",
+    "_rev": "04GyqxWeUbLYr2t4W54Q4L",
     "_type": "theme",
-    "_updatedAt": "2020-03-17T12:08:32Z",
+    "_updatedAt": "2020-03-24T10:41:30Z",
     "channel": {
       "_ref": "skriv-til-oss",
       "_type": "reference"
@@ -1004,7 +1082,7 @@
                 "_key": "57e786eae1fb0",
                 "_type": "span",
                 "marks": [],
-                "text": "Dagpenger, arbeidsavklaringspenger, tiltakspenger, melde deg som jobbsøker, CV."
+                "text": "Dagpenger, arbeidsavklaringspenger, tiltakspenger, melde deg som jobbsøker, CV. "
               }
             ],
             "markDefs": [],
@@ -1023,14 +1101,18 @@
         "_type": "localeString",
         "nb": "Jobbsøker"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
     "_createdAt": "2020-03-17T11:48:11Z",
     "_id": "skriv-til-oss-pensjonist",
-    "_rev": "WONRbMvf6hbYUecGd7UUA8",
+    "_rev": "MtH9UetV251fOhGAyFVjGv",
     "_type": "theme",
-    "_updatedAt": "2020-03-17T12:08:32Z",
+    "_updatedAt": "2020-03-25T10:13:01Z",
     "channel": {
       "_ref": "skriv-til-oss",
       "_type": "reference"
@@ -1060,14 +1142,39 @@
         "_type": "localeString",
         "nb": "Pensjonist"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": true,
+      "message": {
+        "_type": "localeBlock",
+        "nb": [
+          {
+            "_key": "e3a426a6705d",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "e3a426a6705d0",
+                "_type": "span",
+                "marks": [
+                  "strong"
+                ],
+                "text": "Stengt!"
+              }
+            ],
+            "markDefs": [],
+            "style": "h1"
+          }
+        ]
+      }
     }
   },
   {
     "_createdAt": "2020-03-17T11:47:32Z",
     "_id": "skriv-til-oss-syk",
-    "_rev": "WONRbMvf6hbYUecGd7UUA8",
+    "_rev": "9lyDtJBYotz3ZVD1nz4AXX",
     "_type": "theme",
-    "_updatedAt": "2020-03-17T12:08:32Z",
+    "_updatedAt": "2020-03-24T10:41:34Z",
     "channel": {
       "_ref": "skriv-til-oss",
       "_type": "reference"
@@ -1097,14 +1204,24 @@
         "_type": "localeString",
         "nb": "Syk"
       }
+    },
+    "page": {
+      "_type": "page",
+      "title": {
+        "_type": "localeString"
+      }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
     "_createdAt": "2020-03-17T11:48:02Z",
     "_id": "skriv-til-oss-ufor",
-    "_rev": "WONRbMvf6hbYUecGd7UUA8",
+    "_rev": "04GyqxWeUbLYr2t4W54QX5",
     "_type": "theme",
-    "_updatedAt": "2020-03-17T12:08:32Z",
+    "_updatedAt": "2020-03-24T10:41:47Z",
     "channel": {
       "_ref": "skriv-til-oss",
       "_type": "reference"
@@ -1134,6 +1251,10 @@
         "_type": "localeString",
         "nb": "Ufør"
       }
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   }
 ]

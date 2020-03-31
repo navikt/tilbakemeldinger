@@ -1,219 +1,10 @@
 [
   {
-    "_createdAt": "2020-03-20T16:59:24Z",
-    "_id": "1bce0011-0afa-417d-be4c-d18941252ef8",
-    "_rev": "EmVbhzgo47g94S28W1cnds",
-    "_type": "alert",
-    "_updatedAt": "2020-03-20T16:59:24Z",
-    "description": {
-      "_type": "localeBlock",
-      "nb": [
-        {
-          "_key": "a6ba49727a07",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "a6ba49727a070",
-              "_type": "span",
-              "marks": [],
-              "text": "Denne skal vises på skriv til oss og chat"
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        }
-      ]
-    },
-    "displayOnAllPages": false,
-    "displayOnSpesificPages": [
-      "chat-med-oss",
-      "skriv-til-oss"
-    ],
-    "type": "suksess"
-  },
-  {
-    "_createdAt": "2020-03-20T12:23:26Z",
-    "_id": "1df9bc52-e513-439f-800b-cee638669bf7",
-    "_rev": "u0aCImji0gMopsRIxGJnTG",
-    "_type": "alert",
-    "_updatedAt": "2020-03-20T16:59:33Z",
-    "description": {
-      "_type": "localeBlock",
-      "nb": [
-        {
-          "_key": "bdc07f3050cc",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "bdc07f3050cc0",
-              "_type": "span",
-              "marks": [],
-              "text": "Til info, så er det mange driftsmeldinger akkurat nå. Det kan hende du må scrolle."
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        }
-      ]
-    },
-    "displayOnAllPages": true,
-    "type": "info"
-  },
-  {
-    "_createdAt": "2020-03-20T12:22:56Z",
-    "_id": "2712cd16-9390-4346-b102-1cc19cc667c1",
-    "_rev": "u0aCImji0gMopsRIxGJnDG",
-    "_type": "alert",
-    "_updatedAt": "2020-03-20T16:58:34Z",
-    "description": {
-      "_type": "localeBlock",
-      "nb": [
-        {
-          "_key": "7fde3c507cfb",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "7fde3c507cfb0",
-              "_type": "span",
-              "marks": [],
-              "text": "Denne skal vises på alle sider"
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        }
-      ]
-    },
-    "displayOnAllPages": true,
-    "type": "info"
-  },
-  {
-    "_createdAt": "2020-03-20T17:01:21Z",
-    "_id": "3ea6d8c4-1b94-4955-97fe-a060ce30bd30",
-    "_rev": "EmVbhzgo47g94S28W1cpeu",
-    "_type": "alert",
-    "_updatedAt": "2020-03-20T17:01:21Z",
-    "description": {
-      "_type": "localeBlock",
-      "nb": [
-        {
-          "_key": "42c1d049383f",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "42c1d049383f0",
-              "_type": "span",
-              "marks": [],
-              "text": "Denne skal vises på forsiden"
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        }
-      ]
-    },
-    "displayOnAllPages": false,
-    "displayOnSpesificPages": [
-      "forsiden"
-    ],
-    "type": "info"
-  },
-  {
-    "_createdAt": "2020-03-20T16:59:56Z",
-    "_id": "418fa8ca-5bc0-46df-bce6-f6767974c00a",
-    "_rev": "u0aCImji0gMopsRIxGJniG",
-    "_type": "alert",
-    "_updatedAt": "2020-03-20T16:59:56Z",
-    "description": {
-      "_type": "localeBlock",
-      "nb": [
-        {
-          "_key": "6653d3d0f4a4",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "6653d3d0f4a40",
-              "_type": "span",
-              "marks": [],
-              "text": "Denne skal ikke vises noe sted"
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        }
-      ]
-    },
-    "displayOnAllPages": false,
-    "type": "feil"
-  },
-  {
-    "_createdAt": "2020-03-20T12:22:45Z",
-    "_id": "845b35b9-5ea9-48e5-9eef-ab7ab567c452",
-    "_rev": "EmVbhzgo47g94S28W1cnU4",
-    "_type": "alert",
-    "_updatedAt": "2020-03-20T16:59:07Z",
-    "description": {
-      "_type": "localeBlock",
-      "nb": [
-        {
-          "_key": "38776aa6341d",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "38776aa6341d0",
-              "_type": "span",
-              "marks": [],
-              "text": "Denne skal vises på skriv til oss"
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        }
-      ]
-    },
-    "displayOnAllPages": false,
-    "displayOnSpesificPages": [
-      "skriv-til-oss"
-    ],
-    "type": "feil"
-  },
-  {
-    "_createdAt": "2020-03-20T12:24:27Z",
-    "_id": "8dce2c1f-2edb-412d-b52f-7d447c24af6c",
-    "_rev": "u0aCImji0gMopsRIxGJnJG",
-    "_type": "alert",
-    "_updatedAt": "2020-03-20T16:58:48Z",
-    "description": {
-      "_type": "localeBlock",
-      "nb": [
-        {
-          "_key": "231c836567c2",
-          "_type": "block",
-          "children": [
-            {
-              "_key": "231c836567c20",
-              "_type": "span",
-              "marks": [],
-              "text": "Denne skal vises på chat"
-            }
-          ],
-          "markDefs": [],
-          "style": "normal"
-        }
-      ]
-    },
-    "displayOnAllPages": false,
-    "displayOnSpesificPages": [
-      "chat-med-oss"
-    ],
-    "type": "info"
-  },
-  {
     "_createdAt": "2020-03-19T08:27:18Z",
     "_id": "add967c7-eb37-45b3-aaac-e99dd1364e27",
-    "_rev": "EmVbhzgo47g94S28W1cbmO",
+    "_rev": "ssUhVIC0YlcCKh06IroMxz",
     "_type": "alert",
-    "_updatedAt": "2020-03-20T15:17:51Z",
+    "_updatedAt": "2020-03-25T09:54:29Z",
     "description": {
       "_type": "localeBlock",
       "nb": [
@@ -225,7 +16,15 @@
               "_key": "551ea32cd1620",
               "_type": "span",
               "marks": [],
-              "text": "Det er for tiden mange som kontakter oss. Hvis henvendelsen din ikke haster, ber vi deg ta kontakt senere."
+              "text": "Det er for tiden mange som kontakter oss. Hvis henvendelsen din ikke haster, ber vi deg ta kontakt senere. "
+            },
+            {
+              "_key": "551ea32cd1621",
+              "_type": "span",
+              "marks": [
+                "strong"
+              ],
+              "text": "Vi ber deg være tålmodig og vente på svar."
             }
           ],
           "markDefs": [],

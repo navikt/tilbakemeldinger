@@ -1,10 +1,13 @@
-import { LocaleString, TextBlock } from "../serializers";
+import { LocaleBlock, LocaleString, TextBlock } from "../serializers";
 import { Kanal } from "../../../types/kanaler";
 
 export type ChannelProps = {
   _id?: string;
   answer_time?: LocaleString;
-  closed?: boolean;
+  status?: {
+    closed?: boolean;
+    message?: LocaleBlock;
+  }
   description?: TextBlock[];
   preamble?: TextBlock[];
 };

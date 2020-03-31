@@ -2,7 +2,7 @@
   {
     "_createdAt": "2020-03-17T12:07:05Z",
     "_id": "chat",
-    "_rev": "WONRbMvf6hbYUecGd7UU64",
+    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
     "_type": "channel",
     "_updatedAt": "2020-03-17T12:08:04Z",
     "themes": [
@@ -43,10 +43,12 @@
   {
     "_createdAt": "2020-03-17T11:35:23Z",
     "_id": "chat-med-oss",
-    "_rev": "4HSN1iflZZx2rre9qUMrt8",
+    "_rev": "ssUhVIC0YlcCKh06Iroahb",
     "_type": "channel",
-    "_updatedAt": "2020-03-19T10:00:38Z",
-    "closed": true,
+    "_updatedAt": "2020-03-25T10:00:11Z",
+    "answer_time": {
+      "_type": "localeString"
+    },
     "description": {
       "_type": "localeBlock",
       "nb": [
@@ -58,7 +60,7 @@
               "_key": "65d4a497bc390",
               "_type": "span",
               "marks": [],
-              "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg."
+              "text": "Chatten er ikke innlogget. Du kan være anonym, og vi ser ikke informasjon om deg"
             }
           ],
           "markDefs": [],
@@ -70,11 +72,11 @@
       "_type": "localeBlock",
       "nb": [
         {
-          "_key": "acf27f5dfa29",
+          "_key": "2d1c6dcdcfc3",
           "_type": "block",
           "children": [
             {
-              "_key": "acf27f5dfa290",
+              "_key": "2d1c6dcdcfc30",
               "_type": "span",
               "marks": [],
               "text": "På chat svarer vi ikke på spørsmål om saken din."
@@ -84,59 +86,91 @@
           "style": "normal"
         }
       ]
+    },
+    "status": {
+      "_type": "status",
+      "closed": false,
+      "message": {
+        "_type": "localeBlock",
+        "nb": [
+          {
+            "_key": "b5f55fe74384",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "b5f55fe743840",
+                "_type": "span",
+                "marks": [
+                  "em"
+                ],
+                "text": "Chat med veileder er stengt"
+              }
+            ],
+            "markDefs": [],
+            "style": "normal"
+          }
+        ]
+      }
     }
   },
   {
     "_createdAt": "2020-03-17T11:35:04Z",
     "_id": "kontakt-din-veileder",
-    "_rev": "WONRbMvf6hbYUecGd7UU64",
+    "_rev": "04GyqxWeUbLYr2t4W54CEs",
     "_type": "channel",
-    "_updatedAt": "2020-03-17T11:35:04Z",
+    "_updatedAt": "2020-03-24T10:30:32Z",
     "answer_time": {
       "_type": "localeString",
-      "nb": "2 arbeidsdager"
+      "nb": "Svartid: 2 arbeidsdager. På grunn av stor pågang kan svartiden være lenger enn vanlig"
     },
     "description": {
       "_type": "localeBlock",
       "nb": [
         {
-          "_key": "5aa0de7e5dd3",
+          "_key": "c82de56703de",
           "_type": "block",
           "children": [
             {
-              "_key": "5aa0de7e5dd30",
+              "_key": "c82de56703de0",
               "_type": "span",
               "marks": [],
-              "text": "Du må være registrert som arbeidssøker for å kontakte veilederen din."
+              "text": "Vi opplever for tiden stor pågang. Svartiden kan derfor være lenger enn vanlig."
             }
           ],
           "markDefs": [],
           "style": "normal"
         }
       ]
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
     "_createdAt": "2020-03-17T11:34:48Z",
     "_id": "ring-oss",
-    "_rev": "FWkbPeFlPFjjwEQRoAJ5Ol",
+    "_rev": "9lyDtJBYotz3ZVD1nz43Hi",
     "_type": "channel",
-    "_updatedAt": "2020-03-18T14:24:26Z",
+    "_updatedAt": "2020-03-24T10:30:14Z",
     "description": {
       "_type": "localeBlock"
+    },
+    "status": {
+      "_type": "status",
+      "closed": false
     }
   },
   {
     "_createdAt": "2020-03-17T11:36:00Z",
     "_id": "skriv-til-oss",
-    "_rev": "uM7R8U1PzurmhiJpgsCGtD",
+    "_rev": "ssUhVIC0YlcCKh06IrorKF",
     "_type": "channel",
-    "_updatedAt": "2020-03-18T14:24:44Z",
+    "_updatedAt": "2020-03-25T10:09:15Z",
     "answer_time": {
       "_type": "localeString",
-      "nb": "3 arbeidsdager"
+      "nb": "Svartid: 3 arbeidsdager."
     },
-    "closed": true,
     "description": {
       "_type": "localeBlock",
       "nb": [
@@ -153,6 +187,20 @@
           ],
           "markDefs": [],
           "style": "normal"
+        },
+        {
+          "_key": "d71063f2ef19",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "d71063f2ef190",
+              "_type": "span",
+              "marks": [],
+              "text": ""
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
         }
       ]
     },
@@ -160,11 +208,11 @@
       "_type": "localeBlock",
       "nb": [
         {
-          "_key": "3facb8b64cfd",
+          "_key": "d3808293afb5",
           "_type": "block",
           "children": [
             {
-              "_key": "3facb8b64cfd0",
+              "_key": "d3808293afb50",
               "_type": "span",
               "marks": [],
               "text": "Send oss spørsmål eller nye opplysninger i saken din."
@@ -174,26 +222,51 @@
           "style": "normal"
         }
       ]
+    },
+    "status": {
+      "_type": "status",
+      "closed": false,
+      "message": {
+        "_type": "localeBlock",
+        "nb": [
+          {
+            "_key": "cffa3aaf6c8c",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "cffa3aaf6c8c0",
+                "_type": "span",
+                "marks": [
+                  "strong"
+                ],
+                "text": "Vi har stengt, prøv senere"
+              }
+            ],
+            "markDefs": [],
+            "style": "h4"
+          }
+        ]
+      }
     }
   },
   {
     "_createdAt": "2020-03-17T12:07:05Z",
     "_id": "telephone",
-    "_rev": "WONRbMvf6hbYUecGd7UU64",
+    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
     "_type": "channel",
     "_updatedAt": "2020-03-17T12:07:05Z"
   },
   {
     "_createdAt": "2020-03-17T12:07:05Z",
     "_id": "tutor",
-    "_rev": "WONRbMvf6hbYUecGd7UU64",
+    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
     "_type": "channel",
     "_updatedAt": "2020-03-17T12:07:05Z"
   },
   {
     "_createdAt": "2020-03-17T12:07:05Z",
     "_id": "write",
-    "_rev": "WONRbMvf6hbYUecGd7UU64",
+    "_rev": "lrDMfu4dQPEWZuTSwsekIX",
     "_type": "channel",
     "_updatedAt": "2020-03-17T12:08:04Z",
     "themes": [

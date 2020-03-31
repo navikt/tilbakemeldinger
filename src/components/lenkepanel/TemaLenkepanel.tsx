@@ -6,7 +6,6 @@ import { FormattedMessage } from "react-intl";
 import React from "react";
 import { logEvent } from "../../utils/logger";
 import { useStore } from "../../providers/Provider";
-import { TjenesteStengtMelding } from "../varsler/tjeneste-stengt/TjenesteStengtMelding";
 import { TemaLenke } from "../../types/kanaler";
 import { SanityBlocks } from "../sanity-blocks/SanityBlocks";
 import { NavContentLoader } from "../content-loader/NavContentLoader";
@@ -14,9 +13,10 @@ import { NavContentLoader } from "../content-loader/NavContentLoader";
 type Props = {
   lenkepanelData: TemaLenke;
   cssPrefix: string;
+  disableIfClosed?: boolean;
 };
 
-const TemaLenkepanel = ({ lenkepanelData, cssPrefix }: Props) => {
+const TemaLenkepanel = ({ lenkepanelData, cssPrefix, disableIfClosed }: Props) => {
   const onClick = () => {
     logEvent({ event: lenkepanelData.grafanaId });
   };
@@ -25,7 +25,9 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix }: Props) => {
   const [{ themes }] = useStore();
   const temaProps = themes.props[tema];
 
-  const disableLink = temaProps.closed && tema.includes("sto-");
+  const closed = temaProps.status && temaProps.status.closed;
+  const closedMsg = temaProps.status && temaProps.status.message;
+  const isDisabled = closed && disableIfClosed;
   const lenkePanelTekst = temaProps.link;
   const tittel = lenkePanelTekst && lenkePanelTekst.title;
   const ingress = lenkePanelTekst && lenkePanelTekst.description;
@@ -33,10 +35,10 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix }: Props) => {
   return (
     <LenkepanelBase
       border={true}
-      className={`${cssPrefix}__temalenke linkbox__container ${disableLink
+      className={`${cssPrefix}__temalenke linkbox__container ${isDisabled
         ? ` ${cssPrefix}__lenkepanel-disabled` : ""}`}
       href={""}
-      linkCreator={!disableLink ? (props => {
+      linkCreator={!isDisabled ? (props => {
         return lenkepanelData.externalUrl ? (
           <a
             href={lenkepanelData.url}
@@ -69,7 +71,7 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix }: Props) => {
               ? <SanityBlocks blocks={ingress} />
               : <NavContentLoader lines={2} lineHeight={6} />}
           </div>
-          {disableLink && <TjenesteStengtMelding />}
+          {isDisabled && closedMsg && <SanityBlocks blocks={closedMsg} />}
         </div>
       </div>
     </LenkepanelBase>
