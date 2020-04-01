@@ -32,6 +32,7 @@ export const temaToSanityId = {
   [STOTema.Pensjon]: "skriv-til-oss-pensjonist",
   [STOTema.Syk]: "skriv-til-oss-syk",
   [STOTema.Ufor]: "skriv-til-oss-ufor",
+  [STOTema.Sosial]: "skriv-til-oss-sosialhjelp",
   [STOTema.Hjelpemidler]: "skriv-til-oss-hjelpemidler",
   [STOTema.HjelpemidlerGenerelt]: "skriv-til-oss-hjelpemidler-generelt",
   [STOTema.HjelpemidlerOrtopedisk]: "skriv-til-oss-hjelpemidler-ortopedisk",
@@ -48,4 +49,4 @@ export const initialThemes = {
 
 export const createCompleteThemeList = (themeProps: ThemeProps[]) =>
   Object.entries(temaToSanityId).reduce((acc, [kanalId, sanityId]) =>
-    ({...acc, [kanalId]: themeProps.find(cp => cp._id === sanityId) || {}}), {});
+    ({...acc, [kanalId]: themeProps.find(props => props._id === sanityId) || {}}), {});

@@ -1,7 +1,6 @@
 import { urls } from "../../Config";
 import { STOTema, TemaLenke } from "../../types/kanaler";
 
-// TODO: data i sanity for disse
 export const hjelpemidlerLenkepaneler: TemaLenke[] = [
   {
     tema: STOTema.HjelpemidlerGenerelt,
@@ -60,6 +59,13 @@ export const skrivTilOssLenkepaneler: TemaLenke[] = [
     fallbackTittelId: "skrivtiloss.pensjonist.lenke.tittel",
     grafanaId: "skrivtiloss.pensjonist",
     url: urls.skrivTilOss.pensjonist,
+    externalUrl: true
+  },
+  {
+    tema: STOTema.Sosial,
+    fallbackTittelId: "skrivtiloss.sosial.lenke.tittel",
+    grafanaId: "skrivtiloss.sosial",
+    url: urls.skrivTilOss.sosialhjelp,
     externalUrl: true
   },
   {

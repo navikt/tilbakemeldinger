@@ -49,7 +49,12 @@ const SkrivTilOssBase = ({ tittelId, lenkepanelData, children }: Props) => {
           {!isClosed && (
             <div className={`${cssPrefix}__lenke-seksjon`}>
               {lenkepanelData && lenkepanelData.map(lenke => (
-                <TemaLenkepanel lenkepanelData={lenke} cssPrefix={cssPrefix} disableIfClosed={true} key={lenke.tema} />
+                <TemaLenkepanel
+                  lenkepanelData={lenke}
+                  cssPrefix={cssPrefix}
+                  disableIfClosed={true}
+                  key={lenke.tema}
+                />
               ))}
             </div>
           )}
