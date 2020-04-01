@@ -49,4 +49,4 @@ export const initialThemes = {
 
 export const createCompleteThemeList = (themeProps: ThemeProps[]) =>
   Object.entries(temaToSanityId).reduce((acc, [kanalId, sanityId]) =>
-    ({...acc, [kanalId]: themeProps.find(cp => cp._id === sanityId) || {}}), {});
+    ({...acc, [kanalId]: themeProps.find(props => props._id === sanityId) || {}}), {});

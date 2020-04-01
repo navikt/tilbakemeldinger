@@ -1,4 +1,5 @@
 import Environment from "./Environments";
+import moment from "moment-timezone";
 export const forsidePath = "/person/kontakt-oss";
 const { tjenesteUrl, baseAppPath } = Environment();
 const navUrl = Environment().baseUrl;
@@ -117,3 +118,7 @@ export default {
   vars,
   forsidePath
 };
+
+export const skrivTilOssSosialhjelpErLansert =
+  moment().tz("Europe/Oslo")
+    .isAfter(moment("08:00 02-04-2020", vars.defaultDatoTidFormat));
