@@ -1,4 +1,5 @@
 import Environment from "./Environments";
+import moment from "moment-timezone";
 export const forsidePath = "/person/kontakt-oss";
 const { tjenesteUrl, baseAppPath } = Environment();
 const navUrl = Environment().baseUrl;
@@ -51,6 +52,7 @@ export const urls = {
     familieogbarn: `${tjenesteUrl}/mininnboks/sporsmal/skriv/FMLI`,
     ufor: `${tjenesteUrl}/mininnboks/sporsmal/skriv/UFRT`,
     pensjonist: `${tjenesteUrl}/mininnboks/sporsmal/skriv/PENS`,
+    sosialhjelp: `${tjenesteUrl}/mininnboks/sporsmal/skriv/OKSOS`,
     hjelpemidler: `${baseAppPath}/skriv-til-oss/hjelpemidler`,
     temaHjelpemidler: {
       generelt: `${tjenesteUrl}/mininnboks/sporsmal/skriv/HJLPM`,
@@ -116,3 +118,7 @@ export default {
   vars,
   forsidePath
 };
+
+export const skrivTilOssSosialhjelpErLansert =
+  moment().tz("Europe/Oslo")
+    .isAfter(moment("08:00 02-04-2020", vars.defaultDatoTidFormat));
