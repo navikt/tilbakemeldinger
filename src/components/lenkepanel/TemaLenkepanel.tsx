@@ -6,10 +6,9 @@ import { FormattedMessage } from "react-intl";
 import React from "react";
 import { logEvent } from "../../utils/logger";
 import { useStore } from "../../providers/Provider";
-import { STOTema, TemaLenke } from "../../types/kanaler";
+import { TemaLenke } from "../../types/kanaler";
 import { SanityBlocks } from "../sanity-blocks/SanityBlocks";
 import { NavContentLoader } from "../content-loader/NavContentLoader";
-import { skrivTilOssSosialhjelpErLansert } from "../../Config";
 
 type Props = {
   lenkepanelData: TemaLenke;
@@ -25,10 +24,6 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix, disableIfClosed }: Props) =
   const tema = lenkepanelData.tema;
   const [{ themes }] = useStore();
   const temaProps = themes.props[tema];
-
-  if (tema === STOTema.Sosial && !skrivTilOssSosialhjelpErLansert) {
-    return null;
-  }
 
   const closed = temaProps.status && temaProps.status.closed;
   const closedMsg = temaProps.status && temaProps.status.message;
