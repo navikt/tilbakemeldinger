@@ -1,6 +1,5 @@
 import { AuthInfo } from "../types/authInfo";
 import { KontaktInfo } from "../types/kontaktInfo";
-import { Sprak } from "../types/sprak";
 import sprak from "../language/provider";
 import { Enheter, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../components/error/Error";
@@ -8,11 +7,12 @@ import { Alert, Alerts, initialAlerts } from "../utils/sanity/endpoints/alert";
 import { FAQ, FAQLenke, initialFAQ } from "../utils/sanity/endpoints/faq";
 import { Channels, ChannelList, initialChannels } from "../utils/sanity/endpoints/channels";
 import { initialThemes, ThemeList, Themes } from "../utils/sanity/endpoints/themes";
+import { defaultLang, Lang, Sprak } from "../types/sprak";
 
 export const initialState = {
   fodselsnr: "",
   language: sprak,
-  locale: "nb" as "nb",
+  locale: defaultLang,
   enheter: { status: "LOADING" } as FetchEnheter,
   auth: { authenticated: false } as AuthInfo,
   kontaktInfo: { mobiltelefonnummer: "" },
@@ -24,12 +24,12 @@ export const initialState = {
 };
 
 export interface Store {
-  locale: "nb";
-  language: Sprak;
-  auth: AuthInfo;
   fodselsnr: string;
-  kontaktInfo: KontaktInfo;
+  language: Sprak;
+  locale: Lang;
   enheter: FetchEnheter;
+  auth: AuthInfo;
+  kontaktInfo: KontaktInfo;
   visTekniskFeilMelding: boolean;
   alerts: Alerts;
   faq: FAQ;
@@ -77,6 +77,9 @@ export type Action =
   type: "SETT_THEMES_FETCH_FAILED";
 } | {
   type: "SETT_TEKNISK_FEILMELDING";
+} | {
+  type: "SETT_LOCALE";
+  payload: Lang;
 };
 
 export const reducer = (state: Store, action: Action) => {
@@ -175,10 +178,15 @@ export const reducer = (state: Store, action: Action) => {
         visTekniskFeilMelding: true
       };
     }
-    case "SETT_TEKNISK_FEILMELDING" :
+    case "SETT_TEKNISK_FEILMELDING":
       return {
         ...state,
         visTekniskFeilMelding: true
+      };
+    case "SETT_LOCALE":
+      return {
+        ...state,
+        locale: action.payload
       };
     default:
       return state;
