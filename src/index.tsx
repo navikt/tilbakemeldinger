@@ -1,5 +1,5 @@
 import "./polyfills";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { IntlProvider } from "react-intl";
 
@@ -11,17 +11,15 @@ import footer from "./clients/apiMock/decorator/decorator-footer";
 import scripts from "./clients/apiMock/decorator/decorator-scripts";
 import skiplinks from "./clients/apiMock/decorator/decorator-skiplinks";
 import styles from "./clients/apiMock/decorator/decorator-styles";
-import { StoreProvider, useStore } from "./providers/Provider";
+import { StoreProvider } from "./providers/Provider";
 import { initialState, reducer } from "./providers/Store";
 
 import msgsNb from "./language/nb";
 import msgsEn from "./language/en";
 import { ValidatorsProvider } from "calidation";
 import { extraValidators, SimpleValidators } from "./utils/validators";
-import { defaultLocale, isLocale, Locale, validLocales } from "./types/sprak";
-import { forsidePath } from "./Config";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { locale } from "moment";
+import { defaultLocale, Locale } from "./types/sprak";
+import { BrowserRouter } from "react-router-dom";
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -17,7 +17,6 @@ import { chatConfig } from "./data/chatConfig";
 import { LocaleBlockContent } from "../../components/sanity-blocks/LocaleBlockContent";
 import { NavContentLoader } from "../../components/content-loader/NavContentLoader";
 import { VarselVisning } from "../../components/varsler/VarselVisning";
-import { SanityVarsel } from "../../components/varsler/SanityVarsel";
 import { Varsel } from "../../components/varsler/Varsel";
 import { useLocaleString } from "../../utils/sanity/useLocaleString";
 

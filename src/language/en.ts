@@ -1,4 +1,4 @@
-import Config, { urls } from "../Config";
+import { urls } from "../Config";
 
 export default {
   //

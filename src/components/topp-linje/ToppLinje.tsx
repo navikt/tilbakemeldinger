@@ -5,7 +5,6 @@ import { urls } from "../../Config";
 import HjemIkon from "assets/icons/line/home-1-line.svg";
 import Environment from "../../Environments";
 import { SprakVelger } from "../sprakvelger/SprakVelger";
-import { useStore } from "../../providers/Provider";
 
 const baseLenker: Array<BreadcrumbLenke> = [
   {

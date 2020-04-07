@@ -7,7 +7,6 @@ import { Kanal, TemaLenke } from "../../types/kanaler";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { VarselVisning } from "../../components/varsler/VarselVisning";
 import { useStore } from "../../providers/Provider";
-import { SanityVarsel } from "../../components/varsler/SanityVarsel";
 import { LocaleBlockContent } from "../../components/sanity-blocks/LocaleBlockContent";
 import { Varsel } from "../../components/varsler/Varsel";
 

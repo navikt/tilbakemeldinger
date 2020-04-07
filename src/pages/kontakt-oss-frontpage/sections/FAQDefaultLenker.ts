@@ -1,5 +1,4 @@
 import { urls } from "../../../Config";
-import { FAQLenke } from "../../../utils/sanity/endpoints/faq";
 
 export const lenkerFAQDefault = [
   {
