@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Tilbakemeldinger from "./pages/tilbakemeldinger/Tilbakemeldinger";
 import Ros from "./pages/tilbakemeldinger/ros-til-nav/Ros";
@@ -111,68 +111,103 @@ const App = () => {
 
     return (
       <>
-        <Router>
-          <ScrollToTop>
-            <Switch>
-              <Route
-                exact={true}
-                path={`(|${forsidePath})`}
-                component={KontaktOssFrontpage}
-              />
-              <Route
-                exact={false}
-                path={urls.skrivTilOss.forside}
-                component={SkrivTilOssRouter}
-              />
-              <Route
-                exact={false}
-                path={urls.chat.forside}
-                component={ChatRouter}
-              />
-              <Route
-                exact={true}
-                path={urls.finnNavKontor.finnDittNavKontorUinnlogget}
-                component={FinnNavKontorPage}
-              />
-              <Route
-                exact={true}
-                path={urls.tilbakemeldinger.forside}
-                component={Tilbakemeldinger}
-              />
-              <Route
-                exact={true}
-                path={urls.tilbakemeldinger.serviceklage.login}
-                component={ServiceKlageLogin}
-              />
-              <Route
-                exact={true}
-                path={urls.tilbakemeldinger.serviceklage.form}
-                component={ServiceKlage}
-              />
-              <Route
-                exact={true}
-                path={urls.tilbakemeldinger.rostilnav}
-                component={Ros}
-              />
-              <Route
-                exact={true}
-                path={urls.tilbakemeldinger.feilogmangler}
-                component={FeilOgMangler}
-              />
-              <Route
-                exact={true}
-                path={urls.samegiella.base}
-                render={() => (window.location.href = urls.samegiella.redirect)}
-              />
-              <Route
-                exact={true}
-                path={urls.samegiella.samtale}
-                component={BestillingAvSamtale}
-              />
-              <Route component={PageNotFound} />
-            </Switch>
-          </ScrollToTop>
-        </Router>
+        <ScrollToTop>
+          <Switch>
+            {["", "/nb", "/en"].flatMap(locale => {
+              let key = 0;
+              return [
+                (
+                  <Route
+                    exact={true}
+                    path={`${locale}${forsidePath}`}
+                    component={KontaktOssFrontpage}
+                    key={key++}
+                  />
+                ),
+                (
+                  <Route
+                    exact={false}
+                    path={urls.skrivTilOss.forside}
+                    component={SkrivTilOssRouter}
+                    key={key++}
+                  />
+                ),
+                (
+                  <Route
+                    exact={false}
+                    path={urls.chat.forside}
+                    component={ChatRouter}
+                    key={key++}
+                  />
+                ),
+                (
+                  <Route
+                    exact={true}
+                    path={urls.finnNavKontor.finnDittNavKontorUinnlogget}
+                    component={FinnNavKontorPage}
+                    key={key++}
+                  />
+                ),
+                (
+                  <Route
+                    exact={true}
+                    path={urls.tilbakemeldinger.forside}
+                    component={Tilbakemeldinger}
+                    key={key++}
+                  />
+                ),
+                (
+                  <Route
+                    exact={true}
+                    path={urls.tilbakemeldinger.serviceklage.login}
+                    component={ServiceKlageLogin}
+                    key={key++}
+                  />
+                ),
+                (
+                  <Route
+                    exact={true}
+                    path={urls.tilbakemeldinger.serviceklage.form}
+                    component={ServiceKlage}
+                    key={key++}
+                  />
+                ),
+                (
+                  <Route
+                    exact={true}
+                    path={urls.tilbakemeldinger.rostilnav}
+                    component={Ros}
+                    key={key++}
+                  />
+                ),
+                (
+                  <Route
+                    exact={true}
+                    path={urls.tilbakemeldinger.feilogmangler}
+                    component={FeilOgMangler}
+                    key={key++}
+                  />
+                ),
+                (
+                  <Route
+                    exact={true}
+                    path={urls.samegiella.base}
+                    render={() => (window.location.href = urls.samegiella.redirect)}
+                    key={key++}
+                  />
+                ),
+                (
+                  <Route
+                    exact={true}
+                    path={urls.samegiella.samtale}
+                    component={BestillingAvSamtale}
+                    key={key++}
+                  />
+                )];
+            })}
+            <Route component={PageNotFound} />
+          </Switch>
+        </ScrollToTop>
       </>
     );
   }

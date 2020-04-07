@@ -18,7 +18,7 @@ import MetaTags from "react-meta-tags";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
-import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
+import BreadcrumbsWrapper from "../../../components/topp-linje/ToppLinje";
 import { triggerHotjar } from "../../../utils/hotjar";
 
 export interface OutboundFeilOgMangler {

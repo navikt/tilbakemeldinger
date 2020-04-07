@@ -4,7 +4,7 @@ import { Input, Label } from "nav-frontend-skjema";
 import { Form } from "calidation";
 import { Knapp } from "nav-frontend-knapper";
 import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
-import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
+import BreadcrumbsWrapper from "../../components/topp-linje/ToppLinje";
 import { ResultatvisningVedSubmit } from "./components/ResultatvisningVedSubmit";
 import { ResultatvisningDynamisk } from "./components/ResultatvisningDynamisk";
 import { kjorSokOgReturnerResultat } from "./FinnNavKontorSok";

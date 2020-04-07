@@ -29,7 +29,7 @@ import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import { triggerHotjar } from "utils/hotjar";
 import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
-import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
+import BreadcrumbsWrapper from "../../../components/topp-linje/ToppLinje";
 import ServiceKlageTypeUtdypning from "./ServiceKlageTypeUtdypning";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &

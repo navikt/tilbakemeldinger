@@ -8,7 +8,7 @@ import Box from "components/box/Box";
 import Header from "components/header/Header";
 import MetaTags from "react-meta-tags";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
-import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
+import BreadcrumbsWrapper from "../../../components/topp-linje/ToppLinje";
 const { loginUrl } = Environment();
 
 const ServiceKlageLogin = () => {

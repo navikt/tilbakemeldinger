@@ -4,7 +4,7 @@ import Header from "../../components/header/Header";
 import TilpassetLenkepanel from "../../components/lenkepanel/Lenkepanel";
 import MetaTags from "react-meta-tags";
 import { useIntl } from "react-intl";
-import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
+import BreadcrumbsWrapper from "../../components/topp-linje/ToppLinje";
 
 const Tilbakemeldinger = () => {
   const intl = useIntl();

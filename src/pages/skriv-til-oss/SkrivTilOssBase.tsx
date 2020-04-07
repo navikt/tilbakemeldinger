@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import { Sidetittel } from "nav-frontend-typografi";
 import { FormattedMessage, useIntl } from "react-intl";
 import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
-import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
+import BreadcrumbsWrapper from "../../components/topp-linje/ToppLinje";
 import { Kanal, TemaLenke } from "../../types/kanaler";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { VarselVisning } from "../../components/varsler/VarselVisning";
 import { useStore } from "../../providers/Provider";
 import { SanityVarsel } from "../../components/varsler/SanityVarsel";
+import { LocaleBlockContent } from "../../components/sanity-blocks/LocaleBlockContent";
+import { Varsel } from "../../components/varsler/Varsel";
 
 const cssPrefix = "skriv-til-oss";
 
@@ -43,7 +45,13 @@ const SkrivTilOssBase = ({ tittelId, lenkepanelData, children }: Props) => {
           <div className={`${cssPrefix}__ingress`}>
             {children}
             <VarselVisning kanal={Kanal.SkrivTilOss}>
-              {isClosed && closedMsg ? <SanityVarsel localeBlock={closedMsg} type={"info"}/> : undefined}
+              <>
+                {isClosed && (
+                  <Varsel type={"info"}>
+                    <LocaleBlockContent localeBlock={closedMsg}/>
+                  </Varsel>
+                )}
+              </>
             </VarselVisning>
           </div>
           {!isClosed && (

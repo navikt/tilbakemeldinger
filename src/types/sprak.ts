@@ -2,6 +2,8 @@ export interface Sprak {
   [key: string]: {};
 }
 
-export type Lang = "nb" | "en";
+export type Locale = "nb" | "en";
+export const validLocales: Locale[] = ["nb", "en"];  // :(
+export const defaultLocale = "nb" as Locale;
 
-export const defaultLang = "nb" as Lang;
+export const isLocale = (str: string): str is Locale => validLocales.includes(str as Locale);

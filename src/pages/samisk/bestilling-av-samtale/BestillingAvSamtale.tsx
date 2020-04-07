@@ -15,7 +15,7 @@ import { sjekkForFeil } from "utils/validators";
 import { FormattedMessage } from "react-intl";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "assets/Veileder.svg";
-import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
+import BreadcrumbsWrapper from "../../../components/topp-linje/ToppLinje";
 import { useStore } from "../../../providers/Provider";
 
 type TIDSROM = "FORMIDDAG" | "FORMIDDAG" | "BEGGE";

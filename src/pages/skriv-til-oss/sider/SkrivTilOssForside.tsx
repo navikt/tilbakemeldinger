@@ -4,12 +4,13 @@ import MetaTags from "react-meta-tags";
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { Normaltekst } from "nav-frontend-typografi";
 import { useStore } from "../../../providers/Provider";
-import { Language, TextBlock } from "../../../utils/sanity/serializers";
 import { Kanal } from "../../../types/kanaler";
 import { skrivTilOssLenkepaneler } from "../skrivTilOssTemaLenker";
-import { SanityBlocks } from "../../../components/sanity-blocks/SanityBlocks";
+import { LocaleBlockContent } from "../../../components/sanity-blocks/LocaleBlockContent";
+import { useLocaleString } from "../../../utils/sanity/useLocaleString";
+import { LocaleBlock } from "../../../utils/sanity/common-types";
 
-const Ingress = ({tekst}: {tekst: TextBlock[] | undefined}) => {
+const Ingress = ({tekst}: {tekst: LocaleBlock | undefined}) => {
   const intl = useIntl();
 
   return (
@@ -21,17 +22,17 @@ const Ingress = ({tekst}: {tekst: TextBlock[] | undefined}) => {
           content={intl.messages["skrivtiloss.description"] as string}
         />
       </MetaTags>
-      <SanityBlocks blocks={tekst} />
+      <LocaleBlockContent localeBlock={tekst} />
     </>
   );
 };
 
 const SkrivTilOssForside = () => {
   const [{ channels }] = useStore();
+  const localeString = useLocaleString();
 
   const stoProps = channels.props[Kanal.SkrivTilOss];
-  const svartid = stoProps.answer_time;
-  const ingressTekstBlokk = stoProps.preamble;
+  const svartid = localeString(stoProps.answer_time);
 
   return (
     <SkrivTilOssBase
@@ -39,12 +40,12 @@ const SkrivTilOssForside = () => {
       lenkepanelData={skrivTilOssLenkepaneler}
     >
       <>
-        {svartid && svartid[Language.Bokmaal] && (
+        {svartid && (
           <Normaltekst className={"svartid"}>
-            {svartid[Language.Bokmaal]}
+            {svartid}
           </Normaltekst>
         )}
-        <Ingress tekst={ingressTekstBlokk} />
+        <Ingress tekst={stoProps.preamble} />
       </>
     </SkrivTilOssBase>
   );

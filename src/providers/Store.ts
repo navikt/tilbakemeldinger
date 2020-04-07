@@ -7,12 +7,12 @@ import { Alert, Alerts, initialAlerts } from "../utils/sanity/endpoints/alert";
 import { FAQ, FAQLenke, initialFAQ } from "../utils/sanity/endpoints/faq";
 import { Channels, ChannelList, initialChannels } from "../utils/sanity/endpoints/channels";
 import { initialThemes, ThemeList, Themes } from "../utils/sanity/endpoints/themes";
-import { defaultLang, Lang, Sprak } from "../types/sprak";
+import { defaultLocale, Locale, Sprak } from "../types/sprak";
 
 export const initialState = {
   fodselsnr: "",
   language: sprak,
-  locale: defaultLang,
+  locale: defaultLocale,
   enheter: { status: "LOADING" } as FetchEnheter,
   auth: { authenticated: false } as AuthInfo,
   kontaktInfo: { mobiltelefonnummer: "" },
@@ -26,7 +26,7 @@ export const initialState = {
 export interface Store {
   fodselsnr: string;
   language: Sprak;
-  locale: Lang;
+  locale: Locale;
   enheter: FetchEnheter;
   auth: AuthInfo;
   kontaktInfo: KontaktInfo;
@@ -79,7 +79,7 @@ export type Action =
   type: "SETT_TEKNISK_FEILMELDING";
 } | {
   type: "SETT_LOCALE";
-  payload: Lang;
+  payload: Locale;
 };
 
 export const reducer = (state: Store, action: Action) => {

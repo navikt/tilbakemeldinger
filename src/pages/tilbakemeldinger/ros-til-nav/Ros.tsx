@@ -19,7 +19,7 @@ import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import { triggerHotjar } from "utils/hotjar";
-import BreadcrumbsWrapper from "components/breadcrumbs/BreadcrumbsWrapper";
+import BreadcrumbsWrapper from "components/topp-linje/ToppLinje";
 import SelectEnhet from "components/input-fields/SelectEnhet";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_TJENESTER" | "NAV_KONTOR";

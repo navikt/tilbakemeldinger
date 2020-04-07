@@ -63,6 +63,8 @@ commands:
                   "'https://$PROJECT_URL.nais.oera-q.local'",
                   "'https://www-q6.nav.no/person/$PROJECT_URL'",
                   "'https://www-q1.nav.no/person/$PROJECT_URL'",
+                  "'https://www-q1.nav.no/nb/person/$PROJECT_URL'",
+                  "'https://www-q1.nav.no/en/person/$PROJECT_URL'",
                   "'https://www-q0.nav.no/person/$PROJECT_URL'"
             ]}' | tee -a nais.dev-sbs.vars.json
 

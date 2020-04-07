@@ -1,5 +1,5 @@
 import "./polyfills";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { IntlProvider } from "react-intl";
 
@@ -18,14 +18,17 @@ import msgsNb from "./language/nb";
 import msgsEn from "./language/en";
 import { ValidatorsProvider } from "calidation";
 import { extraValidators, SimpleValidators } from "./utils/validators";
-import { Lang } from "./types/sprak";
+import { defaultLocale, isLocale, Locale, validLocales } from "./types/sprak";
+import { forsidePath } from "./Config";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { locale } from "moment";
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-const messages: { [key in Lang]: any } = { nb: msgsNb, en: msgsEn };
+const messages: { [key in Locale]: any } = { nb: msgsNb, en: msgsEn };
 
 const init = async () => {
   if (process.env.NODE_ENV === "development") {
@@ -57,21 +60,33 @@ const init = async () => {
   }
 
   ReactDOM.render((
-      <StoreProvider initialState={initialState} reducer={reducer}>
-        <RenderApp />
-      </StoreProvider>
-    ), document.getElementById("app"));
+    <StoreProvider initialState={initialState} reducer={reducer}>
+      <RenderApp />
+    </StoreProvider>
+  ), document.getElementById("app"));
   serviceWorker.unregister();
 };
 
 const RenderApp = () => {
-  const [{ locale }] = useStore();
+  // const [, dispatch] = useStore();
+  //
+  // useEffect(() => {
+  //   const localeFromUrl = window.location.pathname
+  //     .split(forsidePath)[1]
+  //     .split("/")[1];
+  //
+  //   if (isLocale(localeFromUrl)) {
+  //     dispatch({ type: "SETT_LOCALE", payload: localeFromUrl });
+  //   }
+  // }, []);
 
   return (
     <ValidatorsProvider validators={extraValidators as SimpleValidators}>
-      <IntlProvider locale={locale} messages={messages[locale]}>
-        <App />
-      </IntlProvider>
+      <BrowserRouter>
+        <IntlProvider locale={defaultLocale} messages={messages[defaultLocale]}>
+          <App />
+        </IntlProvider>
+      </BrowserRouter>
     </ValidatorsProvider>
   );
 };
