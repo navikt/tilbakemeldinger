@@ -16,7 +16,7 @@ import {
   OutboundServiceKlageExtend
 } from "types/serviceklage";
 import Header from "components/header/Header";
-import { urls } from "Config";
+import { urls, useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import { Checkbox, Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
@@ -41,6 +41,7 @@ const ServiceKlage = () => {
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState();
   const intl = useIntl();
+  const paths = useLocalePaths();
 
   const baseFormConfig = {
     klagetyper: {
@@ -145,8 +146,8 @@ const ServiceKlage = () => {
   };
 
   const tilbakeTil = auth.authenticated
-    ? urls.tilbakemeldinger.forside
-    : urls.tilbakemeldinger.serviceklage.login;
+    ? paths.tilbakemeldinger.forside
+    : paths.tilbakemeldinger.serviceklage.login;
 
   return (
     <div className="pagecontent">

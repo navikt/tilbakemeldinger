@@ -11,7 +11,7 @@ import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, Form, Validation } from "calidation";
 import { ValueType } from "react-select/src/types";
 import Header from "components/header/Header";
-import { urls } from "Config";
+import { urls, useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import MetaTags from "react-meta-tags";
@@ -39,6 +39,7 @@ const Ros = () => {
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState();
   const intl = useIntl();
+  const paths = useLocalePaths();
 
   const formConfig = {
     navn: {},
@@ -221,7 +222,7 @@ const Ros = () => {
                         </Knapp>
                       </div>
                       <div className="tb__knapp">
-                        <Link to={urls.tilbakemeldinger.forside}>
+                        <Link to={paths.tilbakemeldinger.forside}>
                           <Knapp type={"flat"}>
                             <FormattedMessage id={"felter.tilbake"} />
                           </Knapp>

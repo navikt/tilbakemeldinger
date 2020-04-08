@@ -1,10 +1,10 @@
 import React from "react";
 
 import Breadcrumbs, { BreadcrumbLenke } from "../breadcrumbs/Breadcrumbs";
-import { urls } from "../../Config";
 import HjemIkon from "assets/icons/line/home-1-line.svg";
 import Environment from "../../Environments";
 import { SprakVelger } from "../sprakvelger/SprakVelger";
+import { useLocalePaths } from "../../Config";
 
 const baseLenker: Array<BreadcrumbLenke> = [
   {
@@ -19,7 +19,7 @@ export const ToppLinje = () => {
     <div className={"kontakt-oss-topplinje"}>
       <Breadcrumbs
         currentPath={window.location.pathname}
-        basePath={urls.baseAppPath}
+        basePath={useLocalePaths().baseAppPath}
         ikonUrl={HjemIkon}
         baseLenker={baseLenker}
       />

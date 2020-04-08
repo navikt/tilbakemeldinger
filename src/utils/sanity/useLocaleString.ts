@@ -1,5 +1,5 @@
-import { defaultLocale, Locale } from "../../types/sprak";
 import { useStore } from "../../providers/Provider";
+import { defaultLocale, Locale } from "../locale";
 
 export const useLocaleString = () => {
   const [{ locale }] = useStore();

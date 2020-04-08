@@ -1,4 +1,4 @@
-import { urls } from "../../Config";
+import { paths, urls } from "../../Config";
 import heartIcon from "assets/icons/line/line-version-logo-heart.svg";
 import paperIcon from "assets/icons/line/line-version-logo-paper.svg";
 import complaintIcon from "assets/icons/line/line-version-logo-complaint.svg";
@@ -26,21 +26,21 @@ export const lenker: Lenke[] = [
     icon: complaintIcon,
     tittel: "tilbakemeldinger.serviceklage.tittel",
     beskrivelse: "tilbakemeldinger.serviceklage.beskrivelse",
-    lenke: urls.tilbakemeldinger.serviceklage.login,
+    lenke: paths.tilbakemeldinger.serviceklage.login,
     lenkeTekst: "tilbakemeldinger.serviceklage.link"
   },
   {
     icon: wrenchIcon,
     tittel: "tilbakemeldinger.feilogmangler.tittel",
     beskrivelse: "tilbakemeldinger.feilogmangler.beskrivelse",
-    lenke: urls.tilbakemeldinger.feilogmangler,
+    lenke: paths.tilbakemeldinger.feilogmangler,
     lenkeTekst: "tilbakemeldinger.feilogmangler.link"
   },
   {
     icon: heartIcon,
     tittel: "tilbakemeldinger.ros.tittel",
     beskrivelse: "tilbakemeldinger.ros.beskrivelse",
-    lenke: urls.tilbakemeldinger.rostilnav,
+    lenke: paths.tilbakemeldinger.rostilnav,
     lenkeTekst: "tilbakemeldinger.ros.link"
   }
 ];

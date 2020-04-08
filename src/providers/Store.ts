@@ -7,7 +7,8 @@ import { Alert, Alerts, initialAlerts } from "../utils/sanity/endpoints/alert";
 import { FAQ, FAQLenke, initialFAQ } from "../utils/sanity/endpoints/faq";
 import { Channels, ChannelList, initialChannels } from "../utils/sanity/endpoints/channels";
 import { initialThemes, ThemeList, Themes } from "../utils/sanity/endpoints/themes";
-import { defaultLocale, Locale, Sprak } from "../types/sprak";
+import { defaultLocale, Locale } from "../utils/locale";
+import { Sprak } from "../types/sprak";
 
 export const initialState = {
   fodselsnr: "",

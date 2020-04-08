@@ -9,6 +9,7 @@ import { TemaLenke } from "../../types/kanaler";
 import { LocaleBlockContent } from "../sanity-blocks/LocaleBlockContent";
 import { NavContentLoader } from "../content-loader/NavContentLoader";
 import { useLocaleString } from "../../utils/sanity/useLocaleString";
+import { localePath } from "../../utils/locale";
 
 type Props = {
   lenkepanelData: TemaLenke;
@@ -21,7 +22,7 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix, disableIfClosed }: Props) =
     logEvent({ event: lenkepanelData.grafanaId });
   };
 
-  const [{ themes }] = useStore();
+  const [{ themes, locale }] = useStore();
   const localeString = useLocaleString();
 
   const tema = lenkepanelData.tema;
@@ -51,7 +52,7 @@ const TemaLenkepanel = ({ lenkepanelData, cssPrefix, disableIfClosed }: Props) =
           </a>
         ) : (
           <Link
-            to={lenkepanelData.url}
+            to={localePath(lenkepanelData.url, locale)}
             className={props.className}
             onClick={onClick}
           >

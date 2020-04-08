@@ -284,8 +284,8 @@ export default {
   "felter.typefeil.feilinformasjon": "Feil informasjon",
   "felter.typefeil.uu": "Feil på siden ved bruk av hjelpemiddelteknologi",
   "felter.melding.tittel": "Din tilbakemelding",
-  "felter.melding.beskrivelse":
-    `Unngå sensitive personopplysninger, som for eksempel opplysninger om helseforhold eller diagnoser. Du kan ikke spørre om status i saken din, da må du logge inn og sjekke på Ditt NAV under <a href="${Config.urls.tilbakemeldinger.serviceklage.saksoversikt}" class="lenke">Dine saker</a>. Finner du ikke svaret, kan du sjekke <a href="${Config.urls.tilbakemeldinger.serviceklage.saksbehandlingstider}" class="lenke">saksbehandlingstider</a> eller ta kontakt i <a href="${Config.urls.skrivTilOss.forside}" class="lenke">Skriv til oss</a>.`,
+  "felter.melding.beskrivelse": // TODO: oversett
+    `Unngå sensitive personopplysninger, som for eksempel opplysninger om helseforhold eller diagnoser. Du kan ikke spørre om status i saken din, da må du logge inn og sjekke på Ditt NAV under <a href="${Config.urls.tilbakemeldinger.serviceklage.saksoversikt}" class="lenke">Dine saker</a>. Finner du ikke svaret, kan du sjekke <a href="${Config.urls.tilbakemeldinger.serviceklage.saksbehandlingstider}" class="lenke">saksbehandlingstider</a> eller ta kontakt i <a href={stoPath} class="lenke">Skriv til oss</a>.`,
   "felter.noegikkgalt": "Oi! Noe gikk galt:",
   "felter.send": "Send",
   "felter.tilbake": "Tilbake",

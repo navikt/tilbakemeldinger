@@ -29,11 +29,11 @@ const cssPrefix = "chat-tema";
 const ChatTemaside = ({ chatTema }: Props) => {
   const [chatButtonClickedTimestamp, setChatButtonClickedTimestamp] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
-  const [{ themes, channels }] = useStore();
+  const [{ locale, themes, channels }] = useStore();
   const localeString = useLocaleString();
 
   const startChat = chatTema === ChatTema.EURES
-    ? () => window.location.assign(Config.urls.chat.eures.chat)
+    ? () => window.location.assign(Config.urls.chatEures)
     : () => setChatButtonClickedTimestamp(Date.now());
 
   const { harChatbot, tittelId, grafanaId } = chatTemaSideData[chatTema];

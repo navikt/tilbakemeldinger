@@ -3,7 +3,7 @@ import { useStore } from "providers/Provider";
 import { Hovedknapp } from "nav-frontend-knapper";
 import { Link, Redirect } from "react-router-dom";
 import Environment from "Environments";
-import { urls } from "Config";
+import { urls, useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import Header from "components/header/Header";
 import MetaTags from "react-meta-tags";
@@ -14,9 +14,10 @@ const { loginUrl } = Environment();
 const ServiceKlageLogin = () => {
   const [{ auth }] = useStore();
   const intl = useIntl();
+  const paths = useLocalePaths();
 
   if (auth.authenticated) {
-    return <Redirect to={urls.tilbakemeldinger.serviceklage.form} />;
+    return <Redirect to={paths.tilbakemeldinger.serviceklage.form} />;
   }
 
   return (
@@ -54,7 +55,7 @@ const ServiceKlageLogin = () => {
           <div className={"tb__knapp serviceKlage__login-lenke"}>
             <Link
               className={"lenke"}
-              to={urls.tilbakemeldinger.serviceklage.form}
+              to={paths.tilbakemeldinger.serviceklage.form}
             >
               <FormattedMessage
                 id={"tilbakemeldinger.serviceklage.login.knapp.fortsettuten"}

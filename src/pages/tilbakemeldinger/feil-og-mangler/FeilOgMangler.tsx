@@ -10,7 +10,7 @@ import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, FormValidation } from "calidation";
 import Header from "components/header/Header";
-import { urls } from "Config";
+import { urls, useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
@@ -33,6 +33,7 @@ const FOM = () => {
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState();
   const intl = useIntl();
+  const paths = useLocalePaths();
 
   const formConfig = {
     feiltype: {
@@ -176,7 +177,7 @@ const FOM = () => {
                     </Knapp>
                   </div>
                   <div className="tb__knapp">
-                    <Link to={urls.tilbakemeldinger.forside}>
+                    <Link to={paths.tilbakemeldinger.forside}>
                       <Knapp type={"flat"}>
                         <FormattedMessage id={"felter.tilbake"} />
                       </Knapp>

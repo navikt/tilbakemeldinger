@@ -5,9 +5,13 @@ import TilpassetLenkepanel from "../../components/lenkepanel/Lenkepanel";
 import MetaTags from "react-meta-tags";
 import { useIntl } from "react-intl";
 import BreadcrumbsWrapper from "../../components/topp-linje/ToppLinje";
+import { localePath } from "../../utils/locale";
+import { useStore } from "../../providers/Provider";
 
 const Tilbakemeldinger = () => {
   const intl = useIntl();
+  const [{ locale }] = useStore();
+
   return (
     <>
       <div className="pagecontent">
@@ -33,7 +37,7 @@ const Tilbakemeldinger = () => {
             id={lenke.tittel}
             tittel={intl.messages[lenke.tittel] as string}
             beskrivelse={lenke.beskrivelse}
-            to={lenke.lenke}
+            to={lenke.external ? lenke.lenke : localePath(lenke.lenke, locale)}
             lenkeTekst={intl.messages[lenke.lenkeTekst] as string}
             external={lenke.external}
           />

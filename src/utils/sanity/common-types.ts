@@ -1,5 +1,5 @@
-import { Locale } from "../../types/sprak";
 import React from "react";
+import { Locale } from "../locale";
 
 export enum TypoStyle {
   H1 = "h1",
