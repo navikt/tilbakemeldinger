@@ -12,13 +12,12 @@ import scripts from "./clients/apiMock/decorator/decorator-scripts";
 import skiplinks from "./clients/apiMock/decorator/decorator-skiplinks";
 import styles from "./clients/apiMock/decorator/decorator-styles";
 import { StoreProvider, useStore } from "./providers/Provider";
-import { Action, initialState, reducer } from "./providers/Store";
+import { initialState, reducer } from "./providers/Store";
 
 import msgsNb from "./language/nb";
 import msgsEn from "./language/en";
 import { ValidatorsProvider } from "calidation";
 import { extraValidators, SimpleValidators } from "./utils/validators";
-import { forsidePath } from "./Config";
 import { Locale, setLocaleFromUrl } from "./utils/locale";
 
 // If you want your app to work offline and load faster, you can change
@@ -70,6 +69,7 @@ const RenderApp = () => {
 
   useEffect(() => {
     setLocaleFromUrl(dispatch);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

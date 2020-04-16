@@ -5,7 +5,7 @@ import ChatForside from "./ChatForside";
 import { chatTemaLenker } from "./data/chatTemaLenker";
 import ChatTemaside from "./ChatTemaside";
 import { ChatTema } from "../../types/kanaler";
-import { Locale, localePath } from "../../utils/locale";
+import { localePath } from "../../utils/locale";
 import { useLocalePaths } from "../../Config";
 import { useStore } from "../../providers/Provider";
 

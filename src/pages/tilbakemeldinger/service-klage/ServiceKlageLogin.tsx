@@ -3,7 +3,7 @@ import { useStore } from "providers/Provider";
 import { Hovedknapp } from "nav-frontend-knapper";
 import { Link, Redirect } from "react-router-dom";
 import Environment from "Environments";
-import { urls, useLocalePaths } from "Config";
+import { useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import Header from "components/header/Header";
 import MetaTags from "react-meta-tags";

@@ -29,7 +29,7 @@ const cssPrefix = "chat-tema";
 const ChatTemaside = ({ chatTema }: Props) => {
   const [chatButtonClickedTimestamp, setChatButtonClickedTimestamp] = useState();
   const [serverTidOffset, setServerTidOffset] = useState(0);
-  const [{ locale, themes, channels }] = useStore();
+  const [{ themes, channels }] = useStore();
   const localeString = useLocaleString();
 
   const startChat = chatTema === ChatTema.EURES

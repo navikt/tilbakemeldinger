@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router";
-import { urls, useLocalePaths } from "../../Config";
+import { useLocalePaths } from "../../Config";
 
 import SkrivTilOssForside from "./sider/SkrivTilOssForside";
 import TemaHjelpemidler from "./sider/TemaHjelpemidler";

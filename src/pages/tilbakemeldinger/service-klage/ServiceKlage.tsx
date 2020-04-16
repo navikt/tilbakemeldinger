@@ -16,7 +16,7 @@ import {
   OutboundServiceKlageExtend
 } from "types/serviceklage";
 import Header from "components/header/Header";
-import { urls, useLocalePaths } from "Config";
+import { useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import { Checkbox, Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";

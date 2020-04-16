@@ -11,7 +11,7 @@ import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, Form, Validation } from "calidation";
 import { ValueType } from "react-select/src/types";
 import Header from "components/header/Header";
-import { urls, useLocalePaths } from "Config";
+import { useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import MetaTags from "react-meta-tags";

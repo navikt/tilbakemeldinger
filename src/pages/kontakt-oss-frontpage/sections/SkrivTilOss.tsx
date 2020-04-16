@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import IkonPanel from "components/ikonpanel/IkonPanel";
-import { urls, useLocalePaths } from "Config";
+import { useLocalePaths } from "Config";
 import ikon from "assets/forside-skrivtiloss-ikon.svg";
 import { logEvent } from "utils/logger";
 import RouterLenke from "components/routerlenke/RouterLenkeMedChevron";
