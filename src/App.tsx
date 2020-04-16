@@ -20,7 +20,7 @@ import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import KontaktOssFrontpage from "./pages/kontakt-oss-frontpage/KontaktOss";
 import SkrivTilOssRouter from "./pages/skriv-til-oss/SkrivTilOssRouter";
 import BestillingAvSamtale from "./pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
-import { forsidePath, useLocalePaths, urls } from "./Config";
+import { forsidePath, urls, paths } from "./Config";
 import ChatRouter from "./pages/chat/ChatRouter";
 import FinnNavKontorPage from "./pages/finn-nav-kontor/FinnNavKontorPage";
 import { FAQLenke } from "./utils/sanity/endpoints/faq";
@@ -31,7 +31,6 @@ import { defaultLocale, localePath, validLocales } from "./utils/locale";
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
-  const paths = useLocalePaths();
 
   useEffect(() => {
     if (!auth.authenticated) {
@@ -118,11 +117,11 @@ const App = () => {
       <BrowserRouter>
         <ScrollToTop>
           <Switch>
-            {["/nb", "/en"].flatMap(localeSegment => [
+            {validLocales.flatMap(locale => [
               (
                 <Route
                   exact={true}
-                  path={paths.baseAppPath}
+                  path={localePath("/", locale)}
                   component={KontaktOssFrontpage}
                   key={key++}
                 />
@@ -130,7 +129,7 @@ const App = () => {
               (
                 <Route
                   exact={false}
-                  path={paths.skrivTilOss.forside}
+                  path={localePath(paths.skrivTilOss.forside, locale)}
                   component={SkrivTilOssRouter}
                   key={key++}
                 />
@@ -138,7 +137,7 @@ const App = () => {
               (
                 <Route
                   exact={false}
-                  path={paths.chat.forside}
+                  path={localePath(paths.chat.forside, locale)}
                   component={ChatRouter}
                   key={key++}
                 />
@@ -146,7 +145,7 @@ const App = () => {
               (
                 <Route
                   exact={true}
-                  path={paths.finnDittNavKontorUinnlogget}
+                  path={localePath(paths.finnDittNavKontorUinnlogget, locale)}
                   component={FinnNavKontorPage}
                   key={key++}
                 />
@@ -154,7 +153,7 @@ const App = () => {
               (
                 <Route
                   exact={true}
-                  path={paths.tilbakemeldinger.forside}
+                  path={localePath(paths.tilbakemeldinger.forside, locale)}
                   component={Tilbakemeldinger}
                   key={key++}
                 />
@@ -162,7 +161,7 @@ const App = () => {
               (
                 <Route
                   exact={true}
-                  path={paths.tilbakemeldinger.serviceklage.login}
+                  path={localePath(paths.tilbakemeldinger.serviceklage.login, locale)}
                   component={ServiceKlageLogin}
                   key={key++}
                 />
@@ -170,7 +169,7 @@ const App = () => {
               (
                 <Route
                   exact={true}
-                  path={paths.tilbakemeldinger.serviceklage.form}
+                  path={localePath(paths.tilbakemeldinger.serviceklage.form, locale)}
                   component={ServiceKlage}
                   key={key++}
                 />
@@ -178,7 +177,7 @@ const App = () => {
               (
                 <Route
                   exact={true}
-                  path={paths.tilbakemeldinger.rostilnav}
+                  path={localePath(paths.tilbakemeldinger.rostilnav, locale)}
                   component={Ros}
                   key={key++}
                 />
@@ -186,7 +185,7 @@ const App = () => {
               (
                 <Route
                   exact={true}
-                  path={paths.tilbakemeldinger.feilogmangler}
+                  path={localePath(paths.tilbakemeldinger.feilogmangler, locale)}
                   component={FeilOgMangler}
                   key={key++}
                 />
@@ -194,7 +193,7 @@ const App = () => {
               (
                 <Route
                   exact={true}
-                  path={paths.samegiella.base}
+                  path={localePath(paths.samegiella.base, locale)}
                   render={() => (window.location.href = urls.samegiella.redirect)}
                   key={key++}
                 />
@@ -202,7 +201,7 @@ const App = () => {
               (
                 <Route
                   exact={true}
-                  path={paths.samegiella.samtale}
+                  path={localePath(paths.samegiella.samtale, locale)}
                   component={BestillingAvSamtale}
                   key={key++}
                 />

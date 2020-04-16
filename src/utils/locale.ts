@@ -10,10 +10,13 @@ export const localePath = (path: string, locale: Locale) => `${forsidePath}/${lo
 const isLocale = (str: string): str is Locale => validLocales.includes(str as Locale);
 
 export const setNewLocaleUrl = (locale: Locale, dispatch: (action: Action) => void) => {
+  // TODO: bruk regex?
   const subSegments = window.location.pathname
-    .split(forsidePath)
-    .slice(2);
-  const newUrl = `${forsidePath}/${locale}${subSegments}`;
+    .split(forsidePath)[1]
+    .split("/")
+    .slice(2)
+    .join("/");
+  const newUrl = `${forsidePath}/${locale}/${subSegments}`;
 
   window.history.pushState({}, "", newUrl);
   dispatch({ type: "SETT_LOCALE", payload: locale });

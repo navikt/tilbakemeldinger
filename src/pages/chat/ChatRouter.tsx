@@ -5,29 +5,30 @@ import ChatForside from "./ChatForside";
 import { chatTemaLenker } from "./data/chatTemaLenker";
 import ChatTemaside from "./ChatTemaside";
 import { ChatTema } from "../../types/kanaler";
-import { localePath } from "../../utils/locale";
-import { useLocalePaths } from "../../Config";
-import { useStore } from "../../providers/Provider";
+import { localePath, validLocales } from "../../utils/locale";
+import { paths } from "../../Config";
 
 const ChatRouter = () => {
-  const paths = useLocalePaths();
-  const [{ locale }] = useStore();
-
   return (
     <Switch>
-      <Route
-        exact={true}
-        path={paths.chat.forside}
-        component={ChatForside}
-      />
-      {chatTemaLenker.map(lenke => (
-        <Route
-          exact={true}
-          path={localePath(lenke.url, locale)}
-          render={() => <ChatTemaside chatTema={lenke.tema as ChatTema} />}
-          key={lenke.tema}
-        />
-      ))}
+      {validLocales.flatMap(locale => [
+        (
+          <Route
+            exact={true}
+            path={localePath(paths.chat.forside, locale)}
+            component={ChatForside}
+            key={locale}
+          />
+        ),
+        chatTemaLenker.map(lenke => (
+          <Route
+            exact={true}
+            path={localePath(lenke.url, locale)}
+            render={() => <ChatTemaside chatTema={lenke.tema as ChatTema} />}
+            key={lenke.tema}
+          />
+        ))
+      ])}
       <Route>
         <NotFound />
       </Route>
