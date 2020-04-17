@@ -88,7 +88,10 @@ export const paths = {
 
 export const urls = {
   chatEures: "https://ec.europa.eu/eures/main.jsp?acro=eures&lang=no&catId=10821&parentCategory=10821",
-  ringOss: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-nav-pa-telefon2`,
+  ringOss: {
+    nb: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-nav-pa-telefon2`,
+    en: `${navUrl}/en/home/about-nav/contact-us`
+  },
   faqDefault: {
     utbetalingsoversikt: `${tjenesteUrl}/utbetalingsoversikt/`,
     saksoversikt: `${tjenesteUrl}/saksoversikt/`,
@@ -123,10 +126,16 @@ export const urls = {
   },
   tolkeTjenesten: {
     tolketjenesten: `${navUrl}/no/person/hjelpemidler/tjenester-og-produkter/tolketjenesten`,
-    spraktolk: `${navUrl}/no/person/arbeid/oppfolging-og-tiltak-for-a-komme-i-jobb/oppfolging-fra-nav/trenger-du-språktolk`,
+    spraktolk: {
+      nb: `${navUrl}/no/person/arbeid/oppfolging-og-tiltak-for-a-komme-i-jobb/oppfolging-fra-nav/trenger-du-språktolk`,
+      en: `${navUrl}/en/home/benefits-and-services/relatert-informasjon/do-you-need-an-interpreter`
+    },
   },
   tilbakemeldinger: {
-    klagepavedtak: `${navUrl}/soknader/nb/klage`,
+    klagepavedtak: {
+      nb: `${navUrl}/soknader/nb/klage`,
+      en: `${navUrl}/soknader/en/klage/person`
+    },
     klagerettigheter: `${navUrl}/no/nav-og-samfunn/kontakt-nav/klage-ris-og-ros/klagerettigheter`,
     serviceklage: {
       fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,

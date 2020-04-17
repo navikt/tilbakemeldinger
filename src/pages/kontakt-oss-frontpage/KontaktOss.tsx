@@ -17,9 +17,14 @@ import KontaktVeileder from "./sections/KontaktVeileder";
 import Pressekontakt from "./sections/Pressekontakt";
 import SosialeMedier from "./sections/SosialeMedier";
 import { VarselVisning } from "../../components/varsler/VarselVisning";
+import Environment from "../../Environments";
+import { localePath } from "../../utils/locale";
+import { useStore } from "../../providers/Provider";
 
 const KontaktOssFrontpage = () => {
   const intl = useIntl();
+  const baseUrl = Environment().baseUrl;
+  const [{ locale }] = useStore();
 
   useEffect(() => {
     /*
@@ -45,6 +50,10 @@ const KontaktOssFrontpage = () => {
               name="description"
               content={intl.messages["seo.kontaktoss.description"] as string}
             />
+            <link rel="canonical" href={`${baseUrl}${localePath("", locale)}`} />
+            <link rel="alternate" href={`${baseUrl}${localePath("", "nb")}`} hrefLang="nb" />
+            <link rel="alternate" href={`${baseUrl}${localePath("", "en")}`} hrefLang="en" />
+            <link rel="alternate" href={`${baseUrl}${localePath("", "en")}`} hrefLang="x-default" />
           </MetaTags>
           <header className="frontpage__introduksjon">
             <div className="frontpage__sidetittel">
@@ -57,14 +66,14 @@ const KontaktOssFrontpage = () => {
           <div className="frontpage__content">
             <Chat />
             <div className="frontpage__row">
-              <RingOss />
+              <RingOss locale={locale} />
               <FAQ />
             </div>
             <KontaktVeileder />
             <SkrivTilOss />
             <Facebook />
             <FinnNavKontor />
-            <Tolketjenesten />
+            <Tolketjenesten locale={locale} />
             <KlageOgTilbakemeldinger />
             <FeilOgMangler />
             <Pressekontakt />

@@ -2,7 +2,7 @@ import React from "react";
 import { useIntl } from "react-intl";
 import { Select } from "nav-frontend-skjema";
 import { useStore } from "../../providers/Provider";
-import { Locale, setNewLocaleUrl } from "../../utils/locale";
+import { Locale, setNewLocale } from "../../utils/locale";
 
 export const SprakVelger = () => {
   const [{ locale }, dispatch] = useStore();
@@ -10,7 +10,7 @@ export const SprakVelger = () => {
 
   return (
     <Select
-      onChange={(e) => e.target.value && setNewLocaleUrl(e.target.value as Locale, dispatch)}
+      onChange={(e) => e.target.value && setNewLocale(e.target.value as Locale, dispatch)}
       value={locale}
     >
       <option value={""} disabled={true}>{intl.formatMessage({ id: "sprak.velg" })}</option>

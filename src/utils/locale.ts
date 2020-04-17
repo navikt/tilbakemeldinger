@@ -9,7 +9,7 @@ export const localePath = (path: string, locale: Locale) => `${forsidePath}/${lo
 
 const isLocale = (str: string): str is Locale => validLocales.includes(str as Locale);
 
-export const setNewLocaleUrl = (locale: Locale, dispatch: (action: Action) => void) => {
+export const setNewLocale = (locale: Locale, dispatch: (action: Action) => void) => {
   // TODO: bruk regex?
   const subSegments = window.location.pathname
     .split(forsidePath)[1]
