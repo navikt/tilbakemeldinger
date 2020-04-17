@@ -121,7 +121,7 @@ export default {
   "chat.stengt.info": "Chat is closed, see opening hours below.",
   "chat.admin-stengt.veileder": "Chat with a counsellor is currently unavailable.",
 
-  "chat.arbeidsgiver.tittel": "Arbeidsgiver og samhandler",
+  "chat.arbeidsgiver.tittel": "Employers and collaborators",
   "chat.jobbsoker.tittel": "Jobseeker",
   "chat.syk.tittel": "Sickness benefit",
   "chat.familie.tittel": "Parents, children and family",

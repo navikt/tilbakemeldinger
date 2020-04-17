@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { Systemtittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/topp-linje/ToppLinje";
 import ChatbotWrapper from "./ChatbotWrapper";
@@ -31,6 +31,7 @@ const ChatTemaside = ({ chatTema }: Props) => {
   const [serverTidOffset, setServerTidOffset] = useState(0);
   const [{ themes, channels }] = useStore();
   const localeString = useLocaleString();
+  const formatMessage = useIntl().formatMessage;
 
   const startChat = chatTema === ChatTema.EURES
     ? () => window.location.assign(Config.urls.chatEures)
@@ -46,7 +47,7 @@ const ChatTemaside = ({ chatTema }: Props) => {
     || (channelProps.status && channelProps.status.message);
 
   const text = temaProps.page;
-  const tittel = (text && localeString(text.title)) || <FormattedMessage id={tittelId} />;
+  const tittel = (text && localeString(text.title)) || formatMessage({ id: tittelId });
   const ingress = text && <LocaleBlockContent localeBlock={text.content} />;
 
   const documentTitle = `${tittel} - www.nav.no`;
