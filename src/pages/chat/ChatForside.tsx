@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import React from "react";
+import { FormattedMessage } from "react-intl";
 import { Sidetittel } from "nav-frontend-typografi";
 import BreadcrumbsWrapper from "../../components/topp-linje/ToppLinje";
 import { useStore } from "../../providers/Provider";
@@ -10,16 +10,13 @@ import { LocaleBlockContent } from "../../components/sanity-blocks/LocaleBlockCo
 import { NavContentLoader } from "../../components/content-loader/NavContentLoader";
 import { VarselVisning } from "../../components/varsler/VarselVisning";
 import { Varsel } from "../../components/varsler/Varsel";
+import { MetaTags } from "../../components/metatags/MetaTags";
+import { paths } from "../../Config";
 
 const cssPrefix = "chat-med-oss";
 const sideTittelId = "chat.forside.tittel";
 
 const ChatForside = () => {
-  const documentTitle = `${useIntl().formatMessage({ id: sideTittelId })} - www.nav.no`;
-  useEffect(() => {
-    document.title = documentTitle;
-  }, [documentTitle]);
-
   const [{ channels }] = useStore();
   const chatProps = channels.props[Kanal.Chat];
   const isClosed = chatProps.status && chatProps.status.closed;
@@ -29,6 +26,11 @@ const ChatForside = () => {
     <>
       <div className={`${cssPrefix} pagecontent`}>
         <BreadcrumbsWrapper />
+        <MetaTags
+          titleId={"chat.forside.tittel"}
+          descriptionId={"kontaktoss.chat.beskrivelse"}
+          path={paths.chat.forside}
+        />
         <div className={`${cssPrefix}__header`}>
           <Sidetittel>
             <FormattedMessage id={sideTittelId} />

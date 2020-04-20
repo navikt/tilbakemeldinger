@@ -41,7 +41,7 @@ const KontaktOssFrontpage = () => {
         <BreadcrumbsWrapper />
         <div className="frontpage">
           <MetaTags
-            titleId={"seo.kontaktoss.tittel"}
+            titleId={"kontaktoss.tittel"}
             descriptionId={"seo.kontaktoss.description"}
             path={""}
           />

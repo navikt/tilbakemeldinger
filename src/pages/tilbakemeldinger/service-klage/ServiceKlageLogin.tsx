@@ -24,7 +24,10 @@ const ServiceKlageLogin = () => {
   return (
     <div className="pagecontent">
       <BreadcrumbsWrapper />
-      <MetaTags titleId={"seo.klagepaservice.login.tittel"} />
+      <MetaTags
+        titleId={"tilbakemeldinger.serviceklage.login.tittel"}
+        path={paths.tilbakemeldinger.serviceklage.login}
+      />
       <Header
         title={intl.formatMessage({
           id: "tilbakemeldinger.serviceklage.login.tittel"

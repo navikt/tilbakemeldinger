@@ -83,8 +83,9 @@ const FOM = () => {
     <div className="pagecontent">
       <BreadcrumbsWrapper />
       <MetaTags
-        titleId={"seo.feilogmangler.tittel"}
+        titleId={"tilbakemeldinger.feilogmangler.tittel"}
         descriptionId={"seo.feilogmangler.description"}
+        path={paths.tilbakemeldinger.feilogmangler}
       />
       <Header
         title={intl.formatMessage({

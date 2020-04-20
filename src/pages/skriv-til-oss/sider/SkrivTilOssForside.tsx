@@ -6,18 +6,8 @@ import { Kanal } from "../../../types/kanaler";
 import { skrivTilOssLenkepaneler } from "../skrivTilOssTemaLenker";
 import { LocaleBlockContent } from "../../../components/sanity-blocks/LocaleBlockContent";
 import { useLocaleString } from "../../../utils/sanity/useLocaleString";
-import { LocaleBlock } from "../../../utils/sanity/common-types";
 import { MetaTags } from "../../../components/metatags/MetaTags";
-
-const Ingress = ({ tekst }: { tekst: LocaleBlock | undefined }) => (
-  <>
-    <MetaTags
-      titleId={"skrivtiloss.tittel"}
-      descriptionId={"skrivtiloss.description"}
-    />
-    <LocaleBlockContent localeBlock={tekst} />
-  </>
-);
+import { paths } from "../../../Config";
 
 const SkrivTilOssForside = () => {
   const [{ channels }] = useStore();
@@ -32,12 +22,17 @@ const SkrivTilOssForside = () => {
       lenkepanelData={skrivTilOssLenkepaneler}
     >
       <>
+        <MetaTags
+          titleId={"skrivtiloss.tittel"}
+          descriptionId={"skrivtiloss.description"}
+          path={paths.skrivTilOss.forside}
+        />
         {svartid && (
           <Normaltekst className={"svartid"}>
             {svartid}
           </Normaltekst>
         )}
-        <Ingress tekst={stoProps.preamble} />
+        <LocaleBlockContent localeBlock={stoProps.preamble} />
       </>
     </SkrivTilOssBase>
   );

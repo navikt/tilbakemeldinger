@@ -153,8 +153,9 @@ const ServiceKlage = () => {
     <div className="pagecontent">
       <BreadcrumbsWrapper />
       <MetaTags
-        titleId={"seo.klagepaservice.tittel"}
+        titleId={"tilbakemeldinger.serviceklage.form.tittel"}
         descriptionId={"seo.klagepaservice.description"}
+        path={paths.tilbakemeldinger.serviceklage.form}
       />
       <Header
         title={intl.formatMessage({

@@ -16,7 +16,7 @@ const Tilbakemeldinger = () => {
       <div className="pagecontent">
         <BreadcrumbsWrapper />
         <MetaTags
-          titleId={"seo.tilbakemeldinger.tittel"}
+          titleId={"tilbakemeldinger.sidetittel"}
           descriptionId={"seo.tilbakemeldinger.description"}
         />
         <div className={"tilbakemeldinger__tittel"}>
@@ -24,7 +24,7 @@ const Tilbakemeldinger = () => {
             title={intl.formatMessage({ id: "tilbakemeldinger.sidetittel" })}
           />
         </div>
-        {lenker(locale).map(lenke => (
+        {lenker(locale, intl.formatHTMLMessage).map(lenke => (
           <TilpassetLenkepanel
             icon={lenke.icon}
             key={lenke.tittel}

@@ -21,7 +21,7 @@ export const MetaTags = ({ path, titleId, descriptionId, children }: Props) => {
     <ReactMetaTags>
       {titleId && (
         <title>
-          {intl.formatMessage({ id: titleId })}
+          {`${intl.formatMessage({ id: titleId })} - www.nav.no`}
         </title>
       )}
       {descriptionId && (

@@ -1,17 +1,20 @@
-import { urls } from "../Config";
-
 export default {
   //
   // Varsler
   //
   "varsel.teknisk.feil": "We are currently experiencing technical difficulties with our back-end systems. This could result in some information missing from these pages.",
   "varsel.koronavirus": "Coronavirus - what applies in my situation",
+  "varsel.koronavirus.navkontor":
+    "To prevent spread of the coronavirus, visits to NAV offices \n" +
+    "have been replaced with contact through digital channels. \n" +
+    "If you are in an emergency situation, you may call and get an appointment at the NAV office.",
+  "varsel.koronavirus.navkontor.lenke": "Coronavirus - dialogue with NAV",
 
   //
   // Språkvelger
   //
   "sprak.velg": "Choose language",
-  "sprak.nb": "Norwegian",
+  "sprak.nb": "Norsk",
   "sprak.en": "English",
 
   //
@@ -122,13 +125,21 @@ export default {
   "chat.admin-stengt.veileder": "Chat with a counsellor is currently unavailable.",
 
   "chat.arbeidsgiver.tittel": "Employers and collaborators",
+  "chat.arbeidsgiver.metatittel": "Chat with us - Employers and collaborators",
   "chat.jobbsoker.tittel": "Jobseeker",
+  "chat.jobbsoker.metatittel": "Chat with us - Jobseeker",
   "chat.syk.tittel": "Sickness benefit",
+  "chat.syk.metatittel": "Chat with us - Sickness benefit",
   "chat.familie.tittel": "Parents, children and family",
+  "chat.familie.metatittel": "Chat with us - Parents, children and family",
   "chat.ufor.tittel": "Disabled",
+  "chat.ufor.metatittel": "Chat with us - Disabled",
   "chat.sosialhjelp.tittel": "Social services and financial social assistance",
+  "chat.sosialhjelp.metatittel": "Chat with us - Social services and financial social assistance",
   "chat.okonomi.tittel": "Financial advice and debt counselling",
+  "chat.okonomi.metatittel": "Chat with us - Financial advice and debt counselling",
   "chat.eures.tittel": "Ask EURES about jobs and recruitment in the EEA area",
+  "chat.eures.metatittel": "Chat with EURES about jobs and recruitment in the EEA area",
 
   "apningstid.avvik": "<p>Special opening hours:</p>",
   "apningstid.avvik.chatbot":
@@ -198,7 +209,7 @@ export default {
   "tilbakemeldinger.klageanke.beskrivelse":
     "If your application has been rejected in whole or in part, you can appeal against the decision. " +
     "If your appeal to NAV is unsuccessful, you can, with some exceptions, appeal to the National Insurance Court. " +
-    `Read more about your <a href="${urls.tilbakemeldinger.klagerettigheter}" class="lenke">right to appeal</a>.`,
+    "Read more about your <a href=\"{klagerettigheter}\" class=\"lenke\">right to appeal</a>.",
   "tilbakemeldinger.klageanke.link": "Send a complaint or appeal a decision",
 
   "tilbakemeldinger.serviceklage.tittel": "Complain about service",
@@ -285,7 +296,11 @@ export default {
   "felter.typefeil.uu": "Error on the page when using assistive technology",
   "felter.melding.tittel": "Your feedback",
   "felter.melding.beskrivelse":
-    "Avoid sensitive personal information, such as information about health conditions or diagnoses",
+    "Avoid sensitive personal information, such as information about health conditions or diagnoses. " +
+    "You may not ask about the status of your cases, instead you should log in and check the " +
+    "<a href=\"{saksoversikt}\" class=\"lenke\">Your cases</a> pages. " +
+    "If you can't find an answer, you may check <a href=\"{saksbehandlingstider}\" class=\"lenke\">case processing times</a> " +
+    "or contact us through <a href=\"{skrivtiloss}\" class=\"lenke\">Write to us</a>.",
   "felter.noegikkgalt": "Oops! Something went wrong:",
   "felter.send": "Send",
   "felter.tilbake": "Back",
@@ -322,7 +337,7 @@ export default {
   "felter.fullmakt.nei": "No, I don't have an authorisation",
   "felter.fullmakt.advarsel":
     "We cannot contact you unless we have received an authorisation from the person in question." +
-    `<a href="${urls.tilbakemeldinger.serviceklage.fullmaktskjema}" target="_blank">Go to the authorisation form</a>.`,
+    "<a href=\"{fullmaktskjema}\" target=\"_blank\">Go to the authorisation form</a>.",
   "felter.orgnavn": "Organisation name",
   "felter.orgnr": "Organisation number (for your local department)",
   "felter.postadr": "Company postal address",
@@ -333,21 +348,15 @@ export default {
   "felter.gjeldersosialhjelp.nei": "No",
   "felter.gjeldersosialhjelp.vetikke": "Don’t know",
 
-  "seo.kontaktoss.tittel": "Contact us - www.nav.no",
   "seo.kontaktoss.description":
     "Contact NAV via chat, write to us, telephone or social media. Find your NAV office, contact the interpreting service," +
     " submit a complaint or feedback.",
-  "seo.tilbakemeldinger.tittel": "Feedback to NAV - www.nav.no",
   "seo.tilbakemeldinger.description":
     "Here you can give feedback to NAV, complain or appeal against decisions or service and report errors and defects on" +
     " nav.no. You can also send praise about our services and employees.",
-  "seo.rostilnav.tittel": "Praise for NAV - www.nav.no",
   "seo.rostilnav.description":
     "Have you had a good experience? Would you like to praise an employee, or is there otherwise something positive you want to share with NAV?",
-  "seo.feilogmangler.tittel": "Errors and omissions - www.nav.no",
   "seo.feilogmangler.description": "Report errors and omissions at nav.no",
-  "seo.klagepaservice.login.tittel": "Log in - Complain about service - www.nav.no",
-  "seo.klagepaservice.tittel": "Complain about service - www.nav.no",
   "seo.klagepaservice.description":
     "Submit a complaint about service from NAV. What does your feedback apply to and who are you writing on behalf of?",
 

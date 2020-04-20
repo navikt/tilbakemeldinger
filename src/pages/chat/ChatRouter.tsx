@@ -24,7 +24,7 @@ const ChatRouter = () => {
           <Route
             exact={true}
             path={localePath(lenke.url, locale)}
-            render={() => <ChatTemaside chatTema={lenke.tema as ChatTema} />}
+            render={() => <ChatTemaside chatTema={lenke.tema as ChatTema} path={lenke.url} />}
             key={lenke.tema}
           />
         ))

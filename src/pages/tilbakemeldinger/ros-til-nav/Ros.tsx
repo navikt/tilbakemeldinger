@@ -111,8 +111,9 @@ const Ros = () => {
     <div className="pagecontent">
       <BreadcrumbsWrapper />
       <MetaTags
-        titleId={"seo.rostilnav.tittel"}
+        titleId={"tilbakemeldinger.ros.tittel"}
         descriptionId={"seo.rostilnav.description"}
+        path={paths.tilbakemeldinger.rostilnav}
       />
       <Header
         title={intl.formatMessage({ id: "tilbakemeldinger.ros.form.tittel" })}
