@@ -1,6 +1,4 @@
 import React from "react";
-import { useIntl } from "react-intl";
-import MetaTags from "react-meta-tags";
 import SkrivTilOssBase from "../SkrivTilOssBase";
 import { Normaltekst } from "nav-frontend-typografi";
 import { useStore } from "../../../providers/Provider";
@@ -9,23 +7,17 @@ import { skrivTilOssLenkepaneler } from "../skrivTilOssTemaLenker";
 import { LocaleBlockContent } from "../../../components/sanity-blocks/LocaleBlockContent";
 import { useLocaleString } from "../../../utils/sanity/useLocaleString";
 import { LocaleBlock } from "../../../utils/sanity/common-types";
+import { MetaTags } from "../../../components/metatags/MetaTags";
 
-const Ingress = ({tekst}: {tekst: LocaleBlock | undefined}) => {
-  const intl = useIntl();
-
-  return (
-    <>
-      <MetaTags>
-        <title>{intl.messages["skrivtiloss.tittel"]}</title>
-        <meta
-          name="description"
-          content={intl.messages["skrivtiloss.description"] as string}
-        />
-      </MetaTags>
-      <LocaleBlockContent localeBlock={tekst} />
-    </>
-  );
-};
+const Ingress = ({ tekst }: { tekst: LocaleBlock | undefined }) => (
+  <>
+    <MetaTags
+      titleId={"skrivtiloss.tittel"}
+      descriptionId={"skrivtiloss.description"}
+    />
+    <LocaleBlockContent localeBlock={tekst} />
+  </>
+);
 
 const SkrivTilOssForside = () => {
   const [{ channels }] = useStore();

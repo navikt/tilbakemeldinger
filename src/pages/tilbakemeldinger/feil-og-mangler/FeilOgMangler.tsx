@@ -14,12 +14,12 @@ import { useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
-import MetaTags from "react-meta-tags";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
 import BreadcrumbsWrapper from "../../../components/topp-linje/ToppLinje";
 import { triggerHotjar } from "../../../utils/hotjar";
+import { MetaTags } from "../../../components/metatags/MetaTags";
 
 export interface OutboundFeilOgMangler {
   onskerKontakt: boolean;
@@ -82,13 +82,10 @@ const FOM = () => {
   return (
     <div className="pagecontent">
       <BreadcrumbsWrapper />
-      <MetaTags>
-        <title>{intl.messages["seo.feilogmangler.tittel"]}</title>
-        <meta
-          name="description"
-          content={intl.messages["seo.feilogmangler.description"] as string}
-        />
-      </MetaTags>
+      <MetaTags
+        titleId={"seo.feilogmangler.tittel"}
+        descriptionId={"seo.feilogmangler.description"}
+      />
       <Header
         title={intl.formatMessage({
           id: "tilbakemeldinger.feilogmangler.form.tittel"

@@ -2,10 +2,10 @@ import React from "react";
 import { lenker } from "./TilbakemeldingerLenker";
 import Header from "../../components/header/Header";
 import TilpassetLenkepanel from "../../components/lenkepanel/Lenkepanel";
-import MetaTags from "react-meta-tags";
 import { useIntl } from "react-intl";
 import BreadcrumbsWrapper from "../../components/topp-linje/ToppLinje";
 import { useStore } from "../../providers/Provider";
+import { MetaTags } from "../../components/metatags/MetaTags";
 
 const Tilbakemeldinger = () => {
   const intl = useIntl();
@@ -15,15 +15,10 @@ const Tilbakemeldinger = () => {
     <>
       <div className="pagecontent">
         <BreadcrumbsWrapper />
-        <MetaTags>
-          <title>{intl.messages["seo.tilbakemeldinger.tittel"]}</title>
-          <meta
-            name="description"
-            content={
-              intl.messages["seo.tilbakemeldinger.description"] as string
-            }
-          />
-        </MetaTags>
+        <MetaTags
+          titleId={"seo.tilbakemeldinger.tittel"}
+          descriptionId={"seo.tilbakemeldinger.description"}
+        />
         <div className={"tilbakemeldinger__tittel"}>
           <Header
             title={intl.formatMessage({ id: "tilbakemeldinger.sidetittel" })}

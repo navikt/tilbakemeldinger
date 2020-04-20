@@ -20,7 +20,6 @@ import { useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import { Checkbox, Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
-import MetaTags from "react-meta-tags";
 import ServiceKlagePrivatperson from "./ServiceKlagePrivatperson";
 import ServiceKlageForAnnenPerson from "./ServiceKlageAnnenPerson";
 import ServiceKlageForBedrift from "./ServiceKlageBedrift";
@@ -31,6 +30,7 @@ import { triggerHotjar } from "utils/hotjar";
 import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
 import BreadcrumbsWrapper from "../../../components/topp-linje/ToppLinje";
 import ServiceKlageTypeUtdypning from "./ServiceKlageTypeUtdypning";
+import { MetaTags } from "../../../components/metatags/MetaTags";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageExtend;
@@ -152,13 +152,10 @@ const ServiceKlage = () => {
   return (
     <div className="pagecontent">
       <BreadcrumbsWrapper />
-      <MetaTags>
-        <title>{intl.messages["seo.klagepaservice.tittel"]}</title>
-        <meta
-          name="description"
-          content={intl.messages["seo.klagepaservice.description"] as string}
-        />
-      </MetaTags>
+      <MetaTags
+        titleId={"seo.klagepaservice.tittel"}
+        descriptionId={"seo.klagepaservice.description"}
+      />
       <Header
         title={intl.formatMessage({
           id: "tilbakemeldinger.serviceklage.form.tittel"

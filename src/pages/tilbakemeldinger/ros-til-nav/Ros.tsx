@@ -14,13 +14,13 @@ import Header from "components/header/Header";
 import { useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
-import MetaTags from "react-meta-tags";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import { triggerHotjar } from "utils/hotjar";
 import BreadcrumbsWrapper from "components/topp-linje/ToppLinje";
 import SelectEnhet from "components/input-fields/SelectEnhet";
+import { MetaTags } from "../../../components/metatags/MetaTags";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_TJENESTER" | "NAV_KONTOR";
 
@@ -110,13 +110,10 @@ const Ros = () => {
   return (
     <div className="pagecontent">
       <BreadcrumbsWrapper />
-      <MetaTags>
-        <title>{intl.messages["seo.rostilnav.tittel"]}</title>
-        <meta
-          name="description"
-          content={intl.messages["seo.rostilnav.description"] as string}
-        />
-      </MetaTags>
+      <MetaTags
+        titleId={"seo.rostilnav.tittel"}
+        descriptionId={"seo.rostilnav.description"}
+      />
       <Header
         title={intl.formatMessage({ id: "tilbakemeldinger.ros.form.tittel" })}
       />

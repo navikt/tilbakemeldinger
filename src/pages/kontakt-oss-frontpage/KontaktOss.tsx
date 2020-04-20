@@ -5,8 +5,7 @@ import FeilOgMangler from "./sections/FeilOgMangler";
 import Facebook from "./sections/Facebook";
 import Tolketjenesten from "./sections/Tolketjenesten";
 import Schema from "assets/schema.json";
-import MetaTags from "react-meta-tags";
-import { FormattedMessage, useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import BreadcrumbsWrapper from "../../components/topp-linje/ToppLinje";
 import Chat from "./sections/Chat";
 import RingOss from "./sections/RingOss";
@@ -17,13 +16,10 @@ import KontaktVeileder from "./sections/KontaktVeileder";
 import Pressekontakt from "./sections/Pressekontakt";
 import SosialeMedier from "./sections/SosialeMedier";
 import { VarselVisning } from "../../components/varsler/VarselVisning";
-import Environment from "../../Environments";
-import { localePath } from "../../utils/locale";
 import { useStore } from "../../providers/Provider";
+import { MetaTags } from "../../components/metatags/MetaTags";
 
 const KontaktOssFrontpage = () => {
-  const intl = useIntl();
-  const baseUrl = Environment().baseUrl;
   const [{ locale }] = useStore();
 
   useEffect(() => {
@@ -44,17 +40,11 @@ const KontaktOssFrontpage = () => {
       <div className="pagecontent pagecontent__frontpage">
         <BreadcrumbsWrapper />
         <div className="frontpage">
-          <MetaTags>
-            <title>{intl.messages["seo.kontaktoss.tittel"]}</title>
-            <meta
-              name="description"
-              content={intl.messages["seo.kontaktoss.description"] as string}
-            />
-            <link rel="canonical" href={`${baseUrl}${localePath("", locale)}`} />
-            <link rel="alternate" href={`${baseUrl}${localePath("", "nb")}`} hrefLang="nb" />
-            <link rel="alternate" href={`${baseUrl}${localePath("", "en")}`} hrefLang="en" />
-            <link rel="alternate" href={`${baseUrl}${localePath("", "en")}`} hrefLang="x-default" />
-          </MetaTags>
+          <MetaTags
+            titleId={"seo.kontaktoss.tittel"}
+            descriptionId={"seo.kontaktoss.description"}
+            path={""}
+          />
           <header className="frontpage__introduksjon">
             <div className="frontpage__sidetittel">
               <Sidetittel>
