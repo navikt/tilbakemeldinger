@@ -43,7 +43,7 @@ export const urls = {
     endreKontonummer: `${navUrl}/person/personopplysninger#utbetaling`,
     postTilAnnenAdresse: `${navUrl}/no/nav-og-samfunn/kontakt-nav/vil-du-ha-post-fra-nav-til-en-annen-adresse2`,
   },
-  kontaktVeileder: `https://aktivitetsplan.nav.no/dialog`,
+  kontaktVeileder: `${navUrl}/arbeid/dialog`,
   skrivTilOss: {
     forside: `${baseAppPath}/skriv-til-oss`,
     jobbsoker: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
