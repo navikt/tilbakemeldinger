@@ -28,7 +28,7 @@ import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import { triggerHotjar } from "utils/hotjar";
 import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
-import BreadcrumbsWrapper from "../../../components/topp-linje/ToppLinje";
+import Topplinje from "../../../components/topp-linje/ToppLinje";
 import ServiceKlageTypeUtdypning from "./ServiceKlageTypeUtdypning";
 import { MetaTags } from "../../../components/metatags/MetaTags";
 
@@ -151,7 +151,7 @@ const ServiceKlage = () => {
 
   return (
     <div className="pagecontent">
-      <BreadcrumbsWrapper />
+      <Topplinje />
       <MetaTags
         titleId={"tilbakemeldinger.serviceklage.form.tittel"}
         descriptionId={"seo.klagepaservice.description"}

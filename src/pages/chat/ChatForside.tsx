@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import { Sidetittel } from "nav-frontend-typografi";
-import BreadcrumbsWrapper from "../../components/topp-linje/ToppLinje";
+import Topplinje from "../../components/topp-linje/ToppLinje";
 import { useStore } from "../../providers/Provider";
 import { Kanal, TemaLenke } from "../../types/kanaler";
 import { chatTemaLenker } from "./data/chatTemaLenker";
@@ -25,7 +25,7 @@ const ChatForside = () => {
   return (
     <>
       <div className={`${cssPrefix} pagecontent`}>
-        <BreadcrumbsWrapper />
+        <Topplinje />
         <MetaTags
           titleId={"chat.forside.tittel"}
           descriptionId={"kontaktoss.chat.beskrivelse"}

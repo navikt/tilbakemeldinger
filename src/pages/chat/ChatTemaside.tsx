@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { Systemtittel } from "nav-frontend-typografi";
-import BreadcrumbsWrapper from "../../components/topp-linje/ToppLinje";
+import Topplinje from "../../components/topp-linje/ToppLinje";
 import ChatbotWrapper from "./ChatbotWrapper";
 import { Hovedknapp } from "nav-frontend-knapper";
 import Config from "../../Config";
@@ -75,7 +75,7 @@ const ChatTemaside = ({ chatTema, path }: Props) => {
   return (
     <>
       <div className={`${cssPrefix} pagecontent`}>
-        <BreadcrumbsWrapper />
+        <Topplinje />
         <MetaTags
           titleId={metaTittelId}
           path={path}

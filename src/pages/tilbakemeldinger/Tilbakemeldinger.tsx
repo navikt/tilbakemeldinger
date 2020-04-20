@@ -3,7 +3,7 @@ import { lenker } from "./TilbakemeldingerLenker";
 import Header from "../../components/header/Header";
 import TilpassetLenkepanel from "../../components/lenkepanel/Lenkepanel";
 import { useIntl } from "react-intl";
-import BreadcrumbsWrapper from "../../components/topp-linje/ToppLinje";
+import Topplinje from "../../components/topp-linje/ToppLinje";
 import { useStore } from "../../providers/Provider";
 import { MetaTags } from "../../components/metatags/MetaTags";
 
@@ -14,7 +14,7 @@ const Tilbakemeldinger = () => {
   return (
     <>
       <div className="pagecontent">
-        <BreadcrumbsWrapper />
+        <Topplinje />
         <MetaTags
           titleId={"tilbakemeldinger.sidetittel"}
           descriptionId={"seo.tilbakemeldinger.description"}

@@ -7,7 +7,7 @@ import { useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import Header from "components/header/Header";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
-import BreadcrumbsWrapper from "../../../components/topp-linje/ToppLinje";
+import Topplinje from "../../../components/topp-linje/ToppLinje";
 import { MetaTags } from "../../../components/metatags/MetaTags";
 
 const { loginUrl } = Environment();
@@ -23,7 +23,7 @@ const ServiceKlageLogin = () => {
 
   return (
     <div className="pagecontent">
-      <BreadcrumbsWrapper />
+      <Topplinje />
       <MetaTags
         titleId={"tilbakemeldinger.serviceklage.login.tittel"}
         path={paths.tilbakemeldinger.serviceklage.login}

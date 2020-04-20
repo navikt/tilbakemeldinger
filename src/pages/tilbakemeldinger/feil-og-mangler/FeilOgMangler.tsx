@@ -17,7 +17,7 @@ import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
-import BreadcrumbsWrapper from "../../../components/topp-linje/ToppLinje";
+import Topplinje from "../../../components/topp-linje/ToppLinje";
 import { triggerHotjar } from "../../../utils/hotjar";
 import { MetaTags } from "../../../components/metatags/MetaTags";
 
@@ -81,7 +81,7 @@ const FOM = () => {
 
   return (
     <div className="pagecontent">
-      <BreadcrumbsWrapper />
+      <Topplinje />
       <MetaTags
         titleId={"tilbakemeldinger.feilogmangler.tittel"}
         descriptionId={"seo.feilogmangler.description"}

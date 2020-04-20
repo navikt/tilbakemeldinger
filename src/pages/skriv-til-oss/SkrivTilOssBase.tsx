@@ -2,7 +2,7 @@ import React from "react";
 import { Sidetittel } from "nav-frontend-typografi";
 import { FormattedMessage } from "react-intl";
 import TemaLenkepanel from "../../components/lenkepanel/TemaLenkepanel";
-import BreadcrumbsWrapper from "../../components/topp-linje/ToppLinje";
+import Topplinje from "../../components/topp-linje/ToppLinje";
 import { Kanal, TemaLenke } from "../../types/kanaler";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { VarselVisning } from "../../components/varsler/VarselVisning";
@@ -26,7 +26,7 @@ const SkrivTilOssBase = ({ tittelId, lenkepanelData, children }: Props) => {
 
   return (
     <div className={`${cssPrefix} pagecontent`}>
-      <BreadcrumbsWrapper />
+      <Topplinje />
       <div className={`${cssPrefix}__header`}>
         <Sidetittel>
           <FormattedMessage id={tittelId} />

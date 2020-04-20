@@ -6,7 +6,7 @@ import Facebook from "./sections/Facebook";
 import Tolketjenesten from "./sections/Tolketjenesten";
 import Schema from "assets/schema.json";
 import { FormattedMessage } from "react-intl";
-import BreadcrumbsWrapper from "../../components/topp-linje/ToppLinje";
+import Topplinje from "../../components/topp-linje/ToppLinje";
 import Chat from "./sections/Chat";
 import RingOss from "./sections/RingOss";
 import SkrivTilOss from "./sections/SkrivTilOss";
@@ -38,7 +38,7 @@ const KontaktOssFrontpage = () => {
   return (
     <div className="frontpage__wrapper">
       <div className="pagecontent pagecontent__frontpage">
-        <BreadcrumbsWrapper />
+        <Topplinje />
         <div className="frontpage">
           <MetaTags
             titleId={"kontaktoss.tittel"}
@@ -70,7 +70,7 @@ const KontaktOssFrontpage = () => {
             <SosialeMedier />
           </div>
         </div>
-        <BreadcrumbsWrapper />
+        <Topplinje />
       </div>
     </div>
   );
