@@ -25,17 +25,17 @@ export default {
 
   "breadcrumb.skriv-til-oss": "Write to us",
   "breadcrumb.arbeidssoker": "Jobseeker",
-  "breadcrumb.syk": "Sickness benefit",
+  "breadcrumb.syk": "Illness",
   "breadcrumb.familieogbarn": "Family and children",
   "breadcrumb.hjelpemidler": "Assistive technology",
 
   "breadcrumb.chat": "Chat",
-  "breadcrumb.arbeidsgiver": "Employers and collaborators", // TODO: korrekt "NAV'sk"?
+  "breadcrumb.arbeidsgiver": "Employers and partners",
   "breadcrumb.jobbsoker": "Jobseeker",
   "breadcrumb.ufor": "Disabled",
   "breadcrumb.familie": "Family",
   "breadcrumb.sosialhjelp": "Social services",
-  "breadcrumb.okonomi": "Accounting",
+  "breadcrumb.okonomi": "Financial advice",
   "breadcrumb.eures": "EURES",
 
   "breadcrumb.finnkontor": "Find a NAV office",
@@ -64,9 +64,9 @@ export default {
   "kontaktoss.ringoss.tittel": "Call us",
   "kontaktoss.ringoss.knapp": "All telephone numbers",
 
-  "faq.intro": "Many are wondering about",
+  "faq.intro": "Frequently asked questions",
   "faq.visflere": "Show more",
-  "faq.visfaerre": "Show less",
+  "faq.visfaerre": "Show fewer",
 
   "kontaktoss.skrivtiloss.tittel": "Write to us",
   "kontaktoss.skrivtiloss.beskrivelse":
@@ -82,14 +82,14 @@ export default {
   "kontaktoss.facebook.foreldrepenger": "Parental benefit on Facebook",
   "kontaktoss.facebook.jobblyst": "Jobseeker on Facebook",
 
-  "kontaktoss.navkontor.tittel": "Find NAV office",
+  "kontaktoss.navkontor.tittel": "Find NAV offices",
   "kontaktoss.navkontor.innlogget.lenke": "Find your local NAV office (logged in)",
   "kontaktoss.navkontor.uinnlogget.lenke": "Find a NAV office",
   "kontaktoss.hjelpemiddelsentral.lenke": "Find a NAV Assistive Technology Centre",
 
-  "kontaktoss.tolketjenesten.tittel": "Interpreting Service",
+  "kontaktoss.tolketjenesten.tittel": "Interpreter services",
   "kontaktoss.tolketjenesten.link":
-    "Contact the interpreting service for the deaf, deaf-blind and hearing impaired",
+    "Contact the interpreter service for the deaf, deaf-blind and hearing impaired",
   "kontaktoss.tolketjenesten.link.spraktolk":
     "Language interpreter for conversation with counsellor",
 
@@ -98,18 +98,18 @@ export default {
     "You can submit a complaint if your application has been rejected in whole or in part and if you have had a negative" +
     " experience in your contact with NAV",
   "kontaktoss.klage.knapp":
-    "Here's how you submit a complaint or provide feedback",
+    "How to submit a complaint or feedback to NAV",
 
-  "kontaktoss.tekniskfeil.tittel": "Technical error on nav.no",
-  "kontaktoss.tekniskfeil.link.losselv": "Try to solve the problem yourself",
-  "kontaktoss.tekniskfeil.link.meldifra": "Report errors and omissions",
+  "kontaktoss.tekniskfeil.tittel": "Technical errors on nav.no",
+  "kontaktoss.tekniskfeil.link.losselv": "Options to try solving the problem yourself",
+  "kontaktoss.tekniskfeil.link.meldifra": "Report errors and wrong or missing information",
   "kontaktoss.tekniskfeil.link.ring": "Call technical support",
 
-  "kontaktoss.presse.tittel": "Press contact",
-  "kontaktoss.presse.link": "Press contact",
+  "kontaktoss.presse.tittel": "Public Relations",
+  "kontaktoss.presse.link": "Contact Public Relations",
 
   "kontaktoss.sosialemedier.tittel": "NAV on social media",
-  "kontaktoss.sosialemedier.link": "NAV on social media",
+  "kontaktoss.sosialemedier.link": "NAV social media accounts and pages",
 
   //
   // Chat
@@ -124,22 +124,22 @@ export default {
   "chat.stengt.info": "Chat is closed, see opening hours below.",
   "chat.admin-stengt.veileder": "Chat with a counsellor is currently unavailable.",
 
-  "chat.arbeidsgiver.tittel": "Employers and collaborators",
-  "chat.arbeidsgiver.metatittel": "Chat with us - Employers and collaborators",
+  "chat.arbeidsgiver.tittel": "Employers, public and private partners",
+  "chat.arbeidsgiver.metatittel": "Chat with us - Employers, public and private partners",
   "chat.jobbsoker.tittel": "Jobseeker",
   "chat.jobbsoker.metatittel": "Chat with us - Jobseeker",
-  "chat.syk.tittel": "Sickness benefit",
-  "chat.syk.metatittel": "Chat with us - Sickness benefit",
+  "chat.syk.tittel": "Illness",
+  "chat.syk.metatittel": "Chat with us - Illness",
   "chat.familie.tittel": "Parents, children and family",
   "chat.familie.metatittel": "Chat with us - Parents, children and family",
   "chat.ufor.tittel": "Disabled",
   "chat.ufor.metatittel": "Chat with us - Disabled",
-  "chat.sosialhjelp.tittel": "Social services and financial social assistance",
-  "chat.sosialhjelp.metatittel": "Chat with us - Social services and financial social assistance",
+  "chat.sosialhjelp.tittel": "Social services and financial assistance",
+  "chat.sosialhjelp.metatittel": "Chat with us - Social services and financial assistance",
   "chat.okonomi.tittel": "Financial advice and debt counselling",
   "chat.okonomi.metatittel": "Chat with us - Financial advice and debt counselling",
-  "chat.eures.tittel": "Ask EURES about jobs and recruitment in the EEA area",
-  "chat.eures.metatittel": "Chat with EURES about jobs and recruitment in the EEA area",
+  "chat.eures.tittel": "Ask EURES about jobs and recruitment in the EEA",
+  "chat.eures.metatittel": "Chat with EURES about jobs and recruitment in the EEA",
 
   "apningstid.avvik": "<p>Special opening hours:</p>",
   "apningstid.avvik.chatbot":
@@ -150,12 +150,12 @@ export default {
   //
   // Default FAQs
   //
-  "faq.utbetalingsoversikt": "Check your payments",
-  "faq.saksoversikt": "What is the status of my case?",
+  "faq.utbetalingsoversikt": "My payments",
+  "faq.saksoversikt": "What is the status of my application?",
   "faq.nesteutbetaling": "Payment dates",
-  "faq.saksbehandlingstider": "Processing times",
-  "faq.endrekontonummer": "Change account number",
-  "faq.posttilannenadresse": "Would you like to receive mail from NAV at a different address?",
+  "faq.saksbehandlingstider": "Application processing times",
+  "faq.endrekontonummer": "Change bank account number",
+  "faq.posttilannenadresse": "Change postal address for NAV-mail",
 
   //
   // Skriv til oss
@@ -166,14 +166,14 @@ export default {
     " is 2 working days.",
 
   "skrivtiloss.arbeidssoker.lenke.tittel": "Jobseeker",
-  "skrivtiloss.syk.lenke.tittel": "Sickness benefit",
+  "skrivtiloss.syk.lenke.tittel": "Illness",
   "skrivtiloss.familieogbarn.lenke.tittel": "Parents, children and family",
   "skrivtiloss.pensjonist.lenke.tittel": "Pensioner",
   "skrivtiloss.ufor.lenke.tittel": "Disabled",
-  "skrivtiloss.sosial.lenke.tittel": "Financial social assistance and other social services",
-  "skrivtiloss.hjelpemidler.lenke.tittel": "Assistive technology",
+  "skrivtiloss.sosial.lenke.tittel": "Financial social assistance and other social assistance services",
+  "skrivtiloss.hjelpemidler.lenke.tittel": "Assistive devices and technology",
   "skrivtiloss.hjelpemidler.generelt.lenke.tittel": "General questions",
-  "skrivtiloss.hjelpemidler.ortopediske.lenke.tittel": "Orthopaedic assistive technology",
+  "skrivtiloss.hjelpemidler.ortopediske.lenke.tittel": "Orthopaedic assistive devices",
   "skrivtiloss.hjelpemidler.bil.lenke.tittel": "Questions about cars and special equipment for cars",
 
   "skrivtiloss.hjelpemidler.mellomside.tittel": "Write to us about assistive technology",
@@ -207,26 +207,26 @@ export default {
   "tilbakemeldinger.sidetittel": "Complaints and feedback",
   "tilbakemeldinger.klageanke.tittel": "Complain or appeal a decision",
   "tilbakemeldinger.klageanke.beskrivelse":
-    "If your application has been rejected in whole or in part, you can appeal against the decision. " +
-    "If your appeal to NAV is unsuccessful, you can, with some exceptions, appeal to the National Insurance Court. " +
-    "Read more about your <a href=\"{klagerettigheter}\" class=\"lenke\">right to appeal</a>.",
+  "You can send us a complaint if your application is completely or partially rejected. " +
+    "If your complaint is not supported by NAV you can in some cases appeal to the National Insurance Court. " +
+    "Read more about your <a href=\"{klagerettigheter}\" class=\"lenke\">right to appeal</a> a decision. ",
   "tilbakemeldinger.klageanke.link": "Send a complaint or appeal a decision",
 
-  "tilbakemeldinger.serviceklage.tittel": "Complain about service",
+  "tilbakemeldinger.serviceklage.tittel": "Complaints about service",
   "tilbakemeldinger.serviceklage.beskrivelse":
-    "Have you been treated badly? Or had some other negative experience with NAV?",
-  "tilbakemeldinger.serviceklage.login.tittel": "Complain about service",
+    "Have you been treated poorly? Or had a bad experience with NAV?",
+  "tilbakemeldinger.serviceklage.login.tittel": "Complaints about service",
   "tilbakemeldinger.serviceklage.login.overskrift": "Do you want to log in?",
   "tilbakemeldinger.serviceklage.login.beskrivelse":
-    "We recommend logging in so that you don't have to enter all the information about yourself. <br />" +
-    "You must state who you are regardless of whether or not you are logged.",
+    "We recommend logging in so you don't have to enter any personal information.</br>" +
+    "You must state who you are regardless of whether or not you are logged in.",
   "tilbakemeldinger.serviceklage.login.knapp": "Log in",
   "tilbakemeldinger.serviceklage.login.knapp.fortsettuten":
     "Continue without logging in",
   "tilbakemeldinger.serviceklage.link": "Send feedback about service",
   "tilbakemeldinger.serviceklage.form.veileder":
     "Here you can complain about the service you have received. You will receive an answer within 3 weeks.",
-  "tilbakemeldinger.serviceklage.form.tittel": "Complain about service",
+  "tilbakemeldinger.serviceklage.form.tittel": "Complaints about service",
   "tilbakemeldinger.serviceklage.form.overskrift": "Submit a complaint about service",
   "tilbakemeldinger.serviceklage.form.onskersvar":
     "Do you want a response from us to the complaint about service?",
@@ -234,14 +234,15 @@ export default {
   "tilbakemeldinger.serviceklage.form.onskersvar.nei":
     "No, I just wanted to tell you",
 
-  "tilbakemeldinger.feilogmangler.tittel": "Errors and omissions on nav.no",
+  "tilbakemeldinger.feilogmangler.tittel": "Errors and wrong or missing information",
   "tilbakemeldinger.feilogmangler.beskrivelse":
-    "Have you found an error on nav.no? Maybe a technical error, incorrect information or an insufficient level of universal" +
-    " design? Then we would like to hear from you.",
+    "Have you found an error on nav.no? Is it a technical error, wrong or missing information, or an accessibility " +
+    "issue? We would like to hear from you about these cases.",
   "tilbakemeldinger.feilogmangler.link": "Report errors and omissions",
   "tilbakemeldinger.feilogmangler.form.tittel": "Errors and omissions",
   "tilbakemeldinger.feilogmangler.form.veileder":
-    "Here you can report technical errors and omissions. You cannot submit general questions or enquiries about your case.",
+    "You can report technical errors as well as wrong or missing information. You cannot send a general question or " +
+    "requests regarding your cases with NAV.",
   "tilbakemeldinger.feilogmangler.form.overskrift":
     "Submit errors and omissions on nav.no",
   "tilbakemeldinger.feilogmangler.svartid":
@@ -249,12 +250,12 @@ export default {
 
   "tilbakemeldinger.ros.tittel": "Praise for NAV",
   "tilbakemeldinger.ros.beskrivelse":
-    "Have you had a good experience? Would you like to praise an employee, or is there otherwise something positive you want to share with NAV?",
+    "Have you had a good experience? Would you like to praise an employee or share other positive feedback with NAV?",
   "tilbakemeldinger.ros.link": "Give praise to NAV",
   "tilbakemeldinger.ros.form.tittel": "Praise for NAV",
   "tilbakemeldinger.ros.form.overskrift": "Submit praise to NAV",
   "tilbakemeldinger.ros.form.veileder":
-    "Thank you for sharing the experience with us! We will ensure the praise reaches the right person.",
+    "Thanks for sharing your experience with us! We will make sure the praise reaches the right person.",
 
   "validering.navn.pakrevd": "Name is required",
   "validering.epost.pakrevd": "Email is required",
@@ -290,27 +291,29 @@ export default {
   "felter.navn.tittel.valgfritt": "Name (optional)",
   "felter.epost.tittel": "Email",
   "felter.tlf.tittel": "Telephone",
-  "felter.typefeil.tittel": "What kind of errors or omissions did you find?",
+  "felter.typefeil.tittel": "What kind of error or wrong information did you find?",
   "felter.typefeil.tekniskfeil": "Technical error",
-  "felter.typefeil.feilinformasjon": "Incorrect information",
-  "felter.typefeil.uu": "Error on the page when using assistive technology",
+  "felter.typefeil.feilinformasjon": "Wrong information",
+  "felter.typefeil.uu": "Error when using accessibility device or technology",
   "felter.melding.tittel": "Your feedback",
   "felter.melding.beskrivelse":
-    "Avoid sensitive personal information, such as information about health conditions or diagnoses. " +
-    "You may not ask about the status of your cases, instead you should log in and check the " +
-    "<a href=\"{saksoversikt}\" class=\"lenke\">Your cases</a> pages. " +
-    "If you can't find an answer, you may check <a href=\"{saksbehandlingstider}\" class=\"lenke\">case processing times</a> " +
-    "or contact us through <a href=\"{skrivtiloss}\" class=\"lenke\">Write to us</a>.",
+    "Avoid sending sensitive personal information about your health condition or diagnoses. " +
+    "You can’t ask about the status of your application here. Login to " +
+    "<a href=\"{dittnav}\" class=\"lenke\">Ditt NAV</a> and go to " +
+    "<a href=\"{saksoversikt}\" class=\"lenke\">Dine saker</a> for this information. " +
+    "If you don’t find the answer there you can check " +
+    "<a href=\"{saksbehandlingstider}\" class=\"lenke\">case processing times</a> " +
+    "or <a href=\"{skrivtiloss}\" class=\"lenke\">write to us</a>.",
   "felter.noegikkgalt": "Oops! Something went wrong:",
   "felter.send": "Send",
   "felter.tilbake": "Back",
   "felter.hvemroses.tittel": "Who do you want to praise?",
-  "felter.hvemroses.navkontaktsenter": "NAV Call and Service Centre",
+  "felter.hvemroses.navkontaktsenter": "NAV Contact centre",
   "felter.hvemroses.digitaletjenester": "NAV's digital services",
-  "felter.hvemroses.navkontor": "NAV offices",
-  "felter.hvemroses.navkontor.velg": "Select NAV department",
+  "felter.hvemroses.navkontor": "NAV office",
+  "felter.hvemroses.navkontor.velg": "Choose NAV unit",
   "felter.klagerpa.navkontor.velg": "Which NAV department does the complaint relate to?",
-  "felter.hvemroses.navkontor.skrivinn": "Search or select with the arrow key",
+  "felter.hvemroses.navkontor.skrivinn": "Search or select using arrow keys",
   "felter.klagetyper": "What is the feedback about?",
   "felter.klagetyper.info":
     "Select the most appropriate option. You can select multiple categories.",
@@ -325,7 +328,7 @@ export default {
   "felter.hvemfra.virksomhet": "Employer or business partner",
   "felter.onskerkontakt": "Do you want us to contact you?",
   "felter.onskerkontakt.ja": "Yes, I would like to be contacted",
-  "felter.onskerkontakt.nei": "No, I just wanted to tell you",
+  "felter.onskerkontakt.nei": "No, I just wanted to inform you",
   "felter.fodselsnr": "National identity number",
   "felter.dittnavn": "Your name",
   "felter.dinrolle.annenperson": "Your role (close relative, carer etc.)",

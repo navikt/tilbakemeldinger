@@ -138,6 +138,7 @@ export const urls = {
     },
     klagerettigheter: `${navUrl}/no/nav-og-samfunn/kontakt-nav/klage-ris-og-ros/klagerettigheter`,
     serviceklage: {
+      dittNav: `${navUrl}/person/dittnav`,
       fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
       saksbehandlingstider: `${navUrl}/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav`,
       saksoversikt: `${tjenesteUrl}/saksoversikt/`

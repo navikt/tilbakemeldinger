@@ -18,10 +18,10 @@ export const lenker = (locale: Locale, formatHTMLMessage: Function): Lenke[] => 
   {
     icon: paperIcon,
     tittel: "tilbakemeldinger.klageanke.tittel",
-    beskrivelse: formatHTMLMessage({
-      id: "tilbakemeldinger.klageanke.beskrivelse",
-      values: {klagerettigheter: urls.tilbakemeldinger.klagerettigheter}
-    }),
+    beskrivelse: formatHTMLMessage(
+      { id: "tilbakemeldinger.klageanke.beskrivelse" },
+      { klagerettigheter: urls.tilbakemeldinger.klagerettigheter }
+    ),
     lenke: urls.tilbakemeldinger.klagepavedtak[locale],
     lenkeTekst: "tilbakemeldinger.klageanke.link",
     external: true

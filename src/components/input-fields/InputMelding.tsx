@@ -27,6 +27,7 @@ const InputMelding = (props: Props) => {
             id={"felter.melding.beskrivelse"}
             values={
               {
+                dittnav: urls.tilbakemeldinger.serviceklage.dittNav,
                 saksoversikt: urls.tilbakemeldinger.serviceklage.saksoversikt,
                 saksbehandlingstider: urls.tilbakemeldinger.serviceklage.saksbehandlingstider,
                 skrivtiloss: localePath(paths.skrivTilOss.forside, locale)

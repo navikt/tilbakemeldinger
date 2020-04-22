@@ -74,7 +74,7 @@ const ChatTemaside = ({ chatTema, path }: Props) => {
 
   return (
     <>
-      <div className={`${cssPrefix} pagecontent`}>
+      <div className={`pagecontent`}>
         <Topplinje />
         <MetaTags
           titleId={metaTittelId}
