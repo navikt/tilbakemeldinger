@@ -1,31 +1,72 @@
-// TODO: Erstatt/merge denne med den andre lenkepanel komponenten
-
-import { LenkepanelData } from "../../types/lenker";
 import { LenkepanelBase } from "nav-frontend-lenkepanel/lib";
 import { Link } from "react-router-dom";
-import { Normaltekst, Undertittel } from "nav-frontend-typografi";
+import { Undertittel } from "nav-frontend-typografi";
 import { FormattedMessage } from "react-intl";
 import React from "react";
 import { logEvent } from "../../utils/logger";
+import { useStore } from "../../providers/Provider";
+import { TemaLenke } from "../../types/kanaler";
+import { LocaleBlockContent } from "../sanity-blocks/LocaleBlockContent";
+import { NavContentLoader } from "../content-loader/NavContentLoader";
+import { useLocaleString } from "../../utils/sanity/useLocaleString";
+import { localePath } from "../../utils/locale";
+import Panel from "nav-frontend-paneler";
 
 type Props = {
-  lenkePanelData: LenkepanelData;
+  lenkepanelData: TemaLenke;
   cssPrefix: string;
+  disableIfClosed?: boolean;
 };
 
-const TemaLenkepanel = ({ lenkePanelData, cssPrefix }: Props) => {
+const TemaLenkepanel = ({ lenkepanelData, cssPrefix, disableIfClosed }: Props) => {
   const onClick = () => {
-    logEvent({ event: lenkePanelData.grafanaId });
+    logEvent({ event: lenkepanelData.grafanaId });
   };
-  return (
+
+  const [{ themes, locale }] = useStore();
+  const localeString = useLocaleString();
+
+  const tema = lenkepanelData.tema;
+  const {status, link} = themes.props[tema];
+
+  const closed = status && status.closed;
+  const closedMsg = status && status.message;
+  const isDisabled = closed && disableIfClosed;
+
+  const tittel = link && link.title;
+  const ingress = link && link.description;
+
+  const url = lenkepanelData.url;
+
+  const innhold = (
+    <div>
+      {lenkepanelData.ikon && <div>{lenkepanelData.ikon}</div>}
+      <div>
+        <Undertittel className={`${cssPrefix}__temalenke-header lenkepanel__heading`}>
+          {tittel
+            ? localeString(tittel)
+            : <FormattedMessage id={lenkepanelData.fallbackTittelId} />}
+        </Undertittel>
+        <div className={`${cssPrefix}__lenkepanel-ingress`}>
+          {themes.isLoaded
+            ? <LocaleBlockContent localeBlock={ingress} />
+            : <NavContentLoader lines={2} lineHeight={6} />}
+        </div>
+        {isDisabled && <LocaleBlockContent localeBlock={closedMsg} />}
+      </div>
+    </div>
+  );
+
+  return url ? (
     <LenkepanelBase
       border={true}
-      className={`${cssPrefix}__temalenke linkbox__container`}
-      href={"#"}
-      linkCreator={props => {
-        return lenkePanelData.external ? (
+      className={`${cssPrefix}__temalenke linkbox__container ${isDisabled
+        ? ` ${cssPrefix}__lenkepanel-disabled` : ""}`}
+      href={""}
+      linkCreator={!isDisabled ? (props => {
+        return lenkepanelData.externalUrl ? (
           <a
-            href={lenkePanelData.url}
+            href={url}
             className={props.className}
             onClick={onClick}
           >
@@ -33,29 +74,24 @@ const TemaLenkepanel = ({ lenkePanelData, cssPrefix }: Props) => {
           </a>
         ) : (
           <Link
-            to={lenkePanelData.url}
+            to={localePath(url, locale)}
             className={props.className}
             onClick={onClick}
           >
             {props.children}
           </Link>
         );
-      }}
+      }) : undefined}
     >
-      <div>
-        {lenkePanelData.ikon ? <div>{lenkePanelData.ikon}</div> : null}
-        <div>
-          <Undertittel
-            className={`${cssPrefix}__temalenke-header lenkepanel__heading`}
-          >
-            <FormattedMessage id={lenkePanelData.tittelId} />
-          </Undertittel>
-          <Normaltekst className={`${cssPrefix}__lenkepanel-ingress`}>
-            {lenkePanelData.ingress}
-          </Normaltekst>
-        </div>
-      </div>
+      {innhold}
     </LenkepanelBase>
+  ) : (
+    <Panel
+      border={true}
+      className={"linkbox__container"}
+    >
+      {innhold}
+    </Panel>
   );
 };
 

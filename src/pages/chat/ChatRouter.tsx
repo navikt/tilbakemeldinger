@@ -1,62 +1,25 @@
 import React from "react";
 import { Route, Switch } from "react-router";
-import { urls } from "../../Config";
-
 import NotFound from "../404/404";
-import ChatFamilie from "./sider/ChatFamilie";
-import ChatForside from "./sider/ChatForside";
-import ChatJobbsoker from "./sider/ChatJobbsoker";
-import ChatSosial from "./sider/ChatSosial";
-import ChatOkonomi from "./sider/ChatOkonomi";
-import ChatEURES from "./sider/ChatEures";
-import ChatSyk from "./sider/ChatSyk";
-import ChatUfor from "./sider/ChatUfor";
+import ChatForside from "./ChatForside";
+import { localePath, validLocales } from "../../utils/locale";
+import { paths } from "../../Config";
 
 const ChatRouter = () => {
+  // Deprecated, should be removed when links in XP are updated
+  const themeRoutes = `(/arbeidsgiver|/jobbsoker|/syk|/familie|/ufor|/sosialhjelp|/okonomi|/eures|/aap)?`;
   return (
     <Switch>
-      <Route
-        exact={true}
-        path={urls.chat.forside}
-        component={ChatForside}
-      />
-      <Route
-        exact={true}
-        path={urls.chat.jobbsoker.temaside}
-        component={ChatJobbsoker}
-      />
-      <Route
-        exact={true}
-        path={urls.chat.syk.temaside}
-        component={ChatSyk}
-      />
-      <Route
-        exact={true}
-        path={urls.chat.familie.temaside}
-        component={ChatFamilie}
-      />
-      <Route
-        exact={true}
-        path={urls.chat.ufor.temaside}
-        component={ChatUfor}
-      />
-      <Route
-        exact={true}
-        path={urls.chat.sosialhjelp.temaside}
-        component={ChatSosial}
-      />
-      <Route
-        exact={true}
-        path={urls.chat.okonomi.temaside}
-        component={ChatOkonomi}
-      />
-      <Route
-        exact={true}
-        path={urls.chat.eures.temaside}
-        component={ChatEURES}
-      />
+      {validLocales.flatMap((locale) => [
+        <Route
+          exact={true}
+          path={`${localePath(paths.chat.forside, locale)}${themeRoutes}`}
+          component={ChatForside}
+          key={locale}
+        />,
+      ])}
       <Route>
-        <NotFound/>
+        <NotFound />
       </Route>
     </Switch>
   );

@@ -10,17 +10,14 @@ import NavFrontendSpinner from "nav-frontend-spinner";
 import { HTTPError } from "components/error/Error";
 import { FormContext, Form, Validation } from "calidation";
 import InputMelding from "components/input-fields/InputMelding";
-import {
-  ON_BEHALF_OF,
-  OutboundServiceKlageBase,
-  OutboundServiceKlageExtend
-} from "types/serviceklage";
+import { OutboundServiceKlageExtend } from "types/serviceklage";
+import { OutboundServiceKlageBase } from "types/serviceklage";
+import { ON_BEHALF_OF } from "types/serviceklage";
 import Header from "components/header/Header";
-import { urls } from "Config";
+import { useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import { Checkbox, Radio, SkjemaGruppe } from "nav-frontend-skjema";
-import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
-import MetaTags from "react-meta-tags";
+import { FormattedMessage, useIntl } from "react-intl";
 import ServiceKlagePrivatperson from "./ServiceKlagePrivatperson";
 import ServiceKlageForAnnenPerson from "./ServiceKlageAnnenPerson";
 import ServiceKlageForBedrift from "./ServiceKlageBedrift";
@@ -29,8 +26,9 @@ import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import { triggerHotjar } from "utils/hotjar";
 import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
-import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
+import Topplinje from "../../../components/topp-linje/ToppLinje";
 import ServiceKlageTypeUtdypning from "./ServiceKlageTypeUtdypning";
+import { MetaTags } from "../../../components/metatags/MetaTags";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageExtend;
@@ -39,28 +37,31 @@ const ServiceKlage = () => {
   const [{ auth }] = useStore();
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);
-  const [error, settError] = useState();
+  const [error, settError] = useState<string | undefined>();
   const intl = useIntl();
+  const paths = useLocalePaths();
 
   const baseFormConfig = {
     klagetyper: {
       isRequired: intl.formatMessage({ id: "validering.klagetyper.pakrevd" }),
-      isValidFeiltyper: intl.formatMessage({ id: "validering.klagetyper.velg" })
+      isValidFeiltyper: intl.formatMessage({
+        id: "validering.klagetyper.velg",
+      }),
     },
     hvemFra: {
-      isRequired: intl.formatMessage({ id: "validering.hvemfra.pakrevd" })
+      isRequired: intl.formatMessage({ id: "validering.hvemfra.pakrevd" }),
     },
     melding: {
       isRequired: intl.formatMessage({ id: "validering.melding.pakrevd" }),
-      isValidMelding: intl.formatMessage({ id: "validering.melding.tegn" })
-    }
+      isValidMelding: intl.formatMessage({ id: "validering.melding.tegn" }),
+    },
   };
 
   const initialValues = {
-    klagetyper: []
-  };
+    klagetyper: [],
+  } as any;
 
-  const send = (e: FormContext) => {
+  const send = (e: FormContext<any>) => {
     const { isValid, fields } = e;
     const hvemFra: ON_BEHALF_OF = fields.hvemFra;
 
@@ -71,8 +72,8 @@ const ServiceKlage = () => {
         klagetypeUtdypning: fields.klagetypeUtdypning,
         oenskerAaKontaktes: fields.onskerKontakt,
         ...(fields.klagetyper.includes("LOKALT_NAV_KONTOR") && {
-          gjelderSosialhjelp: fields.gjelderSosialhjelp
-        })
+          gjelderSosialhjelp: fields.gjelderSosialhjelp,
+        }),
       };
 
       const outboundExtend: {
@@ -83,50 +84,50 @@ const ServiceKlage = () => {
           innmelder: {
             navn: fields.innmelderNavn,
             ...(fields.innmelderTlfnr && {
-              telefonnummer: fields.innmelderTlfnr
+              telefonnummer: fields.innmelderTlfnr,
             }),
-            personnummer: fields.innmelderFnr
-          }
+            personnummer: fields.innmelderFnr,
+          },
         },
         ANNEN_PERSON: {
           paaVegneAv: "ANNEN_PERSON",
           innmelder: {
             navn: fields.innmelderNavn,
             ...(fields.innmelderTlfnr && {
-              telefonnummer: fields.innmelderTlfnr
+              telefonnummer: fields.innmelderTlfnr,
             }),
             harFullmakt: fields.innmelderHarFullmakt,
-            rolle: fields.innmelderRolle
+            rolle: fields.innmelderRolle,
           },
           paaVegneAvPerson: {
             navn: fields.paaVegneAvNavn,
-            personnummer: fields.paaVegneAvFodselsnr
-          }
+            personnummer: fields.paaVegneAvFodselsnr,
+          },
         },
         BEDRIFT: {
           paaVegneAv: "BEDRIFT",
           ...(fields.enhetsnummerPaaklaget && {
-            enhetsnummerPaaklaget: fields.enhetsnummerPaaklaget.value
+            enhetsnummerPaaklaget: fields.enhetsnummerPaaklaget.value,
           }),
           innmelder: {
             ...(fields.onskerKontakt && {
               navn: fields.innmelderNavn,
-              telefonnummer: fields.innmelderTlfnr
+              telefonnummer: fields.innmelderTlfnr,
             }),
             ...(fields.innmelderRolle && {
-              rolle: fields.innmelderRolle
-            })
+              rolle: fields.innmelderRolle,
+            }),
           },
           paaVegneAvBedrift: {
             navn: fields.orgNavn,
-            organisasjonsnummer: fields.orgNummer
-          }
-        }
+            organisasjonsnummer: fields.orgNummer,
+          },
+        },
       };
 
       const outbound = {
         ...outboundBase,
-        ...outboundExtend[hvemFra]
+        ...outboundExtend[hvemFra],
       };
 
       settLoading(true);
@@ -145,22 +146,20 @@ const ServiceKlage = () => {
   };
 
   const tilbakeTil = auth.authenticated
-    ? urls.tilbakemeldinger.forside
-    : urls.tilbakemeldinger.serviceklage.login;
+    ? paths.tilbakemeldinger.forside
+    : paths.tilbakemeldinger.serviceklage.login;
 
   return (
     <div className="pagecontent">
-      <BreadcrumbsWrapper />
-      <MetaTags>
-        <title>{intl.messages["seo.klagepaservice.tittel"]}</title>
-        <meta
-          name="description"
-          content={intl.messages["seo.klagepaservice.description"] as string}
-        />
-      </MetaTags>
+      <Topplinje />
+      <MetaTags
+        titleId={"tilbakemeldinger.serviceklage.form.tittel"}
+        descriptionId={"seo.klagepaservice.description"}
+        path={paths.tilbakemeldinger.serviceklage.form}
+      />
       <Header
         title={intl.formatMessage({
-          id: "tilbakemeldinger.serviceklage.form.tittel"
+          id: "tilbakemeldinger.serviceklage.form.tittel",
         })}
       />
       <div className={"tb__veileder"}>
@@ -170,7 +169,7 @@ const ServiceKlage = () => {
           kompakt={true}
         >
           <div className={"tb__veileder-container"}>
-            <FormattedHTMLMessage id="tilbakemeldinger.serviceklage.form.veileder" />
+            <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
           </div>
         </Veilederpanel>
       </div>
@@ -191,11 +190,11 @@ const ServiceKlage = () => {
                     setField({
                       klagetyper: fields.klagetyper.filter(
                         (v: string) => v !== value
-                      )
+                      ),
                     });
                   } else {
                     setField({
-                      klagetyper: fields.klagetyper.concat([value])
+                      klagetyper: fields.klagetyper.concat([value]),
                     });
                   }
                 };
@@ -213,7 +212,7 @@ const ServiceKlage = () => {
                       </div>
                       <Checkbox
                         label={intl.formatMessage({
-                          id: "felter.klagetyper.telefon"
+                          id: "felter.klagetyper.telefon",
                         })}
                         name={"TELEFON"}
                         checked={fields.klagetyper.includes("TELEFON")}
@@ -221,7 +220,7 @@ const ServiceKlage = () => {
                       />
                       <Checkbox
                         label={intl.formatMessage({
-                          id: "felter.klagetyper.navkontor"
+                          id: "felter.klagetyper.navkontor",
                         })}
                         name={"LOKALT_NAV_KONTOR"}
                         checked={fields.klagetyper.includes(
@@ -231,7 +230,7 @@ const ServiceKlage = () => {
                       />
                       <Checkbox
                         label={intl.formatMessage({
-                          id: "felter.klagetyper.digitaletjenester"
+                          id: "felter.klagetyper.digitaletjenester",
                         })}
                         name={"NAV_DIGITALE_TJENESTER"}
                         checked={fields.klagetyper.includes(
@@ -243,7 +242,7 @@ const ServiceKlage = () => {
                       />
                       <Checkbox
                         label={intl.formatMessage({
-                          id: "felter.klagetyper.brev"
+                          id: "felter.klagetyper.brev",
                         })}
                         name={"BREV"}
                         checked={fields.klagetyper.includes("BREV")}
@@ -251,7 +250,7 @@ const ServiceKlage = () => {
                       />
                       <Checkbox
                         label={intl.formatMessage({
-                          id: "felter.klagetyper.annet"
+                          id: "felter.klagetyper.annet",
                         })}
                         name={"ANNET"}
                         checked={fields.klagetyper.includes("ANNET")}
@@ -270,7 +269,7 @@ const ServiceKlage = () => {
                     >
                       <Radio
                         label={intl.formatMessage({
-                          id: "felter.hvemfra.megselv"
+                          id: "felter.hvemfra.megselv",
                         })}
                         name={"PRIVATPERSON"}
                         checked={fields.hvemFra === "PRIVATPERSON"}
@@ -278,7 +277,7 @@ const ServiceKlage = () => {
                       />
                       <Radio
                         label={intl.formatMessage({
-                          id: "felter.hvemfra.enannen"
+                          id: "felter.hvemfra.enannen",
                         })}
                         name={"ANNEN_PERSON"}
                         checked={fields.hvemFra === "ANNEN_PERSON"}
@@ -286,7 +285,7 @@ const ServiceKlage = () => {
                       />
                       <Radio
                         label={intl.formatMessage({
-                          id: "felter.hvemfra.virksomhet"
+                          id: "felter.hvemfra.virksomhet",
                         })}
                         name={"BEDRIFT"}
                         checked={fields.hvemFra === "BEDRIFT"}
@@ -303,12 +302,12 @@ const ServiceKlage = () => {
                     <div className="serviceKlage__melding">
                       <InputMelding
                         label={intl.formatMessage({
-                          id: "felter.melding.tittel"
+                          id: "felter.melding.tittel",
                         })}
                         submitted={submitted}
                         value={fields.melding}
                         error={errors.melding}
-                        onChange={v => setField({ melding: v })}
+                        onChange={(v) => setField({ melding: v })}
                       />
                     </div>
                     {kanOnskeAaKontaktes && <ServiceKlageOnskerAaKontaktes />}
@@ -332,10 +331,8 @@ const ServiceKlage = () => {
                         </Knapp>
                       </div>
                       <div className="tb__knapp">
-                        <Link to={tilbakeTil}>
-                          <Knapp type={"flat"}>
-                            <FormattedMessage id={"felter.tilbake"} />
-                          </Knapp>
+                        <Link className="lenkeknapp knapp knapp--flat" to={tilbakeTil}>
+                          <FormattedMessage id={"felter.tilbake"} />
                         </Link>
                       </div>
                     </div>
