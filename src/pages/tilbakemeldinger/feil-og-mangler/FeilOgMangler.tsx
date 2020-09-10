@@ -10,45 +10,46 @@ import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, FormValidation } from "calidation";
 import Header from "components/header/Header";
-import { urls } from "Config";
+import { useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
-import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
-import MetaTags from "react-meta-tags";
+import { FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
-import BreadcrumbsWrapper from "../../../components/breadcrumbs/BreadcrumbsWrapper";
+import Topplinje from "../../../components/topp-linje/ToppLinje";
 import { triggerHotjar } from "../../../utils/hotjar";
+import { MetaTags } from "../../../components/metatags/MetaTags";
 
-export interface OutboundFeilOgMangler {
+export type OutboundFeilOgMangler = {
   onskerKontakt: boolean;
   epost?: string;
   feiltype: "TEKNISK_FEIL" | "FEIL_INFO" | "UNIVERSELL_UTFORMING";
   melding: string;
-}
+};
 
 const FOM = () => {
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);
-  const [error, settError] = useState();
+  const [error, settError] = useState<string | undefined>();
   const intl = useIntl();
+  const paths = useLocalePaths();
 
   const formConfig = {
     feiltype: {
       isRequired: intl.formatMessage({
-        id: "validering.feiltype.pakrevd"
-      })
+        id: "validering.feiltype.pakrevd",
+      }),
     },
     melding: {
       isRequired: intl.formatMessage({
-        id: "validering.melding.pakrevd"
+        id: "validering.melding.pakrevd",
       }),
-      isValidMelding: intl.formatMessage({ id: "validering.melding.tegn" })
-    }
+      isValidMelding: intl.formatMessage({ id: "validering.melding.tegn" }),
+    },
   };
 
-  const send = (e: FormContext) => {
+  const send = (e: FormContext<OutboundFeilOgMangler>) => {
     const { isValid, fields } = e;
     const { onskerKontakt, feiltype, melding } = fields;
     const { epost } = fields;
@@ -58,9 +59,9 @@ const FOM = () => {
         feiltype,
         onskerKontakt,
         ...(onskerKontakt && {
-          epost
+          epost,
         }),
-        melding
+        melding,
       };
 
       settLoading(true);
@@ -80,17 +81,15 @@ const FOM = () => {
 
   return (
     <div className="pagecontent">
-      <BreadcrumbsWrapper />
-      <MetaTags>
-        <title>{intl.messages["seo.feilogmangler.tittel"]}</title>
-        <meta
-          name="description"
-          content={intl.messages["seo.feilogmangler.description"] as string}
-        />
-      </MetaTags>
+      <Topplinje />
+      <MetaTags
+        titleId={"tilbakemeldinger.feilogmangler.tittel"}
+        descriptionId={"seo.feilogmangler.description"}
+        path={paths.tilbakemeldinger.feilogmangler}
+      />
       <Header
         title={intl.formatMessage({
-          id: "tilbakemeldinger.feilogmangler.form.tittel"
+          id: "tilbakemeldinger.feilogmangler.form.tittel",
         })}
       />
       <div className={"tb__veileder"}>
@@ -100,7 +99,7 @@ const FOM = () => {
           kompakt={true}
         >
           <div className={"tb__veileder-container"}>
-            <FormattedHTMLMessage
+            <FormattedMessage
               id={"tilbakemeldinger.feilogmangler.form.veileder"}
             />
           </div>
@@ -115,13 +114,13 @@ const FOM = () => {
               <div className={"skjema__content"}>
                 <SkjemaGruppe
                   legend={intl.formatMessage({
-                    id: "felter.typefeil.tittel"
+                    id: "felter.typefeil.tittel",
                   })}
                   feil={sjekkForFeil(submitted, errors.feiltype)}
                 >
                   <Radio
                     label={intl.formatMessage({
-                      id: "felter.typefeil.tekniskfeil"
+                      id: "felter.typefeil.tekniskfeil",
                     })}
                     name={"TEKNISK_FEIL"}
                     checked={fields.feiltype === "TEKNISK_FEIL"}
@@ -129,7 +128,7 @@ const FOM = () => {
                   />
                   <Radio
                     label={intl.formatMessage({
-                      id: "felter.typefeil.feilinformasjon"
+                      id: "felter.typefeil.feilinformasjon",
                     })}
                     name={"FEIL_INFO"}
                     checked={fields.feiltype === "FEIL_INFO"}
@@ -137,7 +136,7 @@ const FOM = () => {
                   />
                   <Radio
                     label={intl.formatMessage({
-                      id: "felter.typefeil.uu"
+                      id: "felter.typefeil.uu",
                     })}
                     name={"UNIVERSELL_UTFORMING"}
                     checked={fields.feiltype === "UNIVERSELL_UTFORMING"}
@@ -148,12 +147,12 @@ const FOM = () => {
                 </SkjemaGruppe>
                 <InputMelding
                   label={intl.formatMessage({
-                    id: "felter.melding.tittel"
+                    id: "felter.melding.tittel",
                   })}
                   submitted={submitted}
                   value={fields.melding}
                   error={errors.melding}
-                  onChange={v => setField({ melding: v })}
+                  onChange={(v) => setField({ melding: v })}
                 />
                 <FeilgOgManglerOnskerAaKontaktes />
                 {error && (
@@ -176,10 +175,8 @@ const FOM = () => {
                     </Knapp>
                   </div>
                   <div className="tb__knapp">
-                    <Link to={urls.tilbakemeldinger.forside}>
-                      <Knapp type={"flat"}>
+                    <Link className="lenkeknapp knapp knapp--flat" to={paths.tilbakemeldinger.forside}>
                         <FormattedMessage id={"felter.tilbake"} />
-                      </Knapp>
                     </Link>
                   </div>
                 </div>

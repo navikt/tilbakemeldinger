@@ -1,21 +1,12 @@
-import React from "react";
-import { FormattedMessage } from "react-intl";
-import { Link } from "react-router-dom";
-
-import { HoyreChevron } from "nav-frontend-chevron";
-import { Normaltekst } from "nav-frontend-typografi";
-import Lenke from "nav-frontend-lenker";
+import React, { useEffect } from "react";
+import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
+import { useIntl } from "react-intl";
+import { onBreadcrumbClick } from "@navikt/nav-dekoratoren-moduler/dist";
+import { useHistory } from "react-router-dom";
+import Environment from "../../Environments";
 
 type BreadcrumbsProps = {
-  currentPath: string;
-  basePath: string;
   baseLenker?: Array<BreadcrumbLenke>;
-  ikonUrl?: string;
-};
-
-type SegmentProps = {
-  lenke: BreadcrumbLenke;
-  isCurrentPath: boolean;
 };
 
 export type BreadcrumbLenke = {
@@ -24,10 +15,11 @@ export type BreadcrumbLenke = {
   isExternal?: boolean;
 };
 
-const cssPrefix = "breadcrumbs";
-
-const getSegmentLenker = (currentPath: string, basePath: string): Array<BreadcrumbLenke> => {
-  const pathSegments = currentPath.replace(basePath, "").split("/");
+const getSegmentLenker = (locale: string): Array<BreadcrumbLenke> => {
+  const { baseAppPath } = Environment();
+  const pathSegments = window.location.pathname
+    .replace(/\/person\/kontakt-oss\/*/, "")
+    .split("/");
 
   // fjerner tomt segment ved trailing slash
   if (pathSegments.length > 1 && pathSegments[pathSegments.length - 1] === "") {
@@ -36,52 +28,37 @@ const getSegmentLenker = (currentPath: string, basePath: string): Array<Breadcru
 
   return pathSegments.map((segment, index) => {
     const combinedSegments = pathSegments.slice(0, index + 1);
-    const segmentPath = combinedSegments.length === 1 ? "" : combinedSegments.join("/");
+    const segmentPath =
+      combinedSegments.length === 1 ? "" : combinedSegments.join("/");
 
+    const url = `${baseAppPath}/${segmentPath}`;
     return {
-      url: `${basePath}${segmentPath}`,
+      url: !url.includes(`${locale}`) ? `${url}${locale}` : url,
       lenketekstId: `breadcrumb.${segment}`,
     };
   });
 };
 
-const SegmentNode = ({lenke, isCurrentPath}: SegmentProps) => {
-  const lenketekst = <FormattedMessage id={lenke.lenketekstId} />;
+const Breadcrumbs = ({ baseLenker = [] }: BreadcrumbsProps) => {
+  const { formatMessage, locale } = useIntl();
+  const history = useHistory();
 
-  return (
-    <Normaltekst className={`${cssPrefix}__segment`}>
-      { isCurrentPath
-        ? lenketekst
-        : (
-          <>
-            {
-              lenke.isExternal
-              ? <Lenke href={lenke.url} className="lenke">{lenketekst}</Lenke>
-              : <Link to={lenke.url} className="lenke">{lenketekst}</Link>
-            }
-            <HoyreChevron className={`${cssPrefix}__chevron`} />
-          </>
-        )
-      }
-    </Normaltekst>
-  );
-};
+  onBreadcrumbClick((breadcrumb) => {
+    history.push(breadcrumb.url);
+  });
 
-const Breadcrumbs = ({currentPath, basePath, baseLenker = [], ikonUrl}: BreadcrumbsProps) => {
-  const lenker = baseLenker.concat(getSegmentLenker(currentPath, basePath));
+  // Set breadcrumbs in decorator
+  useEffect(() => {
+    const lenker = baseLenker.concat(getSegmentLenker(locale));
+    const breadcrumbs = lenker.map((lenke) => ({
+      title: formatMessage({ id: lenke.lenketekstId }),
+      handleInApp: lenke.url.startsWith("/"),
+      url: lenke.url,
+    }));
+    setBreadcrumbs(breadcrumbs);
+  }, [baseLenker, formatMessage, locale]);
 
-  return (
-    <div className={cssPrefix}>
-      {ikonUrl && <img src={ikonUrl} alt="" className={`${cssPrefix}__ikon`} />}
-      {lenker.map((lenke: BreadcrumbLenke, index: number) => (
-        <SegmentNode
-          lenke={lenke}
-          isCurrentPath={index === lenker.length - 1}
-          key={`segment-${index}`}
-        />
-      ))}
-    </div>
-  );
+  return <></>;
 };
 
 export default Breadcrumbs;

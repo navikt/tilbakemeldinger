@@ -1,57 +1,82 @@
 import { AuthInfo } from "../types/authInfo";
 import { KontaktInfo } from "../types/kontaktInfo";
-import { Sprak } from "../types/sprak";
-import sprak from "../language/provider";
 import { Enheter, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../components/error/Error";
-import Unleash, { Features } from "../utils/unleash";
+import { Alert, Alerts, initialAlerts } from "../utils/sanity/endpoints/alert";
+import { FAQ, FAQLenke, initialFAQ } from "../utils/sanity/endpoints/faq";
+import { Channels, ChannelList, initialChannels } from "../utils/sanity/endpoints/channels";
+import { initialThemes, ThemeList, Themes } from "../utils/sanity/endpoints/themes";
+import { defaultLocale, getLocaleFromUrl, Locale } from "../utils/locale";
 
 export const initialState = {
   fodselsnr: "",
-  language: sprak,
-  locale: "nb" as "nb",
-  enheter: {status: "LOADING"} as FetchEnheter,
-  auth: {authenticated: false} as AuthInfo,
-  kontaktInfo: {mobiltelefonnummer: ""},
-  unleashFeatures: Unleash.getFeatureDefaults() as Features
+  locale: getLocaleFromUrl() || defaultLocale,
+  enheter: { status: "LOADING" } as FetchEnheter,
+  auth: { authenticated: false } as AuthInfo,
+  kontaktInfo: { mobiltelefonnummer: "" },
+  visTekniskFeilMelding: false,
+  alerts: initialAlerts as Alerts,
+  faq: initialFAQ as FAQ,
+  channels: initialChannels as Channels,
+  themes: initialThemes as Themes
 };
 
 export interface Store {
-  locale: "nb";
-  language: Sprak;
-  auth: AuthInfo;
   fodselsnr: string;
-  kontaktInfo: KontaktInfo;
+  locale: Locale;
   enheter: FetchEnheter;
-  unleashFeatures: Features;
+  auth: AuthInfo;
+  kontaktInfo: KontaktInfo;
+  visTekniskFeilMelding: boolean;
+  alerts: Alerts;
+  faq: FAQ;
+  channels: Channels;
+  themes: Themes;
 }
 
 export type Action =
   | {
   type: "SETT_ENHETER_RESULT";
   payload: Enheter[];
-}
-  | {
+} | {
   type: "SETT_ENHETER_ERROR";
   payload: HTTPError;
-}
-  | {
+} | {
   type: "SETT_AUTH_RESULT";
   payload: AuthInfo;
-}
-  | {
+} | {
   type: "SETT_FODSELSNR";
   payload: {
     fodselsnr: string;
   };
-}
-  | {
+} | {
   type: "SETT_KONTAKT_INFO_RESULT";
   payload: KontaktInfo;
-}
-  | {
-  type: "SETT_FEATURE_TOGGLES";
-  payload: Features;
+} | {
+  type: "SETT_ALERTS";
+  payload: Array<Alert>;
+} | {
+  type: "SETT_ALERTS_FETCH_FAILED";
+} | {
+  type: "SETT_FAQ";
+  payload: FAQLenke[];
+} | {
+  type: "SETT_FAQ_FETCH_FAILED";
+} | {
+  type: "SETT_CHANNEL_PROPS";
+  payload: ChannelList;
+} | {
+  type: "SETT_CHANNELS_FETCH_FAILED";
+} | {
+  type: "SETT_THEME_PROPS";
+  payload: ThemeList;
+} | {
+  type: "SETT_THEMES_FETCH_FAILED";
+} | {
+  type: "SETT_TEKNISK_FEILMELDING";
+} | {
+  type: "SETT_LOCALE";
+  payload: Locale;
 };
 
 export const reducer = (state: Store, action: Action) => {
@@ -87,10 +112,78 @@ export const reducer = (state: Store, action: Action) => {
         ...state,
         kontaktInfo: action.payload as KontaktInfo
       };
-    case "SETT_FEATURE_TOGGLES":
+    case "SETT_ALERTS":
       return {
         ...state,
-        unleashFeatures: Unleash.getValidFeatureToggles(action.payload as Features)
+        alerts: {
+          isLoaded: true,
+          alerts: action.payload
+        }
+      };
+    case "SETT_ALERTS_FETCH_FAILED": {
+      return {
+        ...state,
+        alerts: { ...state.alerts, isLoaded: true },
+        visTekniskFeilMelding: true
+      };
+    }
+    case "SETT_FAQ": {
+      return {
+        ...state,
+        faq: {
+          isLoaded: true,
+          faqLenker: action.payload.sort((a, b) => b.priority - a.priority)
+        }
+      };
+    }
+    case "SETT_FAQ_FETCH_FAILED": {
+      return {
+        ...state,
+        faq: { ...state.faq, isLoaded: true },
+        visTekniskFeilMelding: true
+      };
+    }
+    case "SETT_CHANNEL_PROPS": {
+      return {
+        ...state,
+        channels: {
+          isLoaded: true,
+          props: action.payload
+        }
+      };
+    }
+    case "SETT_CHANNELS_FETCH_FAILED": {
+      return {
+        ...state,
+        channels: { ...state.channels, isLoaded: true },
+        visTekniskFeilMelding: true
+      };
+    }
+    case "SETT_THEME_PROPS": {
+      return {
+        ...state,
+        themes: {
+          isLoaded: true,
+          props: action.payload
+        }
+      };
+    }
+    case "SETT_THEMES_FETCH_FAILED": {
+      return {
+        ...state,
+        themes: { ...state.themes, isLoaded: true },
+        visTekniskFeilMelding: true
+      };
+    }
+    case "SETT_TEKNISK_FEILMELDING":
+      return {
+        ...state,
+        visTekniskFeilMelding: true
+      };
+    case "SETT_LOCALE":
+      return {
+        ...state,
+        locale: action.payload
       };
     default:
       return state;

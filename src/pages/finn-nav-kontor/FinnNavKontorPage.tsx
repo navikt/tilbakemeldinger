@@ -1,51 +1,74 @@
-import React, { useEffect, useState } from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import React, { useState } from "react";
+import { FormattedMessage } from "react-intl";
 import { Input, Label } from "nav-frontend-skjema";
 import { Form } from "calidation";
 import { Knapp } from "nav-frontend-knapper";
 import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
-
-import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
+import Topplinje from "../../components/topp-linje/ToppLinje";
 import { ResultatvisningVedSubmit } from "./components/ResultatvisningVedSubmit";
 import { ResultatvisningDynamisk } from "./components/ResultatvisningDynamisk";
 import { kjorSokOgReturnerResultat, minQueryLength, SokeResultat } from "./FinnNavKontorSok";
+import Lenke from "nav-frontend-lenker";
+import Config, { paths } from "../../Config";
+import { Varsel } from "../../components/varsler/Varsel";
+import { MetaTags } from "../../components/metatags/MetaTags";
+import { useStore } from "../../providers/Provider";
 
 const cssPrefix = "finn-kontor";
 
 const FinnNavKontorPage = () => {
-  const tittel = useIntl().formatMessage({id: "finnkontor.tittel"});
-  const documentTitle = `${tittel} - www.nav.no`;
-  useEffect(() => {
-    document.title = documentTitle;
-  }, [documentTitle]);
-
   const [inputElement, setInputElement] = useState<HTMLInputElement>();
   const [sokeResultat, setSokeResultat] = useState<SokeResultat | null>();
-  const [sokeResultatDynamisk, setSokeResultatDynamisk] = useState<SokeResultat | null>();
+  const [
+    sokeResultatDynamisk,
+    setSokeResultatDynamisk
+  ] = useState<SokeResultat | null>();
+  const [{ locale }] = useStore();
 
   return (
     <div className={`${cssPrefix} pagecontent`}>
-      <BreadcrumbsWrapper/>
+      <Topplinje />
+      <MetaTags
+        titleId={"finnkontor.tittel"}
+        descriptionId={"finnkontor.ingress"}
+        path={paths.finnDittNavKontorUinnlogget}
+      />
 
       <div className={`${cssPrefix}__header`}>
         <Sidetittel>
-          <FormattedMessage id={"finnkontor.tittel"}/>
+          <FormattedMessage id={"finnkontor.tittel"} />
         </Sidetittel>
         <Normaltekst className={`${cssPrefix}__ingress`}>
-          <FormattedMessage id={"finnkontor.ingress"}/>
+          <FormattedMessage id={"finnkontor.ingress"} />
         </Normaltekst>
+      </div>
+
+      <div className={"koronavarsel__container"}>
+        <Varsel type={"advarsel"}>
+          <>
+            <div className={"koronavarsel__description"}>
+              <Normaltekst>
+                <FormattedMessage id={"varsel.koronavirus.navkontor"} />
+              </Normaltekst>
+            </div>
+            <Lenke href={Config.urls.koronaVarselDialog[locale]}>
+              <FormattedMessage id={"varsel.koronavirus.navkontor.lenke"} />
+            </Lenke>
+          </>
+        </Varsel>
       </div>
 
       <div className={`${cssPrefix}__innhold`}>
         <Form
           onSubmit={() => {
-            inputElement && setSokeResultat(kjorSokOgReturnerResultat(inputElement.value));
+            inputElement &&
+            setSokeResultat(kjorSokOgReturnerResultat(inputElement.value));
             setSokeResultatDynamisk(null);
           }}
           className={`${cssPrefix}__input-gruppe`}
         >
           <Label htmlFor={"finn-kontor-input-id"}>
-            <FormattedMessage id={"finnkontor.sok.label"}/>
+            <FormattedMessage id={"finnkontor.sok.label"} />
           </Label>
           <div className={`${cssPrefix}__input-og-knapp`}>
             <Input
@@ -55,7 +78,11 @@ const FinnNavKontorPage = () => {
               autoFocus={true}
               autoComplete={"off"}
               onFocus={e => setInputElement(e.target)}
-              onChange={e => setSokeResultatDynamisk(kjorSokOgReturnerResultat(e.target.value))}
+              onChange={e =>
+                setSokeResultatDynamisk(
+                  kjorSokOgReturnerResultat(e.target.value)
+                )
+              }
               onKeyDown={e => e.key === "Escape" && e.currentTarget.blur()}
             />
             <Knapp
@@ -65,24 +92,23 @@ const FinnNavKontorPage = () => {
               mini={true}
               id={"finn-kontor-knapp-id"}
             >
-              <FormattedMessage id={"finnkontor.sok.knapp"}/>
+              <FormattedMessage id={"finnkontor.sok.knapp"} />
             </Knapp>
           </div>
-
-          {sokeResultatDynamisk && sokeResultatDynamisk.query.length >= minQueryLength && (
+          {sokeResultatDynamisk &&
+          sokeResultatDynamisk.query.length >= minQueryLength && (
             <div
               className={`${cssPrefix}__preview-container`}
               id={"preview-container-id"}
               tabIndex={-1}
             >
-              <ResultatvisningDynamisk resultat={sokeResultatDynamisk}/>
+              <ResultatvisningDynamisk resultat={sokeResultatDynamisk} />
             </div>
           )}
         </Form>
-
         {sokeResultat && (
           <div className={`${cssPrefix}__resultat-container`}>
-            <ResultatvisningVedSubmit resultat={sokeResultat}/>
+            <ResultatvisningVedSubmit resultat={sokeResultat} />
           </div>
         )}
       </div>

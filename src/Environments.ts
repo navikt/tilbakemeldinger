@@ -1,12 +1,9 @@
-import { forsidePath, noRedirectUrlSegment } from "./Config";
+import { forsidePath } from "./Config";
 
 const Environment = () => {
   const host = window.location.host;
   const subdomain = host.split(`.`)[0];
-
-  const pathname = window.location.pathname;
-  const noRedirect = pathname.includes(noRedirectUrlSegment);
-  const baseAppPath = `${forsidePath}${noRedirect ? noRedirectUrlSegment : ""}`;
+  const baseAppPath = `${forsidePath}`;
 
   if (process.env.NODE_ENV === `development`) {
     return {
@@ -19,7 +16,6 @@ const Environment = () => {
       tjenesteUrl: `https://tjenester.nav.no`,
       loginUrl: `http://localhost:8080/personbruker-api/local/cookie`,
       logoutUrl: `#`,
-      unleashUrl: `#`
     };
   }
   if (subdomain !== `www`) {
@@ -35,7 +31,6 @@ const Environment = () => {
       tjenesteUrl: `https://tjenester-${env}.nav.no`,
       loginUrl: `https://loginservice-q.nav.no/login`,
       logoutUrl: `https://loginservice-q.nav.no/slo`,
-      unleashUrl: `#`
     };
   }
 
@@ -49,7 +44,6 @@ const Environment = () => {
     tjenesteUrl: `https://tjenester.nav.no`,
     loginUrl: `https://loginservice.nav.no/login`,
     logoutUrl: `https://loginservice.nav.no/slo`,
-    unleashUrl: `#`
   };
 };
 

@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
-import { Sidetittel, Undertittel } from "nav-frontend-typografi";
+import { Sidetittel } from "nav-frontend-typografi";
 import FAQ from "./sections/FAQ";
 import FeilOgMangler from "./sections/FeilOgMangler";
 import Facebook from "./sections/Facebook";
 import Tolketjenesten from "./sections/Tolketjenesten";
 import Schema from "assets/schema.json";
-import MetaTags from "react-meta-tags";
-import { FormattedMessage, useIntl } from "react-intl";
-import BreadcrumbsWrapper from "../../components/breadcrumbs/BreadcrumbsWrapper";
+import { FormattedMessage } from "react-intl";
+import Topplinje from "../../components/topp-linje/ToppLinje";
 import Chat from "./sections/Chat";
 import RingOss from "./sections/RingOss";
 import SkrivTilOss from "./sections/SkrivTilOss";
@@ -16,19 +15,15 @@ import KlageOgTilbakemeldinger from "./sections/KlageOgTilbakemeldinger";
 import KontaktVeileder from "./sections/KontaktVeileder";
 import Pressekontakt from "./sections/Pressekontakt";
 import SosialeMedier from "./sections/SosialeMedier";
-import { AlertStripeInfo } from "nav-frontend-alertstriper";
-import { varsler } from "Config";
-import Lenke from "nav-frontend-lenker";
-import { KoronaVirusVarsel } from "../../components/varsler/korona-virus-varsel/KoronaVirusVarsel";
-import { StorPaagangVarsel } from "../../components/varsler/stor-paagang-varsel/StorPaagangVarsel";
+import { VarselVisning } from "../../components/varsler/VarselVisning";
+import { useStore } from "../../providers/Provider";
+import { MetaTags } from "../../components/metatags/MetaTags";
 
 const KontaktOssFrontpage = () => {
-  const intl = useIntl();
+  const [{ locale }] = useStore();
 
+  // Add schema from assets
   useEffect(() => {
-    /*
-      Add schema from assets
-    */
     const script = document.createElement("script");
     script.type = "application/ld+json";
     script.innerHTML = JSON.stringify(Schema);
@@ -38,18 +33,29 @@ const KontaktOssFrontpage = () => {
     };
   }, []);
 
+  // Bugfix for background color on frontpage
+  useEffect(() => {
+    const head = document.querySelector("head");
+    if (head) {
+      head.innerHTML += `<style>.decorator-utils-container{background-color: white !important}</style>`;
+    }
+    return () => {
+      if (head) {
+        head.innerHTML += `<style>.decorator-utils-container{background-color: #efefef !important}</style>`;
+      }
+    };
+  }, []);
+
   return (
     <div className="frontpage__wrapper">
       <div className="pagecontent pagecontent__frontpage">
-        <BreadcrumbsWrapper />
+        <Topplinje />
         <div className="frontpage">
-          <MetaTags>
-            <title>{intl.messages["seo.kontaktoss.tittel"]}</title>
-            <meta
-              name="description"
-              content={intl.messages["seo.kontaktoss.description"] as string}
-            />
-          </MetaTags>
+          <MetaTags
+            titleId={"kontaktoss.tittel"}
+            descriptionId={"seo.kontaktoss.description"}
+            path={""}
+          />
           <header className="frontpage__introduksjon">
             <div className="frontpage__sidetittel">
               <Sidetittel>
@@ -57,35 +63,25 @@ const KontaktOssFrontpage = () => {
               </Sidetittel>
             </div>
           </header>
-          <KoronaVirusVarsel />
-          <StorPaagangVarsel />
-          {varsler.map(varsel => (
-            <AlertStripeInfo key={varsel.tittel}>
-              <Undertittel>{varsel.tittel}</Undertittel>
-              <div className={"varsel__body"}>{varsel.beskrivelse}</div>
-              {varsel.lenke && varsel.lenkeTekst && (
-                <Lenke href={varsel.lenke}>{varsel.lenkeTekst}</Lenke>
-              )}
-            </AlertStripeInfo>
-          ))}
+          <VarselVisning />
           <div className="frontpage__content">
             <Chat />
             <div className="frontpage__row">
-              <RingOss />
+              <RingOss locale={locale} />
               <FAQ />
             </div>
-            <SkrivTilOss />
             <KontaktVeileder />
+            <SkrivTilOss />
             <Facebook />
             <FinnNavKontor />
-            <Tolketjenesten />
+            <Tolketjenesten locale={locale} />
             <KlageOgTilbakemeldinger />
             <FeilOgMangler />
             <Pressekontakt />
             <SosialeMedier />
           </div>
         </div>
-        <BreadcrumbsWrapper />
+        <Topplinje />
       </div>
     </div>
   );

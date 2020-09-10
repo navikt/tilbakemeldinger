@@ -1,8 +1,12 @@
 import { TextareaControlled, TextareaProps } from "nav-frontend-skjema";
 import React, { KeyboardEvent, useState } from "react";
 import { FormattedMessage } from "react-intl";
-import { AlertStripeAdvarsel } from "nav-frontend-alertstriper";
-import { vars } from "../../Config";
+import { paths, urls, vars } from "../../Config";
+import { Varsel } from "../varsler/Varsel";
+import { useStore } from "../../providers/Provider";
+import { localePath } from "../../utils/locale";
+import { Link } from "react-router-dom";
+import Lenke from "nav-frontend-lenker";
 
 interface Props extends Omit<TextareaProps, "onChange"> {
   onChange: (value: string) => void;
@@ -14,15 +18,49 @@ interface Props extends Omit<TextareaProps, "onChange"> {
 const InputMelding = (props: Props) => {
   const [blur, settBlur] = useState(false);
   const { error, value, label, submitted } = props;
+  const [{ locale }] = useStore();
+
   return (
     <div>
-      <div className={"skjemagruppe__legend"}>{label}</div>
+      <label className={"skjemagruppe__legend"} htmlFor="InputMelding-textarea">{label}</label>
       <div className={"felter__melding-advarsel"}>
-        <AlertStripeAdvarsel>
-          <FormattedMessage id={"felter.melding.beskrivelse"} />
-        </AlertStripeAdvarsel>
+        <Varsel type={"advarsel"}>
+          <FormattedMessage
+            id={"felter.melding.beskrivelse"}
+            values={{
+              DineSakerLenke: (text: string) => (
+                <Lenke
+                  href={urls.tilbakemeldinger.serviceklage.saksoversikt[locale]}
+                >
+                  {text}
+                </Lenke>
+              ),
+              DittNavLenke: (text: string) => (
+                <Lenke href={urls.tilbakemeldinger.serviceklage.dittNav}>
+                  {text}
+                </Lenke>
+              ),
+              SaksbehandlingstiderLenke: (text: string) => (
+                <Lenke
+                  href={urls.tilbakemeldinger.serviceklage.saksbehandlingstider}
+                >
+                  {text}
+                </Lenke>
+              ),
+              SkrivTilOssLenke: (text: string) => (
+                <Link
+                  className={"lenke"}
+                  to={localePath(paths.skrivTilOss.forside, locale)}
+                >
+                  {text}
+                </Link>
+              ),
+            }}
+          />
+        </Varsel>
       </div>
       <TextareaControlled
+        id="InputMelding-textarea"
         label={""}
         required={true}
         value={value}

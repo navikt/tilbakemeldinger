@@ -1,0 +1,39 @@
+import { forsidePath } from "../Config";
+import { Action } from "../providers/Store";
+import { logEvent } from "./logger";
+
+export type Locale = "nb" | "en";
+export const validLocales: Locale[] = ["nb", "en"];  // :(
+export const defaultLocale = "nb" as Locale;
+
+export const localePath = (path: string, locale: Locale) => `${forsidePath}/${locale}${path}`;
+
+const isLocale = (str: string): str is Locale => validLocales.includes(str as Locale);
+
+export const setNewLocale = (locale: Locale, dispatch: (action: Action) => void) => {
+  // TODO: bruk regex?
+  const subSegments = window.location.pathname
+    .split(forsidePath)[1]
+    .split("/")
+    .slice(2)
+    .join("/");
+  const newUrl = `${forsidePath}/${locale}/${subSegments}`;
+
+  window.history.pushState({}, "", newUrl);
+  dispatch({ type: "SETT_LOCALE", payload: locale });
+};
+
+export const getLocaleFromUrl = () => {
+  const locale = window.location.pathname
+      .split(forsidePath)[1]
+      .split("/")[1];
+
+  return isLocale(locale) ? locale : defaultLocale;
+};
+
+export const setLocaleFromUrl = (dispatch: (action: Action) => void) => {
+  const localeFromUrl = getLocaleFromUrl();
+
+  logEvent({ event: `pageview-${localeFromUrl}` });
+  dispatch({ type: "SETT_LOCALE", payload: localeFromUrl });
+};

@@ -1,12 +1,13 @@
-body {
-  background-color: #efefef;
-}
-
 .app {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #efefef;
+}
+
+.decorator-utils-container {
+  background-color: #efefef;
 }
 
 .pagecontent {
@@ -66,6 +67,10 @@ body {
   padding: 0.5rem 0;
 }
 
+.nav-veilederpanel {
+  min-height: 1rem !important;
+}
+
 .tb {
   &__knapper {
     display: flex;
@@ -82,6 +87,11 @@ body {
     }
     .knapp {
       width: 12rem;
+    }
+
+    .lenkeknapp {
+      text-decoration: underline;
+      box-sizing: border-box;
     }
   }
   &__veileder {
@@ -165,14 +175,4 @@ body {
 
 .btn-auth {
   min-height: 1.5rem;
-}
-
-.apningstider-avvik {
-  p {
-    margin: 0;
-  }
-}
-
-.apningstider-avvik-header {
-  font-weight: bold;
 }

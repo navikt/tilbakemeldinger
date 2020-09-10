@@ -13,7 +13,6 @@
   flex-direction: row;
 
   padding: 1rem;
-  margin: 1rem 0;
   border-color: black;
 
   .animation-props() {
@@ -23,7 +22,7 @@
     animation-timing-function: ease-out;
   }
 
-  &__ikon-rad {
+  &__ikon-kol {
     position: relative;
 
     display: flex;
@@ -34,15 +33,17 @@
     padding: 0;
     min-width: @pulse-diameter;
     min-height: @pulse-diameter;
+
+    @media (max-width: 768px) {
+      min-width: 40px;
+    }
   }
 
   &__sirkel {
     position: absolute;
-    z-index: 1;
-
+    border-radius: 50%;
     width: @sirkel-diameter;
     height: @sirkel-diameter;
-    border-radius: 50%;
 
     background-color: @navOransjeLighten20;
 
@@ -60,9 +61,10 @@
     .animation-props();
   }
 
-  &__tekst-rad {
+  &__tekst-kol {
     padding: 1.25rem 1rem;
     text-align: left;
+    flex-grow: 1;
   }
 
   &__ingress {
@@ -70,7 +72,7 @@
   }
 
   &__dato-tid {
-    color: @navGra40;
+    color: @navGra60;
     margin-top: @spacing;
   }
 
