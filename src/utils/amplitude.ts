@@ -13,8 +13,8 @@ export const initAmplitude = () => {
 const logAmplitudeEventProd = (eventName: string, data?: any): Promise<any> => {
   return new Promise(function (resolve: any) {
     const eventData = data || {};
-    eventData.app = "pb-kontakt-oss";
-    eventData.origin = "kontakt-oss";
+    eventData.app = "tilbakemeldinger";
+    eventData.origin = "tilbakemeldinger";
     eventData.originVersion = "unknown";
     amplitude?.getInstance().logEvent(eventName, eventData, resolve);
   });

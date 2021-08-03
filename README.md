@@ -1,6 +1,6 @@
 # Tilbakemeldinger
 
-![Deploy-to-prod](https://github.com/navikt/pb-kontakt-oss/workflows/Deploy-to-prod/badge.svg) | ![Deploy-to-dev](https://github.com/navikt/pb-kontakt-oss/workflows/Deploy-to-dev/badge.svg)
+![Deploy-to-prod](https://github.com/navikt/tilbakemeldinger/workflows/Deploy-to-prod/badge.svg) | ![Deploy-to-dev](https://github.com/navikt/tilbakemeldinger/workflows/Deploy-to-dev/badge.svg)
 
 Frontend for innsending av tilbakemeldinger til NAV: Klage, ros og tekniske feil og mangler.
 
@@ -9,7 +9,7 @@ Frontend for innsending av tilbakemeldinger til NAV: Klage, ros og tekniske feil
 Hent repoet fra github
 
 ```
-git clone https://github.com/navikt/pb-kontakt-oss.git
+git clone https://github.com/navikt/tilbakemeldinger.git
 ```
 
 Installer nødvendige pakker:
@@ -40,7 +40,7 @@ Push deretter den nye versjonen til GitHub og merge til master.
 git push && git push --tags
 ```
 
-Se [Github Actions](https://github.com/navikt/pb-kontakt-oss/actions) for å følge med på deploys.
+Se [Github Actions](https://github.com/navikt/tilbakemeldinger/actions) for å følge med på deploys.
 
 ## Logging
 
