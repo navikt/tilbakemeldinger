@@ -42,7 +42,7 @@ jobs:
       - name: Generate nais variables
         run: |
           cat > .nais/vars.yaml <<EOF
-          namespace: default
+          namespace: personbruker
           ingresses:
             - https://www.nav.no/person/kontakt-oss/nb/tilbakemeldinger
             - https://www.nav.no/person/kontakt-oss/en/tilbakemeldinger
