@@ -64,8 +64,8 @@ const nb = {
   "tilbakemeldinger.serviceklage.login.tittel": "Klage på service",
   "tilbakemeldinger.serviceklage.login.overskrift": "Ønsker du å logge inn?",
   "tilbakemeldinger.serviceklage.login.beskrivelse":
-    "Vi anbefaler at du logger inn, så slipper du å fylle inn all informasjonen om deg selv.<br/>" +
-    "Du må opppgi hvem du er uansett om du logger inn eller ikke.",
+    "Vi anbefaler at du logger inn, så slipper du å fylle inn all informasjonen om deg selv.<br><br/>" +
+    "Du må oppgi hvem du er uansett om du logger inn eller ikke.",
   "tilbakemeldinger.serviceklage.login.knapp": "Logg inn",
   "tilbakemeldinger.serviceklage.login.knapp.fortsettuten":
     "Fortsett uten å logge inn",
