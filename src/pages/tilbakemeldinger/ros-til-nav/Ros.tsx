@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
-import VeilederIcon from "assets/Veileder.svg";
+import VeilederIcon from "assets/icons/Veileder.svg";
 import { Knapp } from "nav-frontend-knapper";
 import { Link } from "react-router-dom";
 import InputMelding from "components/input-fields/InputMelding";
@@ -17,7 +17,6 @@ import { FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import { triggerHotjar } from "utils/hotjar";
-import Topplinje from "components/topp-linje/ToppLinje";
 import SelectEnhet from "components/input-fields/SelectEnhet";
 import { MetaTags } from "../../../components/metatags/MetaTags";
 
@@ -107,7 +106,6 @@ const Ros = () => {
   };
   return (
     <div className="pagecontent">
-      <Topplinje />
       <MetaTags
         titleId={"tilbakemeldinger.ros.tittel"}
         descriptionId={"seo.rostilnav.description"}

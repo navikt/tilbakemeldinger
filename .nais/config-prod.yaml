@@ -2,7 +2,7 @@
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
-  name: pb-kontakt-oss
+  name: tilbakemeldinger
   namespace: {{namespace}}
   labels:
     team: personbruker
@@ -15,15 +15,23 @@ spec:
      - {{url}}
   {{/each}}
   liveness:
-    path: /person/kontakt-oss/internal/isAlive
+    path: /person/kontakt-oss/tilbakemeldinger/internal/isAlive
     initialDelay: 10
   readiness:
-    path: /person/kontakt-oss/internal/isReady
+    path: /person/kontakt-oss/tilbakemeldinger/internal/isReady
     initialDelay: 10
   replicas:
     min: 2
     max: 4
   webproxy: true
+  accessPolicy:
+    outbound:
+      external:
+        - host: nav.no
+  leaderElection: true
+  env:
+    - name: ENV
+      value: prod
   resources:
     limits:
       cpu: '3'

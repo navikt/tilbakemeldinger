@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Veilederpanel from "nav-frontend-veilederpanel";
-import VeilederIcon from "assets/Veileder.svg";
+import VeilederIcon from "assets/icons/Veileder.svg";
 import { Knapp } from "nav-frontend-knapper";
 import { Link, withRouter } from "react-router-dom";
 import InputMelding from "components/input-fields/InputMelding";
@@ -17,7 +17,6 @@ import { FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
-import Topplinje from "../../../components/topp-linje/ToppLinje";
 import { triggerHotjar } from "../../../utils/hotjar";
 import { MetaTags } from "../../../components/metatags/MetaTags";
 
@@ -81,7 +80,6 @@ const FOM = () => {
 
   return (
     <div className="pagecontent">
-      <Topplinje />
       <MetaTags
         titleId={"tilbakemeldinger.feilogmangler.tittel"}
         descriptionId={"seo.feilogmangler.description"}
@@ -175,8 +173,11 @@ const FOM = () => {
                     </Knapp>
                   </div>
                   <div className="tb__knapp">
-                    <Link className="lenkeknapp knapp knapp--flat" to={paths.tilbakemeldinger.forside}>
-                        <FormattedMessage id={"felter.tilbake"} />
+                    <Link
+                      className="lenkeknapp knapp knapp--flat"
+                      to={paths.tilbakemeldinger.forside}
+                    >
+                      <FormattedMessage id={"felter.tilbake"} />
                     </Link>
                   </div>
                 </div>
