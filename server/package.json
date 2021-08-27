@@ -1,6 +1,6 @@
 {
   "name": "personopplysninger-server",
-  "version": "1.0.0",
+  "version": "1.7.23-test",
   "private": true,
   "author": "NAV",
   "license": "MIT",
@@ -8,12 +8,16 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "dotenv": "^8.0.0",
+    "@navikt/nav-dekoratoren-moduler": "^1.2.2",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "jsdom": "^15.1.1",
-    "mustache-express": "^1.2.8",
-    "node-cache": "^5.0.1",
-    "winston": "^3.2.1"
+    "html-react-parser": "^1.2.4",
+    "jsdom": "^15.2.1",
+    "node-cache": "^5.1.2",
+    "node-fetch": "^2.6.1",
+    "node-schedule": "^2.0.0",
+    "react": "^17.0.1",
+    "winston": "^3.3.3"
   },
   "browserslist": [
     ">0.2%",

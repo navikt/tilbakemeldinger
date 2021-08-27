@@ -1,13 +1,15 @@
-# Kontakt oss
+# Tilbakemeldinger
 
-Chat, telefon, skriv til oss, klage og tilbakemelding, sosiale medier, m.m.
+![Deploy-to-prod](https://github.com/navikt/tilbakemeldinger/workflows/Deploy-to-prod/badge.svg) | ![Deploy-to-dev](https://github.com/navikt/tilbakemeldinger/workflows/Deploy-to-dev/badge.svg)
+
+Frontend for innsending av tilbakemeldinger til NAV: Klage, ros og tekniske feil og mangler.
 
 ## Komme i gang
 
 Hent repoet fra github
 
 ```
-git clone https://github.com/navikt/pb-kontakt-oss.git
+git clone https://github.com/navikt/tilbakemeldinger.git
 ```
 
 Installer nødvendige pakker:
@@ -22,16 +24,14 @@ Start applikasjonen lokalt:
 npm start
 ```
 
-
 ## Deployering
 
 Deploy skjer gjennom Github Actions.<br><br>
-Deployes til test-miljøer (q1/q6) for versjoner med tag-suffix <b>-test*</b> (f.eks. <b>v.1.0.0-test-rc1</b>).<br>
-Deployes til prod og q0 for versjoner i master med øvrige tags (f.eks. <b>v.1.0.0</b>).<br><br>
-For å lansere applikasjonen til produksjon / https://www.nav.no/person/kontakt-oss, benytt [npm version](https://docs.npmjs.com/cli/version) til å oppdatere package.json og lage samsvarende Git-tag. Eks:
+Deployes til dev for versjoner med tag-suffix <b>-dev\*</b> (f.eks. <b>v.1.0.0-dev</b>).<br>
+Deployes til prod for versjoner med tag-suffix <b>-prod\*</b> (f.eks. <b>v.1.0.0-prod</b>).<br><br>
 
 ```
-npm version patch -m "Din melding"
+npm version v.1.0.0-dev
 ```
 
 Push deretter den nye versjonen til GitHub og merge til master.
@@ -40,7 +40,7 @@ Push deretter den nye versjonen til GitHub og merge til master.
 git push && git push --tags
 ```
 
-Se [Github Actions](https://github.com/navikt/pb-kontakt-oss/actions) for å følge med på deploys.
+Se [Github Actions](https://github.com/navikt/tilbakemeldinger/actions) for å følge med på deploys.
 
 ## Logging
 

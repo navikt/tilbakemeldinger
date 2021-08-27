@@ -10,15 +10,6 @@ export const useLocalePaths = () => {
   const [{ locale }] = useStore();
   const locPath = (path: string) => localePath(path, locale);
 
-  // TODO: få dette til å virke med type-checks
-  // type ObjType = {[key: string]: object | string};
-  //
-  // const setLocalePaths = (paths: ObjType): ObjType =>
-  //   Object.entries(paths).reduce((acc, [key, value]) =>
-  //     ({...acc, key: typeof value === "object" ? setLocalePaths(value as ObjType) : locPath(value)}), {});
-  //
-  // return setLocalePaths(paths);
-
   return {
     baseAppPath: `${paths.baseAppPath}/${locale}`,
     chat: {
@@ -26,7 +17,6 @@ export const useLocalePaths = () => {
     },
     skrivTilOss: {
       forside: locPath(paths.skrivTilOss.forside),
-      hjelpemidler: locPath(paths.skrivTilOss.hjelpemidler),
     },
     finnDittNavKontorUinnlogget: locPath(paths.finnDittNavKontorUinnlogget),
     tilbakemeldinger: {
@@ -52,7 +42,6 @@ export const paths = {
   },
   skrivTilOss: {
     forside: "/skriv-til-oss",
-    hjelpemidler: "/skriv-til-oss/hjelpemidler",
   },
   finnDittNavKontorUinnlogget: "/finnkontor",
   tilbakemeldinger: {
@@ -71,56 +60,12 @@ export const paths = {
 };
 
 export const urls = {
-  chatEures:
-    "https://ec.europa.eu/eures/main.jsp?acro=eures&lang=no&catId=10821&parentCategory=10821",
-  ringOss: {
-    nb: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-nav-pa-telefon2`,
-    en: `${navUrl}/en/home/about-nav/contact-us`,
-  },
-  faqDefault: {
-    utbetalingsoversikt: `${tjenesteUrl}/utbetalingsoversikt/`,
-    saksoversikt: `${tjenesteUrl}/saksoversikt/`,
-    utbetalinger: `${navUrl}/no/nav-og-samfunn/kontakt-nav/utbetalinger`,
-    saksbehandlingstider: `${navUrl}/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav`,
-    endreKontonummer: `${navUrl}/person/personopplysninger#utbetaling`,
-    postTilAnnenAdresse: `${navUrl}/no/nav-og-samfunn/kontakt-nav/vil-du-ha-post-fra-nav-til-en-annen-adresse2`,
-  },
-  kontaktVeileder: `${navUrl}/arbeid/dialog`,
-  skrivTilOss: {
-    jobbsoker: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
-    syk: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ARBD`,
-    familieogbarn: `${tjenesteUrl}/mininnboks/sporsmal/skriv/FMLI`,
-    ufor: `${tjenesteUrl}/mininnboks/sporsmal/skriv/UFRT`,
-    pensjonist: `${tjenesteUrl}/mininnboks/sporsmal/skriv/PENS`,
-    sosialhjelp: `${tjenesteUrl}/mininnboks/sporsmal/skriv/OKSOS`,
-    hjelpemidler: "/skriv-til-oss/hjelpemidler",
-    temaHjelpemidler: {
-      generelt: `${tjenesteUrl}/mininnboks/sporsmal/skriv/HJLPM`,
-      ortopediske: `${tjenesteUrl}/mininnboks/sporsmal/skriv/ORT_HJE`,
-      bil: `${tjenesteUrl}/mininnboks/sporsmal/skriv/BIL`,
-    },
-  },
-  facebook: {
-    foreldrepenger: "https://www.facebook.com/navforeldrepenger",
-    jobblyst: "https://www.facebook.com/navjobblyst",
-  },
+  kontaktOssForside: `${navUrl}${forsidePath}`,
   finnNavKontor: {
-    finnDittNavKontor: `${navUrl}/person/personopplysninger#ditt-nav-kontor`,
-    finnDinHjelpemiddelsentral: `${navUrl}/no/person/hjelpemidler/tjenester-og-produkter/hjelpemidler/kontakt-hjelpemiddelsentralen`,
     navKontorUrlPrefix: `https://www.nav.no/no/nav-og-samfunn/kontakt-nav/kontorer/`,
   },
-  tolkeTjenesten: {
-    tolketjenesten: `${navUrl}/no/person/hjelpemidler/tjenester-og-produkter/tolketjenesten`,
-    spraktolk: {
-      nb: `${navUrl}/no/person/arbeid/oppfolging-og-tiltak-for-a-komme-i-jobb/oppfolging-fra-nav/trenger-du-språktolk`,
-      en: `${navUrl}/en/home/benefits-and-services/relatert-informasjon/do-you-need-an-interpreter`,
-    },
-  },
   tilbakemeldinger: {
-    klagepavedtak: {
-      nb: `${navUrl}/soknader/nb/klage`,
-      en: `${navUrl}/soknader/en/klage/person`,
-    },
+    klagepavedtak: "https://klage.nav.no",
     klagerettigheter: {
       nb: `${navUrl}/no/nav-og-samfunn/kontakt-nav/klage-ris-og-ros/klagerettigheter`,
       en: `${navUrl}/en/home/rules-and-regulations/appeals`,
@@ -138,33 +83,18 @@ export const urls = {
   samegiella: {
     redirect: `${navUrl}/se/Samegiella`,
   },
-  tekniskBrukerstotte: {
-    selvhjelp: `${navUrl}/no/nav-og-samfunn/kontakt-nav/teknisk-brukerstotte/hjelp-til-personbruker`,
-    ring: `${navUrl}/no/nav-og-samfunn/kontakt-nav/teknisk-brukerstotte/kontakt-teknisk-brukerstotte-nav.no`,
-  },
-  presseKontakt: `${navUrl}/no/nav-og-samfunn/kontakt-nav/presse/pressekontakt`,
-  sosialeMedier: `${navUrl}/no/nav-og-samfunn/kontakt-nav/kontakt-nav-pa-facebook-eller-twitter`,
-
-  //
-  // Midlertidige url'er
-  //
-  koronaVarsel: `${navUrl}/person/koronaveiviser`,
-  koronaVarselDialog: {
-    nb: `${navUrl}/no/person/innhold-til-person-forside/nyttig-a-vite/koronavirus--informasjon-fra-nav/dialog-med-nav-i-forbindelse-med-koronaviruset`,
-    en: `${navUrl}/en/home/useful-information/contacting-nav-about-the-coronavirus-covid-19`,
-  },
 };
 
 export const vars = {
-  defaultDatoTidFormat: "HH:mm DD-MM-YYYY",
-  defaultDatoFormat: "DD-MM-YYYY",
   maksLengdeMelding: 10000,
 };
 
-export default {
+const Config = {
   urls,
   paths,
   vars,
   forsidePath,
   useLocalePaths,
 };
+
+export default Config;

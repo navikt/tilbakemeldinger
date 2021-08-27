@@ -1,11 +1,11 @@
 import React from "react";
 import { lenker } from "./TilbakemeldingerLenker";
 import Header from "../../components/header/Header";
-import TilpassetLenkepanel from "../../components/lenkepanel/Lenkepanel";
+import Lenkepanel from "../../components/lenkepanel/Lenkepanel";
 import { useIntl } from "react-intl";
-import Topplinje from "../../components/topp-linje/ToppLinje";
 import { useStore } from "../../providers/Provider";
 import { MetaTags } from "../../components/metatags/MetaTags";
+import { paths } from "../../Config";
 
 const Tilbakemeldinger = () => {
   const intl = useIntl();
@@ -14,8 +14,8 @@ const Tilbakemeldinger = () => {
   return (
     <>
       <div className="pagecontent">
-        <Topplinje />
         <MetaTags
+          path={paths.tilbakemeldinger.forside}
           titleId={"tilbakemeldinger.sidetittel"}
           descriptionId={"seo.tilbakemeldinger.description"}
         />
@@ -25,7 +25,7 @@ const Tilbakemeldinger = () => {
           />
         </div>
         {lenker(locale).map((lenke) => (
-          <TilpassetLenkepanel
+          <Lenkepanel
             icon={lenke.icon}
             key={lenke.tittel}
             id={lenke.tittel}

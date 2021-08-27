@@ -4,30 +4,26 @@ import { Input, Label } from "nav-frontend-skjema";
 import { Form } from "calidation";
 import { Knapp } from "nav-frontend-knapper";
 import { Normaltekst, Sidetittel } from "nav-frontend-typografi";
-import Topplinje from "../../components/topp-linje/ToppLinje";
 import { ResultatvisningVedSubmit } from "./components/ResultatvisningVedSubmit";
 import { ResultatvisningDynamisk } from "./components/ResultatvisningDynamisk";
-import { kjorSokOgReturnerResultat, minQueryLength, SokeResultat } from "./FinnNavKontorSok";
-import Lenke from "nav-frontend-lenker";
-import Config, { paths } from "../../Config";
-import { Varsel } from "../../components/varsler/Varsel";
+import {
+  kjorSokOgReturnerResultat,
+  minQueryLength,
+  SokeResultat,
+} from "./FinnNavKontorSok";
+import { paths } from "../../Config";
 import { MetaTags } from "../../components/metatags/MetaTags";
-import { useStore } from "../../providers/Provider";
 
 const cssPrefix = "finn-kontor";
 
 const FinnNavKontorPage = () => {
   const [inputElement, setInputElement] = useState<HTMLInputElement>();
   const [sokeResultat, setSokeResultat] = useState<SokeResultat | null>();
-  const [
-    sokeResultatDynamisk,
-    setSokeResultatDynamisk
-  ] = useState<SokeResultat | null>();
-  const [{ locale }] = useStore();
+  const [sokeResultatDynamisk, setSokeResultatDynamisk] =
+    useState<SokeResultat | null>();
 
   return (
     <div className={`${cssPrefix} pagecontent`}>
-      <Topplinje />
       <MetaTags
         titleId={"finnkontor.tittel"}
         descriptionId={"finnkontor.ingress"}
@@ -42,27 +38,11 @@ const FinnNavKontorPage = () => {
           <FormattedMessage id={"finnkontor.ingress"} />
         </Normaltekst>
       </div>
-
-      <div className={"koronavarsel__container"}>
-        <Varsel type={"advarsel"}>
-          <>
-            <div className={"koronavarsel__description"}>
-              <Normaltekst>
-                <FormattedMessage id={"varsel.koronavirus.navkontor"} />
-              </Normaltekst>
-            </div>
-            <Lenke href={Config.urls.koronaVarselDialog[locale]}>
-              <FormattedMessage id={"varsel.koronavirus.navkontor.lenke"} />
-            </Lenke>
-          </>
-        </Varsel>
-      </div>
-
       <div className={`${cssPrefix}__innhold`}>
         <Form
           onSubmit={() => {
             inputElement &&
-            setSokeResultat(kjorSokOgReturnerResultat(inputElement.value));
+              setSokeResultat(kjorSokOgReturnerResultat(inputElement.value));
             setSokeResultatDynamisk(null);
           }}
           className={`${cssPrefix}__input-gruppe`}
@@ -77,13 +57,13 @@ const FinnNavKontorPage = () => {
               type={"text"}
               autoFocus={true}
               autoComplete={"off"}
-              onFocus={e => setInputElement(e.target)}
-              onChange={e =>
+              onFocus={(e) => setInputElement(e.target)}
+              onChange={(e) =>
                 setSokeResultatDynamisk(
                   kjorSokOgReturnerResultat(e.target.value)
                 )
               }
-              onKeyDown={e => e.key === "Escape" && e.currentTarget.blur()}
+              onKeyDown={(e) => e.key === "Escape" && e.currentTarget.blur()}
             />
             <Knapp
               htmlType={"submit"}
@@ -96,15 +76,15 @@ const FinnNavKontorPage = () => {
             </Knapp>
           </div>
           {sokeResultatDynamisk &&
-          sokeResultatDynamisk.query.length >= minQueryLength && (
-            <div
-              className={`${cssPrefix}__preview-container`}
-              id={"preview-container-id"}
-              tabIndex={-1}
-            >
-              <ResultatvisningDynamisk resultat={sokeResultatDynamisk} />
-            </div>
-          )}
+            sokeResultatDynamisk.query.length >= minQueryLength && (
+              <div
+                className={`${cssPrefix}__preview-container`}
+                id={"preview-container-id"}
+                tabIndex={-1}
+              >
+                <ResultatvisningDynamisk resultat={sokeResultatDynamisk} />
+              </div>
+            )}
         </Form>
         {sokeResultat && (
           <div className={`${cssPrefix}__resultat-container`}>

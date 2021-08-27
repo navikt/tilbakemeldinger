@@ -5,6 +5,7 @@ const sourceFile = "navkontor.xlsx";
 const destDir = "./src/pages/finn-nav-kontor/data";
 
 const enhetsnrTilEnhetsinfoFile = `${destDir}/enhetsnr-til-enhetsinfo.json`;
+const enhetsnrTilEnhetsinfoFileServer = './server/enhetsnr-til-enhetsinfo.json';
 const postnrTilStedOgEnhetsnrFile = `${destDir}/postnr-til-enhetsnr-og-poststed.json`;
 const stedsnavnTilEnhetsnrFile = `${destDir}/stedsnavn-til-enhetsnr.json`;
 
@@ -35,7 +36,10 @@ const urlifyKontorNavn = navn => sanitizeString(navn)
   .replace(/^nav-fjord$/, "nav-alesund")
   .replace(/^nav-eigersund$/, "nav-eigersund-bjerkreim")
   .replace(/^nav-odal$/, "nav-sor-odal")
-  .replace(/^nav-indre-namdal$/, "nav-grong");
+  .replace(/^nav-indre-namdal$/, "nav-grong")
+  .replace(/^nav-malselv-bardu$/, "nav-malselv")
+  .replace(/^nav-sor-helgeland$/, "nav-bronnoy")
+  .replace(/^nav-indre-salten$/, "nav-fauske");
 
 const sorterEnheterPaaKontornavnOgFjernDuplikater = (enhetsnrArray, enhetsnrTilKontor) => !enhetsnrArray ? [] : enhetsnrArray
   .filter(enhetsnr => {
@@ -146,4 +150,5 @@ if (!fs.existsSync(destDir)) {
 
 jsonToFile(makeStedsnavnTilEnhetsnr(kontorInfoJson), stedsnavnTilEnhetsnrFile);
 jsonToFile(enhetsnrTilEnhetsInfo, enhetsnrTilEnhetsinfoFile);
+jsonToFile(enhetsnrTilEnhetsInfo, enhetsnrTilEnhetsinfoFileServer);
 jsonToFile(postnrTilStedOgEnhetsnr, postnrTilStedOgEnhetsnrFile);

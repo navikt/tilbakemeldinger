@@ -1,9 +1,24 @@
 import React from "react";
-import { Sidetittel } from "nav-frontend-typografi";
+import ReactMetaTags from "react-meta-tags";
+import { Systemtittel } from "nav-frontend-typografi";
+import RouterLenke from "../../components/routerlenke/RouterLenke";
+import { forsidePath } from "../../Config";
+import { FormattedMessage } from "react-intl";
 
 const NotFound = () => (
-  <div className="notfound__container">
-    <Sidetittel>404</Sidetittel>
-  </div>
+  <>
+    <ReactMetaTags>
+      <meta name="robots" content="noindex" />
+    </ReactMetaTags>
+    <div className="notfound__container">
+      <Systemtittel>
+        <FormattedMessage id={"feil.404"} />
+      </Systemtittel>
+      <RouterLenke href={forsidePath} isExternal={true}>
+        <FormattedMessage id={"feil.lenke"} />
+      </RouterLenke>
+    </div>
+  </>
 );
+
 export default NotFound;
