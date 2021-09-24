@@ -25,12 +25,12 @@ const Environment = () => {
   if (isDev) {
     return {
       miljo: `DEV`,
-      baseUrl: `https://www.dev.nav.no`,
+      baseUrl: `https://person.dev.nav.no`,
       baseAppPath: baseAppPath,
-      appUrl: `https://www.dev.nav.no${baseAppPath}`,
-      apiUrl: `https://www.dev.nav.no/person/tilbakemeldinger-api`,
+      appUrl: `https://person.dev.nav.no${baseAppPath}`,
+      apiUrl: `https://person.dev.nav.no/person/tilbakemeldinger-api`,
       authUrl: `https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth`,
-      personInfoApiUrl: `https://www.dev.nav.no/person/personopplysninger-api`,
+      personInfoApiUrl: `https://person.dev.nav.no/person/personopplysninger-api`,
       tjenesteUrl: `https://tjenester-q1.nav.no`,
       loginUrl: `https://loginservice.dev.nav.no/login`,
       logoutUrl: `https://loginservice.dev.nav.no/slo`,
