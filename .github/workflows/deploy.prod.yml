@@ -1,21 +1,16 @@
 name: Deploy-to-prod
 on:
-  push:
-    tags:
-      - "v*-prod"
-      - "!v*-dev*"
-      - "!v*-test*"
+  release:
+    types: [released]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: git fetch --prune --unshallow
-      - name: Check if tag exists on master
-        run: |
-          if git branch -r --contains ${GITHUB_REF##*/} | grep master>/dev/null 2>&1
-          then echo "Tag ${GITHUB_REF##*/} verified on master";
-          else echo "Tag ${GITHUB_REF##*/} not found on master"; exit 1; fi
+      - name: Abort if branch is not master
+        if: github.event.release.target_commitish != 'master'
+        run: echo "Release is not on master, aborting"; exit 1;
       - name: Define build environment
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -26,7 +21,7 @@ jobs:
           echo "IMAGE_NAME=$(echo ${GITHUB_REPOSITORY##*/})" >> $GITHUB_ENV
           echo "IMAGE_VERSION=${IMAGE_VERSION_RAW,,}" >> $GITHUB_ENV
           echo "GITHUB_TOKEN=$(echo ${GITHUB_TOKEN})" >> $GITHUB_ENV
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -61,7 +56,7 @@ jobs:
           EOF
       - uses: nais/deploy/actions/deploy@master
         env:
-          CLUSTER: prod-sbs
+          CLUSTER: prod-gcp
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: .nais/config-prod.yaml
           VARS: .nais/vars.yaml

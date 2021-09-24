@@ -24,23 +24,13 @@ Start applikasjonen lokalt:
 npm start
 ```
 
-## Deployering
+## Deploy til dev-miljø
 
-Deploy skjer gjennom Github Actions.<br><br>
-Deployes til dev for versjoner med tag-suffix <b>-dev\*</b> (f.eks. <b>v.1.0.0-dev</b>).<br>
-Deployes til prod for versjoner med tag-suffix <b>-prod\*</b> (f.eks. <b>v.1.0.0-prod</b>).<br><br>
+[Deploy-to-dev](https://github.com/navikt/tilbakemeldinger/actions/workflows/deploy.dev.yml) -> Run workflow -> Velg branch -> Run workflow
 
-```
-npm version v.1.0.0-dev
-```
+## Prodsetting
 
-Push deretter den nye versjonen til GitHub og merge til master.
-
-```
-git push && git push --tags
-```
-
-Se [Github Actions](https://github.com/navikt/tilbakemeldinger/actions) for å følge med på deploys.
+Publiser en ny release på master for å starte deploy til prod
 
 ## Logging
 
