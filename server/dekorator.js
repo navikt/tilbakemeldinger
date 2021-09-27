@@ -4,7 +4,7 @@ const {
 
 const getHtmlWithDecorator = (filePath, devOrProd, language) => {
   const isDev = devOrProd === "dev";
-  const basePath = isDev ? `https://person.dev.nav.no` : `https://www.nav.no`;
+  const basePath = isDev ? `https://www.dev.nav.no` : `https://www.nav.no`;
   return injectDecoratorServerSide({
     env: devOrProd,
     filePath: filePath,
