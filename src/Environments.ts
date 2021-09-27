@@ -2,13 +2,13 @@ import { forsidePath } from "./Config";
 
 const Environment = () => {
   const host = window.location.host;
-  const isDev = host.split(`.`)[1] === "dev";
+  const isDevSbs = host.startsWith("www.dev");
+  const isDevGcp = host.startsWith("person.dev");
   const baseAppPath = `${forsidePath}`;
 
   // Localhost
   if (process.env.NODE_ENV === `development`) {
     return {
-      miljo: `LOCAL`,
       baseUrl: `http://www.nav.no`,
       baseAppPath: baseAppPath,
       appUrl: `http://localhost:8080${baseAppPath}`,
@@ -22,9 +22,8 @@ const Environment = () => {
   }
 
   // NAIS dev
-  if (isDev) {
+  if (isDevGcp) {
     return {
-      miljo: `DEV`,
       baseUrl: `https://person.dev.nav.no`,
       baseAppPath: baseAppPath,
       appUrl: `https://person.dev.nav.no${baseAppPath}`,
@@ -37,8 +36,21 @@ const Environment = () => {
     };
   }
 
+  if (isDevSbs) {
+    return {
+      baseUrl: `https://www.dev.nav.no`,
+      baseAppPath: baseAppPath,
+      appUrl: `https://www.dev.nav.no${baseAppPath}`,
+      apiUrl: `https://www.dev.nav.no/person/tilbakemeldinger-api`,
+      authUrl: `https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth`,
+      personInfoApiUrl: `https://www.dev.nav.no/person/personopplysninger-api`,
+      tjenesteUrl: `https://tjenester-q1.nav.no`,
+      loginUrl: `https://loginservice.dev.nav.no/login`,
+      logoutUrl: `https://loginservice.dev.nav.no/slo`,
+    };
+  }
+
   return {
-    miljo: `PROD`,
     baseUrl: `https://www.nav.no`,
     baseAppPath: baseAppPath,
     appUrl: `https://www.nav.no${baseAppPath}`,
