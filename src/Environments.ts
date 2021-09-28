@@ -21,7 +21,6 @@ const Environment = () => {
     };
   }
 
-  // NAIS dev
   if (isDevGcp) {
     return {
       baseUrl: `https://person.dev.nav.no`,
