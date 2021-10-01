@@ -27,9 +27,6 @@ const en = {
   "breadcrumb.login": "Log in",
   "breadcrumb.feil-og-mangler": "Errors and omissions",
   "breadcrumb.ros-til-nav": "Praise",
-  "breadcrumb.samegiella": "Samegiella",
-  "breadcrumb.bestilling-av-samtale":
-    "Jearaldat bagadallama oažžut sámegillii telefovnnas",
 
   //
   // Finn NAV-kontor

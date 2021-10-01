@@ -4,7 +4,6 @@ import { logApiError, logEvent } from "../utils/logger";
 import { OutboundRosTilNav } from "../pages/tilbakemeldinger/ros-til-nav/Ros";
 import { OutboundFeilOgMangler } from "../pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
 import { OutboundServiceKlage } from "../pages/tilbakemeldinger/service-klage/ServiceKlage";
-import { OutboundBestillingAvSamtale } from "../pages/samisk/bestilling-av-samtale/BestillingAvSamtale";
 import { BadRequest } from "../types/errors";
 const { apiUrl, personInfoApiUrl, authUrl } = Environment();
 
@@ -45,8 +44,7 @@ export const fetchKontaktInfo = () =>
 type Outbound =
   | OutboundRosTilNav
   | OutboundFeilOgMangler
-  | OutboundServiceKlage
-  | OutboundBestillingAvSamtale;
+  | OutboundServiceKlage;
 
 const sendJson = (url: string, data: Outbound) => {
   console.log(url, data);
@@ -77,9 +75,6 @@ export const postServiceKlage = (data: OutboundServiceKlage) =>
 
 export const postFeilOgMangler = (data: OutboundFeilOgMangler) =>
   sendJson(`${apiUrl}/mottak/feil-og-mangler`, data);
-
-export const postSamiskBestillSamtale = (data: OutboundBestillingAvSamtale) =>
-  sendJson(`${apiUrl}/mottak/bestilling-av-samtale`, data);
 
 /*
     Utils
