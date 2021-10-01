@@ -27,9 +27,6 @@ const en = {
   "breadcrumb.login": "Log in",
   "breadcrumb.feil-og-mangler": "Errors and omissions",
   "breadcrumb.ros-til-nav": "Praise",
-  "breadcrumb.samegiella": "Samegiella",
-  "breadcrumb.bestilling-av-samtale":
-    "Jearaldat bagadallama oažžut sámegillii telefovnnas",
 
   //
   // Finn NAV-kontor
@@ -197,9 +194,6 @@ const en = {
   "felter.gjeldersosialhjelp.nei": "No",
   "felter.gjeldersosialhjelp.vetikke": "Don’t know",
 
-  "seo.kontaktoss.description":
-    "Contact NAV via chat, write to us, telephone or social media. Find your NAV office, contact the interpreting service," +
-    " submit a complaint or feedback.",
   "seo.tilbakemeldinger.description":
     "Here you can give feedback to NAV, complain or appeal against decisions or service and report errors and defects on" +
     " nav.no. You can also send praise about our services and employees.",
