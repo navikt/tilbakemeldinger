@@ -31,11 +31,6 @@ export const DecoratorWidgets = () => {
   useEffect(() => {
     const subPath = pathname.replace(`${forsidePath}/${locale}`, "");
 
-    if (subPath.startsWith("/samegiella")) {
-      setAvailableLanguages([]);
-      return;
-    }
-
     const languages = [
       {
         locale: "nb",

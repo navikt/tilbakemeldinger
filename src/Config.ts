@@ -12,9 +12,6 @@ export const useLocalePaths = () => {
 
   return {
     baseAppPath: `${paths.baseAppPath}/${locale}`,
-    chat: {
-      forside: locPath(paths.chat.forside),
-    },
     skrivTilOss: {
       forside: locPath(paths.skrivTilOss.forside),
     },
@@ -28,18 +25,11 @@ export const useLocalePaths = () => {
       feilogmangler: locPath(paths.tilbakemeldinger.feilogmangler),
       rostilnav: locPath(paths.tilbakemeldinger.rostilnav),
     },
-    samegiella: {
-      base: locPath(paths.samegiella.base),
-      samtale: locPath(paths.samegiella.samtale),
-    },
   };
 };
 
 export const paths = {
   baseAppPath: baseAppPath,
-  chat: {
-    forside: "/chat",
-  },
   skrivTilOss: {
     forside: "/skriv-til-oss",
   },
@@ -52,10 +42,6 @@ export const paths = {
     },
     feilogmangler: "/tilbakemeldinger/feil-og-mangler",
     rostilnav: "/tilbakemeldinger/ros-til-nav",
-  },
-  samegiella: {
-    base: "/samegiella",
-    samtale: "/samegiella/bestilling-av-samtale",
   },
 };
 
@@ -79,9 +65,6 @@ export const urls = {
         en: `${tjenesteUrl}/saksoversikt/?lang=en`,
       },
     },
-  },
-  samegiella: {
-    redirect: `${navUrl}/se/Samegiella`,
   },
 };
 

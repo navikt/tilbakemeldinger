@@ -41,12 +41,6 @@ jobs:
             - https://person.dev.nav.no/person/kontakt-oss/nb/finnkontor
             - https://person.dev.nav.no/person/kontakt-oss/en/finnkontor
             - https://person.dev.nav.no/person/kontakt-oss/finnkontor
-            - https://person.dev.nav.no/person/kontakt-oss/nb/samegiella
-            - https://person.dev.nav.no/person/kontakt-oss/en/samegiella
-            - https://person.dev.nav.no/person/kontakt-oss/samegiella
-            - https://person.dev.nav.no/person/kontakt-oss/nb/chat
-            - https://person.dev.nav.no/person/kontakt-oss/en/chat
-            - https://person.dev.nav.no/person/kontakt-oss/chat
           image: $IMAGE_REGISTRY/$IMAGE_NAME
           version: $IMAGE_VERSION
           EOF
