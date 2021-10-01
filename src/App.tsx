@@ -17,7 +17,7 @@ import ServiceKlageLogin from "./pages/tilbakemeldinger/service-klage/ServiceKla
 import { KontaktInfo } from "./types/kontaktInfo";
 import { Fodselsnr } from "./types/fodselsnr";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
-import { forsidePath, paths, urls } from "./Config";
+import { forsidePath, paths } from "./Config";
 import FinnNavKontorPage from "./pages/finn-nav-kontor/FinnNavKontorPage";
 import { defaultLocale, localePath, validLocales } from "./utils/locale";
 import { DecoratorWidgets } from "./components/decorator-widgets/DecoratorWidgets";
@@ -101,14 +101,6 @@ const App = () => {
               exact={true}
               path={localePath(paths.tilbakemeldinger.feilogmangler, locale)}
               component={FeilOgMangler}
-              key={key++}
-            />,
-            <Route
-              exact={false}
-              path={localePath(paths.chat.forside, locale)}
-              render={() =>
-                (window.location.href = `${urls.kontaktOssForside}/${locale}`)
-              }
               key={key++}
             />,
           ])}

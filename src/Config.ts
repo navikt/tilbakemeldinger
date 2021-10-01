@@ -12,9 +12,6 @@ export const useLocalePaths = () => {
 
   return {
     baseAppPath: `${paths.baseAppPath}/${locale}`,
-    chat: {
-      forside: locPath(paths.chat.forside),
-    },
     skrivTilOss: {
       forside: locPath(paths.skrivTilOss.forside),
     },
@@ -33,9 +30,6 @@ export const useLocalePaths = () => {
 
 export const paths = {
   baseAppPath: baseAppPath,
-  chat: {
-    forside: "/chat",
-  },
   skrivTilOss: {
     forside: "/skriv-til-oss",
   },

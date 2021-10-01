@@ -186,9 +186,6 @@ const nb = {
   "felter.gjeldersosialhjelp.nei": "Nei",
   "felter.gjeldersosialhjelp.vetikke": "Vet ikke",
 
-  "seo.kontaktoss.description":
-    "Kontakt NAV via chat, skriv til oss, telefon eller sosiale medier. Finn ditt NAV-kontor, kontakt tolketjenesten," +
-    " send klage eller tilbakemelding.",
   "seo.tilbakemeldinger.description":
     "Her kan du gi tilbakemelding til NAV, klage eller anke på vedtak, service og melde fra om feil og mangler på" +
     " nav.no. Du kan også gi oss ros om våre tjenester og medarbeidere.",
