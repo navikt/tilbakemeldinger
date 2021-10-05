@@ -1,4 +1,4 @@
-import { HTTPError } from "../components/error/Error";
+import { HTTPError } from "../types/errors";
 
 const { frontendlogger } = window as any;
 
@@ -10,7 +10,7 @@ export const logApiError = (url: string, err: HTTPError) => {
   const fields = {
     status: err.code,
     statusText: err.text,
-    url
+    url,
   };
 
   if (frontendlogger) {

@@ -5,3 +5,8 @@ export interface BadRequest {
   message: string;
   path: string;
 }
+
+export interface HTTPError {
+  code: number;
+  text: string;
+}
