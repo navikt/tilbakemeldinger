@@ -10,41 +10,16 @@ const nb = {
   //
   "varsel.teknisk.feil":
     "Det er for øyeblikket tekniske problemer med baksystemene våre. Dette kan føre til at noe informasjon mangler fra sidene.",
-  "varsel.koronavirus": "Koronavirus - hva gjelder i min situasjon",
-  "varsel.koronavirus.navkontor":
-    "Vær oppmerksom på at mange NAV-kontor fortsatt har redusert åpningstid på grunn av koronasituasjonen. " +
-    "Når du søker opp kontoret ditt finner du informasjon. Er du i en krisesituasjon, kan du ringe og få en time på " +
-    "NAV-kontoret. Du kan alltid ta kontakt med NAV i digitale kanaler.",
-  "varsel.koronavirus.navkontor.lenke": "Kontakt med NAV",
 
   //
   // Breadcrumbs
   //
   "breadcrumb.base": "Kontakt oss",
-  "breadcrumb.finnkontor": "Søk opp NAV-kontor",
   "breadcrumb.tilbakemeldinger": "Tilbakemelding",
   "breadcrumb.serviceklage": "Klage på service",
   "breadcrumb.login": "Innlogging",
   "breadcrumb.feil-og-mangler": "Feil og mangler",
   "breadcrumb.ros-til-nav": "Ros",
-
-  //
-  // Finn NAV-kontor
-  //
-  "finnkontor.tittel": "Søk opp NAV-kontor",
-  "finnkontor.ingress":
-    "Mangler du elektronisk ID? Eller skal du finne NAV-kontor på vegne av noen andre?\n" +
-    "Da kan du søke opp NAV-kontor ved hjelp av postnummer eller sted/by.",
-  "finnkontor.sok.knapp": "Søk",
-  "finnkontor.sok.label": "Skriv inn et postnummer eller sted/by",
-  "finnkontor.ugyldig.postnr": `Fant ingen NAV-kontor tilknyttet "{nummer}". Postnummeret kan være ugyldig.`,
-  "finnkontor.query.feil":
-    "Skriv inn minst {min} bokstaver eller et gyldig postnummer.",
-  "finnkontor.query.feil.kort": "Skriv minst {min} bokstaver eller et postnr.",
-  "finnkontor.ingen.treff": `Ingen resultater for "{query}"`,
-  "finnkontor.flere.treff": "Vis alle treff ({antall})",
-  "finnkontor.resultat.stedsnavn": `Søkeresultat for "{query}" ({antall}):`,
-  "finnkontor.resultat.postnr": "NAV-kontor for ",
 
   //
   // Klage og tilbakemelding
