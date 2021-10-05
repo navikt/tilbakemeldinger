@@ -1,4 +1,4 @@
-import { HTTPError } from "../components/error/Error";
+import { HTTPError } from "./errors";
 
 export type FetchEnheter =
   | { status: "LOADING" }

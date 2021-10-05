@@ -1,5 +1,5 @@
 import Environment from "../Environments";
-import { HTTPError } from "../components/error/Error";
+import { HTTPError } from "types/errors";
 import { logApiError, logEvent } from "../utils/logger";
 import { OutboundRosTilNav } from "../pages/tilbakemeldinger/ros-til-nav/Ros";
 import { OutboundFeilOgMangler } from "../pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";

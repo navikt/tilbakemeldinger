@@ -15,7 +15,6 @@ export const useLocalePaths = () => {
     skrivTilOss: {
       forside: locPath(paths.skrivTilOss.forside),
     },
-    finnDittNavKontorUinnlogget: locPath(paths.finnDittNavKontorUinnlogget),
     tilbakemeldinger: {
       forside: locPath(paths.tilbakemeldinger.forside),
       serviceklage: {
@@ -33,7 +32,6 @@ export const paths = {
   skrivTilOss: {
     forside: "/skriv-til-oss",
   },
-  finnDittNavKontorUinnlogget: "/finnkontor",
   tilbakemeldinger: {
     forside: "/tilbakemeldinger",
     serviceklage: {
@@ -47,9 +45,6 @@ export const paths = {
 
 export const urls = {
   kontaktOssForside: `${navUrl}${forsidePath}`,
-  finnNavKontor: {
-    navKontorUrlPrefix: `https://www.nav.no/no/nav-og-samfunn/kontakt-nav/kontorer/`,
-  },
   tilbakemeldinger: {
     klagepavedtak: "https://klage.nav.no",
     klagerettigheter: {

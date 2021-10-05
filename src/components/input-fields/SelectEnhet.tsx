@@ -5,7 +5,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { fetchEnheter } from "../../clients/apiClient";
 import { Enheter } from "../../types/enheter";
-import { HTTPError } from "../error/Error";
+import { HTTPError } from "types/errors";
 import { SkjemaelementFeilmelding } from "nav-frontend-skjema";
 import Combobox from "./EnhetCombobox";
 const cssPrefix = "selectEnhet";

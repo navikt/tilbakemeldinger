@@ -26,8 +26,5 @@ yarn-error.log*
 .idea
 /public/index.css
 
-/src/pages/finn-nav-kontor/data/*.json
-/~$navkontor.xlsx
 /tilbakemeldinger.iml
-/server/enhetsnr-til-enhetsinfo.json
 /pb-kontakt-oss.iml
