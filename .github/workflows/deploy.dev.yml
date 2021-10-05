@@ -38,9 +38,6 @@ jobs:
             - https://person.dev.nav.no/person/kontakt-oss/nb/tilbakemeldinger
             - https://person.dev.nav.no/person/kontakt-oss/en/tilbakemeldinger
             - https://person.dev.nav.no/person/kontakt-oss/tilbakemeldinger
-            - https://person.dev.nav.no/person/kontakt-oss/nb/finnkontor
-            - https://person.dev.nav.no/person/kontakt-oss/en/finnkontor
-            - https://person.dev.nav.no/person/kontakt-oss/finnkontor
           image: $IMAGE_REGISTRY/$IMAGE_NAME
           version: $IMAGE_VERSION
           EOF

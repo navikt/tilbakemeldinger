@@ -10,40 +10,16 @@ const en = {
   //
   "varsel.teknisk.feil":
     "We are currently experiencing technical difficulties with our back-end systems. This could result in some information missing from these pages.",
-  "varsel.koronavirus": "Coronavirus - what applies in my situation",
-  "varsel.koronavirus.navkontor":
-    "Be aware that several NAV offices still have shorter opening hours due to the corona situation. You will find " +
-    "information regarding this in the search result for your office. If you are in an emergency situation, you may " +
-    "call and get an appointment at the NAV office. You may always contact NAV through digital channels.",
-  "varsel.koronavirus.navkontor.lenke": "Contacting NAV",
 
   //
   // Breadcrumbs
   //
   "breadcrumb.base": "Contact us",
-  "breadcrumb.finnkontor": "Find a NAV office",
   "breadcrumb.tilbakemeldinger": "Feedback",
   "breadcrumb.serviceklage": "Complain about service",
   "breadcrumb.login": "Log in",
   "breadcrumb.feil-og-mangler": "Errors and omissions",
   "breadcrumb.ros-til-nav": "Praise",
-
-  //
-  // Finn NAV-kontor
-  //
-  "finnkontor.tittel": "Find a NAV office",
-  "finnkontor.ingress":
-    "Do you not have electronic ID? Or are you trying to find the NAV office on behalf of someone else?\n" +
-    "If so, you can find a NAV office using a post code or town/city.",
-  "finnkontor.sok.knapp": "Search",
-  "finnkontor.sok.label": "Enter a post code or town/city",
-  "finnkontor.ugyldig.postnr": `No NAV office associated with "{nummer}"was found. The post code may be invalid.`,
-  "finnkontor.query.feil": "Enter at least {min} letters or a valid post code.",
-  "finnkontor.query.feil.kort": "Enter at least {min} letters or a post code.",
-  "finnkontor.ingen.treff": `No results for "{query}"`,
-  "finnkontor.flere.treff": "Show all results ({antall})",
-  "finnkontor.resultat.stedsnavn": `Search results for "{query}" ({antall}):`,
-  "finnkontor.resultat.postnr": "NAV office for ",
 
   //
   // Klage og tilbakemelding

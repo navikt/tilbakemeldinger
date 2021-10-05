@@ -5,7 +5,7 @@ import { Knapp } from "nav-frontend-knapper";
 import { Link, withRouter } from "react-router-dom";
 import InputMelding from "components/input-fields/InputMelding";
 import { postFeilOgMangler } from "clients/apiClient";
-import { HTTPError } from "components/error/Error";
+import { HTTPError } from "types/errors";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, FormValidation } from "calidation";

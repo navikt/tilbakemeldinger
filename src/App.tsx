@@ -11,14 +11,13 @@ import {
 } from "./clients/apiClient";
 import { useStore } from "./providers/Provider";
 import { AuthInfo } from "./types/authInfo";
-import { HTTPError } from "./components/error/Error";
+import { HTTPError } from "./types/errors";
 import ServiceKlage from "./pages/tilbakemeldinger/service-klage/ServiceKlage";
 import ServiceKlageLogin from "./pages/tilbakemeldinger/service-klage/ServiceKlageLogin";
 import { KontaktInfo } from "./types/kontaktInfo";
 import { Fodselsnr } from "./types/fodselsnr";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import { forsidePath, paths } from "./Config";
-import FinnNavKontorPage from "./pages/finn-nav-kontor/FinnNavKontorPage";
 import { defaultLocale, localePath, validLocales } from "./utils/locale";
 import { DecoratorWidgets } from "./components/decorator-widgets/DecoratorWidgets";
 
@@ -61,12 +60,6 @@ const App = () => {
       <ScrollToTop>
         <Switch>
           {validLocales.flatMap((locale) => [
-            <Route
-              exact={true}
-              path={localePath(paths.finnDittNavKontorUinnlogget, locale)}
-              component={FinnNavKontorPage}
-              key={key++}
-            />,
             <Route
               exact={true}
               path={localePath(paths.tilbakemeldinger.forside, locale)}

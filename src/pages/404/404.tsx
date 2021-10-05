@@ -1,9 +1,9 @@
 import React from "react";
 import ReactMetaTags from "react-meta-tags";
 import { Systemtittel } from "nav-frontend-typografi";
-import RouterLenke from "../../components/routerlenke/RouterLenke";
 import { forsidePath } from "../../Config";
 import { FormattedMessage } from "react-intl";
+import Lenke from "nav-frontend-lenker";
 
 const NotFound = () => (
   <>
@@ -14,9 +14,9 @@ const NotFound = () => (
       <Systemtittel>
         <FormattedMessage id={"feil.404"} />
       </Systemtittel>
-      <RouterLenke href={forsidePath} isExternal={true}>
+      <Lenke href={forsidePath}>
         <FormattedMessage id={"feil.lenke"} />
-      </RouterLenke>
+      </Lenke>
     </div>
   </>
 );

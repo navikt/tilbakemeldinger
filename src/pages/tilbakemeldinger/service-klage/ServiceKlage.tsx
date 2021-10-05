@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { postServiceKlage } from "clients/apiClient";
 import { AlertStripeFeil, AlertStripeInfo } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
-import { HTTPError } from "components/error/Error";
+import { HTTPError } from "types/errors";
 import { FormContext, Form, Validation } from "calidation";
 import InputMelding from "components/input-fields/InputMelding";
 import { OutboundServiceKlageExtend } from "types/serviceklage";
