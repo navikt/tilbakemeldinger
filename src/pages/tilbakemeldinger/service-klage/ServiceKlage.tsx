@@ -155,7 +155,7 @@ const ServiceKlage = () => {
       <MetaTags
         titleId={"tilbakemeldinger.serviceklage.form.tittel"}
         descriptionId={"seo.klagepaservice.description"}
-        path={paths.tilbakemeldinger.serviceklage}
+        path={paths.tilbakemeldinger.serviceklage.form}
       />
       <Header
         title={intl.formatMessage({

@@ -67,7 +67,24 @@ const App = () => {
             />,
             <Route
               exact={true}
-              path={localePath(paths.tilbakemeldinger.serviceklage, locale)}
+              path={localePath(
+                paths.tilbakemeldinger.serviceklage.login,
+                locale
+              )}
+              render={() =>
+                (window.location.href = localePath(
+                  paths.tilbakemeldinger.serviceklage.form,
+                  locale
+                ))
+              }
+              key={key++}
+            />,
+            <Route
+              exact={true}
+              path={localePath(
+                paths.tilbakemeldinger.serviceklage.form,
+                locale
+              )}
               component={ServiceKlage}
               key={key++}
             />,
