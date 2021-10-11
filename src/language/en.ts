@@ -17,7 +17,6 @@ const en = {
   "breadcrumb.base": "Contact us",
   "breadcrumb.tilbakemeldinger": "Feedback",
   "breadcrumb.serviceklage": "Complain about service",
-  "breadcrumb.login": "Log in",
   "breadcrumb.feil-og-mangler": "Errors and omissions",
   "breadcrumb.ros-til-nav": "Praise",
 
