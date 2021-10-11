@@ -17,7 +17,6 @@ const nb = {
   "breadcrumb.base": "Kontakt oss",
   "breadcrumb.tilbakemeldinger": "Tilbakemelding",
   "breadcrumb.serviceklage": "Klage på service",
-  "breadcrumb.login": "Innlogging",
   "breadcrumb.feil-og-mangler": "Feil og mangler",
   "breadcrumb.ros-til-nav": "Ros",
 
