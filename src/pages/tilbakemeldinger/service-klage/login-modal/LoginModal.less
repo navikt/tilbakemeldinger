@@ -11,9 +11,29 @@
 
   &__buttons {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
 
-    & > :not(:last-child) {
-      margin-right: 0.5rem;
+    & > * {
+      margin-top: 0.5rem;
+      white-space: break-spaces;
+      text-align: center;
+      border-width: 2px;
+    }
+  }
+
+  @media @minMobile {
+    &__buttons {
+      flex-direction: row;
+
+      & > * {
+        width: calc(50% - 0.25rem);
+
+        &:not(:first-child) {
+          margin-left: 0.5rem;
+        }
+      }
     }
   }
 }

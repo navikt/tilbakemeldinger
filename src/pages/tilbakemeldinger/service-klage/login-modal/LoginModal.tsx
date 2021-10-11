@@ -25,13 +25,13 @@ const LoginModal = ({ closeFunc }: Props) => {
       </Normaltekst>
       <div className="login-modal__buttons">
         <a
-          className="knapp knapp--hoved"
+          className="knapp knapp--hoved knapp--kompakt"
           href={`${loginUrl}?redirect=${window.location.href}`}
         >
           <FormattedMessage id={"tilbakemeldinger.serviceklage.login.knapp"} />
         </a>
         <a
-          className={"knapp knapp--flat"}
+          className={"knapp knapp--flat knapp--kompakt"}
           href={window.location.href}
           onClick={(e) => {
             e.preventDefault();
