@@ -13,7 +13,6 @@ import { useStore } from "./providers/Provider";
 import { AuthInfo } from "./types/authInfo";
 import { HTTPError } from "./types/errors";
 import ServiceKlage from "./pages/tilbakemeldinger/service-klage/ServiceKlage";
-import ServiceKlageLogin from "./pages/tilbakemeldinger/service-klage/ServiceKlageLogin";
 import { KontaktInfo } from "./types/kontaktInfo";
 import { Fodselsnr } from "./types/fodselsnr";
 import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
@@ -72,7 +71,12 @@ const App = () => {
                 paths.tilbakemeldinger.serviceklage.login,
                 locale
               )}
-              component={ServiceKlageLogin}
+              render={() =>
+                (window.location.href = localePath(
+                  paths.tilbakemeldinger.serviceklage.form,
+                  locale
+                ))
+              }
               key={key++}
             />,
             <Route

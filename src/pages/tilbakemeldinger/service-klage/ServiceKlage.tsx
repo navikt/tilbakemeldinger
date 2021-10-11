@@ -28,6 +28,8 @@ import { triggerHotjar } from "utils/hotjar";
 import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
 import ServiceKlageTypeUtdypning from "./ServiceKlageTypeUtdypning";
 import { MetaTags } from "../../../components/metatags/MetaTags";
+import LoginModal from "./login-modal/LoginModal";
+import ModalWrapper from "nav-frontend-modal";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageExtend;
@@ -37,8 +39,12 @@ const ServiceKlage = () => {
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState<string | undefined>();
+  const [loginClosed, setLoginClosed] = useState(false);
+
   const intl = useIntl();
   const paths = useLocalePaths();
+
+  const closeModal = () => setLoginClosed(true);
 
   const baseFormConfig = {
     klagetyper: {
@@ -144,10 +150,6 @@ const ServiceKlage = () => {
     }
   };
 
-  const tilbakeTil = auth.authenticated
-    ? paths.tilbakemeldinger.forside
-    : paths.tilbakemeldinger.serviceklage.login;
-
   return (
     <div className="pagecontent">
       <MetaTags
@@ -160,6 +162,13 @@ const ServiceKlage = () => {
           id: "tilbakemeldinger.serviceklage.form.tittel",
         })}
       />
+      <ModalWrapper
+        isOpen={auth.loaded && !auth.authenticated && !loginClosed}
+        contentLabel={"Logg inn"}
+        onRequestClose={closeModal}
+      >
+        <LoginModal closeFunc={closeModal} />
+      </ModalWrapper>
       <div className={"tb__veileder"}>
         <Veilederpanel
           svg={<img src={VeilederIcon} alt="Veileder" />}
@@ -331,7 +340,7 @@ const ServiceKlage = () => {
                       <div className="tb__knapp">
                         <Link
                           className="lenkeknapp knapp knapp--flat"
-                          to={tilbakeTil}
+                          to={paths.tilbakemeldinger.forside}
                         >
                           <FormattedMessage id={"felter.tilbake"} />
                         </Link>

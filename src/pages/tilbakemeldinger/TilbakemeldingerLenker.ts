@@ -27,7 +27,7 @@ export const lenker = (locale: Locale): Lenke[] => [
     icon: complaintIcon,
     tittel: "tilbakemeldinger.serviceklage.tittel",
     beskrivelse: "tilbakemeldinger.serviceklage.beskrivelse",
-    lenke: localePath(paths.tilbakemeldinger.serviceklage.login, locale),
+    lenke: localePath(paths.tilbakemeldinger.serviceklage.form, locale),
     lenkeTekst: "tilbakemeldinger.serviceklage.link",
   },
   {
