@@ -8,7 +8,7 @@ export const initialState = {
   fodselsnr: "",
   locale: getLocaleFromUrl() || defaultLocale,
   enheter: { status: "LOADING" } as FetchEnheter,
-  auth: { authenticated: false } as AuthInfo,
+  auth: { authenticated: false, loaded: false } as AuthInfo,
   kontaktInfo: { mobiltelefonnummer: "" },
 };
 
@@ -53,7 +53,7 @@ export const reducer = (state: Store, action: Action) => {
     case "SETT_AUTH_RESULT":
       return {
         ...state,
-        auth: action.payload as AuthInfo,
+        auth: { ...action.payload, loaded: true } as AuthInfo,
       };
     case "SETT_ENHETER_RESULT":
       return {

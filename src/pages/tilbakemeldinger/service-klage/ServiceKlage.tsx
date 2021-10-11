@@ -163,7 +163,7 @@ const ServiceKlage = () => {
         })}
       />
       <ModalWrapper
-        isOpen={!auth.authenticated && !loginClosed}
+        isOpen={auth.loaded && !auth.authenticated && !loginClosed}
         contentLabel={"Logg inn"}
         onRequestClose={closeModal}
       >

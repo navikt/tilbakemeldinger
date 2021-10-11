@@ -1,4 +1,4 @@
-export type AuthInfo =
+export type AuthInfo = { loaded: boolean } & (
   | {
       authenticated: false;
     }
@@ -6,4 +6,5 @@ export type AuthInfo =
       authenticated: true;
       name: string;
       securityLevel: string;
-    };
+    }
+);
