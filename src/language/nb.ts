@@ -115,7 +115,8 @@ const nb = {
     "Feil på siden ved bruk av skjermleser eller annet hjelpemiddel",
   "felter.melding.tittel": "Din tilbakemelding",
   "felter.melding.beskrivelse": `Unngå sensitive personopplysninger, som for eksempel opplysninger om helseforhold eller diagnoser. Du kan ikke spørre om status i saken din, da må du logge inn og sjekke på Ditt NAV under <DineSakerLenke>Dine saker</DineSakerLenke>. Finner du ikke svaret, kan du sjekke <SaksbehandlingstiderLenke>saksbehandlingstider</SaksbehandlingstiderLenke> eller ta kontakt i <SkrivTilOssLenke>Skriv til oss</SkrivTilOssLenke>.`,
-  "felter.noegikkgalt": "Oi! Noe gikk galt:",
+  "felter.noegikkgalt":
+    "Oi! Det skjedde en teknisk feil ved innsending av skjemaet, prøv igjen senere.",
   "felter.send": "Send",
   "felter.tilbake": "Tilbake",
   "felter.hvemroses.tittel": "Hvem vil du gi ros til?",

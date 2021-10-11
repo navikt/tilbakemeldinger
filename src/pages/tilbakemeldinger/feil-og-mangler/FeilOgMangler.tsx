@@ -155,7 +155,7 @@ const FOM = () => {
                 <FeilgOgManglerOnskerAaKontaktes />
                 {error && (
                   <AlertStripeFeil className={"felter__melding-advarsel"}>
-                    <FormattedMessage id={"felter.noegikkgalt"} /> {error}
+                    <FormattedMessage id={"felter.noegikkgalt"} />
                   </AlertStripeFeil>
                 )}
                 <div className="tb__knapper">
