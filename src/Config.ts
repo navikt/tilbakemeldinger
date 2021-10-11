@@ -17,7 +17,10 @@ export const useLocalePaths = () => {
     },
     tilbakemeldinger: {
       forside: locPath(paths.tilbakemeldinger.forside),
-      serviceklage: locPath(paths.tilbakemeldinger.serviceklage),
+      serviceklage: {
+        form: locPath(paths.tilbakemeldinger.serviceklage.form),
+        login: locPath(paths.tilbakemeldinger.serviceklage.login),
+      },
       feilogmangler: locPath(paths.tilbakemeldinger.feilogmangler),
       rostilnav: locPath(paths.tilbakemeldinger.rostilnav),
     },
@@ -31,7 +34,10 @@ export const paths = {
   },
   tilbakemeldinger: {
     forside: "/tilbakemeldinger",
-    serviceklage: "/tilbakemeldinger/serviceklage",
+    serviceklage: {
+      form: "/tilbakemeldinger/serviceklage",
+      login: "/tilbakemeldinger/serviceklage/login",
+    },
     feilogmangler: "/tilbakemeldinger/feil-og-mangler",
     rostilnav: "/tilbakemeldinger/ros-til-nav",
   },
