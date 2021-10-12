@@ -13,7 +13,7 @@ const Tilbakemeldinger = () => {
 
   return (
     <>
-      <div className="pagecontent">
+      <div role={"main"} className="pagecontent">
         <MetaTags
           path={paths.tilbakemeldinger.forside}
           titleId={"tilbakemeldinger.sidetittel"}
