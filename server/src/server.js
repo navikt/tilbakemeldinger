@@ -1,5 +1,5 @@
 require("console-stamp")(console, "[HH:MM:ss.l]");
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config();
 
 const express = require("express");
 const { createProxyMiddleware } = require("http-proxy-middleware");
@@ -19,6 +19,8 @@ const appPort = 8080;
 
 const buildDir = path.resolve(__dirname, "../build");
 const basePath = "/person/kontakt-oss/tilbakemeldinger";
+
+console.log(`env test: ${process.env.ENHETERRS_URL}`);
 
 // Middleware
 app.use(express.json());
