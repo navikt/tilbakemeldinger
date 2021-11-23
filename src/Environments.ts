@@ -3,7 +3,6 @@ import { forsidePath } from "./Config";
 const Environment = () => {
   const host = window.location.host;
   const isDevSbs = host.startsWith("www.dev");
-  const isDevGcp = host.startsWith("person.dev");
   const baseAppPath = `${forsidePath}`;
 
   // Localhost
@@ -18,20 +17,6 @@ const Environment = () => {
       tjenesteUrl: `https://tjenester.nav.no`,
       loginUrl: `http://localhost:8080/personbruker-api/local/cookie`,
       logoutUrl: `#`,
-    };
-  }
-
-  if (isDevGcp) {
-    return {
-      baseUrl: `https://person.dev.nav.no`,
-      baseAppPath: baseAppPath,
-      appUrl: `https://person.dev.nav.no${baseAppPath}`,
-      apiUrl: `https://person.dev.nav.no/person/tilbakemeldinger/api`,
-      authUrl: `https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth`,
-      personInfoApiUrl: `https://person.dev.nav.no/person/personopplysninger-api`,
-      tjenesteUrl: `https://tjenester-q1.nav.no`,
-      loginUrl: `https://loginservice.dev.nav.no/login`,
-      logoutUrl: `https://loginservice.dev.nav.no/slo`,
     };
   }
 
