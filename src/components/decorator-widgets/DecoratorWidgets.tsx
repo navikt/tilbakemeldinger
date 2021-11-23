@@ -17,7 +17,7 @@ export const DecoratorWidgets = () => {
   const { pathname } = useLocation();
   const history = useHistory();
   const [{ locale }, dispatch] = useStore();
-  const { formatMessage } = useIntl();
+  const { formatMessage, messages } = useIntl();
 
   onLanguageSelect((breadcrumb) => {
     setNewLocale(breadcrumb.locale as Locale, dispatch);
@@ -60,12 +60,19 @@ export const DecoratorWidgets = () => {
     const internalBreadcrumbs = pathname
       .replace(basePathFilter, "")
       .split("/")
-      .filter((pathSegment) => pathSegment !== "")
+      .filter(
+        (pathSegment) => pathSegment && messages[`breadcrumb.${pathSegment}`]
+      )
       .map((pathSegment, index, pathSegmentArray) => {
+        const title = formatMessage({
+          id: `breadcrumb.${pathSegment}`,
+          defaultMessage: "",
+        });
+
         const subPath = pathSegmentArray.slice(0, index + 1).join("/");
         return {
           url: `${forsidePath}/${locale}/${subPath}`,
-          title: formatMessage({ id: `breadcrumb.${pathSegment}` }),
+          title,
           handleInApp: true,
         };
       });
