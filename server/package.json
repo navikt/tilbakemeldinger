@@ -1,7 +1,6 @@
 {
   "name": "tilbakemeldinger-server",
   "version": "1.8.0",
-  "description": "Proxy mot FSS for tilbakemeldinger",
   "main": "src/server.js",
   "private": true,
   "author": "NAV",
