@@ -5,7 +5,7 @@ import kontaktInfo from "./data/kontaktInfo.json";
 import enheter from "./data/enheter.json";
 import Environment from "../../Environments";
 
-const { appUrl, personInfoApiUrl, authUrl } = Environment();
+const { apiUrl, personInfoApiUrl, authUrl } = Environment();
 fetchMock.config.fallbackToNetwork = true;
 
 const mockAuthInfo = true;
@@ -21,12 +21,12 @@ export const setUpMock = async () => {
     );
   mockEnheter &&
     fetchMock.get(
-      `${appUrl}/api/enheter`,
+      `${apiUrl}/enheter`,
       delay(5000, 6000).then(() => enheter)
     );
   mockFodselsnr &&
     fetchMock.get(
-      `${appUrl}/api/fodselsnr`,
+      `${apiUrl}/fodselsnr`,
       delay(10, 50).then(() => fodselsnr)
     );
   mockKontaktInfo &&

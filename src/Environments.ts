@@ -10,12 +10,11 @@ const Environment = () => {
     return {
       baseUrl: `http://www.nav.no`,
       baseAppPath: baseAppPath,
-      appUrl: `http://localhost:8080${baseAppPath}`,
+      apiUrl: `http://localhost:8080${baseAppPath}/tilbakemeldinger/api`,
       authUrl: `http://localhost:8080/person/innloggingsstatus/auth`,
       personInfoApiUrl: `http://localhost:8080/person/personopplysninger-api`,
       tjenesteUrl: `https://tjenester.nav.no`,
       loginUrl: `http://localhost:8080/personbruker-api/local/cookie`,
-      logoutUrl: `#`,
     };
   }
 
@@ -23,24 +22,22 @@ const Environment = () => {
     return {
       baseUrl: `https://www.dev.nav.no`,
       baseAppPath: baseAppPath,
-      appUrl: `https://www.dev.nav.no${baseAppPath}`,
+      apiUrl: `https://www.dev.nav.no${baseAppPath}/tilbakemeldinger/api`,
       authUrl: `https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth`,
       personInfoApiUrl: `https://www.dev.nav.no/person/personopplysninger-api`,
       tjenesteUrl: `https://tjenester-q1.nav.no`,
       loginUrl: `https://loginservice.dev.nav.no/login`,
-      logoutUrl: `https://loginservice.dev.nav.no/slo`,
     };
   }
 
   return {
     baseUrl: `https://www.nav.no`,
     baseAppPath: baseAppPath,
-    appUrl: `https://www.nav.no${baseAppPath}`,
+    apiUrl: `https://www.nav.no${baseAppPath}/tilbakemeldinger/api`,
     authUrl: `https://www.nav.no/person/innloggingsstatus/auth`,
     personInfoApiUrl: `https://www.nav.no/person/personopplysninger-api`,
     tjenesteUrl: `https://tjenester.nav.no`,
     loginUrl: `https://loginservice.nav.no/login`,
-    logoutUrl: `https://loginservice.nav.no/slo`,
   };
 };
 
