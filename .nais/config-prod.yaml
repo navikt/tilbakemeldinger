@@ -28,13 +28,14 @@ spec:
     outbound:
       external:
         - host: nav.no
-  leaderElection: true
   env:
     - name: ENV
       value: prod
+    - name: NODE_EXTRA_CA_CERTS
+      value: "/etc/ssl/ca-bundle.pem"
   resources:
     limits:
       cpu: '3'
-      memory: 768Mi
+      memory: 1500Mi
     requests:
-      memory: 512Mi
+      memory: 500Mi
