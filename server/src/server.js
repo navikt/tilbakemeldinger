@@ -20,8 +20,6 @@ const appPort = 8080;
 const buildDir = path.resolve(__dirname, "../../build");
 const basePath = "/person/kontakt-oss/tilbakemeldinger";
 
-console.log(`env test: ${process.env.ENHETERRS_URL}`);
-
 // Middleware
 app.use(express.json());
 app.use(cookies());
