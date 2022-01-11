@@ -65,6 +65,7 @@ const getStsToken = (context) => async (req, res, next) => {
       .then((stsRes) => stsRes.json())
       .then((stsRes) => {
         req.access_token = stsRes.access_token;
+        console.log(`Fetched sts token token! ${stsRes.access_token.slice(0, 10)}`)
         next();
       })
       .catch((error) => {
@@ -72,6 +73,7 @@ const getStsToken = (context) => async (req, res, next) => {
         res.sendStatus(500);
       });
   } else {
+    console.log(`Did not fetch sts token: ${req.originalUrl}, ${context}`);
     next();
   }
 };
