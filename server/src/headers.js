@@ -33,6 +33,8 @@ const setMottakProxyHeaders = (proxyReq, req, res) => {
     process.env.TILBAKEMELDINGER_API_TILBAKEMELDINGSMOTTAK_APIKEY_PASSWORD
   );
 
+  console.log(`Setting apikey headers ${process.env.TILBAKEMELDINGER_API_TILBAKEMELDINGSMOTTAK_APIKEY_USERNAME} - ${process.env.TILBAKEMELDINGER_API_TILBAKEMELDINGSMOTTAK_APIKEY_PASSWORD?.slice(0, 5)}`)
+
   Object.keys(req.headers).forEach((key) => {
     proxyReq.setHeader(key, req.headers[key]);
   });
