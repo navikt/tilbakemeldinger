@@ -35,7 +35,7 @@ const en = {
   "tilbakemeldinger.serviceklage.login.tittel": "Complaints about service",
   "tilbakemeldinger.serviceklage.login.overskrift": "Do you want to log in?",
   "tilbakemeldinger.serviceklage.login.beskrivelse":
-    "We recommend logging in so you don't have to enter any personal information.<br></br>" +
+    "We recommend logging in so you don't have to enter any personal information.<br/>" +
     "You must state who you are in both cases.",
   "tilbakemeldinger.serviceklage.login.knapp": "Log in",
   "tilbakemeldinger.serviceklage.login.knapp.fortsettuten":
@@ -100,6 +100,7 @@ const en = {
     "National identity number can only consist of digits",
   "validering.fodselsnr.korrektsiffer":
     "National identity number must be 11 digits",
+  "validering.fodselsnr.ugyldig": "National identity number is not valid",
   "validering.fullmakt.pakrevd": "Authorisation is required",
   "validering.rolle.pakrevd": "Role is required",
   "validering.orgnavn.pakrevd": "Organisation name is required",
