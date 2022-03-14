@@ -29,7 +29,7 @@ const InputMelding = (props: Props) => {
           <FormattedMessage
             id={"felter.melding.beskrivelse"}
             values={{
-              DineSakerLenke: (text: string) => (
+              MineSakerLenke: (text: string) => (
                 <Lenke
                   href={urls.tilbakemeldinger.serviceklage.saksoversikt[locale]}
                 >
