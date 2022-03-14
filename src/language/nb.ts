@@ -93,6 +93,7 @@ const nb = {
   "validering.fodselsnr.pakrevd": "Fødselsnummer er nødvendig",
   "validering.fodselsnr.siffer": "Fødselsnummer kan kun bestå av siffer",
   "validering.fodselsnr.korrektsiffer": "Fødselsnummer må være 11 siffer",
+  "validering.fodselsnr.ugyldig": "Ugyldig fødselsnummer",
   "validering.fullmakt.pakrevd": "Fullmakt er nødvendig",
   "validering.rolle.pakrevd": "Rolle er nødvendig",
   "validering.orgnavn.pakrevd": "Organisasjonsnavn er nødvendig",
@@ -113,7 +114,7 @@ const nb = {
   "felter.typefeil.uu":
     "Feil på siden ved bruk av skjermleser eller annet hjelpemiddel",
   "felter.melding.tittel": "Din tilbakemelding",
-  "felter.melding.beskrivelse": `Unngå sensitive personopplysninger, som for eksempel opplysninger om helseforhold eller diagnoser. Du kan ikke spørre om status i saken din, da må du logge inn og sjekke på Ditt NAV under <DineSakerLenke>Dine saker</DineSakerLenke>. Finner du ikke svaret, kan du sjekke <SaksbehandlingstiderLenke>saksbehandlingstider</SaksbehandlingstiderLenke> eller ta kontakt i <SkrivTilOssLenke>Skriv til oss</SkrivTilOssLenke>.`,
+  "felter.melding.beskrivelse": `Unngå sensitive personopplysninger, som for eksempel opplysninger om helseforhold eller diagnoser. Du kan ikke spørre om status i saken din, da må du logge inn og sjekke på Ditt NAV under <MineSakerLenke>Mine saker</MineSakerLenke>. Finner du ikke svaret, kan du sjekke <SaksbehandlingstiderLenke>saksbehandlingstider</SaksbehandlingstiderLenke> eller ta kontakt i <SkrivTilOssLenke>Skriv til oss</SkrivTilOssLenke>.`,
   "felter.noegikkgalt":
     "Oi! Det skjedde en teknisk feil ved innsending av skjemaet, prøv igjen senere.",
   "felter.send": "Send",
