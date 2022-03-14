@@ -21,6 +21,7 @@ const ServiceKlagePrivatperson = () => {
         }),
         length: 11,
       },
+      validFnr: intl.formatMessage({ id: "validering.fodselsnr.ugyldig" }),
     },
   };
   return (

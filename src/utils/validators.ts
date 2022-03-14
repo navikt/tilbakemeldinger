@@ -1,6 +1,7 @@
 import { SimpleValidatorConfig } from "calidation";
 import { KLAGE_TYPE } from "../types/serviceklage";
 import { vars } from "../Config";
+import { fnr } from "@navikt/fnrvalidator";
 
 /*
   Form validators
@@ -18,6 +19,11 @@ export const extraValidators = {
 
   isValidMelding: (config: SimpleValidatorConfig<any>) => (value: string) =>
     value.length > vars.maksLengdeMelding ? config.message : null,
+
+  validFnr: (config: SimpleValidatorConfig<any>) => (value: string) => {
+    const result = fnr(value);
+    return result.status !== "valid" ? config.message : null;
+  },
 };
 
 export const sjekkForFeil = (submitted: boolean, error: string | null) =>

@@ -35,7 +35,7 @@ const nb = {
   "tilbakemeldinger.serviceklage.login.tittel": "Klage på service",
   "tilbakemeldinger.serviceklage.login.overskrift": "Ønsker du å logge inn?",
   "tilbakemeldinger.serviceklage.login.beskrivelse":
-    "Vi anbefaler at du logger inn, så slipper du å fylle inn all informasjonen om deg selv.<br></br>" +
+    "Vi anbefaler at du logger inn, så slipper du å fylle inn all informasjonen om deg selv.<br/>" +
     "Du må oppgi hvem du er uansett om du logger inn eller ikke.",
   "tilbakemeldinger.serviceklage.login.knapp": "Logg inn",
   "tilbakemeldinger.serviceklage.login.knapp.fortsettuten":
@@ -93,6 +93,7 @@ const nb = {
   "validering.fodselsnr.pakrevd": "Fødselsnummer er nødvendig",
   "validering.fodselsnr.siffer": "Fødselsnummer kan kun bestå av siffer",
   "validering.fodselsnr.korrektsiffer": "Fødselsnummer må være 11 siffer",
+  "validering.fodselsnr.ugyldig": "Ugyldig fødselsnummer",
   "validering.fullmakt.pakrevd": "Fullmakt er nødvendig",
   "validering.rolle.pakrevd": "Rolle er nødvendig",
   "validering.orgnavn.pakrevd": "Organisasjonsnavn er nødvendig",
