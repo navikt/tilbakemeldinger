@@ -35,7 +35,7 @@ const en = {
   "tilbakemeldinger.serviceklage.login.tittel": "Complaints about service",
   "tilbakemeldinger.serviceklage.login.overskrift": "Do you want to log in?",
   "tilbakemeldinger.serviceklage.login.beskrivelse":
-    "We recommend logging in so you don't have to enter any personal information.<br/>" +
+    "We recommend logging in so you don't have to enter any personal information.<br></br>" +
     "You must state who you are in both cases.",
   "tilbakemeldinger.serviceklage.login.knapp": "Log in",
   "tilbakemeldinger.serviceklage.login.knapp.fortsettuten":
