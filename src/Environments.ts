@@ -2,8 +2,7 @@ import { forsidePath } from "./Config";
 
 const Environment = () => {
   const host = window.location.host;
-  const isDevSbs = host.startsWith("www.dev");
-  const isDevGcp = host.startsWith("person.dev");
+  const isDev = host.startsWith("person.dev");
   const baseAppPath = `${forsidePath}`;
 
   // Localhost
@@ -21,28 +20,14 @@ const Environment = () => {
     };
   }
 
-  if (isDevGcp) {
+  if (isDev) {
     return {
       baseUrl: `https://person.dev.nav.no`,
       baseAppPath: baseAppPath,
       appUrl: `https://person.dev.nav.no${baseAppPath}`,
-      apiUrl: `https://person.dev.nav.no/person/tilbakemeldinger-api`,
+      apiUrl: `https://tilbakemeldinger-api.dev-fss-pub.nais.io`,
       authUrl: `https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth`,
       personInfoApiUrl: `https://person.dev.nav.no/person/personopplysninger-api`,
-      tjenesteUrl: `https://tjenester-q1.nav.no`,
-      loginUrl: `https://loginservice.dev.nav.no/login`,
-      logoutUrl: `https://loginservice.dev.nav.no/slo`,
-    };
-  }
-
-  if (isDevSbs) {
-    return {
-      baseUrl: `https://www.dev.nav.no`,
-      baseAppPath: baseAppPath,
-      appUrl: `https://www.dev.nav.no${baseAppPath}`,
-      apiUrl: `https://www.dev.nav.no/person/tilbakemeldinger-api`,
-      authUrl: `https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth`,
-      personInfoApiUrl: `https://www.dev.nav.no/person/personopplysninger-api`,
       tjenesteUrl: `https://tjenester-q1.nav.no`,
       loginUrl: `https://loginservice.dev.nav.no/login`,
       logoutUrl: `https://loginservice.dev.nav.no/slo`,
@@ -53,7 +38,7 @@ const Environment = () => {
     baseUrl: `https://www.nav.no`,
     baseAppPath: baseAppPath,
     appUrl: `https://www.nav.no${baseAppPath}`,
-    apiUrl: `https://www.nav.no/person/tilbakemeldinger-api`,
+    apiUrl: `https://tilbakemeldinger-api.prod-fss-pub.nais.io`,
     authUrl: `https://www.nav.no/person/innloggingsstatus/auth`,
     personInfoApiUrl: `https://www.nav.no/person/personopplysninger-api`,
     tjenesteUrl: `https://tjenester.nav.no`,

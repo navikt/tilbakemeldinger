@@ -1,3 +1,8 @@
+#name: Deploy-to-prod
+#on:
+#  release:
+#    types: [released]
+
 name: Deploy-to-prod-gcp
 on:
   workflow_dispatch
