@@ -3,7 +3,7 @@ import { useStore } from "./providers/Provider";
 import { localePath } from "./utils/locale";
 
 export const forsidePath = "/person/kontakt-oss";
-const { tjenesteUrl, baseAppPath } = Environment();
+const { mineSakerUrl, baseAppPath } = Environment();
 const navUrl = Environment().baseUrl;
 
 export const useLocalePaths = () => {
@@ -56,8 +56,8 @@ export const urls = {
       fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
       saksbehandlingstider: `${navUrl}/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav`,
       saksoversikt: {
-        nb: `${tjenesteUrl}/saksoversikt/?lang=nb`,
-        en: `${tjenesteUrl}/saksoversikt/?lang=en`,
+        nb: `${mineSakerUrl}?lang=nb`,
+        en: `${mineSakerUrl}?lang=en`,
       },
     },
   },
