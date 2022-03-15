@@ -26,8 +26,13 @@ spec:
   webproxy: true
   accessPolicy:
     outbound:
+      rules:
+        - application: tilbakemeldinger-api
+          namespace: personbruker
+          cluster: prod-fss
       external:
         - host: nav.no
+        - host: tilbakemeldinger-api.prod-fss-pub.nais.io
   leaderElection: true
   env:
     - name: ENV
