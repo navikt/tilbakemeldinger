@@ -30,7 +30,7 @@ const hentJson = (url: string) =>
 
 export const fetchEnheter = () => hentJson(`${apiUrl}/enheter`);
 
-export const fetchFodselsnr = () => hentJson(`${appUrl}/fodselsnr`);
+export const fetchFodselsnr = () => hentJson(`${appUrl}/tilbakemeldinger/fodselsnr`);
 
 export const fetchAuthInfo = () => hentJson(`${authUrl}`);
 

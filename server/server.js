@@ -16,7 +16,7 @@ server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
   res.sendStatus(200)
 );
 
-server.get(`/fodselsnr`, (req, res) =>
+server.get(`${baseUrl}/fodselsnr`, (req, res) =>
     res.send({ fodselsnr: decodeJWT(req.cookies["selvbetjening-idtoken"]).pid })
 );
 
