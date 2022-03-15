@@ -35,6 +35,7 @@ const ServiceKlageForAnnenPerson = () => {
         }),
         length: 11,
       },
+      validFnr: intl.formatMessage({ id: "validering.fodselsnr.ugyldig" }),
     },
     innmelderHarFullmakt: {
       isRequired: intl.formatMessage({ id: "validering.fullmakt.pakrevd" }),
