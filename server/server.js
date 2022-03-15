@@ -3,9 +3,9 @@ const express = require("express");
 const path = require("path");
 const getHtmlWithDecorator = require("./dekorator");
 const logger = require("./logger");
+const decodeJWT = require("jwt-decode");
 
 const server = express();
-
 const buildPath = path.resolve(__dirname, "../build");
 const baseUrl = "/person/kontakt-oss/tilbakemeldinger";
 
