@@ -16,6 +16,10 @@ server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
   res.sendStatus(200)
 );
 
+server.get(`/fodselsnr`, (req, res) =>
+    res.send({ fodselsnr: decodeJWT(req.cookies["selvbetjening-idtoken"]).pid })
+);
+
 // Match everything except internal og static
 server.use(/^(?!.*\/(internal|static)\/).*$/, (req, res) => {
   const devOrProd = req.headers.host.split(".")[1] === "dev" ? "dev" : "prod";

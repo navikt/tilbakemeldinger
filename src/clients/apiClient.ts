@@ -5,7 +5,7 @@ import { OutboundRosTilNav } from "../pages/tilbakemeldinger/ros-til-nav/Ros";
 import { OutboundFeilOgMangler } from "../pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
 import { OutboundServiceKlage } from "../pages/tilbakemeldinger/service-klage/ServiceKlage";
 import { BadRequest } from "../types/errors";
-const { apiUrl, personInfoApiUrl, authUrl } = Environment();
+const { apiUrl, appUrl, personInfoApiUrl, authUrl } = Environment();
 
 /*
     GET
@@ -30,7 +30,7 @@ const hentJson = (url: string) =>
 
 export const fetchEnheter = () => hentJson(`${apiUrl}/enheter`);
 
-export const fetchFodselsnr = () => hentJson(`${apiUrl}/fodselsnr`);
+export const fetchFodselsnr = () => hentJson(`${appUrl}/fodselsnr`);
 
 export const fetchAuthInfo = () => hentJson(`${authUrl}`);
 
