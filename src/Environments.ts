@@ -14,7 +14,7 @@ const Environment = () => {
       apiUrl: `http://localhost:8080/person/tilbakemeldinger-api`,
       authUrl: `http://localhost:8080/person/innloggingsstatus/auth`,
       personInfoApiUrl: `http://localhost:8080/person/personopplysninger-api`,
-      tjenesteUrl: `https://tjenester.nav.no`,
+      mineSakerUrl: `https://person.nav.no/mine-saker`,
       loginUrl: `http://localhost:8080/personbruker-api/local/cookie`,
       logoutUrl: `#`,
     };
@@ -28,7 +28,7 @@ const Environment = () => {
       apiUrl: `https://tilbakemeldinger-api.dev-fss-pub.nais.io`,
       authUrl: `https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth`,
       personInfoApiUrl: `https://person.dev.nav.no/person/personopplysninger-api`,
-      tjenesteUrl: `https://tjenester-q1.nav.no`,
+      mineSakerUrl: `https://person.dev.nav.no/mine-saker`,
       loginUrl: `https://loginservice.dev.nav.no/login`,
       logoutUrl: `https://loginservice.dev.nav.no/slo`,
     };
@@ -41,7 +41,7 @@ const Environment = () => {
     apiUrl: `https://tilbakemeldinger-api.prod-fss-pub.nais.io`,
     authUrl: `https://www.nav.no/person/innloggingsstatus/auth`,
     personInfoApiUrl: `https://www.nav.no/person/personopplysninger-api`,
-    tjenesteUrl: `https://tjenester.nav.no`,
+    mineSakerUrl: `https://person.nav.no/mine-saker`,
     loginUrl: `https://loginservice.nav.no/login`,
     logoutUrl: `https://loginservice.nav.no/slo`,
   };
