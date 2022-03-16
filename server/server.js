@@ -4,6 +4,7 @@ const path = require("path");
 const getHtmlWithDecorator = require("./dekorator");
 const logger = require("./logger");
 const decodeJWT = require("jwt-decode");
+const cookies = require("cookie-parser");
 
 const server = express();
 const buildPath = path.resolve(__dirname, "../build");
@@ -12,6 +13,7 @@ const baseUrl = "/person/kontakt-oss/tilbakemeldinger";
 // Parse application/json
 server.use(express.json());
 server.use(baseUrl, express.static(buildPath, { index: false }));
+server().use(cookies());
 server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
   res.sendStatus(200)
 );
