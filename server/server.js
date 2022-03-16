@@ -13,7 +13,7 @@ const baseUrl = "/person/kontakt-oss/tilbakemeldinger";
 // Parse application/json
 server.use(express.json());
 server.use(baseUrl, express.static(buildPath, { index: false }));
-server().use(cookies());
+server.use(cookies());
 server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
   res.sendStatus(200)
 );
