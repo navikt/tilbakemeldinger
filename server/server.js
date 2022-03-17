@@ -29,6 +29,7 @@ server.use(
     pathRewrite: { [`^${baseUrl}`]: "" },
     onProxyReq: (proxyReq, req) => {
       console.log("Proxy truffet");
+      console.log(req.cookies["selvbetjening-idtoken"])
       proxyReq.setHeader(
         "Authorization",
         `Bearer ${req.cookies["selvbetjening-idtoken"]}`
