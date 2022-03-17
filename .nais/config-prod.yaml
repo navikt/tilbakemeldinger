@@ -37,6 +37,8 @@ spec:
   env:
     - name: ENV
       value: prod
+    - name: API_URL
+      value: https://tilbakemeldinger-api.prod-fss-pub.nais.io
   resources:
     limits:
       cpu: '3'

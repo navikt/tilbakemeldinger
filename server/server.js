@@ -5,6 +5,7 @@ const getHtmlWithDecorator = require("./dekorator");
 const logger = require("./logger");
 const decodeJWT = require("jwt-decode");
 const cookies = require("cookie-parser");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const server = express();
 const buildPath = path.resolve(__dirname, "../build");
@@ -19,7 +20,19 @@ server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
 );
 
 server.get(`${baseUrl}/fodselsnr`, (req, res) =>
-    res.send({ fodselsnr: decodeJWT(req.cookies["selvbetjening-idtoken"]).pid })
+  res.send({ fodselsnr: decodeJWT(req.cookies["selvbetjening-idtoken"]).pid })
+);
+
+server.use(
+  createProxyMiddleware([`/mottak`, `/enheter`], {
+    target: process.env.API_URL,
+    onProxyReq: (proxyReq, req) =>
+      proxyReq.setHeader(
+        "Authorization",
+        `Bearer ${req.cookies["selvbetjening-idtoken"]}`
+      ),
+    changeOrigin: true,
+  })
 );
 
 // Match everything except internal og static
