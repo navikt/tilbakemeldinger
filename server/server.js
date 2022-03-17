@@ -25,7 +25,7 @@ server.get(`${baseUrl}/fodselsnr`, (req, res) =>
 
 server.use(
   createProxyMiddleware(
-    [`/person/kontakt-oss/mottak`, `/person/kontakt-oss/enheter`],
+    [`**/mottak`, `**/enheter`],
     {
       target: process.env.API_URL,
       pathRewrite: { [`^/person/kontakt-oss`]: "" },
