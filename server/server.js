@@ -24,19 +24,18 @@ server.get(`${baseUrl}/fodselsnr`, (req, res) =>
 );
 
 server.use(
-  createProxyMiddleware(
-    [`**/mottak`, `**/enheter`],
-    {
-      target: process.env.API_URL,
-      pathRewrite: { [`^/person/kontakt-oss`]: "" },
-      onProxyReq: (proxyReq, req) =>
-        proxyReq.setHeader(
-          "Authorization",
-          `Bearer ${req.cookies["selvbetjening-idtoken"]}`
-        ),
-      changeOrigin: true,
-    }
-  )
+  createProxyMiddleware([`**/mottak`, `**/enheter`], {
+    target: process.env.API_URL,
+    pathRewrite: { [`^/person/kontakt-oss`]: "" },
+    onProxyReq: (proxyReq, req) => {
+      console.log("Proxy truffet");
+      proxyReq.setHeader(
+        "Authorization",
+        `Bearer ${req.cookies["selvbetjening-idtoken"]}`
+      );
+    },
+    changeOrigin: true,
+  })
 );
 
 // Match everything except internal og static
