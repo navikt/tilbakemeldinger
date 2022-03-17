@@ -26,7 +26,7 @@ server.get(`${baseUrl}/fodselsnr`, (req, res) =>
 server.use(
   createProxyMiddleware([`${baseUrl}/mottak`, `${baseUrl}/enheter`], {
     target: process.env.API_URL,
-    pathRewrite: { [`^/person/kontakt-oss`]: "" },
+    pathRewrite: { [`^${baseUrl}`]: "" },
     onProxyReq: (proxyReq, req) => {
       console.log("Proxy truffet");
       proxyReq.setHeader(
