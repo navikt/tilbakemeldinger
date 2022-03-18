@@ -28,12 +28,8 @@ server.use(
     target: process.env.API_URL,
     pathRewrite: { [`^${baseUrl}`]: "" },
     onProxyReq: (proxyReq, req) => {
-      console.log("Proxy truffet");
-      console.log(req.cookies["selvbetjening-idtoken"].substring(0, 20))
-      proxyReq.setHeader(
-        "Authorization",
-        `Bearer ${req.cookies["selvbetjening-idtoken"]}`
-      );
+      const token = req.cookies["selvbetjening-idtoken"];
+      token && proxyReq.setHeader("Authorization", `Bearer ${token}`);
     },
     changeOrigin: true,
   })
