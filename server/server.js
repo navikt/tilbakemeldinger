@@ -30,6 +30,7 @@ server.use(
     onProxyReq: (proxyReq, req) => {
       const token = req.cookies["selvbetjening-idtoken"];
       token && proxyReq.setHeader("Authorization", `Bearer ${token}`);
+      console.log(proxyReq)
     },
     changeOrigin: true,
   })
