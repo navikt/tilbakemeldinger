@@ -5,7 +5,7 @@ import { OutboundRosTilNav } from "../pages/tilbakemeldinger/ros-til-nav/Ros";
 import { OutboundFeilOgMangler } from "../pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
 import { OutboundServiceKlage } from "../pages/tilbakemeldinger/service-klage/ServiceKlage";
 import { BadRequest } from "../types/errors";
-const { apiUrl, personInfoApiUrl, authUrl } = Environment();
+const { appUrl, personInfoApiUrl, authUrl } = Environment();
 
 /*
     GET
@@ -28,9 +28,9 @@ const hentJson = (url: string) =>
       throw error;
     });
 
-export const fetchEnheter = () => hentJson(`${apiUrl}/enheter`);
+export const fetchEnheter = () => hentJson(`${appUrl}/enheter`);
 
-export const fetchFodselsnr = () => hentJson(`${apiUrl}/fodselsnr`);
+export const fetchFodselsnr = () => hentJson(`${appUrl}/fodselsnr`);
 
 export const fetchAuthInfo = () => hentJson(`${authUrl}`);
 
@@ -68,13 +68,13 @@ const sendJson = (url: string, data: Outbound) => {
 };
 
 export const postRosTilNav = (data: OutboundRosTilNav) =>
-  sendJson(`${apiUrl}/mottak/ros`, data);
+  sendJson(`${appUrl}/mottak/ros`, data);
 
 export const postServiceKlage = (data: OutboundServiceKlage) =>
-  sendJson(`${apiUrl}/mottak/serviceklage`, data);
+  sendJson(`${appUrl}/mottak/serviceklage`, data);
 
 export const postFeilOgMangler = (data: OutboundFeilOgMangler) =>
-  sendJson(`${apiUrl}/mottak/feil-og-mangler`, data);
+  sendJson(`${appUrl}/mottak/feil-og-mangler`, data);
 
 /*
     Utils
