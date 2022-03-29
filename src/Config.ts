@@ -50,6 +50,8 @@ export const urls = {
     klagerettigheter: {
       nb: `${navUrl}/no/nav-og-samfunn/kontakt-nav/klage-ris-og-ros/klagerettigheter`,
       en: `${navUrl}/en/home/rules-and-regulations/appeals`,
+      nn: `${navUrl}/no/nav-og-samfunn/kontakt-nav/klage-ris-og-ros/klagerettigheter`,
+
     },
     serviceklage: {
       dittNav: `${navUrl}/person/dittnav`,
@@ -58,6 +60,7 @@ export const urls = {
       saksoversikt: {
         nb: `${mineSakerUrl}?lang=nb`,
         en: `${mineSakerUrl}?lang=en`,
+        nn: `${mineSakerUrl}?lang=nn`,
       },
     },
   },
