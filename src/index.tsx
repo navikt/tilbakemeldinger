@@ -10,6 +10,7 @@ import { initialState, reducer } from "./providers/Store";
 
 import msgsNb from "./language/nb";
 import msgsEn from "./language/en";
+import msgsNn from "./language/nn";
 import { ValidatorsProvider } from "calidation";
 import { extraValidators } from "./utils/validators";
 import { Locale, setLocaleFromUrl } from "./utils/locale";
@@ -21,7 +22,7 @@ import { initAmplitude } from "./utils/amplitude";
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-const messages: { [key in Locale]: any } = { nb: msgsNb, en: msgsEn };
+const messages: { [key in Locale]: any } = { nb: msgsNb, en: msgsEn, nn: msgsNn };
 
 const init = async () => {
   if (process.env.NODE_ENV === "development") {
