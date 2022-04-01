@@ -11,7 +11,7 @@ import {
   setBreadcrumbs,
 } from "@navikt/nav-dekoratoren-moduler";
 
-const basePathFilter = new RegExp(`${forsidePath}/(nb|en)?`, "i");
+const basePathFilter = new RegExp(`${forsidePath}/(nb|nn|en)?`, "i");
 
 export const DecoratorWidgets = () => {
   const { pathname } = useLocation();
@@ -35,6 +35,11 @@ export const DecoratorWidgets = () => {
       {
         locale: "nb",
         url: `${forsidePath}/nb/${subPath}`,
+        handleInApp: true,
+      },
+      {
+        locale: "nn",
+        url: `${forsidePath}/nn/${subPath}`,
         handleInApp: true,
       },
       {
