@@ -1,179 +1,177 @@
 const nn = {
     //
-    // Feilside
-    //
-    "feil.404": "Feilkode 404 - Siden ble ikke funnet",
-    "feil.lenke": "Til kontakt oss forside",
-  
-    //
-    // Varsler
-    //
-    "varsel.teknisk.feil":
-      "Det er for øyeblikket tekniske problemer med baksystemene våre. Dette kan føre til at noe informasjon mangler fra sidene.",
-  
-    //
-    // Breadcrumbs
-    //
-    "breadcrumb.base": "Kontakt oss",
-    "breadcrumb.tilbakemeldinger": "Tilbakemelding",
-    "breadcrumb.serviceklage": "Klage på service",
-    "breadcrumb.feil-og-mangler": "Feil og mangler",
-    "breadcrumb.ros-til-nav": "Ros",
-  
-    //
-    // Klage og tilbakemelding
-    // Feil og mangler
-    //
-    "tilbakemeldinger.sidetittel": "Klage og tilbakemelding",
-    "tilbakemeldinger.klageanke.tittel": "Klage eller anke på vedtak NYNORSK",
-    "tilbakemeldinger.klageanke.beskrivelse": `Har du fått helt eller delvis avslag på søknaden din, kan du klage på avslaget. Får du ikke medhold i klagen din i NAV, kan du med noen unntak anke til Trygderetten. Les mer om dine <KlagerettigheterLenke>klagerettigheter</KlagerettigheterLenke>.`,
-    "tilbakemeldinger.klageanke.link": "Send klage eller anke på vedtak",
-  
-    "tilbakemeldinger.serviceklage.tittel": "Klage på service",
-    "tilbakemeldinger.serviceklage.beskrivelse":
-      "Har du blitt møtt på en dårlig måte? Eller hatt en annen negativ opplevelse i møte med NAV?",
-    "tilbakemeldinger.serviceklage.login.tittel": "Klage på service",
-    "tilbakemeldinger.serviceklage.login.overskrift": "Ønsker du å logge inn?",
-    "tilbakemeldinger.serviceklage.login.beskrivelse":
-      "Vi anbefaler at du logger inn, så slipper du å fylle inn all informasjonen om deg selv.<br></br>" +
-      "Du må oppgi hvem du er uansett om du logger inn eller ikke.",
-    "tilbakemeldinger.serviceklage.login.knapp": "Logg inn",
-    "tilbakemeldinger.serviceklage.login.knapp.fortsettuten":
-      "Fortsett uten å logge inn",
-    "tilbakemeldinger.serviceklage.link": "Send tilbakemelding på service",
-    "tilbakemeldinger.serviceklage.form.veileder":
-      "Her kan du klage på servicen du har fått. Du vil få svar innen 3 uker.",
-    "tilbakemeldinger.serviceklage.form.tittel": "Klage på service",
-    "tilbakemeldinger.serviceklage.form.overskrift": "Send inn klage på service",
-    "tilbakemeldinger.serviceklage.form.onskersvar":
-      "Ønsker du et svar fra oss på serviceklagen?",
-    "tilbakemeldinger.serviceklage.form.onskersvar.ja": "Ja, jeg ønsker et svar",
-    "tilbakemeldinger.serviceklage.form.onskersvar.nei":
-      "Nei, jeg ville bare si ifra",
-  
-    "tilbakemeldinger.feilogmangler.tittel": "Feil og mangler på nav.no",
-    "tilbakemeldinger.feilogmangler.beskrivelse":
-      "Har du oppdaget en feil på nav.no? Kanskje en teknisk feil, feil informasjon eller for lav grad av universell" +
-      " utforming? Da vil vi gjerne høre fra deg.",
-    "tilbakemeldinger.feilogmangler.link": "Meld fra om feil og mangler",
-    "tilbakemeldinger.feilogmangler.form.tittel": "Feil og mangler",
-    "tilbakemeldinger.feilogmangler.form.veileder":
-      "Her kan du melde ifra om tekniske feil og mangler. Du kan ikke sende inn generelle spørsmål eller henvendelser om saken din.",
-    "tilbakemeldinger.feilogmangler.form.overskrift":
-      "Send inn feil og mangler på nav.no",
-    "tilbakemeldinger.feilogmangler.svartid":
-      "Du vil få et svar per e-post i løpet av to virkedager",
-  
-    "tilbakemeldinger.ros.tittel": "Ros til NAV",
-    "tilbakemeldinger.ros.beskrivelse":
-      "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
-    "tilbakemeldinger.ros.link": "Gi ros til nav",
-    "tilbakemeldinger.ros.form.tittel": "Ros til NAV",
-    "tilbakemeldinger.ros.form.overskrift": "Send inn ros til NAV",
-    "tilbakemeldinger.ros.form.veileder":
-      "Takk for at du vil dele opplevelsen med oss! Vi sørger for at rosen kommer fram til riktig person.",
-  
-    "validering.navn.pakrevd": "Navn er nødvendig",
-    "validering.epost.pakrevd": "E-post er nødvendig",
-    "validering.epost.gyldig": "Må være en gyldig e-postadresse",
-    "validering.tlf.pakrevd": "Telefonnummer er nødvendig",
-    "validering.klagetype.utdypning.pakrevd": "Du må utdype hva klagen gjelder",
-    "validering.feiltype.pakrevd":
-      "Du må velge hvilken type feil eller mangel du fant",
-    "validering.melding.pakrevd": "Melding er nødvendig",
-    "validering.melding.tegn": "Du har tastet inn for mange tegn",
-    "validering.hvemroses.pakrevd": "Du må velge hvem du skal gi ros til",
-    "validering.navkontor.pakrevd": "Du må velge NAV-enhet",
-    "validering.klagetyper.pakrevd": "Du må velge kagetori",
-    "validering.klagetyper.velg": "Du må velge minst en kategori",
-    "validering.hvemfra.pakrevd":
-      "Du må velge hvem tilbakemeldingen er på vegne av",
-    "validering.onskerkontakt.pakrevd":
-      "Du må velge om du ønsker at vi tar kontakt",
-    "validering.fodselsnr.pakrevd": "Fødselsnummer er nødvendig",
-    "validering.fodselsnr.siffer": "Fødselsnummer kan kun bestå av siffer",
-    "validering.fodselsnr.korrektsiffer": "Fødselsnummer må være 11 siffer",
-    "validering.fodselsnr.ugyldig": "Ugyldig fødselsnummer",
-    "validering.fullmakt.pakrevd": "Fullmakt er nødvendig",
-    "validering.rolle.pakrevd": "Rolle er nødvendig",
-    "validering.orgnavn.pakrevd": "Organisasjonsnavn er nødvendig",
-    "validering.orgnr.pakrevd": "Organisasjonsnummer er nødvendig",
-    "validering.orgnr.siffer": "Organisasjonsnummer kan kun bestå av siffer",
-    "validering.orgnr.korrektsiffer": "Organisasjonsnummer må ha 9 siffer",
-    "validering.postadr.pakrevd": "Postadresse er nødvendig",
-    "validering.gjeldersosialhjelp.pakrevd":
-      "Du må velge om tilbakemeldingen gjelder økonomisk sosialhjelp / sosiale tjenester",
-  
-    "felter.navn.tittel": "Navn",
-    "felter.navn.tittel.valgfritt": "Navn (valgfritt)",
-    "felter.epost.tittel": "E-post",
-    "felter.tlf.tittel": "Telefon",
-    "felter.typefeil.tittel": "Hva slags feil eller mangel fant du?",
-    "felter.typefeil.tekniskfeil": "Teknisk feil",
-    "felter.typefeil.feilinformasjon": "Feil informasjon",
-    "felter.typefeil.uu":
-      "Feil på siden ved bruk av skjermleser eller annet hjelpemiddel",
-    "felter.melding.tittel": "Din tilbakemelding",
-    "felter.melding.beskrivelse": `Unngå sensitive personopplysninger, som for eksempel opplysninger om helseforhold eller diagnoser. Du kan ikke spørre om status i saken din, da må du logge inn og sjekke på Ditt NAV under <MineSakerLenke>Mine saker</MineSakerLenke>. Finner du ikke svaret, kan du sjekke <SaksbehandlingstiderLenke>saksbehandlingstider</SaksbehandlingstiderLenke> eller ta kontakt i <SkrivTilOssLenke>Skriv til oss</SkrivTilOssLenke>.`,
-    "felter.noegikkgalt":
-      "Oi! Det skjedde en teknisk feil ved innsending av skjemaet, prøv igjen senere.",
-    "felter.send": "Send",
-    "felter.tilbake": "Tilbake",
-    "felter.hvemroses.tittel": "Hvem vil du gi ros til?",
-    "felter.hvemroses.navkontaktsenter": "NAV Kontaktsenter",
-    "felter.hvemroses.digitaletjenester": "NAVs digitale tjenester",
-    "felter.hvemroses.navkontor": "NAV-kontor",
-    "felter.hvemroses.navkontor.velg": "Velg NAV-enhet",
-    "felter.klagerpa.navkontor.velg": "Hvilken enhet i NAV gjelder klagen?",
-    "felter.hvemroses.navkontor.skrivinn": "Søk eller velg med piltast",
-    "felter.combobox.knapp.beskrivelse": "Åpne lista",
-    "felter.klagetyper": "Hva gjelder tilbakemeldingen?",
-    "felter.klagetyper.info":
-      "Velg det alternativet som passer best. Du har mulighet til å velge flere kategorier.",
-    "felter.klagetyper.telefon": "Telefon",
-    "felter.klagetyper.navkontor": "Lokalt NAV-kontor",
-    "felter.klagetyper.digitaletjenester": "NAVs digitale tjenester",
-    "felter.klagetyper.brev": "Brev",
-    "felter.klagetyper.annet": "Annet",
-    "felter.hvemfra": "Hvem skriver du på vegne av?",
-    "felter.hvemfra.megselv": "Meg selv som privatperson",
-    "felter.hvemfra.enannen": "På vegne av en annen privatperson",
-    "felter.hvemfra.virksomhet": "Arbeidsgiver eller samarbeidspartner",
-    "felter.onskerkontakt": "Ønsker du at vi kontakter deg?",
-    "felter.onskerkontakt.ja": "Ja, jeg ønsker å kontaktes",
-    "felter.onskerkontakt.nei": "Nei, jeg ville bare si ifra",
-    "felter.fodselsnr": "Fødselsnummer",
-    "felter.dittnavn": "Ditt navn",
-    "felter.dinrolle.annenperson": "Din rolle (nær pårørende, behandler e.l.)",
-    "felter.dinrolle.bedrift": "Din rolle (valgfri)",
-    "felter.navntilklager": "På vegne av (navn)",
-    "felter.fodselsnrtilklager": "På vegne av (fødselsnummer)",
-    "felter.fullmakt": "Har du fullmakt?",
-    "felter.fullmakt.ja": "Ja, jeg har fullmakt",
-    "felter.fullmakt.nei": "Nei, jeg har ikke fullmakt",
-    "felter.fullmakt.advarsel": `Vi kan ikke kontakte deg med mindre vi har mottatt en fullmakt fra personen det gjelder. <FullmaktskjemaLenke>Gå til fullmaktskjema</FullmaktskjemaLenke>.`,
-    "felter.orgnavn": "Organisasjonsnavn",
-    "felter.orgnr": "Organisasjonsnummer (til din lokale enhet)",
-    "felter.postadr": "Bedriftens postadresse",
-    "felter.tlf.bedrift": "Bedriftens telefonnummer",
-    "felter.gjeldersosialhjelp":
-      "Gjelder det økonomisk sosialhjelp / sosiale tjenester?",
-    "felter.gjeldersosialhjelp.ja": "Ja",
-    "felter.gjeldersosialhjelp.nei": "Nei",
-    "felter.gjeldersosialhjelp.vetikke": "Vet ikke",
-  
-    "seo.tilbakemeldinger.description":
-      "Her kan du gi tilbakemelding til NAV, klage eller anke på vedtak, service og melde fra om feil og mangler på" +
-      " nav.no. Du kan også gi oss ros om våre tjenester og medarbeidere.",
-    "seo.rostilnav.description":
-      "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
-    "seo.feilogmangler.description": "Meld fra om feil og mangler på nav.no",
-    "seo.klagepaservice.description":
-      "Send klage på service hos NAV. Hva gjelder tilbakemeldingen og hvem skriver du på vegne av?",
-  
-    "takk.melding": "Meldingen din er sendt",
-    "takk.knapp": "Gå til nav.no",
-  };
-  
-  export default nn;
-  
+  // Feilside
+  //
+  "feil.404": "Feilkode 404 - Vi fann ikkje sida",
+  "feil.lenke": "Til kontakt oss framside",
+
+  //
+  // Varsler
+  //
+  "varsel.teknisk.feil":
+    "Det er akkurat no tekniske problem med baksystema våre. Det kan føre til at noko informasjon manglar frå sidene.",
+
+  //
+  // Breadcrumbs
+  //
+  "breadcrumb.base": "Kontakt oss",
+  "breadcrumb.tilbakemeldinger": "Tilbakemelding",
+  "breadcrumb.serviceklage": "Klage på service",
+  "breadcrumb.feil-og-mangler": "Feil og manglar",
+  "breadcrumb.ros-til-nav": "Ros",
+
+  //
+  // Klage og tilbakemelding
+  // Feil og manglar
+  //
+  "tilbakemeldinger.sidetittel": "Klage og tilbakemelding",
+  "tilbakemeldinger.klageanke.tittel": "Klage eller anke på vedtak",
+  "tilbakemeldinger.klageanke.beskrivelse": `Har du fått heilt eller delvis avslag på søknaden din, kan du klage på avslaget. Får du ikkje medhald i klagen din i NAV, kan du med nokre unntak anke til Trygderetten. Les meir om <KlagerettigheterLenke>klagerettane dine</KlagerettigheterLenke>.`,
+  "tilbakemeldinger.klageanke.link": "Send klage eller anke på vedtak",
+
+  "tilbakemeldinger.serviceklage.tittel": "Klage på service",
+  "tilbakemeldinger.serviceklage.beskrivelse":
+    "Har du blitt møtt på ein dårleg måte? Eller hatt ei anna negativ oppleving i møte med NAV?",
+  "tilbakemeldinger.serviceklage.login.tittel": "Klage på service",
+  "tilbakemeldinger.serviceklage.login.overskrift": "Ønsker du å logge inn?",
+  "tilbakemeldinger.serviceklage.login.beskrivelse":
+    "Vi anbefaler at du loggar inn, så treng du ikkje å fylle inn all informasjonen om deg sjølv.<br></br>" +
+    "Du må oppgje kven du er anten du loggar inn eller ikkje.",
+  "tilbakemeldinger.serviceklage.login.knapp": "Logg inn",
+  "tilbakemeldinger.serviceklage.login.knapp.fortsettuten":
+    "Fortsett utan å logge inn",
+  "tilbakemeldinger.serviceklage.link": "Send tilbakemelding på service",
+  "tilbakemeldinger.serviceklage.form.veileder":
+    "Her kan du klage på servicen du har fått. Du vil få svar innan 3 veker.",
+  "tilbakemeldinger.serviceklage.form.tittel": "Klage på service",
+  "tilbakemeldinger.serviceklage.form.overskrift": "Send inn klage på service",
+  "tilbakemeldinger.serviceklage.form.onskersvar":
+    "Ønsker du eit svar fra oss på serviceklagen?",
+  "tilbakemeldinger.serviceklage.form.onskersvar.ja": "Ja, eg ønsker eit svar",
+  "tilbakemeldinger.serviceklage.form.onskersvar.nei":
+    "Nei, eg ville berre seie frå",
+
+  "tilbakemeldinger.feilogmangler.tittel": "Feil og manglar på nav.no",
+  "tilbakemeldinger.feilogmangler.beskrivelse":
+    "Har du oppdaga ein feil på nav.no? Kanskje ein teknisk feil, feil informasjon eller for låg grad av universell" +
+    " utforming? Då vil vi gjerne høyre frå deg.",
+  "tilbakemeldinger.feilogmangler.link": "Meld frå om feil og manglar",
+  "tilbakemeldinger.feilogmangler.form.tittel": "Feil og manglar",
+  "tilbakemeldinger.feilogmangler.form.veileder":
+    "Her kan du melde frå om tekniske feil og manglar. Du kan ikkje sende inn generelle spørsmål eller førespurnadar om saka di.",
+  "tilbakemeldinger.feilogmangler.form.overskrift":
+    "Send inn feil og manglar på nav.no",
+  "tilbakemeldinger.feilogmangler.svartid":
+    "Du vil få eit svar på e-post i løpet av to arbeidsdagar",
+
+  "tilbakemeldinger.ros.tittel": "Ros til NAV",
+  "tilbakemeldinger.ros.beskrivelse":
+    "Har du ei god oppleving? Vil du rose ein medarbeidar, eller er det noko anna positivt du vil dele med NAV?",
+  "tilbakemeldinger.ros.link": "Gi ros til NAV",
+  "tilbakemeldinger.ros.form.tittel": "Ros til NAV",
+  "tilbakemeldinger.ros.form.overskrift": "Send inn ros til NAV",
+  "tilbakemeldinger.ros.form.veileder":
+    "Takk for at du vil dele opplevinga med oss! Vi sørger for at rosen kjem fram til rett person.",
+
+  "validering.navn.pakrevd": "Namn er nødvendig",
+  "validering.epost.pakrevd": "E-post er nødvendig",
+  "validering.epost.gyldig": "Må vere ei gjeldande e-postadresse",
+  "validering.tlf.pakrevd": "Telefonnummer er nødvendig",
+  "validering.klagetype.utdypning.pakrevd": "Du må forklare kvifor du klagar ",
+  "validering.feiltype.pakrevd":
+    "Du må velje kva for ein type feil eller mangel du fann",
+  "validering.melding.pakrevd": "Melding er nødvendig",
+  "validering.melding.tegn": "Du har tasta inn for mange teikn",
+  "validering.hvemroses.pakrevd": "Du må velje kven du skal gje ros til",
+  "validering.navkontor.pakrevd": "Du må velje NAV-eining",
+  "validering.klagetyper.pakrevd": "Du må velje kategori",
+  "validering.klagetyper.velg": "Du må velje minst ein kategori",
+  "validering.hvemfra.pakrevd":
+    "Du må velje kven tilbakemeldinga er på vegne av",
+  "validering.onskerkontakt.pakrevd":
+    "Du må velje om du ønsker at vi tar kontakt",
+  "validering.fodselsnr.pakrevd": "Fødselsnummer er nødvendig",
+  "validering.fodselsnr.siffer": "Fødselsnummer kan berre vere siffer",
+  "validering.fodselsnr.korrektsiffer": "Fødselsnummer må vere 11 siffer",
+  "validering.fodselsnr.ugyldig": "Ugyldig fødselsnummer",
+  "validering.fullmakt.pakrevd": "Fullmakt er nødvendig",
+  "validering.rolle.pakrevd": "Rolle er nødvendig",
+  "validering.orgnavn.pakrevd": "Organisasjonsnamn er nødvendig",
+  "validering.orgnr.pakrevd": "Organisasjonsnummer er nødvendig",
+  "validering.orgnr.siffer": "Organisasjonsnummer kan berre vere siffer",
+  "validering.orgnr.korrektsiffer": "Organisasjonsnummer må ha 9 siffer",
+  "validering.postadr.pakrevd": "Postadresse er nødvendig",
+  "validering.gjeldersosialhjelp.pakrevd":
+    "Du må velje om tilbakemeldinga gjeld økonomisk sosialhjelp / sosiale tenester",
+
+  "felter.navn.tittel": "Namn",
+  "felter.navn.tittel.valgfritt": "Namn (valfritt)",
+  "felter.epost.tittel": "E-post",
+  "felter.tlf.tittel": "Telefon",
+  "felter.typefeil.tittel": "Kva slags feil eller mangel fann du?",
+  "felter.typefeil.tekniskfeil": "Teknisk feil",
+  "felter.typefeil.feilinformasjon": "Feil informasjon",
+  "felter.typefeil.uu":
+    "Feil på sida ved bruk av skjermlesar eller anna hjelpemiddel",
+  "felter.melding.tittel": "Tilbakemeldinga di",
+  "felter.melding.beskrivelse": `Unngå sensitive personopplysningar, som for eksempel opplysningar om helse eller diagnosar. Du kan ikkje spørje om status i saka di, då må du logge inn og sjekke på Ditt NAV under <MineSakerLenke>Mine saker</MineSakerLenke>. Finn du ikkje svaret, kan du sjekke <SaksbehandlingstiderLenke>saksbehandlingstider</SaksbehandlingstiderLenke> eller ta kontakt i <SkrivTilOssLenke>Skriv til oss</SkrivTilOssLenke>.`,
+  "felter.noegikkgalt":
+    "Oi! Det skjedde ein teknisk feil ved sending av skjemaet, prøv igjen seinare.",
+  "felter.send": "Send",
+  "felter.tilbake": "Tilbake",
+  "felter.hvemroses.tittel": "Kven vil du gje ros til?",
+  "felter.hvemroses.navkontaktsenter": "NAV Kontaktsenter",
+  "felter.hvemroses.digitaletjenester": "NAV sine digitale tenester",
+  "felter.hvemroses.navkontor": "NAV-kontor",
+  "felter.hvemroses.navkontor.velg": "Vel NAV-eining",
+  "felter.klagerpa.navkontor.velg": "Kva for ei eining i NAV gjeld klagen?",
+  "felter.hvemroses.navkontor.skrivinn": "Søk eller vel med piltast",
+  "felter.combobox.knapp.beskrivelse": "Opne lista",
+  "felter.klagetyper": "Kva gjeld tilbakemeldinga?",
+  "felter.klagetyper.info":
+    "Vel det alternativet som passar best. Du har kan velje fleire kategoriar.",
+  "felter.klagetyper.telefon": "Telefon",
+  "felter.klagetyper.navkontor": "Lokalt NAV-kontor",
+  "felter.klagetyper.digitaletjenester": "NAV sine digitale tenester",
+  "felter.klagetyper.brev": "Brev",
+  "felter.klagetyper.annet": "Anna",
+  "felter.hvemfra": "Kven skriv du på vegne av?",
+  "felter.hvemfra.megselv": "Meg sjølv som privatperson",
+  "felter.hvemfra.enannen": "På vegne av ein annan privatperson",
+  "felter.hvemfra.virksomhet": "Arbeidsgjevar eller samarbeidspartnar",
+  "felter.onskerkontakt": "Ønsker du at vi kontaktar deg?",
+  "felter.onskerkontakt.ja": "Ja, eg ønsker å bli kontakta",
+  "felter.onskerkontakt.nei": "Nei, eg ville berre seie frå",
+  "felter.fodselsnr": "Fødselsnummer",
+  "felter.dittnavn": "Namnet ditt",
+  "felter.dinrolle.annenperson": " Rolla di (nær pårørande, behandlar e.l.)",
+  "felter.dinrolle.bedrift": " Rolla di (valfri)",
+  "felter.navntilklager": "På vegne av (namn)",
+  "felter.fodselsnrtilklager": "På vegne av (fødselsnummer)",
+  "felter.fullmakt": "Har du fullmakt?",
+  "felter.fullmakt.ja": "Ja, eg har fullmakt",
+  "felter.fullmakt.nei": "Nei, eg har ikkje fullmakt",
+  "felter.fullmakt.advarsel": `Vi kan ikkje kontakte deg viss vi ikkje har fullmakt frå personen det gjeld. <FullmaktskjemaLenke>Gå til fullmaktskjema</FullmaktskjemaLenke>.`,
+  "felter.orgnavn": "Organisasjonsnamn",
+  "felter.orgnr": "Organisasjonsnummer (til di lokale eining)",
+  "felter.postadr": "Postadressa til bedrifta",
+  "felter.tlf.bedrift": "Telefonnummeret til bedrifta",
+  "felter.gjeldersosialhjelp":
+    "Gjeld det økonomisk sosialhjelp / sosiale tenester?",
+  "felter.gjeldersosialhjelp.ja": "Ja",
+  "felter.gjeldersosialhjelp.nei": "Nei",
+  "felter.gjeldersosialhjelp.vetikke": "Veit ikkje",
+
+  "seo.tilbakemeldinger.description":
+    "Her kan du gje tilbakemelding til NAV om service, klage eller anke på vedtak og melde frå om feil og manglar på" +
+    " nav.no. Du kan òg gje oss ros om tenestene og medarbeidarane våre.",
+  "seo.rostilnav.description":
+    "Har du ei god oppleving? Vil du rose ein medarbeidar, eller er det noko anna positivt du vil dele med NAV?",
+  "seo.feilogmangler.description": "Meld frå om feil og manglar på nav.no",
+  "seo.klagepaservice.description":
+    "Send klage på service i NAV. Kva gjeld tilbakemeldinga og kven skriv du på vegne av?",
+
+  "takk.melding": "Meldinga di er sendt",
+  "takk.knapp": "Gå til nav.no",
+};
+export default nn;

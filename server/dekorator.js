@@ -18,6 +18,7 @@ const getHtmlWithDecorator = (filePath, devOrProd, language) => {
     ],
     availableLanguages: [
       { locale: "nb", url: `${basePath}/person/kontakt-oss/nb/` },
+      { locale: "nn", url: `${basePath}/person/kontakt-oss/nn/` },
       { locale: "en", url: `${basePath}/person/kontakt-oss/en/` },
     ],
   });
