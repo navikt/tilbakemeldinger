@@ -22,9 +22,9 @@ const Environment = () => {
 
   if (isDev) {
     return {
-      baseUrl: `https://person.dev.nav.no`,
+      baseUrl: `https://www.dev.nav.no`,
       baseAppPath: baseAppPath,
-      appUrl: `https://person.dev.nav.no${baseAppPath}/tilbakemeldinger`,
+      appUrl: `https://www.dev.nav.no${baseAppPath}/tilbakemeldinger`,
       apiUrl: `https://tilbakemeldinger-api.dev-fss-pub.nais.io`,
       authUrl: `https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth`,
       personInfoApiUrl: `https://person.dev.nav.no/person/personopplysninger-api`,
