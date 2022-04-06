@@ -3,17 +3,35 @@ const express = require("express");
 const path = require("path");
 const getHtmlWithDecorator = require("./dekorator");
 const logger = require("./logger");
+const decodeJWT = require("jwt-decode");
+const cookies = require("cookie-parser");
+const { createProxyMiddleware} = require("http-proxy-middleware");
 
 const server = express();
-
 const buildPath = path.resolve(__dirname, "../build");
 const baseUrl = "/person/kontakt-oss/tilbakemeldinger";
 
 // Parse application/json
-server.use(express.json());
 server.use(baseUrl, express.static(buildPath, { index: false }));
+server.use(cookies());
 server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
   res.sendStatus(200)
+);
+
+server.get(`${baseUrl}/fodselsnr`, (req, res) =>
+  res.send({ fodselsnr: decodeJWT(req.cookies["selvbetjening-idtoken"]).pid })
+);
+
+server.use(
+  createProxyMiddleware([`${baseUrl}/mottak`, `${baseUrl}/enheter`], {
+    target: process.env.API_URL,
+    pathRewrite: { [`^${baseUrl}`]: "" },
+    onProxyReq: (proxyReq, req) => {
+      const token = req.cookies["selvbetjening-idtoken"];
+      token && proxyReq.setHeader("Authorization", `Bearer ${token}`);
+    },
+    changeOrigin: true,
+  })
 );
 
 // Match everything except internal og static
