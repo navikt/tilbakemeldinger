@@ -2,8 +2,7 @@ import { forsidePath } from "./Config";
 
 const Environment = () => {
   const host = window.location.host;
-  const isDevSbs = host.startsWith("www.dev");
-  const isDevGcp = host.startsWith("person.dev");
+  const isDev = host.startsWith("www.dev");
   const baseAppPath = `${forsidePath}`;
 
   // Localhost
@@ -11,7 +10,7 @@ const Environment = () => {
     return {
       baseUrl: `http://www.nav.no`,
       baseAppPath: baseAppPath,
-      appUrl: `http://localhost:8080${baseAppPath}`,
+      appUrl: `http://localhost:8080${baseAppPath}/tilbakemeldinger`,
       apiUrl: `http://localhost:8080/person/tilbakemeldinger-api`,
       authUrl: `http://localhost:8080/person/innloggingsstatus/auth`,
       personInfoApiUrl: `http://localhost:8080/person/personopplysninger-api`,
@@ -21,28 +20,14 @@ const Environment = () => {
     };
   }
 
-  if (isDevGcp) {
-    return {
-      baseUrl: `https://person.dev.nav.no`,
-      baseAppPath: baseAppPath,
-      appUrl: `https://person.dev.nav.no${baseAppPath}`,
-      apiUrl: `https://person.dev.nav.no/person/tilbakemeldinger-api`,
-      authUrl: `https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth`,
-      personInfoApiUrl: `https://person.dev.nav.no/person/personopplysninger-api`,
-      mineSakerUrl: `https://person.dev.nav.no/mine-saker`,
-      loginUrl: `https://loginservice.dev.nav.no/login`,
-      logoutUrl: `https://loginservice.dev.nav.no/slo`,
-    };
-  }
-
-  if (isDevSbs) {
+  if (isDev) {
     return {
       baseUrl: `https://www.dev.nav.no`,
       baseAppPath: baseAppPath,
-      appUrl: `https://www.dev.nav.no${baseAppPath}`,
-      apiUrl: `https://www.dev.nav.no/person/tilbakemeldinger-api`,
+      appUrl: `https://www.dev.nav.no${baseAppPath}/tilbakemeldinger`,
+      apiUrl: `https://tilbakemeldinger-api.dev-fss-pub.nais.io`,
       authUrl: `https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth`,
-      personInfoApiUrl: `https://www.dev.nav.no/person/personopplysninger-api`,
+      personInfoApiUrl: `https://person.dev.nav.no/person/personopplysninger-api`,
       mineSakerUrl: `https://person.dev.nav.no/mine-saker`,
       loginUrl: `https://loginservice.dev.nav.no/login`,
       logoutUrl: `https://loginservice.dev.nav.no/slo`,
@@ -52,8 +37,8 @@ const Environment = () => {
   return {
     baseUrl: `https://www.nav.no`,
     baseAppPath: baseAppPath,
-    appUrl: `https://www.nav.no${baseAppPath}`,
-    apiUrl: `https://www.nav.no/person/tilbakemeldinger-api`,
+    appUrl: `https://www.nav.no${baseAppPath}/tilbakemeldinger`,
+    apiUrl: `https://tilbakemeldinger-api.prod-fss-pub.nais.io`,
     authUrl: `https://www.nav.no/person/innloggingsstatus/auth`,
     personInfoApiUrl: `https://www.nav.no/person/personopplysninger-api`,
     mineSakerUrl: `https://person.nav.no/mine-saker`,
