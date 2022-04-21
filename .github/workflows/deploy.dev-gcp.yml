@@ -35,6 +35,7 @@ jobs:
           cat > .nais/vars.yaml <<EOF
           namespace: personbruker
           ingresses:
+            - https://www.dev.nav.no/person/kontakt-oss/nn/tilbakemeldinger
             - https://www.dev.nav.no/person/kontakt-oss/nb/tilbakemeldinger
             - https://www.dev.nav.no/person/kontakt-oss/en/tilbakemeldinger
             - https://www.dev.nav.no/person/kontakt-oss/tilbakemeldinger
