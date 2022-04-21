@@ -11,7 +11,7 @@ const getHtmlWithDecorator = (filePath, devOrProd, language) => {
     language: language,
     breadcrumbs: [
       {
-        url: `${basePath}/person/kontakt-oss/${language}`,
+        url: `${basePath}/person/kontakt-oss/${language === "nn" ? "nb" : language}`,
         title: language === "nb" ? "Kontakt oss" : "Contact us",
         handleInApp: true,
       },

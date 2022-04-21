@@ -54,8 +54,7 @@ export const DecoratorWidgets = () => {
 
   // Set breadcrumbs in decorator
   useEffect(() => {
-    const basePath = `${forsidePath}/${locale}`;
-
+    const basePath = `${forsidePath}/${locale === "nn" ? "nb" : locale}`;
     const baseBreadcrumb = {
       url: basePath,
       title: formatMessage({ id: "breadcrumb.base" }),
