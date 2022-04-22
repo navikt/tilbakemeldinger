@@ -22,7 +22,7 @@
   "dependencies": {
     "@navikt/fnrvalidator": "^1.2.0",
     "@navikt/nav-dekoratoren-moduler": "^1.6.4",
-    "amplitude-js": "^8.8.0",
+    "amplitude-js": "^8.18.0",
     "babel-polyfill": "^6.26.0",
     "calidation": "^1.17.0",
     "classnames": "^2.3.1",
