@@ -51,7 +51,7 @@ const InputMelding = (props: Props) => {
               SkrivTilOssLenke: (text: string) => (
                 <Lenke
                   className={"lenke"}
-                  href={localePath(paths.skrivTilOss.forside, locale)}
+                  href={localePath(paths.skrivTilOss.forside, locale === "nn" ? "nb" : locale)}
                 >
                   {text}
                 </Lenke>

@@ -11,13 +11,14 @@ const getHtmlWithDecorator = (filePath, devOrProd, language) => {
     language: language,
     breadcrumbs: [
       {
-        url: `${basePath}/person/kontakt-oss/${language}`,
+        url: `${basePath}/person/kontakt-oss/${language === "nn" ? "nb" : language}`,
         title: language === "nb" ? "Kontakt oss" : "Contact us",
         handleInApp: true,
       },
     ],
     availableLanguages: [
       { locale: "nb", url: `${basePath}/person/kontakt-oss/nb/` },
+      { locale: "nn", url: `${basePath}/person/kontakt-oss/nn/` },
       { locale: "en", url: `${basePath}/person/kontakt-oss/en/` },
     ],
   });
