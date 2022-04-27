@@ -56,6 +56,14 @@ const InputMelding = (props: Props) => {
                   {text}
                 </Lenke>
               ),
+              DatatilsynetLenke: (text: string) => (
+                <Lenke
+                  className={"lenke"}
+                  href={urls.tilbakemeldinger.serviceklage.datatilsynet}
+                >
+                  {text}
+                </Lenke>
+              ),
             }}
           />
         </Varsel>
