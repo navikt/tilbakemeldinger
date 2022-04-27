@@ -114,7 +114,7 @@ const nn = {
   "felter.typefeil.uu":
     "Feil på sida ved bruk av skjermlesar eller anna hjelpemiddel",
   "felter.melding.tittel": "Tilbakemeldinga di",
-  "felter.melding.beskrivelse": `Unngå sensitive personopplysningar, som for eksempel opplysningar om helse eller diagnosar. Du kan ikkje spørje om status i saka di, då må du logge inn og sjekke på Ditt NAV under <MineSakerLenke>Mine saker</MineSakerLenke>. Finn du ikkje svaret, kan du sjekke <SaksbehandlingstiderLenke>saksbehandlingstider</SaksbehandlingstiderLenke> eller ta kontakt i <SkrivTilOssLenke>Skriv til oss</SkrivTilOssLenke>.`,
+  "felter.melding.beskrivelse": `Ikkje send personopplysningar om deg sjølv eller andre, slik som fødselsnummer, opplysningar om helse og diagnose eller andre opplysningar som kan knytast til ein enkeltperson. Les meir om personopplysningar hos <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
   "felter.noegikkgalt":
     "Oi! Det skjedde ein teknisk feil ved sending av skjemaet, prøv igjen seinare.",
   "felter.send": "Send",
