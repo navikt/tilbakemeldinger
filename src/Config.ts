@@ -50,14 +50,18 @@ export const urls = {
     klagerettigheter: {
       nb: `${navUrl}/no/nav-og-samfunn/kontakt-nav/klage-ris-og-ros/klagerettigheter`,
       en: `${navUrl}/en/home/rules-and-regulations/appeals`,
+      nn: `${navUrl}/no/nav-og-samfunn/kontakt-nav/nynorsk/klagerettar`,
+
     },
     serviceklage: {
       dittNav: `${navUrl}/person/dittnav`,
       fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
       saksbehandlingstider: `${navUrl}/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav`,
+      datatilsynet: `https://www.datatilsynet.no/rettigheter-og-plikter/personopplysninger/`,
       saksoversikt: {
         nb: `${mineSakerUrl}?lang=nb`,
         en: `${mineSakerUrl}?lang=en`,
+        nn: `${mineSakerUrl}?lang=nn`,
       },
     },
   },

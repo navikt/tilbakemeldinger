@@ -1,8 +1,8 @@
 import { forsidePath } from "../Config";
 import { Action } from "../providers/Store";
 
-export type Locale = "nb" | "en";
-export const validLocales: Locale[] = ["nb", "en"];  // :(
+export type Locale = "nb" | "en" | "nn";
+export const validLocales: Locale[] = ["nb", "en", "nn"];  // :(
 export const defaultLocale = "nb" as Locale;
 
 export const localePath = (path: string, locale: Locale) => `${forsidePath}/${locale}${path}`;
