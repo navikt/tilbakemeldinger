@@ -1,10 +1,10 @@
 import Environment from "../Environments";
 import { HTTPError } from "types/errors";
-import { logApiError, logEvent } from "../utils/logger";
 import { OutboundRosTilNav } from "../pages/tilbakemeldinger/ros-til-nav/Ros";
 import { OutboundFeilOgMangler } from "../pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
 import { OutboundServiceKlage } from "../pages/tilbakemeldinger/service-klage/ServiceKlage";
 import { BadRequest } from "../types/errors";
+
 const { appUrl, personInfoApiUrl, authUrl } = Environment();
 
 /*
@@ -24,7 +24,6 @@ const hentJson = (url: string) =>
         code: err.code || 404,
         text: err.text || err,
       };
-      logApiError(url, error);
       throw error;
     });
 
@@ -48,7 +47,6 @@ type Outbound =
 
 const sendJson = (url: string, data: Outbound) => {
   console.log(url, data);
-  logEvent({ url });
   return fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
@@ -62,7 +60,6 @@ const sendJson = (url: string, data: Outbound) => {
         code: err.code || 404,
         text: err.text || err,
       };
-      logApiError(url, error);
       throw error;
     });
 };
