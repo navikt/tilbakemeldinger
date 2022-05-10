@@ -20,10 +20,11 @@ const hentJson = (url: string) =>
     .then((response) => sjekkForFeil(url, response))
     .then(parseJson)
     .catch((err: string & HTTPError) => {
-      throw {
+      const error = {
         code: err.code || 404,
         text: err.text || err,
       };
+      throw error;
     });
 
 export const fetchEnheter = () => hentJson(`${appUrl}/enheter`);
@@ -55,10 +56,11 @@ const sendJson = (url: string, data: Outbound) => {
     .then((response) => sjekkForFeil(url, response))
     .then(parseJson)
     .catch((err: string & HTTPError) => {
-      throw {
+      const error = {
         code: err.code || 404,
         text: err.text || err,
       };
+      throw error;
     });
 };
 
@@ -81,12 +83,13 @@ const sjekkForFeil = async (url: string, response: Response) => {
   if (response.ok) {
     return response;
   } else {
-    throw {
+    const error = {
       code: response.status,
       text:
         response.status === 400
           ? await parseJson(response).then((data: BadRequest) => data.message)
           : response.statusText,
     };
+    throw error;
   }
 };
