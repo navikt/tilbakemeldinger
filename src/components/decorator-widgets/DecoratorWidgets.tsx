@@ -31,7 +31,7 @@ export const DecoratorWidgets = () => {
   useEffect(() => {
     const subPath = pathname.replace(`${forsidePath}/${locale}`, "");
 
-    const languages = [
+    setAvailableLanguages([
       {
         locale: "nb",
         url: `${forsidePath}/nb/${subPath}`,
@@ -47,9 +47,7 @@ export const DecoratorWidgets = () => {
         url: `${forsidePath}/en/${subPath}`,
         handleInApp: true,
       },
-    ];
-
-    setAvailableLanguages(languages);
+    ]);
   }, [pathname, locale]);
 
   // Set breadcrumbs in decorator

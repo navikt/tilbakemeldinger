@@ -32,11 +32,6 @@ npm start
 
 Publiser en ny release på master for å starte deploy til prod
 
-## Logging
-
-Feil ved API-kall blir logget via frontendlogger og vises i Kibana<br>
-[https://logs.adeo.no](https://logs.adeo.no/app/kibana#/discover/ad01c200-4af4-11e9-a5a6-7fddb220bd0c)
-
 ## Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan rettes mot https://github.com/orgs/navikt/teams/personbruker
