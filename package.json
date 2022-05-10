@@ -62,7 +62,8 @@
     "react-intl": "^5.25.1",
     "react-meta-tags": "^1.0.1",
     "react-modal": "^3.15.1",
-    "react-router-dom": "^5.3.1"
+    "react-router-dom": "^5.3.1",
+    "react-router": "^5.3.1"
   },
   "optionalDependencies": {
     "fsevents": "^2.3.2"
