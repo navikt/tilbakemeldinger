@@ -1,6 +1,6 @@
 import { AuthInfo } from "../types/authInfo";
 import { KontaktInfo } from "../types/kontaktInfo";
-import { Enheter, FetchEnheter } from "../types/enheter";
+import { Enhet, FetchEnheter } from "../types/enheter";
 import { HTTPError } from "../types/errors";
 import { defaultLocale, getLocaleFromUrl, Locale } from "../utils/locale";
 
@@ -23,7 +23,7 @@ export interface Store {
 export type Action =
   | {
       type: "SETT_ENHETER_RESULT";
-      payload: Enheter[];
+      payload: Enhet[];
     }
   | {
       type: "SETT_ENHETER_ERROR";
