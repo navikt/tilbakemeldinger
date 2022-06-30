@@ -50,12 +50,7 @@ const SelectEnhet = (props: Props) => {
   useEffect(() => {
     fetchEnheter()
       .then((enheter: Enhet[]) => {
-        dispatch({
-          type: "SETT_ENHETER_RESULT",
-          payload: enheter.filter(
-            (e) => e.enhetNr !== "0000" && relevanteEnheter.includes(e.type)
-          ),
-        });
+        dispatch({ type: "SETT_ENHETER_RESULT", payload: enheter });
       })
       .catch((error: HTTPError) => {
         dispatch({ type: "SETT_ENHETER_ERROR", payload: error });
@@ -85,6 +80,9 @@ const SelectEnhet = (props: Props) => {
           onChange={onChange}
           value={value}
           data={enheter.data
+            .filter(
+              (e) => e.enhetNr !== "0000" && relevanteEnheter.includes(e.type)
+            )
             .sort((a, b) => (a.navn < b.navn ? -1 : 1))
             .map((enhet) => ({
               value: enhet.enhetNr,
