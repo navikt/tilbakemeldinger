@@ -39,6 +39,8 @@ spec:
       value: prod
     - name: API_URL
       value: https://tilbakemeldinger-api.prod-fss-pub.nais.io
+    - name: NORG2_URL
+      value: https://norg2.prod-fss-pub.nais.io
   resources:
     limits:
       cpu: '3'
