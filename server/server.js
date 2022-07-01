@@ -5,7 +5,7 @@ const getHtmlWithDecorator = require("./dekorator");
 const logger = require("./logger");
 const decodeJWT = require("jwt-decode");
 const cookies = require("cookie-parser");
-const { createProxyMiddleware} = require("http-proxy-middleware");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const server = express();
 const buildPath = path.resolve(__dirname, "../build");
@@ -23,13 +23,21 @@ server.get(`${baseUrl}/fodselsnr`, (req, res) =>
 );
 
 server.use(
-  createProxyMiddleware([`${baseUrl}/mottak`, `${baseUrl}/enheter`], {
+  createProxyMiddleware([`${baseUrl}/mottak`], {
     target: process.env.API_URL,
     pathRewrite: { [`^${baseUrl}`]: "" },
     onProxyReq: (proxyReq, req) => {
       const token = req.cookies["selvbetjening-idtoken"];
       token && proxyReq.setHeader("Authorization", `Bearer ${token}`);
     },
+    changeOrigin: true,
+  })
+);
+
+server.use(
+  createProxyMiddleware([`${baseUrl}/enheter`], {
+    target: process.env.NORG2_URL,
+    pathRewrite: { [`^${baseUrl}/enheter`]: "/norg2/api/v1/enhet?enhetStatusListe=AKTIV" },
     changeOrigin: true,
   })
 );
