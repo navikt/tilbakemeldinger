@@ -129,7 +129,7 @@ const nn = {
   "felter.combobox.knapp.beskrivelse": "Opne lista",
   "felter.klagetyper": "Kva gjeld tilbakemeldinga?",
   "felter.klagetyper.info":
-    "Vel det alternativet som passar best. Du har kan velje fleire kategoriar.",
+    "Vel det alternativet som passar best. Du kan velje fleire kategoriar.",
   "felter.klagetyper.telefon": "Telefon",
   "felter.klagetyper.navkontor": "Lokalt NAV-kontor",
   "felter.klagetyper.digitaletjenester": "NAV sine digitale tenester",
