@@ -26,7 +26,7 @@ const nn = {
   //
   "tilbakemeldinger.sidetittel": "Klage og tilbakemelding",
   "tilbakemeldinger.klageanke.tittel": "Klage eller anke på vedtak",
-  "tilbakemeldinger.klageanke.beskrivelse": `Har du fått heilt eller delvis avslag på søknaden din, kan du klage på avslaget. Får du ikkje medhald i klagen din i NAV, kan du med nokre unntak anke til Trygderetten. Les meir om <KlagerettigheterLenke>klagerettane dine</KlagerettigheterLenke>.`,
+  "tilbakemeldinger.klageanke.beskrivelse": `Dersom du har fått eit vedtak frå NAV og du er usamd i vedtaket, har du rett til å klage eller anke. Les meir om <KlagerettigheterLenke>klagerettane dine</KlagerettigheterLenke>.`,
   "tilbakemeldinger.klageanke.link": "Send klage eller anke på vedtak",
 
   "tilbakemeldinger.serviceklage.tittel": "Klage på service",
