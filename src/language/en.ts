@@ -26,7 +26,7 @@ const en = {
   //
   "tilbakemeldinger.sidetittel": "Complaints and feedback",
   "tilbakemeldinger.klageanke.tittel": "Complain or appeal a decision",
-  "tilbakemeldinger.klageanke.beskrivelse": `You can send us a complaint if your application is completely or partially rejected (helt eller delvis avslag). If your complaint is not supported by NAV you can in some cases appeal to the National Insurance Court (Trygderetten). Read more about your <KlagerettigheterLenke>right to appeal</KlagerettigheterLenke> a decision. `,
+  "tilbakemeldinger.klageanke.beskrivelse": `If you have received a resolution from NAV and you disagree with the decision, you have the right to file a complaint or appeal. Read more about your <KlagerettigheterLenke>right to appeal</KlagerettigheterLenke> a decision. `,
   "tilbakemeldinger.klageanke.link": "Send a complaint or appeal a decision",
 
   "tilbakemeldinger.serviceklage.tittel": "Complaints about service",
