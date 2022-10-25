@@ -48,10 +48,9 @@ export const urls = {
   tilbakemeldinger: {
     klagepavedtak: "https://klage.nav.no",
     klagerettigheter: {
-      nb: `${navUrl}/no/nav-og-samfunn/kontakt-nav/klage-ris-og-ros/klagerettigheter`,
-      en: `${navUrl}/en/home/rules-and-regulations/appeals`,
-      nn: `${navUrl}/no/nav-og-samfunn/kontakt-nav/nynorsk/klagerettar`,
-
+      nb: `${navUrl}/klagerettigheter`,
+      en: `${navUrl}/klagerettigheter/en`,
+      nn: `${navUrl}/klagerettigheter`,
     },
     serviceklage: {
       dittNav: `${navUrl}/person/dittnav`,
