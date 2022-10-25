@@ -10,7 +10,7 @@ import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, Form, Validation } from "calidation";
 import Header from "components/header/Header";
-import { useLocalePaths } from "Config";
+import {paths, useLocalePaths} from "Config";
 import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -46,7 +46,7 @@ const Ros = () => {
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState<string | undefined>();
   const intl = useIntl();
-  const paths = useLocalePaths();
+  const localePaths = useLocalePaths();
 
   const formConfig = {
     navn: {},
@@ -216,7 +216,7 @@ const Ros = () => {
                       <div className="tb__knapp">
                         <Link
                           className="lenkeknapp knapp knapp--flat"
-                          to={paths.tilbakemeldinger.forside}
+                          to={localePaths.tilbakemeldinger.forside}
                         >
                           <FormattedMessage id={"felter.tilbake"} />
                         </Link>
