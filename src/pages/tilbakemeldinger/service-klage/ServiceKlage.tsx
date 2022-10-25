@@ -14,7 +14,7 @@ import { OutboundServiceKlageExtend } from "types/serviceklage";
 import { OutboundServiceKlageBase } from "types/serviceklage";
 import { ON_BEHALF_OF } from "types/serviceklage";
 import Header from "components/header/Header";
-import { useLocalePaths } from "Config";
+import {paths, useLocalePaths} from "Config";
 import Box from "components/box/Box";
 import { Checkbox, Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -42,7 +42,7 @@ const ServiceKlage = () => {
   const [loginClosed, setLoginClosed] = useState(false);
 
   const intl = useIntl();
-  const paths = useLocalePaths();
+  const localePaths = useLocalePaths();
 
   const closeModal = () => setLoginClosed(true);
 
@@ -340,7 +340,7 @@ const ServiceKlage = () => {
                       <div className="tb__knapp">
                         <Link
                           className="lenkeknapp knapp knapp--flat"
-                          to={paths.tilbakemeldinger.forside}
+                          to={localePaths.tilbakemeldinger.forside}
                         >
                           <FormattedMessage id={"felter.tilbake"} />
                         </Link>
