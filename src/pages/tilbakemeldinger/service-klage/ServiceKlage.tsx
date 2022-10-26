@@ -8,13 +8,15 @@ import { postServiceKlage } from "clients/apiClient";
 import { AlertStripeFeil, AlertStripeInfo } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { HTTPError } from "types/errors";
-import { FormContext, Form, Validation } from "calidation";
+import { Form, FormContext, Validation } from "calidation";
 import InputMelding from "components/input-fields/InputMelding";
-import { OutboundServiceKlageExtend } from "types/serviceklage";
-import { OutboundServiceKlageBase } from "types/serviceklage";
-import { ON_BEHALF_OF } from "types/serviceklage";
+import {
+  ON_BEHALF_OF,
+  OutboundServiceKlageBase,
+  OutboundServiceKlageExtend,
+} from "types/serviceklage";
 import Header from "components/header/Header";
-import {paths, useLocalePaths} from "Config";
+import { paths, useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import { Checkbox, Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedMessage, useIntl } from "react-intl";

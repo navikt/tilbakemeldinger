@@ -10,7 +10,7 @@ import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, FormValidation } from "calidation";
 import Header from "components/header/Header";
-import {paths, useLocalePaths} from "Config";
+import { paths, useLocalePaths } from "Config";
 import Box from "components/box/Box";
 import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedMessage, useIntl } from "react-intl";
