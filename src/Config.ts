@@ -46,7 +46,7 @@ export const paths = {
 export const urls = {
   kontaktOssForside: `${navUrl}${forsidePath}`,
   tilbakemeldinger: {
-    klagepavedtak: `${klageUrl}`,
+    klagepavedtak: klageUrl,
     klagerettigheter: {
       nb: `${navUrl}/klagerettigheter`,
       en: `${navUrl}/klagerettigheter/en`,
