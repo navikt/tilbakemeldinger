@@ -17,6 +17,7 @@ const Environment = () => {
       mineSakerUrl: `https://person.nav.no/mine-saker`,
       loginUrl: `http://localhost:8080/personbruker-api/local/cookie`,
       logoutUrl: `#`,
+      klageUrl: `http://klage.dev.nav.no`,
     };
   }
 
@@ -31,6 +32,7 @@ const Environment = () => {
       mineSakerUrl: `https://person.dev.nav.no/mine-saker`,
       loginUrl: `https://loginservice.dev.nav.no/login`,
       logoutUrl: `https://loginservice.dev.nav.no/slo`,
+      klageUrl: `http://klage.dev.nav.no`,
     };
   }
 
@@ -44,6 +46,7 @@ const Environment = () => {
     mineSakerUrl: `https://person.nav.no/mine-saker`,
     loginUrl: `https://loginservice.nav.no/login`,
     logoutUrl: `https://loginservice.nav.no/slo`,
+    klageUrl: `https://klage.nav.no`,
   };
 };
 
