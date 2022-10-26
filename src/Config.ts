@@ -3,7 +3,7 @@ import { useStore } from "./providers/Provider";
 import { localePath } from "./utils/locale";
 
 export const forsidePath = "/person/kontakt-oss";
-const { mineSakerUrl, baseAppPath } = Environment();
+const { mineSakerUrl, baseAppPath, klageUrl } = Environment();
 const navUrl = Environment().baseUrl;
 
 export const useLocalePaths = () => {
@@ -46,7 +46,7 @@ export const paths = {
 export const urls = {
   kontaktOssForside: `${navUrl}${forsidePath}`,
   tilbakemeldinger: {
-    klagepavedtak: "https://klage.nav.no",
+    klagepavedtak: klageUrl,
     klagerettigheter: {
       nb: `${navUrl}/klagerettigheter`,
       en: `${navUrl}/klagerettigheter/en`,
