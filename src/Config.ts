@@ -50,7 +50,7 @@ export const urls = {
     klagerettigheter: {
       nb: `${navUrl}/klagerettigheter`,
       en: `${navUrl}/klagerettigheter/en`,
-      nn: `${navUrl}/klagerettigheter`,
+      nn: `${navUrl}/klagerettar/nn`,
     },
     serviceklage: {
       dittNav: `${navUrl}/person/dittnav`,
