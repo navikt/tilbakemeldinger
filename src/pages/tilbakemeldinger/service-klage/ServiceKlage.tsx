@@ -8,7 +8,7 @@ import { postServiceKlage } from "clients/apiClient";
 import { AlertStripeFeil, AlertStripeInfo } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { HTTPError } from "types/errors";
-import { Form, FormContext, Validation } from "calidation";
+import { FormContext, FormValidation } from "calidation";
 import InputMelding from "components/input-fields/InputMelding";
 import {
   ON_BEHALF_OF,
@@ -184,173 +184,171 @@ const ServiceKlage = () => {
         {success ? (
           <Takk />
         ) : (
-          <Form onSubmit={send}>
-            <Validation config={baseFormConfig} initialValues={initialValues}>
-              {({ errors, fields, submitted, setField, isValid }) => {
-                const hvemFra: ON_BEHALF_OF = fields.hvemFra;
-                const { innmelderHarFullmakt } = fields;
-                const kanOnskeAaKontaktes =
-                  hvemFra !== "ANNEN_PERSON" || innmelderHarFullmakt !== false;
+          <FormValidation
+            onSubmit={send}
+            config={baseFormConfig}
+            initialValues={initialValues}
+          >
+            {({ errors, fields, submitted, setField, isValid }) => {
+              const hvemFra: ON_BEHALF_OF = fields.hvemFra;
+              const { innmelderHarFullmakt } = fields;
+              const kanOnskeAaKontaktes =
+                hvemFra !== "ANNEN_PERSON" || innmelderHarFullmakt !== false;
 
-                const toggleklagetyper = (value: string) => {
-                  if (fields.klagetyper.includes(value)) {
-                    setField({
-                      klagetyper: fields.klagetyper.filter(
-                        (v: string) => v !== value
-                      ),
-                    });
-                  } else {
-                    setField({
-                      klagetyper: fields.klagetyper.concat([value]),
-                    });
-                  }
-                };
+              const toggleklagetyper = (value: string) => {
+                if (fields.klagetyper.includes(value)) {
+                  setField({
+                    klagetyper: fields.klagetyper.filter(
+                      (v: string) => v !== value
+                    ),
+                  });
+                } else {
+                  setField({
+                    klagetyper: fields.klagetyper.concat([value]),
+                  });
+                }
+              };
 
-                return (
-                  <div className="skjema__content">
-                    <SkjemaGruppe
-                      legend={intl.formatMessage({ id: "felter.klagetyper" })}
-                      feil={sjekkForFeil(submitted, errors.klagetyper, intl)}
-                    >
-                      <div className={"felter__melding-advarsel"}>
-                        <AlertStripeInfo>
-                          <FormattedMessage id={"felter.klagetyper.info"} />
-                        </AlertStripeInfo>
-                      </div>
-                      <Checkbox
-                        label={intl.formatMessage({
-                          id: "felter.klagetyper.telefon",
-                        })}
-                        name={"TELEFON"}
-                        checked={fields.klagetyper.includes("TELEFON")}
-                        onChange={() => toggleklagetyper("TELEFON")}
-                      />
-                      <Checkbox
-                        label={intl.formatMessage({
-                          id: "felter.klagetyper.navkontor",
-                        })}
-                        name={"LOKALT_NAV_KONTOR"}
-                        checked={fields.klagetyper.includes(
-                          "LOKALT_NAV_KONTOR"
-                        )}
-                        onChange={() => toggleklagetyper("LOKALT_NAV_KONTOR")}
-                      />
-                      <Checkbox
-                        label={intl.formatMessage({
-                          id: "felter.klagetyper.digitaletjenester",
-                        })}
-                        name={"NAV_DIGITALE_TJENESTER"}
-                        checked={fields.klagetyper.includes(
-                          "NAV_DIGITALE_TJENESTER"
-                        )}
-                        onChange={() =>
-                          toggleklagetyper("NAV_DIGITALE_TJENESTER")
-                        }
-                      />
-                      <Checkbox
-                        label={intl.formatMessage({
-                          id: "felter.klagetyper.brev",
-                        })}
-                        name={"BREV"}
-                        checked={fields.klagetyper.includes("BREV")}
-                        onChange={() => toggleklagetyper("BREV")}
-                      />
-                      <Checkbox
-                        label={intl.formatMessage({
-                          id: "felter.klagetyper.annet",
-                        })}
-                        name={"ANNET"}
-                        checked={fields.klagetyper.includes("ANNET")}
-                        onChange={() => toggleklagetyper("ANNET")}
-                      />
-                      {fields.klagetyper.includes("ANNET") && (
-                        <ServiceKlageTypeUtdypning />
-                      )}
-                    </SkjemaGruppe>
-                    {fields.klagetyper.includes("LOKALT_NAV_KONTOR") && (
-                      <ServiceKlageGjelderSosialhjelp />
-                    )}
-                    <SkjemaGruppe
-                      legend={intl.formatMessage({ id: "felter.hvemfra" })}
-                      feil={sjekkForFeil(submitted, errors.hvemFra, intl)}
-                    >
-                      <Radio
-                        label={intl.formatMessage({
-                          id: "felter.hvemfra.megselv",
-                        })}
-                        name={"PRIVATPERSON"}
-                        checked={fields.hvemFra === "PRIVATPERSON"}
-                        onChange={() => setField({ hvemFra: "PRIVATPERSON" })}
-                      />
-                      <Radio
-                        label={intl.formatMessage({
-                          id: "felter.hvemfra.enannen",
-                        })}
-                        name={"ANNEN_PERSON"}
-                        checked={fields.hvemFra === "ANNEN_PERSON"}
-                        onChange={() => setField({ hvemFra: "ANNEN_PERSON" })}
-                      />
-                      <Radio
-                        label={intl.formatMessage({
-                          id: "felter.hvemfra.virksomhet",
-                        })}
-                        name={"BEDRIFT"}
-                        checked={fields.hvemFra === "BEDRIFT"}
-                        onChange={() => setField({ hvemFra: "BEDRIFT" })}
-                      />
-                      {hvemFra === "PRIVATPERSON" && (
-                        <ServiceKlagePrivatperson />
-                      )}
-                      {hvemFra === "ANNEN_PERSON" && (
-                        <ServiceKlageForAnnenPerson />
-                      )}
-                      {hvemFra === "BEDRIFT" && <ServiceKlageForBedrift />}
-                    </SkjemaGruppe>
-                    <div className="serviceKlage__melding">
-                      <InputMelding
-                        label={intl.formatMessage({
-                          id: "felter.melding.tittel",
-                        })}
-                        submitted={submitted}
-                        value={fields.melding}
-                        error={errors.melding}
-                        onChange={(v) => setField({ melding: v })}
-                      />
+              return (
+                <div className="skjema__content">
+                  <SkjemaGruppe
+                    legend={intl.formatMessage({ id: "felter.klagetyper" })}
+                    feil={sjekkForFeil(submitted, errors.klagetyper, intl)}
+                  >
+                    <div className={"felter__melding-advarsel"}>
+                      <AlertStripeInfo>
+                        <FormattedMessage id={"felter.klagetyper.info"} />
+                      </AlertStripeInfo>
                     </div>
-                    {kanOnskeAaKontaktes && <ServiceKlageOnskerAaKontaktes />}
-                    {error && (
-                      <AlertStripeFeil className={"felter__melding-advarsel"}>
-                        <FormattedMessage id={"felter.noegikkgalt"} />
-                      </AlertStripeFeil>
+                    <Checkbox
+                      label={intl.formatMessage({
+                        id: "felter.klagetyper.telefon",
+                      })}
+                      name={"TELEFON"}
+                      checked={fields.klagetyper.includes("TELEFON")}
+                      onChange={() => toggleklagetyper("TELEFON")}
+                    />
+                    <Checkbox
+                      label={intl.formatMessage({
+                        id: "felter.klagetyper.navkontor",
+                      })}
+                      name={"LOKALT_NAV_KONTOR"}
+                      checked={fields.klagetyper.includes("LOKALT_NAV_KONTOR")}
+                      onChange={() => toggleklagetyper("LOKALT_NAV_KONTOR")}
+                    />
+                    <Checkbox
+                      label={intl.formatMessage({
+                        id: "felter.klagetyper.digitaletjenester",
+                      })}
+                      name={"NAV_DIGITALE_TJENESTER"}
+                      checked={fields.klagetyper.includes(
+                        "NAV_DIGITALE_TJENESTER"
+                      )}
+                      onChange={() =>
+                        toggleklagetyper("NAV_DIGITALE_TJENESTER")
+                      }
+                    />
+                    <Checkbox
+                      label={intl.formatMessage({
+                        id: "felter.klagetyper.brev",
+                      })}
+                      name={"BREV"}
+                      checked={fields.klagetyper.includes("BREV")}
+                      onChange={() => toggleklagetyper("BREV")}
+                    />
+                    <Checkbox
+                      label={intl.formatMessage({
+                        id: "felter.klagetyper.annet",
+                      })}
+                      name={"ANNET"}
+                      checked={fields.klagetyper.includes("ANNET")}
+                      onChange={() => toggleklagetyper("ANNET")}
+                    />
+                    {fields.klagetyper.includes("ANNET") && (
+                      <ServiceKlageTypeUtdypning />
                     )}
-                    <div className="tb__knapper">
-                      <div className="tb__knapp">
-                        <Knapp
-                          htmlType={"submit"}
-                          type={"standard"}
-                          disabled={loading || (submitted && !isValid)}
-                        >
-                          {loading ? (
-                            <NavFrontendSpinner type={"S"} />
-                          ) : (
-                            <FormattedMessage id={"felter.send"} />
-                          )}
-                        </Knapp>
-                      </div>
-                      <div className="tb__knapp">
-                        <Link
-                          className="lenkeknapp knapp knapp--flat"
-                          to={localePaths.tilbakemeldinger.forside}
-                        >
-                          <FormattedMessage id={"felter.tilbake"} />
-                        </Link>
-                      </div>
+                  </SkjemaGruppe>
+                  {fields.klagetyper.includes("LOKALT_NAV_KONTOR") && (
+                    <ServiceKlageGjelderSosialhjelp />
+                  )}
+                  <SkjemaGruppe
+                    legend={intl.formatMessage({ id: "felter.hvemfra" })}
+                    feil={sjekkForFeil(submitted, errors.hvemFra, intl)}
+                  >
+                    <Radio
+                      label={intl.formatMessage({
+                        id: "felter.hvemfra.megselv",
+                      })}
+                      name={"PRIVATPERSON"}
+                      checked={fields.hvemFra === "PRIVATPERSON"}
+                      onChange={() => setField({ hvemFra: "PRIVATPERSON" })}
+                    />
+                    <Radio
+                      label={intl.formatMessage({
+                        id: "felter.hvemfra.enannen",
+                      })}
+                      name={"ANNEN_PERSON"}
+                      checked={fields.hvemFra === "ANNEN_PERSON"}
+                      onChange={() => setField({ hvemFra: "ANNEN_PERSON" })}
+                    />
+                    <Radio
+                      label={intl.formatMessage({
+                        id: "felter.hvemfra.virksomhet",
+                      })}
+                      name={"BEDRIFT"}
+                      checked={fields.hvemFra === "BEDRIFT"}
+                      onChange={() => setField({ hvemFra: "BEDRIFT" })}
+                    />
+                    {hvemFra === "PRIVATPERSON" && <ServiceKlagePrivatperson />}
+                    {hvemFra === "ANNEN_PERSON" && (
+                      <ServiceKlageForAnnenPerson />
+                    )}
+                    {hvemFra === "BEDRIFT" && <ServiceKlageForBedrift />}
+                  </SkjemaGruppe>
+                  <div className="serviceKlage__melding">
+                    <InputMelding
+                      label={intl.formatMessage({
+                        id: "felter.melding.tittel",
+                      })}
+                      submitted={submitted}
+                      value={fields.melding}
+                      error={errors.melding}
+                      onChange={(v) => setField({ melding: v })}
+                    />
+                  </div>
+                  {kanOnskeAaKontaktes && <ServiceKlageOnskerAaKontaktes />}
+                  {error && (
+                    <AlertStripeFeil className={"felter__melding-advarsel"}>
+                      <FormattedMessage id={"felter.noegikkgalt"} />
+                    </AlertStripeFeil>
+                  )}
+                  <div className="tb__knapper">
+                    <div className="tb__knapp">
+                      <Knapp
+                        htmlType={"submit"}
+                        type={"standard"}
+                        disabled={loading || (submitted && !isValid)}
+                      >
+                        {loading ? (
+                          <NavFrontendSpinner type={"S"} />
+                        ) : (
+                          <FormattedMessage id={"felter.send"} />
+                        )}
+                      </Knapp>
+                    </div>
+                    <div className="tb__knapp">
+                      <Link
+                        className="lenkeknapp knapp knapp--flat"
+                        to={localePaths.tilbakemeldinger.forside}
+                      >
+                        <FormattedMessage id={"felter.tilbake"} />
+                      </Link>
                     </div>
                   </div>
-                );
-              }}
-            </Validation>
-          </Form>
+                </div>
+              );
+            }}
+          </FormValidation>
         )}
       </Box>
     </div>
