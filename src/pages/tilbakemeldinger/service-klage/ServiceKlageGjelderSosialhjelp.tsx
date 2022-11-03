@@ -12,9 +12,7 @@ const ServiceKlageGjelderSosialhjelp = () => {
   const intl = useIntl();
   const ytelseTjenesteFormConfig = {
     gjelderSosialhjelp: {
-      isRequired: intl.formatMessage({
-        id: "validering.gjeldersosialhjelp.pakrevd",
-      }),
+      isRequired: "validering.gjeldersosialhjelp.pakrevd",
     },
   };
 
@@ -35,7 +33,7 @@ const ServiceKlageGjelderSosialhjelp = () => {
               legend={intl.formatMessage({
                 id: "felter.gjeldersosialhjelp",
               })}
-              feil={sjekkForFeil(submitted, errors.gjelderSosialhjelp)}
+              feil={sjekkForFeil(submitted, errors.gjelderSosialhjelp, intl)}
             >
               <Radio
                 label={intl.formatMessage({

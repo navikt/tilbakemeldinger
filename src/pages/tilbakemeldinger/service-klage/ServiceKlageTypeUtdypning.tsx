@@ -1,5 +1,4 @@
 import React from "react";
-import { useIntl } from "react-intl";
 import { Validation } from "calidation";
 import InputField from "components/input-fields/InputField";
 
@@ -8,13 +7,9 @@ interface Fields {
 }
 
 const ServiceKlageTypeUtdypning = () => {
-  const intl = useIntl();
-
   const klagetypeUtdypningFormConfig = {
     klagetypeUtdypning: {
-      isRequired: intl.formatMessage({
-        id: "validering.klagetype.utdypning.pakrevd",
-      }),
+      isRequired: "validering.klagetype.utdypning.pakrevd",
     },
   };
 
