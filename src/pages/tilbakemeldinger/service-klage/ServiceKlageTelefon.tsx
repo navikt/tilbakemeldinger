@@ -14,7 +14,7 @@ const ServiceKlageTelefon = () => {
 
   const tlfFormConfig = {
     innmelderTlfnr: {
-      isRequired: intl.formatMessage({ id: "validering.tlf.pakrevd" }),
+      isRequired: "validering.tlf.pakrevd",
     },
   };
 

@@ -10,9 +10,7 @@ const FeilgOgManglerOnskerAaKontaktes = () => {
 
   const onskerKontaktConfig = {
     onskerKontakt: {
-      isRequired: intl.formatMessage({
-        id: "validering.onskerkontakt.pakrevd",
-      }),
+      isRequired: "validering.onskerkontakt.pakrevd",
     },
   };
 
@@ -32,7 +30,7 @@ const FeilgOgManglerOnskerAaKontaktes = () => {
             legend={intl.formatMessage({
               id: "felter.onskerkontakt",
             })}
-            feil={sjekkForFeil(submitted, errors.onskerKontakt)}
+            feil={sjekkForFeil(submitted, errors.onskerKontakt, intl)}
           >
             <Radio
               label={intl.formatMessage({

@@ -1,6 +1,6 @@
 import { TextareaControlled, TextareaProps } from "nav-frontend-skjema";
 import React, { KeyboardEvent, useState } from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { paths, urls, vars } from "../../Config";
 import { Varsel } from "../varsel/Varsel";
 import { useStore } from "../../providers/Provider";
@@ -18,6 +18,7 @@ const InputMelding = (props: Props) => {
   const [blur, settBlur] = useState(false);
   const { error, value, label, submitted } = props;
   const [{ locale }] = useStore();
+  const intl = useIntl();
 
   return (
     <div>
@@ -51,7 +52,10 @@ const InputMelding = (props: Props) => {
               SkrivTilOssLenke: (text: string) => (
                 <Lenke
                   className={"lenke"}
-                  href={localePath(paths.skrivTilOss.forside, locale === "nn" ? "nb" : locale)}
+                  href={localePath(
+                    paths.skrivTilOss.forside,
+                    locale === "nn" ? "nb" : locale
+                  )}
                 >
                   {text}
                 </Lenke>
@@ -75,7 +79,11 @@ const InputMelding = (props: Props) => {
         value={value}
         defaultValue={""}
         maxLength={vars.maksLengdeMelding}
-        feil={error && (blur || submitted) ? error : undefined}
+        feil={
+          error && (blur || submitted)
+            ? intl.formatMessage({ id: error })
+            : undefined
+        }
         onBlur={() => settBlur(true)}
         onKeyUp={(e: KeyboardEvent<HTMLTextAreaElement>) => {
           if (e.target instanceof HTMLTextAreaElement) {

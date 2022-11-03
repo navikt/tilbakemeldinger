@@ -11,9 +11,7 @@ const ServiceKlageOnskerAaKontaktes = () => {
   const initialValues = {} as any;
   const onskerKontaktConfig = {
     onskerKontakt: {
-      isRequired: intl.formatMessage({
-        id: "validering.onskerkontakt.pakrevd",
-      }),
+      isRequired: "validering.onskerkontakt.pakrevd",
     },
   };
 
@@ -29,7 +27,7 @@ const ServiceKlageOnskerAaKontaktes = () => {
             legend={intl.formatMessage({
               id: "tilbakemeldinger.serviceklage.form.onskersvar",
             })}
-            feil={sjekkForFeil(submitted, errors.onskerKontakt)}
+            feil={sjekkForFeil(submitted, errors.onskerKontakt, intl)}
           >
             <Radio
               label={intl.formatMessage({
