@@ -95,7 +95,9 @@ const SelectEnhet = (props: Props) => {
         </div>
       )}
       {submitted && error && (
-        <SkjemaelementFeilmelding>{error}</SkjemaelementFeilmelding>
+        <SkjemaelementFeilmelding>
+          {intl.formatMessage({ id: error })}
+        </SkjemaelementFeilmelding>
       )}
     </div>
   );

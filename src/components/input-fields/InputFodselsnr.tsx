@@ -1,6 +1,7 @@
 import { Input } from "nav-frontend-skjema";
 import React, { useState } from "react";
 import { useStore } from "../../providers/Provider";
+import { useIntl } from "react-intl";
 
 interface Props {
   onChange: (value: string) => void;
@@ -15,6 +16,7 @@ const InputFodselsnr = (props: Props) => {
   const [{ auth, fodselsnr }] = useStore();
   const [blur, settBlur] = useState(false);
   const { value, label, error, submitted, bredde } = props;
+  const intl = useIntl();
 
   if (auth.authenticated && fodselsnr !== value) {
     props.onChange(fodselsnr);
@@ -27,9 +29,13 @@ const InputFodselsnr = (props: Props) => {
       bredde={bredde}
       label={label}
       value={value}
-      onChange={event => props.onChange(event.currentTarget.value)}
+      onChange={(event) => props.onChange(event.currentTarget.value)}
       onBlur={() => settBlur(true)}
-      feil={error && (blur || submitted) ? error : undefined}
+      feil={
+        error && (blur || submitted)
+          ? intl.formatMessage({ id: error })
+          : undefined
+      }
     />
   );
 };

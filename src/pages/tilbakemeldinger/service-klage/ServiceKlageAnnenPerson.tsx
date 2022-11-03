@@ -21,27 +21,25 @@ const ServiceKlageForAnnenPerson = () => {
   const intl = useIntl();
   const annenPersFormConfig = {
     innmelderNavn: {
-      isRequired: intl.formatMessage({ id: "validering.navn.pakrevd" }),
+      isRequired: "validering.navn.pakrevd",
     },
     paaVegneAvNavn: {
-      isRequired: intl.formatMessage({ id: "validering.navn.pakrevd" }),
+      isRequired: "validering.navn.pakrevd",
     },
     paaVegneAvFodselsnr: {
-      isRequired: intl.formatMessage({ id: "validering.fodselsnr.pakrevd" }),
-      isNumber: intl.formatMessage({ id: "validering.fodselsnr.siffer" }),
+      isRequired: "validering.fodselsnr.pakrevd",
+      isNumber: "validering.fodselsnr.siffer",
       isExactLength: {
-        message: intl.formatMessage({
-          id: "validering.fodselsnr.korrektsiffer",
-        }),
+        message: "validering.fodselsnr.korrektsiffer",
         length: 11,
       },
-      validFnr: intl.formatMessage({ id: "validering.fodselsnr.ugyldig" }),
+      validFnr: "validering.fodselsnr.ugyldig",
     },
     innmelderHarFullmakt: {
-      isRequired: intl.formatMessage({ id: "validering.fullmakt.pakrevd" }),
+      isRequired: "validering.fullmakt.pakrevd",
     },
     innmelderRolle: {
-      isRequired: intl.formatMessage({ id: "validering.rolle.pakrevd" }),
+      isRequired: "validering.rolle.pakrevd",
     },
   };
 
@@ -98,7 +96,7 @@ const ServiceKlageForAnnenPerson = () => {
               legend={intl.formatMessage({
                 id: "felter.fullmakt",
               })}
-              feil={sjekkForFeil(submitted, errors.innmelderHarFullmakt)}
+              feil={sjekkForFeil(submitted, errors.innmelderHarFullmakt, intl)}
             >
               <Radio
                 label={intl.formatMessage({

@@ -10,18 +10,16 @@ const ServiceKlagePrivatperson = () => {
 
   const privPersFormConfig = {
     innmelderNavn: {
-      isRequired: intl.formatMessage({ id: "validering.navn.pakrevd" }),
+      isRequired: "validering.navn.pakrevd",
     },
     innmelderFnr: {
-      isRequired: intl.formatMessage({ id: "validering.fodselsnr.pakrevd" }),
-      isNumber: intl.formatMessage({ id: "validering.fodselsnr.siffer" }),
+      isRequired: "validering.fodselsnr.pakrevd",
+      isNumber: "validering.fodselsnr.siffer",
       isExactLength: {
-        message: intl.formatMessage({
-          id: "validering.fodselsnr.korrektsiffer",
-        }),
+        message: "validering.fodselsnr.korrektsiffer",
         length: 11,
       },
-      validFnr: intl.formatMessage({ id: "validering.fodselsnr.ugyldig" }),
+      validFnr: "validering.fodselsnr.ugyldig",
     },
   };
   return (
