@@ -50,17 +50,15 @@ const ServiceKlage = () => {
 
   const baseFormConfig = {
     klagetyper: {
-      isRequired: intl.formatMessage({ id: "validering.klagetyper.pakrevd" }),
-      isValidFeiltyper: intl.formatMessage({
-        id: "validering.klagetyper.velg",
-      }),
+      isRequired: "validering.klagetyper.pakrevd",
+      isValidFeiltyper: "validering.klagetyper.velg",
     },
     hvemFra: {
-      isRequired: intl.formatMessage({ id: "validering.hvemfra.pakrevd" }),
+      isRequired: "validering.hvemfra.pakrevd",
     },
     melding: {
-      isRequired: intl.formatMessage({ id: "validering.melding.pakrevd" }),
-      isValidMelding: intl.formatMessage({ id: "validering.melding.tegn" }),
+      isRequired: "validering.melding.pakrevd",
+      isValidMelding: "validering.melding.tegn",
     },
   };
 
@@ -212,7 +210,7 @@ const ServiceKlage = () => {
                   <div className="skjema__content">
                     <SkjemaGruppe
                       legend={intl.formatMessage({ id: "felter.klagetyper" })}
-                      feil={sjekkForFeil(submitted, errors.klagetyper)}
+                      feil={sjekkForFeil(submitted, errors.klagetyper, intl)}
                     >
                       <div className={"felter__melding-advarsel"}>
                         <AlertStripeInfo>
@@ -274,7 +272,7 @@ const ServiceKlage = () => {
                     )}
                     <SkjemaGruppe
                       legend={intl.formatMessage({ id: "felter.hvemfra" })}
-                      feil={sjekkForFeil(submitted, errors.hvemFra)}
+                      feil={sjekkForFeil(submitted, errors.hvemFra, intl)}
                     >
                       <Radio
                         label={intl.formatMessage({

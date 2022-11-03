@@ -19,20 +19,18 @@ const ServiceKlageForBedrift = () => {
   const bedriftFormConfig = {
     innmelderRolle: {},
     orgNavn: {
-      isRequired: intl.formatMessage({ id: "validering.orgnavn.pakrevd" }),
+      isRequired: "validering.orgnavn.pakrevd",
     },
     orgNummer: {
-      isRequired: intl.formatMessage({ id: "validering.orgnr.pakrevd" }),
-      isNumber: intl.formatMessage({ id: "validering.orgnr.siffer" }),
+      isRequired: "validering.orgnr.pakrevd",
+      isNumber: "validering.orgnr.siffer",
       isExactLength: {
-        message: intl.formatMessage({ id: "validering.orgnr.korrektsiffer" }),
+        message: "validering.orgnr.korrektsiffer",
         length: 9,
       },
     },
     enhetsnummerPaaklaget: {
-      isRequired: intl.formatMessage({
-        id: "validering.navkontor.pakrevd",
-      }),
+      isRequired: "validering.navkontor.pakrevd",
     },
   };
 
@@ -81,12 +79,9 @@ const ServiceKlageForBedrift = () => {
               error={errors.enhetsnummerPaaklaget}
               submitted={submitted}
               value={fields.enhetsnummerPaaklaget}
-              onChange={(
-                v?: {
-                  value: string;
-                  label: string;
-                }
-              ) => setField({ enhetsnummerPaaklaget: v })}
+              onChange={(v?: { value: string; label: string }) =>
+                setField({ enhetsnummerPaaklaget: v })
+              }
             />
           </div>
         );

@@ -1,6 +1,7 @@
 import { Input } from "nav-frontend-skjema";
 import React, { useState } from "react";
 import { useStore } from "../../providers/Provider";
+import { useIntl } from "react-intl";
 
 interface Props {
   label: string;
@@ -16,6 +17,7 @@ const InputNavn = (props: Props) => {
   const [blur, settBlur] = useState(false);
   const { value, error, submitted, onChange, label } = props;
   const { bredde } = props;
+  const intl = useIntl();
 
   if (auth.authenticated && auth.name !== props.value) {
     onChange(auth.name);
@@ -28,9 +30,13 @@ const InputNavn = (props: Props) => {
       bredde={bredde}
       label={label}
       value={value}
-      onChange={event => onChange(event.currentTarget.value)}
+      onChange={(event) => onChange(event.currentTarget.value)}
       onBlur={() => settBlur(true)}
-      feil={error && (blur || submitted) ? error : undefined}
+      feil={
+        error && (blur || submitted)
+          ? intl.formatMessage({ id: error })
+          : undefined
+      }
     />
   );
 };

@@ -15,12 +15,8 @@ const FeilOgManglerEpost = () => {
 
   const epostConfig = {
     epost: {
-      isRequired: intl.formatMessage({
-        id: "validering.epost.pakrevd",
-      }),
-      isEmail: intl.formatMessage({
-        id: "validering.epost.gyldig",
-      }),
+      isRequired: "validering.epost.pakrevd",
+      isEmail: "validering.epost.gyldig",
     },
   };
 

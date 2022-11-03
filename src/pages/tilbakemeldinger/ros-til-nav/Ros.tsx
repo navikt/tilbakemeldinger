@@ -51,15 +51,11 @@ const Ros = () => {
   const formConfig = {
     navn: {},
     hvemRoses: {
-      isRequired: intl.formatMessage({
-        id: "validering.hvemroses.pakrevd",
-      }),
+      isRequired: "validering.hvemroses.pakrevd",
     },
     melding: {
-      isRequired: intl.formatMessage({
-        id: "validering.melding.pakrevd",
-      }),
-      isValidMelding: intl.formatMessage({ id: "validering.melding.tegn" }),
+      isRequired: "validering.melding.pakrevd",
+      isValidMelding: "validering.melding.tegn",
     },
   };
 
@@ -138,7 +134,7 @@ const Ros = () => {
                       legend={intl.formatMessage({
                         id: "felter.hvemroses.tittel",
                       })}
-                      feil={sjekkForFeil(submitted, errors.hvemRoses)}
+                      feil={sjekkForFeil(submitted, errors.hvemRoses, intl)}
                     >
                       <Radio
                         label={intl.formatMessage({
