@@ -35,8 +35,7 @@ const ServiceKlageForAnnenPerson = () => {
         }),
         length: 11,
       },
-      validFnr: intl.formatMessage({ id: "validering.fodselsnr.ugyldig" }),
-    },
+i    },
     innmelderHarFullmakt: {
       isRequired: intl.formatMessage({ id: "validering.fullmakt.pakrevd" }),
     },
@@ -53,98 +52,98 @@ const ServiceKlageForAnnenPerson = () => {
   };
 
   return (
-    <Validation
-      key={"annenPers"}
-      config={annenPersFormConfig}
-      initialValues={initialValues}
-    >
-      {({ errors, fields, submitted, setField }) => {
-        return (
-          <div className="serviceKlage__ekspandert">
-            <InputNavn
-              bredde={"L"}
-              label={intl.formatMessage({ id: "felter.dittnavn" })}
-              submitted={submitted}
-              value={fields.innmelderNavn}
-              error={errors.innmelderNavn}
-              onChange={(v) => setField({ innmelderNavn: v })}
-            />
-            <InputField
-              bredde={"M"}
-              submitted={submitted}
-              label={intl.formatMessage({ id: "felter.dinrolle.annenperson" })}
-              required={true}
-              value={fields.innmelderRolle}
-              error={errors.innmelderRolle}
-              onChange={(v) => setField({ innmelderRolle: v })}
-            />
-            <InputField
-              bredde={"L"}
-              label={intl.formatMessage({ id: "felter.navntilklager" })}
-              submitted={submitted}
-              value={fields.paaVegneAvNavn}
-              error={errors.paaVegneAvNavn}
-              onChange={(v) => setField({ paaVegneAvNavn: v })}
-            />
-            <InputField
-              bredde={"S"}
-              label={intl.formatMessage({ id: "felter.fodselsnrtilklager" })}
-              submitted={submitted}
-              value={fields.paaVegneAvFodselsnr}
-              error={errors.paaVegneAvFodselsnr}
-              onChange={(v) => setField({ paaVegneAvFodselsnr: v })}
-            />
-            <SkjemaGruppe
-              legend={intl.formatMessage({
-                id: "felter.fullmakt",
-              })}
-              feil={sjekkForFeil(submitted, errors.innmelderHarFullmakt)}
-            >
-              <Radio
-                label={intl.formatMessage({
-                  id: "felter.fullmakt.ja",
-                })}
-                name={intl.formatMessage({
-                  id: "felter.fullmakt.ja",
-                })}
-                checked={fields.innmelderHarFullmakt === true}
-                onChange={() => setField({ innmelderHarFullmakt: true })}
+      <Validation
+        key={"annenPers"}
+        config={annenPersFormConfig}
+        initialValues={initialValues}
+      >
+        {({ errors, fields, submitted, setField }) => {
+          return (
+            <div className="serviceKlage__ekspandert">
+              <InputNavn
+                bredde={"L"}
+                label={intl.formatMessage({ id: "felter.dittnavn" })}
+                submitted={submitted}
+                value={fields.innmelderNavn}
+                error={errors.innmelderNavn}
+                onChange={(v) => setField({ innmelderNavn: v })}
               />
-              <Radio
-                label={intl.formatMessage({
-                  id: "felter.fullmakt.nei",
-                })}
-                name={intl.formatMessage({
-                  id: "felter.fullmakt.nei",
-                })}
-                checked={fields.innmelderHarFullmakt === false}
-                onChange={() => setField({ innmelderHarFullmakt: false })}
+              <InputField
+                bredde={"M"}
+                submitted={submitted}
+                label={intl.formatMessage({ id: "felter.dinrolle.annenperson" })}
+                required={true}
+                value={fields.innmelderRolle}
+                error={errors.innmelderRolle}
+                onChange={(v) => setField({ innmelderRolle: v })}
               />
-              {fields.innmelderHarFullmakt === false && (
-                <AlertStripeAdvarsel>
-                  <FormattedMessage
-                    id={"felter.fullmakt.advarsel"}
-                    values={{
-                      FullmaktskjemaLenke: (text: string) => (
-                        <Lenke
-                          href={
-                            urls.tilbakemeldinger.serviceklage.fullmaktskjema
-                          }
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
-                          {text}
-                        </Lenke>
-                      ),
-                    }}
-                  />
-                </AlertStripeAdvarsel>
-              )}
-            </SkjemaGruppe>
-          </div>
-        );
-      }}
-    </Validation>
-  );
+              <InputField
+                bredde={"L"}
+                label={intl.formatMessage({ id: "felter.navntilklager" })}
+                submitted={submitted}
+                value={fields.paaVegneAvNavn}
+                error={errors.paaVegneAvNavn}
+                onChange={(v) => setField({ paaVegneAvNavn: v })}
+              />
+              <InputField
+                bredde={"S"}
+                label={intl.formatMessage({ id: "felter.fodselsnrtilklager" })}
+                submitted={submitted}
+                value={fields.paaVegneAvFodselsnr}
+                error={errors.paaVegneAvFodselsnr}
+                onChange={(v) => setField({ paaVegneAvFodselsnr: v })}
+              />
+              <SkjemaGruppe
+                legend={intl.formatMessage({
+                  id: "felter.fullmakt",
+                })}
+                feil={sjekkForFeil(submitted, errors.innmelderHarFullmakt)}
+              >
+                <Radio
+                  label={intl.formatMessage({
+                    id: "felter.fullmakt.ja",
+                  })}
+                  name={intl.formatMessage({
+                    id: "felter.fullmakt.ja",
+                  })}
+                  checked={fields.innmelderHarFullmakt === true}
+                  onChange={() => setField({ innmelderHarFullmakt: true })}
+                />
+                <Radio
+                  label={intl.formatMessage({
+                    id: "felter.fullmakt.nei",
+                  })}
+                  name={intl.formatMessage({
+                    id: "felter.fullmakt.nei",
+                  })}
+                  checked={fields.innmelderHarFullmakt === false}
+                  onChange={() => setField({ innmelderHarFullmakt: false })}
+                />
+                {fields.innmelderHarFullmakt === false && (
+                  <AlertStripeAdvarsel>
+                    <FormattedMessage
+                      id={"felter.fullmakt.advarsel"}
+                      values={{
+                        FullmaktskjemaLenke: (text: string) => (
+                          <Lenke
+                            href={
+                              urls.tilbakemeldinger.serviceklage.fullmaktskjema
+                            }
+                            rel="noopener noreferrer"
+                            target="_blank"
+                          >
+                            {text}
+                          </Lenke>
+                        ),
+                      }}
+                    />
+                  </AlertStripeAdvarsel>
+                )}
+              </SkjemaGruppe>
+            </div>
+          );
+        }}
+      </Validation>
+ );
 };
 export default ServiceKlageForAnnenPerson;
