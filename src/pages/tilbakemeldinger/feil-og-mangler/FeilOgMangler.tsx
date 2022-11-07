@@ -36,15 +36,11 @@ const FOM = () => {
 
   const formConfig = {
     feiltype: {
-      isRequired: intl.formatMessage({
-        id: "validering.feiltype.pakrevd",
-      }),
+      isRequired: "validering.feiltype.pakrevd",
     },
     melding: {
-      isRequired: intl.formatMessage({
-        id: "validering.melding.pakrevd",
-      }),
-      isValidMelding: intl.formatMessage({ id: "validering.melding.tegn" }),
+      isRequired: "validering.melding.pakrevd",
+      isValidMelding: "validering.melding.tegn",
     },
   };
 
@@ -114,7 +110,7 @@ const FOM = () => {
                   legend={intl.formatMessage({
                     id: "felter.typefeil.tittel",
                   })}
-                  feil={sjekkForFeil(submitted, errors.feiltype)}
+                  feil={sjekkForFeil(submitted, errors.feiltype, intl)}
                 >
                   <Radio
                     label={intl.formatMessage({

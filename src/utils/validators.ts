@@ -2,20 +2,21 @@ import { SimpleValidatorConfig } from "calidation";
 import { KLAGE_TYPE } from "../types/serviceklage";
 import { vars } from "../Config";
 import { fnr } from "@navikt/fnrvalidator";
+import { IntlShape } from "react-intl";
 
 /*
   Form validators
  */
 
 export const extraValidators = {
-  isValidTidsrom: (config: SimpleValidatorConfig<any>) => (value: {
-    FORMIDDAG: boolean;
-    ETTERMIDDAG: boolean;
-  }) => (!(value.FORMIDDAG || value.ETTERMIDDAG) ? config.message : null),
+  isValidTidsrom:
+    (config: SimpleValidatorConfig<any>) =>
+    (value: { FORMIDDAG: boolean; ETTERMIDDAG: boolean }) =>
+      !(value.FORMIDDAG || value.ETTERMIDDAG) ? config.message : null,
 
-  isValidFeiltyper: (config: SimpleValidatorConfig<any>) => (
-    value: KLAGE_TYPE[]
-  ) => (!value.length ? config.message : null),
+  isValidFeiltyper:
+    (config: SimpleValidatorConfig<any>) => (value: KLAGE_TYPE[]) =>
+      !value.length ? config.message : null,
 
   isValidMelding: (config: SimpleValidatorConfig<any>) => (value: string) =>
     value.length > vars.maksLengdeMelding ? config.message : null,
@@ -26,5 +27,8 @@ export const extraValidators = {
   },
 };
 
-export const sjekkForFeil = (submitted: boolean, error: string | null) =>
-  submitted && error ? error : undefined;
+export const sjekkForFeil = (
+  submitted: boolean,
+  error: string | null,
+  intl: IntlShape
+) => (submitted && error ? intl.formatMessage({ id: error }) : undefined);

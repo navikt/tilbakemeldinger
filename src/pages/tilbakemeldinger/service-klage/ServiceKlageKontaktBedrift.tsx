@@ -11,7 +11,7 @@ const ServiceKlageKontaktBedrift = () => {
   const intl = useIntl();
   const kontaktBedrift = {
     innmelderNavn: {
-      isRequired: intl.formatMessage({ id: "validering.navn.pakrevd" }),
+      isRequired: "validering.navn.pakrevd",
     },
   };
 
