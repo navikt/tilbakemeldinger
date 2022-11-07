@@ -11,7 +11,7 @@ import {
   setBreadcrumbs,
 } from "@navikt/nav-dekoratoren-moduler";
 
-const basePathFilter = new RegExp(`${forsidePath}/(nb|en)?`, "i");
+const basePathFilter = new RegExp(`${forsidePath}/(nb|nn|en)?`, "i");
 
 export const DecoratorWidgets = () => {
   const { pathname } = useLocation();
@@ -31,10 +31,15 @@ export const DecoratorWidgets = () => {
   useEffect(() => {
     const subPath = pathname.replace(`${forsidePath}/${locale}`, "");
 
-    const languages = [
+    setAvailableLanguages([
       {
         locale: "nb",
         url: `${forsidePath}/nb/${subPath}`,
+        handleInApp: true,
+      },
+      {
+        locale: "nn",
+        url: `${forsidePath}/nn/${subPath}`,
         handleInApp: true,
       },
       {
@@ -42,15 +47,12 @@ export const DecoratorWidgets = () => {
         url: `${forsidePath}/en/${subPath}`,
         handleInApp: true,
       },
-    ];
-
-    setAvailableLanguages(languages);
+    ]);
   }, [pathname, locale]);
 
   // Set breadcrumbs in decorator
   useEffect(() => {
-    const basePath = `${forsidePath}/${locale}`;
-
+    const basePath = `${forsidePath}/${locale === "nn" ? "nb" : locale}`;
     const baseBreadcrumb = {
       url: basePath,
       title: formatMessage({ id: "breadcrumb.base" }),

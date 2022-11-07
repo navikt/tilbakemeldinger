@@ -3,7 +3,7 @@ import { useStore } from "./providers/Provider";
 import { localePath } from "./utils/locale";
 
 export const forsidePath = "/person/kontakt-oss";
-const { mineSakerUrl, baseAppPath } = Environment();
+const { mineSakerUrl, baseAppPath, klageUrl } = Environment();
 const navUrl = Environment().baseUrl;
 
 export const useLocalePaths = () => {
@@ -46,18 +46,21 @@ export const paths = {
 export const urls = {
   kontaktOssForside: `${navUrl}${forsidePath}`,
   tilbakemeldinger: {
-    klagepavedtak: "https://klage.nav.no",
+    klagepavedtak: klageUrl,
     klagerettigheter: {
-      nb: `${navUrl}/no/nav-og-samfunn/kontakt-nav/klage-ris-og-ros/klagerettigheter`,
-      en: `${navUrl}/en/home/rules-and-regulations/appeals`,
+      nb: `${navUrl}/klagerettigheter`,
+      en: `${navUrl}/klagerettigheter/en`,
+      nn: `${navUrl}/klagerettigheter`,
     },
     serviceklage: {
       dittNav: `${navUrl}/person/dittnav`,
       fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
       saksbehandlingstider: `${navUrl}/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav`,
+      datatilsynet: `https://www.datatilsynet.no/rettigheter-og-plikter/personopplysninger/`,
       saksoversikt: {
         nb: `${mineSakerUrl}?lang=nb`,
         en: `${mineSakerUrl}?lang=en`,
+        nn: `${mineSakerUrl}?lang=nn`,
       },
     },
   },

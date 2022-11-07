@@ -4,10 +4,11 @@ import { Element } from "nav-frontend-typografi";
 import { FormattedMessage, useIntl } from "react-intl";
 import NavFrontendSpinner from "nav-frontend-spinner";
 import { fetchEnheter } from "../../clients/apiClient";
-import { Enheter } from "../../types/enheter";
+import { Enhet } from "../../types/enheter";
 import { HTTPError } from "types/errors";
 import { SkjemaelementFeilmelding } from "nav-frontend-skjema";
 import Combobox from "./EnhetCombobox";
+
 const cssPrefix = "selectEnhet";
 
 interface Option {
@@ -29,9 +30,26 @@ const SelectEnhet = (props: Props) => {
   const intl = useIntl();
   const { submitted, error, label, onChange, value } = props;
 
+  const relevanteEnheter = [
+    "ALS",
+    "ARK",
+    "FPY",
+    "FYLKE",
+    "HMS",
+    "INTRO",
+    "KLAGE",
+    "KO",
+    "KONTROLL",
+    "LOKAL",
+    "OKONOMI",
+    "TILTAK",
+    "YTA",
+    "OPPFUTLAND",
+  ];
+
   useEffect(() => {
     fetchEnheter()
-      .then((enheter: Enheter[]) => {
+      .then((enheter: Enhet[]) => {
         dispatch({ type: "SETT_ENHETER_RESULT", payload: enheter });
       })
       .catch((error: HTTPError) => {
@@ -62,10 +80,13 @@ const SelectEnhet = (props: Props) => {
           onChange={onChange}
           value={value}
           data={enheter.data
-            .sort((a, b) => (a.enhetsnavn < b.enhetsnavn ? -1 : 1))
+            .filter(
+              (e) => e.enhetNr !== "0000" && relevanteEnheter.includes(e.type)
+            )
+            .sort((a, b) => (a.navn < b.navn ? -1 : 1))
             .map((enhet) => ({
-              value: enhet.enhetsnummer,
-              label: `${enhet.enhetsnavn} -  ${enhet.enhetsnummer}`,
+              value: enhet.enhetNr,
+              label: `${enhet.navn} - ${enhet.enhetNr}`,
             }))}
         />
       ) : (
