@@ -23,6 +23,8 @@ jobs:
           node-version: '16.15.0'
           cache: 'npm'
       - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - run: npm run build
       - name: Docker build and push
         run: |
