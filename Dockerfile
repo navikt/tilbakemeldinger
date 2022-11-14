@@ -4,12 +4,9 @@ ENV NODE_ENV production
 
 WORKDIR usr/src/app
 COPY server server/
-COPY build build/
+COPY node_modules /app/node_modules/
 
 WORKDIR server
-RUN npm install
-
 CMD ["node", "./server.js"]
-
 EXPOSE 8080
 
