@@ -4,7 +4,8 @@ ENV NODE_ENV production
 
 WORKDIR usr/src/app
 COPY server server/
-COPY node_modules /app/node_modules/
+COPY server/node_modules server/node_modules/
+COPY build build/
 
 WORKDIR server
 CMD ["node", "./server.js"]
