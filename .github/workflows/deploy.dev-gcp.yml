@@ -26,6 +26,11 @@ jobs:
       - run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+      - name: dependencies /server
+        working-directory: ./server
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+        run: npm ci
       - run: npm run build
       - name: Docker build and push
         run: |
