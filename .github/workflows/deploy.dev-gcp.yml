@@ -5,6 +5,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    working-directory: .
     steps:
       - uses: actions/checkout@v1
       - name: Define build environment
