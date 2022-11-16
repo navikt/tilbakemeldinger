@@ -4,7 +4,6 @@ ENV NODE_ENV production
 
 WORKDIR usr/src/app
 COPY server server/
-COPY server/node_modules server/node_modules/
 COPY build build/
 
 WORKDIR server
