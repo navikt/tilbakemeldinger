@@ -171,7 +171,7 @@ const ServiceKlage = () => {
       </ModalWrapper>
       <div className={"tb__veileder"}>
         <Veilederpanel
-          svg={<img src={VeilederIcon} alt="Veileder" />}
+          svg={<img src={VeilederIcon} alt="" />}
           type={"plakat"}
           kompakt={true}
         >
