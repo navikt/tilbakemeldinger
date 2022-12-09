@@ -40,11 +40,7 @@ const Lenkepanel = (props: Props) => {
       <div className={"linkbox__row"}>
         {props.icon && (
           <div className="linkbox__icon-container">
-            <img
-              className="linkbox__icon"
-              src={props.icon}
-              alt={props.tittel}
-            />
+            <img className="linkbox__icon" src={props.icon} alt="" />
           </div>
         )}
         <div>
