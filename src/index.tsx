@@ -22,7 +22,11 @@ import { initAmplitude } from "./utils/amplitude";
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-const messages: { [key in Locale]: any } = { nb: msgsNb, en: msgsEn, nn: msgsNn };
+const messages: { [key in Locale]: any } = {
+  nb: msgsNb,
+  en: msgsEn,
+  nn: msgsNn,
+};
 
 const init = async () => {
   if (process.env.NODE_ENV === "development") {
@@ -51,6 +55,10 @@ const RenderApp = () => {
     setLocaleFromUrl(dispatch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("lang", locale);
+  }, [locale]);
 
   return (
     <ValidatorsProvider validators={extraValidators}>
