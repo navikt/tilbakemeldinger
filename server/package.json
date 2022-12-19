@@ -1,6 +1,6 @@
 {
-  "name": "personopplysninger-server",
-  "version": "1.7.23-test",
+  "name": "tilbakemeldinger-server",
+  "version": "4.15.8",
   "private": true,
   "author": "NAV",
   "license": "MIT",
