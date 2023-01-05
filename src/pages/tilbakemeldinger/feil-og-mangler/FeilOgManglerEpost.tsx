@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { Validation } from "calidation";
 import { useStore } from "providers/Provider";
 import InputField from "components/input-fields/InputField";
-import { AlertStripeInfo } from "nav-frontend-alertstriper";
+import { Alert } from "@navikt/ds-react";
 
 const FeilOgManglerEpost = () => {
   const intl = useIntl();
@@ -30,19 +30,17 @@ const FeilOgManglerEpost = () => {
         return (
           <div className="serviceKlage__ekspandert">
             <InputField
-              bredde={"L"}
               label={intl.formatMessage({ id: "felter.epost.tittel" })}
-              value={fields.epost}
               error={errors.epost}
               onChange={(v) => setField({ epost: v })}
               submitted={submitted}
             />
             <div className="tilbakemeldinger__svartid">
-              <AlertStripeInfo>
+              <Alert variant={"info"}>
                 <FormattedMessage
                   id={"tilbakemeldinger.feilogmangler.svartid"}
                 />
-              </AlertStripeInfo>
+              </Alert>
             </div>
           </div>
         );

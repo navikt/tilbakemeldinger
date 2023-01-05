@@ -1,24 +1,27 @@
 import React, { useState } from "react";
-import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "assets/icons/Veileder.svg";
-import { Knapp } from "nav-frontend-knapper";
 import { Link, withRouter } from "react-router-dom";
 import InputMelding from "components/input-fields/InputMelding";
 import { postFeilOgMangler } from "clients/apiClient";
 import { HTTPError } from "types/errors";
-import { AlertStripeFeil } from "nav-frontend-alertstriper";
-import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, FormValidation } from "calidation";
 import Header from "components/header/Header";
 import { paths, useLocalePaths } from "Config";
 import Box from "components/box/Box";
-import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
 import { triggerHotjar } from "../../../utils/hotjar";
 import { MetaTags } from "../../../components/metatags/MetaTags";
+import {
+  Alert,
+  Button,
+  GuidePanel,
+  Loader,
+  Radio,
+  RadioGroup,
+} from "@navikt/ds-react";
 
 export type OutboundFeilOgMangler = {
   onskerKontakt: boolean;
@@ -87,17 +90,16 @@ const FOM = () => {
         })}
       />
       <div className={"tb__veileder"}>
-        <Veilederpanel
-          svg={<img src={VeilederIcon} alt="" />}
-          type={"plakat"}
-          kompakt={true}
+        <GuidePanel
+          illustration={<img src={VeilederIcon} alt="" />}
+          poster={true}
         >
           <div className={"tb__veileder-container"}>
             <FormattedMessage
               id={"tilbakemeldinger.feilogmangler.form.veileder"}
             />
           </div>
-        </Veilederpanel>
+        </GuidePanel>
       </div>
       <Box>
         {success ? (
@@ -106,67 +108,60 @@ const FOM = () => {
           <FormValidation onSubmit={send} config={formConfig}>
             {({ errors, fields, submitted, setField, isValid }) => (
               <div className={"skjema__content"}>
-                <SkjemaGruppe
+                <RadioGroup
                   legend={intl.formatMessage({
                     id: "felter.typefeil.tittel",
                   })}
-                  feil={sjekkForFeil(submitted, errors.feiltype, intl)}
+                  error={sjekkForFeil(submitted, errors.feiltype, intl)}
+                  onChange={(e) => setField({ feiltype: e.target.value })}
                 >
-                  <Radio
-                    label={intl.formatMessage({
+                  <Radio value={"TEKNISK_FEIL"}>
+                    {intl.formatMessage({
                       id: "felter.typefeil.tekniskfeil",
                     })}
-                    name={"TEKNISK_FEIL"}
-                    checked={fields.feiltype === "TEKNISK_FEIL"}
-                    onChange={() => setField({ feiltype: "TEKNISK_FEIL" })}
-                  />
-                  <Radio
-                    label={intl.formatMessage({
+                  </Radio>
+                  <Radio value={"FEIL_INFO"}>
+                    {intl.formatMessage({
                       id: "felter.typefeil.feilinformasjon",
                     })}
-                    name={"FEIL_INFO"}
-                    checked={fields.feiltype === "FEIL_INFO"}
-                    onChange={() => setField({ feiltype: "FEIL_INFO" })}
-                  />
-                  <Radio
-                    label={intl.formatMessage({
+                  </Radio>
+                  <Radio value={"UNIVERSELL_UTFORMING"}>
+                    {intl.formatMessage({
                       id: "felter.typefeil.uu",
                     })}
-                    name={"UNIVERSELL_UTFORMING"}
-                    checked={fields.feiltype === "UNIVERSELL_UTFORMING"}
-                    onChange={() =>
-                      setField({ feiltype: "UNIVERSELL_UTFORMING" })
-                    }
-                  />
-                </SkjemaGruppe>
+                  </Radio>
+                </RadioGroup>
+
                 <InputMelding
                   label={intl.formatMessage({
                     id: "felter.melding.tittel",
                   })}
                   submitted={submitted}
-                  value={fields.melding}
                   error={errors.melding}
                   onChange={(v) => setField({ melding: v })}
                 />
                 <FeilgOgManglerOnskerAaKontaktes />
                 {error && (
-                  <AlertStripeFeil className={"felter__melding-advarsel"}>
+                  <Alert
+                    variant={"error"}
+                    className={"felter__melding-advarsel"}
+                  >
                     <FormattedMessage id={"felter.noegikkgalt"} />
-                  </AlertStripeFeil>
+                  </Alert>
                 )}
                 <div className="tb__knapper">
                   <div className="tb__knapp">
-                    <Knapp
-                      htmlType={"submit"}
-                      type={"standard"}
+                    <Button
+                      type={"submit"}
+                      variant={"secondary"}
                       disabled={loading || (submitted && !isValid)}
                     >
                       {loading ? (
-                        <NavFrontendSpinner type={"S"} />
+                        <Loader size={"small"} />
                       ) : (
                         <FormattedMessage id={"felter.send"} />
                       )}
-                    </Knapp>
+                    </Button>
                   </div>
                   <div className="tb__knapp">
                     <Link

@@ -1,10 +1,10 @@
 import React from "react";
 import { useIntl } from "react-intl";
 import { Validation } from "calidation";
-import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { sjekkForFeil } from "../../../utils/validators";
 import ServiceKlageTelefon from "./ServiceKlageTelefon";
 import ServiceKlageKontaktBedrift from "./ServiceKlageKontaktBedrift";
+import { Radio, RadioGroup } from "@navikt/ds-react";
 
 const ServiceKlageOnskerAaKontaktes = () => {
   const intl = useIntl();
@@ -23,39 +23,33 @@ const ServiceKlageOnskerAaKontaktes = () => {
     >
       {({ errors, fields, submitted, setField }) => {
         return (
-          <SkjemaGruppe
-            legend={intl.formatMessage({
-              id: "tilbakemeldinger.serviceklage.form.onskersvar",
-            })}
-            feil={sjekkForFeil(submitted, errors.onskerKontakt, intl)}
-          >
-            <Radio
-              label={intl.formatMessage({
-                id: "tilbakemeldinger.serviceklage.form.onskersvar.ja",
+          <>
+            <RadioGroup
+              legend={intl.formatMessage({
+                id: "tilbakemeldinger.serviceklage.form.onskersvar",
               })}
-              name={intl.formatMessage({
-                id: "tilbakemeldinger.serviceklage.form.onskersvar.ja",
-              })}
-              checked={fields.onskerKontakt === true}
-              onChange={() => setField({ onskerKontakt: true })}
-            />
-            <Radio
-              label={intl.formatMessage({
-                id: "tilbakemeldinger.serviceklage.form.onskersvar.nei",
-              })}
-              name={intl.formatMessage({
-                id: "tilbakemeldinger.serviceklage.form.onskersvar.nei",
-              })}
-              checked={fields.onskerKontakt === false}
-              onChange={() => setField({ onskerKontakt: false })}
-            />
+              error={sjekkForFeil(submitted, errors.onskerKontakt, intl)}
+              onChange={(e) => setField({ onskerKontakt: e.target.value })}
+            >
+              <Radio value={true}>
+                {intl.formatMessage({
+                  id: "tilbakemeldinger.serviceklage.form.onskersvar.ja",
+                })}
+              </Radio>
+              <Radio value={false}>
+                {intl.formatMessage({
+                  id: "tilbakemeldinger.serviceklage.form.onskersvar.nei",
+                })}
+              </Radio>
+            </RadioGroup>
+
             {fields.onskerKontakt && (
               <>
                 {fields.hvemFra === "BEDRIFT" && <ServiceKlageKontaktBedrift />}
                 <ServiceKlageTelefon />
               </>
             )}
-          </SkjemaGruppe>
+          </>
         );
       }}
     </Validation>

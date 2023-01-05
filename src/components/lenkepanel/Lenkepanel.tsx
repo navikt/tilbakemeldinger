@@ -1,11 +1,11 @@
 import React from "react";
-import { Normaltekst, Undertittel } from "nav-frontend-typografi";
 import { Link } from "react-router-dom";
 import { LenkepanelBase } from "nav-frontend-lenkepanel";
 import { FormattedMessage } from "react-intl";
 import { urls } from "../../Config";
 import { useStore } from "../../providers/Provider";
 import { logLinkClick } from "../../utils/amplitude";
+import { BodyShort } from "@navikt/ds-react";
 
 export interface Props {
   id: string;
@@ -19,6 +19,7 @@ export interface Props {
 
 const Lenkepanel = (props: Props) => {
   const [{ locale }] = useStore();
+  // todo: bruk linkpanel
   return (
     <LenkepanelBase
       href={props.to}
@@ -45,11 +46,11 @@ const Lenkepanel = (props: Props) => {
         )}
         <div>
           <div className="linkbox__tittel lenkepanel__heading">
-            <Undertittel>{props.tittel}</Undertittel>
+            <BodyShort size={"small"}>{props.tittel}</BodyShort>
           </div>
           {props.beskrivelse && (
             <div className="linkbox__beskrivelse">
-              <Normaltekst>
+              <BodyShort>
                 <FormattedMessage
                   id={props.beskrivelse}
                   values={{
@@ -63,7 +64,7 @@ const Lenkepanel = (props: Props) => {
                     ),
                   }}
                 />
-              </Normaltekst>
+              </BodyShort>
             </div>
           )}
         </div>

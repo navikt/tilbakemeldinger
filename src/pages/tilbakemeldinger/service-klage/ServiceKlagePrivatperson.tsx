@@ -32,7 +32,6 @@ const ServiceKlagePrivatperson = () => {
         return (
           <div className="serviceKlage__ekspandert">
             <InputNavn
-              bredde={"L"}
               label={intl.formatMessage({ id: "felter.navn.tittel" })}
               submitted={submitted}
               value={fields.innmelderNavn}
@@ -40,7 +39,6 @@ const ServiceKlagePrivatperson = () => {
               onChange={(v) => setField({ innmelderNavn: v })}
             />
             <InputFodselsnr
-              bredde={"M"}
               label={intl.formatMessage({ id: "felter.fodselsnr" })}
               submitted={submitted}
               error={errors.innmelderFnr}

@@ -1,7 +1,7 @@
-import { Input } from "nav-frontend-skjema";
 import React, { useState } from "react";
 import { useStore } from "../../providers/Provider";
 import { useIntl } from "react-intl";
+import { TextField } from "@navikt/ds-react";
 
 interface Props {
   onChange: (value: string) => void;
@@ -15,23 +15,22 @@ interface Props {
 const InputFodselsnr = (props: Props) => {
   const [{ auth, fodselsnr }] = useStore();
   const [blur, settBlur] = useState(false);
-  const { value, label, error, submitted, bredde } = props;
+  const { value, label, error, submitted } = props;
   const intl = useIntl();
 
   if (auth.authenticated && fodselsnr !== value) {
     props.onChange(fodselsnr);
   }
 
+  // todo: fiks bredde
   return auth.authenticated && fodselsnr ? (
-    <Input bredde={bredde} label={label} value={value} disabled={true} />
+    <TextField label={label} disabled={true} />
   ) : (
-    <Input
-      bredde={bredde}
+    <TextField
       label={label}
-      value={value}
       onChange={(event) => props.onChange(event.currentTarget.value)}
       onBlur={() => settBlur(true)}
-      feil={
+      error={
         error && (blur || submitted)
           ? intl.formatMessage({ id: error })
           : undefined

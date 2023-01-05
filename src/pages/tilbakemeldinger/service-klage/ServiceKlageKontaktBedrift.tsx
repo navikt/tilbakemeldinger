@@ -29,7 +29,6 @@ const ServiceKlageKontaktBedrift = () => {
         return (
           <div className="serviceKlage__ekspandert">
             <InputNavn
-              bredde={"M"}
               label={intl.formatMessage({ id: "felter.dittnavn" })}
               submitted={submitted}
               value={fields.innmelderNavn}

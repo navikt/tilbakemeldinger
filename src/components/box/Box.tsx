@@ -1,6 +1,5 @@
 import React from "react";
-import { Undertittel } from "nav-frontend-typografi";
-import PanelBase from "nav-frontend-paneler";
+import { BodyShort, Panel } from "@navikt/ds-react";
 
 interface Props {
   tittel?: string;
@@ -19,12 +18,14 @@ const Box = (props: Props) => {
   const styles = { margin: props.margin ? props.margin : "1rem 0 0 0" };
   return (
     <div className={`box__wrapper ${wrapperClassName || ""}`} style={styles}>
-      <PanelBase>
+      <Panel>
         <div className={`box__container ${containerClassName || ""}`}>
           {tittel && (
             <div className="box__header">
               <div className="box__title-container">
-                <Undertittel className="box__title">{tittel}</Undertittel>
+                <BodyShort size={"small"} className="box__title">
+                  {tittel}
+                </BodyShort>
                 <div className="box__line" />
               </div>
             </div>
@@ -33,7 +34,7 @@ const Box = (props: Props) => {
             {children}
           </div>
         </div>
-      </PanelBase>
+      </Panel>
     </div>
   );
 };

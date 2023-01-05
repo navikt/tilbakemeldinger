@@ -1,29 +1,28 @@
 import React from "react";
-import { AlertStripeSuksess } from "nav-frontend-alertstriper";
-import { Knapp } from "nav-frontend-knapper";
-import Lenke from "nav-frontend-lenker";
 import { FormattedMessage } from "react-intl";
+import { Alert, Button, Link } from "@navikt/ds-react";
 
 interface Props {
   melding?: string;
 }
+
 const Takk = (props: Props) => (
   <div className={"skjema__content"}>
     <div className="takk__alert">
-      <AlertStripeSuksess>
+      <Alert variant={"success"}>
         {props.melding ? (
           <span>{props.melding}</span>
         ) : (
           <FormattedMessage id={"takk.melding"} />
         )}
-      </AlertStripeSuksess>
+      </Alert>
     </div>
     <div className="takk__knapp">
-      <Lenke href={"https://www.nav.no"}>
-        <Knapp>
+      <Link href={"https://www.nav.no"}>
+        <Button>
           <FormattedMessage id={"takk.knapp"} />
-        </Knapp>
-      </Lenke>
+        </Button>
+      </Link>
     </div>
   </div>
 );

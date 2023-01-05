@@ -1,7 +1,7 @@
 import React from "react";
 import Environment from "Environments";
 import { FormattedMessage } from "react-intl";
-import { Normaltekst, Undertittel } from "nav-frontend-typografi";
+import { BodyShort, Heading } from "@navikt/ds-react";
 
 const { loginUrl } = Environment();
 
@@ -12,17 +12,17 @@ type Props = {
 const LoginModal = ({ closeFunc }: Props) => {
   return (
     <div className={"login-modal"}>
-      <Undertittel className={"login-modal__title"}>
+      <Heading level={"2"} size={"small"} className={"login-modal__title"}>
         <FormattedMessage
           id={"tilbakemeldinger.serviceklage.login.overskrift"}
         />
-      </Undertittel>
-      <Normaltekst className="login-modal__info">
+      </Heading>
+      <BodyShort className="login-modal__info">
         <FormattedMessage
           id={"tilbakemeldinger.serviceklage.login.beskrivelse"}
           values={{ br: () => <br /> }}
         />
-      </Normaltekst>
+      </BodyShort>
       <div className="login-modal__buttons">
         <a
           className="knapp knapp--hoved knapp--kompakt"
