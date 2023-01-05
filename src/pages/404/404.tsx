@@ -1,9 +1,8 @@
 import React from "react";
 import ReactMetaTags from "react-meta-tags";
-import { Systemtittel } from "nav-frontend-typografi";
 import { forsidePath } from "../../Config";
 import { FormattedMessage } from "react-intl";
-import Lenke from "nav-frontend-lenker";
+import { Heading, Link } from "@navikt/ds-react";
 
 const NotFound = () => (
   <>
@@ -11,12 +10,12 @@ const NotFound = () => (
       <meta name="robots" content="noindex" />
     </ReactMetaTags>
     <div className="notfound__container">
-      <Systemtittel>
+      <Heading size={"medium"} level={"2"}>
         <FormattedMessage id={"feil.404"} />
-      </Systemtittel>
-      <Lenke href={forsidePath}>
+      </Heading>
+      <Link href={forsidePath}>
         <FormattedMessage id={"feil.lenke"} />
-      </Lenke>
+      </Link>
     </div>
   </>
 );

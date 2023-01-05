@@ -28,9 +28,7 @@ const ServiceKlageTelefon = () => {
         return (
           <div className="serviceKlage__ekspandert">
             <InputField
-              bredde={"S"}
               label={intl.formatMessage({ id: "felter.tlf.tittel" })}
-              value={fields.innmelderTlfnr}
               error={errors.innmelderTlfnr}
               onChange={(v) => setField({ innmelderTlfnr: v })}
               submitted={submitted}

@@ -1,10 +1,9 @@
-import { Input, InputProps } from "nav-frontend-skjema";
 import React, { useState } from "react";
 import { useIntl } from "react-intl";
+import { TextField, TextFieldProps } from "@navikt/ds-react";
 
-interface Props extends Omit<InputProps, "onChange"> {
+interface Props extends Omit<TextFieldProps, "onChange"> {
   onChange: (value: string) => void;
-  value: string;
   error: string | null;
   submitted: boolean;
 }
@@ -15,9 +14,9 @@ const InputField = (props: Props) => {
   const intl = useIntl();
 
   return (
-    <Input
+    <TextField
       onChange={(event) => onChange(event.currentTarget.value)}
-      feil={
+      error={
         error && (submitted || blur)
           ? intl.formatMessage({ id: error })
           : undefined

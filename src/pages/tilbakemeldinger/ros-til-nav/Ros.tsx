@@ -1,24 +1,27 @@
 import React, { useState } from "react";
-import Veilederpanel from "nav-frontend-veilederpanel";
 import VeilederIcon from "assets/icons/Veileder.svg";
-import { Knapp } from "nav-frontend-knapper";
 import { Link } from "react-router-dom";
 import InputMelding from "components/input-fields/InputMelding";
 import { postRosTilNav } from "clients/apiClient";
 import { HTTPError } from "types/errors";
-import { AlertStripeFeil } from "nav-frontend-alertstriper";
-import NavFrontendSpinner from "nav-frontend-spinner";
 import { FormContext, FormValidation, Validation } from "calidation";
 import Header from "components/header/Header";
 import { paths, useLocalePaths } from "Config";
 import Box from "components/box/Box";
-import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
 import { sjekkForFeil } from "utils/validators";
 import { triggerHotjar } from "utils/hotjar";
 import SelectEnhet from "components/input-fields/SelectEnhet";
 import { MetaTags } from "../../../components/metatags/MetaTags";
+import {
+  Alert,
+  Button,
+  GuidePanel,
+  Loader,
+  Radio,
+  RadioGroup,
+} from "@navikt/ds-react";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_TJENESTER" | "NAV_KONTOR";
 
@@ -111,15 +114,14 @@ const Ros = () => {
         title={intl.formatMessage({ id: "tilbakemeldinger.ros.form.tittel" })}
       />
       <div className={"tb__veileder"}>
-        <Veilederpanel
-          svg={<img src={VeilederIcon} alt="" />}
-          type={"plakat"}
-          kompakt={true}
+        <GuidePanel
+          illustration={<img src={VeilederIcon} alt="" />}
+          poster={true}
         >
           <div className={"tb__veileder-container"}>
             <FormattedMessage id={"tilbakemeldinger.ros.form.veileder"} />
           </div>
-        </Veilederpanel>
+        </GuidePanel>
       </div>
       <Box>
         {success ? (
@@ -133,83 +135,69 @@ const Ros = () => {
             {({ errors, fields, submitted, setField, isValid }) => {
               return (
                 <div className={"skjema__content"}>
-                  <SkjemaGruppe
+                  <RadioGroup
                     legend={intl.formatMessage({
                       id: "felter.hvemroses.tittel",
                     })}
-                    feil={sjekkForFeil(submitted, errors.hvemRoses, intl)}
+                    error={sjekkForFeil(submitted, errors.hvemRoses, intl)}
+                    onChange={(e) => setField({ hvemRoses: e.target.value })}
                   >
-                    <Radio
-                      label={intl.formatMessage({
+                    <Radio value={"NAV_KONTAKTSENTER"}>
+                      {intl.formatMessage({
                         id: "felter.hvemroses.navkontaktsenter",
                       })}
-                      name={"NAV_KONTAKTSENTER"}
-                      checked={fields.hvemRoses === "NAV_KONTAKTSENTER"}
-                      onChange={() =>
-                        setField({ hvemRoses: "NAV_KONTAKTSENTER" })
-                      }
-                    />
-                    <Radio
-                      label={intl.formatMessage({
-                        id: "felter.hvemroses.digitaletjenester",
-                      })}
-                      name={"NAV_DIGITALE_TJENESTER"}
-                      checked={fields.hvemRoses === "NAV_DIGITALE_TJENESTER"}
-                      onChange={() =>
-                        setField({ hvemRoses: "NAV_DIGITALE_TJENESTER" })
-                      }
-                    />
-                    <Radio
-                      label={intl.formatMessage({
+                    </Radio>
+                    <Radio value={"NAV_KONTOR"}>
+                      {intl.formatMessage({
                         id: "felter.hvemroses.navkontor",
                       })}
-                      name={"NAV_KONTOR"}
-                      checked={fields.hvemRoses === "NAV_KONTOR"}
-                      onChange={() => setField({ hvemRoses: "NAV_KONTOR" })}
-                    />
-                    {fields.hvemRoses === "NAV_KONTOR" && (
-                      <Validation config={navKontorConfig}>
-                        {() => (
-                          <SelectEnhet
-                            label={"felter.hvemroses.navkontor.velg"}
-                            error={errors.navKontor}
-                            submitted={submitted}
-                            value={fields.navKontor}
-                            onChange={(v?: { value: string; label: string }) =>
-                              setField({ navKontor: v })
-                            }
-                          />
-                        )}
-                      </Validation>
-                    )}
-                  </SkjemaGruppe>
+                    </Radio>
+                  </RadioGroup>
+
+                  {fields.hvemRoses === "NAV_KONTOR" && (
+                    <Validation config={navKontorConfig}>
+                      {() => (
+                        <SelectEnhet
+                          label={"felter.hvemroses.navkontor.velg"}
+                          error={errors.navKontor}
+                          submitted={submitted}
+                          value={fields.navKontor}
+                          onChange={(v?: { value: string; label: string }) =>
+                            setField({ navKontor: v })
+                          }
+                        />
+                      )}
+                    </Validation>
+                  )}
                   <InputMelding
                     label={intl.formatMessage({
                       id: "felter.melding.tittel",
                     })}
                     submitted={submitted}
-                    value={fields.melding}
                     error={errors.melding}
                     onChange={(v) => setField({ melding: v })}
                   />
                   {error && (
-                    <AlertStripeFeil className={"felter__melding-advarsel"}>
+                    <Alert
+                      variant={"error"}
+                      className={"felter__melding-advarsel"}
+                    >
                       <FormattedMessage id={"felter.noegikkgalt"} />
-                    </AlertStripeFeil>
+                    </Alert>
                   )}
                   <div className="tb__knapper">
                     <div className="tb__knapp">
-                      <Knapp
-                        htmlType={"submit"}
-                        type={"standard"}
+                      <Button
+                        type={"submit"}
+                        variant={"secondary"}
                         disabled={loading || (submitted && !isValid)}
                       >
                         {loading ? (
-                          <NavFrontendSpinner type={"S"} />
+                          <Loader size={"small"} />
                         ) : (
                           <FormattedMessage id={"felter.send"} />
                         )}
-                      </Knapp>
+                      </Button>
                     </div>
                     <div className="tb__knapp">
                       <Link

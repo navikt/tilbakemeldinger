@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import VeilederIcon from "assets/icons/Veileder.svg";
-import Veilederpanel from "nav-frontend-veilederpanel";
 import { useStore } from "providers/Provider";
-import { Knapp } from "nav-frontend-knapper";
 import { Link } from "react-router-dom";
 import { postServiceKlage } from "clients/apiClient";
-import { AlertStripeFeil, AlertStripeInfo } from "nav-frontend-alertstriper";
-import NavFrontendSpinner from "nav-frontend-spinner";
 import { HTTPError } from "types/errors";
 import { FormContext, FormValidation } from "calidation";
 import InputMelding from "components/input-fields/InputMelding";
@@ -18,7 +14,6 @@ import {
 import Header from "components/header/Header";
 import { paths, useLocalePaths } from "Config";
 import Box from "components/box/Box";
-import { Checkbox, Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { FormattedMessage, useIntl } from "react-intl";
 import ServiceKlagePrivatperson from "./ServiceKlagePrivatperson";
 import ServiceKlageForAnnenPerson from "./ServiceKlageAnnenPerson";
@@ -31,7 +26,17 @@ import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
 import ServiceKlageTypeUtdypning from "./ServiceKlageTypeUtdypning";
 import { MetaTags } from "../../../components/metatags/MetaTags";
 import LoginModal from "./login-modal/LoginModal";
-import ModalWrapper from "nav-frontend-modal";
+import {
+  Alert,
+  Button,
+  Checkbox,
+  CheckboxGroup,
+  GuidePanel,
+  Loader,
+  Modal,
+  Radio,
+  RadioGroup,
+} from "@navikt/ds-react";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageExtend;
@@ -162,23 +167,23 @@ const ServiceKlage = () => {
           id: "tilbakemeldinger.serviceklage.form.tittel",
         })}
       />
-      <ModalWrapper
-        isOpen={auth.loaded && !auth.authenticated && !loginClosed}
-        contentLabel={"Logg inn"}
-        onRequestClose={closeModal}
+      <Modal
+        open={auth.loaded && !auth.authenticated && !loginClosed}
+        onClose={closeModal}
       >
-        <LoginModal closeFunc={closeModal} />
-      </ModalWrapper>
+        <Modal.Content>
+          <LoginModal closeFunc={closeModal} />
+        </Modal.Content>
+      </Modal>
       <div className={"tb__veileder"}>
-        <Veilederpanel
-          svg={<img src={VeilederIcon} alt="" />}
-          type={"plakat"}
-          kompakt={true}
+        <GuidePanel
+          illustration={<img src={VeilederIcon} alt="" />}
+          poster={true}
         >
           <div className={"tb__veileder-container"}>
             <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
           </div>
-        </Veilederpanel>
+        </GuidePanel>
       </div>
       <Box>
         {success ? (
@@ -195,146 +200,110 @@ const ServiceKlage = () => {
               const kanOnskeAaKontaktes =
                 hvemFra !== "ANNEN_PERSON" || innmelderHarFullmakt !== false;
 
-              const toggleklagetyper = (value: string) => {
-                if (fields.klagetyper.includes(value)) {
-                  setField({
-                    klagetyper: fields.klagetyper.filter(
-                      (v: string) => v !== value
-                    ),
-                  });
-                } else {
-                  setField({
-                    klagetyper: fields.klagetyper.concat([value]),
-                  });
-                }
-              };
-
               return (
                 <div className="skjema__content">
-                  <SkjemaGruppe
+                  <CheckboxGroup
                     legend={intl.formatMessage({ id: "felter.klagetyper" })}
-                    feil={sjekkForFeil(submitted, errors.klagetyper, intl)}
+                    error={sjekkForFeil(submitted, errors.klagetyper, intl)}
+                    onChange={(values: string[]) =>
+                      setField({ klagetyper: values })
+                    }
                   >
                     <div className={"felter__melding-advarsel"}>
-                      <AlertStripeInfo>
+                      <Alert variant={"info"}>
                         <FormattedMessage id={"felter.klagetyper.info"} />
-                      </AlertStripeInfo>
+                      </Alert>
                     </div>
-                    <Checkbox
-                      label={intl.formatMessage({
+                    <Checkbox value={"TELEFON"}>
+                      {intl.formatMessage({
                         id: "felter.klagetyper.telefon",
                       })}
-                      name={"TELEFON"}
-                      checked={fields.klagetyper.includes("TELEFON")}
-                      onChange={() => toggleklagetyper("TELEFON")}
-                    />
-                    <Checkbox
-                      label={intl.formatMessage({
+                    </Checkbox>
+                    <Checkbox value={"LOKALT_NAV_KONTOR"}>
+                      {intl.formatMessage({
                         id: "felter.klagetyper.navkontor",
                       })}
-                      name={"LOKALT_NAV_KONTOR"}
-                      checked={fields.klagetyper.includes("LOKALT_NAV_KONTOR")}
-                      onChange={() => toggleklagetyper("LOKALT_NAV_KONTOR")}
-                    />
-                    <Checkbox
-                      label={intl.formatMessage({
+                    </Checkbox>
+                    <Checkbox value={"NAV_DIGITALE_TJENESTER"}>
+                      {intl.formatMessage({
                         id: "felter.klagetyper.digitaletjenester",
                       })}
-                      name={"NAV_DIGITALE_TJENESTER"}
-                      checked={fields.klagetyper.includes(
-                        "NAV_DIGITALE_TJENESTER"
-                      )}
-                      onChange={() =>
-                        toggleklagetyper("NAV_DIGITALE_TJENESTER")
-                      }
-                    />
-                    <Checkbox
-                      label={intl.formatMessage({
+                    </Checkbox>
+                    <Checkbox value={"BREV"}>
+                      {intl.formatMessage({
                         id: "felter.klagetyper.brev",
                       })}
-                      name={"BREV"}
-                      checked={fields.klagetyper.includes("BREV")}
-                      onChange={() => toggleklagetyper("BREV")}
-                    />
-                    <Checkbox
-                      label={intl.formatMessage({
+                    </Checkbox>
+                    <Checkbox value={"ANNET"}>
+                      {intl.formatMessage({
                         id: "felter.klagetyper.annet",
                       })}
-                      name={"ANNET"}
-                      checked={fields.klagetyper.includes("ANNET")}
-                      onChange={() => toggleklagetyper("ANNET")}
-                    />
+                    </Checkbox>
                     {fields.klagetyper.includes("ANNET") && (
                       <ServiceKlageTypeUtdypning />
                     )}
-                  </SkjemaGruppe>
+                  </CheckboxGroup>
                   {fields.klagetyper.includes("LOKALT_NAV_KONTOR") && (
                     <ServiceKlageGjelderSosialhjelp />
                   )}
-                  <SkjemaGruppe
+                  <RadioGroup
                     legend={intl.formatMessage({ id: "felter.hvemfra" })}
-                    feil={sjekkForFeil(submitted, errors.hvemFra, intl)}
+                    error={sjekkForFeil(submitted, errors.hvemFra, intl)}
+                    onChange={(e) => setField({ hvemFra: e.target.value })}
                   >
-                    <Radio
-                      label={intl.formatMessage({
+                    <Radio value={"PRIVATPERSON"}>
+                      {intl.formatMessage({
                         id: "felter.hvemfra.megselv",
                       })}
-                      name={"PRIVATPERSON"}
-                      checked={fields.hvemFra === "PRIVATPERSON"}
-                      onChange={() => setField({ hvemFra: "PRIVATPERSON" })}
-                    />
-                    <Radio
-                      label={intl.formatMessage({
+                    </Radio>
+                    <Radio value={"ANNEN_PERSON"}>
+                      {intl.formatMessage({
                         id: "felter.hvemfra.enannen",
                       })}
-                      name={"ANNEN_PERSON"}
-                      checked={fields.hvemFra === "ANNEN_PERSON"}
-                      onChange={() => setField({ hvemFra: "ANNEN_PERSON" })}
-                    />
-                    <Radio
-                      label={intl.formatMessage({
+                    </Radio>
+                    <Radio value={"BEDRIFT"}>
+                      {intl.formatMessage({
                         id: "felter.hvemfra.virksomhet",
                       })}
-                      name={"BEDRIFT"}
-                      checked={fields.hvemFra === "BEDRIFT"}
-                      onChange={() => setField({ hvemFra: "BEDRIFT" })}
-                    />
-                    {hvemFra === "PRIVATPERSON" && <ServiceKlagePrivatperson />}
-                    {hvemFra === "ANNEN_PERSON" && (
-                      <ServiceKlageForAnnenPerson />
-                    )}
-                    {hvemFra === "BEDRIFT" && <ServiceKlageForBedrift />}
-                  </SkjemaGruppe>
+                    </Radio>
+                  </RadioGroup>
+
+                  {hvemFra === "PRIVATPERSON" && <ServiceKlagePrivatperson />}
+                  {hvemFra === "ANNEN_PERSON" && <ServiceKlageForAnnenPerson />}
+                  {hvemFra === "BEDRIFT" && <ServiceKlageForBedrift />}
+
                   <div className="serviceKlage__melding">
                     <InputMelding
                       label={intl.formatMessage({
                         id: "felter.melding.tittel",
                       })}
                       submitted={submitted}
-                      value={fields.melding}
                       error={errors.melding}
                       onChange={(v) => setField({ melding: v })}
                     />
                   </div>
                   {kanOnskeAaKontaktes && <ServiceKlageOnskerAaKontaktes />}
                   {error && (
-                    <AlertStripeFeil className={"felter__melding-advarsel"}>
+                    <Alert
+                      variant={"error"}
+                      className={"felter__melding-advarsel"}
+                    >
                       <FormattedMessage id={"felter.noegikkgalt"} />
-                    </AlertStripeFeil>
+                    </Alert>
                   )}
                   <div className="tb__knapper">
                     <div className="tb__knapp">
-                      <Knapp
-                        htmlType={"submit"}
-                        type={"standard"}
+                      <Button
+                        type={"submit"}
+                        variant={"secondary"}
                         disabled={loading || (submitted && !isValid)}
                       >
                         {loading ? (
-                          <NavFrontendSpinner type={"S"} />
+                          <Loader size={"small"} />
                         ) : (
                           <FormattedMessage id={"felter.send"} />
                         )}
-                      </Knapp>
+                      </Button>
                     </div>
                     <div className="tb__knapp">
                       <Link

@@ -51,26 +51,20 @@ const ServiceKlageForBedrift = () => {
         return (
           <div className="serviceKlage__ekspandert">
             <InputField
-              bredde={"M"}
               label={intl.formatMessage({ id: "felter.dinrolle.bedrift" })}
               submitted={submitted}
-              value={fields.innmelderRolle}
               error={errors.innmelderRolle}
               onChange={(v) => setField({ innmelderRolle: v })}
             />
             <InputField
-              bredde={"M"}
               label={intl.formatMessage({ id: "felter.orgnavn" })}
               submitted={submitted}
-              value={fields.orgNavn}
               error={errors.orgNavn}
               onChange={(v) => setField({ orgNavn: v })}
             />
             <InputField
-              bredde={"M"}
               label={intl.formatMessage({ id: "felter.orgnr" })}
               submitted={submitted}
-              value={fields.orgNummer}
               error={errors.orgNummer}
               onChange={(v) => setField({ orgNummer: v })}
             />
