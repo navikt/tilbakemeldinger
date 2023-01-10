@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import VeilederIcon from "assets/icons/Veileder.svg";
-import { Link } from "react-router-dom";
 import InputMelding from "components/input-fields/InputMelding";
 import { postRosTilNav } from "clients/apiClient";
 import { HTTPError } from "types/errors";
 import { FormContext, FormValidation, Validation } from "calidation";
 import Header from "components/header/Header";
-import { paths, useLocalePaths } from "Config";
+import { paths } from "Config";
 import Box from "components/box/Box";
 import { FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
@@ -22,6 +21,7 @@ import {
   Radio,
   RadioGroup,
 } from "@navikt/ds-react";
+import { Tilbakeknapp } from "../../../components/tilbakeknapp/Tilbakeknapp";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_TJENESTER" | "NAV_KONTOR";
 
@@ -47,7 +47,6 @@ const Ros = () => {
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState<string | undefined>();
   const intl = useIntl();
-  const localePaths = useLocalePaths();
 
   const formConfig = {
     hvemRoses: {
@@ -141,6 +140,11 @@ const Ros = () => {
                         id: "felter.hvemroses.navkontaktsenter",
                       })}
                     </Radio>
+                    <Radio value={"NAV_DIGITALE_TJENESTER"}>
+                      {intl.formatMessage({
+                        id: "felter.hvemroses.digitaletjenester",
+                      })}
+                    </Radio>
                     <Radio value={"NAV_KONTOR"}>
                       {intl.formatMessage({
                         id: "felter.hvemroses.navkontor",
@@ -194,12 +198,7 @@ const Ros = () => {
                       </Button>
                     </div>
                     <div className="tb__knapp">
-                      <Link
-                        className="lenkeknapp knapp knapp--flat"
-                        to={localePaths.tilbakemeldinger.forside}
-                      >
-                        <FormattedMessage id={"felter.tilbake"} />
-                      </Link>
+                      <Tilbakeknapp />
                     </div>
                   </div>
                 </div>
