@@ -249,7 +249,7 @@ const ServiceKlage = () => {
                   <RadioGroup
                     legend={intl.formatMessage({ id: "felter.hvemfra" })}
                     error={sjekkForFeil(submitted, errors.hvemFra, intl)}
-                    onChange={(e) => setField({ hvemFra: e.target.value })}
+                    onChange={(val) => setField({ hvemFra: val })}
                   >
                     <Radio value={"PRIVATPERSON"}>
                       {intl.formatMessage({

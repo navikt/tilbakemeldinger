@@ -23,7 +23,7 @@ const ServiceKlageTypeUtdypning = () => {
       config={klagetypeUtdypningFormConfig}
       initialValues={initialValues}
     >
-      {({ errors, fields, submitted, setField }) => {
+      {({ errors, submitted, setField }) => {
         return (
           <div className="serviceKlage__ekspandert">
             <InputField

@@ -34,7 +34,7 @@ const ServiceKlageGjelderSosialhjelp = () => {
                 id: "felter.gjeldersosialhjelp",
               })}
               error={sjekkForFeil(submitted, errors.gjelderSosialhjelp, intl)}
-              onChange={(e) => setField({ gjelderSosialhjelp: e.target.value })}
+              onChange={(val) => setField({ gjelderSosialhjelp: val })}
             >
               <Radio value={"JA"}>
                 {intl.formatMessage({

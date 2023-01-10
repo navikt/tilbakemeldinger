@@ -26,7 +26,7 @@ import {
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_TJENESTER" | "NAV_KONTOR";
 
 interface Fields {
-  navn?: string;
+  navn?: string; // todo: brukes dette feltet?
   melding: string;
   hvemRoses: HVEM_ROSES;
   navKontor: {
@@ -140,7 +140,7 @@ const Ros = () => {
                       id: "felter.hvemroses.tittel",
                     })}
                     error={sjekkForFeil(submitted, errors.hvemRoses, intl)}
-                    onChange={(e) => setField({ hvemRoses: e.target.value })}
+                    onChange={(val) => setField({ hvemRoses: val })}
                   >
                     <Radio value={"NAV_KONTAKTSENTER"}>
                       {intl.formatMessage({

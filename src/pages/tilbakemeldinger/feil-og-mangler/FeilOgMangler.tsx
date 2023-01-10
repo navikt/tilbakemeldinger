@@ -113,7 +113,7 @@ const FOM = () => {
                     id: "felter.typefeil.tittel",
                   })}
                   error={sjekkForFeil(submitted, errors.feiltype, intl)}
-                  onChange={(e) => setField({ feiltype: e.target.value })}
+                  onChange={(val) => setField({ feiltype: val })}
                 >
                   <Radio value={"TEKNISK_FEIL"}>
                     {intl.formatMessage({
