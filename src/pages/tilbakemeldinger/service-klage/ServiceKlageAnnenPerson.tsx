@@ -88,25 +88,14 @@ const ServiceKlageForAnnenPerson = () => {
                 id: "felter.fullmakt",
               })}
               error={sjekkForFeil(submitted, errors.innmelderHarFullmakt, intl)}
+              onChange={(val) => setField({ innmelderHarFullmakt: val })}
             >
-              <Radio
-                value={intl.formatMessage({
-                  id: "felter.fullmakt.ja",
-                })}
-                checked={fields.innmelderHarFullmakt === true}
-                onChange={() => setField({ innmelderHarFullmakt: true })}
-              >
+              <Radio value={true}>
                 {intl.formatMessage({
                   id: "felter.fullmakt.ja",
                 })}
               </Radio>
-              <Radio
-                value={intl.formatMessage({
-                  id: "felter.fullmakt.nei",
-                })}
-                checked={fields.innmelderHarFullmakt === false}
-                onChange={() => setField({ innmelderHarFullmakt: false })}
-              >
+              <Radio value={false}>
                 {intl.formatMessage({
                   id: "felter.fullmakt.nei",
                 })}
