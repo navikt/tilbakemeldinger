@@ -26,7 +26,6 @@ import {
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_TJENESTER" | "NAV_KONTOR";
 
 interface Fields {
-  navn?: string; // todo: brukes dette feltet?
   melding: string;
   hvemRoses: HVEM_ROSES;
   navKontor: {
@@ -36,7 +35,6 @@ interface Fields {
 }
 
 export type OutboundRosTilNav = {
-  navn?: string;
   melding: string;
 } & (
   | { hvemRoses: "NAV_KONTAKTSENTER" }
@@ -52,7 +50,6 @@ const Ros = () => {
   const localePaths = useLocalePaths();
 
   const formConfig = {
-    navn: {},
     hvemRoses: {
       isRequired: "validering.hvemroses.pakrevd",
     },
@@ -74,14 +71,11 @@ const Ros = () => {
 
   const send = (e: FormContext<Fields>) => {
     const { isValid, fields } = e;
-    const { navn, melding } = fields;
+    const { melding } = fields;
     const hvemRoses: HVEM_ROSES = fields.hvemRoses;
 
     if (isValid) {
       const outbound = {
-        ...(navn && {
-          navn,
-        }),
         melding,
         hvemRoses,
         ...(fields.hvemRoses === "NAV_KONTOR" && {
