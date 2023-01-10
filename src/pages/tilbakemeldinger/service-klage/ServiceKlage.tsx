@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import VeilederIcon from "assets/icons/Veileder.svg";
 import { useStore } from "providers/Provider";
-import { Link } from "react-router-dom";
 import { postServiceKlage } from "clients/apiClient";
 import { HTTPError } from "types/errors";
 import { FormContext, FormValidation } from "calidation";
@@ -12,7 +11,7 @@ import {
   OutboundServiceKlageExtend,
 } from "types/serviceklage";
 import Header from "components/header/Header";
-import { paths, useLocalePaths } from "Config";
+import { paths } from "Config";
 import Box from "components/box/Box";
 import { FormattedMessage, useIntl } from "react-intl";
 import ServiceKlagePrivatperson from "./ServiceKlagePrivatperson";
@@ -37,6 +36,7 @@ import {
   Radio,
   RadioGroup,
 } from "@navikt/ds-react";
+import { Tilbakeknapp } from "../../../components/tilbakeknapp/Tilbakeknapp";
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageExtend;
@@ -49,7 +49,6 @@ const ServiceKlage = () => {
   const [loginClosed, setLoginClosed] = useState(false);
 
   const intl = useIntl();
-  const localePaths = useLocalePaths();
 
   const closeModal = () => setLoginClosed(true);
 
@@ -306,12 +305,7 @@ const ServiceKlage = () => {
                       </Button>
                     </div>
                     <div className="tb__knapp">
-                      <Link
-                        className="lenkeknapp knapp knapp--flat"
-                        to={localePaths.tilbakemeldinger.forside}
-                      >
-                        <FormattedMessage id={"felter.tilbake"} />
-                      </Link>
+                      <Tilbakeknapp />
                     </div>
                   </div>
                 </div>

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import VeilederIcon from "assets/icons/Veileder.svg";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import InputMelding from "components/input-fields/InputMelding";
 import { postFeilOgMangler } from "clients/apiClient";
 import { HTTPError } from "types/errors";
 import { FormContext, FormValidation } from "calidation";
 import Header from "components/header/Header";
-import { paths, useLocalePaths } from "Config";
+import { paths } from "Config";
 import Box from "components/box/Box";
 import { FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
@@ -22,6 +22,7 @@ import {
   Radio,
   RadioGroup,
 } from "@navikt/ds-react";
+import { Tilbakeknapp } from "../../../components/tilbakeknapp/Tilbakeknapp";
 
 export type OutboundFeilOgMangler = {
   onskerKontakt: boolean;
@@ -35,7 +36,6 @@ const FOM = () => {
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState<string | undefined>();
   const intl = useIntl();
-  const localePaths = useLocalePaths();
 
   const formConfig = {
     feiltype: {
@@ -106,7 +106,7 @@ const FOM = () => {
           <Takk />
         ) : (
           <FormValidation onSubmit={send} config={formConfig}>
-            {({ errors, fields, submitted, setField, isValid }) => (
+            {({ errors, submitted, setField, isValid }) => (
               <div className={"skjema__content"}>
                 <RadioGroup
                   legend={intl.formatMessage({
@@ -164,12 +164,7 @@ const FOM = () => {
                     </Button>
                   </div>
                   <div className="tb__knapp">
-                    <Link
-                      className="lenkeknapp knapp knapp--flat"
-                      to={localePaths.tilbakemeldinger.forside}
-                    >
-                      <FormattedMessage id={"felter.tilbake"} />
-                    </Link>
+                    <Tilbakeknapp />
                   </div>
                 </div>
               </div>
