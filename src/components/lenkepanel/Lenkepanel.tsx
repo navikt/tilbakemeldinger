@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { LenkepanelBase } from "nav-frontend-lenkepanel";
 import { FormattedMessage } from "react-intl";
 import { urls } from "../../Config";
 import { useStore } from "../../providers/Provider";
 import { logLinkClick } from "../../utils/amplitude";
-import { BodyShort } from "@navikt/ds-react";
+import { BodyShort, LinkPanel } from "@navikt/ds-react";
 
 export interface Props {
   id: string;
@@ -19,13 +18,12 @@ export interface Props {
 
 const Lenkepanel = (props: Props) => {
   const [{ locale }] = useStore();
-  // todo: bruk linkpanel
   return (
-    <LenkepanelBase
+    <LinkPanel
       href={props.to}
       border={true}
       className="linkbox__container"
-      linkCreator={(p) => {
+      as={(p) => {
         return props.external ? (
           <a href={props.to} {...p}>
             {p.children}
@@ -69,7 +67,7 @@ const Lenkepanel = (props: Props) => {
           )}
         </div>
       </div>
-    </LenkepanelBase>
+    </LinkPanel>
   );
 };
 
