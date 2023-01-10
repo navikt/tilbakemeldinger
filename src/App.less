@@ -3,11 +3,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: @navGraBakgrunn;
+  background-color: var(--a-bg-default);
 }
 
 .decorator-utils-container {
-  background-color: @navGraBakgrunn;
+  background-color: var(--a-bg-default);
 }
 
 .pagecontent {
@@ -164,13 +164,13 @@
  */
 
 .fokus-overstyring() {
-  background-color: @white;
-  box-shadow: 3px 3px inset @fokusFarge, -3px -3px inset @fokusFarge;
+  background-color: var(--a-white);
+  box-shadow: 3px 3px inset var(--a-border-focus), -3px -3px inset var(--a-border-focus);
 }
 
 .lenkepanel:focus {
   .fokus-overstyring();
-  color: @navBla;
+  color: var(--a-blue-500);
 }
 
 .btn-auth {
