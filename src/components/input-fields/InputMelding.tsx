@@ -20,9 +20,7 @@ const InputMelding = (props: Props) => {
 
   return (
     <div>
-      <label className={"skjemagruppe__legend"} htmlFor="InputMelding-textarea">
-        {label}
-      </label>
+      <label className={"navds-fieldset__legend navds-label"}>{label}</label>
       <div className={"felter__melding-advarsel"}>
         <Varsel type={"warning"}>
           <FormattedMessage

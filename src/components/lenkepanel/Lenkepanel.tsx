@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 import { urls } from "../../Config";
 import { useStore } from "../../providers/Provider";
 import { logLinkClick } from "../../utils/amplitude";
-import { BodyShort, LinkPanel } from "@navikt/ds-react";
+import { BodyShort, Heading, LinkPanel } from "@navikt/ds-react";
 
 export interface Props {
   id: string;
@@ -44,7 +44,9 @@ const Lenkepanel = (props: Props) => {
         )}
         <div>
           <div className="linkbox__tittel lenkepanel__heading">
-            <BodyShort size={"small"}>{props.tittel}</BodyShort>
+            <Heading level="2" size="small">
+              {props.tittel}
+            </Heading>
           </div>
           {props.beskrivelse && (
             <div className="linkbox__beskrivelse">
