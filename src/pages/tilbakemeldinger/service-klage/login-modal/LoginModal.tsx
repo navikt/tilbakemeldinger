@@ -1,7 +1,8 @@
 import React from "react";
 import Environment from "Environments";
 import { FormattedMessage } from "react-intl";
-import { BodyShort, Heading } from "@navikt/ds-react";
+import { BodyLong, Button, Heading } from "@navikt/ds-react";
+import { Link } from "react-router-dom";
 
 const { loginUrl } = Environment();
 
@@ -17,22 +18,23 @@ const LoginModal = ({ closeFunc }: Props) => {
           id={"tilbakemeldinger.serviceklage.login.overskrift"}
         />
       </Heading>
-      <BodyShort className="login-modal__info">
+      <BodyLong spacing={true} className="login-modal__info">
         <FormattedMessage
           id={"tilbakemeldinger.serviceklage.login.beskrivelse"}
           values={{ br: () => <br /> }}
         />
-      </BodyShort>
+      </BodyLong>
       <div className="login-modal__buttons">
-        <a
-          className="knapp knapp--hoved knapp--kompakt"
-          href={`${loginUrl}?redirect=${window.location.href}`}
+        <Button
+          variant={"primary"}
+          as={Link}
+          to={`${loginUrl}?redirect=${window.location.href}`}
         >
           <FormattedMessage id={"tilbakemeldinger.serviceklage.login.knapp"} />
-        </a>
-        <a
-          className={"knapp knapp--flat knapp--kompakt"}
-          href={window.location.href}
+        </Button>
+
+        <Button
+          variant={"tertiary"}
           onClick={(e) => {
             e.preventDefault();
             closeFunc();
@@ -41,7 +43,7 @@ const LoginModal = ({ closeFunc }: Props) => {
           <FormattedMessage
             id={"tilbakemeldinger.serviceklage.login.knapp.fortsettuten"}
           />
-        </a>
+        </Button>
       </div>
     </div>
   );
