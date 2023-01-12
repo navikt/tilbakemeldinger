@@ -90,7 +90,7 @@ const Combobox = (props: Props) => {
             id: "felter.combobox.knapp.beskrivelse",
           })}
         >
-          <Expand />
+          <Expand aria-hidden={true} />
         </button>
       </div>
       <ul
