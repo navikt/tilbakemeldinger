@@ -13,14 +13,7 @@ import { sjekkForFeil } from "utils/validators";
 import { triggerHotjar } from "utils/hotjar";
 import SelectEnhet from "components/input-fields/SelectEnhet";
 import { MetaTags } from "../../../components/metatags/MetaTags";
-import {
-  Alert,
-  Button,
-  GuidePanel,
-  Loader,
-  Radio,
-  RadioGroup,
-} from "@navikt/ds-react";
+import { Alert, Button, GuidePanel, Radio, RadioGroup } from "@navikt/ds-react";
 import { Tilbakeknapp } from "../../../components/tilbakeknapp/Tilbakeknapp";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_TJENESTER" | "NAV_KONTOR";
@@ -189,12 +182,9 @@ const Ros = () => {
                         type={"submit"}
                         variant={"secondary"}
                         disabled={loading || (submitted && !isValid)}
+                        loading={loading}
                       >
-                        {loading ? (
-                          <Loader size={"small"} />
-                        ) : (
-                          <FormattedMessage id={"felter.send"} />
-                        )}
+                        <FormattedMessage id={"felter.send"} />
                       </Button>
                     </div>
                     <div className="tb__knapp">

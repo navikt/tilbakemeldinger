@@ -14,14 +14,7 @@ import { sjekkForFeil } from "utils/validators";
 import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
 import { triggerHotjar } from "../../../utils/hotjar";
 import { MetaTags } from "../../../components/metatags/MetaTags";
-import {
-  Alert,
-  Button,
-  GuidePanel,
-  Loader,
-  Radio,
-  RadioGroup,
-} from "@navikt/ds-react";
+import { Alert, Button, GuidePanel, Radio, RadioGroup } from "@navikt/ds-react";
 import { Tilbakeknapp } from "../../../components/tilbakeknapp/Tilbakeknapp";
 
 export type OutboundFeilOgMangler = {
@@ -155,12 +148,9 @@ const FOM = () => {
                       type={"submit"}
                       variant={"secondary"}
                       disabled={loading || (submitted && !isValid)}
+                      loading={loading}
                     >
-                      {loading ? (
-                        <Loader size={"small"} />
-                      ) : (
-                        <FormattedMessage id={"felter.send"} />
-                      )}
+                      <FormattedMessage id={"felter.send"} />
                     </Button>
                   </div>
                   <div className="tb__knapp">

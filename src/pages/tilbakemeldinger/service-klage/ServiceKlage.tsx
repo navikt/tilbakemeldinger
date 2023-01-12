@@ -31,7 +31,6 @@ import {
   Checkbox,
   CheckboxGroup,
   GuidePanel,
-  Loader,
   Modal,
   Radio,
   RadioGroup,
@@ -296,12 +295,9 @@ const ServiceKlage = () => {
                         type={"submit"}
                         variant={"secondary"}
                         disabled={loading || (submitted && !isValid)}
+                        loading={loading}
                       >
-                        {loading ? (
-                          <Loader size={"small"} />
-                        ) : (
-                          <FormattedMessage id={"felter.send"} />
-                        )}
+                        <FormattedMessage id={"felter.send"} />
                       </Button>
                     </div>
                     <div className="tb__knapp">
