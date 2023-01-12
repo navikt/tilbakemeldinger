@@ -19,7 +19,7 @@ import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import { forsidePath, paths } from "./Config";
 import { defaultLocale, localePath, validLocales } from "./utils/locale";
 import { DecoratorWidgets } from "./components/decorator-widgets/DecoratorWidgets";
-import "@navikt/ds-css/dist/index.css";
+import "@navikt/ds-css";
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
