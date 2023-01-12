@@ -78,8 +78,9 @@ const Combobox = (props: Props) => {
       <div {...getComboboxProps()} className={`${cssPrefix}__inputWrapper`}>
         <input
           {...getInputProps()}
-          className={`${cssPrefix}__input navds-select__input`}
-          aria-invalid={harFeil}
+          className={`${cssPrefix}__input navds-select__input${
+            harFeil ? " navds-select__input--error" : ""
+          }`}
         />
         <button
           type="button"
