@@ -1,6 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import { Alert, Button, Link } from "@navikt/ds-react";
+import Environment from "../../Environments";
 
 interface Props {
   melding?: string;
@@ -18,7 +19,7 @@ const Takk = (props: Props) => (
       </Alert>
     </div>
     <div className="takk__knapp">
-      <Button as={Link} to={"https://www.nav.no"}>
+      <Button variant="secondary" as={Link} href={Environment().baseUrl}>
         <FormattedMessage id={"takk.knapp"} />
       </Button>
     </div>
