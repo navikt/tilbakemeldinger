@@ -58,7 +58,7 @@ const SelectEnhet = (props: Props) => {
 
   const comboBoxLabel = () => (
     <div className={`${cssPrefix}__label`}>
-      <Label as={"p"}>
+      <Label>
         <FormattedMessage id={label} />
         <span className={`${cssPrefix}__hjelpetekst`}>
           {`- ${intl.formatMessage({
