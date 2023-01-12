@@ -79,6 +79,7 @@ const Combobox = (props: Props) => {
         <input
           {...getInputProps()}
           className={`${cssPrefix}__input select__input`}
+          aria-invalid={harFeil}
         />
         <button
           type="button"
