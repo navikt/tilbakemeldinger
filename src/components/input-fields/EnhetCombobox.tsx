@@ -79,7 +79,7 @@ const Combobox = (props: Props) => {
         <input
           {...getInputProps()}
           className={`${cssPrefix}__input navds-select__input${
-            harFeil ? `${cssPrefix}__hasError` : ""
+            harFeil ? ` ${cssPrefix}__hasError` : ""
           }`}
         />
         <button
