@@ -30,6 +30,7 @@ const FeilOgManglerEpost = () => {
         return (
           <div className="serviceKlage__ekspandert">
             <InputField
+              htmlSize={30}
               label={intl.formatMessage({ id: "felter.epost.tittel" })}
               error={errors.epost}
               onChange={(v) => setField({ epost: v })}

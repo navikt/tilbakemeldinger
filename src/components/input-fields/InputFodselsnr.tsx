@@ -8,7 +8,6 @@ interface Props {
   submitted: boolean;
   label: string;
   error: string | null;
-  bredde?: "fullbredde" | "XXL" | "XL" | "L" | "M" | "S" | "XS" | "XXS";
   value: string;
 }
 
@@ -22,12 +21,12 @@ const InputFodselsnr = (props: Props) => {
     props.onChange(fodselsnr);
   }
 
-  // todo: fiks bredde
   return auth.authenticated && fodselsnr ? (
-    <TextField label={label} disabled={true} />
+    <TextField label={label} disabled={true} htmlSize={11} />
   ) : (
     <TextField
       label={label}
+      htmlSize={20}
       onChange={(event) => props.onChange(event.currentTarget.value)}
       onBlur={() => settBlur(true)}
       error={

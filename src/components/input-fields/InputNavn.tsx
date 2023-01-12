@@ -21,14 +21,11 @@ const InputNavn = (props: Props) => {
     onChange(auth.name);
   }
 
-  {
-    /*todo: fikse bredde?*/
-  }
-
   return auth.authenticated ? (
     <TextField label={label} disabled={true} />
   ) : (
     <TextField
+      htmlSize={30}
       label={label}
       onChange={(event) => onChange(event.currentTarget.value)}
       onBlur={() => settBlur(true)}
