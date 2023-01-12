@@ -5,7 +5,7 @@ import { fetchEnheter } from "../../clients/apiClient";
 import { Enhet } from "../../types/enheter";
 import { HTTPError } from "types/errors";
 import Combobox from "./EnhetCombobox";
-import { Label, Loader } from "@navikt/ds-react";
+import { ErrorMessage, Label, Loader } from "@navikt/ds-react";
 
 const cssPrefix = "selectEnhet";
 
@@ -92,8 +92,11 @@ const SelectEnhet = (props: Props) => {
           <Loader size={"small"} />
         </div>
       )}
-      {/*todo: fix*/}
-      {submitted && error && <>{intl.formatMessage({ id: error })}</>}
+      {submitted && error && (
+        <ErrorMessage className={"selectEnhet__feilmelding"}>
+          {intl.formatMessage({ id: error })}
+        </ErrorMessage>
+      )}
     </div>
   );
 };
