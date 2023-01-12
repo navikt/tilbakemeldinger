@@ -18,11 +18,9 @@ const Takk = (props: Props) => (
       </Alert>
     </div>
     <div className="takk__knapp">
-      <Link href={"https://www.nav.no"}>
-        <Button>
-          <FormattedMessage id={"takk.knapp"} />
-        </Button>
-      </Link>
+      <Button as={Link} to={"https://www.nav.no"}>
+        <FormattedMessage id={"takk.knapp"} />
+      </Button>
     </div>
   </div>
 );
