@@ -93,7 +93,7 @@ const SelectEnhet = (props: Props) => {
         </div>
       )}
       {submitted && error && (
-        <ErrorMessage className={"selectEnhet__feilmelding"}>
+        <ErrorMessage className={`${cssPrefix}__feilmelding`}>
           {intl.formatMessage({ id: error })}
         </ErrorMessage>
       )}
