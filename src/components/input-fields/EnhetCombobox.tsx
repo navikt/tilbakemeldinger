@@ -78,9 +78,7 @@ const Combobox = (props: Props) => {
       <div {...getComboboxProps()} className={`${cssPrefix}__inputWrapper`}>
         <input
           {...getInputProps()}
-          className={`${cssPrefix}__input skjemaelement__input${
-            harFeil ? " skjemaelement__input--harFeil" : ""
-          }`}
+          className={`${cssPrefix}__input select__input`}
         />
         <button
           type="button"
