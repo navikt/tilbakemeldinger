@@ -18,11 +18,6 @@ interface Props {
   value?: Option;
 }
 
-const farger = {
-  navLysGra: "#E9E7E7",
-  navBla: "#0067C5",
-};
-
 const Combobox = (props: Props) => {
   const { data, harFeil, label, onChange } = props;
   const [inputItems, setInputItems] = useState(data);
@@ -95,28 +90,16 @@ const Combobox = (props: Props) => {
       </div>
       <ul
         {...getMenuProps()}
-        className={`${cssPrefix}__menu`}
-        style={
-          isOpen
-            ? { border: `1px solid  ${farger.navLysGra}` }
-            : { border: "none" }
-        }
+        className={`${cssPrefix}__menu ${
+          isOpen ? `${cssPrefix}__menu__open` : ""
+        }`}
       >
         {isOpen &&
           inputItems.map((item, index) => (
             <li
-              style={
-                highlightedIndex === index
-                  ? {
-                      backgroundColor: farger.navBla,
-                      color: "white",
-                    }
-                  : {
-                      backgroundColor: "white",
-                      color: "black",
-                    }
-              }
-              className="menuItem"
+              className={`menuItem ${
+                highlightedIndex === index ? "menuItem__highlighted" : ""
+              }`}
               key={`${item.value}${index}`}
               {...getItemProps({ item, index })}
             >
