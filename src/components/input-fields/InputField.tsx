@@ -6,15 +6,17 @@ interface Props extends Omit<TextFieldProps, "onChange"> {
   onChange: (value: string) => void;
   error: string | null;
   submitted: boolean;
+  htmlSize: number;
 }
 
 const InputField = (props: Props) => {
-  const { onChange, error, submitted, ...newProps } = props;
+  const { onChange, error, submitted, htmlSize, ...newProps } = props;
   const [blur, settBlur] = useState(false);
   const intl = useIntl();
 
   return (
     <TextField
+      htmlSize={htmlSize}
       onChange={(event) => onChange(event.currentTarget.value)}
       error={
         error && (submitted || blur)

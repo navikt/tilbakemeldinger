@@ -27,6 +27,7 @@ const ServiceKlageTypeUtdypning = () => {
         return (
           <div className="serviceKlage__ekspandert">
             <InputField
+              htmlSize={30}
               label={""}
               error={errors.klagetypeUtdypning}
               onChange={(v) => setField({ klagetypeUtdypning: v })}

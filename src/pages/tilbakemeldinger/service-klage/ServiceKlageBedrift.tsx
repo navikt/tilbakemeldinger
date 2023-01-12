@@ -51,18 +51,21 @@ const ServiceKlageForBedrift = () => {
         return (
           <div className="serviceKlage__ekspandert">
             <InputField
+              htmlSize={30}
               label={intl.formatMessage({ id: "felter.dinrolle.bedrift" })}
               submitted={submitted}
               error={errors.innmelderRolle}
               onChange={(v) => setField({ innmelderRolle: v })}
             />
             <InputField
+              htmlSize={30}
               label={intl.formatMessage({ id: "felter.orgnavn" })}
               submitted={submitted}
               error={errors.orgNavn}
               onChange={(v) => setField({ orgNavn: v })}
             />
             <InputField
+              htmlSize={30}
               label={intl.formatMessage({ id: "felter.orgnr" })}
               submitted={submitted}
               error={errors.orgNummer}

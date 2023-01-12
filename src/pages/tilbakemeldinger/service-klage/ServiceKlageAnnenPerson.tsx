@@ -65,6 +65,7 @@ const ServiceKlageForAnnenPerson = () => {
               onChange={(v) => setField({ innmelderNavn: v })}
             />
             <InputField
+              htmlSize={30}
               submitted={submitted}
               label={intl.formatMessage({ id: "felter.dinrolle.annenperson" })}
               required={true}
@@ -72,12 +73,14 @@ const ServiceKlageForAnnenPerson = () => {
               onChange={(v) => setField({ innmelderRolle: v })}
             />
             <InputField
+              htmlSize={30}
               label={intl.formatMessage({ id: "felter.navntilklager" })}
               submitted={submitted}
               error={errors.paaVegneAvNavn}
               onChange={(v) => setField({ paaVegneAvNavn: v })}
             />
             <InputField
+              htmlSize={20}
               label={intl.formatMessage({ id: "felter.fodselsnrtilklager" })}
               submitted={submitted}
               error={errors.paaVegneAvFodselsnr}

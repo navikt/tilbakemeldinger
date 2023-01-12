@@ -31,7 +31,7 @@ const FeilgOgManglerOnskerAaKontaktes = () => {
               id: "felter.onskerkontakt",
             })}
             error={sjekkForFeil(submitted, errors.onskerKontakt, intl)}
-            onChange={(e) => setField({ onskerKontakt: e.target.value })}
+            onChange={(val) => setField({ onskerKontakt: val })}
           >
             <Radio value={true}>
               {intl.formatMessage({
