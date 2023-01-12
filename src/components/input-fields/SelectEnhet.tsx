@@ -19,7 +19,6 @@ interface Props {
   error: string | null;
   label: string;
   submitted: boolean;
-  bredde?: "fullbredde" | "XXL" | "XL" | "L" | "M" | "S" | "XS" | "XXS";
   value?: Option;
 }
 
