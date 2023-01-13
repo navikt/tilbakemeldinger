@@ -71,12 +71,15 @@
   min-height: 1rem !important;
 }
 
-.navds-guide-panel {
-  & .navds-guide {
-    border: 0 !important;
+.navds-guide-panel.navds-guide-panel--poster {
+  .navds-guide {
+    border: 0;
   }
 
-  --ac-guide-panel-border: var(--a-border-subtle);
+  .navds-guide-panel__content {
+    border-color: var(--a-border-subtle)
+  }
+
 }
 
 .tb {
