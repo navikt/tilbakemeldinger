@@ -2,6 +2,7 @@ import React from "react";
 import { useIntl } from "react-intl";
 import { Validation } from "calidation";
 import InputNavn from "../../../components/input-fields/InputNavn";
+import ServiceKlageTelefon from "./ServiceKlageTelefon";
 
 interface Fields {
   innmelderNavn: string;
@@ -35,6 +36,7 @@ const ServiceKlageKontaktBedrift = () => {
               error={errors.innmelderNavn}
               onChange={(v) => setField({ innmelderNavn: v })}
             />
+            <ServiceKlageTelefon />
           </div>
         );
       }}

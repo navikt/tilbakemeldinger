@@ -45,8 +45,11 @@ const ServiceKlageOnskerAaKontaktes = () => {
 
             {fields.onskerKontakt && (
               <>
-                {fields.hvemFra === "BEDRIFT" && <ServiceKlageKontaktBedrift />}
-                <ServiceKlageTelefon />
+                {fields.hvemFra === "BEDRIFT" ? (
+                  <ServiceKlageKontaktBedrift />
+                ) : (
+                  <ServiceKlageTelefon />
+                )}
               </>
             )}
           </>
