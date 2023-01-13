@@ -14,7 +14,7 @@ interface Props {
 const InputNavn = (props: Props) => {
   const [{ auth }] = useStore();
   const [blur, settBlur] = useState(false);
-  const { error, submitted, onChange, label } = props;
+  const { value, error, submitted, onChange, label } = props;
   const intl = useIntl();
 
   if (auth.authenticated && auth.name !== props.value) {
@@ -22,7 +22,7 @@ const InputNavn = (props: Props) => {
   }
 
   return auth.authenticated ? (
-    <TextField label={label} disabled={true} />
+    <TextField value={value} htmlSize={30} label={label} disabled={true} />
   ) : (
     <TextField
       htmlSize={30}

@@ -22,7 +22,7 @@ const InputFodselsnr = (props: Props) => {
   }
 
   return auth.authenticated && fodselsnr ? (
-    <TextField label={label} disabled={true} htmlSize={11} />
+    <TextField value={value} label={label} disabled={true} htmlSize={20} />
   ) : (
     <TextField
       label={label}
