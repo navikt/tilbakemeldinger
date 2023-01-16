@@ -3,11 +3,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: @navGraBakgrunn;
+  background-color: var(--a-bg-subtle);
 }
 
 .decorator-utils-container {
-  background-color: @navGraBakgrunn;
+  background-color: var(--a-bg-subtle);
 }
 
 .pagecontent {
@@ -71,6 +71,17 @@
   min-height: 1rem !important;
 }
 
+.navds-guide-panel.navds-guide-panel--poster {
+  .navds-guide {
+    border: 0;
+  }
+
+  .navds-guide-panel__content {
+    border-color: var(--a-border-subtle)
+  }
+
+}
+
 .tb {
   &__knapper {
     display: flex;
@@ -85,13 +96,8 @@
     @media @maxMobile {
       margin-top: 1rem;
     }
-    .knapp {
+    .navds-button {
       width: 12rem;
-    }
-
-    .lenkeknapp {
-      text-decoration: underline;
-      box-sizing: border-box;
     }
   }
   &__veileder {
@@ -142,6 +148,10 @@
   }
 }
 
+.navds-form-field {
+  margin-bottom: 1rem;
+}
+
 .knapp--hoved {
   max-height: 2.5rem;
 }
@@ -164,13 +174,13 @@
  */
 
 .fokus-overstyring() {
-  background-color: @white;
-  box-shadow: 3px 3px inset @fokusFarge, -3px -3px inset @fokusFarge;
+  background-color: var(--a-white);
+  box-shadow: 3px 3px inset var(--a-border-focus), -3px -3px inset var(--a-border-focus);
 }
 
 .lenkepanel:focus {
   .fokus-overstyring();
-  color: @navBla;
+  color: var(--a-blue-500);
 }
 
 .btn-auth {

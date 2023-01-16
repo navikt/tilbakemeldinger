@@ -1,7 +1,8 @@
 import React from "react";
 import Environment from "Environments";
 import { FormattedMessage } from "react-intl";
-import { Normaltekst, Undertittel } from "nav-frontend-typografi";
+import { BodyLong, Button, Heading } from "@navikt/ds-react";
+import { Link } from "react-router-dom";
 
 const { loginUrl } = Environment();
 
@@ -12,27 +13,28 @@ type Props = {
 const LoginModal = ({ closeFunc }: Props) => {
   return (
     <div className={"login-modal"}>
-      <Undertittel className={"login-modal__title"}>
+      <Heading level={"2"} size={"small"} className={"login-modal__title"}>
         <FormattedMessage
           id={"tilbakemeldinger.serviceklage.login.overskrift"}
         />
-      </Undertittel>
-      <Normaltekst className="login-modal__info">
+      </Heading>
+      <BodyLong spacing={true} className="login-modal__info">
         <FormattedMessage
           id={"tilbakemeldinger.serviceklage.login.beskrivelse"}
           values={{ br: () => <br /> }}
         />
-      </Normaltekst>
+      </BodyLong>
       <div className="login-modal__buttons">
-        <a
-          className="knapp knapp--hoved knapp--kompakt"
-          href={`${loginUrl}?redirect=${window.location.href}`}
+        <Button
+          variant={"primary"}
+          as={Link}
+          to={`${loginUrl}?redirect=${window.location.href}`}
         >
           <FormattedMessage id={"tilbakemeldinger.serviceklage.login.knapp"} />
-        </a>
-        <a
-          className={"knapp knapp--flat knapp--kompakt"}
-          href={window.location.href}
+        </Button>
+
+        <Button
+          variant={"tertiary"}
           onClick={(e) => {
             e.preventDefault();
             closeFunc();
@@ -41,7 +43,7 @@ const LoginModal = ({ closeFunc }: Props) => {
           <FormattedMessage
             id={"tilbakemeldinger.serviceklage.login.knapp.fortsettuten"}
           />
-        </a>
+        </Button>
       </div>
     </div>
   );

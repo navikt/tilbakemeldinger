@@ -1,7 +1,7 @@
 
 .enhetCombo {
 
-  &__inputWrapper{
+  &__inputWrapper {
     position: relative
   }
 
@@ -11,7 +11,7 @@
     position: relative;
     margin: 0;
     padding-right: 2.75rem;
-    overflow:hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
   }
 
@@ -27,20 +27,35 @@
     height: 100%;
   }
 
+  &__hasError {
+    border-color: var(--ac-textfield-error-border, var(--a-border-danger));
+    box-shadow: 0 0 0 1px var(--ac-textfield-error-border, var(--a-border-danger));
+  }
+
   &__menu {
     margin: 3px 0 0;
     padding: 0;
     z-index: 100;
     max-height: 19rem;
     position: absolute;
-    overflow-y:auto;
+    overflow-y: auto;
     overflow-x: hidden;
     width: 100%;
+
+    &__open {
+      border: 1px solid var(--a-gray-100)
+    }
 
     li.menuItem {
       cursor: pointer;
       padding: 0.5rem;
-      border: 1px solid @navLysGra;
+      border: 1px solid var(--a-gray-100);
+      background-color: var(--a-white);
+
+      &__highlighted {
+        background-color: var(--a-blue-500);
+        color: var(--a-white)
+      }
 
       &:not(:last-child) {
         border-bottom: 0;
@@ -74,5 +89,14 @@
   &__navkontor {
     max-width: 380px;
     position: relative;
+  }
+
+  &__feilmelding {
+    gap: var(--a-spacing-2);
+    display: flex;
+
+    &::before {
+      content: "•"
+    }
   }
 }

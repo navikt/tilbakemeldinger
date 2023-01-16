@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import { useStore } from "../../providers/Provider";
-import { Element } from "nav-frontend-typografi";
 import { FormattedMessage, useIntl } from "react-intl";
-import NavFrontendSpinner from "nav-frontend-spinner";
 import { fetchEnheter } from "../../clients/apiClient";
 import { Enhet } from "../../types/enheter";
 import { HTTPError } from "types/errors";
-import { SkjemaelementFeilmelding } from "nav-frontend-skjema";
 import Combobox from "./EnhetCombobox";
+import { ErrorMessage, Label, Loader } from "@navikt/ds-react";
 
 const cssPrefix = "selectEnhet";
 
@@ -21,7 +19,6 @@ interface Props {
   error: string | null;
   label: string;
   submitted: boolean;
-  bredde?: "fullbredde" | "XXL" | "XL" | "L" | "M" | "S" | "XS" | "XXS";
   value?: Option;
 }
 
@@ -60,14 +57,14 @@ const SelectEnhet = (props: Props) => {
 
   const comboBoxLabel = () => (
     <div className={`${cssPrefix}__label`}>
-      <Element>
+      <Label>
         <FormattedMessage id={label} />
         <span className={`${cssPrefix}__hjelpetekst`}>
           {`- ${intl.formatMessage({
             id: "felter.hvemroses.navkontor.skrivinn",
           })}`}
         </span>
-      </Element>
+      </Label>
     </div>
   );
 
@@ -91,13 +88,13 @@ const SelectEnhet = (props: Props) => {
         />
       ) : (
         <div className={`${cssPrefix}__spinner`}>
-          <NavFrontendSpinner />
+          <Loader size={"small"} />
         </div>
       )}
       {submitted && error && (
-        <SkjemaelementFeilmelding>
+        <ErrorMessage className={`${cssPrefix}__feilmelding`}>
           {intl.formatMessage({ id: error })}
-        </SkjemaelementFeilmelding>
+        </ErrorMessage>
       )}
     </div>
   );

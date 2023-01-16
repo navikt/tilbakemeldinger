@@ -8,7 +8,7 @@ const Environment = () => {
   // Localhost
   if (process.env.NODE_ENV === `development`) {
     return {
-      baseUrl: `http://www.nav.no`,
+      baseUrl: `http://www.dev.nav.no`,
       baseAppPath: baseAppPath,
       appUrl: `http://localhost:8080${baseAppPath}/tilbakemeldinger`,
       apiUrl: `http://localhost:8080/person/tilbakemeldinger-api`,

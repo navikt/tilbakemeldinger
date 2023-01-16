@@ -3,11 +3,9 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { Validation } from "calidation";
 import InputNavn from "components/input-fields/InputNavn";
 import InputField from "components/input-fields/InputField";
-import { AlertStripeAdvarsel } from "nav-frontend-alertstriper";
 import { sjekkForFeil } from "utils/validators";
-import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { urls } from "../../../Config";
-import Lenke from "nav-frontend-lenker";
+import { Alert, Link, Radio, RadioGroup } from "@navikt/ds-react";
 
 interface Fields {
   innmelderNavn: string;
@@ -60,7 +58,6 @@ const ServiceKlageForAnnenPerson = () => {
         return (
           <div className="serviceKlage__ekspandert">
             <InputNavn
-              bredde={"L"}
               label={intl.formatMessage({ id: "felter.dittnavn" })}
               submitted={submitted}
               value={fields.innmelderNavn}
@@ -68,63 +65,51 @@ const ServiceKlageForAnnenPerson = () => {
               onChange={(v) => setField({ innmelderNavn: v })}
             />
             <InputField
-              bredde={"M"}
+              htmlSize={30}
               submitted={submitted}
               label={intl.formatMessage({ id: "felter.dinrolle.annenperson" })}
               required={true}
-              value={fields.innmelderRolle}
               error={errors.innmelderRolle}
               onChange={(v) => setField({ innmelderRolle: v })}
             />
             <InputField
-              bredde={"L"}
+              htmlSize={30}
               label={intl.formatMessage({ id: "felter.navntilklager" })}
               submitted={submitted}
-              value={fields.paaVegneAvNavn}
               error={errors.paaVegneAvNavn}
               onChange={(v) => setField({ paaVegneAvNavn: v })}
             />
             <InputField
-              bredde={"S"}
+              htmlSize={20}
               label={intl.formatMessage({ id: "felter.fodselsnrtilklager" })}
               submitted={submitted}
-              value={fields.paaVegneAvFodselsnr}
               error={errors.paaVegneAvFodselsnr}
               onChange={(v) => setField({ paaVegneAvFodselsnr: v })}
             />
-            <SkjemaGruppe
+            <RadioGroup
               legend={intl.formatMessage({
                 id: "felter.fullmakt",
               })}
-              feil={sjekkForFeil(submitted, errors.innmelderHarFullmakt, intl)}
+              error={sjekkForFeil(submitted, errors.innmelderHarFullmakt, intl)}
+              onChange={(val) => setField({ innmelderHarFullmakt: val })}
             >
-              <Radio
-                label={intl.formatMessage({
+              <Radio value={true}>
+                {intl.formatMessage({
                   id: "felter.fullmakt.ja",
                 })}
-                name={intl.formatMessage({
-                  id: "felter.fullmakt.ja",
-                })}
-                checked={fields.innmelderHarFullmakt === true}
-                onChange={() => setField({ innmelderHarFullmakt: true })}
-              />
-              <Radio
-                label={intl.formatMessage({
+              </Radio>
+              <Radio value={false}>
+                {intl.formatMessage({
                   id: "felter.fullmakt.nei",
                 })}
-                name={intl.formatMessage({
-                  id: "felter.fullmakt.nei",
-                })}
-                checked={fields.innmelderHarFullmakt === false}
-                onChange={() => setField({ innmelderHarFullmakt: false })}
-              />
+              </Radio>{" "}
               {fields.innmelderHarFullmakt === false && (
-                <AlertStripeAdvarsel>
+                <Alert variant={"warning"}>
                   <FormattedMessage
                     id={"felter.fullmakt.advarsel"}
                     values={{
                       FullmaktskjemaLenke: (text: string) => (
-                        <Lenke
+                        <Link
                           href={
                             urls.tilbakemeldinger.serviceklage.fullmaktskjema
                           }
@@ -132,13 +117,13 @@ const ServiceKlageForAnnenPerson = () => {
                           target="_blank"
                         >
                           {text}
-                        </Lenke>
+                        </Link>
                       ),
                     }}
                   />
-                </AlertStripeAdvarsel>
+                </Alert>
               )}
-            </SkjemaGruppe>
+            </RadioGroup>
           </div>
         );
       }}
