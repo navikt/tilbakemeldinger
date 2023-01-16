@@ -1,9 +1,9 @@
 import React from "react";
 import { useIntl } from "react-intl";
 import { Validation } from "calidation";
-import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
 import { sjekkForFeil } from "../../../utils/validators";
 import FeilOgManglerEpost from "./FeilOgManglerEpost";
+import { Radio, RadioGroup } from "@navikt/ds-react";
 
 const FeilgOgManglerOnskerAaKontaktes = () => {
   const intl = useIntl();
@@ -26,34 +26,25 @@ const FeilgOgManglerOnskerAaKontaktes = () => {
     >
       {({ errors, fields, submitted, setField }) => {
         return (
-          <SkjemaGruppe
+          <RadioGroup
             legend={intl.formatMessage({
               id: "felter.onskerkontakt",
             })}
-            feil={sjekkForFeil(submitted, errors.onskerKontakt, intl)}
+            error={sjekkForFeil(submitted, errors.onskerKontakt, intl)}
+            onChange={(val) => setField({ onskerKontakt: val })}
           >
-            <Radio
-              label={intl.formatMessage({
+            <Radio value={true}>
+              {intl.formatMessage({
                 id: "felter.onskerkontakt.ja",
               })}
-              name={intl.formatMessage({
-                id: "felter.onskerkontakt.ja",
-              })}
-              checked={fields.onskerKontakt === true}
-              onChange={() => setField({ onskerKontakt: true })}
-            />
+            </Radio>
             {fields.onskerKontakt && <FeilOgManglerEpost />}
-            <Radio
-              label={intl.formatMessage({
+            <Radio value={false}>
+              {intl.formatMessage({
                 id: "felter.onskerkontakt.nei",
               })}
-              name={intl.formatMessage({
-                id: "felter.onskerkontakt.nei",
-              })}
-              checked={fields.onskerKontakt === false}
-              onChange={() => setField({ onskerKontakt: false })}
-            />
-          </SkjemaGruppe>
+            </Radio>
+          </RadioGroup>
         );
       }}
     </Validation>

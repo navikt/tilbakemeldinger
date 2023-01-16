@@ -1,7 +1,7 @@
 import React from "react";
 import { Validation } from "calidation";
 import { useIntl } from "react-intl";
-import { Radio, SkjemaGruppe } from "nav-frontend-skjema";
+import { Radio, RadioGroup } from "@navikt/ds-react";
 import { sjekkForFeil } from "../../../utils/validators";
 
 interface Fields {
@@ -29,43 +29,29 @@ const ServiceKlageGjelderSosialhjelp = () => {
       {({ errors, fields, submitted, setField }) => {
         return (
           <div className="serviceKlage__ekspandert">
-            <SkjemaGruppe
+            <RadioGroup
               legend={intl.formatMessage({
                 id: "felter.gjeldersosialhjelp",
               })}
-              feil={sjekkForFeil(submitted, errors.gjelderSosialhjelp, intl)}
+              error={sjekkForFeil(submitted, errors.gjelderSosialhjelp, intl)}
+              onChange={(val) => setField({ gjelderSosialhjelp: val })}
             >
-              <Radio
-                label={intl.formatMessage({
+              <Radio value={"JA"}>
+                {intl.formatMessage({
                   id: "felter.gjeldersosialhjelp.ja",
                 })}
-                name={intl.formatMessage({
-                  id: "felter.gjeldersosialhjelp.ja",
-                })}
-                checked={fields.gjelderSosialhjelp === "JA"}
-                onChange={() => setField({ gjelderSosialhjelp: "JA" })}
-              />
-              <Radio
-                label={intl.formatMessage({
+              </Radio>
+              <Radio value={"NEI"}>
+                {intl.formatMessage({
                   id: "felter.gjeldersosialhjelp.nei",
                 })}
-                name={intl.formatMessage({
-                  id: "felter.gjeldersosialhjelp.nei",
-                })}
-                checked={fields.gjelderSosialhjelp === "NEI"}
-                onChange={() => setField({ gjelderSosialhjelp: "NEI" })}
-              />
-              <Radio
-                label={intl.formatMessage({
+              </Radio>
+              <Radio value={"VET_IKKE"}>
+                {intl.formatMessage({
                   id: "felter.gjeldersosialhjelp.vetikke",
                 })}
-                name={intl.formatMessage({
-                  id: "felter.gjeldersosialhjelp.vetikke",
-                })}
-                checked={fields.gjelderSosialhjelp === "VET_IKKE"}
-                onChange={() => setField({ gjelderSosialhjelp: "VET_IKKE" })}
-              />
-            </SkjemaGruppe>
+              </Radio>
+            </RadioGroup>
           </div>
         );
       }}

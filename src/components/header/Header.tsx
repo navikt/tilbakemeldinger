@@ -1,14 +1,17 @@
 import React from "react";
-import { withRouter, RouteComponentProps } from "react-router";
-import { Sidetittel } from "nav-frontend-typografi";
+import { RouteComponentProps, withRouter } from "react-router";
+import { Heading } from "@navikt/ds-react";
 
 interface Props {
   title?: string;
 }
+
 const Header = (props: Props & RouteComponentProps) => (
   <div className="header">
     {props.title && (
-      <Sidetittel className="header__tittel">{props.title}</Sidetittel>
+      <Heading size={"large"} level={"1"} className="header__tittel">
+        {props.title}
+      </Heading>
     )}
   </div>
 );

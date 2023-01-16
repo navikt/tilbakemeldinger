@@ -1,14 +1,13 @@
-import { Input } from "nav-frontend-skjema";
 import React, { useState } from "react";
 import { useStore } from "../../providers/Provider";
 import { useIntl } from "react-intl";
+import { TextField } from "@navikt/ds-react";
 
 interface Props {
   label: string;
   onChange: (value: string) => void;
   error: string | null;
   submitted: boolean;
-  bredde?: "fullbredde" | "XXL" | "XL" | "L" | "M" | "S" | "XS" | "XXS";
   value: string;
 }
 
@@ -16,7 +15,6 @@ const InputNavn = (props: Props) => {
   const [{ auth }] = useStore();
   const [blur, settBlur] = useState(false);
   const { value, error, submitted, onChange, label } = props;
-  const { bredde } = props;
   const intl = useIntl();
 
   if (auth.authenticated && auth.name !== props.value) {
@@ -24,15 +22,14 @@ const InputNavn = (props: Props) => {
   }
 
   return auth.authenticated ? (
-    <Input bredde={bredde} label={label} value={value} disabled={true} />
+    <TextField value={value} htmlSize={30} label={label} disabled={true} />
   ) : (
-    <Input
-      bredde={bredde}
+    <TextField
+      htmlSize={30}
       label={label}
-      value={value}
       onChange={(event) => onChange(event.currentTarget.value)}
       onBlur={() => settBlur(true)}
-      feil={
+      error={
         error && (blur || submitted)
           ? intl.formatMessage({ id: error })
           : undefined
@@ -40,5 +37,4 @@ const InputNavn = (props: Props) => {
     />
   );
 };
-
 export default InputNavn;
