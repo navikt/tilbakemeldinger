@@ -4,7 +4,7 @@ import { paths, urls, vars } from "../../Config";
 import { Varsel } from "../varsel/Varsel";
 import { useStore } from "../../providers/Provider";
 import { localePath } from "../../utils/locale";
-import { BodyShort, Link, Textarea, TextareaProps } from "@navikt/ds-react";
+import { Link, Textarea, TextareaProps } from "@navikt/ds-react";
 
 interface Props extends Omit<TextareaProps, "onChange"> {
   onChange: (value: string) => void;
@@ -20,9 +20,6 @@ const InputMelding = (props: Props) => {
 
   return (
     <div>
-      <BodyShort className={"navds-fieldset__legend navds-label"}>
-        {label}
-      </BodyShort>
       <div className={"felter__melding-advarsel"} id={"InputMelding-advarsel"}>
         <Varsel type={"warning"}>
           <FormattedMessage
@@ -74,7 +71,6 @@ const InputMelding = (props: Props) => {
         aria-describedby={"InputMelding-advarsel"}
         id="InputMelding-textarea"
         label={label}
-        hideLabel={true}
         required={true}
         maxLength={vars.maksLengdeMelding}
         error={
