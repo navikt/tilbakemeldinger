@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { ForwardedRef, useEffect } from "react";
 import { useStore } from "../../providers/Provider";
 import { FormattedMessage, useIntl } from "react-intl";
 import { fetchEnheter } from "../../clients/apiClient";
@@ -16,13 +16,18 @@ interface Option {
 
 interface Props {
   onChange: (value: Option | undefined) => void;
-  error: string | null;
+  triggerValidation: () => void;
+  error?: string;
   label: string;
   submitted: boolean;
   value?: Option;
 }
 
-const SelectEnhet = (props: Props) => {
+const SelectEnhet = React.forwardRef((props: Props, ref: ForwardedRef<any>) => {
+  useEffect(() => {
+    submitted && props.triggerValidation();
+  }, []);
+
   const [{ enheter }, dispatch] = useStore();
   const intl = useIntl();
   const { submitted, error, label, onChange, value } = props;
@@ -72,6 +77,7 @@ const SelectEnhet = (props: Props) => {
     <div className={`${cssPrefix}__navkontor`}>
       {enheter.status === "RESULT" ? (
         <Combobox
+          ref={ref}
           harFeil={!!(submitted && error)}
           label={comboBoxLabel()}
           onChange={onChange}
@@ -98,6 +104,6 @@ const SelectEnhet = (props: Props) => {
       )}
     </div>
   );
-};
+});
 
 export default SelectEnhet;

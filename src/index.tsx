@@ -11,8 +11,6 @@ import { initialState, reducer } from "./providers/Store";
 import msgsNb from "./language/nb";
 import msgsEn from "./language/en";
 import msgsNn from "./language/nn";
-import { ValidatorsProvider } from "calidation";
-import { extraValidators } from "./utils/validators";
 import { Locale, setLocaleFromUrl } from "./utils/locale";
 import { injectDecoratorClientSide } from "@navikt/nav-dekoratoren-moduler";
 import { initAmplitude } from "./utils/amplitude";
@@ -61,11 +59,9 @@ const RenderApp = () => {
   }, [locale]);
 
   return (
-    <ValidatorsProvider validators={extraValidators}>
-      <IntlProvider locale={locale} messages={messages[locale]}>
-        <App />
-      </IntlProvider>
-    </ValidatorsProvider>
+    <IntlProvider locale={locale} messages={messages[locale]}>
+      <App />
+    </IntlProvider>
   );
 };
 

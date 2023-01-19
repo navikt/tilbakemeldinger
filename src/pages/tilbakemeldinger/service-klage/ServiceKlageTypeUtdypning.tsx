@@ -1,42 +1,30 @@
 import React from "react";
-import { Validation } from "calidation";
-import InputField from "components/input-fields/InputField";
-
-interface Fields {
-  klagetypeUtdypning: string;
-}
+import { useFormContext } from "react-hook-form";
+import { ServiceklageFormFields } from "./ServiceKlage";
+import { TextField } from "@navikt/ds-react";
+import { useIntl } from "react-intl";
 
 const ServiceKlageTypeUtdypning = () => {
-  const klagetypeUtdypningFormConfig = {
-    klagetypeUtdypning: {
-      isRequired: "validering.klagetype.utdypning.pakrevd",
-    },
-  };
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<ServiceklageFormFields>();
 
-  const initialValues: Fields = {
-    klagetypeUtdypning: "",
-  };
+  const { formatMessage } = useIntl();
 
   return (
-    <Validation
-      key={"klagetype-utdypning"}
-      config={klagetypeUtdypningFormConfig}
-      initialValues={initialValues}
-    >
-      {({ errors, submitted, setField }) => {
-        return (
-          <div className="serviceKlage__ekspandert">
-            <InputField
-              htmlSize={30}
-              label={""}
-              error={errors.klagetypeUtdypning}
-              onChange={(v) => setField({ klagetypeUtdypning: v })}
-              submitted={submitted}
-            />
-          </div>
-        );
-      }}
-    </Validation>
+    <div className="serviceKlage__ekspandert">
+      <TextField
+        {...register("klagetypeUtdypning", {
+          required: formatMessage({
+            id: "validering.klagetype.utdypning.pakrevd",
+          }),
+        })}
+        htmlSize={30}
+        label={""}
+        error={errors?.klagetypeUtdypning?.message}
+      />
+    </div>
   );
 };
 export default ServiceKlageTypeUtdypning;

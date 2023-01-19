@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ForwardedRef, useState } from "react";
 import { useCombobox } from "downshift";
 import { useIntl } from "react-intl";
 import { Expand } from "@navikt/ds-icons";
@@ -18,7 +18,7 @@ interface Props {
   value?: Option;
 }
 
-const Combobox = (props: Props) => {
+const Combobox = React.forwardRef((props: Props, ref: ForwardedRef<any>) => {
   const { data, harFeil, label, onChange } = props;
   const [inputItems, setInputItems] = useState(data);
   const intl = useIntl();
@@ -72,6 +72,7 @@ const Combobox = (props: Props) => {
       <label {...getLabelProps()}>{label}</label>
       <div {...getComboboxProps()} className={`${cssPrefix}__inputWrapper`}>
         <input
+          ref={ref}
           {...getInputProps()}
           className={`${cssPrefix}__input navds-select__input${
             harFeil ? ` ${cssPrefix}__hasError` : ""
@@ -109,6 +110,6 @@ const Combobox = (props: Props) => {
       </ul>
     </>
   );
-};
+});
 
 export default Combobox;

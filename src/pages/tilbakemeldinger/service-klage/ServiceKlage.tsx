@@ -3,15 +3,15 @@ import VeilederIcon from "assets/icons/Veileder.svg";
 import { useStore } from "providers/Provider";
 import { postServiceKlage } from "clients/apiClient";
 import { HTTPError } from "types/errors";
-import { FormContext, FormValidation } from "calidation";
 import InputMelding from "components/input-fields/InputMelding";
 import {
+  KLAGE_TYPE,
   ON_BEHALF_OF,
   OutboundServiceKlageBase,
   OutboundServiceKlageExtend,
 } from "types/serviceklage";
 import Header from "components/header/Header";
-import { paths } from "Config";
+import { paths, vars } from "Config";
 import Box from "components/box/Box";
 import { FormattedMessage, useIntl } from "react-intl";
 import ServiceKlagePrivatperson from "./ServiceKlagePrivatperson";
@@ -19,7 +19,6 @@ import ServiceKlageForAnnenPerson from "./ServiceKlageAnnenPerson";
 import ServiceKlageForBedrift from "./ServiceKlageBedrift";
 import ServiceKlageGjelderSosialhjelp from "./ServiceKlageGjelderSosialhjelp";
 import Takk from "components/takk/Takk";
-import { sjekkForFeil } from "utils/validators";
 import { triggerHotjar } from "utils/hotjar";
 import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
 import ServiceKlageTypeUtdypning from "./ServiceKlageTypeUtdypning";
@@ -36,122 +35,145 @@ import {
   RadioGroup,
 } from "@navikt/ds-react";
 import { Tilbakeknapp } from "../../../components/tilbakeknapp/Tilbakeknapp";
+import {
+  Controller,
+  FieldValues,
+  FormProvider,
+  useForm,
+} from "react-hook-form";
+
+export interface ServiceklageFormFields {
+  klagetekst: string;
+  oenskerAaKontaktes?: boolean;
+  gjelderSosialhjelp?: "JA" | "NEI" | "VET_IKKE";
+  klagetypeUtdypning?: string;
+  klagetyper: KLAGE_TYPE[];
+  paaVegneAv: "PRIVATPERSON" | "ANNEN_PERSON" | "BEDRIFT";
+  innmelderNavn: string;
+  innmelderTlfnr: string;
+  innmelderFnr: string;
+  innmelderRolle: string;
+  innmelderHarFullmakt: boolean;
+  paaVegneAvNavn: string;
+  paaVegneAvFodselsnr: string;
+  enhetsnummerPaaklaget: {
+    label: string;
+    value: string;
+  };
+  orgNavn: string;
+  orgNummer: string;
+}
 
 export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageExtend;
 
 const ServiceKlage = () => {
+  const methods = useForm<ServiceklageFormFields>({
+    reValidateMode: "onChange",
+  });
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    trigger,
+    control,
+    formState: { errors, isValid, isSubmitted },
+  } = methods;
+
   const [{ auth }] = useStore();
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState<string | undefined>();
   const [loginClosed, setLoginClosed] = useState(false);
 
-  const intl = useIntl();
+  const { formatMessage } = useIntl();
 
   const closeModal = () => setLoginClosed(true);
 
-  const baseFormConfig = {
-    klagetyper: {
-      isRequired: "validering.klagetyper.pakrevd",
-      isValidFeiltyper: "validering.klagetyper.velg",
-    },
-    hvemFra: {
-      isRequired: "validering.hvemfra.pakrevd",
-    },
-    melding: {
-      isRequired: "validering.melding.pakrevd",
-      isValidMelding: "validering.melding.tegn",
-    },
-  };
+  const send = (values: FieldValues) => {
+    const hvemFra: ON_BEHALF_OF = values.hvemFra;
 
-  const initialValues = {
-    klagetyper: [],
-  } as any;
+    const outboundBase: OutboundServiceKlageBase = {
+      klagetekst: values.melding,
+      klagetyper: values.klagetyper,
+      klagetypeUtdypning: values.klagetypeUtdypning,
+      oenskerAaKontaktes: values.onskerKontakt,
+      ...(values.klagetyper.includes("LOKALT_NAV_KONTOR") && {
+        gjelderSosialhjelp: values.gjelderSosialhjelp,
+      }),
+    };
 
-  const send = (e: FormContext<any>) => {
-    const { isValid, fields } = e;
-    const hvemFra: ON_BEHALF_OF = fields.hvemFra;
-
-    if (isValid) {
-      const outboundBase: OutboundServiceKlageBase = {
-        klagetekst: fields.melding,
-        klagetyper: fields.klagetyper,
-        klagetypeUtdypning: fields.klagetypeUtdypning,
-        oenskerAaKontaktes: fields.onskerKontakt,
-        ...(fields.klagetyper.includes("LOKALT_NAV_KONTOR") && {
-          gjelderSosialhjelp: fields.gjelderSosialhjelp,
-        }),
-      };
-
-      const outboundExtend: {
-        [key in ON_BEHALF_OF]: OutboundServiceKlageExtend;
-      } = {
-        PRIVATPERSON: {
-          paaVegneAv: "PRIVATPERSON",
-          innmelder: {
-            navn: fields.innmelderNavn,
-            ...(fields.innmelderTlfnr && {
-              telefonnummer: fields.innmelderTlfnr,
-            }),
-            personnummer: fields.innmelderFnr,
-          },
-        },
-        ANNEN_PERSON: {
-          paaVegneAv: "ANNEN_PERSON",
-          innmelder: {
-            navn: fields.innmelderNavn,
-            ...(fields.innmelderTlfnr && {
-              telefonnummer: fields.innmelderTlfnr,
-            }),
-            harFullmakt: fields.innmelderHarFullmakt,
-            rolle: fields.innmelderRolle,
-          },
-          paaVegneAvPerson: {
-            navn: fields.paaVegneAvNavn,
-            personnummer: fields.paaVegneAvFodselsnr,
-          },
-        },
-        BEDRIFT: {
-          paaVegneAv: "BEDRIFT",
-          ...(fields.enhetsnummerPaaklaget && {
-            enhetsnummerPaaklaget: fields.enhetsnummerPaaklaget.value,
+    const outboundExtend: {
+      [key in ON_BEHALF_OF]: OutboundServiceKlageExtend;
+    } = {
+      PRIVATPERSON: {
+        paaVegneAv: "PRIVATPERSON",
+        innmelder: {
+          navn: values.innmelderNavn,
+          ...(values.innmelderTlfnr && {
+            telefonnummer: values.innmelderTlfnr,
           }),
-          innmelder: {
-            ...(fields.onskerKontakt && {
-              navn: fields.innmelderNavn,
-              telefonnummer: fields.innmelderTlfnr,
-            }),
-            ...(fields.innmelderRolle && {
-              rolle: fields.innmelderRolle,
-            }),
-          },
-          paaVegneAvBedrift: {
-            navn: fields.orgNavn,
-            organisasjonsnummer: fields.orgNummer,
-          },
+          personnummer: values.innmelderFnr,
         },
-      };
+      },
+      ANNEN_PERSON: {
+        paaVegneAv: "ANNEN_PERSON",
+        innmelder: {
+          navn: values.innmelderNavn,
+          ...(values.innmelderTlfnr && {
+            telefonnummer: values.innmelderTlfnr,
+          }),
+          harFullmakt: values.innmelderHarFullmakt,
+          rolle: values.innmelderRolle,
+        },
+        paaVegneAvPerson: {
+          navn: values.paaVegneAvNavn,
+          personnummer: values.paaVegneAvFodselsnr,
+        },
+      },
+      BEDRIFT: {
+        paaVegneAv: "BEDRIFT",
+        ...(values.enhetsnummerPaaklaget && {
+          enhetsnummerPaaklaget: values.enhetsnummerPaaklaget,
+        }),
+        innmelder: {
+          ...(values.onskerKontakt && {
+            navn: values.innmelderNavn,
+            telefonnummer: values.innmelderTlfnr,
+          }),
+          ...(values.innmelderRolle && {
+            rolle: values.innmelderRolle,
+          }),
+        },
+        paaVegneAvBedrift: {
+          navn: values.orgNavn,
+          organisasjonsnummer: values.orgNummer,
+        },
+      },
+    };
 
-      const outbound = {
-        ...outboundBase,
-        ...outboundExtend[hvemFra],
-      };
+    const outbound = {
+      ...outboundBase,
+      ...outboundExtend[hvemFra],
+    };
 
-      settLoading(true);
-      postServiceKlage(outbound)
-        .then(() => {
-          settSuccess(true);
-          triggerHotjar("serviceklage");
-        })
-        .catch((error: HTTPError) => {
-          settError(`${error.code} - ${error.text}`);
-        })
-        .then(() => {
-          settLoading(false);
-        });
-    }
+    settLoading(true);
+    postServiceKlage(outbound)
+      .then(() => {
+        settSuccess(true);
+        triggerHotjar("serviceklage");
+      })
+      .catch((error: HTTPError) => {
+        settError(`${error.code} - ${error.text}`);
+      })
+      .then(() => {
+        settLoading(false);
+      });
   };
+
+  console.log(watch());
 
   return (
     <div className="pagecontent">
@@ -161,7 +183,7 @@ const ServiceKlage = () => {
         path={paths.tilbakemeldinger.serviceklage.form}
       />
       <Header
-        title={intl.formatMessage({
+        title={formatMessage({
           id: "tilbakemeldinger.serviceklage.form.tittel",
         })}
       />
@@ -187,127 +209,154 @@ const ServiceKlage = () => {
         {success ? (
           <Takk />
         ) : (
-          <FormValidation
-            onSubmit={send}
-            config={baseFormConfig}
-            initialValues={initialValues}
-          >
-            {({ errors, fields, submitted, setField, isValid }) => {
-              const hvemFra: ON_BEHALF_OF = fields.hvemFra;
-              const { innmelderHarFullmakt } = fields;
-              const kanOnskeAaKontaktes =
-                hvemFra !== "ANNEN_PERSON" || innmelderHarFullmakt !== false;
-
-              return (
-                <div className="skjema__content">
-                  <CheckboxGroup
-                    legend={intl.formatMessage({ id: "felter.klagetyper" })}
-                    error={sjekkForFeil(submitted, errors.klagetyper, intl)}
-                    onChange={(values: string[]) =>
-                      setField({ klagetyper: values })
-                    }
-                  >
-                    <div className={"felter__melding-advarsel"}>
-                      <Alert variant={"info"}>
-                        <FormattedMessage id={"felter.klagetyper.info"} />
-                      </Alert>
-                    </div>
-                    <Checkbox value={"TELEFON"}>
-                      {intl.formatMessage({
-                        id: "felter.klagetyper.telefon",
-                      })}
-                    </Checkbox>
-                    <Checkbox value={"LOKALT_NAV_KONTOR"}>
-                      {intl.formatMessage({
-                        id: "felter.klagetyper.navkontor",
-                      })}
-                    </Checkbox>
-                    <Checkbox value={"NAV_DIGITALE_TJENESTER"}>
-                      {intl.formatMessage({
-                        id: "felter.klagetyper.digitaletjenester",
-                      })}
-                    </Checkbox>
-                    <Checkbox value={"BREV"}>
-                      {intl.formatMessage({
-                        id: "felter.klagetyper.brev",
-                      })}
-                    </Checkbox>
-                    <Checkbox value={"ANNET"}>
-                      {intl.formatMessage({
-                        id: "felter.klagetyper.annet",
-                      })}
-                    </Checkbox>
-                    {fields.klagetyper.includes("ANNET") && (
-                      <ServiceKlageTypeUtdypning />
-                    )}
-                  </CheckboxGroup>
-                  {fields.klagetyper.includes("LOKALT_NAV_KONTOR") && (
-                    <ServiceKlageGjelderSosialhjelp />
-                  )}
-                  <RadioGroup
-                    legend={intl.formatMessage({ id: "felter.hvemfra" })}
-                    error={sjekkForFeil(submitted, errors.hvemFra, intl)}
-                    onChange={(val) => setField({ hvemFra: val })}
-                  >
-                    <Radio value={"PRIVATPERSON"}>
-                      {intl.formatMessage({
-                        id: "felter.hvemfra.megselv",
-                      })}
-                    </Radio>
-                    <Radio value={"ANNEN_PERSON"}>
-                      {intl.formatMessage({
-                        id: "felter.hvemfra.enannen",
-                      })}
-                    </Radio>
-                    <Radio value={"BEDRIFT"}>
-                      {intl.formatMessage({
-                        id: "felter.hvemfra.virksomhet",
-                      })}
-                    </Radio>
-                  </RadioGroup>
-
-                  {hvemFra === "PRIVATPERSON" && <ServiceKlagePrivatperson />}
-                  {hvemFra === "ANNEN_PERSON" && <ServiceKlageForAnnenPerson />}
-                  {hvemFra === "BEDRIFT" && <ServiceKlageForBedrift />}
-
-                  <div className="serviceKlage__melding">
-                    <InputMelding
-                      label={intl.formatMessage({
-                        id: "felter.melding.tittel",
-                      })}
-                      submitted={submitted}
-                      error={errors.melding}
-                      onChange={(v) => setField({ melding: v })}
-                    />
-                  </div>
-                  {kanOnskeAaKontaktes && <ServiceKlageOnskerAaKontaktes />}
-                  {error && (
-                    <Alert
-                      variant={"error"}
-                      className={"felter__melding-advarsel"}
+          <FormProvider {...methods}>
+            <form onSubmit={handleSubmit(send)}>
+              <div className="skjema__content">
+                <Controller
+                  render={({ field, fieldState: { error } }) => (
+                    <CheckboxGroup
+                      {...field}
+                      legend={formatMessage({ id: "felter.klagetyper" })}
+                      error={error?.message}
+                      onChange={async (values: KLAGE_TYPE[]) => {
+                        setValue("klagetyper", values);
+                        isSubmitted && (await trigger());
+                      }}
+                      value={field.value ?? []}
                     >
-                      <FormattedMessage id={"felter.noegikkgalt"} />
-                    </Alert>
+                      <div className={"felter__melding-advarsel"}>
+                        <Alert variant={"info"}>
+                          <FormattedMessage id={"felter.klagetyper.info"} />
+                        </Alert>
+                      </div>
+                      <Checkbox value={"TELEFON"}>
+                        {formatMessage({ id: "felter.klagetyper.telefon" })}
+                      </Checkbox>
+                      <Checkbox value={"LOKALT_NAV_KONTOR"}>
+                        {formatMessage({ id: "felter.klagetyper.navkontor" })}
+                      </Checkbox>
+                      <Checkbox value={"NAV_DIGITALE_TJENESTER"}>
+                        {formatMessage({
+                          id: "felter.klagetyper.digitaletjenester",
+                        })}
+                      </Checkbox>
+                      <Checkbox value={"BREV"}>
+                        {formatMessage({ id: "felter.klagetyper.brev" })}
+                      </Checkbox>
+                      <Checkbox value={"ANNET"}>
+                        {formatMessage({ id: "felter.klagetyper.annet" })}
+                      </Checkbox>
+                    </CheckboxGroup>
                   )}
-                  <div className="tb__knapper">
-                    <div className="tb__knapp">
-                      <Button
-                        type={"submit"}
-                        variant={"secondary"}
-                        disabled={loading || (submitted && !isValid)}
-                        loading={loading}
-                      >
-                        <FormattedMessage id={"felter.send"} />
-                      </Button>
-                    </div>
-                    <div className="tb__knapp">
-                      <Tilbakeknapp />
-                    </div>
+                  control={control}
+                  name={"klagetyper"}
+                  rules={{
+                    required: formatMessage({
+                      id: "validering.klagetyper.pakrevd",
+                    }),
+                  }}
+                />
+
+                {watch().klagetyper?.includes("ANNET") && (
+                  <ServiceKlageTypeUtdypning />
+                )}
+
+                {watch().klagetyper?.includes("LOKALT_NAV_KONTOR") && (
+                  <ServiceKlageGjelderSosialhjelp />
+                )}
+
+                <Controller
+                  render={({ field, fieldState: { error } }) => (
+                    <RadioGroup
+                      {...field}
+                      legend={formatMessage({
+                        id: "felter.hvemfra",
+                      })}
+                      error={error?.message}
+                      value={field.value ?? null}
+                    >
+                      <Radio value={"PRIVATPERSON"}>
+                        {formatMessage({
+                          id: "felter.hvemfra.megselv",
+                        })}
+                      </Radio>
+                      <Radio value={"ANNEN_PERSON"}>
+                        {formatMessage({
+                          id: "felter.hvemfra.enannen",
+                        })}
+                      </Radio>
+                      <Radio value={"BEDRIFT"}>
+                        {formatMessage({
+                          id: "felter.hvemfra.virksomhet",
+                        })}
+                      </Radio>
+                    </RadioGroup>
+                  )}
+                  control={control}
+                  name={"paaVegneAv"}
+                  rules={{
+                    required: formatMessage({
+                      id: "validering.hvemfra.pakrevd",
+                    }),
+                  }}
+                />
+
+                {watch().paaVegneAv === "PRIVATPERSON" && (
+                  <ServiceKlagePrivatperson />
+                )}
+                {watch().paaVegneAv === "ANNEN_PERSON" && (
+                  <ServiceKlageForAnnenPerson />
+                )}
+                {watch().paaVegneAv === "BEDRIFT" && <ServiceKlageForBedrift />}
+
+                <div className="serviceKlage__melding">
+                  <InputMelding
+                    {...register("klagetekst", {
+                      required: formatMessage({
+                        id: "validering.melding.pakrevd",
+                      }),
+                      maxLength: {
+                        value: vars.maksLengdeMelding,
+                        message: formatMessage({
+                          id: "validering.melding.tegn",
+                        }),
+                      },
+                    })}
+                    label={formatMessage({ id: "felter.melding.tittel" })}
+                    value={watch().klagetekst}
+                    error={errors?.klagetekst?.message}
+                  />
+                </div>
+                {(watch().paaVegneAv !== "ANNEN_PERSON" ||
+                  watch().innmelderHarFullmakt) && (
+                  <ServiceKlageOnskerAaKontaktes />
+                )}
+                {error && (
+                  <Alert
+                    variant={"error"}
+                    className={"felter__melding-advarsel"}
+                  >
+                    <FormattedMessage id={"felter.noegikkgalt"} />
+                  </Alert>
+                )}
+                <div className="tb__knapper">
+                  <div className="tb__knapp">
+                    <Button
+                      type={"submit"}
+                      variant={"secondary"}
+                      disabled={loading || (isSubmitted && !isValid)}
+                      loading={loading}
+                    >
+                      <FormattedMessage id={"felter.send"} />
+                    </Button>
+                  </div>
+                  <div className="tb__knapp">
+                    <Tilbakeknapp />
                   </div>
                 </div>
-              );
-            }}
-          </FormValidation>
+              </div>
+            </form>
+          </FormProvider>
         )}
       </Box>
     </div>

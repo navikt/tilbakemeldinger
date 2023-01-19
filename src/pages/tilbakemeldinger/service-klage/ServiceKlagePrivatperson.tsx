@@ -1,54 +1,47 @@
 import React from "react";
 import { useIntl } from "react-intl";
-import { Validation } from "calidation";
 import InputNavn from "components/input-fields/InputNavn";
 import InputFodselsnr from "components/input-fields/InputFodselsnr";
+import { useFormContext } from "react-hook-form";
+import { ServiceklageFormFields } from "./ServiceKlage";
+import { fnr } from "@navikt/fnrvalidator";
 
 const ServiceKlagePrivatperson = () => {
-  const intl = useIntl();
-  const initialValues = {} as any;
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<ServiceklageFormFields>();
 
-  const privPersFormConfig = {
-    innmelderNavn: {
-      isRequired: "validering.navn.pakrevd",
-    },
-    innmelderFnr: {
-      isRequired: "validering.fodselsnr.pakrevd",
-      isNumber: "validering.fodselsnr.siffer",
-      isExactLength: {
-        message: "validering.fodselsnr.korrektsiffer",
-        length: 11,
-      },
-      validFnr: "validering.fodselsnr.ugyldig",
-    },
-  };
+  const { formatMessage } = useIntl();
+
   return (
-    <Validation
-      key={"privPers"}
-      config={privPersFormConfig}
-      initialValues={initialValues}
-    >
-      {({ errors, fields, submitted, setField }) => {
-        return (
-          <div className="serviceKlage__ekspandert">
-            <InputNavn
-              label={intl.formatMessage({ id: "felter.navn.tittel" })}
-              submitted={submitted}
-              value={fields.innmelderNavn}
-              error={errors.innmelderNavn}
-              onChange={(v) => setField({ innmelderNavn: v })}
-            />
-            <InputFodselsnr
-              label={intl.formatMessage({ id: "felter.fodselsnr" })}
-              submitted={submitted}
-              error={errors.innmelderFnr}
-              value={fields.innmelderFnr}
-              onChange={(v) => setField({ innmelderFnr: v })}
-            />
-          </div>
-        );
-      }}
-    </Validation>
+    <div className="serviceKlage__ekspandert">
+      <InputNavn
+        {...register("innmelderNavn", {
+          required: formatMessage({ id: "validering.navn.pakrevd" }),
+        })}
+        label={formatMessage({ id: "felter.navn.tittel" })}
+        error={errors?.innmelderNavn?.message}
+      />
+      <InputFodselsnr
+        {...register("innmelderFnr", {
+          required: formatMessage({ id: "validering.fodselsnr.pakrevd" }),
+          validate: {
+            isNumber: (v) =>
+              !!v.match("^[0-9]+$") ||
+              formatMessage({ id: "validering.fodselsnr.siffer" }),
+            isLength11: (v) =>
+              v.length === 11 ||
+              formatMessage({ id: "validering.fodselsnr.korrektsiffer" }),
+            isValidFnr: (v) =>
+              fnr(v).status === "valid" ||
+              formatMessage({ id: "validering.fodselsnr.ugyldig" }),
+          },
+        })}
+        label={formatMessage({ id: "felter.fodselsnr" })}
+        error={errors?.innmelderFnr?.message}
+      />
+    </div>
   );
 };
 export default ServiceKlagePrivatperson;
