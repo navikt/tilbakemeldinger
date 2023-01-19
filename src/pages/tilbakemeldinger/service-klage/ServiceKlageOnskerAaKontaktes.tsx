@@ -1,61 +1,64 @@
 import React from "react";
 import { useIntl } from "react-intl";
-import { Validation } from "calidation";
-import { sjekkForFeil } from "../../../utils/validators";
 import ServiceKlageTelefon from "./ServiceKlageTelefon";
 import ServiceKlageKontaktBedrift from "./ServiceKlageKontaktBedrift";
 import { Radio, RadioGroup } from "@navikt/ds-react";
+import { Controller, useFormContext } from "react-hook-form";
+import { ServiceklageFormFields } from "./ServiceKlage";
 
 const ServiceKlageOnskerAaKontaktes = () => {
-  const intl = useIntl();
-  const initialValues = {} as any;
-  const onskerKontaktConfig = {
-    onskerKontakt: {
-      isRequired: "validering.onskerkontakt.pakrevd",
-    },
-  };
+  const { watch, control } = useFormContext<ServiceklageFormFields>();
+
+  const { formatMessage } = useIntl();
 
   return (
-    <Validation
-      key={"onskerKontakt"}
-      config={onskerKontaktConfig}
-      initialValues={initialValues}
-    >
-      {({ errors, fields, submitted, setField }) => {
-        return (
-          <>
-            <RadioGroup
-              legend={intl.formatMessage({
-                id: "tilbakemeldinger.serviceklage.form.onskersvar",
+    <>
+      <Controller
+        render={({ field, fieldState: { error } }) => (
+          <RadioGroup
+            {...field}
+            legend={formatMessage({
+              id: "tilbakemeldinger.serviceklage.form.onskersvar",
+            })}
+            error={error?.message}
+            value={field.value ?? null}
+          >
+            <Radio value={true}>
+              {formatMessage({
+                id: "tilbakemeldinger.serviceklage.form.onskersvar.ja",
               })}
-              error={sjekkForFeil(submitted, errors.onskerKontakt, intl)}
-              onChange={(val) => setField({ onskerKontakt: val })}
-            >
-              <Radio value={true}>
-                {intl.formatMessage({
-                  id: "tilbakemeldinger.serviceklage.form.onskersvar.ja",
-                })}
-              </Radio>
-              <Radio value={false}>
-                {intl.formatMessage({
-                  id: "tilbakemeldinger.serviceklage.form.onskersvar.nei",
-                })}
-              </Radio>
-            </RadioGroup>
+            </Radio>
+            <Radio value={false}>
+              {formatMessage({
+                id: "tilbakemeldinger.serviceklage.form.onskersvar.nei",
+              })}
+            </Radio>
+          </RadioGroup>
+        )}
+        control={control}
+        name={"oenskerAaKontaktes"}
+        rules={{
+          // Kan ikke bruke innebygd required da denne ikke validerer value={false}
+          validate: {
+            isRequired: (v) =>
+              typeof v === "boolean" ||
+              formatMessage({
+                id: "validering.onskerkontakt.pakrevd",
+              }),
+          },
+        }}
+      />
 
-            {fields.onskerKontakt && (
-              <>
-                {fields.hvemFra === "BEDRIFT" ? (
-                  <ServiceKlageKontaktBedrift />
-                ) : (
-                  <ServiceKlageTelefon />
-                )}
-              </>
-            )}
-          </>
-        );
-      }}
-    </Validation>
+      {watch().oenskerAaKontaktes && (
+        <>
+          {watch().paaVegneAv === "BEDRIFT" ? (
+            <ServiceKlageKontaktBedrift />
+          ) : (
+            <ServiceKlageTelefon />
+          )}
+        </>
+      )}
+    </>
   );
 };
 export default ServiceKlageOnskerAaKontaktes;

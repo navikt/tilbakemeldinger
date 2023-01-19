@@ -3,25 +3,24 @@ import VeilederIcon from "assets/icons/Veileder.svg";
 import InputMelding from "components/input-fields/InputMelding";
 import { postRosTilNav } from "clients/apiClient";
 import { HTTPError } from "types/errors";
-import { FormContext, FormValidation, Validation } from "calidation";
 import Header from "components/header/Header";
-import { paths } from "Config";
+import { paths, vars } from "Config";
 import Box from "components/box/Box";
 import { FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
-import { sjekkForFeil } from "utils/validators";
 import { triggerHotjar } from "utils/hotjar";
 import SelectEnhet from "components/input-fields/SelectEnhet";
 import { MetaTags } from "../../../components/metatags/MetaTags";
 import { Alert, Button, GuidePanel, Radio, RadioGroup } from "@navikt/ds-react";
 import { Tilbakeknapp } from "../../../components/tilbakeknapp/Tilbakeknapp";
+import { Controller, FieldValues, useForm } from "react-hook-form";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_TJENESTER" | "NAV_KONTOR";
 
-interface Fields {
+interface FormFields {
   melding: string;
   hvemRoses: HVEM_ROSES;
-  navKontor: {
+  navKontor?: {
     label: string;
     value: string;
   };
@@ -36,59 +35,49 @@ export type OutboundRosTilNav = {
 );
 
 const Ros = () => {
+  const {
+    register,
+    unregister,
+    control,
+    handleSubmit,
+    watch,
+    setValue,
+    trigger,
+    formState: { errors, isValid, isSubmitted },
+  } = useForm<FormFields>({
+    reValidateMode: "onChange",
+  });
+
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState<string | undefined>();
-  const intl = useIntl();
+  const { formatMessage } = useIntl();
 
-  const formConfig = {
-    hvemRoses: {
-      isRequired: "validering.hvemroses.pakrevd",
-    },
-    melding: {
-      isRequired: "validering.melding.pakrevd",
-      isValidMelding: "validering.melding.tegn",
-    },
-  };
+  const send = (values: FieldValues) => {
+    const { melding, hvemRoses, navKontor } = values;
 
-  const initialValues = {} as any;
-
-  const navKontorConfig = {
-    navKontor: {
-      isRequired: intl.formatMessage({
-        id: "validering.navkontor.pakrevd",
+    const outbound = {
+      melding,
+      hvemRoses,
+      ...(hvemRoses === "NAV_KONTOR" && {
+        navKontor: navKontor ? navKontor.label : undefined,
       }),
-    },
+    } as OutboundRosTilNav;
+
+    settLoading(true);
+    postRosTilNav(outbound)
+      .then(() => {
+        settSuccess(true);
+        triggerHotjar("rosnav");
+      })
+      .catch((error: HTTPError) => {
+        settError(`${error.code} - ${error.text}`);
+      })
+      .then(() => {
+        settLoading(false);
+      });
   };
 
-  const send = (e: FormContext<Fields>) => {
-    const { isValid, fields } = e;
-    const { melding } = fields;
-    const hvemRoses: HVEM_ROSES = fields.hvemRoses;
-
-    if (isValid) {
-      const outbound = {
-        melding,
-        hvemRoses,
-        ...(fields.hvemRoses === "NAV_KONTOR" && {
-          navKontor: fields.navKontor ? fields.navKontor.label : undefined,
-        }),
-      } as OutboundRosTilNav;
-
-      settLoading(true);
-      postRosTilNav(outbound)
-        .then(() => {
-          settSuccess(true);
-          triggerHotjar("rosnav");
-        })
-        .catch((error: HTTPError) => {
-          settError(`${error.code} - ${error.text}`);
-        })
-        .then(() => {
-          settLoading(false);
-        });
-    }
-  };
   return (
     <div className="pagecontent">
       <MetaTags
@@ -97,7 +86,7 @@ const Ros = () => {
         path={paths.tilbakemeldinger.rostilnav}
       />
       <Header
-        title={intl.formatMessage({ id: "tilbakemeldinger.ros.form.tittel" })}
+        title={formatMessage({ id: "tilbakemeldinger.ros.form.tittel" })}
       />
       <div className={"tb__veileder"}>
         <GuidePanel
@@ -113,88 +102,98 @@ const Ros = () => {
         {success ? (
           <Takk />
         ) : (
-          <FormValidation
-            onSubmit={send}
-            config={formConfig}
-            initialValues={initialValues}
-          >
-            {({ errors, fields, submitted, setField, isValid }) => {
-              return (
-                <div className={"skjema__content"}>
+          <form onSubmit={handleSubmit(send)}>
+            <div className={"skjema__content"}>
+              <Controller
+                render={({ field, fieldState: { error } }) => (
                   <RadioGroup
-                    legend={intl.formatMessage({
+                    {...field}
+                    legend={formatMessage({
                       id: "felter.hvemroses.tittel",
                     })}
-                    error={sjekkForFeil(submitted, errors.hvemRoses, intl)}
-                    onChange={(val) => setField({ hvemRoses: val })}
+                    error={error?.message}
+                    value={field.value ?? null}
                   >
                     <Radio value={"NAV_KONTAKTSENTER"}>
-                      {intl.formatMessage({
+                      {formatMessage({
                         id: "felter.hvemroses.navkontaktsenter",
                       })}
                     </Radio>
                     <Radio value={"NAV_DIGITALE_TJENESTER"}>
-                      {intl.formatMessage({
+                      {formatMessage({
                         id: "felter.hvemroses.digitaletjenester",
                       })}
                     </Radio>
                     <Radio value={"NAV_KONTOR"}>
-                      {intl.formatMessage({
-                        id: "felter.hvemroses.navkontor",
-                      })}
+                      {formatMessage({ id: "felter.hvemroses.navkontor" })}
                     </Radio>
                   </RadioGroup>
+                )}
+                control={control}
+                name={"hvemRoses"}
+                rules={{
+                  required: formatMessage({
+                    id: "validering.hvemroses.pakrevd",
+                  }),
+                }}
+              />
 
-                  {fields.hvemRoses === "NAV_KONTOR" && (
-                    <Validation config={navKontorConfig}>
-                      {() => (
-                        <SelectEnhet
-                          label={"felter.hvemroses.navkontor.velg"}
-                          error={errors.navKontor}
-                          submitted={submitted}
-                          value={fields.navKontor}
-                          onChange={(v?: { value: string; label: string }) =>
-                            setField({ navKontor: v })
-                          }
-                        />
-                      )}
-                    </Validation>
-                  )}
-                  <InputMelding
-                    label={intl.formatMessage({
-                      id: "felter.melding.tittel",
-                    })}
-                    submitted={submitted}
-                    error={errors.melding}
-                    onChange={(v) => setField({ melding: v })}
-                  />
-                  {error && (
-                    <Alert
-                      variant={"error"}
-                      className={"felter__melding-advarsel"}
-                    >
-                      <FormattedMessage id={"felter.noegikkgalt"} />
-                    </Alert>
-                  )}
-                  <div className="tb__knapper">
-                    <div className="tb__knapp">
-                      <Button
-                        type={"submit"}
-                        variant={"secondary"}
-                        disabled={loading || (submitted && !isValid)}
-                        loading={loading}
-                      >
-                        <FormattedMessage id={"felter.send"} />
-                      </Button>
-                    </div>
-                    <div className="tb__knapp">
-                      <Tilbakeknapp />
-                    </div>
-                  </div>
+              {watch().hvemRoses === "NAV_KONTOR" && (
+                <SelectEnhet
+                  {...register("navKontor", {
+                    required: formatMessage({
+                      id: "validering.navkontor.pakrevd",
+                    }),
+                  })}
+                  label={"felter.hvemroses.navkontor.velg"}
+                  error={errors?.navKontor?.message}
+                  submitted={isSubmitted}
+                  onChange={async (v?: { value: string; label: string }) => {
+                    v && setValue("navKontor", v);
+                    isSubmitted && (await trigger());
+                  }}
+                  value={watch().navKontor}
+                  triggerValidation={trigger}
+                />
+              )}
+
+              <InputMelding
+                {...register("melding", {
+                  required: formatMessage({
+                    id: "validering.melding.pakrevd",
+                  }),
+                  maxLength: {
+                    value: vars.maksLengdeMelding,
+                    message: formatMessage({ id: "validering.melding.tegn" }),
+                  },
+                })}
+                label={formatMessage({ id: "felter.melding.tittel" })}
+                value={watch().melding}
+                error={errors?.melding?.message}
+              />
+
+              {error && (
+                <Alert variant={"error"} className={"felter__melding-advarsel"}>
+                  <FormattedMessage id={"felter.noegikkgalt"} />
+                </Alert>
+              )}
+              <div className="tb__knapper">
+                <div className="tb__knapp">
+                  <Button
+                    type={"submit"}
+                    variant={"secondary"}
+                    disabled={loading || (isSubmitted && !isValid)}
+                    loading={loading}
+                  >
+                    <FormattedMessage id={"felter.send"} />
+                  </Button>
                 </div>
-              );
-            }}
-          </FormValidation>
+                <div className="tb__knapp">
+                  <Tilbakeknapp />
+                </div>
+              </div>
+            </div>
+          </form>
         )}
       </Box>
     </div>

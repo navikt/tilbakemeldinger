@@ -4,70 +4,81 @@ import { withRouter } from "react-router-dom";
 import InputMelding from "components/input-fields/InputMelding";
 import { postFeilOgMangler } from "clients/apiClient";
 import { HTTPError } from "types/errors";
-import { FormContext, FormValidation } from "calidation";
 import Header from "components/header/Header";
-import { paths } from "Config";
+import { paths, vars } from "Config";
 import Box from "components/box/Box";
 import { FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
-import { sjekkForFeil } from "utils/validators";
 import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
 import { triggerHotjar } from "../../../utils/hotjar";
 import { MetaTags } from "../../../components/metatags/MetaTags";
 import { Alert, Button, GuidePanel, Radio, RadioGroup } from "@navikt/ds-react";
 import { Tilbakeknapp } from "../../../components/tilbakeknapp/Tilbakeknapp";
+import {
+  Controller,
+  FieldValues,
+  FormProvider,
+  useForm,
+} from "react-hook-form";
+
+type FEILTYPE = "TEKNISK_FEIL" | "FEIL_INFO" | "UNIVERSELL_UTFORMING";
+
+export interface FeilOgManglerFields {
+  onskerKontakt: boolean;
+  epost: string;
+  feiltype: FEILTYPE;
+  melding: string;
+}
 
 export type OutboundFeilOgMangler = {
   onskerKontakt: boolean;
   epost?: string;
-  feiltype: "TEKNISK_FEIL" | "FEIL_INFO" | "UNIVERSELL_UTFORMING";
+  feiltype: FEILTYPE;
   melding: string;
 };
 
 const FOM = () => {
+  const methods = useForm<FeilOgManglerFields>({
+    reValidateMode: "onChange",
+  });
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    control,
+    formState: { errors, isValid, isSubmitted },
+  } = methods;
+
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState<string | undefined>();
-  const intl = useIntl();
+  const { formatMessage } = useIntl();
 
-  const formConfig = {
-    feiltype: {
-      isRequired: "validering.feiltype.pakrevd",
-    },
-    melding: {
-      isRequired: "validering.melding.pakrevd",
-      isValidMelding: "validering.melding.tegn",
-    },
-  };
+  const send = (values: FieldValues) => {
+    const { onskerKontakt, feiltype, melding, epost } = values;
 
-  const send = (e: FormContext<OutboundFeilOgMangler>) => {
-    const { isValid, fields } = e;
-    const { onskerKontakt, feiltype, melding } = fields;
-    const { epost } = fields;
+    const outbound = {
+      feiltype,
+      onskerKontakt,
+      ...(onskerKontakt && {
+        epost,
+      }),
+      melding,
+    };
 
-    if (isValid) {
-      const outbound = {
-        feiltype,
-        onskerKontakt,
-        ...(onskerKontakt && {
-          epost,
-        }),
-        melding,
-      };
-
-      settLoading(true);
-      postFeilOgMangler(outbound)
-        .then(() => {
-          settSuccess(true);
-          triggerHotjar("feilogmangler");
-        })
-        .catch((error: HTTPError) => {
-          settError(`${error.code} - ${error.text}`);
-        })
-        .then(() => {
-          settLoading(false);
-        });
-    }
+    settLoading(true);
+    postFeilOgMangler(outbound)
+      .then(() => {
+        settSuccess(true);
+        triggerHotjar("feilogmangler");
+      })
+      .catch((error: HTTPError) => {
+        settError(`${error.code} - ${error.text}`);
+      })
+      .then(() => {
+        settLoading(false);
+      });
   };
 
   return (
@@ -78,7 +89,7 @@ const FOM = () => {
         path={paths.tilbakemeldinger.feilogmangler}
       />
       <Header
-        title={intl.formatMessage({
+        title={formatMessage({
           id: "tilbakemeldinger.feilogmangler.form.tittel",
         })}
       />
@@ -98,40 +109,54 @@ const FOM = () => {
         {success ? (
           <Takk />
         ) : (
-          <FormValidation onSubmit={send} config={formConfig}>
-            {({ errors, submitted, setField, isValid }) => (
+          <FormProvider {...methods}>
+            <form onSubmit={handleSubmit(send)}>
               <div className={"skjema__content"}>
-                <RadioGroup
-                  legend={intl.formatMessage({
-                    id: "felter.typefeil.tittel",
-                  })}
-                  error={sjekkForFeil(submitted, errors.feiltype, intl)}
-                  onChange={(val) => setField({ feiltype: val })}
-                >
-                  <Radio value={"TEKNISK_FEIL"}>
-                    {intl.formatMessage({
-                      id: "felter.typefeil.tekniskfeil",
-                    })}
-                  </Radio>
-                  <Radio value={"FEIL_INFO"}>
-                    {intl.formatMessage({
-                      id: "felter.typefeil.feilinformasjon",
-                    })}
-                  </Radio>
-                  <Radio value={"UNIVERSELL_UTFORMING"}>
-                    {intl.formatMessage({
-                      id: "felter.typefeil.uu",
-                    })}
-                  </Radio>
-                </RadioGroup>
+                <Controller
+                  render={({ field, fieldState: { error } }) => (
+                    <RadioGroup
+                      {...field}
+                      legend={formatMessage({
+                        id: "felter.typefeil.tittel",
+                      })}
+                      error={error?.message}
+                      value={field.value ?? null}
+                    >
+                      <Radio value={"TEKNISK_FEIL"}>
+                        {formatMessage({ id: "felter.typefeil.tekniskfeil" })}
+                      </Radio>
+                      <Radio value={"FEIL_INFO"}>
+                        {formatMessage({
+                          id: "felter.typefeil.feilinformasjon",
+                        })}
+                      </Radio>
+                      <Radio value={"UNIVERSELL_UTFORMING"}>
+                        {formatMessage({ id: "felter.typefeil.uu" })}
+                      </Radio>
+                    </RadioGroup>
+                  )}
+                  control={control}
+                  name={"feiltype"}
+                  rules={{
+                    required: formatMessage({
+                      id: "validering.feiltype.pakrevd",
+                    }),
+                  }}
+                />
 
                 <InputMelding
-                  label={intl.formatMessage({
-                    id: "felter.melding.tittel",
+                  {...register("melding", {
+                    required: formatMessage({
+                      id: "validering.melding.pakrevd",
+                    }),
+                    maxLength: {
+                      value: vars.maksLengdeMelding,
+                      message: formatMessage({ id: "validering.melding.tegn" }),
+                    },
                   })}
-                  submitted={submitted}
-                  error={errors.melding}
-                  onChange={(v) => setField({ melding: v })}
+                  label={formatMessage({ id: "felter.melding.tittel" })}
+                  value={watch().melding}
+                  error={errors?.melding?.message}
                 />
                 <FeilgOgManglerOnskerAaKontaktes />
                 {error && (
@@ -147,7 +172,7 @@ const FOM = () => {
                     <Button
                       type={"submit"}
                       variant={"secondary"}
-                      disabled={loading || (submitted && !isValid)}
+                      disabled={loading || (isSubmitted && !isValid)}
                       loading={loading}
                     >
                       <FormattedMessage id={"felter.send"} />
@@ -158,8 +183,8 @@ const FOM = () => {
                   </div>
                 </div>
               </div>
-            )}
-          </FormValidation>
+            </form>
+          </FormProvider>
         )}
       </Box>
     </div>

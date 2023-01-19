@@ -1,46 +1,29 @@
 import React from "react";
 import { useIntl } from "react-intl";
-import { Validation } from "calidation";
 import InputNavn from "../../../components/input-fields/InputNavn";
 import ServiceKlageTelefon from "./ServiceKlageTelefon";
-
-interface Fields {
-  innmelderNavn: string;
-}
+import { useFormContext } from "react-hook-form";
+import { ServiceklageFormFields } from "./ServiceKlage";
 
 const ServiceKlageKontaktBedrift = () => {
-  const intl = useIntl();
-  const kontaktBedrift = {
-    innmelderNavn: {
-      isRequired: "validering.navn.pakrevd",
-    },
-  };
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<ServiceklageFormFields>();
 
-  const initialValues: Fields = {
-    innmelderNavn: "",
-  };
+  const { formatMessage } = useIntl();
 
   return (
-    <Validation
-      key={"kontakt-bedrift"}
-      config={kontaktBedrift}
-      initialValues={initialValues}
-    >
-      {({ errors, fields, submitted, setField }) => {
-        return (
-          <div className="serviceKlage__ekspandert">
-            <InputNavn
-              label={intl.formatMessage({ id: "felter.dittnavn" })}
-              submitted={submitted}
-              value={fields.innmelderNavn}
-              error={errors.innmelderNavn}
-              onChange={(v) => setField({ innmelderNavn: v })}
-            />
-            <ServiceKlageTelefon />
-          </div>
-        );
-      }}
-    </Validation>
+    <div className="serviceKlage__ekspandert">
+      <InputNavn
+        {...register("innmelderNavn", {
+          required: formatMessage({ id: "validering.navn.pakrevd" }),
+        })}
+        label={formatMessage({ id: "felter.dittnavn" })}
+        error={errors?.innmelderNavn?.message}
+      />
+      <ServiceKlageTelefon />
+    </div>
   );
 };
 export default ServiceKlageKontaktBedrift;

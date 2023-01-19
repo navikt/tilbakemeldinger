@@ -1,43 +1,31 @@
 import React from "react";
 import { useIntl } from "react-intl";
-import { Validation } from "calidation";
-import InputField from "components/input-fields/InputField";
 import { useStore } from "providers/Provider";
+import { useFormContext } from "react-hook-form";
+import { ServiceklageFormFields } from "./ServiceKlage";
+import { TextField } from "@navikt/ds-react";
 
 const ServiceKlageTelefon = () => {
-  const intl = useIntl();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<ServiceklageFormFields>();
+
+  const { formatMessage } = useIntl();
   const [{ kontaktInfo }] = useStore();
 
-  const initialValues = {
-    innmelderTlfnr: kontaktInfo.mobiltelefonnummer || "",
-  };
-
-  const tlfFormConfig = {
-    innmelderTlfnr: {
-      isRequired: "validering.tlf.pakrevd",
-    },
-  };
-
   return (
-    <Validation
-      key={"tlf"}
-      config={tlfFormConfig}
-      initialValues={initialValues}
-    >
-      {({ errors, fields, submitted, setField }) => {
-        return (
-          <div className="serviceKlage__ekspandert">
-            <InputField
-              htmlSize={20}
-              label={intl.formatMessage({ id: "felter.tlf.tittel" })}
-              error={errors.innmelderTlfnr}
-              onChange={(v) => setField({ innmelderTlfnr: v })}
-              submitted={submitted}
-            />
-          </div>
-        );
-      }}
-    </Validation>
+    <div className="serviceKlage__ekspandert">
+      <TextField
+        {...register("innmelderTlfnr", {
+          required: formatMessage({ id: "validering.tlf.pakrevd" }),
+        })}
+        htmlSize={20}
+        label={formatMessage({ id: "felter.tlf.tittel" })}
+        error={errors?.innmelderTlfnr?.message}
+        defaultValue={kontaktInfo.mobiltelefonnummer || ""}
+      />
+    </div>
   );
 };
 export default ServiceKlageTelefon;

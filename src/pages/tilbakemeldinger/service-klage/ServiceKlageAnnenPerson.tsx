@@ -1,133 +1,121 @@
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import { Validation } from "calidation";
 import InputNavn from "components/input-fields/InputNavn";
-import InputField from "components/input-fields/InputField";
-import { sjekkForFeil } from "utils/validators";
 import { urls } from "../../../Config";
-import { Alert, Link, Radio, RadioGroup } from "@navikt/ds-react";
-
-interface Fields {
-  innmelderNavn: string;
-  paaVegneAvNavn: string;
-  paaVegneAvFodselsnr: string;
-  innmelderHarFullmakt?: boolean;
-  innmelderRolle: string;
-}
+import { Alert, Link, Radio, RadioGroup, TextField } from "@navikt/ds-react";
+import { Controller, useFormContext } from "react-hook-form";
+import { ServiceklageFormFields } from "./ServiceKlage";
+import { fnr } from "@navikt/fnrvalidator";
 
 const ServiceKlageForAnnenPerson = () => {
-  const intl = useIntl();
-  const annenPersFormConfig = {
-    innmelderNavn: {
-      isRequired: "validering.navn.pakrevd",
-    },
-    paaVegneAvNavn: {
-      isRequired: "validering.navn.pakrevd",
-    },
-    paaVegneAvFodselsnr: {
-      isRequired: "validering.fodselsnr.pakrevd",
-      isNumber: "validering.fodselsnr.siffer",
-      isExactLength: {
-        message: "validering.fodselsnr.korrektsiffer",
-        length: 11,
-      },
-      validFnr: "validering.fodselsnr.ugyldig",
-    },
-    innmelderHarFullmakt: {
-      isRequired: "validering.fullmakt.pakrevd",
-    },
-    innmelderRolle: {
-      isRequired: "validering.rolle.pakrevd",
-    },
-  };
+  const {
+    register,
+    watch,
+    control,
+    formState: { errors },
+  } = useFormContext<ServiceklageFormFields>();
 
-  const initialValues: Fields = {
-    innmelderNavn: "",
-    paaVegneAvNavn: "",
-    paaVegneAvFodselsnr: "",
-    innmelderRolle: "",
-  };
+  const { formatMessage } = useIntl();
 
   return (
-    <Validation
-      key={"annenPers"}
-      config={annenPersFormConfig}
-      initialValues={initialValues}
-    >
-      {({ errors, fields, submitted, setField }) => {
-        return (
-          <div className="serviceKlage__ekspandert">
-            <InputNavn
-              label={intl.formatMessage({ id: "felter.dittnavn" })}
-              submitted={submitted}
-              value={fields.innmelderNavn}
-              error={errors.innmelderNavn}
-              onChange={(v) => setField({ innmelderNavn: v })}
-            />
-            <InputField
-              htmlSize={30}
-              submitted={submitted}
-              label={intl.formatMessage({ id: "felter.dinrolle.annenperson" })}
-              required={true}
-              error={errors.innmelderRolle}
-              onChange={(v) => setField({ innmelderRolle: v })}
-            />
-            <InputField
-              htmlSize={30}
-              label={intl.formatMessage({ id: "felter.navntilklager" })}
-              submitted={submitted}
-              error={errors.paaVegneAvNavn}
-              onChange={(v) => setField({ paaVegneAvNavn: v })}
-            />
-            <InputField
-              htmlSize={20}
-              label={intl.formatMessage({ id: "felter.fodselsnrtilklager" })}
-              submitted={submitted}
-              error={errors.paaVegneAvFodselsnr}
-              onChange={(v) => setField({ paaVegneAvFodselsnr: v })}
-            />
-            <RadioGroup
-              legend={intl.formatMessage({
-                id: "felter.fullmakt",
+    <div className="serviceKlage__ekspandert">
+      <InputNavn
+        {...register("innmelderNavn", {
+          required: formatMessage({ id: "validering.navn.pakrevd" }),
+        })}
+        label={formatMessage({ id: "felter.dittnavn" })}
+        error={errors?.innmelderNavn?.message}
+      />
+      <TextField
+        {...register("innmelderRolle", {
+          required: formatMessage({ id: "validering.rolle.pakrevd" }),
+        })}
+        htmlSize={30}
+        label={formatMessage({ id: "felter.dinrolle.annenperson" })}
+        error={errors?.innmelderRolle?.message}
+      />
+      <TextField
+        {...register("paaVegneAvNavn", {
+          required: formatMessage({ id: "validering.navn.pakrevd" }),
+        })}
+        htmlSize={30}
+        label={formatMessage({ id: "felter.navntilklager" })}
+        error={errors?.paaVegneAvNavn?.message}
+      />
+      <TextField
+        {...register("paaVegneAvFodselsnr", {
+          required: formatMessage({ id: "validering.fodselsnr.pakrevd" }),
+          validate: {
+            isNumber: (v) =>
+              !!v.match("^[0-9]+$") ||
+              formatMessage({ id: "validering.fodselsnr.siffer" }),
+            isLength11: (v) =>
+              v.length === 11 ||
+              formatMessage({ id: "validering.fodselsnr.korrektsiffer" }),
+            isValidFnr: (v) =>
+              fnr(v).status === "valid" ||
+              formatMessage({ id: "validering.fodselsnr.ugyldig" }),
+          },
+        })}
+        htmlSize={20}
+        label={formatMessage({ id: "felter.fodselsnrtilklager" })}
+        error={errors?.paaVegneAvFodselsnr?.message}
+      />
+
+      <Controller
+        render={({ field, fieldState: { error } }) => (
+          <RadioGroup
+            {...field}
+            legend={formatMessage({
+              id: "felter.fullmakt",
+            })}
+            error={error?.message}
+            value={field.value ?? null}
+          >
+            <Radio value={true}>
+              {formatMessage({
+                id: "felter.fullmakt.ja",
               })}
-              error={sjekkForFeil(submitted, errors.innmelderHarFullmakt, intl)}
-              onChange={(val) => setField({ innmelderHarFullmakt: val })}
-            >
-              <Radio value={true}>
-                {intl.formatMessage({
-                  id: "felter.fullmakt.ja",
-                })}
-              </Radio>
-              <Radio value={false}>
-                {intl.formatMessage({
-                  id: "felter.fullmakt.nei",
-                })}
-              </Radio>{" "}
-              {fields.innmelderHarFullmakt === false && (
-                <Alert variant={"warning"}>
-                  <FormattedMessage
-                    id={"felter.fullmakt.advarsel"}
-                    values={{
-                      FullmaktskjemaLenke: (text: string) => (
-                        <Link
-                          href={
-                            urls.tilbakemeldinger.serviceklage.fullmaktskjema
-                          }
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
-                          {text}
-                        </Link>
-                      ),
-                    }}
-                  />
-                </Alert>
-              )}
-            </RadioGroup>
-          </div>
-        );
-      }}
-    </Validation>
+            </Radio>
+            <Radio value={false}>
+              {formatMessage({
+                id: "felter.fullmakt.nei",
+              })}
+            </Radio>{" "}
+            {watch().innmelderHarFullmakt === false && (
+              <Alert variant={"warning"}>
+                <FormattedMessage
+                  id={"felter.fullmakt.advarsel"}
+                  values={{
+                    FullmaktskjemaLenke: (text: string) => (
+                      <Link
+                        href={urls.tilbakemeldinger.serviceklage.fullmaktskjema}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        {text}
+                      </Link>
+                    ),
+                  }}
+                />
+              </Alert>
+            )}
+          </RadioGroup>
+        )}
+        control={control}
+        name={"innmelderHarFullmakt"}
+        rules={{
+          // Kan ikke bruke innebygd required da denne ikke validerer value={false}
+          validate: {
+            isRequired: (v) =>
+              typeof v === "boolean" ||
+              formatMessage({
+                id: "validering.fullmakt.pakrevd",
+              }),
+          },
+        }}
+      />
+    </div>
   );
 };
 export default ServiceKlageForAnnenPerson;
