@@ -96,11 +96,6 @@ const ServiceKlage = () => {
   const closeModal = () => setLoginClosed(true);
 
   const send = (values: FieldValues) => {
-    console.log(values);
-
-    console.log(values.hvemFra);
-    console.log(values.paaVegneAv);
-
     const outboundBase: OutboundServiceKlageBase = {
       klagetekst: values.klagetekst,
       klagetyper: values.klagetyper,
