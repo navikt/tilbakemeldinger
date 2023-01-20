@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useIntl } from "react-intl";
 import SelectEnhet from "../../../components/input-fields/SelectEnhet";
 import { useFormContext } from "react-hook-form";
@@ -15,6 +15,11 @@ const ServiceKlageForBedrift = () => {
   } = useFormContext<ServiceklageFormFields>();
 
   const { formatMessage } = useIntl();
+
+  // Trigger validering etter mount dersom form er submitted
+  useEffect(() => {
+    isSubmitted && trigger();
+  }, [isSubmitted, trigger]);
 
   return (
     <div className="serviceKlage__ekspandert">

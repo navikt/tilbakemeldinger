@@ -145,7 +145,7 @@ const ServiceKlage = () => {
           enhetsnummerPaaklaget: values.enhetsnummerPaaklaget,
         }),
         innmelder: {
-          ...(values.onskerKontakt && {
+          ...(values.oenskerAaKontaktes && {
             navn: values.innmelderNavn,
             telefonnummer: values.innmelderTlfnr,
           }),

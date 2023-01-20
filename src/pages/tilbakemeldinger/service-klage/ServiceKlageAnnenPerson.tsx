@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { urls } from "../../../Config";
 import { Alert, Link, Radio, RadioGroup, TextField } from "@navikt/ds-react";
@@ -15,12 +15,18 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
     register,
     watch,
     control,
-    formState: { errors },
+    trigger,
+    formState: { errors, isSubmitted },
   } = useFormContext<ServiceklageFormFields>();
 
   const { formatMessage } = useIntl();
 
   const { innmelderNavn } = props;
+
+  // Trigger validering etter mount dersom form er submitted
+  useEffect(() => {
+    isSubmitted && trigger();
+  }, [isSubmitted, trigger]);
 
   return (
     <div className="serviceKlage__ekspandert">

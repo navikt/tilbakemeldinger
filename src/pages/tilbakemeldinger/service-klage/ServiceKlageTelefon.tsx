@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useIntl } from "react-intl";
 import { useStore } from "providers/Provider";
 import { useFormContext } from "react-hook-form";
@@ -8,22 +8,17 @@ import { TextField } from "@navikt/ds-react";
 const ServiceKlageTelefon = () => {
   const {
     register,
-    unregister,
-    formState: { errors },
-    setValue,
+    trigger,
+    formState: { errors, isSubmitted },
   } = useFormContext<ServiceklageFormFields>();
 
   const { formatMessage } = useIntl();
   const [{ kontaktInfo }] = useStore();
 
-  // useEffect(() => {
-  //   // Set value when component mounts
-  //   setValue("innmelderTlfnr", kontaktInfo.mobiltelefonnummer ?? "");
-  //   return () => {
-  //     // Unregister when component unmounts
-  //     unregister("innmelderTlfnr");
-  //   };
-  // }, []);
+  // Trigger validering etter mount dersom form er submitted
+  useEffect(() => {
+    isSubmitted && trigger();
+  }, [isSubmitted, trigger]);
 
   return (
     <div className="serviceKlage__ekspandert">

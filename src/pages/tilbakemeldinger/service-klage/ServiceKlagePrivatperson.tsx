@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useIntl } from "react-intl";
 import { useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
@@ -13,12 +13,18 @@ interface Props {
 const ServiceKlagePrivatperson = (props: Props) => {
   const {
     register,
-    formState: { errors },
+    trigger,
+    formState: { errors, isSubmitted },
   } = useFormContext<ServiceklageFormFields>();
 
   const { formatMessage } = useIntl();
 
   const { innmelderNavn, innmelderFnr } = props;
+
+  // Trigger validering etter mount dersom form er submitted
+  useEffect(() => {
+    isSubmitted && trigger();
+  }, [isSubmitted, trigger]);
 
   return (
     <div className="serviceKlage__ekspandert">

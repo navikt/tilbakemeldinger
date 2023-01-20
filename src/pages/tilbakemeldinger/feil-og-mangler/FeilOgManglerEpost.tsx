@@ -12,10 +12,10 @@ const FeilOgManglerEpost = () => {
     formState: { isSubmitted, errors },
   } = useFormContext<FeilOgManglerFields>();
 
-  // Trigger validering etter rendering dersom form er submitted
+  // Trigger validering etter mount dersom form er submitted
   useEffect(() => {
     isSubmitted && trigger();
-  }, []);
+  }, [isSubmitted, trigger]);
 
   const { formatMessage } = useIntl();
   const [{ kontaktInfo }] = useStore();
