@@ -6,10 +6,16 @@ import { Radio, RadioGroup } from "@navikt/ds-react";
 import { Controller, useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
 
-const ServiceKlageOnskerAaKontaktes = () => {
+interface Props {
+  innmelderNavn: string | false;
+}
+
+const ServiceKlageOnskerAaKontaktes = (props: Props) => {
   const { watch, control } = useFormContext<ServiceklageFormFields>();
 
   const { formatMessage } = useIntl();
+
+  const { innmelderNavn } = props;
 
   return (
     <>
@@ -52,7 +58,7 @@ const ServiceKlageOnskerAaKontaktes = () => {
       {watch().oenskerAaKontaktes && (
         <>
           {watch().paaVegneAv === "BEDRIFT" ? (
-            <ServiceKlageKontaktBedrift />
+            <ServiceKlageKontaktBedrift innmelderNavn={innmelderNavn} />
           ) : (
             <ServiceKlageTelefon />
           )}

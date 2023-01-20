@@ -1,12 +1,16 @@
 import React from "react";
 import { useIntl } from "react-intl";
-import InputNavn from "components/input-fields/InputNavn";
-import InputFodselsnr from "components/input-fields/InputFodselsnr";
 import { useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
 import { fnr } from "@navikt/fnrvalidator";
+import { TextField } from "@navikt/ds-react";
 
-const ServiceKlagePrivatperson = () => {
+interface Props {
+  innmelderNavn: string | false;
+  innmelderFnr: string | false;
+}
+
+const ServiceKlagePrivatperson = (props: Props) => {
   const {
     register,
     formState: { errors },
@@ -14,17 +18,23 @@ const ServiceKlagePrivatperson = () => {
 
   const { formatMessage } = useIntl();
 
+  const { innmelderNavn, innmelderFnr } = props;
+
   return (
     <div className="serviceKlage__ekspandert">
-      <InputNavn
+      <TextField
         {...register("innmelderNavn", {
+          value: innmelderNavn || undefined,
           required: formatMessage({ id: "validering.navn.pakrevd" }),
         })}
         label={formatMessage({ id: "felter.navn.tittel" })}
         error={errors?.innmelderNavn?.message}
+        htmlSize={30}
+        disabled={!!innmelderNavn}
       />
-      <InputFodselsnr
+      <TextField
         {...register("innmelderFnr", {
+          value: innmelderFnr || undefined,
           required: formatMessage({ id: "validering.fodselsnr.pakrevd" }),
           validate: {
             isNumber: (v) =>
@@ -40,6 +50,8 @@ const ServiceKlagePrivatperson = () => {
         })}
         label={formatMessage({ id: "felter.fodselsnr" })}
         error={errors?.innmelderFnr?.message}
+        htmlSize={20}
+        disabled={!!innmelderFnr}
       />
     </div>
   );
