@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
 import { TextField } from "@navikt/ds-react";
@@ -7,10 +7,16 @@ import { useIntl } from "react-intl";
 const ServiceKlageTypeUtdypning = () => {
   const {
     register,
-    formState: { errors },
+    trigger,
+    formState: { errors, isSubmitted },
   } = useFormContext<ServiceklageFormFields>();
 
   const { formatMessage } = useIntl();
+
+  // Trigger validering etter mount dersom form er submitted
+  useEffect(() => {
+    isSubmitted && trigger();
+  }, [isSubmitted, trigger]);
 
   return (
     <div className="serviceKlage__ekspandert">

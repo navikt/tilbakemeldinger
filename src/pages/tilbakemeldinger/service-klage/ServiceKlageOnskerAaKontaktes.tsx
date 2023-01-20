@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useIntl } from "react-intl";
 import ServiceKlageTelefon from "./ServiceKlageTelefon";
 import ServiceKlageKontaktBedrift from "./ServiceKlageKontaktBedrift";
@@ -11,11 +11,21 @@ interface Props {
 }
 
 const ServiceKlageOnskerAaKontaktes = (props: Props) => {
-  const { watch, control } = useFormContext<ServiceklageFormFields>();
+  const {
+    watch,
+    control,
+    trigger,
+    formState: { isSubmitted },
+  } = useFormContext<ServiceklageFormFields>();
 
   const { formatMessage } = useIntl();
 
   const { innmelderNavn } = props;
+
+  // Trigger validering etter mount dersom form er submitted
+  useEffect(() => {
+    isSubmitted && trigger();
+  }, [isSubmitted, trigger]);
 
   return (
     <>
