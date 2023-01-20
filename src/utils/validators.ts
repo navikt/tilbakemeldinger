@@ -1,4 +1,6 @@
-import { fnr } from "@navikt/fnrvalidator";
+import {fnr} from "@navikt/fnrvalidator";
+
+export const EMAIL_PATTERN = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 export const isNumeric = (value: string) => !!value.match("^[0-9]+$");
 

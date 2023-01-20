@@ -5,6 +5,7 @@ import { useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
 import { TextField } from "@navikt/ds-react";
 import { isLength, isNumeric } from "../../../utils/validators";
+import { TEXT_AREA_MEDIUM } from "../../../utils/constants";
 
 const ServiceKlageForBedrift = () => {
   const {
@@ -26,7 +27,7 @@ const ServiceKlageForBedrift = () => {
     <div className="serviceKlage__ekspandert">
       <TextField
         {...register("innmelderRolle")}
-        htmlSize={30}
+        htmlSize={TEXT_AREA_MEDIUM}
         label={formatMessage({ id: "felter.dinrolle.bedrift" })}
         error={errors?.innmelderRolle?.message}
       />
@@ -34,7 +35,7 @@ const ServiceKlageForBedrift = () => {
         {...register("orgNavn", {
           required: formatMessage({ id: "validering.orgnavn.pakrevd" }),
         })}
-        htmlSize={30}
+        htmlSize={TEXT_AREA_MEDIUM}
         label={formatMessage({ id: "felter.orgnavn" })}
         error={errors?.orgNavn?.message}
       />
@@ -49,7 +50,7 @@ const ServiceKlageForBedrift = () => {
               formatMessage({ id: "validering.orgnr.korrektsiffer" }),
           },
         })}
-        htmlSize={30}
+        htmlSize={TEXT_AREA_MEDIUM}
         label={formatMessage({ id: "felter.orgnr" })}
         error={errors?.orgNummer?.message}
       />

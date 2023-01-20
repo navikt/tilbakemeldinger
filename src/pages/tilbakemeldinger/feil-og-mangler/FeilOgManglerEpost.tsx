@@ -4,6 +4,8 @@ import { useStore } from "providers/Provider";
 import { Alert, TextField } from "@navikt/ds-react";
 import { useFormContext } from "react-hook-form";
 import { FeilOgManglerFields } from "./FeilOgMangler";
+import { EMAIL_PATTERN } from "../../../utils/validators";
+import { TEXT_AREA_MEDIUM } from "../../../utils/constants";
 
 const FeilOgManglerEpost = () => {
   const {
@@ -26,11 +28,11 @@ const FeilOgManglerEpost = () => {
         {...register("epost", {
           required: formatMessage({ id: "validering.epost.pakrevd" }),
           pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            value: EMAIL_PATTERN,
             message: formatMessage({ id: "validering.epost.gyldig" }),
           },
         })}
-        htmlSize={30}
+        htmlSize={TEXT_AREA_MEDIUM}
         label={formatMessage({ id: "felter.epost.tittel" })}
         error={errors?.epost?.message}
         defaultValue={kontaktInfo.epostadresse || ""}

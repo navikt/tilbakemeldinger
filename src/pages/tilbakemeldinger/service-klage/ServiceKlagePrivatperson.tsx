@@ -4,6 +4,7 @@ import { useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
 import { TextField } from "@navikt/ds-react";
 import { isLength, isNumeric, isValidFnr } from "../../../utils/validators";
+import { TEXT_AREA_MEDIUM, TEXT_AREA_SMALL } from "../../../utils/constants";
 
 interface Props {
   innmelderNavn: string | false;
@@ -35,7 +36,7 @@ const ServiceKlagePrivatperson = (props: Props) => {
         })}
         label={formatMessage({ id: "felter.navn.tittel" })}
         error={errors?.innmelderNavn?.message}
-        htmlSize={30}
+        htmlSize={TEXT_AREA_MEDIUM}
         disabled={!!innmelderNavn}
       />
       <TextField
@@ -56,7 +57,7 @@ const ServiceKlagePrivatperson = (props: Props) => {
         })}
         label={formatMessage({ id: "felter.fodselsnr" })}
         error={errors?.innmelderFnr?.message}
-        htmlSize={20}
+        htmlSize={TEXT_AREA_SMALL}
         disabled={!!innmelderFnr}
       />
     </div>
