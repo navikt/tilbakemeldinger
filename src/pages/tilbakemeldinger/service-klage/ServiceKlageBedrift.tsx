@@ -4,6 +4,7 @@ import SelectEnhet from "../../../components/input-fields/SelectEnhet";
 import { useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
 import { TextField } from "@navikt/ds-react";
+import { isLength, isNumeric } from "../../../utils/validators";
 
 const ServiceKlageForBedrift = () => {
   const {
@@ -41,11 +42,10 @@ const ServiceKlageForBedrift = () => {
         {...register("orgNummer", {
           required: formatMessage({ id: "validering.orgnr.pakrevd" }),
           validate: {
-            isNumber: (v) =>
-              !!v.match("^[0-9]+$") ||
-              formatMessage({ id: "validering.orgnr.siffer" }),
-            isLength11: (v) =>
-              v.length === 9 ||
+            isNumeric: (v) =>
+              isNumeric(v) || formatMessage({ id: "validering.orgnr.siffer" }),
+            isLength9: (v) =>
+              isLength(v, 9) ||
               formatMessage({ id: "validering.orgnr.korrektsiffer" }),
           },
         })}

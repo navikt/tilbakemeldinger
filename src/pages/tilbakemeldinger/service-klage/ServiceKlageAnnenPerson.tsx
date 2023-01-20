@@ -4,7 +4,12 @@ import { urls } from "../../../Config";
 import { Alert, Link, Radio, RadioGroup, TextField } from "@navikt/ds-react";
 import { Controller, useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
-import { fnr } from "@navikt/fnrvalidator";
+import {
+  isBoolean,
+  isLength,
+  isNumeric,
+  isValidFnr,
+} from "../../../utils/validators";
 
 interface Props {
   innmelderNavn: string | false;
@@ -60,14 +65,14 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
         {...register("paaVegneAvFodselsnr", {
           required: formatMessage({ id: "validering.fodselsnr.pakrevd" }),
           validate: {
-            isNumber: (v) =>
-              !!v.match("^[0-9]+$") ||
+            isNumeric: (v) =>
+              isNumeric(v) ||
               formatMessage({ id: "validering.fodselsnr.siffer" }),
             isLength11: (v) =>
-              v.length === 11 ||
+              isLength(v, 11) ||
               formatMessage({ id: "validering.fodselsnr.korrektsiffer" }),
             isValidFnr: (v) =>
-              fnr(v).status === "valid" ||
+              isValidFnr(v) ||
               formatMessage({ id: "validering.fodselsnr.ugyldig" }),
           },
         })}
@@ -119,13 +124,10 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
         control={control}
         name={"innmelderHarFullmakt"}
         rules={{
-          // Kan ikke bruke innebygd required da denne ikke validerer value={false}
           validate: {
             isRequired: (v) =>
-              typeof v === "boolean" ||
-              formatMessage({
-                id: "validering.fullmakt.pakrevd",
-              }),
+              isBoolean(v) ||
+              formatMessage({ id: "validering.fullmakt.pakrevd" }),
           },
         }}
       />
