@@ -118,7 +118,7 @@ const ServiceKlage = () => {
         paaVegneAv: "PRIVATPERSON",
         innmelder: {
           navn: values.innmelderNavn,
-          ...(values.innmelderTlfnr && {
+          ...(values.oenskerAaKontaktes && {
             telefonnummer: values.innmelderTlfnr,
           }),
           personnummer: values.innmelderFnr,
@@ -128,7 +128,7 @@ const ServiceKlage = () => {
         paaVegneAv: "ANNEN_PERSON",
         innmelder: {
           navn: values.innmelderNavn,
-          ...(values.innmelderTlfnr && {
+          ...(values.oenskerAaKontaktes && {
             telefonnummer: values.innmelderTlfnr,
           }),
           harFullmakt: values.innmelderHarFullmakt,
@@ -250,6 +250,9 @@ const ServiceKlage = () => {
                       <Checkbox value={"ANNET"}>
                         {formatMessage({ id: "felter.klagetyper.annet" })}
                       </Checkbox>
+                      {watch().klagetyper?.includes("ANNET") && (
+                        <ServiceKlageTypeUtdypning />
+                      )}
                     </CheckboxGroup>
                   )}
                   control={control}
@@ -260,10 +263,6 @@ const ServiceKlage = () => {
                     }),
                   }}
                 />
-
-                {watch().klagetyper?.includes("ANNET") && (
-                  <ServiceKlageTypeUtdypning />
-                )}
 
                 {watch().klagetyper?.includes("LOKALT_NAV_KONTOR") && (
                   <ServiceKlageGjelderSosialhjelp />
