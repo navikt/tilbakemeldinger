@@ -5,6 +5,7 @@ import ServiceKlageKontaktBedrift from "./ServiceKlageKontaktBedrift";
 import { Radio, RadioGroup } from "@navikt/ds-react";
 import { Controller, useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
+import { isBoolean } from "../../../utils/validators";
 
 interface Props {
   innmelderNavn: string | false;
@@ -54,13 +55,10 @@ const ServiceKlageOnskerAaKontaktes = (props: Props) => {
         control={control}
         name={"oenskerAaKontaktes"}
         rules={{
-          // Kan ikke bruke innebygd required da denne ikke validerer value={false}
           validate: {
             isRequired: (v) =>
-              typeof v === "boolean" ||
-              formatMessage({
-                id: "validering.onskerkontakt.pakrevd",
-              }),
+              isBoolean(v) ||
+              formatMessage({ id: "validering.onskerkontakt.pakrevd" }),
           },
         }}
       />
