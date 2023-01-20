@@ -1,13 +1,16 @@
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import InputNavn from "components/input-fields/InputNavn";
 import { urls } from "../../../Config";
 import { Alert, Link, Radio, RadioGroup, TextField } from "@navikt/ds-react";
 import { Controller, useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
 import { fnr } from "@navikt/fnrvalidator";
 
-const ServiceKlageForAnnenPerson = () => {
+interface Props {
+  innmelderNavn: string | false;
+}
+
+const ServiceKlageForAnnenPerson = (props: Props) => {
   const {
     register,
     watch,
@@ -17,14 +20,19 @@ const ServiceKlageForAnnenPerson = () => {
 
   const { formatMessage } = useIntl();
 
+  const { innmelderNavn } = props;
+
   return (
     <div className="serviceKlage__ekspandert">
-      <InputNavn
+      <TextField
         {...register("innmelderNavn", {
+          value: innmelderNavn || undefined,
           required: formatMessage({ id: "validering.navn.pakrevd" }),
         })}
         label={formatMessage({ id: "felter.dittnavn" })}
         error={errors?.innmelderNavn?.message}
+        htmlSize={30}
+        disabled={!!innmelderNavn}
       />
       <TextField
         {...register("innmelderRolle", {

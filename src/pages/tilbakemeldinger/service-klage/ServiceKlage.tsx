@@ -82,7 +82,7 @@ const ServiceKlage = () => {
     formState: { errors, isValid, isSubmitted },
   } = methods;
 
-  const [{ auth }] = useStore();
+  const [{ auth, fodselsnr }] = useStore();
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState<string | undefined>();
@@ -90,16 +90,22 @@ const ServiceKlage = () => {
 
   const { formatMessage } = useIntl();
 
+  const innmelderNavn = auth.authenticated && auth.name;
+  const innmelderFnr = auth.authenticated && fodselsnr;
+
   const closeModal = () => setLoginClosed(true);
 
   const send = (values: FieldValues) => {
-    const hvemFra: ON_BEHALF_OF = values.hvemFra;
+    console.log(values);
+
+    console.log(values.hvemFra);
+    console.log(values.paaVegneAv);
 
     const outboundBase: OutboundServiceKlageBase = {
-      klagetekst: values.melding,
+      klagetekst: values.klagetekst,
       klagetyper: values.klagetyper,
       klagetypeUtdypning: values.klagetypeUtdypning,
-      oenskerAaKontaktes: values.onskerKontakt,
+      oenskerAaKontaktes: values.oenskerAaKontaktes,
       ...(values.klagetyper.includes("LOKALT_NAV_KONTOR") && {
         gjelderSosialhjelp: values.gjelderSosialhjelp,
       }),
@@ -156,7 +162,7 @@ const ServiceKlage = () => {
 
     const outbound = {
       ...outboundBase,
-      ...outboundExtend[hvemFra],
+      ...outboundExtend[values.paaVegneAv as ON_BEHALF_OF],
     };
 
     settLoading(true);
@@ -172,8 +178,6 @@ const ServiceKlage = () => {
         settLoading(false);
       });
   };
-
-  console.log(watch());
 
   return (
     <div className="pagecontent">
@@ -302,10 +306,13 @@ const ServiceKlage = () => {
                 />
 
                 {watch().paaVegneAv === "PRIVATPERSON" && (
-                  <ServiceKlagePrivatperson />
+                  <ServiceKlagePrivatperson
+                    innmelderNavn={innmelderNavn}
+                    innmelderFnr={innmelderFnr}
+                  />
                 )}
                 {watch().paaVegneAv === "ANNEN_PERSON" && (
-                  <ServiceKlageForAnnenPerson />
+                  <ServiceKlageForAnnenPerson innmelderNavn={innmelderNavn} />
                 )}
                 {watch().paaVegneAv === "BEDRIFT" && <ServiceKlageForBedrift />}
 
@@ -329,7 +336,9 @@ const ServiceKlage = () => {
                 </div>
                 {(watch().paaVegneAv !== "ANNEN_PERSON" ||
                   watch().innmelderHarFullmakt) && (
-                  <ServiceKlageOnskerAaKontaktes />
+                  <ServiceKlageOnskerAaKontaktes
+                    innmelderNavn={innmelderNavn}
+                  />
                 )}
                 {error && (
                   <Alert
