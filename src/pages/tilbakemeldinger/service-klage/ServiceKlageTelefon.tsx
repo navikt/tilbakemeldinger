@@ -4,6 +4,7 @@ import { useStore } from "providers/Provider";
 import { useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
 import { TextField } from "@navikt/ds-react";
+import { TEXT_AREA_SMALL } from "../../../utils/constants";
 
 const ServiceKlageTelefon = () => {
   const {
@@ -27,7 +28,7 @@ const ServiceKlageTelefon = () => {
           value: kontaktInfo.mobiltelefonnummer ?? "",
           required: formatMessage({ id: "validering.tlf.pakrevd" }),
         })}
-        htmlSize={20}
+        htmlSize={TEXT_AREA_SMALL}
         label={formatMessage({ id: "felter.tlf.tittel" })}
         error={errors?.innmelderTlfnr?.message}
       />
