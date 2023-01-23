@@ -10,7 +10,6 @@ import { TEXT_AREA_MEDIUM } from "../../../utils/constants";
 const ServiceKlageForBedrift = () => {
   const {
     register,
-    unregister,
     watch,
     setValue,
     trigger,
@@ -21,10 +20,8 @@ const ServiceKlageForBedrift = () => {
 
   // Trigger validering etter mount dersom form er submitted
   useEffect(() => {
-    // Unregister innmelderRolle så valideringsregler ikke lekker over fra ServiceKlageAnnenPerson
-    unregister("innmelderRolle");
     isSubmitted && trigger();
-  }, [isSubmitted, trigger, unregister]);
+  }, [isSubmitted, trigger]);
 
   return (
     <div className="serviceKlage__ekspandert">
