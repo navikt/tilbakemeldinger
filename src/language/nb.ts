@@ -84,7 +84,7 @@ const nb = {
   "validering.melding.tegn": "Du har tastet inn for mange tegn",
   "validering.hvemroses.pakrevd": "Du må velge hvem du skal gi ros til",
   "validering.navkontor.pakrevd": "Du må velge NAV-enhet",
-  "validering.klagetyper.pakrevd": "Du må velge kagetori",
+  "validering.klagetyper.pakrevd": "Du må velge kategori",
   "validering.klagetyper.velg": "Du må velge minst en kategori",
   "validering.hvemfra.pakrevd":
     "Du må velge hvem tilbakemeldingen er på vegne av",
