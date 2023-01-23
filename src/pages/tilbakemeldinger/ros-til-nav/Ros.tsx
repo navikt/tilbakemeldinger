@@ -37,7 +37,6 @@ export type OutboundRosTilNav = {
 const Ros = () => {
   const {
     register,
-    unregister,
     control,
     handleSubmit,
     watch,

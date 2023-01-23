@@ -24,13 +24,14 @@ interface Props {
 }
 
 const SelectEnhet = React.forwardRef((props: Props, ref: ForwardedRef<any>) => {
+  const { submitted, error, label, onChange, value, triggerValidation } = props;
+
   useEffect(() => {
-    submitted && props.triggerValidation();
-  }, []);
+    submitted && triggerValidation();
+  }, [triggerValidation, submitted]);
 
   const [{ enheter }, dispatch] = useStore();
   const intl = useIntl();
-  const { submitted, error, label, onChange, value } = props;
 
   const relevanteEnheter = [
     "ALS",
