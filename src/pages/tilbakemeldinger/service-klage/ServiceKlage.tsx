@@ -74,6 +74,7 @@ const ServiceKlage = () => {
 
   const {
     register,
+    unregister,
     handleSubmit,
     watch,
     setValue,
@@ -99,7 +100,8 @@ const ServiceKlage = () => {
     const outboundBase: OutboundServiceKlageBase = {
       klagetekst: values.klagetekst,
       klagetyper: values.klagetyper,
-      klagetypeUtdypning: values.klagetypeUtdypning,
+      klagetypeUtdypning:
+        values.klagetyper.contains("ANNET") && values.klagetypeUtdypning,
       oenskerAaKontaktes: values.oenskerAaKontaktes,
       ...(values.klagetyper.includes("LOKALT_NAV_KONTOR") && {
         gjelderSosialhjelp: values.gjelderSosialhjelp,
@@ -137,7 +139,7 @@ const ServiceKlage = () => {
       BEDRIFT: {
         paaVegneAv: "BEDRIFT",
         ...(values.enhetsnummerPaaklaget && {
-          enhetsnummerPaaklaget: values.enhetsnummerPaaklaget,
+          enhetsnummerPaaklaget: values.enhetsnummerPaaklaget.value,
         }),
         innmelder: {
           ...(values.oenskerAaKontaktes && {
@@ -272,6 +274,11 @@ const ServiceKlage = () => {
                       })}
                       error={error?.message}
                       value={field.value ?? null}
+                      onChange={(value) => {
+                        // Unregister innmelderRolle så verdi og validering resettes mellom Bedrift/AnnenPerson
+                        unregister("innmelderRolle");
+                        field.onChange(value);
+                      }}
                     >
                       <Radio value={"PRIVATPERSON"}>
                         {formatMessage({
@@ -329,7 +336,7 @@ const ServiceKlage = () => {
                   />
                 </div>
                 {(watch().paaVegneAv !== "ANNEN_PERSON" ||
-                  watch().innmelderHarFullmakt) && (
+                  watch().innmelderHarFullmakt !== false) && (
                   <ServiceKlageOnskerAaKontaktes
                     innmelderNavn={innmelderNavn}
                   />
