@@ -75,6 +75,7 @@ const ServiceKlage = () => {
 
   const {
     register,
+    unregister,
     handleSubmit,
     watch,
     setValue,
@@ -275,6 +276,11 @@ const ServiceKlage = () => {
                       })}
                       error={error?.message}
                       value={field.value ?? null}
+                      onChange={(value) => {
+                        // Unregister innmelderRolle så verdi og validering resettes mellom Bedrift/AnnenPerson
+                        unregister("innmelderRolle");
+                        field.onChange(value);
+                      }}
                     >
                       <Radio value={"PRIVATPERSON"}>
                         {formatMessage({
