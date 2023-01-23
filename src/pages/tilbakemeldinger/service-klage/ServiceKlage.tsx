@@ -70,11 +70,11 @@ export type OutboundServiceKlage = OutboundServiceKlageBase &
 const ServiceKlage = () => {
   const methods = useForm<ServiceklageFormFields>({
     reValidateMode: "onChange",
+    shouldUnregister: true,
   });
 
   const {
     register,
-    unregister,
     handleSubmit,
     watch,
     setValue,
@@ -100,8 +100,9 @@ const ServiceKlage = () => {
     const outboundBase: OutboundServiceKlageBase = {
       klagetekst: values.klagetekst,
       klagetyper: values.klagetyper,
-      klagetypeUtdypning:
-        values.klagetyper.contains("ANNET") && values.klagetypeUtdypning,
+      ...(values.klagetyper.includes("ANNET") && {
+        klagetypeUtdypning: values.klagetypeUtdypning,
+      }),
       oenskerAaKontaktes: values.oenskerAaKontaktes,
       ...(values.klagetyper.includes("LOKALT_NAV_KONTOR") && {
         gjelderSosialhjelp: values.gjelderSosialhjelp,
@@ -274,11 +275,6 @@ const ServiceKlage = () => {
                       })}
                       error={error?.message}
                       value={field.value ?? null}
-                      onChange={(value) => {
-                        // Unregister innmelderRolle så verdi og validering resettes mellom Bedrift/AnnenPerson
-                        unregister("innmelderRolle");
-                        field.onChange(value);
-                      }}
                     >
                       <Radio value={"PRIVATPERSON"}>
                         {formatMessage({
