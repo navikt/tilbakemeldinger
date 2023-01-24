@@ -81,6 +81,7 @@ const en = {
   "validering.epost.pakrevd": "Email is required",
   "validering.epost.gyldig": "Must be a valid email address",
   "validering.tlf.pakrevd": "Phone number is required",
+  "validering.tlf.ugyldig": "Invalid phone number",
   "validering.klagetype.utdypning.pakrevd":
     "You must provide more information about what the appeal concerns",
   "validering.feiltype.pakrevd":

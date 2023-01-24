@@ -77,6 +77,7 @@ const nb = {
   "validering.epost.pakrevd": "E-post er nødvendig",
   "validering.epost.gyldig": "Må være en gyldig e-postadresse",
   "validering.tlf.pakrevd": "Telefonnummer er nødvendig",
+  "validering.tlf.ugyldig": "Ugyldig telefonnummer",
   "validering.klagetype.utdypning.pakrevd": "Du må utdype hva klagen gjelder",
   "validering.feiltype.pakrevd":
     "Du må velge hvilken type feil eller mangel du fant",
@@ -84,7 +85,7 @@ const nb = {
   "validering.melding.tegn": "Du har tastet inn for mange tegn",
   "validering.hvemroses.pakrevd": "Du må velge hvem du skal gi ros til",
   "validering.navkontor.pakrevd": "Du må velge NAV-enhet",
-  "validering.klagetyper.pakrevd": "Du må velge kagetori",
+  "validering.klagetyper.pakrevd": "Du må velge kategori",
   "validering.klagetyper.velg": "Du må velge minst en kategori",
   "validering.hvemfra.pakrevd":
     "Du må velge hvem tilbakemeldingen er på vegne av",

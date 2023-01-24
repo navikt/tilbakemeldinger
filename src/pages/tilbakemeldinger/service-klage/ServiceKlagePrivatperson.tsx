@@ -1,54 +1,66 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useIntl } from "react-intl";
-import { Validation } from "calidation";
-import InputNavn from "components/input-fields/InputNavn";
-import InputFodselsnr from "components/input-fields/InputFodselsnr";
+import { useFormContext } from "react-hook-form";
+import { ServiceklageFormFields } from "./ServiceKlage";
+import { TextField } from "@navikt/ds-react";
+import { isLength, isNumeric, isValidFnr } from "../../../utils/validators";
+import { TEXT_AREA_MEDIUM, TEXT_AREA_SMALL } from "../../../utils/constants";
 
-const ServiceKlagePrivatperson = () => {
-  const intl = useIntl();
-  const initialValues = {} as any;
+interface Props {
+  innmelderNavn: string | false;
+  innmelderFnr: string | false;
+}
 
-  const privPersFormConfig = {
-    innmelderNavn: {
-      isRequired: "validering.navn.pakrevd",
-    },
-    innmelderFnr: {
-      isRequired: "validering.fodselsnr.pakrevd",
-      isNumber: "validering.fodselsnr.siffer",
-      isExactLength: {
-        message: "validering.fodselsnr.korrektsiffer",
-        length: 11,
-      },
-      validFnr: "validering.fodselsnr.ugyldig",
-    },
-  };
+const ServiceKlagePrivatperson = (props: Props) => {
+  const {
+    register,
+    trigger,
+    formState: { errors, isSubmitted },
+  } = useFormContext<ServiceklageFormFields>();
+
+  const { formatMessage } = useIntl();
+
+  const { innmelderNavn, innmelderFnr } = props;
+
+  // Trigger validering etter mount dersom form er submitted
+  useEffect(() => {
+    isSubmitted && trigger();
+  }, [isSubmitted, trigger]);
+
   return (
-    <Validation
-      key={"privPers"}
-      config={privPersFormConfig}
-      initialValues={initialValues}
-    >
-      {({ errors, fields, submitted, setField }) => {
-        return (
-          <div className="serviceKlage__ekspandert">
-            <InputNavn
-              label={intl.formatMessage({ id: "felter.navn.tittel" })}
-              submitted={submitted}
-              value={fields.innmelderNavn}
-              error={errors.innmelderNavn}
-              onChange={(v) => setField({ innmelderNavn: v })}
-            />
-            <InputFodselsnr
-              label={intl.formatMessage({ id: "felter.fodselsnr" })}
-              submitted={submitted}
-              error={errors.innmelderFnr}
-              value={fields.innmelderFnr}
-              onChange={(v) => setField({ innmelderFnr: v })}
-            />
-          </div>
-        );
-      }}
-    </Validation>
+    <div className="serviceKlage__ekspandert">
+      <TextField
+        {...register("innmelderNavn", {
+          value: innmelderNavn || undefined,
+          required: formatMessage({ id: "validering.navn.pakrevd" }),
+        })}
+        label={formatMessage({ id: "felter.navn.tittel" })}
+        error={errors?.innmelderNavn?.message}
+        htmlSize={TEXT_AREA_MEDIUM}
+        disabled={!!innmelderNavn}
+      />
+      <TextField
+        {...register("innmelderFnr", {
+          value: innmelderFnr || undefined,
+          required: formatMessage({ id: "validering.fodselsnr.pakrevd" }),
+          validate: {
+            isNumeric: (v) =>
+              isNumeric(v) ||
+              formatMessage({ id: "validering.fodselsnr.siffer" }),
+            isLength11: (v) =>
+              isLength(v, 11) ||
+              formatMessage({ id: "validering.fodselsnr.korrektsiffer" }),
+            isValidFnr: (v) =>
+              isValidFnr(v) ||
+              formatMessage({ id: "validering.fodselsnr.ugyldig" }),
+          },
+        })}
+        label={formatMessage({ id: "felter.fodselsnr" })}
+        error={errors?.innmelderFnr?.message}
+        htmlSize={TEXT_AREA_SMALL}
+        disabled={!!innmelderFnr}
+      />
+    </div>
   );
 };
 export default ServiceKlagePrivatperson;

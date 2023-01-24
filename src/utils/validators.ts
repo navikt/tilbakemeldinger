@@ -1,34 +1,17 @@
-import { SimpleValidatorConfig } from "calidation";
-import { KLAGE_TYPE } from "../types/serviceklage";
-import { vars } from "../Config";
 import { fnr } from "@navikt/fnrvalidator";
-import { IntlShape } from "react-intl";
 
-/*
-  Form validators
- */
+export const EMAIL_PATTERN = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
-export const extraValidators = {
-  isValidTidsrom:
-    (config: SimpleValidatorConfig<any>) =>
-    (value: { FORMIDDAG: boolean; ETTERMIDDAG: boolean }) =>
-      !(value.FORMIDDAG || value.ETTERMIDDAG) ? config.message : null,
+export const isNumeric = (value: string) => !!value.match("^\\d+$");
 
-  isValidFeiltyper:
-    (config: SimpleValidatorConfig<any>) => (value: KLAGE_TYPE[]) =>
-      !value.length ? config.message : null,
+export const isLength = (value: string, length: number) =>
+  value.length === length;
 
-  isValidMelding: (config: SimpleValidatorConfig<any>) => (value: string) =>
-    value.length > vars.maksLengdeMelding ? config.message : null,
+export const isValidFnr = (value: string) => fnr(value).status === "valid";
 
-  validFnr: (config: SimpleValidatorConfig<any>) => (value: string) => {
-    const result = fnr(value);
-    return result.status !== "valid" ? config.message : null;
-  },
-};
+export const isValidTelefonnummer = (value: string) =>
+  !!value.replace(/\s/g, "").match("^\\+?\\d+$");
 
-export const sjekkForFeil = (
-  submitted: boolean,
-  error: string | null,
-  intl: IntlShape
-) => (submitted && error ? intl.formatMessage({ id: error }) : undefined);
+// Brukes for å sjekke om boolske verdier er satt.
+// Kan ikke bruke innebygd required, da denne likestiller null/undefined/false.
+export const isBoolean = (value: any) => typeof value === "boolean";
