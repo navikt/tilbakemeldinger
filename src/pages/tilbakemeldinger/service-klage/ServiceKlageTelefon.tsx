@@ -5,6 +5,7 @@ import { useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
 import { TextField } from "@navikt/ds-react";
 import { TEXT_AREA_SMALL } from "../../../utils/constants";
+import { isValidTelefonnummer } from "../../../utils/validators";
 
 const ServiceKlageTelefon = () => {
   const {
@@ -27,6 +28,11 @@ const ServiceKlageTelefon = () => {
         {...register("innmelderTlfnr", {
           value: kontaktInfo.mobiltelefonnummer ?? "",
           required: formatMessage({ id: "validering.tlf.pakrevd" }),
+          validate: {
+            isValidTelefonnummer: (v) =>
+              isValidTelefonnummer(v) ||
+              formatMessage({ id: "validering.tlf.ugyldig" }),
+          },
         })}
         htmlSize={TEXT_AREA_SMALL}
         label={formatMessage({ id: "felter.tlf.tittel" })}
