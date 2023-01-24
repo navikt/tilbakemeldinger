@@ -1,53 +1,52 @@
 import React from "react";
 import { useIntl } from "react-intl";
-import { Validation } from "calidation";
-import { sjekkForFeil } from "../../../utils/validators";
 import FeilOgManglerEpost from "./FeilOgManglerEpost";
 import { Radio, RadioGroup } from "@navikt/ds-react";
+import { Controller, useFormContext } from "react-hook-form";
+import { FeilOgManglerFields } from "./FeilOgMangler";
+import { isBoolean } from "../../../utils/validators";
 
 const FeilgOgManglerOnskerAaKontaktes = () => {
-  const intl = useIntl();
+  const { watch, control } = useFormContext<FeilOgManglerFields>();
 
-  const onskerKontaktConfig = {
-    onskerKontakt: {
-      isRequired: "validering.onskerkontakt.pakrevd",
-    },
-  };
-
-  const initialValues = {
-    onskerKontakt: false,
-  };
+  const { formatMessage } = useIntl();
 
   return (
-    <Validation
-      key={"onskerKontakt"}
-      config={onskerKontaktConfig}
-      initialValues={initialValues}
-    >
-      {({ errors, fields, submitted, setField }) => {
-        return (
+    <>
+      <Controller
+        render={({ field, fieldState: { error } }) => (
           <RadioGroup
-            legend={intl.formatMessage({
+            {...field}
+            legend={formatMessage({
               id: "felter.onskerkontakt",
             })}
-            error={sjekkForFeil(submitted, errors.onskerKontakt, intl)}
-            onChange={(val) => setField({ onskerKontakt: val })}
+            error={error?.message}
+            value={field.value ?? null}
           >
             <Radio value={true}>
-              {intl.formatMessage({
+              {formatMessage({
                 id: "felter.onskerkontakt.ja",
               })}
             </Radio>
-            {fields.onskerKontakt && <FeilOgManglerEpost />}
             <Radio value={false}>
-              {intl.formatMessage({
+              {formatMessage({
                 id: "felter.onskerkontakt.nei",
               })}
             </Radio>
           </RadioGroup>
-        );
-      }}
-    </Validation>
+        )}
+        control={control}
+        name={"onskerKontakt"}
+        rules={{
+          validate: {
+            isRequired: (v) =>
+              isBoolean(v) ||
+              formatMessage({ id: "validering.onskerkontakt.pakrevd" }),
+          },
+        }}
+      />
+      {watch().onskerKontakt && <FeilOgManglerEpost />}
+    </>
   );
 };
 export default FeilgOgManglerOnskerAaKontaktes;

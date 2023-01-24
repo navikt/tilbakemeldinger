@@ -1,5 +1,5 @@
 const nn = {
-    //
+  //
   // Feilside
   //
   "feil.404": "Feilkode 404 - Vi fann ikkje sida",
@@ -77,6 +77,7 @@ const nn = {
   "validering.epost.pakrevd": "E-post er nødvendig",
   "validering.epost.gyldig": "Må vere ei gjeldande e-postadresse",
   "validering.tlf.pakrevd": "Telefonnummer er nødvendig",
+  "validering.tlf.ugyldig": "Ugyldig telefonnummer",
   "validering.klagetype.utdypning.pakrevd": "Du må forklare kvifor du klagar ",
   "validering.feiltype.pakrevd":
     "Du må velje kva for ein type feil eller mangel du fann",
