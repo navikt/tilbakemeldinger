@@ -2,7 +2,6 @@ import React from "react";
 import Environment from "Environments";
 import { FormattedMessage } from "react-intl";
 import { BodyLong, Button, Heading } from "@navikt/ds-react";
-import { Link } from "react-router-dom";
 
 const { loginUrl } = Environment();
 
@@ -27,8 +26,8 @@ const LoginModal = ({ closeFunc }: Props) => {
       <div className="login-modal__buttons">
         <Button
           variant={"primary"}
-          as={Link}
-          to={`${loginUrl}?redirect=${window.location.href}`}
+          as={"a"}
+          href={`${loginUrl}?redirect=${window.location.href}`}
         >
           <FormattedMessage id={"tilbakemeldinger.serviceklage.login.knapp"} />
         </Button>
