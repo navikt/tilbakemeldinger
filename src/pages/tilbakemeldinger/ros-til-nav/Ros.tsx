@@ -40,7 +40,6 @@ const Ros = () => {
     control,
     handleSubmit,
     watch,
-    setValue,
     trigger,
     formState: { errors, isValid, isSubmitted },
   } = useForm<FormFields>({
