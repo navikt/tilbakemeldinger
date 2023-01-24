@@ -138,21 +138,29 @@ const Ros = () => {
               />
 
               {watch().hvemRoses === "NAV_KONTOR" && (
-                <SelectEnhet
-                  {...register("navKontor", {
+                <Controller
+                  render={({ fieldState: { error } }) => (
+                    <SelectEnhet
+                      label={"felter.hvemroses.navkontor.velg"}
+                      error={error?.message}
+                      submitted={isSubmitted}
+                      onChange={async (v?: {
+                        value: string;
+                        label: string;
+                      }) => {
+                        v && setValue("navKontor", v);
+                        isSubmitted && (await trigger());
+                      }}
+                      triggerValidation={trigger}
+                    />
+                  )}
+                  control={control}
+                  name={"navKontor"}
+                  rules={{
                     required: formatMessage({
                       id: "validering.navkontor.pakrevd",
                     }),
-                  })}
-                  label={"felter.hvemroses.navkontor.velg"}
-                  error={errors?.navKontor?.message}
-                  submitted={isSubmitted}
-                  onChange={async (v?: { value: string; label: string }) => {
-                    v && setValue("navKontor", v);
-                    isSubmitted && (await trigger());
                   }}
-                  value={watch().navKontor}
-                  triggerValidation={trigger}
                 />
               )}
 
