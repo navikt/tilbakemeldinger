@@ -84,6 +84,8 @@ const ServiceKlage = () => {
     formState: { errors, isValid, isSubmitted },
   } = methods;
 
+  console.log(errors);
+
   const [{ auth, fodselsnr }] = useStore();
   const [loading, settLoading] = useState(false);
   const [success, settSuccess] = useState(false);

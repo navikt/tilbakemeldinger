@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useIntl } from "react-intl";
 import SelectEnhet from "../../../components/input-fields/SelectEnhet";
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
 import { TextField } from "@navikt/ds-react";
 import { isLength, isNumeric } from "../../../utils/validators";
@@ -10,8 +10,7 @@ import { TEXT_AREA_MEDIUM } from "../../../utils/constants";
 const ServiceKlageForBedrift = () => {
   const {
     register,
-    watch,
-    setValue,
+    control,
     trigger,
     formState: { isSubmitted, errors },
   } = useFormContext<ServiceklageFormFields>();
@@ -54,21 +53,23 @@ const ServiceKlageForBedrift = () => {
         label={formatMessage({ id: "felter.orgnr" })}
         error={errors?.orgNummer?.message}
       />
-      <SelectEnhet
-        {...register("enhetsnummerPaaklaget", {
+      <Controller
+        render={({ field, fieldState: { error } }) => (
+          <SelectEnhet
+            {...field}
+            label={"felter.klagerpa.navkontor.velg"}
+            error={error?.message}
+            submitted={isSubmitted}
+            triggerValidation={trigger}
+          />
+        )}
+        control={control}
+        name={"enhetsnummerPaaklaget"}
+        rules={{
           required: formatMessage({
             id: "validering.navkontor.pakrevd",
           }),
-        })}
-        label={"felter.klagerpa.navkontor.velg"}
-        error={errors?.enhetsnummerPaaklaget?.message}
-        submitted={isSubmitted}
-        onChange={async (v?: { value: string; label: string }) => {
-          v && setValue("enhetsnummerPaaklaget", v);
-          isSubmitted && (await trigger());
         }}
-        value={watch().enhetsnummerPaaklaget}
-        triggerValidation={trigger}
       />
     </div>
   );
