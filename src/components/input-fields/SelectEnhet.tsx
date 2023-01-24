@@ -26,6 +26,7 @@ interface Props {
 const SelectEnhet = React.forwardRef((props: Props, ref: ForwardedRef<any>) => {
   const { submitted, error, label, onChange, value, triggerValidation } = props;
 
+  // Trigger validering etter mount dersom form er submitted
   useEffect(() => {
     submitted && triggerValidation();
   }, [triggerValidation, submitted]);
