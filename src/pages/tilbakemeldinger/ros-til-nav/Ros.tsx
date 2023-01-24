@@ -139,18 +139,12 @@ const Ros = () => {
 
               {watch().hvemRoses === "NAV_KONTOR" && (
                 <Controller
-                  render={({ fieldState: { error } }) => (
+                  render={({ field, fieldState: { error } }) => (
                     <SelectEnhet
+                      {...field}
                       label={"felter.hvemroses.navkontor.velg"}
                       error={error?.message}
                       submitted={isSubmitted}
-                      onChange={async (v?: {
-                        value: string;
-                        label: string;
-                      }) => {
-                        v && setValue("navKontor", v);
-                        isSubmitted && (await trigger());
-                      }}
                       triggerValidation={trigger}
                     />
                   )}
