@@ -36,6 +36,7 @@ const FeilOgManglerEpost = () => {
         label={formatMessage({ id: "felter.epost.tittel" })}
         error={errors?.epost?.message}
         defaultValue={kontaktInfo.epostadresse || ""}
+        autoComplete={"email"}
       />
       <div className="tilbakemeldinger__svartid">
         <Alert variant={"info"}>
