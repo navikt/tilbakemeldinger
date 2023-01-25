@@ -75,7 +75,8 @@ const nb = {
 
   "validering.navn.pakrevd": "Navn er nødvendig",
   "validering.epost.pakrevd": "E-post er nødvendig",
-  "validering.epost.gyldig": "Må være en gyldig e-postadresse",
+  "validering.epost.gyldig":
+    "Må være en gyldig e-postadresse, f.eks. kari@nordmann.no",
   "validering.tlf.pakrevd": "Telefonnummer er nødvendig",
   "validering.tlf.ugyldig": "Ugyldig telefonnummer",
   "validering.klagetype.utdypning.pakrevd": "Du må utdype hva klagen gjelder",
