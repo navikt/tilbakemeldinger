@@ -115,7 +115,8 @@ const nn = {
   "felter.typefeil.uu":
     "Feil på sida ved bruk av skjermlesar eller anna hjelpemiddel",
   "felter.melding.tittel": "Tilbakemeldinga di",
-  "felter.melding.beskrivelse": `Ikkje send personopplysningar om deg sjølv eller andre, slik som fødselsnummer, opplysningar om helse og diagnose eller andre opplysningar som kan knytast til ein enkeltperson. Les meir om personopplysningar hos <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
+  "felter.melding.beskrivelse": `Ikkje send person- eller helseopplysningar om deg sjølv eller andre. Les meir om personopplysningar hos <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
+  "felter.melding.pakrevde": "Du må fylle ut alle felta.",
   "felter.noegikkgalt":
     "Oi! Det skjedde ein teknisk feil ved sending av skjemaet, prøv igjen seinare.",
   "felter.send": "Send",

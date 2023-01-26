@@ -34,13 +34,13 @@ import {
   Radio,
   RadioGroup,
 } from "@navikt/ds-react";
-import { Tilbakeknapp } from "../../../components/tilbakeknapp/Tilbakeknapp";
 import {
   Controller,
   FieldValues,
   FormProvider,
   useForm,
 } from "react-hook-form";
+import { PersonvernInfo } from "components/personvernInfo/PersonvernInfo";
 
 export interface ServiceklageFormFields {
   klagetekst: string;
@@ -215,6 +215,7 @@ const ServiceKlage = () => {
           <FormProvider {...methods}>
             <form onSubmit={handleSubmit(send)}>
               <div className="skjema__content">
+                <PersonvernInfo />
                 <Controller
                   render={({ field, fieldState: { error } }) => (
                     <CheckboxGroup
@@ -361,9 +362,6 @@ const ServiceKlage = () => {
                     >
                       <FormattedMessage id={"felter.send"} />
                     </Button>
-                  </div>
-                  <div className="tb__knapp">
-                    <Tilbakeknapp />
                   </div>
                 </div>
               </div>
