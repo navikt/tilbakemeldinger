@@ -5,7 +5,6 @@ import { Alert, TextField } from "@navikt/ds-react";
 import { useFormContext } from "react-hook-form";
 import { FeilOgManglerFields } from "./FeilOgMangler";
 import { EMAIL_PATTERN } from "../../../utils/validators";
-import { TEXT_AREA_MEDIUM } from "../../../utils/constants";
 
 const FeilOgManglerEpost = () => {
   const {
@@ -32,7 +31,7 @@ const FeilOgManglerEpost = () => {
             message: formatMessage({ id: "validering.epost.gyldig" }),
           },
         })}
-        htmlSize={TEXT_AREA_MEDIUM}
+        className="skjema__input--medium"
         label={formatMessage({ id: "felter.epost.tittel" })}
         error={errors?.epost?.message}
         defaultValue={kontaktInfo.epostadresse || ""}

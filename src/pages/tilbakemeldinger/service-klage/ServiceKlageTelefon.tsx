@@ -4,7 +4,6 @@ import { useStore } from "providers/Provider";
 import { useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
 import { TextField } from "@navikt/ds-react";
-import { TEXT_AREA_SMALL } from "../../../utils/constants";
 import { isValidTelefonnummer } from "../../../utils/validators";
 
 const ServiceKlageTelefon = () => {
@@ -34,7 +33,7 @@ const ServiceKlageTelefon = () => {
               formatMessage({ id: "validering.tlf.ugyldig" }),
           },
         })}
-        htmlSize={TEXT_AREA_SMALL}
+        className="skjema__input--small"
         label={formatMessage({ id: "felter.tlf.tittel" })}
         error={errors?.innmelderTlfnr?.message}
       />
