@@ -76,7 +76,7 @@ const nn = {
   "validering.navn.pakrevd": "Namn er nødvendig",
   "validering.epost.pakrevd": "E-post er nødvendig",
   "validering.epost.gyldig":
-    "Må vere ei gjeldande e-postadresse, til dømes kari@nordmann.no",
+    "Må vere ei gjeldande e-postadresse, til dømes navnetditt@eksempel.no",
   "validering.tlf.pakrevd": "Telefonnummer er nødvendig",
   "validering.tlf.ugyldig": "Ugyldig telefonnummer",
   "validering.klagetype.utdypning.pakrevd": "Du må forklare kvifor du klagar ",
