@@ -3,7 +3,6 @@ import { useFormContext } from "react-hook-form";
 import { ServiceklageFormFields } from "./ServiceKlage";
 import { TextField } from "@navikt/ds-react";
 import { useIntl } from "react-intl";
-import { TEXT_AREA_MEDIUM } from "../../../utils/constants";
 
 const ServiceKlageTypeUtdypning = () => {
   const {
@@ -27,7 +26,7 @@ const ServiceKlageTypeUtdypning = () => {
             id: "validering.klagetype.utdypning.pakrevd",
           }),
         })}
-        htmlSize={TEXT_AREA_MEDIUM}
+        className="skjema__input--medium"
         label={""}
         error={errors?.klagetypeUtdypning?.message}
       />
