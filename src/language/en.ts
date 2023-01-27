@@ -80,7 +80,7 @@ const en = {
   "validering.navn.pakrevd": "Name is required",
   "validering.epost.pakrevd": "Email is required",
   "validering.epost.gyldig":
-    "Must be a valid email address, e.g. yourname@gmail.com",
+    "Must be a valid email address, e.g. yourname@example.com",
   "validering.tlf.pakrevd": "Phone number is required",
   "validering.tlf.ugyldig": "Invalid phone number",
   "validering.klagetype.utdypning.pakrevd":
