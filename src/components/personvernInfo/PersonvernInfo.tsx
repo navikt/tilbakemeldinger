@@ -5,7 +5,7 @@ import { urls } from "Config";
 import { Varsel } from "components/varsel/Varsel";
 
 export const PersonvernInfo = () => (
-  <div className={"felter__melding-advarsel"}>
+  <div>
     <Varsel type={"info"}>
       <>
         <BodyLong spacing>
