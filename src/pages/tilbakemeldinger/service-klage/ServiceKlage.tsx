@@ -356,7 +356,7 @@ const ServiceKlage = () => {
                   <div className="tb__knapp">
                     <Button
                       type={"submit"}
-                      variant={"secondary"}
+                      variant={"primary"}
                       disabled={loading || (isSubmitted && !isValid)}
                       loading={loading}
                     >

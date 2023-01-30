@@ -119,7 +119,7 @@ const nn = {
   "felter.melding.pakrevde": "Du må fylle ut alle felta.",
   "felter.noegikkgalt":
     "Oi! Det skjedde ein teknisk feil ved sending av skjemaet, prøv igjen seinare.",
-  "felter.send": "Send",
+  "felter.send": "Send tilbakemelding",
   "felter.tilbake": "Tilbake",
   "felter.hvemroses.tittel": "Kven vil du gje ros til?",
   "felter.hvemroses.navkontaktsenter": "NAV Kontaktsenter",
