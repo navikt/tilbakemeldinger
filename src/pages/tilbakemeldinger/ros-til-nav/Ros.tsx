@@ -12,7 +12,7 @@ import { triggerHotjar } from "utils/hotjar";
 import SelectEnhet from "components/input-fields/SelectEnhet";
 import { MetaTags } from "../../../components/metatags/MetaTags";
 import { Alert, Button, GuidePanel, Radio, RadioGroup } from "@navikt/ds-react";
-import { Tilbakeknapp } from "../../../components/tilbakeknapp/Tilbakeknapp";
+import { PersonvernInfo } from "components/personvernInfo/PersonvernInfo";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_TJENESTER" | "NAV_KONTOR";
@@ -102,6 +102,7 @@ const Ros = () => {
         ) : (
           <form onSubmit={handleSubmit(send)}>
             <div className={"skjema__content"}>
+              <PersonvernInfo />
               <Controller
                 render={({ field, fieldState: { error } }) => (
                   <RadioGroup
@@ -181,15 +182,12 @@ const Ros = () => {
                 <div className="tb__knapp">
                   <Button
                     type={"submit"}
-                    variant={"secondary"}
+                    variant={"primary"}
                     disabled={loading || (isSubmitted && !isValid)}
                     loading={loading}
                   >
                     <FormattedMessage id={"felter.send"} />
                   </Button>
-                </div>
-                <div className="tb__knapp">
-                  <Tilbakeknapp />
                 </div>
               </div>
             </div>

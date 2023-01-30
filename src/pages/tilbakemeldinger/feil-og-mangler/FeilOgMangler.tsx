@@ -13,7 +13,7 @@ import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
 import { triggerHotjar } from "../../../utils/hotjar";
 import { MetaTags } from "../../../components/metatags/MetaTags";
 import { Alert, Button, GuidePanel, Radio, RadioGroup } from "@navikt/ds-react";
-import { Tilbakeknapp } from "../../../components/tilbakeknapp/Tilbakeknapp";
+import { PersonvernInfo } from "components/personvernInfo/PersonvernInfo";
 import {
   Controller,
   FieldValues,
@@ -112,6 +112,7 @@ const FOM = () => {
           <FormProvider {...methods}>
             <form onSubmit={handleSubmit(send)}>
               <div className={"skjema__content"}>
+                <PersonvernInfo />
                 <Controller
                   render={({ field, fieldState: { error } }) => (
                     <RadioGroup
@@ -171,15 +172,12 @@ const FOM = () => {
                   <div className="tb__knapp">
                     <Button
                       type={"submit"}
-                      variant={"secondary"}
+                      variant={"primary"}
                       disabled={loading || (isSubmitted && !isValid)}
                       loading={loading}
                     >
                       <FormattedMessage id={"felter.send"} />
                     </Button>
-                  </div>
-                  <div className="tb__knapp">
-                    <Tilbakeknapp />
                   </div>
                 </div>
               </div>

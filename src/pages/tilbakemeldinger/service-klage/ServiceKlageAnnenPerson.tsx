@@ -10,7 +10,6 @@ import {
   isNumeric,
   isValidFnr,
 } from "../../../utils/validators";
-import { TEXT_AREA_MEDIUM, TEXT_AREA_SMALL } from "../../../utils/constants";
 
 interface Props {
   innmelderNavn: string | false;
@@ -43,14 +42,14 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
         })}
         label={formatMessage({ id: "felter.dittnavn" })}
         error={errors?.innmelderNavn?.message}
-        htmlSize={TEXT_AREA_MEDIUM}
+        className="skjema__input--medium"
         disabled={!!innmelderNavn}
       />
       <TextField
         {...register("innmelderRolle", {
           required: formatMessage({ id: "validering.rolle.pakrevd" }),
         })}
-        htmlSize={TEXT_AREA_MEDIUM}
+        className="skjema__input--medium"
         label={formatMessage({ id: "felter.dinrolle.annenperson" })}
         error={errors?.innmelderRolle?.message}
       />
@@ -58,7 +57,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
         {...register("paaVegneAvNavn", {
           required: formatMessage({ id: "validering.navn.pakrevd" }),
         })}
-        htmlSize={TEXT_AREA_MEDIUM}
+        className="skjema__input--medium"
         label={formatMessage({ id: "felter.navntilklager" })}
         error={errors?.paaVegneAvNavn?.message}
       />
@@ -77,7 +76,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
               formatMessage({ id: "validering.fodselsnr.ugyldig" }),
           },
         })}
-        htmlSize={TEXT_AREA_SMALL}
+        className="skjema__input--small"
         label={formatMessage({ id: "felter.fodselsnrtilklager" })}
         error={errors?.paaVegneAvFodselsnr?.message}
       />
