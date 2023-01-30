@@ -127,7 +127,7 @@ const en = {
   "felter.melding.pakrevde": "Please complete all fields.",
   "felter.noegikkgalt":
     "Oops! A technical error occurred while submitting the form - please try again later.",
-  "felter.send": "Send",
+  "felter.send": "Send feedback",
   "felter.tilbake": "Back",
   "felter.hvemroses.tittel": "Who do you want to praise?",
   "felter.hvemroses.navkontaktsenter": "NAV Contact centre",
