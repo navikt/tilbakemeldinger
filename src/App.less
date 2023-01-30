@@ -77,9 +77,8 @@
   }
 
   .navds-guide-panel__content {
-    border-color: var(--a-border-subtle)
+    border-color: var(--a-border-subtle);
   }
-
 }
 
 .tb {
@@ -95,9 +94,6 @@
     margin-right: 0.25rem;
     @media @maxMobile {
       margin-top: 1rem;
-    }
-    .navds-button {
-      width: 12rem;
     }
   }
   &__veileder {
@@ -118,6 +114,18 @@
         padding-bottom: 1rem;
       }
     }
+  }
+
+  &__input--medium {
+    max-width: 100%;
+
+    @media @maxTablet {
+      width: 22rem;
+    }
+  }
+
+  &__input--small {
+    width: 12rem;
   }
 }
 
@@ -175,7 +183,8 @@
 
 .fokus-overstyring() {
   background-color: var(--a-white);
-  box-shadow: 3px 3px inset var(--a-border-focus), -3px -3px inset var(--a-border-focus);
+  box-shadow: 3px 3px inset var(--a-border-focus),
+    -3px -3px inset var(--a-border-focus);
 }
 
 .lenkepanel:focus {

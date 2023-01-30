@@ -123,10 +123,11 @@ const en = {
   "felter.typefeil.uu":
     "Error when using screen readers or other accessibility devices",
   "felter.melding.tittel": "Your feedback",
-  "felter.melding.beskrivelse": `Do not send personal information about yourself or others, such as your national identity number or information about health and diagnoses, or other information that can be connected to a individual.`,
+  "felter.melding.beskrivelse": `Do not send personal or health information about yourself or others. Read more about personal information at <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
+  "felter.melding.pakrevde": "Please complete all fields.",
   "felter.noegikkgalt":
     "Oops! A technical error occurred while submitting the form - please try again later.",
-  "felter.send": "Send",
+  "felter.send": "Send feedback",
   "felter.tilbake": "Back",
   "felter.hvemroses.tittel": "Who do you want to praise?",
   "felter.hvemroses.navkontaktsenter": "NAV Contact centre",

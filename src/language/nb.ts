@@ -115,10 +115,11 @@ const nb = {
   "felter.typefeil.uu":
     "Feil på siden ved bruk av skjermleser eller annet hjelpemiddel",
   "felter.melding.tittel": "Din tilbakemelding",
-  "felter.melding.beskrivelse": `Ikke send personopplysninger om deg selv eller andre, slik som fødselsnummer, opplysninger om helse og diagnose eller andre opplysninger som kan knyttes til en enkeltperson. Les mer om personopplysninger hos <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
+  "felter.melding.beskrivelse": `Ikke send person- eller helseopplysninger om deg selv eller andre. Les mer om personopplysninger hos <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
+  "felter.melding.pakrevde": "Du må fylle ut alle feltene.",
   "felter.noegikkgalt":
     "Oi! Det skjedde en teknisk feil ved innsending av skjemaet, prøv igjen senere.",
-  "felter.send": "Send",
+  "felter.send": "Send tilbakemelding",
   "felter.tilbake": "Tilbake",
   "felter.hvemroses.tittel": "Hvem vil du gi ros til?",
   "felter.hvemroses.navkontaktsenter": "NAV Kontaktsenter",
