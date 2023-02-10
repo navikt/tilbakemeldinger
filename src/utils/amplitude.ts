@@ -1,49 +1,33 @@
-import amplitude from "amplitude-js";
+import { logAmplitudeEvent as logAmplitudeEventDecorator } from "@navikt/nav-dekoratoren-moduler";
 
-export const initAmplitude = () => {
-  amplitude?.getInstance().init("default", "", {
-    apiEndpoint: "amplitude.nav.no/collect-auto",
-    saveEvents: false,
-    includeUtm: true,
-    includeReferrer: true,
-    platform: window.location.toString(),
-  });
-};
-
-const logAmplitudeEventProd = (eventName: string, data?: any): Promise<any> => {
-  return new Promise(function (resolve: any) {
-    const eventData = data || {};
-    eventData.app = "tilbakemeldinger";
-    eventData.origin = "tilbakemeldinger";
-    eventData.originVersion = "unknown";
-    amplitude?.getInstance().logEvent(eventName, eventData, resolve);
-  });
+const logAmplitudeEventProd = (eventName: string, data?: any) => {
+    logAmplitudeEventDecorator({origin: "tilbakemeldinger", eventName, eventData: data});
 };
 
 const logAmplitudeEventDev = (eventName: string, data?: any) => {
-  console.log(
-    `Amplitude event fired: ${eventName} - data: ${JSON.stringify(data)}`
-  );
+    console.log(
+        `Amplitude event fired: ${eventName} - data: ${JSON.stringify(data)}`
+    );
 };
 
 export const logAmplitudeEvent =
-  process.env.NODE_ENV === "development"
-    ? logAmplitudeEventDev
-    : logAmplitudeEventProd;
+    process.env.NODE_ENV === "development"
+        ? logAmplitudeEventDev
+        : logAmplitudeEventProd;
 
 export const logLinkClick = (
-  href: string,
-  linkText: string | undefined,
-  linkGroup?: string
+    href: string,
+    linkText: string | undefined,
+    linkGroup?: string
 ) => {
-  logAmplitudeEvent("navigere", {
-    destinasjon: href,
-    lenketekst: linkText,
-    lenkegruppe: linkGroup,
-  });
+    logAmplitudeEvent("navigere", {
+        destinasjon: href,
+        lenketekst: linkText,
+        lenkegruppe: linkGroup,
+    });
 };
 
 export const logPageview = (title: string) =>
-  logAmplitudeEvent("sidevisning", {
-    sidetittel: title,
-  });
+    logAmplitudeEvent("sidevisning", {
+        sidetittel: title,
+    });
