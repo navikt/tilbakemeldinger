@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import { Link } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import { urls } from "../../Config";
@@ -54,12 +54,12 @@ const Lenkepanel = (props: Props) => {
                 <FormattedMessage
                   id={props.beskrivelse}
                   values={{
-                    KlagerettigheterLenke: (text: string) => (
+                    KlagerettigheterLenke: (children: ReactNode[]) => (
                       <a
                         className={"lenke"}
                         href={urls.tilbakemeldinger.klagerettigheter[locale]}
                       >
-                        {text}
+                        {children}
                       </a>
                     ),
                   }}

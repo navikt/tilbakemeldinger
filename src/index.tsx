@@ -48,7 +48,6 @@ const RenderApp = () => {
 
   useEffect(() => {
     setLocaleFromUrl(dispatch);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
