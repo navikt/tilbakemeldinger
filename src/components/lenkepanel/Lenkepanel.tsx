@@ -1,10 +1,10 @@
 import React, {ReactNode} from "react";
 import { Link } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
-import { urls } from "../../Config";
-import { useStore } from "../../providers/Provider";
-import { logLinkClick } from "../../utils/amplitude";
-import { BodyShort, Heading, LinkPanel } from "@navikt/ds-react";
+import { urls } from "Config";
+import { useStore } from "providers/Provider";
+import { logLinkClick } from "utils/amplitude";
+import { BodyLong, Heading, LinkPanel } from "@navikt/ds-react";
 
 export interface Props {
   id: string;
@@ -50,7 +50,7 @@ const Lenkepanel = (props: Props) => {
           </div>
           {props.beskrivelse && (
             <div className="linkbox__beskrivelse">
-              <BodyShort>
+              <BodyLong>
                 <FormattedMessage
                   id={props.beskrivelse}
                   values={{
@@ -64,7 +64,7 @@ const Lenkepanel = (props: Props) => {
                     ),
                   }}
                 />
-              </BodyShort>
+              </BodyLong>
             </div>
           )}
         </div>
