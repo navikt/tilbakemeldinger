@@ -1,5 +1,4 @@
 // Functions
-// @ts-ignore
 if (!global || !global._babelPolyfill) {
   require("babel-polyfill");
 }

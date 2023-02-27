@@ -59,7 +59,6 @@ const SelectEnhet = React.forwardRef((props: Props, ref: ForwardedRef<any>) => {
       .catch((error: HTTPError) => {
         dispatch({ type: "SETT_ENHETER_ERROR", payload: error });
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const comboBoxLabel = () => (
