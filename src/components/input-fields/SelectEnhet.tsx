@@ -1,8 +1,8 @@
 import React, { ForwardedRef, useEffect } from "react";
-import { useStore } from "../../providers/Provider";
+import { useStore } from "providers/Provider";
 import { FormattedMessage, useIntl } from "react-intl";
-import { fetchEnheter } from "../../clients/apiClient";
-import { Enhet } from "../../types/enheter";
+import { fetchEnheter } from "clients/apiClient";
+import { Enhet } from "types/enheter";
 import { HTTPError } from "types/errors";
 import Combobox from "./EnhetCombobox";
 import { ErrorMessage, Label, Loader } from "@navikt/ds-react";
@@ -23,7 +23,7 @@ interface Props {
   value?: Option;
 }
 
-const SelectEnhet = React.forwardRef((props: Props, ref: ForwardedRef<any>) => {
+const SelectEnhet = (props: Props, ref: ForwardedRef<any>) => {
   const { submitted, error, label, onChange, value, triggerValidation } = props;
 
   // Trigger validering etter mount dersom form er submitted
@@ -105,6 +105,6 @@ const SelectEnhet = React.forwardRef((props: Props, ref: ForwardedRef<any>) => {
       )}
     </div>
   );
-});
+};
 
-export default SelectEnhet;
+export default React.forwardRef(SelectEnhet);
