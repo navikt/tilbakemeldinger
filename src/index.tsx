@@ -1,6 +1,6 @@
 import "./polyfills";
 import React, { useEffect } from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { IntlProvider } from "react-intl";
 
 import App from "./App";
@@ -33,12 +33,12 @@ const init = async () => {
       port: 8100,
     });
   }
-
-  ReactDOM.render(
+  const container = document.getElementById('app');
+  const root = createRoot(container!);
+  root.render(
     <StoreProvider initialState={initialState} reducer={reducer}>
       <RenderApp />
-    </StoreProvider>,
-    document.getElementById("app")
+    </StoreProvider>
   );
   serviceWorker.unregister();
 };
