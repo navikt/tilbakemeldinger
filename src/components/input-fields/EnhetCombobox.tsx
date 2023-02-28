@@ -29,7 +29,6 @@ const Combobox = React.forwardRef((props: Props, ref: ForwardedRef<any>) => {
     getLabelProps,
     getMenuProps,
     getInputProps,
-    getComboboxProps,
     highlightedIndex,
     getItemProps,
   } = useCombobox({
@@ -70,7 +69,7 @@ const Combobox = React.forwardRef((props: Props, ref: ForwardedRef<any>) => {
   return (
     <>
       <label {...getLabelProps()}>{label}</label>
-      <div {...getComboboxProps()} className={`${cssPrefix}__inputWrapper`}>
+      <div className={`${cssPrefix}__inputWrapper`}>
         <input
           ref={ref}
           {...getInputProps()}
