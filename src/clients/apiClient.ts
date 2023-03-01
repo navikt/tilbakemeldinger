@@ -1,9 +1,9 @@
 import Environment from "../Environments";
-import {HTTPError} from "types/errors";
-import {OutboundRosTilNav} from "../pages/tilbakemeldinger/ros-til-nav/Ros";
-import {OutboundFeilOgMangler} from "../pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
-import {OutboundServiceKlage} from "../pages/tilbakemeldinger/service-klage/ServiceKlage";
-import {BadRequest} from "../types/errors";
+import { HTTPError } from "types/errors";
+import { OutboundRosTilNav } from "pages/tilbakemeldinger/ros-til-nav/Ros";
+import { OutboundFeilOgMangler } from "pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
+import { OutboundServiceKlage } from "pages/tilbakemeldinger/service-klage/ServiceKlage";
+import { BadRequest } from "types/errors";
 
 const { appUrl, personInfoApiUrl, authUrl } = Environment();
 
@@ -20,10 +20,11 @@ const hentJson = (url: string) =>
     .then((response) => sjekkForFeil(url, response))
     .then(parseJson)
     .catch((err: string & HTTPError) => {
-        throw {
-          code: err.code || 404,
-          text: err.text || err,
+      const error = {
+        code: err.code || 404,
+        text: err.text || err,
       };
+      throw error;
     });
 
 export const fetchEnheter = () => hentJson(`${appUrl}/enheter`);
@@ -55,10 +56,11 @@ const sendJson = (url: string, data: Outbound) => {
     .then((response) => sjekkForFeil(url, response))
     .then(parseJson)
     .catch((err: string & HTTPError) => {
-        throw {
-          code: err.code || 404,
-          text: err.text || err,
+      const error = {
+        code: err.code || 404,
+        text: err.text || err,
       };
+      throw error;
     });
 };
 
@@ -81,12 +83,13 @@ const sjekkForFeil = async (url: string, response: Response) => {
   if (response.ok) {
     return response;
   } else {
-      throw {
-        code: response.status,
-        text:
-            response.status === 400
-                ? await parseJson(response).then((data: BadRequest) => data.message)
-                : response.statusText,
+    const error = {
+      code: response.status,
+      text:
+        response.status === 400
+          ? await parseJson(response).then((data: BadRequest) => data.message)
+          : response.statusText,
     };
+    throw error;
   }
 };
