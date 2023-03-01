@@ -14,7 +14,7 @@ const LoginModal = ({ closeFunc }: Props) => {
     <div role="region" className="login-modal">
       <Heading level="2" size="small" className="login-modal__title">
         <FormattedMessage
-          id={"tilbakemeldinger.serviceklage.login.overskrift"}
+          id="tilbakemeldinger.serviceklage.login.overskrift"
         />
       </Heading>
       <BodyLong spacing={true} className="login-modal__info">
@@ -39,9 +39,7 @@ const LoginModal = ({ closeFunc }: Props) => {
             closeFunc();
           }}
         >
-          <FormattedMessage
-            id="tilbakemeldinger.serviceklage.login.knapp.fortsettuten"
-          />
+          <FormattedMessage id="tilbakemeldinger.serviceklage.login.knapp.fortsettuten" />
         </Button>
       </div>
     </div>
