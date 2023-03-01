@@ -23,7 +23,7 @@ interface Props {
   value?: Option;
 }
 
-const SelectEnhet = (props: Props, ref: ForwardedRef<any>) => {
+const SelectEnhet = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
   const { submitted, error, label, onChange, value, triggerValidation } = props;
 
   // Trigger validering etter mount dersom form er submitted

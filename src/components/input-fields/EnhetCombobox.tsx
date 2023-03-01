@@ -18,7 +18,7 @@ interface Props {
   value?: Option;
 }
 
-const Combobox = (props: Props, ref: ForwardedRef<any>) => {
+const Combobox = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
   const { data, harFeil, label, onChange } = props;
   const [inputItems, setInputItems] = useState(data);
   const intl = useIntl();
