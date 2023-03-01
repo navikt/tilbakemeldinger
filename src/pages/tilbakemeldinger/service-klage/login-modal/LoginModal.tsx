@@ -11,36 +11,36 @@ type Props = {
 
 const LoginModal = ({ closeFunc }: Props) => {
   return (
-    <div className={"login-modal"}>
-      <Heading level={"2"} size={"small"} className={"login-modal__title"}>
+    <div role="region" className="login-modal">
+      <Heading level="2" size="small" className="login-modal__title">
         <FormattedMessage
           id={"tilbakemeldinger.serviceklage.login.overskrift"}
         />
       </Heading>
       <BodyLong spacing={true} className="login-modal__info">
         <FormattedMessage
-          id={"tilbakemeldinger.serviceklage.login.beskrivelse"}
+          id="tilbakemeldinger.serviceklage.login.beskrivelse"
           values={{ br: () => <br /> }}
         />
       </BodyLong>
       <div className="login-modal__buttons">
         <Button
-          variant={"primary"}
-          as={"a"}
+          variant="primary"
+          as="a"
           href={`${loginUrl}?redirect=${window.location.href}`}
         >
-          <FormattedMessage id={"tilbakemeldinger.serviceklage.login.knapp"} />
+          <FormattedMessage id="tilbakemeldinger.serviceklage.login.knapp" />
         </Button>
 
         <Button
-          variant={"tertiary"}
+          variant="tertiary"
           onClick={(e) => {
             e.preventDefault();
             closeFunc();
           }}
         >
           <FormattedMessage
-            id={"tilbakemeldinger.serviceklage.login.knapp.fortsettuten"}
+            id="tilbakemeldinger.serviceklage.login.knapp.fortsettuten"
           />
         </Button>
       </div>

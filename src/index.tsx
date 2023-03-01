@@ -34,7 +34,10 @@ const init = async () => {
     });
   }
   const container = document.getElementById('app');
-  const root = createRoot(container!);
+  if (!container) {
+    return;
+  }
+  const root = createRoot(container);
   root.render(
     <StoreProvider initialState={initialState} reducer={reducer}>
       <RenderApp />
