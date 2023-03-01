@@ -1,9 +1,11 @@
 import { logAmplitudeEvent as logAmplitudeEventDecorator } from "@navikt/nav-dekoratoren-moduler";
 
+// eslint-disable-next-line
 const logAmplitudeEventProd = (eventName: string, data?: any) => {
     logAmplitudeEventDecorator({origin: "tilbakemeldinger", eventName, eventData: data});
 };
 
+// eslint-disable-next-line
 const logAmplitudeEventDev = (eventName: string, data?: any) => {
     console.log(
         `Amplitude event fired: ${eventName} - data: ${JSON.stringify(data)}`

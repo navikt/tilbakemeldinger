@@ -11,7 +11,7 @@ import { initialState, reducer } from "./providers/Store";
 import msgsNb from "./language/nb";
 import msgsEn from "./language/en";
 import msgsNn from "./language/nn";
-import { Locale, setLocaleFromUrl } from "./utils/locale";
+import { setLocaleFromUrl } from "./utils/locale";
 import { injectDecoratorClientSide } from "@navikt/nav-dekoratoren-moduler";
 
 // If you want your app to work offline and load faster, you can change
@@ -19,7 +19,7 @@ import { injectDecoratorClientSide } from "@navikt/nav-dekoratoren-moduler";
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-const messages: { [key in Locale]: any } = {
+const messages = {
   nb: msgsNb,
   en: msgsEn,
   nn: msgsNn,

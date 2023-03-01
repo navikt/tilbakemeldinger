@@ -1,5 +1,6 @@
 declare global {
   interface Window {
+    // eslint-disable-next-line
     hj: any;
   }
 }
