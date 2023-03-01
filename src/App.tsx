@@ -98,7 +98,7 @@ const App = () => {
               key={key++}
             />,
           ])}
-          <Route element={<RedirectToLocaleOrError />} />
+          <Route path="*" element={<RedirectToLocaleOrError />} />
         </Routes>
       </ScrollToTop>
     </BrowserRouter>
