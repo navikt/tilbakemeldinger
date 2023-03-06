@@ -1,7 +1,11 @@
+declare global {
+  interface Window {
+    // eslint-disable-next-line
+    hj: any;
+  }
+}
 export const triggerHotjar = (id: string) => {
-  // @ts-ignore
   if (window.hj) {
-    // @ts-ignore
     window.hj("trigger", id);
   }
 };

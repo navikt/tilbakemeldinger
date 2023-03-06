@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
-import { RouteComponentProps, withRouter } from "react-router";
+import { useLocation } from "react-router";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
 }
 
-type MergedProps = Props & RouteComponentProps;
-const ScrollToTop = ({ location, children }: MergedProps) => {
+const ScrollToTop = (props: Props) => {
+  const location = useLocation();
+  const {children} = props;
+
   useEffect(() => {
     const anchorId = location.hash.replace("#", "");
     const element = window.document.getElementById(anchorId);
@@ -20,4 +22,4 @@ const ScrollToTop = ({ location, children }: MergedProps) => {
   return <>{children}</> || null;
 };
 
-export default withRouter(ScrollToTop);
+export default ScrollToTop;

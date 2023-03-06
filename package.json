@@ -7,7 +7,7 @@
   "homepage": "/person/kontakt-oss/tilbakemeldinger",
   "scripts": {
     "start": "npm-run-all -p start:*",
-    "start:lint": "tslint src/**/*.ts*",
+    "start:lint": "eslint src/**/*.ts*",
     "start:ts": "react-scripts start",
     "start:less": "less-watch-compiler",
     "build:css": "less-watch-compiler --run-once",
@@ -21,45 +21,47 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "dependencies": {
-    "@navikt/ds-css": "2.0.5",
-    "@navikt/ds-icons": "2.0.5",
-    "@navikt/ds-react": "2.0.5",
-    "@navikt/fnrvalidator": "1.3.0",
+    "@navikt/ds-css": "2.3.1",
+    "@navikt/ds-icons": "2.3.1",
+    "@navikt/ds-react": "2.3.1",
+    "@navikt/fnrvalidator": "1.3.3",
     "@navikt/nav-dekoratoren-moduler": "1.9.0",
-    "babel-polyfill": "6.26.0",
     "classnames": "2.3.2",
-    "downshift": "6.1.12",
+    "core-js": "3.29.0",
+    "downshift": "7.2.1",
     "intl": "1.2.5",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-hook-form": "7.42.1",
-    "react-intl": "5.25.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "7.43.2",
+    "react-intl": "6.2.10",
     "react-meta-tags": "1.0.1",
     "react-modal": "3.16.1",
-    "react-router-dom": "5.3.4",
-    "react-router": "5.3.4"
+    "react-router": "6.8.1",
+    "react-router-dom": "6.8.1"
   },
   "optionalDependencies": {
-    "fsevents": "^2.3.2"
+    "fsevents": "2.3.2"
   },
   "devDependencies": {
     "@types/amplitude-js": "8.16.2",
     "@types/fetch-mock": "7.3.5",
-    "@types/jest": "29.2.2",
-    "@types/node": "18.11.9",
-    "@types/react": "17.0.50",
-    "@types/react-dom": "17.0.17",
+    "@types/jest": "29.4.0",
+    "@types/node": "18.14.0",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
     "@types/react-router-dom": "5.3.3",
+    "@typescript-eslint/eslint-plugin": "5.53.0",
+    "@typescript-eslint/parser": "5.53.0",
+    "eslint": "8.34.0",
+    "eslint-plugin-react": "7.32.2",
     "fetch-mock": "9.11.0",
     "less-plugin-npm-import": "2.1.0",
     "less-watch-compiler": "1.16.3",
     "npm-run-all": "4.1.5",
-    "prettier": "2.7.1",
+    "prettier": "2.8.4",
     "react-scripts": "5.0.1",
     "source-map-explorer": "2.5.3",
-    "tslint": "6.1.3",
-    "tslint-react": "5.0.0",
-    "typescript": "4.8.4"
+    "typescript": "4.9.5"
   },
   "eslintConfig": {
     "extends": "react-app"

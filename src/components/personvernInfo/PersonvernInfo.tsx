@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import { FormattedMessage } from "react-intl";
 import { BodyLong, Link } from "@navikt/ds-react";
 import { urls } from "Config";
@@ -12,12 +12,12 @@ export const PersonvernInfo = () => (
           <FormattedMessage
             id={"felter.melding.beskrivelse"}
             values={{
-              DatatilsynetLenke: (text: string) => (
+              DatatilsynetLenke: (children: ReactNode[]) => (
                 <Link
                   className={"lenke"}
                   href={urls.tilbakemeldinger.serviceklage.datatilsynet}
                 >
-                  {text}
+                  {children}
                 </Link>
               ),
             }}

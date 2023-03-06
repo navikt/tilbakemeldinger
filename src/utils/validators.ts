@@ -14,4 +14,4 @@ export const isValidTelefonnummer = (value: string) =>
 
 // Brukes for å sjekke om boolske verdier er satt.
 // Kan ikke bruke innebygd required, da denne likestiller null/undefined/false.
-export const isBoolean = (value: any) => typeof value === "boolean";
+export const isBoolean = (value: unknown) => typeof value === "boolean";

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Tilbakemeldinger from "./pages/tilbakemeldinger/Tilbakemeldinger";
 import Ros from "./pages/tilbakemeldinger/ros-til-nav/Ros";
 import PageNotFound from "./pages/404/404";
@@ -58,52 +58,48 @@ const App = () => {
     <BrowserRouter>
       <DecoratorWidgets />
       <ScrollToTop>
-        <Switch>
+        <Routes>
           {validLocales.flatMap((locale) => [
             <Route
-              exact={true}
               path={localePath(paths.tilbakemeldinger.forside, locale)}
-              component={Tilbakemeldinger}
+              element={<Tilbakemeldinger />}
               key={key++}
             />,
             <Route
-              exact={true}
               path={localePath(
                 paths.tilbakemeldinger.serviceklage.login,
                 locale
               )}
-              render={() =>
-                (window.location.href = localePath(
+              element={
+                <Navigate to={localePath(
                   paths.tilbakemeldinger.serviceklage.form,
                   locale
-                ))
+                  )}
+                />
               }
               key={key++}
             />,
             <Route
-              exact={true}
               path={localePath(
                 paths.tilbakemeldinger.serviceklage.form,
                 locale
               )}
-              component={ServiceKlage}
+              element={<ServiceKlage />}
               key={key++}
             />,
             <Route
-              exact={true}
               path={localePath(paths.tilbakemeldinger.rostilnav, locale)}
-              component={Ros}
+              element={<Ros />}
               key={key++}
             />,
             <Route
-              exact={true}
               path={localePath(paths.tilbakemeldinger.feilogmangler, locale)}
-              component={FeilOgMangler}
+              element={<FeilOgMangler />}
               key={key++}
             />,
           ])}
-          <Route component={RedirectToLocaleOrError} />
-        </Switch>
+          <Route path="*" element={<RedirectToLocaleOrError />} />
+        </Routes>
       </ScrollToTop>
     </BrowserRouter>
   );
@@ -116,7 +112,7 @@ const RedirectToLocaleOrError = () => {
 
   if (!isLocaleUrl) {
     const subPath = window.location.pathname.split(forsidePath)[1];
-    return <Redirect to={localePath(subPath ? subPath : "", defaultLocale)} />;
+    return <Navigate to={localePath(subPath ? subPath : "", defaultLocale)} />;
   }
   return <PageNotFound />;
 };

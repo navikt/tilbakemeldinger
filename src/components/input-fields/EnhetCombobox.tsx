@@ -18,7 +18,7 @@ interface Props {
   value?: Option;
 }
 
-const Combobox = React.forwardRef((props: Props, ref: ForwardedRef<any>) => {
+const Combobox = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
   const { data, harFeil, label, onChange } = props;
   const [inputItems, setInputItems] = useState(data);
   const intl = useIntl();
@@ -29,7 +29,6 @@ const Combobox = React.forwardRef((props: Props, ref: ForwardedRef<any>) => {
     getLabelProps,
     getMenuProps,
     getInputProps,
-    getComboboxProps,
     highlightedIndex,
     getItemProps,
   } = useCombobox({
@@ -70,7 +69,7 @@ const Combobox = React.forwardRef((props: Props, ref: ForwardedRef<any>) => {
   return (
     <>
       <label {...getLabelProps()}>{label}</label>
-      <div {...getComboboxProps()} className={`${cssPrefix}__inputWrapper`}>
+      <div className={`${cssPrefix}__inputWrapper`}>
         <input
           ref={ref}
           {...getInputProps()}
@@ -110,6 +109,6 @@ const Combobox = React.forwardRef((props: Props, ref: ForwardedRef<any>) => {
       </ul>
     </>
   );
-});
+};
 
-export default Combobox;
+export default React.forwardRef(Combobox);

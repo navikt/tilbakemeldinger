@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useIntl } from "react-intl";
 import { useStore } from "providers/Provider";
 import { Locale, setNewLocale } from "utils/locale";
@@ -15,7 +15,7 @@ const basePathFilter = new RegExp(`${forsidePath}/(nb|nn|en)?`, "i");
 
 export const DecoratorWidgets = () => {
   const { pathname } = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [{ locale }, dispatch] = useStore();
   const { formatMessage } = useIntl();
 
@@ -24,7 +24,7 @@ export const DecoratorWidgets = () => {
   });
 
   onBreadcrumbClick((breadcrumb) => {
-    history.push(breadcrumb.url);
+    navigate(breadcrumb.url);
   });
 
   // Set languages in decorator
@@ -74,7 +74,6 @@ export const DecoratorWidgets = () => {
 
     setBreadcrumbs([baseBreadcrumb, ...internalBreadcrumbs]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, locale]);
 
   return null;
