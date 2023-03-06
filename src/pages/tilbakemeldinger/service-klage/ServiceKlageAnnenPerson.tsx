@@ -101,7 +101,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                 id: "felter.fullmakt.nei",
               })}
             </Radio>{" "}
-            {!watch().innmelderHarFullmakt && (
+            {watch().innmelderHarFullmakt === false && (
               <Alert variant={"warning"}>
                 <FormattedMessage
                   id={"felter.fullmakt.advarsel"}

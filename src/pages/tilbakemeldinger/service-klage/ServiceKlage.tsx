@@ -339,7 +339,7 @@ const ServiceKlage = () => {
                   />
                 </div>
                 {(watch().paaVegneAv !== "ANNEN_PERSON" ||
-                  !watch().innmelderHarFullmakt) && (
+                  watch().innmelderHarFullmakt !== false) && (
                   <ServiceKlageOnskerAaKontaktes
                     innmelderNavn={innmelderNavn}
                   />
