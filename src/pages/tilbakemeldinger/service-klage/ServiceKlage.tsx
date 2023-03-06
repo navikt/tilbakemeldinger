@@ -53,7 +53,7 @@ export interface ServiceklageFormFields {
   innmelderTlfnr: string;
   innmelderFnr: string;
   innmelderRolle: string;
-  innmelderHarFullmakt: boolean;
+  innmelderHarFullmakt: boolean | undefined;
   paaVegneAvNavn: string;
   paaVegneAvFodselsnr: string;
   enhetsnummerPaaklaget: {
