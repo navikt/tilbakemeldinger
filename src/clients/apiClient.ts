@@ -1,9 +1,8 @@
 import Environment from "../Environments";
-import { HTTPError } from "types/errors";
-import { OutboundRosTilNav } from "../pages/tilbakemeldinger/ros-til-nav/Ros";
-import { OutboundFeilOgMangler } from "../pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
-import { OutboundServiceKlage } from "../pages/tilbakemeldinger/service-klage/ServiceKlage";
-import { BadRequest } from "../types/errors";
+import { HTTPError, BadRequest } from "types/errors";
+import { OutboundRosTilNav } from "pages/tilbakemeldinger/ros-til-nav/Ros";
+import { OutboundFeilOgMangler } from "pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler";
+import { OutboundServiceKlage } from "pages/tilbakemeldinger/service-klage/ServiceKlage";
 
 const { appUrl, personInfoApiUrl, authUrl } = Environment();
 
@@ -77,7 +76,7 @@ export const postFeilOgMangler = (data: OutboundFeilOgMangler) =>
     Utils
  */
 
-const parseJson = (data: any) => data.json();
+const parseJson = (data: Response) => data.json();
 
 const sjekkForFeil = async (url: string, response: Response) => {
   if (response.ok) {

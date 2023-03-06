@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import VeilederIcon from "assets/icons/Veileder.svg";
 import { useStore } from "providers/Provider";
 import { postServiceKlage } from "clients/apiClient";
@@ -53,7 +53,7 @@ export interface ServiceklageFormFields {
   innmelderTlfnr: string;
   innmelderFnr: string;
   innmelderRolle: string;
-  innmelderHarFullmakt: boolean;
+  innmelderHarFullmakt: boolean | undefined;
   paaVegneAvNavn: string;
   paaVegneAvFodselsnr: string;
   enhetsnummerPaaklaget: {
@@ -178,6 +178,10 @@ const ServiceKlage = () => {
       });
   };
 
+  useEffect(() => {
+    Modal.setAppElement("#app");
+  }, []);
+
   return (
     <div className="pagecontent">
       <MetaTags
@@ -190,14 +194,10 @@ const ServiceKlage = () => {
           id: "tilbakemeldinger.serviceklage.form.tittel",
         })}
       />
-      <Modal
-        open={auth.loaded && !auth.authenticated && !loginClosed}
-        onClose={closeModal}
-      >
-        <Modal.Content>
-          <LoginModal closeFunc={closeModal} />
-        </Modal.Content>
-      </Modal>
+      <LoginModal
+          open={auth.loaded && !auth.authenticated && !loginClosed}
+          closeFunc={closeModal}
+      />
       <div className={"tb__veileder"}>
         <GuidePanel
           illustration={<img src={VeilederIcon} alt="" />}

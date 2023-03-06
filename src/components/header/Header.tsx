@@ -1,12 +1,11 @@
 import React from "react";
-import { RouteComponentProps, withRouter } from "react-router";
 import { Heading } from "@navikt/ds-react";
 
 interface Props {
   title?: string;
 }
 
-const Header = (props: Props & RouteComponentProps) => (
+const Header = (props: Props) => (
   <div className="header">
     {props.title && (
       <Heading size={"large"} level={"1"} className="header__tittel">
@@ -16,4 +15,4 @@ const Header = (props: Props & RouteComponentProps) => (
   </div>
 );
 
-export default withRouter(Header);
+export default Header;

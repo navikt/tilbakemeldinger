@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import VeilederIcon from "assets/icons/Veileder.svg";
-import { withRouter } from "react-router-dom";
 import InputMelding from "components/input-fields/InputMelding";
 import { postFeilOgMangler } from "clients/apiClient";
 import { HTTPError } from "types/errors";
@@ -188,4 +187,4 @@ const FOM = () => {
     </div>
   );
 };
-export default withRouter(FOM);
+export default FOM;

@@ -1,9 +1,8 @@
 import React, { ForwardedRef } from "react";
-import { vars } from "../../Config";
+import { vars } from "Config";
 import { Textarea, TextareaProps } from "@navikt/ds-react";
 
-const InputMelding = React.forwardRef(
-  (props: TextareaProps, ref: ForwardedRef<any>) => {
+const InputMelding = (props: TextareaProps, ref: ForwardedRef<HTMLTextAreaElement>) => {
     return (
       <div>
         <Textarea
@@ -14,7 +13,6 @@ const InputMelding = React.forwardRef(
         />
       </div>
     );
-  }
-);
+};
 
-export default InputMelding;
+export default React.forwardRef(InputMelding);

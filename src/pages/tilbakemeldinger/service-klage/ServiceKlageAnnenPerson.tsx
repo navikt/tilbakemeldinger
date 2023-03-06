@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { urls } from "../../../Config";
 import { Alert, Link, Radio, RadioGroup, TextField } from "@navikt/ds-react";
@@ -106,13 +106,13 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                 <FormattedMessage
                   id={"felter.fullmakt.advarsel"}
                   values={{
-                    FullmaktskjemaLenke: (text: string) => (
+                    FullmaktskjemaLenke: (children: ReactNode[]) => (
                       <Link
                         href={urls.tilbakemeldinger.serviceklage.fullmaktskjema}
                         rel="noopener noreferrer"
                         target="_blank"
                       >
-                        {text}
+                        {children}
                       </Link>
                     ),
                   }}
