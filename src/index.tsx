@@ -1,18 +1,18 @@
 import "./polyfills";
 import React, { useEffect } from "react";
-import { createRoot } from "react-dom/client";
 import { IntlProvider } from "react-intl";
-
-import App from "./App";
+import { createRoot } from "react-dom/client";
 import * as serviceWorker from "./serviceWorker";
 import { StoreProvider, useStore } from "./providers/Provider";
 import { initialState, reducer } from "./providers/Store";
+import { Provider } from "@navikt/ds-react";
+import { setLocaleFromUrl } from "./utils/locale";
+import { injectDecoratorClientSide } from "@navikt/nav-dekoratoren-moduler";
+import App from "./App";
 
 import msgsNb from "./language/nb";
 import msgsEn from "./language/en";
 import msgsNn from "./language/nn";
-import { setLocaleFromUrl } from "./utils/locale";
-import { injectDecoratorClientSide } from "@navikt/nav-dekoratoren-moduler";
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
@@ -30,18 +30,21 @@ const init = async () => {
     await import("./clients/apiMock").then(({ setUpMock }) => setUpMock());
     injectDecoratorClientSide({
       env: "localhost",
-      port: 8100,
+      port: 8088,
     });
   }
-  const container = document.getElementById('app');
-  if (!container) {
-    return;
-  }
-  const root = createRoot(container);
-  root.render(
-    <StoreProvider initialState={initialState} reducer={reducer}>
-      <RenderApp />
-    </StoreProvider>
+
+  const appElement = document.createElement("div");
+  const rootElement = document.createElement("div");
+  rootElement.appendChild(appElement);
+  document.documentElement.attachShadow({ mode: "open" }).appendChild(rootElement);
+
+  createRoot(appElement).render(
+      <Provider rootElement={rootElement} appElement={appElement}>
+        <StoreProvider initialState={initialState} reducer={reducer}>
+          <RenderApp />
+        </StoreProvider>
+      </Provider>
   );
   serviceWorker.unregister();
 };

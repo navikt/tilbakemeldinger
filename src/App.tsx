@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Modal from "react-modal";
 import Tilbakemeldinger from "./pages/tilbakemeldinger/Tilbakemeldinger";
 import Ros from "./pages/tilbakemeldinger/ros-til-nav/Ros";
 import PageNotFound from "./pages/404/404";
@@ -24,10 +23,6 @@ import "@navikt/ds-css";
 
 const App = () => {
   const [{ auth }, dispatch] = useStore();
-
-    useEffect(() => {
-        Modal.setAppElement("#app");
-    }, []);
 
     useEffect(() => {
     if (!auth.authenticated) {
