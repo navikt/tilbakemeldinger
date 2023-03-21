@@ -29,7 +29,7 @@ const init = async () => {
     await import("./clients/apiMock").then(({ setUpMock }) => setUpMock());
     injectDecoratorClientSide({
       env: "localhost",
-      port: 8088,
+      port: 8100,
     });
   }
 
