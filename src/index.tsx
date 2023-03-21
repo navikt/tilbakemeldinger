@@ -5,7 +5,6 @@ import { createRoot } from "react-dom/client";
 import * as serviceWorker from "./serviceWorker";
 import { StoreProvider, useStore } from "./providers/Provider";
 import { initialState, reducer } from "./providers/Store";
-import { Provider } from "@navikt/ds-react";
 import { setLocaleFromUrl } from "./utils/locale";
 import { injectDecoratorClientSide } from "@navikt/nav-dekoratoren-moduler";
 import App from "./App";
@@ -34,14 +33,14 @@ const init = async () => {
     });
   }
 
-  const appElement = document.getElementById('app') as HTMLElement;
-
-  createRoot(appElement).render(
-      <Provider rootElement={appElement} appElement={appElement}>
-        <StoreProvider initialState={initialState} reducer={reducer}>
+  const container = document.getElementById('app') as HTMLElement;
+  if (!container) {
+      return;
+  }
+  createRoot(container).render(
+      <StoreProvider initialState={initialState} reducer={reducer}>
           <RenderApp />
-        </StoreProvider>
-      </Provider>
+      </StoreProvider>
   );
   serviceWorker.unregister();
 };
