@@ -34,13 +34,10 @@ const init = async () => {
     });
   }
 
-  const appElement = document.createElement("div");
-  const rootElement = document.createElement("div");
-  rootElement.appendChild(appElement);
-  document.documentElement.attachShadow({ mode: "open" }).appendChild(rootElement);
+  const appElement = document.getElementById('app') as HTMLElement;
 
   createRoot(appElement).render(
-      <Provider rootElement={rootElement} appElement={appElement}>
+      <Provider rootElement={appElement} appElement={appElement}>
         <StoreProvider initialState={initialState} reducer={reducer}>
           <RenderApp />
         </StoreProvider>
