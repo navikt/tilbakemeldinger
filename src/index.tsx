@@ -1,18 +1,17 @@
 import "./polyfills";
 import React, { useEffect } from "react";
-import { createRoot } from "react-dom/client";
 import { IntlProvider } from "react-intl";
-
-import App from "./App";
+import { createRoot } from "react-dom/client";
 import * as serviceWorker from "./serviceWorker";
 import { StoreProvider, useStore } from "./providers/Provider";
 import { initialState, reducer } from "./providers/Store";
+import { setLocaleFromUrl } from "./utils/locale";
+import { injectDecoratorClientSide } from "@navikt/nav-dekoratoren-moduler";
+import App from "./App";
 
 import msgsNb from "./language/nb";
 import msgsEn from "./language/en";
 import msgsNn from "./language/nn";
-import { setLocaleFromUrl } from "./utils/locale";
-import { injectDecoratorClientSide } from "@navikt/nav-dekoratoren-moduler";
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
@@ -33,15 +32,15 @@ const init = async () => {
       port: 8100,
     });
   }
-  const container = document.getElementById('app');
+
+  const container = document.getElementById('app') as HTMLElement;
   if (!container) {
-    return;
+      return;
   }
-  const root = createRoot(container);
-  root.render(
-    <StoreProvider initialState={initialState} reducer={reducer}>
-      <RenderApp />
-    </StoreProvider>
+  createRoot(container).render(
+      <StoreProvider initialState={initialState} reducer={reducer}>
+          <RenderApp />
+      </StoreProvider>
   );
   serviceWorker.unregister();
 };
