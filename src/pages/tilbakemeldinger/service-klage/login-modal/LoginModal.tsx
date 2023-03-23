@@ -18,7 +18,7 @@ const LoginModal = ({ open, closeFunc }: Props) => {
           onClose={closeFunc}
       >
           <Modal.Content>
-             <div role="region" className="login-modal">
+             <div className="login-modal">
               <Heading level="2" id="login-modal-heading" size="small" className="login-modal__title">
                 <FormattedMessage
                   id="tilbakemeldinger.serviceklage.login.overskrift"
