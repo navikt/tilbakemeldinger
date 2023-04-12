@@ -1,3 +1,5 @@
+const fetch = require("node-fetch");
+
 export const objectToQueryString = (params?: object, firstChar = "?") =>
   params
     ? Object.entries(params).reduce(
