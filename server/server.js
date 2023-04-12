@@ -35,16 +35,13 @@ server.post(`${baseUrl}/mottak/:path`, async (req, res) => {
     return fetchErrorResponse(500, "Failed to get authorization header");
   }
 
-  console.log(JSON.stringify(req.body));
-  console.log(req.body);
-
   const response = await fetch(`${process.env.API_URL}/${req.params.path}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: authorizationHeader,
     },
-    body: JSON.stringify(req.body),
+    body: req.body,
   });
 
   if (!response.ok) {
