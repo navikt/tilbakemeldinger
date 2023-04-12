@@ -7,6 +7,6 @@ COPY server server/
 COPY build build/
 
 WORKDIR server
-CMD ["npm", "run", "start"]
+CMD ["node", "./dist/server.js"]
 EXPOSE 8080
 
