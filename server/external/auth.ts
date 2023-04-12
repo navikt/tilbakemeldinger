@@ -54,10 +54,7 @@ export const getAuthorizationHeader = async () => {
     return null;
   }
 
-  const b64BearerToken = `Bearer ${encodeBase64(accessToken.access_token)}`;
-
-  console.log(accessToken.access_token);
-  console.log(b64BearerToken);
+  const b64BearerToken = `Bearer ${accessToken.access_token}`;
 
   cache.set(cacheKey, b64BearerToken, accessToken.expires_in - 60);
 
