@@ -37,6 +37,7 @@ server.post(`${baseUrl}/mottak/:path`, async (req, res) => {
   }
 
   console.log(JSON.stringify(req.body));
+  console.log(req.body);
 
   const response = await fetch(`${process.env.API_URL}/${req.params.path}`, {
     method: "POST",
