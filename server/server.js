@@ -11,7 +11,7 @@ const { getAuthorizationHeader } = require("./external/auth");
 const { fetchErrorResponse } = require("./utils/fetch");
 
 const server = express();
-const buildPath = path.resolve(__dirname, "../build");
+const buildPath = path.resolve(__dirname, "../../build");
 const baseUrl = "/person/kontakt-oss/tilbakemeldinger";
 
 // Parse application/json
