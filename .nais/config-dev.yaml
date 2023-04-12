@@ -33,7 +33,7 @@ spec:
         - application: tilbakemeldingsmottak-api
           namespace: teamserviceklage
       external:
-        - host: dekoratoren.dev.nav.no
+        - host: dekoratoren.ekstern.dev.nav.no
         - host: tilbakemeldingsmottak-gcp.intern.dev.nav.no
   leaderElection: true
   env:
