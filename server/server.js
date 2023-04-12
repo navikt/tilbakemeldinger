@@ -9,6 +9,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 const compression = require("compression");
 const { getAuthorizationHeader } = require("./external/auth");
 const { fetchErrorResponse } = require("./utils/fetch");
+const fetch = require("node-fetch");
 
 const server = express();
 const buildPath = path.resolve(__dirname, "../../build");
@@ -26,22 +27,27 @@ server.get(`${baseUrl}/fodselsnr`, (req, res) =>
   res.send({ fodselsnr: decodeJWT(req.cookies["selvbetjening-idtoken"]).pid })
 );
 
-server.use(
-  createProxyMiddleware([`${baseUrl}/mottak`], {
-    target: process.env.API_URL,
-    pathRewrite: { [`^${baseUrl}/mottak`]: "" },
-    onProxyReq: async (proxyReq, req) => {
-      const authorizationHeader = await getAuthorizationHeader();
+server.post(`${baseUrl}/mottak/:path`, async (req, res) => {
+  const authorizationHeader = await getAuthorizationHeader();
 
-      if (!authorizationHeader) {
-        return fetchErrorResponse(500, "Failed to get authorization header");
-      }
-      // todo: valider selvbetjeningstoken for å sjekke om bruker er innlogget
-      proxyReq.setHeader("Authorization", `Bearer ${authorizationHeader}`);
+  if (!authorizationHeader) {
+    return fetchErrorResponse(500, "Failed to get authorization header");
+  }
+
+  console.log(authorizationHeader);
+  console.log(`${process.env.API_URL}/${req.params.path}`);
+  const response = await fetch(`${process.env.API_URL}/${req.params.path}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: authorizationHeader,
     },
-    changeOrigin: true,
-  })
-);
+    body: req.body,
+  });
+
+  const responseData = await response.json();
+  res.send(responseData);
+});
 
 server.use(
   createProxyMiddleware([`${baseUrl}/enheter`], {
