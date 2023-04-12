@@ -43,7 +43,13 @@ server.post(`${baseUrl}/mottak/:path`, async (req, res) => {
     body: req.body,
   });
 
-  res.send(response);
+  if (!response.ok) {
+    const error = await response.text();
+    return res.status(response.status).send({ error });
+  }
+
+  const responseData = await response.json();
+  res.status(response.status).send(responseData);
 });
 
 server.use(
