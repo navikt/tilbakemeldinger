@@ -30,7 +30,7 @@ const fetchAccessToken = async (): Promise<TokenResponse | null> => {
         grant_type: "client_credentials",
         client_id: process.env.AZURE_APP_CLIENT_ID,
         client_secret: process.env.AZURE_APP_CLIENT_SECRET,
-        scope: `api://${process.env.API_CLIENT_ID}/.default`,
+        scope: `api://dev-gcp.teamserviceklage.tilbakemeldingsmottak-api/.default`,
       },
       ""
     ),
