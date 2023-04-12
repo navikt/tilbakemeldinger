@@ -27,12 +27,16 @@ server.get(`${baseUrl}/fodselsnr`, (req, res) =>
   res.send({ fodselsnr: decodeJWT(req.cookies["selvbetjening-idtoken"]).pid })
 );
 
+server.use(express.json());
+
 server.post(`${baseUrl}/mottak/:path`, async (req, res) => {
   const authorizationHeader = await getAuthorizationHeader();
 
   if (!authorizationHeader) {
     return fetchErrorResponse(500, "Failed to get authorization header");
   }
+
+  console.log(JSON.stringify(req.body));
 
   const response = await fetch(`${process.env.API_URL}/${req.params.path}`, {
     method: "POST",
