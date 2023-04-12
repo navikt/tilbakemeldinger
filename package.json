@@ -12,6 +12,7 @@
     "start:less": "less-watch-compiler",
     "build:css": "less-watch-compiler --run-once",
     "build:js": "react-scripts build",
+    "build:server": "npm run build --workspace server",
     "build": "npm-run-all -p build:*",
     "docker-build": "docker build . -t tilbakemeldinger",
     "docker-start": "docker run --name tilbakemeldinger -p 8080:8080 -t -d tilbakemeldinger",
@@ -20,6 +21,9 @@
     "docker-stop": "docker stop tilbakemeldinger",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
+  "workspaces": [
+    "server"
+  ],
   "dependencies": {
     "@navikt/ds-css": "2.3.1",
     "@navikt/ds-icons": "2.3.1",
