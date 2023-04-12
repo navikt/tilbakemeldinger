@@ -19,6 +19,7 @@ const baseUrl = "/person/kontakt-oss/tilbakemeldinger";
 server.use(compression());
 server.use(baseUrl, express.static(buildPath, { index: false }));
 server.use(cookies());
+server.use(express.json());
 server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
   res.sendStatus(200)
 );
@@ -26,8 +27,6 @@ server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
 server.get(`${baseUrl}/fodselsnr`, (req, res) =>
   res.send({ fodselsnr: decodeJWT(req.cookies["selvbetjening-idtoken"]).pid })
 );
-
-server.use(express.json());
 
 server.post(`${baseUrl}/mottak/:path`, async (req, res) => {
   const authorizationHeader = await getAuthorizationHeader();
