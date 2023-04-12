@@ -1,5 +1,5 @@
-import { fetchJson, objectToQueryString } from "../utils/fetch";
-import Cache from "node-cache";
+const { fetchJson, objectToQueryString } = require("../utils/fetch");
+const Cache = require("node-cache");
 
 const cacheKey = "authHeader";
 

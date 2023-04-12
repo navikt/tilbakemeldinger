@@ -45,11 +45,11 @@ server.use(
 
 server.use(
   createProxyMiddleware([`${baseUrl}/enheter`], {
-      target: process.env.NORG2_URL,
-      pathRewrite: {
-          [`^${baseUrl}/enheter`]: "/norg2/api/v1/enhet?enhetStatusListe=AKTIV",
-      },
-      changeOrigin: true,
+    target: process.env.NORG2_URL,
+    pathRewrite: {
+      [`^${baseUrl}/enheter`]: "/norg2/api/v1/enhet?enhetStatusListe=AKTIV",
+    },
+    changeOrigin: true,
   })
 );
 
