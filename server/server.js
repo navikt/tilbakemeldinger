@@ -6,14 +6,16 @@ const logger = require("./logger");
 const decodeJWT = require("jwt-decode");
 const cookies = require("cookie-parser");
 const { createProxyMiddleware } = require("http-proxy-middleware");
-const compression = require('compression');
+const compression = require("compression");
+const { getAuthorizationHeader } = require("./external/auth");
+const { fetchErrorResponse } = require("./utils/fetch");
 
 const server = express();
 const buildPath = path.resolve(__dirname, "../build");
 const baseUrl = "/person/kontakt-oss/tilbakemeldinger";
 
 // Parse application/json
-server.use(compression())
+server.use(compression());
 server.use(baseUrl, express.static(buildPath, { index: false }));
 server.use(cookies());
 server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
@@ -27,10 +29,15 @@ server.get(`${baseUrl}/fodselsnr`, (req, res) =>
 server.use(
   createProxyMiddleware([`${baseUrl}/mottak`], {
     target: process.env.API_URL,
-    pathRewrite: { [`^${baseUrl}`]: "" },
-    onProxyReq: (proxyReq, req) => {
-      const token = req.cookies["selvbetjening-idtoken"];
-      token && proxyReq.setHeader("Authorization", `Bearer ${token}`);
+    pathRewrite: { [`^${baseUrl}/mottak`]: "" },
+    onProxyReq: async (proxyReq, req) => {
+      const authorizationHeader = await getAuthorizationHeader();
+
+      if (!authorizationHeader) {
+        return fetchErrorResponse(500, "Failed to get authorization header");
+      }
+      // todo: valider selvbetjeningstoken for å sjekke om bruker er innlogget
+      proxyReq.setHeader("Authorization", `Bearer ${authorizationHeader}`);
     },
     changeOrigin: true,
   })
@@ -38,9 +45,11 @@ server.use(
 
 server.use(
   createProxyMiddleware([`${baseUrl}/enheter`], {
-    target: process.env.NORG2_URL,
-    pathRewrite: { [`^${baseUrl}/enheter`]: "/norg2/api/v1/enhet?enhetStatusListe=AKTIV" },
-    changeOrigin: true,
+      target: process.env.NORG2_URL,
+      pathRewrite: {
+          [`^${baseUrl}/enheter`]: "/norg2/api/v1/enhet?enhetStatusListe=AKTIV",
+      },
+      changeOrigin: true,
   })
 );
 
