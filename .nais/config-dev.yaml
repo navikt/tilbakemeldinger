@@ -31,7 +31,7 @@ spec:
           namespace: personbruker
           cluster: dev-fss
       external:
-        - host: dekoratoren.dev.nav.no
+        - host: dekoratoren.ekstern.dev.nav.no
         - host: tilbakemeldinger-api.dev-fss-pub.nais.io
         - host: norg2.dev-fss-pub.nais.io
   leaderElection: true
