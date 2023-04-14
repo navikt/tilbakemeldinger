@@ -33,6 +33,7 @@ spec:
       external:
         - host: dekoratoren.dev.nav.no
         - host: tilbakemeldinger-api.dev-fss-pub.nais.io
+        - host: norg2.dev-fss-pub.nais.io
   leaderElection: true
   env:
     - name: ENV
