@@ -8,12 +8,12 @@ const cookies = require("cookie-parser");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const compression = require("compression");
 const { getAuthorizationHeader } = require("./external/auth");
-const { fetchErrorResponse } = require("./utils/fetch");
 const fetch = require("node-fetch");
 
 const server = express();
 const buildPath = path.resolve(__dirname, "../../build");
 const baseUrl = "/person/kontakt-oss/tilbakemeldinger";
+const validPaths = ["ros", "serviceklage", "feil-og-mangler"];
 
 // Parse application/json
 server.use(compression());
@@ -32,10 +32,16 @@ server.post(`${baseUrl}/mottak/:path`, async (req, res) => {
   const authorizationHeader = await getAuthorizationHeader();
 
   if (!authorizationHeader) {
-    return fetchErrorResponse(500, "Failed to get authorization header");
+    return res.status(500).send("Failed to get authorization header");
   }
 
-  const response = await fetch(`${process.env.API_URL}/${req.params.path}`, {
+  const path = req.params.path;
+
+  if (!validPaths.includes(path)) {
+    return res.status(500).send("Invalid path");
+  }
+
+  const response = await fetch(`${process.env.API_URL}/${path}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
