@@ -34,13 +34,13 @@ spec:
           namespace: teamserviceklage
       external:
         - host: nav.no
-        - host: tilbakemeldingsmottak-gcp.intern.dev.nav.no
+        - host: tilbakemeldingsmottak-gcp.intern.nav.no
   leaderElection: true
   env:
     - name: ENV
       value: prod
     - name: API_URL
-      value: https://tilbakemeldingsmottak-gcp.intern.dev.nav.no/rest
+      value: https://tilbakemeldingsmottak-gcp.intern.nav.no/rest
     - name: NORG2_URL
       value: https://norg2.prod-fss-pub.nais.io
   resources:
