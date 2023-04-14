@@ -9,7 +9,7 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "lib": [
-      "es2021",
+      "es2021"
     ],
     "moduleResolution": "node",
     "module": "NodeNext",
@@ -19,10 +19,6 @@
     "resolveJsonModule": true
   },
   "include": [
-    "**/*",
-    "src/**/*.ts",
-    "src/**/**/*.ts",
-    "../common/**/*.ts",
-    "global.d.ts"
+    "**/*.ts"
   ]
 }
