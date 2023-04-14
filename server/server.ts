@@ -1,3 +1,5 @@
+import { Request, Response } from "express";
+
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
@@ -20,15 +22,16 @@ server.use(compression());
 server.use(baseUrl, express.static(buildPath, { index: false }));
 server.use(cookies());
 server.use(express.json());
-server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
-  res.sendStatus(200)
+server.get(
+  `${baseUrl}/internal/isAlive|isReady`,
+  (req: Request, res: Response) => res.sendStatus(200)
 );
 
-server.get(`${baseUrl}/fodselsnr`, (req, res) =>
+server.get(`${baseUrl}/fodselsnr`, (req: Request, res: Response) =>
   res.send({ fodselsnr: decodeJWT(req.cookies["selvbetjening-idtoken"]).pid })
 );
 
-server.post(`${baseUrl}/mottak/:path`, async (req, res) => {
+server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
   const authorizationHeader = await getAuthorizationHeader();
 
   if (!authorizationHeader) {
@@ -70,14 +73,14 @@ server.use(
 );
 
 // Match everything except internal og static
-server.use(/^(?!.*\/(internal|static)\/).*$/, (req, res) => {
-  const devOrProd = req.headers.host.split(".")[1] === "dev" ? "dev" : "prod";
+server.use(/^(?!.*\/(internal|static)\/).*$/, (req: Request, res: Response) => {
+  const devOrProd = req.headers.host?.split(".")[1] === "dev" ? "dev" : "prod";
   const language = req.originalUrl.indexOf("/en") !== -1 ? "en" : "nb";
   getHtmlWithDecorator(`${buildPath}/index.html`, devOrProd, language)
-    .then((html) => {
+    .then((html: any) => {
       res.send(html);
     })
-    .catch((e) => {
+    .catch((e: any) => {
       logger.error(e);
       res.status(500).send(e);
     });
