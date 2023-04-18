@@ -50,7 +50,7 @@ server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
       "Content-Type": "application/json",
       Authorization: authorizationHeader,
     },
-    body: req.body,
+    body: JSON.stringify(req.body),
   });
 
   if (!response.ok) {
