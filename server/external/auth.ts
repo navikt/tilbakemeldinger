@@ -44,7 +44,7 @@ const fetchAccessToken = async (): Promise<TokenResponse | null> => {
   return response;
 };
 
-export const getAuthorizationHeader = async () => {
+export const getAccessToken = async () => {
   if (cache.has(cacheKey)) {
     return cache.get(cacheKey);
   }
@@ -54,9 +54,9 @@ export const getAuthorizationHeader = async () => {
     return null;
   }
 
-  const b64BearerToken = `Bearer ${accessToken.access_token}`;
+  const bearerToken = `Bearer ${accessToken.access_token}`;
 
-  cache.set(cacheKey, b64BearerToken, accessToken.expires_in - 60);
+  cache.set(bearerToken);
 
-  return b64BearerToken;
+  return bearerToken;
 };
