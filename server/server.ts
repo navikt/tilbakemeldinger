@@ -32,24 +32,23 @@ server.get(`${baseUrl}/fodselsnr`, (req: Request, res: Response) =>
 );
 
 server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
-  const authTokens = [];
-  const accessToken = await getAccessToken();
-  const selvbetjeningToken = req.cookies["selvbetjening-idtoken"];
-
-  if (!accessToken) {
-    return res.status(500).send("Failed to get access token");
-  }
-
-  authTokens.push(accessToken);
-
-  if (selvbetjeningToken) {
-    authTokens.push(`Bearer ${selvbetjeningToken}`);
-  }
-
   const path = req.params.path;
 
   if (!validPaths.includes(path)) {
     return res.status(500).send("Invalid path");
+  }
+
+  const authTokens = [];
+
+  const accessToken = await getAccessToken();
+  if (!accessToken) {
+    return res.status(500).send("Failed to get access token");
+  }
+  authTokens.push(accessToken);
+
+  if (req.params.path === "serviceklage") {
+    const selvbetjeningToken = req.cookies["selvbetjening-idtoken"];
+    selvbetjeningToken && authTokens.push(`Bearer ${selvbetjeningToken}`);
   }
 
   const response = await fetch(`${process.env.API_URL}/${path}`, {
