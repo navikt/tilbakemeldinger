@@ -30,11 +30,13 @@ spec:
   accessPolicy:
     outbound:
       rules:
-        - application: tilbakemeldingsmottak-api
-          namespace: teamserviceklage
+        - application: tilbakemeldinger-api
+          namespace: personbruker
+          cluster: prod-fss
       external:
         - host: nav.no
         - host: tilbakemeldingsmottak-gcp.intern.nav.no
+        - host: norg2.prod-fss-pub.nais.io
   leaderElection: true
   env:
     - name: ENV
@@ -45,7 +47,7 @@ spec:
       value: https://norg2.prod-fss-pub.nais.io
   resources:
     limits:
-      cpu: '3'
-      memory: 768Mi
-    requests:
       memory: 512Mi
+    requests:
+      cpu: 200m
+      memory: 128Mi
