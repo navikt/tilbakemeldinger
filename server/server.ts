@@ -35,22 +35,16 @@ server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
   console.log("Mottatt kall");
   try {
     const authTokens = [];
-    console.log("Henter access token");
     const accessToken = await getAccessToken();
-    console.log("Access token hentet");
-    console.log("Utleder selvbetjeningstoken");
     const selvbetjeningToken = req.cookies["selvbetjening-idtoken"];
 
     if (accessToken) {
-      console.log("Failed to get access token");
       return res.status(500).send("Failed to get access token");
     }
 
-    console.log("Pusher access token");
     authTokens.push(accessToken);
 
     if (selvbetjeningToken) {
-      console.log("Pusher selvbetjeningstoken");
       authTokens.push(`Bearer ${selvbetjeningToken}`);
     }
 
