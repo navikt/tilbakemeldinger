@@ -52,6 +52,8 @@ server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
     return res.status(500).send("Invalid path");
   }
 
+  console.log(authTokens.join());
+
   const response = await fetch(`${process.env.API_URL}/${path}`, {
     method: "POST",
     headers: {
