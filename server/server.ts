@@ -32,43 +32,47 @@ server.get(`${baseUrl}/fodselsnr`, (req: Request, res: Response) =>
 );
 
 server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
-  const authTokens = [];
-  const accessToken = await getAccessToken();
-  const selvbetjeningToken = req.cookies["selvbetjening-idtoken"];
+  try {
+    const authTokens = [];
+    const accessToken = await getAccessToken();
+    const selvbetjeningToken = req.cookies["selvbetjening-idtoken"];
 
-  if (accessToken) {
-    return res.status(500).send("Failed to get access token");
+    if (accessToken) {
+      return res.status(500).send("Failed to get access token");
+    }
+
+    authTokens.push(accessToken);
+
+    if (selvbetjeningToken) {
+      authTokens.push(`Bearer ${selvbetjeningToken}`);
+    }
+
+    const path = req.params.path;
+
+    if (!validPaths.includes(path)) {
+      return res.status(500).send("Invalid path");
+    }
+
+    const response = await fetch(`${process.env.API_URL}/${path}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: authTokens.join(),
+      },
+      body: JSON.stringify(req.body),
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      console.log(`Feil i kall til tilbakemeldingsmottak-api: ${error}`);
+      return res.status(response.status).send({ error });
+    }
+
+    const responseData = await response.json();
+    res.status(response.status).send(responseData);
+  } catch (e) {
+    console.log(e);
   }
-
-  authTokens.push(accessToken);
-
-  if (selvbetjeningToken) {
-    authTokens.push(`Bearer ${selvbetjeningToken}`);
-  }
-
-  const path = req.params.path;
-
-  if (!validPaths.includes(path)) {
-    return res.status(500).send("Invalid path");
-  }
-
-  const response = await fetch(`${process.env.API_URL}/${path}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: authTokens.join(),
-    },
-    body: JSON.stringify(req.body),
-  });
-
-  if (!response.ok) {
-    const error = await response.text();
-    console.log(`Feil i kall til tilbakemeldingsmottak-api: ${error}`);
-    return res.status(response.status).send({ error });
-  }
-
-  const responseData = await response.json();
-  res.status(response.status).send(responseData);
 });
 
 server.use(
