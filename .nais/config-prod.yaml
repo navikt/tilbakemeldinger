@@ -44,7 +44,7 @@ spec:
       value: https://norg2.prod-fss-pub.nais.io
   resources:
     limits:
-      cpu: '3'
-      memory: 768Mi
-    requests:
       memory: 512Mi
+    requests:
+      cpu: 200m
+      memory: 128Mi

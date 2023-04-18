@@ -21,8 +21,8 @@ spec:
     path: /person/kontakt-oss/tilbakemeldinger/internal/isReady
     initialDelay: 10
   replicas:
-    min: 2
-    max: 4
+    min: 1
+    max: 1
   webproxy: true
   accessPolicy:
     outbound:
@@ -44,7 +44,7 @@ spec:
       value: https://norg2.dev-fss-pub.nais.io
   resources:
     limits:
-      cpu: '3'
-      memory: 768Mi
-    requests:
       memory: 512Mi
+    requests:
+      cpu: 50m
+      memory: 96Mi
