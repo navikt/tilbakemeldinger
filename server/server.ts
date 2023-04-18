@@ -9,7 +9,7 @@ const decodeJWT = require("jwt-decode");
 const cookies = require("cookie-parser");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const compression = require("compression");
-const { getAuthorizationHeader } = require("./external/auth");
+const { getAccessToken } = require("./external/auth");
 const fetch = require("node-fetch");
 
 const server = express();
@@ -32,10 +32,18 @@ server.get(`${baseUrl}/fodselsnr`, (req: Request, res: Response) =>
 );
 
 server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
-  const authorizationHeader = await getAuthorizationHeader();
+  const authTokens = [];
+  const accessToken = await getAccessToken();
+  const selvbetjeningToken = req.cookies["selvbetjening-idtoken"];
 
-  if (!authorizationHeader) {
-    return res.status(500).send("Failed to get authorization header");
+  if (accessToken) {
+    return res.status(500).send("Failed to get access token");
+  }
+
+  authTokens.push(accessToken);
+
+  if (selvbetjeningToken) {
+    authTokens.push(`Bearer ${selvbetjeningToken}`);
   }
 
   const path = req.params.path;
@@ -48,7 +56,7 @@ server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: authorizationHeader,
+      Authorization: authTokens.join(),
     },
     body: JSON.stringify(req.body),
   });
