@@ -36,7 +36,7 @@ server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
   const accessToken = await getAccessToken();
   const selvbetjeningToken = req.cookies["selvbetjening-idtoken"];
 
-  if (accessToken) {
+  if (!accessToken) {
     return res.status(500).send("Failed to get access token");
   }
 
