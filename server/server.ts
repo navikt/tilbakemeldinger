@@ -32,7 +32,6 @@ server.get(`${baseUrl}/fodselsnr`, (req: Request, res: Response) =>
 );
 
 server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
-  console.log("Mottatt kall");
   try {
     const authTokens = [];
     const accessToken = await getAccessToken();
@@ -53,8 +52,6 @@ server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
     if (!validPaths.includes(path)) {
       return res.status(500).send("Invalid path");
     }
-
-    console.log(`Antall tokens: ${authTokens.length}`);
 
     const response = await fetch(`${process.env.API_URL}/${path}`, {
       method: "POST",
