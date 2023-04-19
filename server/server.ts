@@ -39,20 +39,19 @@ server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
     return res.status(500).send("Invalid path");
   }
 
-  const audience = `${process.env.ENV}-gcp:teamserviceklage:tilbakemeldingsmottak-api`;
   const selvbetjeningIdToken = req.cookies["selvbetjening-idtoken"];
-
   let accessToken;
 
-  console.log(audience);
-
   if (req.params.path === "serviceklage" && selvbetjeningIdToken) {
-    accessToken = await getTokenxToken(selvbetjeningIdToken, audience);
+    accessToken = await getTokenxToken(
+      selvbetjeningIdToken,
+      `${process.env.ENV}-gcp:teamserviceklage:tilbakemeldingsmottak-api`
+    );
   } else {
-    accessToken = await getAzureadToken(audience);
+    accessToken = await getAzureadToken(
+      `api://${process.env.ENV}-gcp.teamserviceklage.tilbakemeldingsmottak-api/.default`
+    );
   }
-
-  console.log(accessToken);
 
   if (!accessToken) {
     return res.status(500).send("Failed to populate auth header");

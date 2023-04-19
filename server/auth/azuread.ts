@@ -16,11 +16,9 @@ type TokenResponse = {
 };
 
 const fetchAccessToken = async (
-  audience: string
+  scope: string
 ): Promise<TokenResponse | null> => {
   console.log("Refreshing access token...");
-
-  console.log(`api://${audience}/.default`);
 
   const response = await fetchJson(azureAdTokenApi, undefined, {
     method: "POST",
@@ -32,7 +30,7 @@ const fetchAccessToken = async (
         grant_type: "client_credentials",
         client_id: process.env.AZURE_APP_CLIENT_ID,
         client_secret: process.env.AZURE_APP_CLIENT_SECRET,
-        scope: `api://${audience}/.default`,
+        scope: scope,
       },
       ""
     ),
@@ -46,12 +44,12 @@ const fetchAccessToken = async (
   return response;
 };
 
-export const getAzureadToken = async (audience: string) => {
+export const getAzureadToken = async (scope: string) => {
   if (cache.has(cacheKey)) {
     return cache.get(cacheKey);
   }
 
-  const accessToken = await fetchAccessToken(audience);
+  const accessToken = await fetchAccessToken(scope);
   if (!accessToken) {
     return null;
   }
