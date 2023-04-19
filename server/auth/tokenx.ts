@@ -40,7 +40,7 @@ async function client() {
   return _client;
 }
 
-export async function getTokenxToken(subject_token: string, audience?: string) {
+export async function getTokenxToken(subject_token: string, audience: string) {
   const _client = await client();
 
   const now = Math.floor(Date.now() / 1000);

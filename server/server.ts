@@ -39,16 +39,15 @@ server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
     return res.status(500).send("Invalid path");
   }
 
-  let accessToken;
+  const audience = `${process.env.ENV}-gcp:teamserviceklage:tilbakemeldingsmottak-api`;
   const selvbetjeningIdToken = req.cookies["selvbetjening-idtoken"];
 
+  let accessToken;
+
   if (req.params.path === "serviceklage" && selvbetjeningIdToken) {
-    accessToken = await getTokenxToken(
-      selvbetjeningIdToken,
-      process.env.API_AUDIENCE
-    );
+    accessToken = await getTokenxToken(selvbetjeningIdToken, audience);
   } else {
-    accessToken = await getAzureadToken();
+    accessToken = await getAzureadToken(audience);
   }
 
   console.log(accessToken);
