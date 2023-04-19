@@ -20,6 +20,8 @@ const fetchAccessToken = async (
 ): Promise<TokenResponse | null> => {
   console.log("Refreshing access token...");
 
+  console.log(`api://${audience}/.default`);
+
   const response = await fetchJson(azureAdTokenApi, undefined, {
     method: "POST",
     headers: {

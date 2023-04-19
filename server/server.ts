@@ -44,6 +44,8 @@ server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
 
   let accessToken;
 
+  console.log(audience);
+
   if (req.params.path === "serviceklage" && selvbetjeningIdToken) {
     accessToken = await getTokenxToken(selvbetjeningIdToken, audience);
   } else {
