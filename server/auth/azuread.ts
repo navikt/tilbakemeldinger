@@ -15,7 +15,9 @@ type TokenResponse = {
   access_token: string;
 };
 
-const fetchAccessToken = async (): Promise<TokenResponse | null> => {
+const fetchAccessToken = async (
+  audience: string
+): Promise<TokenResponse | null> => {
   console.log("Refreshing access token...");
 
   const response = await fetchJson(azureAdTokenApi, undefined, {
@@ -28,7 +30,7 @@ const fetchAccessToken = async (): Promise<TokenResponse | null> => {
         grant_type: "client_credentials",
         client_id: process.env.AZURE_APP_CLIENT_ID,
         client_secret: process.env.AZURE_APP_CLIENT_SECRET,
-        scope: `api://dev-gcp.teamserviceklage.tilbakemeldingsmottak-api/.default`,
+        scope: `api://${audience}/.default`,
       },
       ""
     ),
@@ -42,17 +44,17 @@ const fetchAccessToken = async (): Promise<TokenResponse | null> => {
   return response;
 };
 
-export const getAzureadToken = async () => {
+export const getAzureadToken = async (audience: string) => {
   if (cache.has(cacheKey)) {
     return cache.get(cacheKey);
   }
 
-  const accessToken = await fetchAccessToken();
+  const accessToken = await fetchAccessToken(audience);
   if (!accessToken) {
     return null;
   }
 
-  cache.set(accessToken);
+  cache.set(accessToken.access_token);
 
-  return accessToken;
+  return accessToken.access_token;
 };
