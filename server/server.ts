@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { getTokenxToken } from "./auth/tokenx";
 
 require("dotenv").config();
 const express = require("express");
@@ -9,7 +10,7 @@ const decodeJWT = require("jwt-decode");
 const cookies = require("cookie-parser");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const compression = require("compression");
-const { getAccessToken } = require("./external/auth");
+const { getAzureadToken } = require("./auth/azuread");
 const fetch = require("node-fetch");
 
 const server = express();
@@ -38,24 +39,29 @@ server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
     return res.status(500).send("Invalid path");
   }
 
-  const authTokens = [];
+  let accessToken;
+  const selvbetjeningIdToken = req.cookies["selvbetjening-idtoken"];
 
-  const accessToken = await getAccessToken();
-  if (!accessToken) {
-    return res.status(500).send("Failed to get access token");
+  if (req.params.path === "serviceklage" && selvbetjeningIdToken) {
+    accessToken = await getTokenxToken(
+      selvbetjeningIdToken,
+      process.env.API_AUDIENCE
+    );
+  } else {
+    accessToken = await getAzureadToken();
   }
-  authTokens.push(accessToken);
 
-  if (req.params.path === "serviceklage") {
-    const selvbetjeningToken = req.cookies["selvbetjening-idtoken"];
-    selvbetjeningToken && authTokens.push(`Bearer ${selvbetjeningToken}`);
+  console.log(accessToken);
+
+  if (!accessToken) {
+    return res.status(500).send("Failed to populate auth header");
   }
 
   const response = await fetch(`${process.env.API_URL}/${path}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: authTokens.join(),
+      Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify(req.body),
   });
