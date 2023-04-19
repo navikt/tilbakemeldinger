@@ -27,6 +27,8 @@ spec:
   azure:
     application:
       enabled: true
+  tokenx:
+    enabled: true
   accessPolicy:
     outbound:
       rules:
@@ -45,6 +47,8 @@ spec:
       value: https://tilbakemeldingsmottak-gcp.intern.dev.nav.no/rest
     - name: NORG2_URL
       value: https://norg2.dev-fss-pub.nais.io
+    - name: API_AUDIENCE
+      value: dev-gcp:teamserviceklage:tilbakemeldingsmottak-api
   resources:
     limits:
       memory: 512Mi

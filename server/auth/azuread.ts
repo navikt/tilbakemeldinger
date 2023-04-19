@@ -9,8 +9,6 @@ const cache = new Cache({
 
 const azureAdTokenApi = `https://login.microsoftonline.com/${process.env.AZURE_APP_TENANT_ID}/oauth2/v2.0/token`;
 
-const encodeBase64 = (str: string) => Buffer.from(str).toString("base64");
-
 type TokenResponse = {
   token_type: "Bearer";
   expires_in: number;
@@ -44,7 +42,7 @@ const fetchAccessToken = async (): Promise<TokenResponse | null> => {
   return response;
 };
 
-export const getAccessToken = async () => {
+export const getAzureadToken = async () => {
   if (cache.has(cacheKey)) {
     return cache.get(cacheKey);
   }
@@ -54,9 +52,7 @@ export const getAccessToken = async () => {
     return null;
   }
 
-  const bearerToken = `Bearer ${accessToken.access_token}`;
+  cache.set(accessToken);
 
-  cache.set(bearerToken);
-
-  return bearerToken;
+  return accessToken;
 };
