@@ -18,6 +18,27 @@ const buildPath = path.resolve(__dirname, "../../build");
 const baseUrl = "/person/kontakt-oss/tilbakemeldinger";
 const validPaths = ["ros", "serviceklage", "feil-og-mangler"];
 
+const getAccessToken = async (req: Request) => {
+  const selvbetjeningIdToken = req.cookies["selvbetjening-idtoken"];
+
+  if (req.params.path === "serviceklage" && selvbetjeningIdToken) {
+    try {
+      return await getTokenxToken(
+        selvbetjeningIdToken,
+        `${process.env.ENV}-gcp:teamserviceklage:tilbakemeldingsmottak-api`
+      );
+    } catch (e) {
+      console.log(
+        "Failed to fetch tokenx token, fetching Azure AD token as fallback"
+      );
+    }
+  }
+
+  return await getAzureadToken(
+    `api://${process.env.ENV}-gcp.teamserviceklage.tilbakemeldingsmottak-api/.default`
+  );
+};
+
 // Parse application/json
 server.use(compression());
 server.use(baseUrl, express.static(buildPath, { index: false }));
@@ -39,19 +60,7 @@ server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
     return res.status(500).send("Invalid path");
   }
 
-  const selvbetjeningIdToken = req.cookies["selvbetjening-idtoken"];
-  let accessToken;
-
-  if (req.params.path === "serviceklage" && selvbetjeningIdToken) {
-    accessToken = await getTokenxToken(
-      selvbetjeningIdToken,
-      `${process.env.ENV}-gcp:teamserviceklage:tilbakemeldingsmottak-api`
-    );
-  } else {
-    accessToken = await getAzureadToken(
-      `api://${process.env.ENV}-gcp.teamserviceklage.tilbakemeldingsmottak-api/.default`
-    );
-  }
+  const accessToken = getAccessToken(req);
 
   if (!accessToken) {
     return res.status(500).send("Failed to populate auth header");
