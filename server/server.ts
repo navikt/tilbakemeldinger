@@ -60,7 +60,7 @@ server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
     return res.status(500).send("Invalid path");
   }
 
-  const accessToken = getAccessToken(req);
+  const accessToken = await getAccessToken(req);
 
   if (!accessToken) {
     return res.status(500).send("Failed to populate auth header");
