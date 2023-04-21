@@ -1,4 +1,6 @@
-const { fetchJson, objectToQueryString } = require("../utils/fetch");
+import * as querystring from "querystring";
+
+const { fetchJson } = require("../utils/fetch");
 const Cache = require("node-cache");
 
 const cacheKey = "authHeader";
@@ -20,20 +22,17 @@ const fetchAccessToken = async (
 ): Promise<TokenResponse | null> => {
   console.log("Refreshing access token...");
 
-  const response = await fetchJson(azureAdTokenApi, undefined, {
+  const response = await fetchJson(azureAdTokenApi, {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    body: objectToQueryString(
-      {
-        grant_type: "client_credentials",
-        client_id: process.env.AZURE_APP_CLIENT_ID,
-        client_secret: process.env.AZURE_APP_CLIENT_SECRET,
-        scope: scope,
-      },
-      ""
-    ),
+    body: querystring.stringify({
+      grant_type: "client_credentials",
+      client_id: process.env.AZURE_APP_CLIENT_ID,
+      client_secret: process.env.AZURE_APP_CLIENT_SECRET,
+      scope: scope,
+    }),
   });
 
   if (!response.access_token) {
@@ -54,7 +53,7 @@ export const getAzureadToken = async (scope: string) => {
     return null;
   }
 
-  cache.set(accessToken.access_token);
+  cache.set(cacheKey, accessToken.access_token, accessToken.expires_in - 60);
 
   return accessToken.access_token;
 };
