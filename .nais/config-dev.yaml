@@ -32,19 +32,17 @@ spec:
   accessPolicy:
     outbound:
       rules:
-        - application: tilbakemeldinger-api
-          namespace: personbruker
-          cluster: dev-fss
+        - application: tilbakemeldingsmottak-api
+          namespace: teamserviceklage
       external:
         - host: dekoratoren.ekstern.dev.nav.no
-        - host: tilbakemeldingsmottak-gcp.intern.dev.nav.no
         - host: norg2.dev-fss-pub.nais.io
   leaderElection: true
   env:
     - name: ENV
       value: dev
     - name: API_URL
-      value: https://tilbakemeldingsmottak-gcp.intern.dev.nav.no/rest
+      value: http://tilbakemeldingsmottak-api.teamserviceklage
     - name: NORG2_URL
       value: https://norg2.dev-fss-pub.nais.io
   resources:

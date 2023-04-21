@@ -66,7 +66,7 @@ server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
     return res.status(500).send("Failed to populate auth header");
   }
 
-  const response = await fetch(`${process.env.API_URL}/${path}`, {
+  const response = await fetch(`${process.env.API_URL}/rest/${path}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
