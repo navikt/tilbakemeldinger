@@ -53,37 +53,36 @@ server.get(`${baseUrl}/fodselsnr`, (req: Request, res: Response) =>
   res.send({ fodselsnr: decodeJWT(req.cookies["selvbetjening-idtoken"]).pid })
 );
 
-server.post(`${baseUrl}/mottak/:path`, async (req: Request, res: Response) => {
-  const path = req.params.path;
+server.post(
+  `${baseUrl}/mottak/:path(ros|serviceklage|feil-og-mangler)`,
+  async (req: Request, res: Response) => {
+    const path = req.params.path;
 
-  if (!validPaths.includes(path)) {
-    return res.status(500).send("Invalid path");
+    const accessToken = await getAccessToken(req);
+
+    if (!accessToken) {
+      return res.status(500).send("Failed to populate auth header");
+    }
+
+    const response = await fetch(`${process.env.API_URL}/rest/${path}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(req.body),
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      console.log(`Feil i kall til tilbakemeldingsmottak-api: ${error}`);
+      return res.status(response.status).send({ error });
+    }
+
+    const responseData = await response.json();
+    res.status(response.status).send(responseData);
   }
-
-  const accessToken = await getAccessToken(req);
-
-  if (!accessToken) {
-    return res.status(500).send("Failed to populate auth header");
-  }
-
-  const response = await fetch(`${process.env.API_URL}/rest/${path}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`,
-    },
-    body: JSON.stringify(req.body),
-  });
-
-  if (!response.ok) {
-    const error = await response.text();
-    console.log(`Feil i kall til tilbakemeldingsmottak-api: ${error}`);
-    return res.status(response.status).send({ error });
-  }
-
-  const responseData = await response.json();
-  res.status(response.status).send(responseData);
-});
+);
 
 server.use(
   createProxyMiddleware([`${baseUrl}/enheter`], {
@@ -96,10 +95,10 @@ server.use(
 );
 
 // Match everything except internal og static
-server.use(/^(?!.*\/(internal|static)\/).*$/, (req: Request, res: Response) => {
-  const devOrProd = req.headers.host?.split(".")[1] === "dev" ? "dev" : "prod";
+server.use("*", (req: Request, res: Response) => {
+  const env = process.env.ENV;
   const language = req.originalUrl.indexOf("/en") !== -1 ? "en" : "nb";
-  getHtmlWithDecorator(`${buildPath}/index.html`, devOrProd, language)
+  getHtmlWithDecorator(`${buildPath}/index.html`, env, language)
     .then((html: any) => {
       res.send(html);
     })

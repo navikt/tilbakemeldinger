@@ -1,18 +1,3 @@
-const fetch = require("node-fetch");
-
-export const objectToQueryString = (params?: object, firstChar = "?") =>
-  params
-    ? Object.entries(params).reduce(
-        (acc, [k, v], i) =>
-          v !== undefined
-            ? `${acc}${i ? "&" : firstChar}${k}=${encodeURIComponent(
-                typeof v === "object" ? JSON.stringify(v) : v
-              )}`
-            : acc,
-        ""
-      )
-    : "";
-
 export type FetchErrorResponse = {
   error: true;
   statusCode: number;
@@ -30,10 +15,9 @@ export const fetchErrorResponse = (
 
 export const fetchJson = async <T = any>(
   url: string,
-  params?: Record<string, string>,
   options?: Record<string, any>
 ): Promise<T | FetchErrorResponse> => {
-  const urlWithQuery = `${url}${params ? objectToQueryString(params) : ""}`;
+  const urlWithQuery = url;
 
   try {
     const res = await fetch(urlWithQuery, {

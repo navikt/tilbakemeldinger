@@ -64,16 +64,14 @@ export async function getTokenxToken(subject_token: string, audience: string) {
     const grant = await _client.grant(grantBody, additionalClaims);
     return grant.access_token;
   } catch (err: any) {
-    switch (err.constructor) {
-      case OPError:
-        console.error(
-          `Noe gikk galt med token exchange mot TokenX.
-            Feilmelding fra openid-client: (${err}).
-            HTTP Status fra TokenX: (${err.response.statusCode} ${err.response.statusMessage})
-            Body fra TokenX:`,
-          err.response.body
-        );
-        break;
+    if (err.constructor === OPError && err.response !== undefined) {
+      console.error(
+        `Noe gikk galt med token exchange mot TokenX.
+      Feilmelding fra openid-client: (${err}).
+      HTTP Status fra TokenX: (${err.response.statusCode} ${err.response.statusMessage})
+      Body fra TokenX:`,
+        err.response.body
+      );
     }
     throw err;
   }
