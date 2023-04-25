@@ -6,15 +6,14 @@ const logger = require("./logger");
 const decodeJWT = require("jwt-decode");
 const cookies = require("cookie-parser");
 const { createProxyMiddleware } = require("http-proxy-middleware");
-const compression = require('compression');
+const compression = require("compression");
 
 const server = express();
 const buildPath = path.resolve(__dirname, "../build");
 const baseUrl = "/person/kontakt-oss/tilbakemeldinger";
 
 // Parse application/json
-server.use(compression())
-server.use(baseUrl, express.static(buildPath, { index: false }));
+server.use(compression());
 server.use(cookies());
 server.get(`${baseUrl}/internal/isAlive|isReady`, (req, res) =>
   res.sendStatus(200)
@@ -39,7 +38,9 @@ server.use(
 server.use(
   createProxyMiddleware([`${baseUrl}/enheter`], {
     target: process.env.NORG2_URL,
-    pathRewrite: { [`^${baseUrl}/enheter`]: "/norg2/api/v1/enhet?enhetStatusListe=AKTIV" },
+    pathRewrite: {
+      [`^${baseUrl}/enheter`]: "/norg2/api/v1/enhet?enhetStatusListe=AKTIV",
+    },
     changeOrigin: true,
   })
 );

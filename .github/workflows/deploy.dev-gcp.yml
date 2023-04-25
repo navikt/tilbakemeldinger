@@ -5,13 +5,17 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Define build environment
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           IMAGE_VERSION_RAW=$(echo ${GITHUB_WORKFLOW})-$(echo ${GITHUB_SHA})
+          PUBLIC_URL=https://cdn.nav.no/personbruker/tilbakemeldinger
           echo "CI=true" >> $GITHUB_ENV
           echo "IMAGE_REGISTRY=ghcr.io/$(echo ${GITHUB_REPOSITORY})" >> $GITHUB_ENV
           echo "IMAGE_NAME=$(echo ${GITHUB_REPOSITORY##*/})" >> $GITHUB_ENV
@@ -37,6 +41,15 @@ jobs:
           echo $GITHUB_TOKEN | docker login $IMAGE_REGISTRY -u ${GITHUB_REPOSITORY} --password-stdin
           docker build -t $IMAGE_REGISTRY/$IMAGE_NAME:$IMAGE_VERSION .
           docker push $IMAGE_REGISTRY/$IMAGE_NAME:$IMAGE_VERSION
+
+      - id: upload
+        uses: navikt/frontend/actions/cdn-upload/v1@main
+        with:
+          cdn-team-name: personbruker
+          source: ./build/static
+          destination: 'tilbakemeldinger'
+      - run: echo uploaded file ${{ steps.upload.outputs.uploaded }}
+        shell: bash
       - name: Generate nais variables
         run: |
           cat > .nais/vars.yaml <<EOF
