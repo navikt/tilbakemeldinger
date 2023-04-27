@@ -26,7 +26,7 @@ const Environment = () => {
       baseAppPath: baseAppPath,
       appUrl: `https://www.dev.nav.no${baseAppPath}/tilbakemeldinger`,
       authUrl: `https://www.dev.nav.no/person/nav-dekoratoren-api/auth`,
-      personInfoApiUrl: `https://person.dev.nav.no/person/personopplysninger-api`,
+      personInfoApiUrl: `https://person.ekstern.dev.nav.no/person/personopplysninger-api`,
       mineSakerUrl: `https://person.dev.nav.no/mine-saker`,
       loginUrl: `https://loginservice.dev.nav.no/login`,
       logoutUrl: `https://loginservice.dev.nav.no/slo`,
