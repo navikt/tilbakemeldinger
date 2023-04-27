@@ -16,7 +16,6 @@ const fetch = require("node-fetch");
 const server = express();
 const buildPath = path.resolve(__dirname, "../../build");
 const baseUrl = "/person/kontakt-oss/tilbakemeldinger";
-const validPaths = ["ros", "serviceklage", "feil-og-mangler"];
 
 const getAccessToken = async (req: Request) => {
   const selvbetjeningIdToken = req.cookies["selvbetjening-idtoken"];
