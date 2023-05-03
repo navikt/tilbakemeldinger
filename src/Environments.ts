@@ -1,53 +1,40 @@
 import { forsidePath } from "./Config";
 
 const Environment = () => {
-  const host = window.location.host;
-  const isDev = host.startsWith("www.dev");
-  const baseAppPath = `${forsidePath}`;
+    const host = window.location.host;
+    const isDev = host.startsWith("www.intern.dev");
+    const baseAppPath = `${forsidePath}`;
 
-  // Localhost
-  if (process.env.NODE_ENV === `development`) {
-    return {
-      baseUrl: `http://www.dev.nav.no`,
-      baseAppPath: baseAppPath,
-      appUrl: `http://localhost:8080${baseAppPath}/tilbakemeldinger`,
-      apiUrl: `http://localhost:8080/person/tilbakemeldinger-api`,
-      authUrl: `http://localhost:8080/person/nav-dekoratoren-api/auth`,
-      personInfoApiUrl: `http://localhost:8080/person/personopplysninger-api`,
-      mineSakerUrl: `https://person.nav.no/mine-saker`,
-      loginUrl: `http://localhost:8080/personbruker-api/local/cookie`,
-      logoutUrl: `#`,
-      klageUrl: `http://klage.dev.nav.no`,
-    };
-  }
+    // Localhost
+    if (process.env.NODE_ENV === `development`) {
+        return {
+          baseUrl: host,
+          baseAppPath: baseAppPath,
+          appUrl: `http://localhost:8080${baseAppPath}/tilbakemeldinger`,
+          apiUrl: `http://localhost:8080/person/tilbakemeldinger-api`,
+          authUrl: `http://localhost:8080/person/nav-dekoratoren-api/auth`,
+          personInfoApiUrl: `http://localhost:8080/person/personopplysninger-api`,
+          mineSakerUrl: `https://www.intern.dev.nav.no/mine-saker`,
+          loginUrl: `http://localhost:8080/personbruker-api/local/cookie`,
+          logoutUrl: `#`,
+          klageUrl: `http://klage.intern.dev.nav.no`,
+        };
+    }
 
-  if (isDev) {
-    return {
-      baseUrl: `https://www.dev.nav.no`,
-      baseAppPath: baseAppPath,
-      appUrl: `https://www.dev.nav.no${baseAppPath}/tilbakemeldinger`,
-      apiUrl: `https://tilbakemeldinger-api.dev-fss-pub.nais.io`,
-      authUrl: `https://www.dev.nav.no/person/nav-dekoratoren-api/auth`,
-      personInfoApiUrl: `https://person.dev.nav.no/person/personopplysninger-api`,
-      mineSakerUrl: `https://person.dev.nav.no/mine-saker`,
-      loginUrl: `https://loginservice.dev.nav.no/login`,
-      logoutUrl: `https://loginservice.dev.nav.no/slo`,
-      klageUrl: `http://klage.dev.nav.no`,
-    };
-  }
-
+    // Midlertidig til wonderwall også tas i bruk i Prod
+    const wonderwallDevUrl = 'login.ekstern.dev.nav.no/oauth2';
   return {
-    baseUrl: `https://www.nav.no`,
-    baseAppPath: baseAppPath,
-    appUrl: `https://www.nav.no${baseAppPath}/tilbakemeldinger`,
-    apiUrl: `https://tilbakemeldinger-api.prod-fss-pub.nais.io`,
-    authUrl: `https://www.nav.no/person/nav-dekoratoren-api/auth`,
-    personInfoApiUrl: `https://www.nav.no/person/personopplysninger-api`,
-    mineSakerUrl: `https://person.nav.no/mine-saker`,
-    loginUrl: `https://loginservice.nav.no/login`,
-    logoutUrl: `https://loginservice.nav.no/slo`,
-    klageUrl: `https://klage.nav.no`,
-  };
+      baseUrl: host,
+      baseAppPath: baseAppPath,
+      appUrl: `${host}${baseAppPath}/tilbakemeldinger`,
+      apiUrl: `https://tilbakemeldinger-api.${isDev?'dev':'prod'}-fss-pub.nais.io`,
+      authUrl: `${host}/person/nav-dekoratoren-api/auth`,
+      personInfoApiUrl: `${host}/person/personopplysninger-api`,
+      mineSakerUrl: `${host}/mine-saker`,
+      loginUrl: `https://${isDev?wonderwallDevUrl:'loginservice.nav.no'}/login`,
+      logoutUrl: `https://${isDev?wonderwallDevUrl+'/logout':'loginservice.nav.no/slo'}`,
+      klageUrl: `http://klage.${isDev?'intern.dev':''}.nav.no`,
+    };
 };
 
 export default Environment;
