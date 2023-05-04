@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import VeilederIcon from "assets/icons/Veileder.svg";
 import { useStore } from "providers/Provider";
 import { postServiceKlage } from "clients/apiClient";
@@ -11,7 +11,7 @@ import {
   OutboundServiceKlageExtend,
 } from "types/serviceklage";
 import Header from "components/header/Header";
-import { paths, vars } from "Config";
+import { vars } from "Config";
 import Box from "components/box/Box";
 import { FormattedMessage, useIntl } from "react-intl";
 import ServiceKlagePrivatperson from "./ServiceKlagePrivatperson";
@@ -22,7 +22,6 @@ import Takk from "components/takk/Takk";
 import { triggerHotjar } from "utils/hotjar";
 import ServiceKlageOnskerAaKontaktes from "./ServiceKlageOnskerAaKontaktes";
 import ServiceKlageTypeUtdypning from "./ServiceKlageTypeUtdypning";
-import { MetaTags } from "../../../components/metatags/MetaTags";
 import LoginModal from "./login-modal/LoginModal";
 import {
   Alert,
@@ -41,6 +40,7 @@ import {
   useForm,
 } from "react-hook-form";
 import { PersonvernInfo } from "components/personvernInfo/PersonvernInfo";
+import { logPageview } from "../../../utils/amplitude";
 
 export interface ServiceklageFormFields {
   klagetekst: string;
@@ -91,6 +91,12 @@ const ServiceKlage = () => {
   const [loginClosed, setLoginClosed] = useState(false);
 
   const { formatMessage } = useIntl();
+
+  useEffect(() => {
+    logPageview(
+      formatMessage({ id: "tilbakemeldinger.serviceklage.form.tittel" })
+    );
+  }, []);
 
   const innmelderNavn = auth.authenticated && auth.name;
   const innmelderFnr = auth.authenticated && fodselsnr;
@@ -184,19 +190,14 @@ const ServiceKlage = () => {
 
   return (
     <div className="pagecontent">
-      <MetaTags
-        titleId={"tilbakemeldinger.serviceklage.form.tittel"}
-        descriptionId={"seo.klagepaservice.description"}
-        path={paths.tilbakemeldinger.serviceklage.form}
-      />
       <Header
         title={formatMessage({
           id: "tilbakemeldinger.serviceklage.form.tittel",
         })}
       />
       <LoginModal
-          open={auth.loaded && !auth.authenticated && !loginClosed}
-          closeFunc={closeModal}
+        open={auth.loaded && !auth.authenticated && !loginClosed}
+        closeFunc={closeModal}
       />
       <div className={"tb__veileder"}>
         <GuidePanel

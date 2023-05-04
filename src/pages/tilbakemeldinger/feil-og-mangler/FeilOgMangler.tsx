@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import VeilederIcon from "assets/icons/Veileder.svg";
 import InputMelding from "components/input-fields/InputMelding";
 import { postFeilOgMangler } from "clients/apiClient";
 import { HTTPError } from "types/errors";
 import Header from "components/header/Header";
-import { paths, vars } from "Config";
+import { vars } from "Config";
 import Box from "components/box/Box";
 import { FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
 import FeilgOgManglerOnskerAaKontaktes from "./FeilOgManglerOnskerAaKontaktes";
 import { triggerHotjar } from "../../../utils/hotjar";
-import { MetaTags } from "../../../components/metatags/MetaTags";
 import { Alert, Button, GuidePanel, Radio, RadioGroup } from "@navikt/ds-react";
 import { PersonvernInfo } from "components/personvernInfo/PersonvernInfo";
 import {
@@ -19,6 +18,7 @@ import {
   FormProvider,
   useForm,
 } from "react-hook-form";
+import { logPageview } from "../../../utils/amplitude";
 
 type FEILTYPE = "TEKNISK_FEIL" | "FEIL_INFO" | "UNIVERSELL_UTFORMING";
 
@@ -54,6 +54,10 @@ const FOM = () => {
   const [error, settError] = useState<string | undefined>();
   const { formatMessage } = useIntl();
 
+  useEffect(() => {
+    logPageview(formatMessage({ id: "tilbakemeldinger.feilogmangler.tittel" }));
+  }, []);
+
   const send = (values: FieldValues) => {
     const { onskerKontakt, feiltype, melding, epost } = values;
 
@@ -82,11 +86,6 @@ const FOM = () => {
 
   return (
     <div className="pagecontent">
-      <MetaTags
-        titleId={"tilbakemeldinger.feilogmangler.tittel"}
-        descriptionId={"seo.feilogmangler.description"}
-        path={paths.tilbakemeldinger.feilogmangler}
-      />
       <Header
         title={formatMessage({
           id: "tilbakemeldinger.feilogmangler.form.tittel",

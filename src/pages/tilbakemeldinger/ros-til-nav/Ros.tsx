@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import VeilederIcon from "assets/icons/Veileder.svg";
 import InputMelding from "components/input-fields/InputMelding";
 import { postRosTilNav } from "clients/apiClient";
 import { HTTPError } from "types/errors";
 import Header from "components/header/Header";
-import { paths, vars } from "Config";
+import { vars } from "Config";
 import Box from "components/box/Box";
 import { FormattedMessage, useIntl } from "react-intl";
 import Takk from "components/takk/Takk";
 import { triggerHotjar } from "utils/hotjar";
 import SelectEnhet from "components/input-fields/SelectEnhet";
-import { MetaTags } from "../../../components/metatags/MetaTags";
 import { Alert, Button, GuidePanel, Radio, RadioGroup } from "@navikt/ds-react";
 import { PersonvernInfo } from "components/personvernInfo/PersonvernInfo";
 import { Controller, FieldValues, useForm } from "react-hook-form";
+import { logPageview } from "../../../utils/amplitude";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_TJENESTER" | "NAV_KONTOR";
 
@@ -51,6 +51,10 @@ const Ros = () => {
   const [error, settError] = useState<string | undefined>();
   const { formatMessage } = useIntl();
 
+  useEffect(() => {
+    logPageview(formatMessage({ id: "tilbakemeldinger.ros.tittel" }));
+  }, []);
+
   const send = (values: FieldValues) => {
     const { melding, hvemRoses, navKontor } = values;
 
@@ -78,11 +82,6 @@ const Ros = () => {
 
   return (
     <div className="pagecontent">
-      <MetaTags
-        titleId={"tilbakemeldinger.ros.tittel"}
-        descriptionId={"seo.rostilnav.description"}
-        path={paths.tilbakemeldinger.rostilnav}
-      />
       <Header
         title={formatMessage({ id: "tilbakemeldinger.ros.form.tittel" })}
       />

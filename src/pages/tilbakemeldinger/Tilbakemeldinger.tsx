@@ -1,24 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { lenker } from "./TilbakemeldingerLenker";
 import Header from "../../components/header/Header";
 import Lenkepanel from "../../components/lenkepanel/Lenkepanel";
 import { useIntl } from "react-intl";
 import { useStore } from "../../providers/Provider";
-import { MetaTags } from "../../components/metatags/MetaTags";
-import { paths } from "../../Config";
+import { logPageview } from "../../utils/amplitude";
 
 const Tilbakemeldinger = () => {
   const intl = useIntl();
   const [{ locale }] = useStore();
 
+  useEffect(() => {
+    logPageview(intl.formatMessage({ id: "tilbakemeldinger.sidetittel" }));
+  }, []);
+
   return (
     <>
       <div role={"main"} className="pagecontent">
-        <MetaTags
-          path={paths.tilbakemeldinger.forside}
-          titleId={"tilbakemeldinger.sidetittel"}
-          descriptionId={"seo.tilbakemeldinger.description"}
-        />
         <div className={"tilbakemeldinger__tittel"}>
           <Header
             title={intl.formatMessage({ id: "tilbakemeldinger.sidetittel" })}
