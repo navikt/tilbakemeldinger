@@ -164,16 +164,6 @@ const nb = {
   "felter.gjeldersosialhjelp.ja": "Ja",
   "felter.gjeldersosialhjelp.nei": "Nei",
   "felter.gjeldersosialhjelp.vetikke": "Vet ikke",
-
-  "seo.tilbakemeldinger.description":
-    "Her kan du gi tilbakemelding til NAV, klage eller anke på vedtak, service og melde fra om feil og mangler på" +
-    " nav.no. Du kan også gi oss ros om våre tjenester og medarbeidere.",
-  "seo.rostilnav.description":
-    "Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?",
-  "seo.feilogmangler.description": "Meld fra om feil og mangler på nav.no",
-  "seo.klagepaservice.description":
-    "Send klage på service hos NAV. Hva gjelder tilbakemeldingen og hvem skriver du på vegne av?",
-
   "takk.melding": "Meldingen din er sendt",
   "takk.knapp": "Gå til nav.no",
 };
