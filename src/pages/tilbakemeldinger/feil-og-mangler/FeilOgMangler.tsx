@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import VeilederIcon from "assets/icons/Veileder.svg";
 import InputMelding from "components/input-fields/InputMelding";
 import { postFeilOgMangler } from "clients/apiClient";
@@ -18,7 +18,7 @@ import {
   FormProvider,
   useForm,
 } from "react-hook-form";
-import { logPageview } from "../../../utils/amplitude";
+import { useAmplitudeLogger } from "../../../hooks/useAmplitudeLogger";
 
 type FEILTYPE = "TEKNISK_FEIL" | "FEIL_INFO" | "UNIVERSELL_UTFORMING";
 
@@ -37,6 +37,8 @@ export type OutboundFeilOgMangler = {
 };
 
 const FOM = () => {
+  useAmplitudeLogger("tilbakemeldinger.feilogmangler.tittel");
+
   const methods = useForm<FeilOgManglerFields>({
     reValidateMode: "onChange",
   });
@@ -53,10 +55,6 @@ const FOM = () => {
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState<string | undefined>();
   const { formatMessage } = useIntl();
-
-  useEffect(() => {
-    logPageview(formatMessage({ id: "tilbakemeldinger.feilogmangler.tittel" }));
-  }, []);
 
   const send = (values: FieldValues) => {
     const { onskerKontakt, feiltype, melding, epost } = values;

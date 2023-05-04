@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import VeilederIcon from "assets/icons/Veileder.svg";
 import InputMelding from "components/input-fields/InputMelding";
 import { postRosTilNav } from "clients/apiClient";
@@ -13,7 +13,7 @@ import SelectEnhet from "components/input-fields/SelectEnhet";
 import { Alert, Button, GuidePanel, Radio, RadioGroup } from "@navikt/ds-react";
 import { PersonvernInfo } from "components/personvernInfo/PersonvernInfo";
 import { Controller, FieldValues, useForm } from "react-hook-form";
-import { logPageview } from "../../../utils/amplitude";
+import { useAmplitudeLogger } from "../../../hooks/useAmplitudeLogger";
 
 type HVEM_ROSES = "NAV_KONTAKTSENTER" | "NAV_DIGITALE_TJENESTER" | "NAV_KONTOR";
 
@@ -35,6 +35,8 @@ export type OutboundRosTilNav = {
 );
 
 const Ros = () => {
+  useAmplitudeLogger("tilbakemeldinger.ros.tittel");
+
   const {
     register,
     control,
@@ -50,10 +52,6 @@ const Ros = () => {
   const [success, settSuccess] = useState(false);
   const [error, settError] = useState<string | undefined>();
   const { formatMessage } = useIntl();
-
-  useEffect(() => {
-    logPageview(formatMessage({ id: "tilbakemeldinger.ros.tittel" }));
-  }, []);
 
   const send = (values: FieldValues) => {
     const { melding, hvemRoses, navKontor } = values;

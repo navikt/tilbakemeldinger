@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { lenker } from "./TilbakemeldingerLenker";
 import Header from "../../components/header/Header";
 import Lenkepanel from "../../components/lenkepanel/Lenkepanel";
 import { useIntl } from "react-intl";
 import { useStore } from "../../providers/Provider";
-import { logPageview } from "../../utils/amplitude";
+import { useAmplitudeLogger } from "../../hooks/useAmplitudeLogger";
 
 const Tilbakemeldinger = () => {
+  useAmplitudeLogger("tilbakemeldinger.sidetittel");
+
   const intl = useIntl();
   const [{ locale }] = useStore();
-
-  useEffect(() => {
-    logPageview(intl.formatMessage({ id: "tilbakemeldinger.sidetittel" }));
-  }, []);
 
   return (
     <>

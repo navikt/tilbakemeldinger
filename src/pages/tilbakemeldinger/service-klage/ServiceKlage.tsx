@@ -40,7 +40,7 @@ import {
   useForm,
 } from "react-hook-form";
 import { PersonvernInfo } from "components/personvernInfo/PersonvernInfo";
-import { logPageview } from "../../../utils/amplitude";
+import { useAmplitudeLogger } from "../../../hooks/useAmplitudeLogger";
 
 export interface ServiceklageFormFields {
   klagetekst: string;
@@ -68,6 +68,8 @@ export type OutboundServiceKlage = OutboundServiceKlageBase &
   OutboundServiceKlageExtend;
 
 const ServiceKlage = () => {
+  useAmplitudeLogger("tilbakemeldinger.serviceklage.form.tittel");
+
   const methods = useForm<ServiceklageFormFields>({
     reValidateMode: "onChange",
     shouldUnregister: true,
@@ -91,12 +93,6 @@ const ServiceKlage = () => {
   const [loginClosed, setLoginClosed] = useState(false);
 
   const { formatMessage } = useIntl();
-
-  useEffect(() => {
-    logPageview(
-      formatMessage({ id: "tilbakemeldinger.serviceklage.form.tittel" })
-    );
-  }, []);
 
   const innmelderNavn = auth.authenticated && auth.name;
   const innmelderFnr = auth.authenticated && fodselsnr;
