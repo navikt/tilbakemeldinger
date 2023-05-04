@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import ReactMetaTags from "react-meta-tags";
 import { localePath } from "../../utils/locale";
 import { useIntl } from "react-intl";
 import { useStore } from "../../providers/Provider";
 import Environment from "../../Environments";
 import { logPageview } from "../../utils/amplitude";
+import { Helmet } from "react-helmet-async";
 
 type Props = {
   path: string;
@@ -24,7 +24,7 @@ export const MetaTags = ({ path, titleId, descriptionId, children }: Props) => {
   }, [title]);
 
   return (
-    <ReactMetaTags>
+    <Helmet>
       {titleId && <title>{`${title} - www.nav.no`}</title>}
       {descriptionId && (
         <meta
@@ -81,6 +81,6 @@ export const MetaTags = ({ path, titleId, descriptionId, children }: Props) => {
         </>
       )}
       {children}
-    </ReactMetaTags>
+    </Helmet>
   );
 };
