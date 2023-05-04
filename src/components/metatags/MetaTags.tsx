@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import ReactMetaTags from "react-meta-tags";
 import { localePath } from "../../utils/locale";
 import { useIntl } from "react-intl";
 import { useStore } from "../../providers/Provider";
 import Environment from "../../Environments";
 import { logPageview } from "../../utils/amplitude";
+import { Helmet } from "react-helmet-async";
 
 type Props = {
   path: string;
@@ -24,7 +24,7 @@ export const MetaTags = ({ path, titleId, descriptionId, children }: Props) => {
   }, [title]);
 
   return (
-    <ReactMetaTags>
+    <Helmet>
       {titleId && <title>{`${title} - www.nav.no`}</title>}
       {descriptionId && (
         <meta
@@ -33,54 +33,9 @@ export const MetaTags = ({ path, titleId, descriptionId, children }: Props) => {
         />
       )}
       {(path || path === "") && (
-        <>
-          <link
-            rel="canonical"
-            href={`${baseUrl}${localePath(path, locale)}`}
-          />
-          <link
-            rel="alternate"
-            href={`${baseUrl}${localePath(path, "nb")}`}
-            hrefLang="nb"
-          />
-          <link
-            rel="alternate"
-            href={`${baseUrl}${localePath(path, "nb")}`}
-            hrefLang="nn"
-          />
-          <link
-            rel="alternate"
-            href={`${baseUrl}${localePath(path, "nb")}`}
-            hrefLang="sv"
-          />
-          <link
-            rel="alternate"
-            href={`${baseUrl}${localePath(path, "nb")}`}
-            hrefLang="da"
-          />
-          <link
-            rel="alternate"
-            href={`${baseUrl}${localePath(path, "nb")}`}
-            hrefLang="is"
-          />
-          <link
-            rel="alternate"
-            href={`${baseUrl}${localePath(path, "nb")}`}
-            hrefLang="se"
-          />
-          <link
-            rel="alternate"
-            href={`${baseUrl}${localePath(path, "en")}`}
-            hrefLang="en"
-          />
-          <link
-            rel="alternate"
-            href={`${baseUrl}${localePath(path, "en")}`}
-            hrefLang="x-default"
-          />
-        </>
+        <link rel="canonical" href={`${baseUrl}${localePath(path, locale)}`} />
       )}
       {children}
-    </ReactMetaTags>
+    </Helmet>
   );
 };
