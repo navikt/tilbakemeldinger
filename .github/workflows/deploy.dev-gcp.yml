@@ -48,7 +48,7 @@ jobs:
         with:
           cdn-team-name: personbruker
           source: ./build/static
-          destination: tilbakemeldinger/$IMAGE_VERSION
+          destination: tilbakemeldinger/${{ IMAGE_VERSION }}
       - run: echo uploaded file ${{ steps.upload.outputs.uploaded }}
         shell: bash
       - name: Generate nais variables
