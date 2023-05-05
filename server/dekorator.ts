@@ -2,7 +2,11 @@ const {
   injectDecoratorServerSide,
 } = require("@navikt/nav-dekoratoren-moduler/ssr");
 
-const getHtmlWithDecorator = (filePath, devOrProd, language) => {
+const getHtmlWithDecorator = (
+  filePath: string,
+  devOrProd: string,
+  language: string
+) => {
   const isDev = devOrProd === "dev";
   const basePath = isDev ? `https://www.dev.nav.no` : `https://www.nav.no`;
   return injectDecoratorServerSide({
@@ -11,7 +15,9 @@ const getHtmlWithDecorator = (filePath, devOrProd, language) => {
     language: language,
     breadcrumbs: [
       {
-        url: `${basePath}/person/kontakt-oss/${language === "nn" ? "nb" : language}`,
+        url: `${basePath}/person/kontakt-oss/${
+          language === "nn" ? "nb" : language
+        }`,
         title: language === "nb" ? "Kontakt oss" : "Contact us",
         handleInApp: true,
       },

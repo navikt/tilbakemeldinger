@@ -24,24 +24,28 @@ spec:
     min: 2
     max: 4
   webproxy: true
+  azure:
+    application:
+      enabled: true
+  tokenx:
+    enabled: true
   accessPolicy:
     outbound:
       rules:
-        - application: tilbakemeldinger-api
-          namespace: personbruker
-          cluster: prod-fss
+        - application: tilbakemeldingsmottak-api
+          namespace: teamserviceklage
       external:
         - host: nav.no
-        - host: tilbakemeldinger-api.prod-fss-pub.nais.io
         - host: norg2.prod-fss-pub.nais.io
   leaderElection: true
   env:
     - name: ENV
       value: prod
     - name: API_URL
-      value: https://tilbakemeldinger-api.prod-fss-pub.nais.io
+      value: http://tilbakemeldingsmottak-api.teamserviceklage
     - name: NORG2_URL
       value: https://norg2.prod-fss-pub.nais.io
+
   resources:
     limits:
       memory: 512Mi
