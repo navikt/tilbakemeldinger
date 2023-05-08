@@ -1,21 +1,25 @@
 import { forsidePath } from './Config';
 
 const Environment = () => {
-    const host = window.location.host;
-    const isDev = process.env.ENV === 'dev';
     const baseAppPath = `${forsidePath}`;
+    const isLocal = process.env.NODE_ENV === 'development';
+    const isDev = process.env.ENV === 'dev';
+    const host = isLocal
+        ? 'http://localhost:8080'
+        : isDev
+        ? 'https://www.intern.dev.nav.no'
+        : 'https://www.nav.no';
 
-    // Localhost
-    if (process.env.NODE_ENV === `development`) {
+    if (isLocal) {
         return {
             baseUrl: host,
             baseAppPath: baseAppPath,
-            appUrl: `http://localhost:8080${baseAppPath}/tilbakemeldinger`,
-            apiUrl: `http://localhost:8080/person/tilbakemeldinger-api`,
-            authUrl: `http://localhost:8080/person/nav-dekoratoren-api/auth`,
-            personInfoApiUrl: `http://localhost:8080/person/personopplysninger-api`,
+            appUrl: `${host}${baseAppPath}/tilbakemeldinger`,
+            apiUrl: `${host}/person/tilbakemeldinger-api`,
+            authUrl: `${host}/person/nav-dekoratoren-api/auth`,
+            personInfoApiUrl: `${host}/person/personopplysninger-api`,
             mineSakerUrl: `https://www.intern.dev.nav.no/mine-saker`,
-            loginUrl: `http://localhost:8080/personbruker-api/local/cookie`,
+            loginUrl: `${host}/personbruker-api/local/cookie`,
             logoutUrl: `#`,
             klageUrl: `https://klage.intern.dev.nav.no`,
         };
