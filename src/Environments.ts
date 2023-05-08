@@ -8,7 +8,7 @@ const Environment = () => {
   // Localhost
   if (process.env.NODE_ENV === `development`) {
     return {
-      baseUrl: `http://www.dev.nav.no`,
+      baseUrl: `http://www.intern.dev.nav.no`,
       baseAppPath: baseAppPath,
       appUrl: `http://localhost:8080${baseAppPath}/tilbakemeldinger`,
       authUrl: `http://localhost:8080/person/nav-dekoratoren-api/auth`,
@@ -16,21 +16,21 @@ const Environment = () => {
       mineSakerUrl: `https://person.nav.no/mine-saker`,
       loginUrl: `http://localhost:8080/personbruker-api/local/cookie`,
       logoutUrl: `#`,
-      klageUrl: `http://klage.dev.nav.no`,
+      klageUrl: `http://klage.intern.dev.nav.no`,
     };
   }
 
   if (isDev) {
     return {
-      baseUrl: `https://www.dev.nav.no`,
+      baseUrl: `https://www.intern.dev.nav.no`,
       baseAppPath: baseAppPath,
-      appUrl: `https://www.dev.nav.no${baseAppPath}/tilbakemeldinger`,
-      authUrl: `https://www.dev.nav.no/person/nav-dekoratoren-api/auth`,
+      appUrl: `https://www.intern.dev.nav.no${baseAppPath}/tilbakemeldinger`,
+      authUrl: `https://www.intern.dev.nav.no/person/nav-dekoratoren-api/auth`,
       personInfoApiUrl: `https://person.ekstern.dev.nav.no/person/personopplysninger-api`,
-      mineSakerUrl: `https://person.dev.nav.no/mine-saker`,
-      loginUrl: `https://loginservice.dev.nav.no/login`,
-      logoutUrl: `https://loginservice.dev.nav.no/slo`,
-      klageUrl: `http://klage.dev.nav.no`,
+      mineSakerUrl: `https://person.intern.dev.nav.no/mine-saker`,
+      loginUrl: `https://loginservice.intern.dev.nav.no/login`,
+      logoutUrl: `https://loginservice.intern.dev.nav.no/slo`,
+      klageUrl: `http://klage.intern.dev.nav.no`,
     };
   }
 
