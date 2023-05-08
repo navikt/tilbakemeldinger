@@ -1,8 +1,7 @@
 import { forsidePath } from "./Config";
 
 const Environment = () => {
-  const host = window.location.host;
-  const isDev = host.startsWith("www.dev");
+  const isDev = process.env.ENV;
   const baseAppPath = `${forsidePath}`;
 
   // Localhost
