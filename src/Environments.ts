@@ -35,7 +35,9 @@ const Environment = () => {
         apiUrl: `https://tilbakemeldinger-api.${
             isDev ? 'dev' : 'prod'
         }-fss-pub.nais.io`,
-        authUrl: `${host}/person/nav-dekoratoren-api/auth`,
+        authUrl: `https://www.${
+            isDev ? 'ekstern.dev' : ''
+        }.nav.no/person/nav-dekoratoren-api/auth`,
         personInfoApiUrl: `${host}/person/personopplysninger-api`,
         mineSakerUrl: `${isDev ? host : 'person.nav.no'}/mine-saker`,
         loginUrl: `https://${
