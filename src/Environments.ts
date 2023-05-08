@@ -26,8 +26,6 @@ const Environment = () => {
         };
     }
 
-    // Midlertidig til wonderwall også tas i bruk i Prod
-    const wonderwallDevUrl = 'login.ekstern.dev.nav.no/oauth2';
     return {
         baseUrl: host,
         baseAppPath: baseAppPath,
@@ -39,13 +37,13 @@ const Environment = () => {
             isDev ? 'ekstern.dev' : ''
         }.nav.no/person/nav-dekoratoren-api/auth`,
         personInfoApiUrl: `${host}/person/personopplysninger-api`,
-        mineSakerUrl: `${isDev ? host : 'person.nav.no'}/mine-saker`,
-        loginUrl: `https://${
-            isDev ? wonderwallDevUrl : 'loginservice.nav.no'
-        }/login`,
-        logoutUrl: `https://${
-            isDev ? wonderwallDevUrl + '/logout' : 'loginservice.nav.no/slo'
-        }`,
+        mineSakerUrl: `${isDev ? host : 'https://person.nav.no'}/mine-saker`,
+        loginUrl: `https://loginservice.${
+            isDev ? 'intern.dev' : ''
+        }.nav.no/login`,
+        logoutUrl: `https://loginservice.${
+            isDev ? 'intern.dev' : ''
+        }.nav.no/slo`,
         klageUrl: `https://klage.${isDev ? 'intern.dev' : ''}.nav.no`,
     };
 };
