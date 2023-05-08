@@ -21,7 +21,7 @@ jobs:
           echo "IMAGE_NAME=$(echo ${GITHUB_REPOSITORY##*/})" >> $GITHUB_ENV
           echo "IMAGE_VERSION=${IMAGE_VERSION_RAW,,}" >> $GITHUB_ENV
           echo "GITHUB_TOKEN=$(echo ${GITHUB_TOKEN})" >> $GITHUB_ENV
-          echo "PUBLIC_URL=https://cdn.nav.no/personbruker/tilbakemeldinger/$(echo ${IMAGE_VERSION_RAW,,})/build" >> $GITHUB_ENV
+          echo "PUBLIC_URL=https://cdn.nav.no/personbruker/tilbakemeldinger/$(echo ${IMAGE_VERSION_RAW,,})" >> $GITHUB_ENV
       - name: Setup node.js
         uses: actions/setup-node@v3
         with:
@@ -47,7 +47,7 @@ jobs:
         uses: navikt/frontend/actions/cdn-upload/v1@main
         with:
           cdn-team-name: personbruker
-          source: ./build
+          source: ./build/static
           destination: tilbakemeldinger/${{ env.IMAGE_VERSION }}
       - run: echo uploaded file ${{ steps.upload.outputs.uploaded }}
         shell: bash
