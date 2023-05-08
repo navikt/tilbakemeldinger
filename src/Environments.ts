@@ -26,25 +26,33 @@ const Environment = () => {
         };
     }
 
+    if (isDev) {
+        return {
+            baseUrl: host,
+            baseAppPath: baseAppPath,
+            appUrl: `${host}${baseAppPath}/tilbakemeldinger`,
+            apiUrl: 'https://tilbakemeldinger-api.dev-fss-pub.nais.io',
+            authUrl:
+                'https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth',
+            personInfoApiUrl: `${host}/person/personopplysninger-api`,
+            mineSakerUrl: `${host}/mine-saker`,
+            loginUrl: 'https://loginservice.intern.dev.nav.no/login',
+            logoutUrl: 'https://loginservice.intern.dev.nav.no/slo',
+            klageUrl: 'https://klage.intern.dev.nav.no',
+        };
+    }
+
     return {
         baseUrl: host,
         baseAppPath: baseAppPath,
         appUrl: `${host}${baseAppPath}/tilbakemeldinger`,
-        apiUrl: `https://tilbakemeldinger-api.${
-            isDev ? 'dev' : 'prod'
-        }-fss-pub.nais.io`,
-        authUrl: `https://www.${
-            isDev ? 'ekstern.dev' : ''
-        }.nav.no/person/nav-dekoratoren-api/auth`,
+        apiUrl: 'https://tilbakemeldinger-api.prod-fss-pub.nais.io',
+        authUrl: `${host}/person/nav-dekoratoren-api/auth`,
         personInfoApiUrl: `${host}/person/personopplysninger-api`,
-        mineSakerUrl: `${isDev ? host : 'https://person.nav.no'}/mine-saker`,
-        loginUrl: `https://loginservice.${
-            isDev ? 'intern.dev' : ''
-        }.nav.no/login`,
-        logoutUrl: `https://loginservice.${
-            isDev ? 'intern.dev' : ''
-        }.nav.no/slo`,
-        klageUrl: `https://klage.${isDev ? 'intern.dev' : ''}.nav.no`,
+        mineSakerUrl: 'https://person.nav.no/mine-saker',
+        loginUrl: 'https://loginservice.nav.no/login',
+        logoutUrl: 'https://loginservice.nav.no/slo',
+        klageUrl: 'https://klage.nav.no',
     };
 };
 
