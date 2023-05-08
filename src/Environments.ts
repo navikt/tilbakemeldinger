@@ -1,9 +1,10 @@
 import { forsidePath } from './Config';
 
 const Environment = () => {
+    const windowHost = window.location.host;
     const baseAppPath = `${forsidePath}`;
     const isLocal = process.env.NODE_ENV === 'development';
-    const isDev = process.env.ENV === 'dev';
+    const isDev = windowHost.includes('intern.dev');
     const host = isLocal
         ? 'http://localhost:8080'
         : isDev
