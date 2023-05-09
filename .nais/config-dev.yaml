@@ -39,8 +39,10 @@ spec:
         - host: norg2.dev-fss-pub.nais.io
   leaderElection: true
   env:
-    - name: ENV
+    - name: REACT_APP_ENV
       value: dev
+    - name: REACT_APP_HOST
+      value: https://www.intern.dev.nav.no
     - name: API_URL
       value: http://tilbakemeldingsmottak-api.teamserviceklage
     - name: NORG2_URL

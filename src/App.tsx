@@ -16,7 +16,7 @@ import ServiceKlage from './pages/tilbakemeldinger/service-klage/ServiceKlage';
 import { KontaktInfo } from './types/kontaktInfo';
 import { Fodselsnr } from './types/fodselsnr';
 import ScrollToTop from './components/scroll-to-top/ScrollToTop';
-import { forsidePath, paths } from './Config';
+import { paths } from './Config';
 import { defaultLocale, localePath, validLocales } from './utils/locale';
 import { DecoratorWidgets } from './components/decorator-widgets/DecoratorWidgets';
 import { Modal } from '@navikt/ds-react';
@@ -133,7 +133,9 @@ const RedirectToLocaleOrError = () => {
         .some((segment) => validLocales.some((locale) => segment === locale));
 
     if (!isLocaleUrl) {
-        const subPath = window.location.pathname.split(forsidePath)[1];
+        const subPath = window.location.pathname.split(
+            paths.kontaktOss.forside
+        )[1];
         return (
             <Navigate to={localePath(subPath ? subPath : '', defaultLocale)} />
         );
