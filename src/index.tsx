@@ -2,7 +2,6 @@ import './polyfills';
 import React, { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { createRoot } from 'react-dom/client';
-import * as serviceWorker from './serviceWorker';
 import { StoreProvider, useStore } from './providers/Provider';
 import { initialState, reducer } from './providers/Store';
 import { setLocaleFromUrl } from './utils/locale';
@@ -12,11 +11,6 @@ import App from './App';
 import msgsNb from './language/nb';
 import msgsEn from './language/en';
 import msgsNn from './language/nn';
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
 
 const messages = {
     nb: msgsNb,
@@ -42,7 +36,6 @@ const init = async () => {
             <RenderApp />
         </StoreProvider>
     );
-    serviceWorker.unregister();
 };
 
 const RenderApp = () => {
