@@ -22,12 +22,9 @@ import { DecoratorWidgets } from './components/decorator-widgets/DecoratorWidget
 import { Modal } from '@navikt/ds-react';
 import '@navikt/ds-css';
 import { HelmetProvider } from 'react-helmet-async';
-import Environments from './Environments';
-import { hasLoginserviceToken } from './utils/auth';
 
 const App = () => {
     const [{ auth }, dispatch] = useStore();
-    const { loginUrl } = Environments();
 
     useEffect(() => {
         Modal.setAppElement?.('#app');
@@ -58,13 +55,6 @@ const App = () => {
                     }
                 })
                 .catch((error: HTTPError) => console.error(error));
-        }
-
-        // Redirect til loginservice hvis innlogget med wonderwall
-        if (auth.authenticated && !hasLoginserviceToken()) {
-            window.location.assign(
-                `${loginUrl}?redirect=${window.location.href}`
-            );
         }
     }, [auth.authenticated, dispatch]);
 
