@@ -31,16 +31,16 @@ const App = () => {
 
     useEffect(() => {
         Modal.setAppElement?.('#app');
-    }, []);
 
-    useEffect(() => {
         // Redirect til loginservice hvis innlogget med wonderwall
         if (auth.authenticated && !hasLoginserviceToken()) {
             window.location.assign(
                 `${loginUrl}?redirect=${window.location.href}`
             );
         }
+    }, []);
 
+    useEffect(() => {
         if (!auth.authenticated) {
             fetchAuthInfo()
                 .then((authInfo: AuthInfo) => {
