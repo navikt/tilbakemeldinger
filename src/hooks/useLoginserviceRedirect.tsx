@@ -14,5 +14,5 @@ export const useLoginserviceRedirect = () => {
                 `${loginUrl}?redirect=${window.location.href}`
             );
         }
-    }, []);
+    }, [auth.authenticated]);
 };
