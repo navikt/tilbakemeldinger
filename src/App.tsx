@@ -59,16 +59,14 @@ const App = () => {
                 })
                 .catch((error: HTTPError) => console.error(error));
         }
-    }, [auth.authenticated, dispatch]);
 
-    useEffect(() => {
         // Redirect til loginservice hvis innlogget med wonderwall
         if (auth.authenticated && !hasLoginserviceToken()) {
             window.location.assign(
                 `${loginUrl}?redirect=${window.location.href}`
             );
         }
-    }, []);
+    }, [auth.authenticated, dispatch]);
 
     let key = 0;
 
