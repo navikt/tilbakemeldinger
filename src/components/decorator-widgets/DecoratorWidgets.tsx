@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { useStore } from 'providers/Provider';
 import { Locale, setNewLocale } from 'utils/locale';
-import { forsidePath } from 'Config';
+import { paths } from 'Config';
 import {
     onBreadcrumbClick,
     onLanguageSelect,
@@ -11,7 +11,10 @@ import {
     setBreadcrumbs,
 } from '@navikt/nav-dekoratoren-moduler';
 
-const basePathFilter = new RegExp(`${forsidePath}/(nb|nn|en)?`, 'i');
+const basePathFilter = new RegExp(
+    `${paths.kontaktOss.forside}/(nb|nn|en)?`,
+    'i'
+);
 
 export const DecoratorWidgets = () => {
     const { pathname } = useLocation();
@@ -29,22 +32,25 @@ export const DecoratorWidgets = () => {
 
     // Set languages in decorator
     useEffect(() => {
-        const subPath = pathname.replace(`${forsidePath}/${locale}`, '');
+        const subPath = pathname.replace(
+            `${paths.kontaktOss.forside}/${locale}`,
+            ''
+        );
 
         setAvailableLanguages([
             {
                 locale: 'nb',
-                url: `${forsidePath}/nb/${subPath}`,
+                url: `${paths.kontaktOss.forside}/nb/${subPath}`,
                 handleInApp: true,
             },
             {
                 locale: 'nn',
-                url: `${forsidePath}/nn/${subPath}`,
+                url: `${paths.kontaktOss.forside}/nn/${subPath}`,
                 handleInApp: true,
             },
             {
                 locale: 'en',
-                url: `${forsidePath}/en/${subPath}`,
+                url: `${paths.kontaktOss.forside}/en/${subPath}`,
                 handleInApp: true,
             },
         ]);
@@ -52,7 +58,9 @@ export const DecoratorWidgets = () => {
 
     // Set breadcrumbs in decorator
     useEffect(() => {
-        const basePath = `${forsidePath}/${locale === 'nn' ? 'nb' : locale}`;
+        const basePath = `${paths.kontaktOss.forside}/${
+            locale === 'nn' ? 'nb' : locale
+        }`;
         const baseBreadcrumb = {
             url: basePath,
             title: formatMessage({ id: 'breadcrumb.base' }),
@@ -66,7 +74,7 @@ export const DecoratorWidgets = () => {
             .map((pathSegment, index, pathSegmentArray) => {
                 const subPath = pathSegmentArray.slice(0, index + 1).join('/');
                 return {
-                    url: `${forsidePath}/${locale}/${subPath}`,
+                    url: `${paths.kontaktOss.forside}/${locale}/${subPath}`,
                     title: formatMessage({ id: `breadcrumb.${pathSegment}` }),
                     handleInApp: true,
                 };
