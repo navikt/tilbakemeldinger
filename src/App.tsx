@@ -34,7 +34,10 @@ const App = () => {
             fetchAuthInfo()
                 .then((authInfo: AuthInfo) => {
                     dispatch({ type: 'SETT_AUTH_RESULT', payload: authInfo });
-                    if (document.cookie.includes("selvbetjening-idtoken") && authInfo.authenticated) {
+                    if (
+                        document.cookie.includes('selvbetjening-idtoken') &&
+                        authInfo.authenticated
+                    ) {
                         fetchKontaktInfo()
                             .then((kontaktInfo: KontaktInfo) =>
                                 dispatch({
