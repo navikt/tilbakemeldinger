@@ -1,5 +1,5 @@
 export interface KontaktInfo {
-  mobiltelefonnummer?: string;
-  epostadresse?: string;
-  kanVarsles?: boolean;
+    mobiltelefonnummer?: string;
+    epostadresse?: string;
+    kanVarsles?: boolean;
 }
