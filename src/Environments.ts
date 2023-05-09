@@ -7,7 +7,6 @@ const Environment = () => {
         return {
             baseUrl: host,
             appUrl: `${host}/person/kontakt-oss/tilbakemeldinger`,
-            apiUrl: `${host}/person/tilbakemeldinger-api`,
             authUrl: `${host}/person/nav-dekoratoren-api/auth`,
             personInfoApiUrl: `${host}/person/personopplysninger-api`,
             mineSakerUrl: `https://www.intern.dev.nav.no/mine-saker`,
@@ -21,7 +20,6 @@ const Environment = () => {
         return {
             baseUrl: host,
             appUrl: `${host}/person/kontakt-oss/tilbakemeldinger`,
-            apiUrl: 'https://tilbakemeldinger-api.dev-fss-pub.nais.io',
             authUrl:
                 'https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth',
             personInfoApiUrl: `${host}/person/personopplysninger-api`,
@@ -35,7 +33,6 @@ const Environment = () => {
     return {
         baseUrl: host,
         appUrl: `${host}/person/kontakt-oss/tilbakemeldinger`,
-        apiUrl: 'https://tilbakemeldinger-api.prod-fss-pub.nais.io',
         authUrl: `${host}/person/nav-dekoratoren-api/auth`,
         personInfoApiUrl: `${host}/person/personopplysninger-api`,
         mineSakerUrl: 'https://person.nav.no/mine-saker',
