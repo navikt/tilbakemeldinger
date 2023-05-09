@@ -31,13 +31,6 @@ const App = () => {
 
     useEffect(() => {
         Modal.setAppElement?.('#app');
-
-        // Redirect til loginservice hvis innlogget med wonderwall
-        if (auth.authenticated && !hasLoginserviceToken()) {
-            window.location.assign(
-                `${loginUrl}?redirect=${window.location.href}`
-            );
-        }
     }, []);
 
     useEffect(() => {
@@ -67,6 +60,15 @@ const App = () => {
                 .catch((error: HTTPError) => console.error(error));
         }
     }, [auth.authenticated, dispatch]);
+
+    useEffect(() => {
+        // Redirect til loginservice hvis innlogget med wonderwall
+        if (auth.authenticated && !hasLoginserviceToken()) {
+            window.location.assign(
+                `${loginUrl}?redirect=${window.location.href}`
+            );
+        }
+    }, []);
 
     let key = 0;
 
