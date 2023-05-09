@@ -41,6 +41,7 @@ import {
     useForm,
 } from 'react-hook-form';
 import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
+import Environments from '../../../Environments';
 
 export interface ServiceklageFormFields {
     klagetekst: string;
@@ -85,6 +86,20 @@ const ServiceKlage = () => {
     } = methods;
 
     const [{ auth, fodselsnr }] = useStore();
+    const hasLoginserviceToken = document.cookie.includes(
+        'selvbetjening-idtoken'
+    );
+    const { loginUrl } = Environments();
+
+    useEffect(() => {
+        // Redirect til loginservice hvis innlogget med wonderwall
+        if (auth.authenticated && !hasLoginserviceToken) {
+            window.location.assign(
+                `${loginUrl}?redirect=${window.location.href}`
+            );
+        }
+    }, []);
+
     const [loading, settLoading] = useState(false);
     const [success, settSuccess] = useState(false);
     const [error, settError] = useState<string | undefined>();
