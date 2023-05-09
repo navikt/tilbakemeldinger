@@ -21,6 +21,7 @@ import { defaultLocale, localePath, validLocales } from './utils/locale';
 import { DecoratorWidgets } from './components/decorator-widgets/DecoratorWidgets';
 import { Modal } from '@navikt/ds-react';
 import '@navikt/ds-css';
+import { HelmetProvider } from 'react-helmet-async';
 
 const App = () => {
     const [{ auth }, dispatch] = useStore();
@@ -63,64 +64,66 @@ const App = () => {
     let key = 0;
 
     return (
-        <BrowserRouter>
-            <DecoratorWidgets />
-            <ScrollToTop>
-                <Routes>
-                    {validLocales.flatMap((locale) => [
-                        <Route
-                            path={localePath(
-                                paths.tilbakemeldinger.forside,
-                                locale
-                            )}
-                            element={<Tilbakemeldinger />}
-                            key={key++}
-                        />,
-                        <Route
-                            path={localePath(
-                                paths.tilbakemeldinger.serviceklage.login,
-                                locale
-                            )}
-                            element={
-                                <Navigate
-                                    to={localePath(
-                                        paths.tilbakemeldinger.serviceklage
-                                            .form,
-                                        locale
-                                    )}
-                                />
-                            }
-                            key={key++}
-                        />,
-                        <Route
-                            path={localePath(
-                                paths.tilbakemeldinger.serviceklage.form,
-                                locale
-                            )}
-                            element={<ServiceKlage />}
-                            key={key++}
-                        />,
-                        <Route
-                            path={localePath(
-                                paths.tilbakemeldinger.rostilnav,
-                                locale
-                            )}
-                            element={<Ros />}
-                            key={key++}
-                        />,
-                        <Route
-                            path={localePath(
-                                paths.tilbakemeldinger.feilogmangler,
-                                locale
-                            )}
-                            element={<FeilOgMangler />}
-                            key={key++}
-                        />,
-                    ])}
-                    <Route path="*" element={<RedirectToLocaleOrError />} />
-                </Routes>
-            </ScrollToTop>
-        </BrowserRouter>
+        <HelmetProvider>
+            <BrowserRouter>
+                <DecoratorWidgets />
+                <ScrollToTop>
+                    <Routes>
+                        {validLocales.flatMap((locale) => [
+                            <Route
+                                path={localePath(
+                                    paths.tilbakemeldinger.forside,
+                                    locale
+                                )}
+                                element={<Tilbakemeldinger />}
+                                key={key++}
+                            />,
+                            <Route
+                                path={localePath(
+                                    paths.tilbakemeldinger.serviceklage.login,
+                                    locale
+                                )}
+                                element={
+                                    <Navigate
+                                        to={localePath(
+                                            paths.tilbakemeldinger.serviceklage
+                                                .form,
+                                            locale
+                                        )}
+                                    />
+                                }
+                                key={key++}
+                            />,
+                            <Route
+                                path={localePath(
+                                    paths.tilbakemeldinger.serviceklage.form,
+                                    locale
+                                )}
+                                element={<ServiceKlage />}
+                                key={key++}
+                            />,
+                            <Route
+                                path={localePath(
+                                    paths.tilbakemeldinger.rostilnav,
+                                    locale
+                                )}
+                                element={<Ros />}
+                                key={key++}
+                            />,
+                            <Route
+                                path={localePath(
+                                    paths.tilbakemeldinger.feilogmangler,
+                                    locale
+                                )}
+                                element={<FeilOgMangler />}
+                                key={key++}
+                            />,
+                        ])}
+                        <Route path="*" element={<RedirectToLocaleOrError />} />
+                    </Routes>
+                </ScrollToTop>
+            </BrowserRouter>
+        </HelmetProvider>
     );
 };
 
