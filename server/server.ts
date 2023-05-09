@@ -24,7 +24,7 @@ const getAccessToken = async (req: Request) => {
         try {
             return await getTokenxToken(
                 selvbetjeningIdToken,
-                `${process.env.REACT_APP_ENV}-gcp:teamserviceklage:tilbakemeldingsmottak-api`
+                `${process.env.ENV}-gcp:teamserviceklage:tilbakemeldingsmottak-api`
             );
         } catch (e) {
             console.log(
@@ -34,7 +34,7 @@ const getAccessToken = async (req: Request) => {
     }
 
     return await getAzureadToken(
-        `api://${process.env.REACT_APP_ENV}-gcp.teamserviceklage.tilbakemeldingsmottak-api/.default`
+        `api://${process.env.ENV}-gcp.teamserviceklage.tilbakemeldingsmottak-api/.default`
     );
 };
 
@@ -96,7 +96,7 @@ server.use(
 
 // Match everything except internal og static
 server.use('*', (req: Request, res: Response) => {
-    const env = process.env.REACT_APP_ENV;
+    const env = process.env.ENV;
     const language = req.originalUrl.indexOf('/en') !== -1 ? 'en' : 'nb';
     getHtmlWithDecorator(`${buildPath}/index.html`, env, language)
         .then((html: any) => {
