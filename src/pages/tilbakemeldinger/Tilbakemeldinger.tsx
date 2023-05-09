@@ -6,8 +6,11 @@ import { useIntl } from 'react-intl';
 import { useStore } from '../../providers/Provider';
 import { MetaTags } from '../../components/metatags/MetaTags';
 import { paths } from '../../Config';
+import { useLoginserviceRedirect } from '../../hooks/useLoginserviceRedirect';
 
 const Tilbakemeldinger = () => {
+    useLoginserviceRedirect();
+
     const intl = useIntl();
     const [{ locale }] = useStore();
 
