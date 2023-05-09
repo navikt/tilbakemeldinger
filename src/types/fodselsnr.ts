@@ -1,3 +1,3 @@
 export interface Fodselsnr {
-  fodselsnr: string;
+    fodselsnr: string;
 }
