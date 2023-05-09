@@ -1,37 +1,40 @@
-import { forsidePath } from "../Config";
-import { Action } from "../providers/Store";
+import { forsidePath } from '../Config';
+import { Action } from '../providers/Store';
 
-export type Locale = "nb" | "en" | "nn";
-export const validLocales: Locale[] = ["nb", "en", "nn"];  // :(
-export const defaultLocale = "nb" as Locale;
+export type Locale = 'nb' | 'en' | 'nn';
+export const validLocales: Locale[] = ['nb', 'en', 'nn']; // :(
+export const defaultLocale = 'nb' as Locale;
 
-export const localePath = (path: string, locale: Locale) => `${forsidePath}/${locale}${path}`;
+export const localePath = (path: string, locale: Locale) =>
+    `${forsidePath}/${locale}${path}`;
 
-const isLocale = (str: string): str is Locale => validLocales.includes(str as Locale);
+const isLocale = (str: string): str is Locale =>
+    validLocales.includes(str as Locale);
 
-export const setNewLocale = (locale: Locale, dispatch: (action: Action) => void) => {
-  // TODO: bruk regex?
-  const subSegments = window.location.pathname
-    .split(forsidePath)[1]
-    .split("/")
-    .slice(2)
-    .join("/");
-  const newUrl = `${forsidePath}/${locale}/${subSegments}`;
+export const setNewLocale = (
+    locale: Locale,
+    dispatch: (action: Action) => void
+) => {
+    // TODO: bruk regex?
+    const subSegments = window.location.pathname
+        .split(forsidePath)[1]
+        .split('/')
+        .slice(2)
+        .join('/');
+    const newUrl = `${forsidePath}/${locale}/${subSegments}`;
 
-  window.history.pushState({}, "", newUrl);
-  dispatch({ type: "SETT_LOCALE", payload: locale });
+    window.history.pushState({}, '', newUrl);
+    dispatch({ type: 'SETT_LOCALE', payload: locale });
 };
 
 export const getLocaleFromUrl = () => {
-  const locale = window.location.pathname
-      .split(forsidePath)[1]
-      .split("/")[1];
+    const locale = window.location.pathname.split(forsidePath)[1].split('/')[1];
 
-  return isLocale(locale) ? locale : defaultLocale;
+    return isLocale(locale) ? locale : defaultLocale;
 };
 
 export const setLocaleFromUrl = (dispatch: (action: Action) => void) => {
-  const localeFromUrl = getLocaleFromUrl();
+    const localeFromUrl = getLocaleFromUrl();
 
-  dispatch({ type: "SETT_LOCALE", payload: localeFromUrl });
+    dispatch({ type: 'SETT_LOCALE', payload: localeFromUrl });
 };
