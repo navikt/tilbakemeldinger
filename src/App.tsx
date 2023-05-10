@@ -53,16 +53,16 @@ const App = () => {
                             )
                             .catch((error: HTTPError) => console.error(error));
                         fetchFodselsnr()
-                            .then((fodselsnr: Fodselsnr) => {
-                                if (!fodselsnr) {
-                                    redirectToLoginservice();
-                                }
+                            .then((fodselsnr: Fodselsnr) =>
                                 dispatch({
                                     type: 'SETT_FODSELSNR',
                                     payload: fodselsnr,
-                                });
-                            })
-                            .catch((error: HTTPError) => console.error(error));
+                                })
+                            )
+                            .catch((error: HTTPError) => {
+                              console.error(error)
+                              redirectToLoginservice();
+                            });
                     }
                 })
                 .catch((error: HTTPError) => console.error(error));
