@@ -10,9 +10,9 @@ export const useLoginserviceRedirect = () => {
         // Redirect til loginservice hvis innlogget med wonderwall
         // (fødselsnummer utledes fra loginservice-token)
         if (auth.loaded && auth.authenticated && !fodselsnr) {
-            window.location.assign(
-                `${loginUrl}?redirect=${window.location.href}`
-            );
+            const loginserviceRedirectUrl = `${loginUrl}?redirect=${window.location.href}`;
+            // Fjerner trailing slash pga rigit allow list i loginservice
+            window.location.assign(loginserviceRedirectUrl.replace(/\/+$/, ''));
         }
     }, [auth.loaded, auth.authenticated]);
 };
