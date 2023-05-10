@@ -144,7 +144,6 @@ const RedirectToLocaleOrError = () => {
         const subPath = window.location.pathname.split(
             paths.kontaktOss.forside
         )[1];
-        console.log(subPath);
         return (
             <Navigate to={localePath(subPath ? subPath : '', defaultLocale)} />
         );
