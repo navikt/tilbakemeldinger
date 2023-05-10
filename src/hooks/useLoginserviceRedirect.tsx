@@ -7,6 +7,9 @@ export const useLoginserviceRedirect = () => {
     const { loginUrl } = Environments();
 
     useEffect(() => {
+        console.log("useEffect i hook")
+        console.log("hook: " + auth)
+        console.log("hook: " + fodselsnr)
         // Redirect til loginservice hvis innlogget med wonderwall
         // (fødselsnummer utledes fra loginservice-token)
         if (auth.loaded && auth.authenticated && !fodselsnr) {

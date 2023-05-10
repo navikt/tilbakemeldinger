@@ -31,6 +31,8 @@ const App = () => {
     }, []);
 
     useEffect(() => {
+        console.log('useEffect in App.tsx');
+        console.log(auth);
         if (!auth.authenticated) {
             fetchAuthInfo()
                 .then((authInfo: AuthInfo) => {
@@ -133,7 +135,7 @@ const RedirectToLocaleOrError = () => {
         const subPath = window.location.pathname.split(
             paths.kontaktOss.forside
         )[1];
-        console.log(subPath)
+        console.log(subPath);
         return (
             <Navigate to={localePath(subPath ? subPath : '', defaultLocale)} />
         );
