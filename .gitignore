@@ -25,7 +25,7 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
-/public/index.css
 
 /tilbakemeldinger.iml
 /pb-kontakt-oss.iml
+/public/static/css/index.css
