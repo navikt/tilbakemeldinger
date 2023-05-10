@@ -41,7 +41,6 @@ import {
     useForm,
 } from 'react-hook-form';
 import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
-import { useLoginserviceRedirect } from '../../../hooks/useLoginserviceRedirect';
 
 export interface ServiceklageFormFields {
     klagetekst: string;
@@ -69,8 +68,6 @@ export type OutboundServiceKlage = OutboundServiceKlageBase &
     OutboundServiceKlageExtend;
 
 const ServiceKlage = () => {
-    useLoginserviceRedirect();
-
     const methods = useForm<ServiceklageFormFields>({
         reValidateMode: 'onChange',
         shouldUnregister: true,
