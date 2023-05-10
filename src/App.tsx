@@ -16,15 +16,23 @@ import ServiceKlage from './pages/tilbakemeldinger/service-klage/ServiceKlage';
 import { KontaktInfo } from './types/kontaktInfo';
 import { Fodselsnr } from './types/fodselsnr';
 import ScrollToTop from './components/scroll-to-top/ScrollToTop';
-import { forsidePath, paths } from './Config';
+import { paths } from './Config';
 import { defaultLocale, localePath, validLocales } from './utils/locale';
 import { DecoratorWidgets } from './components/decorator-widgets/DecoratorWidgets';
 import { Modal } from '@navikt/ds-react';
 import '@navikt/ds-css';
 import { HelmetProvider } from 'react-helmet-async';
+import Environments from './Environments';
 
 const App = () => {
     const [{ auth }, dispatch] = useStore();
+    const { loginUrl } = Environments();
+
+    const redirectToLoginservice = () => {
+        const loginserviceRedirectUrl = `${loginUrl}?redirect=${window.location.href}`;
+        // Fjerner trailing slash pga rigid allow list i loginservice
+        window.location.assign(loginserviceRedirectUrl.replace(/\/+$/, ''));
+    };
 
     useEffect(() => {
         Modal.setAppElement?.('#app');
@@ -36,19 +44,22 @@ const App = () => {
                 .then((authInfo: AuthInfo) => {
                     dispatch({ type: 'SETT_AUTH_RESULT', payload: authInfo });
                     if (authInfo.authenticated) {
-                        fetchKontaktInfo()
-                            .then((kontaktInfo: KontaktInfo) =>
-                                dispatch({
-                                    type: 'SETT_KONTAKT_INFO_RESULT',
-                                    payload: kontaktInfo,
-                                })
-                            )
-                            .catch((error: HTTPError) => console.error(error));
                         fetchFodselsnr()
                             .then((fodselsnr: Fodselsnr) =>
                                 dispatch({
                                     type: 'SETT_FODSELSNR',
                                     payload: fodselsnr,
+                                })
+                            )
+                            .catch((error: HTTPError) => {
+                                console.error(error);
+                                redirectToLoginservice();
+                            });
+                        fetchKontaktInfo()
+                            .then((kontaktInfo: KontaktInfo) =>
+                                dispatch({
+                                    type: 'SETT_KONTAKT_INFO_RESULT',
+                                    payload: kontaktInfo,
                                 })
                             )
                             .catch((error: HTTPError) => console.error(error));
@@ -130,7 +141,9 @@ const RedirectToLocaleOrError = () => {
         .some((segment) => validLocales.some((locale) => segment === locale));
 
     if (!isLocaleUrl) {
-        const subPath = window.location.pathname.split(forsidePath)[1];
+        const subPath = window.location.pathname.split(
+            paths.kontaktOss.forside
+        )[1];
         return (
             <Navigate to={localePath(subPath ? subPath : '', defaultLocale)} />
         );

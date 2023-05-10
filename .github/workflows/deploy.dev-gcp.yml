@@ -22,6 +22,10 @@ jobs:
           echo "IMAGE_VERSION=${IMAGE_VERSION_RAW,,}" >> $GITHUB_ENV
           echo "GITHUB_TOKEN=$(echo ${GITHUB_TOKEN})" >> $GITHUB_ENV
           echo "PUBLIC_URL=https://cdn.nav.no/personbruker/tilbakemeldinger/$(echo ${IMAGE_VERSION_RAW,,})/build" >> $GITHUB_ENV
+      - name: Define client-side environment
+        run: |
+          echo "REACT_APP_ENV=dev" >> $GITHUB_ENV
+          echo "REACT_APP_HOST=https://www.intern.dev.nav.no" >> $GITHUB_ENV
       - name: Setup node.js
         uses: actions/setup-node@v3
         with:
