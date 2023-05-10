@@ -44,14 +44,6 @@ const App = () => {
                 .then((authInfo: AuthInfo) => {
                     dispatch({ type: 'SETT_AUTH_RESULT', payload: authInfo });
                     if (authInfo.authenticated) {
-                        fetchKontaktInfo()
-                            .then((kontaktInfo: KontaktInfo) =>
-                                dispatch({
-                                    type: 'SETT_KONTAKT_INFO_RESULT',
-                                    payload: kontaktInfo,
-                                })
-                            )
-                            .catch((error: HTTPError) => console.error(error));
                         fetchFodselsnr()
                             .then((fodselsnr: Fodselsnr) =>
                                 dispatch({
@@ -60,9 +52,17 @@ const App = () => {
                                 })
                             )
                             .catch((error: HTTPError) => {
-                              console.error(error)
-                              redirectToLoginservice();
+                                console.error(error);
+                                redirectToLoginservice();
                             });
+                        fetchKontaktInfo()
+                            .then((kontaktInfo: KontaktInfo) =>
+                                dispatch({
+                                    type: 'SETT_KONTAKT_INFO_RESULT',
+                                    payload: kontaktInfo,
+                                })
+                            )
+                            .catch((error: HTTPError) => console.error(error));
                     }
                 })
                 .catch((error: HTTPError) => console.error(error));
