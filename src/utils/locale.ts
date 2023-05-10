@@ -6,7 +6,9 @@ export const validLocales: Locale[] = ['nb', 'en', 'nn']; // :(
 export const defaultLocale = 'nb' as Locale;
 
 export const localePath = (path: string, locale: Locale) =>
-    `${paths.kontaktOss.forside}/${locale}${path}`;
+    `${paths.kontaktOss.forside}/${locale}${
+        path.endsWith('/') ? path.slice(0, -1) : path
+    }`;
 
 const isLocale = (str: string): str is Locale =>
     validLocales.includes(str as Locale);
@@ -16,12 +18,14 @@ export const setNewLocale = (
     dispatch: (action: Action) => void
 ) => {
     // TODO: bruk regex?
-    const subSegments = window.location.pathname
-        .split(paths.kontaktOss.forside)[1]
-        .split('/')
-        .slice(2)
-        .join('/');
-    const newUrl = `${paths.kontaktOss.forside}/${locale}/${subSegments}`;
+    const subSegments =
+        '/' +
+        window.location.pathname
+            .split(paths.kontaktOss.forside)[1]
+            .split('/')
+            .slice(2)
+            .join('/');
+    const newUrl = localePath(subSegments, locale);
 
     window.history.pushState({}, '', newUrl);
     dispatch({ type: 'SETT_LOCALE', payload: locale });
