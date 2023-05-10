@@ -9,10 +9,10 @@ export const useLoginserviceRedirect = () => {
     useEffect(() => {
         // Redirect til loginservice hvis innlogget med wonderwall
         // (fødselsnummer utledes fra loginservice-token)
-        if (auth.authenticated && !fodselsnr) {
+        if (auth.loaded && auth.authenticated && !fodselsnr) {
             window.location.assign(
                 `${loginUrl}?redirect=${window.location.href}`
             );
         }
-    }, [auth.authenticated]);
+    }, [auth.loaded, auth.authenticated]);
 };
