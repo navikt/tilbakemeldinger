@@ -22,17 +22,23 @@ import { DecoratorWidgets } from './components/decorator-widgets/DecoratorWidget
 import { Modal } from '@navikt/ds-react';
 import '@navikt/ds-css';
 import { HelmetProvider } from 'react-helmet-async';
+import Environments from './Environments';
 
 const App = () => {
     const [{ auth }, dispatch] = useStore();
+    const { loginUrl } = Environments();
+
+    const redirectToLoginservice = () => {
+        const loginserviceRedirectUrl = `${loginUrl}?redirect=${window.location.href}`;
+        // Fjerner trailing slash pga rigid allow list i loginservice
+        window.location.assign(loginserviceRedirectUrl.replace(/\/+$/, ''));
+    };
 
     useEffect(() => {
         Modal.setAppElement?.('#app');
     }, []);
 
     useEffect(() => {
-        console.log('useEffect in App.tsx');
-        console.log(auth);
         if (!auth.authenticated) {
             fetchAuthInfo()
                 .then((authInfo: AuthInfo) => {
@@ -47,12 +53,15 @@ const App = () => {
                             )
                             .catch((error: HTTPError) => console.error(error));
                         fetchFodselsnr()
-                            .then((fodselsnr: Fodselsnr) =>
+                            .then((fodselsnr: Fodselsnr) => {
+                                if (!fodselsnr) {
+                                    redirectToLoginservice();
+                                }
                                 dispatch({
                                     type: 'SETT_FODSELSNR',
                                     payload: fodselsnr,
-                                })
-                            )
+                                });
+                            })
                             .catch((error: HTTPError) => console.error(error));
                     }
                 })
