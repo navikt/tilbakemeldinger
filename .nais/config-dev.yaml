@@ -29,6 +29,9 @@ spec:
       enabled: true
   tokenx:
     enabled: true
+  idporten:
+    sidecar:
+      enabled: true
   accessPolicy:
     outbound:
       rules:

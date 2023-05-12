@@ -11,7 +11,6 @@ const Environment = () => {
             personInfoApiUrl: `${host}/person/personopplysninger-api`,
             mineSakerUrl: `https://www.intern.dev.nav.no/mine-saker`,
             loginUrl: `${host}/personbruker-api/local/cookie`,
-            logoutUrl: `#`,
             klageUrl: `https://klage.intern.dev.nav.no`,
         };
     }
@@ -24,8 +23,7 @@ const Environment = () => {
                 'https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth',
             personInfoApiUrl: `${host}/person/personopplysninger-api`,
             mineSakerUrl: `${host}/mine-saker`,
-            loginUrl: 'https://loginservice.intern.dev.nav.no/login',
-            logoutUrl: 'https://loginservice.intern.dev.nav.no/slo',
+            loginUrl: 'https://login.intern.dev.nav.no/oauth2/login',
             klageUrl: 'https://klage.intern.dev.nav.no',
         };
     }
@@ -36,8 +34,7 @@ const Environment = () => {
         authUrl: `${host}/person/nav-dekoratoren-api/auth`,
         personInfoApiUrl: `${host}/person/personopplysninger-api`,
         mineSakerUrl: 'https://person.nav.no/mine-saker',
-        loginUrl: 'https://loginservice.nav.no/login',
-        logoutUrl: 'https://loginservice.nav.no/slo',
+        loginUrl: 'https://login.nav.no/oauth2/login',
         klageUrl: 'https://klage.nav.no',
     };
 };
