@@ -23,7 +23,7 @@ const Environment = () => {
                 'https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth',
             personInfoApiUrl: `${host}/person/personopplysninger-api`,
             mineSakerUrl: `${host}/mine-saker`,
-            loginUrl: 'https://login.intern.dev.nav.no/oauth2/login',
+            loginUrl: 'https://login.ekstern.dev.nav.no/oauth2/login',
             klageUrl: 'https://klage.intern.dev.nav.no',
         };
     }
