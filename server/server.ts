@@ -17,13 +17,16 @@ const server = express();
 const buildPath = path.resolve(__dirname, '../../build');
 const baseUrl = '/person/kontakt-oss/tilbakemeldinger';
 
-const getAccessToken = async (req: Request) => {
-    const selvbetjeningIdToken = req.cookies['selvbetjening-idtoken'];
+const getAuthToken = (req: Request) =>
+    req.headers.authorization?.split('Bearer ')[1];
 
-    if (req.params.path === 'serviceklage' && selvbetjeningIdToken) {
+const getAccessToken = async (req: Request) => {
+    const authToken = getAuthToken(req);
+
+    if (req.params.path === 'serviceklage' && authToken) {
         try {
             return await getTokenxToken(
-                selvbetjeningIdToken,
+                authToken,
                 `${process.env.ENV}-gcp:teamserviceklage:tilbakemeldingsmottak-api`
             );
         } catch (e) {
@@ -49,7 +52,7 @@ server.get(
 );
 
 server.get(`${baseUrl}/fodselsnr`, (req: Request, res: Response) =>
-    res.send({ fodselsnr: decodeJWT(req.cookies['selvbetjening-idtoken']).pid })
+    res.send({ fodselsnr: decodeJWT(getAuthToken(req)).pid })
 );
 
 server.post(
