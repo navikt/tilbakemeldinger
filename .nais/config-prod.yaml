@@ -33,6 +33,7 @@ spec:
     enabled: true
     sidecar:
       enabled: true
+      level: Level3
   accessPolicy:
     outbound:
       rules:
