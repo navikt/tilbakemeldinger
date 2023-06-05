@@ -235,20 +235,14 @@ const ServiceKlage = () => {
                                                     (await trigger());
                                             }}
                                             value={field.value ?? []}
+                                            description={
+                                                <FormattedMessage
+                                                    id={
+                                                        'felter.klagetyper.info'
+                                                    }
+                                                />
+                                            }
                                         >
-                                            <div
-                                                className={
-                                                    'felter__melding-advarsel'
-                                                }
-                                            >
-                                                <Alert variant={'info'}>
-                                                    <FormattedMessage
-                                                        id={
-                                                            'felter.klagetyper.info'
-                                                        }
-                                                    />
-                                                </Alert>
-                                            </div>
                                             <Checkbox value={'TELEFON'}>
                                                 {formatMessage({
                                                     id: 'felter.klagetyper.telefon',
