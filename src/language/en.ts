@@ -124,8 +124,7 @@ const en = {
     'felter.typefeil.uu':
         'Error when using screen readers or other accessibility devices',
     'felter.melding.tittel': 'Your feedback',
-    'felter.melding.beskrivelse': `Do not send personal or health information about yourself or others. Read more about personal information at <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
-    'felter.melding.pakrevde': 'Please complete all fields.',
+    'felter.melding.beskrivelse': `Do not send sensitive personal information about yourself or others. Read more about personal information at <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
     'felter.noegikkgalt':
         'Oops! A technical error occurred while submitting the form - please try again later.',
     'felter.send': 'Send feedback',

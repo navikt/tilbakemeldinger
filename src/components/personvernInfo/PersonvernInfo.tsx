@@ -8,7 +8,7 @@ export const PersonvernInfo = () => (
     <div>
         <Varsel type={'info'}>
             <>
-                <BodyLong spacing>
+                <BodyLong>
                     <FormattedMessage
                         id={'felter.melding.beskrivelse'}
                         values={{
@@ -25,9 +25,6 @@ export const PersonvernInfo = () => (
                             ),
                         }}
                     />
-                </BodyLong>
-                <BodyLong>
-                    <FormattedMessage id={'felter.melding.pakrevde'} />
                 </BodyLong>
             </>
         </Varsel>
