@@ -118,8 +118,7 @@ const nb = {
     'felter.typefeil.uu':
         'Feil på siden ved bruk av skjermleser eller annet hjelpemiddel',
     'felter.melding.tittel': 'Din tilbakemelding',
-    'felter.melding.beskrivelse': `Ikke send person- eller helseopplysninger om deg selv eller andre. Les mer om personopplysninger hos <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
-    'felter.melding.pakrevde': 'Du må fylle ut alle feltene.',
+    'felter.melding.beskrivelse': `Ikke send sensitive personopplysninger om deg selv eller andre. Les mer om personopplysninger hos <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
     'felter.noegikkgalt':
         'Oi! Det skjedde en teknisk feil ved innsending av skjemaet, prøv igjen senere.',
     'felter.send': 'Send tilbakemelding',
