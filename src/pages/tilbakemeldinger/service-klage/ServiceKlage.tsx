@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import VeilederIcon from 'assets/icons/Veileder.svg';
 import { useStore } from 'providers/Provider';
 import { postServiceKlage } from 'clients/apiClient';
-import { HTTPError } from 'types/errors';
+import { ErrorResponse } from 'types/errors';
 import InputMelding from 'components/input-fields/InputMelding';
 import {
     KLAGE_TYPE,
@@ -41,6 +41,7 @@ import {
     useForm,
 } from 'react-hook-form';
 import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
+import { resolveErrorCode } from '../../../utils/errorCodes';
 
 export interface ServiceklageFormFields {
     klagetekst: string;
@@ -87,7 +88,7 @@ const ServiceKlage = () => {
     const [{ auth, fodselsnr }] = useStore();
     const [loading, settLoading] = useState(false);
     const [success, settSuccess] = useState(false);
-    const [error, settError] = useState<string | undefined>();
+    const [error, settError] = useState<ErrorResponse>();
     const [loginClosed, setLoginClosed] = useState(false);
 
     const { formatMessage } = useIntl();
@@ -170,8 +171,8 @@ const ServiceKlage = () => {
                 settSuccess(true);
                 triggerHotjar('serviceklage');
             })
-            .catch((error: HTTPError) => {
-                settError(`${error.code} - ${error.text}`);
+            .catch((error: ErrorResponse) => {
+                settError(error);
             })
             .then(() => {
                 settLoading(false);
@@ -381,7 +382,9 @@ const ServiceKlage = () => {
                                         className={'felter__melding-advarsel'}
                                     >
                                         <FormattedMessage
-                                            id={'felter.noegikkgalt'}
+                                            id={resolveErrorCode(
+                                                error.errorCode
+                                            )}
                                         />
                                     </Alert>
                                 )}
