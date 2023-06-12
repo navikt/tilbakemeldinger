@@ -1,5 +1,5 @@
 import Environment from '../Environments';
-import { HTTPError, BadRequest } from 'types/errors';
+import { BadRequest, HTTPError } from 'types/errors';
 import { OutboundRosTilNav } from 'pages/tilbakemeldinger/ros-til-nav/Ros';
 import { OutboundFeilOgMangler } from 'pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler';
 import { OutboundServiceKlage } from 'pages/tilbakemeldinger/service-klage/ServiceKlage';
@@ -19,11 +19,10 @@ const hentJson = (url: string) =>
         .then((response) => sjekkForFeil(url, response))
         .then(parseJson)
         .catch((err: string & HTTPError) => {
-            const error = {
+            throw {
                 code: err.code || 404,
                 text: err.text || err,
             };
-            throw error;
         });
 
 export const fetchEnheter = () => hentJson(`${appUrl}/enheter`);
@@ -44,23 +43,20 @@ type Outbound =
     | OutboundFeilOgMangler
     | OutboundServiceKlage;
 
-const sendJson = (url: string, data: Outbound) => {
+const sendJson = async (url: string, data: Outbound) => {
     console.log(url, data);
-    return fetch(url, {
+    const res = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'application/json;charset=UTF-8' },
         credentials: 'include',
-    })
-        .then((response) => sjekkForFeil(url, response))
-        .then(parseJson)
-        .catch((err: string & HTTPError) => {
-            const error = {
-                code: err.code || 404,
-                text: err.text || err,
-            };
-            throw error;
-        });
+    });
+    const json = await res.json();
+    if (res.ok) {
+        return json;
+    } else {
+        throw json;
+    }
 };
 
 export const postRosTilNav = (data: OutboundRosTilNav) =>

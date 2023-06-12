@@ -112,7 +112,9 @@ const en = {
     'validering.postadr.pakrevd': 'Postal address is required',
     'validering.gjeldersosialhjelp.pakrevd':
         'You must select whether the feedback applies to financial social assistance/social services',
-
+    'feilmelding.generell':
+        'Oops! A technical error occurred while submitting the form - please try again later.',
+    'feilmelding.orgnr': 'Organisation number was not found.',
     'felter.navn.tittel': 'Name',
     'felter.navn.tittel.valgfritt': 'Name (optional)',
     'felter.epost.tittel': 'Email',
@@ -125,8 +127,6 @@ const en = {
         'Error when using screen readers or other accessibility devices',
     'felter.melding.tittel': 'Your feedback',
     'felter.melding.beskrivelse': `Do not send sensitive personal information about yourself or others. Read more about personal information at <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
-    'felter.noegikkgalt':
-        'Oops! A technical error occurred while submitting the form - please try again later.',
     'felter.send': 'Send feedback',
     'felter.tilbake': 'Back',
     'felter.hvemroses.tittel': 'Who do you want to praise?',

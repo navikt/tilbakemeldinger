@@ -6,6 +6,10 @@ export interface BadRequest {
     path: string;
 }
 
+export interface ErrorResponse {
+    errorCode: string;
+}
+
 export interface HTTPError {
     code: number;
     text: string;
