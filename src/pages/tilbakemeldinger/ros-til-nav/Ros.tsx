@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import VeilederIcon from 'assets/icons/Veileder.svg';
 import InputMelding from 'components/input-fields/InputMelding';
 import { postRosTilNav } from 'clients/apiClient';
-import { HTTPError } from 'types/errors';
+import { ErrorResponse } from 'types/errors';
 import Header from 'components/header/Header';
 import { paths, vars } from 'Config';
 import Box from 'components/box/Box';
@@ -14,6 +14,7 @@ import { MetaTags } from '../../../components/metatags/MetaTags';
 import { Alert, Button, GuidePanel, Radio, RadioGroup } from '@navikt/ds-react';
 import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
+import { resolveErrorCode } from '../../../utils/errorCodes';
 
 type HVEM_ROSES = 'NAV_KONTAKTSENTER' | 'NAV_DIGITALE_TJENESTER' | 'NAV_KONTOR';
 
@@ -48,7 +49,7 @@ const Ros = () => {
 
     const [loading, settLoading] = useState(false);
     const [success, settSuccess] = useState(false);
-    const [error, settError] = useState<string | undefined>();
+    const [error, settError] = useState<ErrorResponse>();
     const { formatMessage } = useIntl();
 
     const send = (values: FieldValues) => {
@@ -68,8 +69,8 @@ const Ros = () => {
                 settSuccess(true);
                 triggerHotjar('rosnav');
             })
-            .catch((error: HTTPError) => {
-                settError(`${error.code} - ${error.text}`);
+            .catch((error: ErrorResponse) => {
+                settError(error);
             })
             .then(() => {
                 settLoading(false);
@@ -194,7 +195,7 @@ const Ros = () => {
                                     className={'felter__melding-advarsel'}
                                 >
                                     <FormattedMessage
-                                        id={'felter.noegikkgalt'}
+                                        id={resolveErrorCode(error.errorCode)}
                                     />
                                 </Alert>
                             )}
