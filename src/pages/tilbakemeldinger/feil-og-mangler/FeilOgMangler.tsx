@@ -53,7 +53,7 @@ const FOM = () => {
     const [loading, settLoading] = useState(false);
     const [success, settSuccess] = useState(false);
     const [error, settError] = useState<ErrorResponse>();
-    const {formatMessage} = useIntl();
+    const { formatMessage } = useIntl();
 
     const send = (values: FieldValues) => {
         const { onskerKontakt, feiltype, melding, epost } = values;
