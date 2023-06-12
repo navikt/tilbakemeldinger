@@ -107,7 +107,9 @@ const nb = {
     'validering.postadr.pakrevd': 'Postadresse er nødvendig',
     'validering.gjeldersosialhjelp.pakrevd':
         'Du må velge om tilbakemeldingen gjelder økonomisk sosialhjelp / sosiale tjenester',
-
+    'feilmelding.generell':
+        'Oi! Det skjedde en teknisk feil ved innsending av skjemaet, prøv igjen senere.',
+    'feilmelding.orgnr': 'Kunne ikke finne organisasjonsnummer.',
     'felter.navn.tittel': 'Navn',
     'felter.navn.tittel.valgfritt': 'Navn (valgfritt)',
     'felter.epost.tittel': 'E-post',
@@ -119,8 +121,6 @@ const nb = {
         'Feil på siden ved bruk av skjermleser eller annet hjelpemiddel',
     'felter.melding.tittel': 'Din tilbakemelding',
     'felter.melding.beskrivelse': `Ikke send sensitive personopplysninger om deg selv eller andre. Les mer om personopplysninger hos <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
-    'felter.noegikkgalt':
-        'Oi! Det skjedde en teknisk feil ved innsending av skjemaet, prøv igjen senere.',
     'felter.send': 'Send tilbakemelding',
     'felter.tilbake': 'Tilbake',
     'felter.hvemroses.tittel': 'Hvem vil du gi ros til?',
