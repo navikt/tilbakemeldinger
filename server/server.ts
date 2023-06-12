@@ -76,9 +76,9 @@ server.post(
         });
 
         if (!response.ok) {
-            const error = await response.text();
+            const error = await response.json();
             console.log(`Feil i kall til tilbakemeldingsmottak-api: ${error}`);
-            return res.status(response.status).send(await response.json);
+            return res.status(response.status).send(error);
         }
 
         const responseData = await response.json();
