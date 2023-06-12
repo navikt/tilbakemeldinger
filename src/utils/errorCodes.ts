@@ -3,6 +3,6 @@ export const resolveErrorCode = (errorCode: string): string => {
         case 'EREG_NOT_FOUND':
             return 'feilmelding.orgnr';
         default:
-            return 'feilmelding.generell.';
+            return 'feilmelding.generell';
     }
 };
