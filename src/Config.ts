@@ -1,6 +1,6 @@
 import Environment from './Environments';
 
-const { klageUrl, baseUrl: navUrl } = Environment();
+const { klageUrl, klageUrlEn, baseUrl: navUrl } = Environment();
 
 export const paths = {
     kontaktOss: {
@@ -19,7 +19,11 @@ export const paths = {
 
 export const urls = {
     tilbakemeldinger: {
-        klagepavedtak: klageUrl,
+        klagepavedtak: {
+            nb: klageUrl,
+            nn:  klageUrl,
+            en: klageUrlEn
+        },
         klagerettigheter: {
             nb: `${navUrl}/klagerettigheter`,
             en: `${navUrl}/klagerettigheter/en`,
