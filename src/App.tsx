@@ -19,16 +19,11 @@ import ScrollToTop from './components/scroll-to-top/ScrollToTop';
 import { paths } from './Config';
 import { defaultLocale, localePath, validLocales } from './utils/locale';
 import { DecoratorWidgets } from './components/decorator-widgets/DecoratorWidgets';
-import { Modal } from '@navikt/ds-react';
 import '@navikt/ds-css';
 import { HelmetProvider } from 'react-helmet-async';
 
 const App = () => {
     const [{ auth }, dispatch] = useStore();
-
-    useEffect(() => {
-        Modal.setAppElement?.('#app');
-    }, []);
 
     useEffect(() => {
         if (!auth.authenticated) {
