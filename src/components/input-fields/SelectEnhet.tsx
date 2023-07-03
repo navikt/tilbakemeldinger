@@ -15,7 +15,7 @@ interface Option {
 }
 
 interface Props {
-    onChange: (value: Option | undefined) => void;
+    onChange: (value?: Option) => void;
     triggerValidation: () => void;
     error?: string;
     label: string;
