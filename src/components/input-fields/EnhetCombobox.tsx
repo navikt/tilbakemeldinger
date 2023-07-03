@@ -1,7 +1,7 @@
 import React, { ForwardedRef, useState } from 'react';
 import { useCombobox } from 'downshift';
 import { useIntl } from 'react-intl';
-import { Expand } from '@navikt/ds-icons';
+import { ExpandIcon } from '@navikt/aksel-icons';
 
 const cssPrefix = 'enhetCombo';
 
@@ -87,7 +87,7 @@ const Combobox = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
                         id: 'felter.combobox.knapp.beskrivelse',
                     })}
                 >
-                    <Expand aria-hidden={true} />
+                    <ExpandIcon aria-hidden={true} />
                 </button>
             </div>
             <ul
