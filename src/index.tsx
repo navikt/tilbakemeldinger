@@ -27,6 +27,7 @@ const init = async () => {
             params: {
                 simple: false,
                 chatbot: false,
+                logoutWarning: true,
             },
         });
     }
