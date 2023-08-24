@@ -27,6 +27,7 @@ const getHtmlWithDecorator = (
             { locale: 'nn', url: `${basePath}/person/kontakt-oss/nn/` },
             { locale: 'en', url: `${basePath}/person/kontakt-oss/en/` },
         ],
+        logoutWarning: true,
     });
 };
 
