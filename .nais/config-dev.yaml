@@ -39,6 +39,8 @@ spec:
       rules:
         - application: tilbakemeldingsmottak-api
           namespace: teamserviceklage
+        - application: nav-dekoratoren
+          namespace: personbruker
       external:
         - host: dekoratoren.ekstern.dev.nav.no
         - host: norg2.dev-fss-pub.nais.io
