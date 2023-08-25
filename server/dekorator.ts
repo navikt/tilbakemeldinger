@@ -1,5 +1,6 @@
 const {
     injectDecoratorServerSide,
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require('@navikt/nav-dekoratoren-moduler/ssr');
 
 const getHtmlWithDecorator = (
@@ -27,6 +28,7 @@ const getHtmlWithDecorator = (
             { locale: 'nn', url: `${basePath}/person/kontakt-oss/nn/` },
             { locale: 'en', url: `${basePath}/person/kontakt-oss/en/` },
         ],
+        logoutWarning: true,
     });
 };
 
