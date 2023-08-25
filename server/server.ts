@@ -1,17 +1,26 @@
 import { Request, Response } from 'express';
 import { getTokenxToken } from './auth/tokenx';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const express = require('express');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const getHtmlWithDecorator = require('./dekorator');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const logger = require('./logger');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const decodeJWT = require('jwt-decode');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const cookies = require('cookie-parser');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { createProxyMiddleware } = require('http-proxy-middleware');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const compression = require('compression');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { getAzureadToken } = require('./auth/azuread');
-const fetch = require('node-fetch');
 
 const server = express();
 const buildPath = path.resolve(__dirname, '../../build');
@@ -105,10 +114,10 @@ server.use('*', (req: Request, res: Response) => {
     const env = process.env.ENV;
     const language = req.originalUrl.indexOf('/en') !== -1 ? 'en' : 'nb';
     getHtmlWithDecorator(`${buildPath}/index.html`, env, language)
-        .then((html: any) => {
+        .then((html: unknown) => {
             res.send(html);
         })
-        .catch((e: any) => {
+        .catch((e: unknown) => {
             logger.error(e);
             res.status(500).send(e);
         });
