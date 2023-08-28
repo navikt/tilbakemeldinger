@@ -9,10 +9,10 @@ const getHtmlWithDecorator = (
     language: string
 ) => {
     const isDev = devOrProd === 'dev';
-    const basePath = isDev ? `https://www.dev.nav.no` : `https://www.nav.no`;
+    const basePath = isDev ? `https://www.intern.dev.nav.no` : `https://www.nav.no`;
     return injectDecoratorServerSide({
-        env: devOrProd,
         filePath: filePath,
+        env: devOrProd,
         language: language,
         breadcrumbs: [
             {
