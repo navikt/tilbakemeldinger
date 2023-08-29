@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import VeilederIcon from 'assets/icons/Veileder.svg';
 import { useStore } from 'providers/Provider';
 import { postServiceKlage } from 'clients/apiClient';
@@ -30,7 +30,6 @@ import {
     Checkbox,
     CheckboxGroup,
     GuidePanel,
-    Modal,
     Radio,
     RadioGroup,
 } from '@navikt/ds-react';
@@ -178,10 +177,6 @@ const ServiceKlage = () => {
                 settLoading(false);
             });
     };
-
-    useEffect(() => {
-        Modal.setAppElement('#app');
-    }, []);
 
     return (
         <div className="pagecontent">
