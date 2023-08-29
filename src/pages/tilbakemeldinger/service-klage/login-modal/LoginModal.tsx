@@ -17,7 +17,7 @@ const LoginModal = ({ open, closeFunc }: Props) => {
             open={open}
             onClose={closeFunc}
         >
-            <Modal.Content>
+            <Modal.Body>
                 <div className="login-modal">
                     <Heading
                         level="2"
@@ -52,7 +52,7 @@ const LoginModal = ({ open, closeFunc }: Props) => {
                         </Button>
                     </div>
                 </div>
-            </Modal.Content>
+            </Modal.Body>
         </Modal>
     );
 };
