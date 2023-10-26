@@ -28,6 +28,7 @@ const ServiceKlageForBedrift = () => {
                 className="skjema__input--medium"
                 label={formatMessage({ id: 'felter.dinrolle.bedrift' })}
                 error={errors?.innmelderRolle?.message}
+                autoComplete="off"
             />
             <TextField
                 {...register('orgNavn', {
@@ -38,6 +39,7 @@ const ServiceKlageForBedrift = () => {
                 className="skjema__input--medium"
                 label={formatMessage({ id: 'felter.orgnavn' })}
                 error={errors?.orgNavn?.message}
+                autoComplete="off"
             />
             <TextField
                 {...register('orgNummer', {
@@ -56,6 +58,7 @@ const ServiceKlageForBedrift = () => {
                 className="skjema__input--medium"
                 label={formatMessage({ id: 'felter.orgnr' })}
                 error={errors?.orgNummer?.message}
+                autoComplete="off"
             />
             <Controller
                 render={({ field, fieldState: { error } }) => (
