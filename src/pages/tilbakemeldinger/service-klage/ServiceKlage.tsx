@@ -359,6 +359,7 @@ const ServiceKlage = () => {
                                         })}
                                         value={watch().klagetekst}
                                         error={errors?.klagetekst?.message}
+                                        maxLength={vars.maksLengdeMelding}
                                         autoComplete="off"
                                     />
                                 </div>

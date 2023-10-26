@@ -184,6 +184,7 @@ const Ros = () => {
                                 })}
                                 value={watch().melding}
                                 error={errors?.melding?.message}
+                                maxLength={vars.maksLengdeMelding}
                                 autoComplete="off"
                             />
                             {error && (
