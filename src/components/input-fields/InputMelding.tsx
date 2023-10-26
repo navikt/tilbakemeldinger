@@ -7,14 +7,13 @@ const InputMelding = (
     ref: ForwardedRef<HTMLTextAreaElement>
 ) => {
     return (
-        <div>
-            <Textarea
-                id="InputMelding-textarea"
-                maxLength={vars.maksLengdeMelding}
-                ref={ref}
-                {...props}
-            />
-        </div>
+        <Textarea
+            id="InputMelding-textarea"
+            maxLength={vars.maksLengdeMelding}
+            ref={ref}
+            {...props}
+            autoComplete="off"
+        />
     );
 };
 
