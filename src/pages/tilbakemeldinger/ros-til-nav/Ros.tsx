@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import VeilederIcon from 'assets/icons/Veileder.svg';
-import InputMelding from 'components/input-fields/InputMelding';
 import { postRosTilNav } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import Header from 'components/header/Header';
@@ -11,7 +10,7 @@ import Takk from 'components/takk/Takk';
 import { triggerHotjar } from 'utils/hotjar';
 import SelectEnhet from 'components/input-fields/SelectEnhet';
 import { MetaTags } from '../../../components/metatags/MetaTags';
-import { Alert, Button, GuidePanel, Radio, RadioGroup } from '@navikt/ds-react';
+import { Alert, Button, GuidePanel, Radio, RadioGroup, Textarea } from '@navikt/ds-react';
 import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { resolveErrorCode } from '../../../utils/errorCodes';
@@ -143,7 +142,6 @@ const Ros = () => {
                                     }),
                                 }}
                             />
-
                             {watch().hvemRoses === 'NAV_KONTOR' && (
                                 <Controller
                                     render={({
@@ -169,8 +167,7 @@ const Ros = () => {
                                     }}
                                 />
                             )}
-
-                            <InputMelding
+                            <Textarea
                                 {...register('melding', {
                                     required: formatMessage({
                                         id: 'validering.melding.pakrevd',
@@ -187,8 +184,8 @@ const Ros = () => {
                                 })}
                                 value={watch().melding}
                                 error={errors?.melding?.message}
+                                autoComplete="off"
                             />
-
                             {error && (
                                 <Alert
                                     variant={'error'}
