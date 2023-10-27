@@ -94,15 +94,9 @@ const Ros = () => {
                     id: 'tilbakemeldinger.ros.form.tittel',
                 })}
             />
-            <div className={'tb__veileder'}>
-                <GuidePanel poster>
-                    <div className={'tb__veileder-container'}>
-                        <FormattedMessage
-                            id={'tilbakemeldinger.ros.form.veileder'}
-                        />
-                    </div>
-                </GuidePanel>
-            </div>
+            <GuidePanel poster>
+                <FormattedMessage id={'tilbakemeldinger.ros.form.veileder'} />
+            </GuidePanel>
             <Box background="surface-default" padding={{ xs: '4', md: '8' }}>
                 {success ? (
                     <Takk />

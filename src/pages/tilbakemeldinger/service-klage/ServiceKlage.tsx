@@ -193,13 +193,9 @@ const ServiceKlage = () => {
                 open={auth.loaded && !auth.authenticated && !loginClosed}
                 closeFunc={closeModal}
             />
-            <div className={'tb__veileder'}>
-                <GuidePanel poster>
-                    <div className={'tb__veileder-container'}>
-                        <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
-                    </div>
-                </GuidePanel>
-            </div>
+            <GuidePanel poster>
+                <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
+            </GuidePanel>
             <Box background="surface-default" padding={{ xs: '4', md: '8' }}>
                 {success ? (
                     <Takk />
