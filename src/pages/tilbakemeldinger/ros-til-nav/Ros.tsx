@@ -102,108 +102,103 @@ const Ros = () => {
                     <Takk />
                 ) : (
                     <form onSubmit={handleSubmit(send)}>
-                        <div className={'skjema__content'}>
-                            <PersonvernInfo />
+                        <PersonvernInfo />
+                        <Controller
+                            render={({ field, fieldState: { error } }) => (
+                                <RadioGroup
+                                    {...field}
+                                    legend={formatMessage({
+                                        id: 'felter.hvemroses.tittel',
+                                    })}
+                                    error={error?.message}
+                                    value={field.value ?? null}
+                                >
+                                    <Radio value={'NAV_KONTAKTSENTER'}>
+                                        {formatMessage({
+                                            id: 'felter.hvemroses.navkontaktsenter',
+                                        })}
+                                    </Radio>
+                                    <Radio value={'NAV_DIGITALE_TJENESTER'}>
+                                        {formatMessage({
+                                            id: 'felter.hvemroses.digitaletjenester',
+                                        })}
+                                    </Radio>
+                                    <Radio value={'NAV_KONTOR'}>
+                                        {formatMessage({
+                                            id: 'felter.hvemroses.navkontor',
+                                        })}
+                                    </Radio>
+                                </RadioGroup>
+                            )}
+                            control={control}
+                            name={'hvemRoses'}
+                            rules={{
+                                required: formatMessage({
+                                    id: 'validering.hvemroses.pakrevd',
+                                }),
+                            }}
+                        />
+
+                        {watch().hvemRoses === 'NAV_KONTOR' && (
                             <Controller
                                 render={({ field, fieldState: { error } }) => (
-                                    <RadioGroup
+                                    <SelectEnhet
                                         {...field}
-                                        legend={formatMessage({
-                                            id: 'felter.hvemroses.tittel',
-                                        })}
+                                        label={
+                                            'felter.hvemroses.navkontor.velg'
+                                        }
                                         error={error?.message}
-                                        value={field.value ?? null}
-                                    >
-                                        <Radio value={'NAV_KONTAKTSENTER'}>
-                                            {formatMessage({
-                                                id: 'felter.hvemroses.navkontaktsenter',
-                                            })}
-                                        </Radio>
-                                        <Radio value={'NAV_DIGITALE_TJENESTER'}>
-                                            {formatMessage({
-                                                id: 'felter.hvemroses.digitaletjenester',
-                                            })}
-                                        </Radio>
-                                        <Radio value={'NAV_KONTOR'}>
-                                            {formatMessage({
-                                                id: 'felter.hvemroses.navkontor',
-                                            })}
-                                        </Radio>
-                                    </RadioGroup>
+                                        submitted={isSubmitted}
+                                        triggerValidation={trigger}
+                                    />
                                 )}
                                 control={control}
-                                name={'hvemRoses'}
+                                name={'navKontor'}
                                 rules={{
                                     required: formatMessage({
-                                        id: 'validering.hvemroses.pakrevd',
+                                        id: 'validering.navkontor.pakrevd',
                                     }),
                                 }}
                             />
+                        )}
 
-                            {watch().hvemRoses === 'NAV_KONTOR' && (
-                                <Controller
-                                    render={({
-                                        field,
-                                        fieldState: { error },
-                                    }) => (
-                                        <SelectEnhet
-                                            {...field}
-                                            label={
-                                                'felter.hvemroses.navkontor.velg'
-                                            }
-                                            error={error?.message}
-                                            submitted={isSubmitted}
-                                            triggerValidation={trigger}
-                                        />
-                                    )}
-                                    control={control}
-                                    name={'navKontor'}
-                                    rules={{
-                                        required: formatMessage({
-                                            id: 'validering.navkontor.pakrevd',
-                                        }),
-                                    }}
-                                />
-                            )}
-
-                            <InputMelding
-                                {...register('melding', {
-                                    required: formatMessage({
-                                        id: 'validering.melding.pakrevd',
+                        <InputMelding
+                            {...register('melding', {
+                                required: formatMessage({
+                                    id: 'validering.melding.pakrevd',
+                                }),
+                                maxLength: {
+                                    value: vars.maksLengdeMelding,
+                                    message: formatMessage({
+                                        id: 'validering.melding.tegn',
                                     }),
-                                    maxLength: {
-                                        value: vars.maksLengdeMelding,
-                                        message: formatMessage({
-                                            id: 'validering.melding.tegn',
-                                        }),
-                                    },
-                                })}
-                                label={formatMessage({
-                                    id: 'felter.melding.tittel',
-                                })}
-                                value={watch().melding}
-                                error={errors?.melding?.message}
-                            />
+                                },
+                            })}
+                            label={formatMessage({
+                                id: 'felter.melding.tittel',
+                            })}
+                            value={watch().melding}
+                            error={errors?.melding?.message}
+                        />
 
-                            {error && (
-                                <Alert
-                                    variant={'error'}
-                                    className={'felter__melding-advarsel'}
-                                >
-                                    <FormattedMessage
-                                        id={resolveErrorCode(error.errorCode)}
-                                    />
-                                </Alert>
-                            )}
-                            <Button
-                                type={'submit'}
-                                variant={'primary'}
-                                disabled={loading || (isSubmitted && !isValid)}
-                                loading={loading}
+                        {error && (
+                            <Alert
+                                variant={'error'}
+                                className={'felter__melding-advarsel'}
                             >
-                                <FormattedMessage id={'felter.send'} />
-                            </Button>
-                        </div>
+                                <FormattedMessage
+                                    id={resolveErrorCode(error.errorCode)}
+                                />
+                            </Alert>
+                        )}
+                        <Button
+                            type={'submit'}
+                            variant={'primary'}
+                            disabled={loading || (isSubmitted && !isValid)}
+                            loading={loading}
+                        >
+                            <FormattedMessage id={'felter.send'} />
+                        </Button>
                     </form>
                 )}
             </Box>

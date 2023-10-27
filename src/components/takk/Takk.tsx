@@ -8,7 +8,7 @@ interface Props {
 }
 
 const Takk = (props: Props) => (
-    <div className={'skjema__content'}>
+    <>
         <div className="takk__alert">
             <Alert variant={'success'}>
                 {props.melding ? (
@@ -23,7 +23,7 @@ const Takk = (props: Props) => (
                 <FormattedMessage id={'takk.knapp'} />
             </Button>
         </div>
-    </div>
+    </>
 );
 
 export default Takk;
