@@ -5,13 +5,19 @@ import { postRosTilNav } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import Header from 'components/header/Header';
 import { paths, vars } from 'Config';
-import Box from 'components/box/Box';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Takk from 'components/takk/Takk';
 import { triggerHotjar } from 'utils/hotjar';
 import SelectEnhet from 'components/input-fields/SelectEnhet';
 import { MetaTags } from '../../../components/metatags/MetaTags';
-import { Alert, Button, GuidePanel, Radio, RadioGroup } from '@navikt/ds-react';
+import {
+    Alert,
+    Box,
+    Button,
+    GuidePanel,
+    Radio,
+    RadioGroup,
+} from '@navikt/ds-react';
 import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { resolveErrorCode } from '../../../utils/errorCodes';
@@ -101,7 +107,7 @@ const Ros = () => {
                     </div>
                 </GuidePanel>
             </div>
-            <Box>
+            <Box background="surface-default" padding={{ xs: '4', md: '8' }}>
                 {success ? (
                     <Takk />
                 ) : (

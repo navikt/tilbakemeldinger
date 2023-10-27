@@ -12,7 +12,6 @@ import {
 } from 'types/serviceklage';
 import Header from 'components/header/Header';
 import { paths, vars } from 'Config';
-import Box from 'components/box/Box';
 import { FormattedMessage, useIntl } from 'react-intl';
 import ServiceKlagePrivatperson from './ServiceKlagePrivatperson';
 import ServiceKlageForAnnenPerson from './ServiceKlageAnnenPerson';
@@ -26,6 +25,7 @@ import { MetaTags } from '../../../components/metatags/MetaTags';
 import LoginModal from './login-modal/LoginModal';
 import {
     Alert,
+    Box,
     Button,
     Checkbox,
     CheckboxGroup,
@@ -204,7 +204,7 @@ const ServiceKlage = () => {
                     </div>
                 </GuidePanel>
             </div>
-            <Box>
+            <Box background="surface-default" padding={{ xs: '4', md: '8' }}>
                 {success ? (
                     <Takk />
                 ) : (
