@@ -44,6 +44,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                 error={errors?.innmelderNavn?.message}
                 className="skjema__input--medium"
                 disabled={!!innmelderNavn}
+                autoComplete={'name'}
             />
             <TextField
                 {...register('innmelderRolle', {
@@ -52,6 +53,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                 className="skjema__input--medium"
                 label={formatMessage({ id: 'felter.dinrolle.annenperson' })}
                 error={errors?.innmelderRolle?.message}
+                autoComplete="off"
             />
             <TextField
                 {...register('paaVegneAvNavn', {
@@ -60,6 +62,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                 className="skjema__input--medium"
                 label={formatMessage({ id: 'felter.navntilklager' })}
                 error={errors?.paaVegneAvNavn?.message}
+                autoComplete="off"
             />
             <TextField
                 {...register('paaVegneAvFodselsnr', {
@@ -87,6 +90,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                 className="skjema__input--small"
                 label={formatMessage({ id: 'felter.fodselsnrtilklager' })}
                 error={errors?.paaVegneAvFodselsnr?.message}
+                autoComplete="off"
             />
 
             <Controller

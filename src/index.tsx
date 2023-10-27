@@ -32,7 +32,7 @@ const init = async () => {
         });
     }
 
-    const container = document.getElementById('app') as HTMLElement;
+    const container = document.getElementById('maincontent') as HTMLElement;
     if (!container) {
         return;
     }
