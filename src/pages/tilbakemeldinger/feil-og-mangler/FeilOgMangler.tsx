@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import VeilederIcon from 'assets/icons/Veileder.svg';
-import InputMelding from 'components/input-fields/InputMelding';
 import { postFeilOgMangler } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import Header from 'components/header/Header';
@@ -11,7 +10,7 @@ import Takk from 'components/takk/Takk';
 import FeilgOgManglerOnskerAaKontaktes from './FeilOgManglerOnskerAaKontaktes';
 import { triggerHotjar } from '../../../utils/hotjar';
 import { MetaTags } from '../../../components/metatags/MetaTags';
-import { Alert, Button, GuidePanel, Radio, RadioGroup } from '@navikt/ds-react';
+import { Alert, Button, GuidePanel, Radio, RadioGroup, Textarea } from '@navikt/ds-react';
 import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import {
     Controller,
@@ -153,8 +152,7 @@ const FOM = () => {
                                         }),
                                     }}
                                 />
-
-                                <InputMelding
+                                <Textarea
                                     {...register('melding', {
                                         required: formatMessage({
                                             id: 'validering.melding.pakrevd',
@@ -171,6 +169,8 @@ const FOM = () => {
                                     })}
                                     value={watch().melding}
                                     error={errors?.melding?.message}
+                                    maxLength={vars.maksLengdeMelding}
+                                    autoComplete="off"
                                 />
                                 <FeilgOgManglerOnskerAaKontaktes />
                                 {error && (

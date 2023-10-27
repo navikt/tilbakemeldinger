@@ -36,6 +36,7 @@ const ServiceKlageTelefon = () => {
                 className="skjema__input--small"
                 label={formatMessage({ id: 'felter.tlf.tittel' })}
                 error={errors?.innmelderTlfnr?.message}
+                autoComplete={'tel'}
             />
         </div>
     );
