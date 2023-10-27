@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import VeilederIcon from 'assets/icons/Veileder.svg';
 import { useStore } from 'providers/Provider';
 import { postServiceKlage } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
@@ -195,10 +194,7 @@ const ServiceKlage = () => {
                 closeFunc={closeModal}
             />
             <div className={'tb__veileder'}>
-                <GuidePanel
-                    illustration={<img src={VeilederIcon} alt="" />}
-                    poster={true}
-                >
+                <GuidePanel poster>
                     <div className={'tb__veileder-container'}>
                         <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
                     </div>

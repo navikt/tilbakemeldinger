@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import VeilederIcon from 'assets/icons/Veileder.svg';
 import InputMelding from 'components/input-fields/InputMelding';
 import { postFeilOgMangler } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
@@ -99,10 +98,7 @@ const FOM = () => {
                     id: 'tilbakemeldinger.feilogmangler.form.tittel',
                 })}
             />
-            <GuidePanel
-                illustration={<img src={VeilederIcon} alt="" />}
-                poster={true}
-            >
+            <GuidePanel poster>
                 <FormattedMessage
                     id={'tilbakemeldinger.feilogmangler.form.veileder'}
                 />
