@@ -109,91 +109,80 @@ const FOM = () => {
                 ) : (
                     <FormProvider {...methods}>
                         <form onSubmit={handleSubmit(send)}>
-                            <div className={'skjema__content'}>
-                                <PersonvernInfo />
-                                <Controller
-                                    render={({
-                                        field,
-                                        fieldState: { error },
-                                    }) => (
-                                        <RadioGroup
-                                            {...field}
-                                            legend={formatMessage({
-                                                id: 'felter.typefeil.tittel',
-                                            })}
-                                            error={error?.message}
-                                            value={field.value ?? null}
-                                        >
-                                            <Radio value={'TEKNISK_FEIL'}>
-                                                {formatMessage({
-                                                    id: 'felter.typefeil.tekniskfeil',
-                                                })}
-                                            </Radio>
-                                            <Radio value={'FEIL_INFO'}>
-                                                {formatMessage({
-                                                    id: 'felter.typefeil.feilinformasjon',
-                                                })}
-                                            </Radio>
-                                            <Radio
-                                                value={'UNIVERSELL_UTFORMING'}
-                                            >
-                                                {formatMessage({
-                                                    id: 'felter.typefeil.uu',
-                                                })}
-                                            </Radio>
-                                        </RadioGroup>
-                                    )}
-                                    control={control}
-                                    name={'feiltype'}
-                                    rules={{
-                                        required: formatMessage({
-                                            id: 'validering.feiltype.pakrevd',
-                                        }),
-                                    }}
-                                />
-
-                                <InputMelding
-                                    {...register('melding', {
-                                        required: formatMessage({
-                                            id: 'validering.melding.pakrevd',
-                                        }),
-                                        maxLength: {
-                                            value: vars.maksLengdeMelding,
-                                            message: formatMessage({
-                                                id: 'validering.melding.tegn',
-                                            }),
-                                        },
-                                    })}
-                                    label={formatMessage({
-                                        id: 'felter.melding.tittel',
-                                    })}
-                                    value={watch().melding}
-                                    error={errors?.melding?.message}
-                                />
-                                <FeilgOgManglerOnskerAaKontaktes />
-                                {error && (
-                                    <Alert
-                                        variant={'error'}
-                                        className={'felter__melding-advarsel'}
+                            <PersonvernInfo />
+                            <Controller
+                                render={({ field, fieldState: { error } }) => (
+                                    <RadioGroup
+                                        {...field}
+                                        legend={formatMessage({
+                                            id: 'felter.typefeil.tittel',
+                                        })}
+                                        error={error?.message}
+                                        value={field.value ?? null}
                                     >
-                                        <FormattedMessage
-                                            id={resolveErrorCode(
-                                                error.errorCode
-                                            )}
-                                        />
-                                    </Alert>
+                                        <Radio value={'TEKNISK_FEIL'}>
+                                            {formatMessage({
+                                                id: 'felter.typefeil.tekniskfeil',
+                                            })}
+                                        </Radio>
+                                        <Radio value={'FEIL_INFO'}>
+                                            {formatMessage({
+                                                id: 'felter.typefeil.feilinformasjon',
+                                            })}
+                                        </Radio>
+                                        <Radio value={'UNIVERSELL_UTFORMING'}>
+                                            {formatMessage({
+                                                id: 'felter.typefeil.uu',
+                                            })}
+                                        </Radio>
+                                    </RadioGroup>
                                 )}
-                                <Button
-                                    type={'submit'}
-                                    variant={'primary'}
-                                    disabled={
-                                        loading || (isSubmitted && !isValid)
-                                    }
-                                    loading={loading}
+                                control={control}
+                                name={'feiltype'}
+                                rules={{
+                                    required: formatMessage({
+                                        id: 'validering.feiltype.pakrevd',
+                                    }),
+                                }}
+                            />
+
+                            <InputMelding
+                                {...register('melding', {
+                                    required: formatMessage({
+                                        id: 'validering.melding.pakrevd',
+                                    }),
+                                    maxLength: {
+                                        value: vars.maksLengdeMelding,
+                                        message: formatMessage({
+                                            id: 'validering.melding.tegn',
+                                        }),
+                                    },
+                                })}
+                                label={formatMessage({
+                                    id: 'felter.melding.tittel',
+                                })}
+                                value={watch().melding}
+                                error={errors?.melding?.message}
+                            />
+                            <FeilgOgManglerOnskerAaKontaktes />
+                            {error && (
+                                <Alert
+                                    variant={'error'}
+                                    className={'felter__melding-advarsel'}
                                 >
-                                    <FormattedMessage id={'felter.send'} />
-                                </Button>
-                            </div>
+                                    <FormattedMessage
+                                        id={resolveErrorCode(error.errorCode)}
+                                    />
+                                </Alert>
+                            )}
+                            <Button
+                                type={'submit'}
+                                variant={'primary'}
+                                disabled={loading || (isSubmitted && !isValid)}
+                                loading={loading}
+                            >
+                                <FormattedMessage id={'felter.send'} />
+                            </Button>
                         </form>
                     </FormProvider>
                 )}
