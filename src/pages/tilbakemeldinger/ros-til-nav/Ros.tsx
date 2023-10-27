@@ -77,7 +77,7 @@ const Ros = () => {
     };
 
     return (
-        <div id="maincontent" className="pagecontent">
+        <div className="pagecontent">
             <MetaTags
                 titleId={'tilbakemeldinger.ros.tittel'}
                 descriptionId={'seo.rostilnav.description'}

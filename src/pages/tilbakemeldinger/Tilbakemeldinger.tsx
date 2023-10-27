@@ -12,7 +12,7 @@ const Tilbakemeldinger = () => {
     const [{ locale }] = useStore();
 
     return (
-        <div id="maincontent" className="pagecontent">
+        <div className="pagecontent">
             <MetaTags
                 path={paths.tilbakemeldinger.forside}
                 titleId={'tilbakemeldinger.sidetittel'}

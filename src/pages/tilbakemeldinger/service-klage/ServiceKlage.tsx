@@ -179,7 +179,7 @@ const ServiceKlage = () => {
     };
 
     return (
-        <div id="maincontent" className="pagecontent">
+        <div className="pagecontent">
             <MetaTags
                 titleId={'tilbakemeldinger.serviceklage.form.tittel'}
                 descriptionId={'seo.klagepaservice.description'}
