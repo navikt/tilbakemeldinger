@@ -99,18 +99,14 @@ const FOM = () => {
                     id: 'tilbakemeldinger.feilogmangler.form.tittel',
                 })}
             />
-            <div className={'tb__veileder'}>
-                <GuidePanel
-                    illustration={<img src={VeilederIcon} alt="" />}
-                    poster={true}
-                >
-                    <div className={'tb__veileder-container'}>
-                        <FormattedMessage
-                            id={'tilbakemeldinger.feilogmangler.form.veileder'}
-                        />
-                    </div>
-                </GuidePanel>
-            </div>
+            <GuidePanel
+                illustration={<img src={VeilederIcon} alt="" />}
+                poster={true}
+            >
+                <FormattedMessage
+                    id={'tilbakemeldinger.feilogmangler.form.veileder'}
+                />
+            </GuidePanel>
             <Box background="surface-default" padding={{ xs: '4', md: '8' }}>
                 {success ? (
                     <Takk />
