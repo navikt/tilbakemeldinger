@@ -81,7 +81,7 @@ const FOM = () => {
     };
 
     return (
-        <div id="maincontent" className="pagecontent">
+        <div className="pagecontent">
             <MetaTags
                 titleId={'tilbakemeldinger.feilogmangler.tittel'}
                 descriptionId={'seo.feilogmangler.description'}
