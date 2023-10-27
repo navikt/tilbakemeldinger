@@ -375,23 +375,16 @@ const ServiceKlage = () => {
                                         />
                                     </Alert>
                                 )}
-                                <div className="tb__knapper">
-                                    <div className="tb__knapp">
-                                        <Button
-                                            type={'submit'}
-                                            variant={'primary'}
-                                            disabled={
-                                                loading ||
-                                                (isSubmitted && !isValid)
-                                            }
-                                            loading={loading}
-                                        >
-                                            <FormattedMessage
-                                                id={'felter.send'}
-                                            />
-                                        </Button>
-                                    </div>
-                                </div>
+                                <Button
+                                    type={'submit'}
+                                    variant={'primary'}
+                                    disabled={
+                                        loading || (isSubmitted && !isValid)
+                                    }
+                                    loading={loading}
+                                >
+                                    <FormattedMessage id={'felter.send'} />
+                                </Button>
                             </div>
                         </form>
                     </FormProvider>
