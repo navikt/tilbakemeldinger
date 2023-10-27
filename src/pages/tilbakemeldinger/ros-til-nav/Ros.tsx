@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import VeilederIcon from 'assets/icons/Veileder.svg';
 import InputMelding from 'components/input-fields/InputMelding';
 import { postRosTilNav } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
@@ -96,10 +95,7 @@ const Ros = () => {
                 })}
             />
             <div className={'tb__veileder'}>
-                <GuidePanel
-                    illustration={<img src={VeilederIcon} alt="" />}
-                    poster={true}
-                >
+                <GuidePanel poster>
                     <div className={'tb__veileder-container'}>
                         <FormattedMessage
                             id={'tilbakemeldinger.ros.form.veileder'}
