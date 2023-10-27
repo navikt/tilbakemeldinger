@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useStore } from 'providers/Provider';
 import { postServiceKlage } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
-import InputMelding from 'components/input-fields/InputMelding';
 import {
     KLAGE_TYPE,
     ON_BEHALF_OF,
@@ -31,6 +30,7 @@ import {
     GuidePanel,
     Radio,
     RadioGroup,
+    Textarea,
 } from '@navikt/ds-react';
 import {
     Controller,
@@ -326,7 +326,7 @@ const ServiceKlage = () => {
                             )}
 
                             <div className="serviceKlage__melding">
-                                <InputMelding
+                                <Textarea
                                     {...register('klagetekst', {
                                         required: formatMessage({
                                             id: 'validering.melding.pakrevd',
@@ -343,6 +343,8 @@ const ServiceKlage = () => {
                                     })}
                                     value={watch().klagetekst}
                                     error={errors?.klagetekst?.message}
+                                    maxLength={vars.maksLengdeMelding}
+                                    autoComplete="off"
                                 />
                             </div>
                             {(watch().paaVegneAv !== 'ANNEN_PERSON' ||

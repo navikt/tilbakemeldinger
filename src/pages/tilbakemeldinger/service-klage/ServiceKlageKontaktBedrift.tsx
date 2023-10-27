@@ -36,6 +36,7 @@ const ServiceKlageKontaktBedrift = (props: Props) => {
                 error={errors?.innmelderNavn?.message}
                 className="skjema__input--medium"
                 disabled={!!innmelderNavn}
+                autoComplete={'name'}
             />
             <ServiceKlageTelefon />
         </div>
