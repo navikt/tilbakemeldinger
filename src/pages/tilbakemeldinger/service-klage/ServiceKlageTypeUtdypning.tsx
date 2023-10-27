@@ -29,6 +29,7 @@ const ServiceKlageTypeUtdypning = () => {
                 className="skjema__input--medium"
                 label={''}
                 error={errors?.klagetypeUtdypning?.message}
+                autoComplete="off"
             />
         </div>
     );

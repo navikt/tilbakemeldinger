@@ -37,6 +37,7 @@ const ServiceKlagePrivatperson = (props: Props) => {
                 error={errors?.innmelderNavn?.message}
                 className="skjema__input--medium"
                 disabled={!!innmelderNavn}
+                autoComplete={'name'}
             />
             <TextField
                 {...register('innmelderFnr', {
@@ -66,6 +67,7 @@ const ServiceKlagePrivatperson = (props: Props) => {
                 error={errors?.innmelderFnr?.message}
                 className="skjema__input--small"
                 disabled={!!innmelderFnr}
+                autoComplete="off"
             />
         </div>
     );

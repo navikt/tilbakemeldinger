@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import InputMelding from 'components/input-fields/InputMelding';
 import { postRosTilNav } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import Header from 'components/header/Header';
@@ -16,6 +15,7 @@ import {
     GuidePanel,
     Radio,
     RadioGroup,
+    Textarea,
 } from '@navikt/ds-react';
 import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
@@ -162,7 +162,7 @@ const Ros = () => {
                             />
                         )}
 
-                        <InputMelding
+                        <Textarea
                             {...register('melding', {
                                 required: formatMessage({
                                     id: 'validering.melding.pakrevd',
@@ -179,6 +179,8 @@ const Ros = () => {
                             })}
                             value={watch().melding}
                             error={errors?.melding?.message}
+                            maxLength={vars.maksLengdeMelding}
+                            autoComplete="off"
                         />
 
                         {error && (
