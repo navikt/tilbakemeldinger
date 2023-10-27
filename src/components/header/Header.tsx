@@ -8,7 +8,7 @@ interface Props {
 const Header = (props: Props) => (
     <div className="header">
         {props.title && (
-            <Heading size={'large'} level={'1'} className="header__tittel">
+            <Heading align="center" size="large" level="1">
                 {props.title}
             </Heading>
         )}
