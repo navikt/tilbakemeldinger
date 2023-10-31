@@ -21,62 +21,6 @@
     box-sizing: border-box;
 }
 
-.varsel {
-    &__body {
-        margin: 0.5rem 0;
-    }
-}
-
-.flex__rad {
-    display: flex;
-    @media @maxTablet {
-        flex-direction: column;
-    }
-    @media @minDesktop {
-        flex-direction: row;
-    }
-}
-
-.flex__kolonne-left,
-.flex__kolonne-right {
-    @media @maxMobile {
-        width: 100%;
-    }
-    @media @minDesktop {
-        width: 50%;
-    }
-}
-
-.flex__kolonne-left {
-    @media @minDesktop {
-        padding-right: 0.25rem;
-    }
-}
-.flex__kolonne-right {
-    @media @minDesktop {
-        padding-left: 0.25rem;
-    }
-}
-
-.mellomrom {
-    padding: 0.5rem 0;
-}
-
-.nav-veilederpanel {
-    min-height: 1rem !important;
-}
-
-.tb {
-    &__veileder {
-        margin-top: 1rem;
-        &-container {
-            @media @minMobile {
-                margin: 0 2rem 1rem 2rem;
-            }
-        }
-    }
-}
-
 .skjema {
     &__input--medium {
         max-width: 100%;
