@@ -325,28 +325,26 @@ const ServiceKlage = () => {
                                 <ServiceKlageForBedrift />
                             )}
 
-                            <div className="serviceKlage__melding">
-                                <Textarea
-                                    {...register('klagetekst', {
-                                        required: formatMessage({
-                                            id: 'validering.melding.pakrevd',
+                            <Textarea
+                                {...register('klagetekst', {
+                                    required: formatMessage({
+                                        id: 'validering.melding.pakrevd',
+                                    }),
+                                    maxLength: {
+                                        value: vars.maksLengdeMelding,
+                                        message: formatMessage({
+                                            id: 'validering.melding.tegn',
                                         }),
-                                        maxLength: {
-                                            value: vars.maksLengdeMelding,
-                                            message: formatMessage({
-                                                id: 'validering.melding.tegn',
-                                            }),
-                                        },
-                                    })}
-                                    label={formatMessage({
-                                        id: 'felter.melding.tittel',
-                                    })}
-                                    value={watch().klagetekst}
-                                    error={errors?.klagetekst?.message}
-                                    maxLength={vars.maksLengdeMelding}
-                                    autoComplete="off"
-                                />
-                            </div>
+                                    },
+                                })}
+                                label={formatMessage({
+                                    id: 'felter.melding.tittel',
+                                })}
+                                value={watch().klagetekst}
+                                error={errors?.klagetekst?.message}
+                                maxLength={vars.maksLengdeMelding}
+                                autoComplete="off"
+                            />
                             {(watch().paaVegneAv !== 'ANNEN_PERSON' ||
                                 watch().innmelderHarFullmakt !== false) && (
                                 <ServiceKlageOnskerAaKontaktes

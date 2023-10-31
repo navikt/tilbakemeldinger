@@ -22,7 +22,7 @@ const FeilOgManglerEpost = () => {
     const [{ kontaktInfo }] = useStore();
 
     return (
-        <div className="serviceKlage__ekspandert">
+        <>
             <TextField
                 {...register('epost', {
                     required: formatMessage({ id: 'validering.epost.pakrevd' }),
@@ -46,7 +46,7 @@ const FeilOgManglerEpost = () => {
                     />
                 </Alert>
             </div>
-        </div>
+        </>
     );
 };
 export default FeilOgManglerEpost;

@@ -19,43 +19,41 @@ const ServiceKlageGjelderSosialhjelp = () => {
     }, [isSubmitted, trigger]);
 
     return (
-        <div className="serviceKlage__ekspandert">
-            <Controller
-                render={({ field, fieldState: { error } }) => (
-                    <RadioGroup
-                        {...field}
-                        legend={formatMessage({
-                            id: 'felter.gjeldersosialhjelp',
+        <Controller
+            render={({ field, fieldState: { error } }) => (
+                <RadioGroup
+                    {...field}
+                    legend={formatMessage({
+                        id: 'felter.gjeldersosialhjelp',
+                    })}
+                    error={error?.message}
+                    value={field.value ?? null}
+                >
+                    <Radio value={'JA'}>
+                        {formatMessage({
+                            id: 'felter.gjeldersosialhjelp.ja',
                         })}
-                        error={error?.message}
-                        value={field.value ?? null}
-                    >
-                        <Radio value={'JA'}>
-                            {formatMessage({
-                                id: 'felter.gjeldersosialhjelp.ja',
-                            })}
-                        </Radio>
-                        <Radio value={'NEI'}>
-                            {formatMessage({
-                                id: 'felter.gjeldersosialhjelp.nei',
-                            })}
-                        </Radio>
-                        <Radio value={'VET_IKKE'}>
-                            {formatMessage({
-                                id: 'felter.gjeldersosialhjelp.vetikke',
-                            })}
-                        </Radio>
-                    </RadioGroup>
-                )}
-                control={control}
-                name={'gjelderSosialhjelp'}
-                rules={{
-                    required: formatMessage({
-                        id: 'validering.gjeldersosialhjelp.pakrevd',
-                    }),
-                }}
-            />
-        </div>
+                    </Radio>
+                    <Radio value={'NEI'}>
+                        {formatMessage({
+                            id: 'felter.gjeldersosialhjelp.nei',
+                        })}
+                    </Radio>
+                    <Radio value={'VET_IKKE'}>
+                        {formatMessage({
+                            id: 'felter.gjeldersosialhjelp.vetikke',
+                        })}
+                    </Radio>
+                </RadioGroup>
+            )}
+            control={control}
+            name={'gjelderSosialhjelp'}
+            rules={{
+                required: formatMessage({
+                    id: 'validering.gjeldersosialhjelp.pakrevd',
+                }),
+            }}
+        />
     );
 };
 export default ServiceKlageGjelderSosialhjelp;
