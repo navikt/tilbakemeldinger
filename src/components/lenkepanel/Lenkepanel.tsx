@@ -38,18 +38,18 @@ const Lenkepanel = (props: Props) => {
                 logLinkClick(props.to, props.tittel, 'tilbakemelding')
             }
         >
-            <div className={'linkbox__row'}>
+            <div className="lenkePanel__row">
                 {props.icon && (
-                    <div className="linkbox__icon-container">
+                    <div className="lenkePanel__icon-container">
                         <img
-                            className="linkbox__icon"
+                            className="lenkePanel__icon"
                             src={props.icon}
                             alt=""
                         />
                     </div>
                 )}
                 <div>
-                    <div className="linkbox__tittel lenkepanel__heading">
+                    <div className="lenkePanel__tittel">
                         <Heading level="2" size="small">
                             {props.tittel}
                         </Heading>
@@ -63,7 +63,6 @@ const Lenkepanel = (props: Props) => {
                                         children: ReactNode[]
                                     ) => (
                                         <a
-                                            className={'lenke'}
                                             href={
                                                 urls.tilbakemeldinger
                                                     .klagerettigheter[locale]
