@@ -1,6 +1,6 @@
 import React from 'react';
 import Environment from 'Environments';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { BodyLong, Button, Heading, Modal } from '@navikt/ds-react';
 
 const { loginUrl } = Environment();
@@ -14,13 +14,16 @@ const LoginModal = ({ open, closeFunc }: Props) => {
     return (
         <Modal
             aria-labelledby="login-modal-heading"
+            header={{
+                closeButton: false,
+                heading: useIntl().formatMessage({
+                    id: 'tilbakemeldinger.serviceklage.login.overskrift',
+                }),
+            }}
             open={open}
             onClose={closeFunc}
         >
             <Modal.Body>
-                <Heading level="2" id="login-modal-heading" size="small">
-                    <FormattedMessage id="tilbakemeldinger.serviceklage.login.overskrift" />
-                </Heading>
                 <BodyLong>
                     <FormattedMessage
                         id="tilbakemeldinger.serviceklage.login.beskrivelse"
