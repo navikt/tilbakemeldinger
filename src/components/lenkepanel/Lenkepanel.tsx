@@ -8,7 +8,7 @@ import { Link, LinkPanel } from '@navikt/ds-react';
 export interface Props {
     id: string;
     tittel: string;
-    beskrivelse?: string;
+    beskrivelse: string;
     lenkeTekst: string;
     to: string;
     external?: boolean;
@@ -21,43 +21,30 @@ const Lenkepanel = (props: Props) => {
         <LinkPanel
             href={props.to}
             border
-            as={(p) => {
-                return props.external ? (
-                    <a href={props.to} {...p}>
-                        {p.children}
-                    </a>
-                ) : (
-                    <Link to={props.to} {...p}>
-                        {p.children}
-                    </Link>
-                );
-            }}
             onClick={() =>
                 logLinkClick(props.to, props.tittel, 'tilbakemelding')
             }
         >
             {props.icon && <img src={props.icon} alt="" />}
             <LinkPanel.Title> {props.tittel}</LinkPanel.Title>
-            {props.beskrivelse && (
-                <LinkPanel.Description>
-                    <FormattedMessage
-                        id={props.beskrivelse}
-                        values={{
-                            KlagerettigheterLenke: (children: ReactNode[]) => (
-                                <Link
-                                    href={
-                                        urls.tilbakemeldinger.klagerettigheter[
-                                            locale
-                                        ]
-                                    }
-                                >
-                                    {children}
-                                </Link>
-                            ),
-                        }}
-                    />
-                </LinkPanel.Description>
-            )}
+            <LinkPanel.Description>
+                <FormattedMessage
+                    id={props.beskrivelse}
+                    values={{
+                        KlagerettigheterLenke: (children: ReactNode[]) => (
+                            <Link
+                                href={
+                                    urls.tilbakemeldinger.klagerettigheter[
+                                        locale
+                                    ]
+                                }
+                            >
+                                {children}
+                            </Link>
+                        ),
+                    }}
+                />
+            </LinkPanel.Description>
         </LinkPanel>
     );
 };
