@@ -8,7 +8,7 @@ interface Props {
 const Header = (props: Props) => (
     <>
         {props.title && (
-            <Heading align="center" size="large" level="1">
+            <Heading align="center" size="large" level="1" spacing>
                 {props.title}
             </Heading>
         )}
