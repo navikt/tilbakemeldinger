@@ -18,13 +18,11 @@ const Tilbakemeldinger = () => {
                 titleId={'tilbakemeldinger.sidetittel'}
                 descriptionId={'seo.tilbakemeldinger.description'}
             />
-            <div className={'tilbakemeldinger__tittel'}>
-                <Header
-                    title={intl.formatMessage({
-                        id: 'tilbakemeldinger.sidetittel',
-                    })}
-                />
-            </div>
+            <Header
+                title={intl.formatMessage({
+                    id: 'tilbakemeldinger.sidetittel',
+                })}
+            />
             {lenker(locale).map((lenke) => (
                 <Lenkepanel
                     icon={lenke.icon}
