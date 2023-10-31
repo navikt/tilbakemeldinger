@@ -354,10 +354,7 @@ const ServiceKlage = () => {
                                 />
                             )}
                             {error && (
-                                <Alert
-                                    variant={'error'}
-                                    className={'felter__melding-advarsel'}
-                                >
+                                <Alert variant={'error'}>
                                     <FormattedMessage
                                         id={resolveErrorCode(error.errorCode)}
                                     />
