@@ -25,26 +25,30 @@ const Lenkepanel = (props: Props) => {
                 logLinkClick(props.to, props.tittel, 'tilbakemelding')
             }
         >
-            {props.icon && <img src={props.icon} alt="" />}
-            <LinkPanel.Title> {props.tittel}</LinkPanel.Title>
-            <LinkPanel.Description>
-                <FormattedMessage
-                    id={props.beskrivelse}
-                    values={{
-                        KlagerettigheterLenke: (children: ReactNode[]) => (
-                            <Link
-                                href={
-                                    urls.tilbakemeldinger.klagerettigheter[
-                                        locale
-                                    ]
-                                }
-                            >
-                                {children}
-                            </Link>
-                        ),
-                    }}
-                />
-            </LinkPanel.Description>
+            {props.icon && (
+                <img className="lenkePanel__ikon" src={props.icon} alt="" />
+            )}
+            <div>
+                <LinkPanel.Title> {props.tittel}</LinkPanel.Title>
+                <LinkPanel.Description>
+                    <FormattedMessage
+                        id={props.beskrivelse}
+                        values={{
+                            KlagerettigheterLenke: (children: ReactNode[]) => (
+                                <Link
+                                    href={
+                                        urls.tilbakemeldinger.klagerettigheter[
+                                            locale
+                                        ]
+                                    }
+                                >
+                                    {children}
+                                </Link>
+                            ),
+                        }}
+                    />
+                </LinkPanel.Description>
+            </div>
         </LinkPanel>
     );
 };

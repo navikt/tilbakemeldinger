@@ -1,18 +1,12 @@
 .lenkePanel {
-    &__icon {
-        width: 100%;
+    &__ikon {
+        flex-shrink: 0;
+        width: 80px;
+        height: 80px;
     }
-    &__icon-container {
-        @media @minMobile {
-            padding: 0.5rem 2rem 0 0;
-            min-width: 7rem;
-        }
-        @media @maxMobile {
-            min-width: 5.5rem;
-            padding: 0.5rem 1.5rem 0 0;
-        }
-    }
-    &__row {
-        display: flex;
-    }
+}
+
+.navds-link-panel__content {
+    display: flex;
+    gap: 1rem;
 }
