@@ -26,7 +26,7 @@ const ServiceKlageKontaktBedrift = (props: Props) => {
     }, [isSubmitted, trigger]);
 
     return (
-        <div className="serviceKlage__ekspandert">
+        <>
             <TextField
                 {...register('innmelderNavn', {
                     value: innmelderNavn || undefined,
@@ -39,7 +39,7 @@ const ServiceKlageKontaktBedrift = (props: Props) => {
                 autoComplete={'name'}
             />
             <ServiceKlageTelefon />
-        </div>
+        </>
     );
 };
 export default ServiceKlageKontaktBedrift;

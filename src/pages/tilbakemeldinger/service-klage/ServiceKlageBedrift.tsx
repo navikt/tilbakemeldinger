@@ -22,7 +22,7 @@ const ServiceKlageForBedrift = () => {
     }, [isSubmitted, trigger]);
 
     return (
-        <div className="serviceKlage__ekspandert">
+        <>
             <TextField
                 {...register('innmelderRolle')}
                 className="skjema__input--medium"
@@ -78,7 +78,7 @@ const ServiceKlageForBedrift = () => {
                     }),
                 }}
             />
-        </div>
+        </>
     );
 };
 export default ServiceKlageForBedrift;

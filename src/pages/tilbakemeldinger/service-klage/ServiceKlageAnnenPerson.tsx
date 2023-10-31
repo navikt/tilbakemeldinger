@@ -34,7 +34,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
     }, [isSubmitted, trigger]);
 
     return (
-        <div className="serviceKlage__ekspandert">
+        <>
             <TextField
                 {...register('innmelderNavn', {
                     value: innmelderNavn || undefined,
@@ -151,7 +151,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                     },
                 }}
             />
-        </div>
+        </>
     );
 };
 export default ServiceKlageForAnnenPerson;
