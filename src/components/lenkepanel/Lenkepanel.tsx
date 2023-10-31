@@ -55,30 +55,26 @@ const Lenkepanel = (props: Props) => {
                         </Heading>
                     </div>
                     {props.beskrivelse && (
-                        <div className="linkbox__beskrivelse">
-                            <BodyLong>
-                                <FormattedMessage
-                                    id={props.beskrivelse}
-                                    values={{
-                                        KlagerettigheterLenke: (
-                                            children: ReactNode[]
-                                        ) => (
-                                            <a
-                                                className={'lenke'}
-                                                href={
-                                                    urls.tilbakemeldinger
-                                                        .klagerettigheter[
-                                                        locale
-                                                    ]
-                                                }
-                                            >
-                                                {children}
-                                            </a>
-                                        ),
-                                    }}
-                                />
-                            </BodyLong>
-                        </div>
+                        <BodyLong>
+                            <FormattedMessage
+                                id={props.beskrivelse}
+                                values={{
+                                    KlagerettigheterLenke: (
+                                        children: ReactNode[]
+                                    ) => (
+                                        <a
+                                            className={'lenke'}
+                                            href={
+                                                urls.tilbakemeldinger
+                                                    .klagerettigheter[locale]
+                                            }
+                                        >
+                                            {children}
+                                        </a>
+                                    ),
+                                }}
+                            />
+                        </BodyLong>
                     )}
                 </div>
             </div>
