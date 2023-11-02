@@ -108,7 +108,7 @@ const FOM = () => {
                     <Takk />
                 ) : (
                     <FormProvider {...methods}>
-                        <form onSubmit={handleSubmit(send)}>
+                        <form className="skjema" onSubmit={handleSubmit(send)}>
                             <PersonvernInfo />
                             <Controller
                                 render={({ field, fieldState: { error } }) => (
