@@ -5,6 +5,42 @@ import { useStore } from 'providers/Provider';
 import { logLinkClick } from 'utils/amplitude';
 import { Link, LinkPanel } from '@navikt/ds-react';
 
+interface FormattedMessageWithLinkProps {
+    beskrivelse: string;
+    locale: string;
+}
+
+interface KlagerettigheterUrls {
+    [key: string]: string;
+    nb: string;
+    en: string;
+    nn: string;
+}
+
+const FormattedMessageWithLink = ({
+    beskrivelse,
+    locale,
+}: FormattedMessageWithLinkProps) => (
+    <FormattedMessage
+        id={beskrivelse}
+        values={{
+            KlagerettigheterLenke: (children: ReactNode[]) => (
+                <Link
+                    href={
+                        (
+                            urls.tilbakemeldinger
+                                .klagerettigheter as KlagerettigheterUrls
+                        )[locale]
+                    }
+                    // Use the index signature to access the correct URL
+                >
+                    {children}
+                </Link>
+            ),
+        }}
+    />
+);
+
 export interface Props {
     id: string;
     tittel: string;
@@ -31,21 +67,9 @@ const Lenkepanel = (props: Props) => {
             <div>
                 <LinkPanel.Title> {props.tittel}</LinkPanel.Title>
                 <LinkPanel.Description>
-                    <FormattedMessage
-                        id={props.beskrivelse}
-                        values={{
-                            KlagerettigheterLenke: (children: ReactNode[]) => (
-                                <Link
-                                    href={
-                                        urls.tilbakemeldinger.klagerettigheter[
-                                            locale
-                                        ]
-                                    }
-                                >
-                                    {children}
-                                </Link>
-                            ),
-                        }}
+                    <FormattedMessageWithLink
+                        beskrivelse={props.beskrivelse}
+                        locale={locale}
                     />
                 </LinkPanel.Description>
             </div>
