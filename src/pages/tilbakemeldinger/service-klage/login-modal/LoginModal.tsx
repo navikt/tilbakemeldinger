@@ -1,7 +1,7 @@
 import React from 'react';
 import Environment from 'Environments';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { BodyLong, Button, Heading, Modal } from '@navikt/ds-react';
+import { BodyLong, Button, Modal } from '@navikt/ds-react';
 
 const { loginUrl } = Environment();
 
