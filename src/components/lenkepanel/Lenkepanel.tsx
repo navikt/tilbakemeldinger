@@ -17,6 +17,16 @@ interface KlagerettigheterUrls {
     nn: string;
 }
 
+export interface Props {
+    id: string;
+    tittel: string;
+    beskrivelse: string;
+    lenkeTekst: string;
+    to: string;
+    external?: boolean;
+    icon?: string;
+}
+
 const FormattedMessageWithLink = ({
     beskrivelse,
     locale,
@@ -32,7 +42,6 @@ const FormattedMessageWithLink = ({
                                 .klagerettigheter as KlagerettigheterUrls
                         )[locale]
                     }
-                    // Use the index signature to access the correct URL
                 >
                     {children}
                 </Link>
@@ -40,16 +49,6 @@ const FormattedMessageWithLink = ({
         }}
     />
 );
-
-export interface Props {
-    id: string;
-    tittel: string;
-    beskrivelse: string;
-    lenkeTekst: string;
-    to: string;
-    external?: boolean;
-    icon?: string;
-}
 
 const Lenkepanel = (props: Props) => {
     const [{ locale }] = useStore();
