@@ -4,6 +4,7 @@ import { urls } from 'Config';
 import { useStore } from 'providers/Provider';
 import { logLinkClick } from 'utils/amplitude';
 import { Link, LinkPanel } from '@navikt/ds-react';
+import { Locale } from 'utils/locale';
 
 export interface Props {
     id: string;
@@ -14,6 +15,15 @@ export interface Props {
     external?: boolean;
     icon?: string;
 }
+
+const KlagerettigheterLenke = (children: ReactNode[], locale: Locale) => (
+    <Link
+        className={'lenke'}
+        href={urls.tilbakemeldinger.klagerettigheter[locale]}
+    >
+        {children}
+    </Link>
+);
 
 const Lenkepanel = (props: Props) => {
     const [{ locale }] = useStore();
@@ -34,17 +44,8 @@ const Lenkepanel = (props: Props) => {
                     <FormattedMessage
                         id={props.beskrivelse}
                         values={{
-                            KlagerettigheterLenke: (children: ReactNode[]) => (
-                                <Link
-                                    href={
-                                        urls.tilbakemeldinger.klagerettigheter[
-                                            locale
-                                        ]
-                                    }
-                                >
-                                    {children}
-                                </Link>
-                            ),
+                            KlagerettigheterLenke: (children: ReactNode[]) =>
+                                KlagerettigheterLenke(children, locale),
                         }}
                     />
                 </LinkPanel.Description>
