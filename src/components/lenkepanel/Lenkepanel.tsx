@@ -7,10 +7,8 @@ import { Link, LinkPanel } from '@navikt/ds-react';
 import { Locale } from 'utils/locale';
 
 export interface Props {
-    id: string;
     tittel: string;
     beskrivelse: string;
-    lenkeTekst: string;
     to: string;
     icon?: string;
 }

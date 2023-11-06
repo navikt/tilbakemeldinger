@@ -27,7 +27,6 @@ const en = {
     'tilbakemeldinger.sidetittel': 'Complaints and feedback',
     'tilbakemeldinger.klageanke.tittel': 'Complain or appeal a decision',
     'tilbakemeldinger.klageanke.beskrivelse': `If you have received a decision from NAV and you disagree with the decision, you have the right to file a complaint or appeal. Read more about your <KlagerettigheterLenke>right to appeal</KlagerettigheterLenke> a decision. `,
-    'tilbakemeldinger.klageanke.link': 'Send a complaint or appeal a decision',
 
     'tilbakemeldinger.serviceklage.tittel': 'Complaints about service',
     'tilbakemeldinger.serviceklage.beskrivelse':
@@ -40,7 +39,6 @@ const en = {
     'tilbakemeldinger.serviceklage.login.knapp': 'Log in',
     'tilbakemeldinger.serviceklage.login.knapp.fortsettuten':
         'Continue without logging in',
-    'tilbakemeldinger.serviceklage.link': 'Send feedback about service',
     'tilbakemeldinger.serviceklage.form.veileder':
         'Here you can complain about the service you have received. You will receive an answer within 3 weeks.',
     'tilbakemeldinger.serviceklage.form.tittel': 'Complaints about service',
@@ -58,7 +56,6 @@ const en = {
     'tilbakemeldinger.feilogmangler.beskrivelse':
         'Have you found an error on nav.no? Is it a technical error, wrong or missing information, or an accessibility ' +
         'issue? We would like to hear from you about these cases.',
-    'tilbakemeldinger.feilogmangler.link': 'Report errors and omissions',
     'tilbakemeldinger.feilogmangler.form.tittel': 'Errors and omissions',
     'tilbakemeldinger.feilogmangler.form.veileder':
         'You can report technical errors as well as wrong or missing information. You cannot send a general question or ' +
@@ -71,7 +68,6 @@ const en = {
     'tilbakemeldinger.ros.tittel': 'Praise for NAV',
     'tilbakemeldinger.ros.beskrivelse':
         'Have you had a good experience? Would you like to praise a colleague or employee or share other positive feedback with NAV?',
-    'tilbakemeldinger.ros.link': 'Give praise to NAV',
     'tilbakemeldinger.ros.form.tittel': 'Praise for NAV',
     'tilbakemeldinger.ros.form.overskrift': 'Submit praise to NAV',
     'tilbakemeldinger.ros.form.veileder':
