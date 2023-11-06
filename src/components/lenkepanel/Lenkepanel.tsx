@@ -5,6 +5,7 @@ import { useStore } from 'providers/Provider';
 import { logLinkClick } from 'utils/amplitude';
 import { Link, LinkPanel } from '@navikt/ds-react';
 import { Locale } from 'utils/locale';
+import style from './Lenkepanel.module.scss';
 
 export interface Props {
     id: string;
@@ -29,6 +30,7 @@ const Lenkepanel = (props: Props) => {
     const [{ locale }] = useStore();
     return (
         <LinkPanel
+            className={style.lenkePanel}
             href={props.to}
             border
             onClick={() =>
@@ -36,7 +38,7 @@ const Lenkepanel = (props: Props) => {
             }
         >
             {props.icon && (
-                <img className="lenkePanel__ikon" src={props.icon} alt="" />
+                <img className={style.ikon} src={props.icon} alt="" />
             )}
             <div>
                 <LinkPanel.Title> {props.tittel}</LinkPanel.Title>
