@@ -3,6 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
 import { TextField } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
+import appStyle from 'App.module.scss';
 
 const ServiceKlageTypeUtdypning = () => {
     const {
@@ -25,7 +26,7 @@ const ServiceKlageTypeUtdypning = () => {
                     id: 'validering.klagetype.utdypning.pakrevd',
                 }),
             })}
-            className="skjema__input--medium"
+            className={appStyle.inputMedium}
             label={''}
             error={errors?.klagetypeUtdypning?.message}
             autoComplete="off"

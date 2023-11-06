@@ -25,6 +25,7 @@ import {
     useForm,
 } from 'react-hook-form';
 import { resolveErrorCode } from '../../../utils/errorCodes';
+import appStyle from 'App.module.scss';
 
 type FEILTYPE = 'TEKNISK_FEIL' | 'FEIL_INFO' | 'UNIVERSELL_UTFORMING';
 
@@ -87,7 +88,7 @@ const FOM = () => {
     };
 
     return (
-        <div className="pagecontent">
+        <div className={appStyle.pageContent}>
             <MetaTags
                 titleId={'tilbakemeldinger.feilogmangler.tittel'}
                 descriptionId={'seo.feilogmangler.description'}
@@ -108,7 +109,10 @@ const FOM = () => {
                     <Takk />
                 ) : (
                     <FormProvider {...methods}>
-                        <form className="skjema" onSubmit={handleSubmit(send)}>
+                        <form
+                            className={appStyle.skjema}
+                            onSubmit={handleSubmit(send)}
+                        >
                             <PersonvernInfo />
                             <Controller
                                 render={({ field, fieldState: { error } }) => (

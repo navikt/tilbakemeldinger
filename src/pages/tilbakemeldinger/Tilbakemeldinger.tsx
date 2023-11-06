@@ -6,13 +6,14 @@ import { useIntl } from 'react-intl';
 import { useStore } from '../../providers/Provider';
 import { MetaTags } from '../../components/metatags/MetaTags';
 import { paths } from '../../Config';
+import appStyle from 'App.module.scss';
 
 const Tilbakemeldinger = () => {
     const intl = useIntl();
     const [{ locale }] = useStore();
 
     return (
-        <div className="pagecontent">
+        <div className={appStyle.pageContent}>
             <MetaTags
                 path={paths.tilbakemeldinger.forside}
                 titleId={'tilbakemeldinger.sidetittel'}
