@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Alert, AlertProps } from '@navikt/ds-react';
+import style from './Varsel.module.scss';
 
 type Props = {
     type: AlertProps['variant'];
@@ -9,7 +10,7 @@ type Props = {
 };
 
 export const Varsel = ({ type, tekstId, children }: Props) => (
-    <Alert variant={type} className="varsel-panel">
+    <Alert variant={type} className={style.varsel}>
         {tekstId && <FormattedMessage id={tekstId} />}
         {children}
     </Alert>
