@@ -5,6 +5,7 @@ import { useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
 import { TextField } from '@navikt/ds-react';
 import { isValidTelefonnummer } from '../../../utils/validators';
+import appStyle from 'App.module.scss';
 
 const ServiceKlageTelefon = () => {
     const {
@@ -32,7 +33,7 @@ const ServiceKlageTelefon = () => {
                         formatMessage({ id: 'validering.tlf.ugyldig' }),
                 },
             })}
-            className="skjema__input--small"
+            className={appStyle.inputSmall}
             label={formatMessage({ id: 'felter.tlf.tittel' })}
             error={errors?.innmelderTlfnr?.message}
             autoComplete={'tel'}

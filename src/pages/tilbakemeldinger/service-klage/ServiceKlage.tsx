@@ -40,6 +40,7 @@ import {
 } from 'react-hook-form';
 import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import { resolveErrorCode } from '../../../utils/errorCodes';
+import appStyle from 'App.module.scss';
 
 export interface ServiceklageFormFields {
     klagetekst: string;
@@ -178,7 +179,7 @@ const ServiceKlage = () => {
     };
 
     return (
-        <div className="pagecontent">
+        <div className={appStyle.pageContent}>
             <MetaTags
                 titleId={'tilbakemeldinger.serviceklage.form.tittel'}
                 descriptionId={'seo.klagepaservice.description'}
@@ -201,7 +202,10 @@ const ServiceKlage = () => {
                     <Takk />
                 ) : (
                     <FormProvider {...methods}>
-                        <form className="skjema" onSubmit={handleSubmit(send)}>
+                        <form
+                            className={appStyle.skjema}
+                            onSubmit={handleSubmit(send)}
+                        >
                             <PersonvernInfo />
                             <Controller
                                 render={({ field, fieldState: { error } }) => (

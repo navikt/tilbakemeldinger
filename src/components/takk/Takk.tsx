@@ -2,13 +2,14 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Alert, Button, Link } from '@navikt/ds-react';
 import Environment from '../../Environments';
+import appStyle from 'App.module.scss';
 
 interface Props {
     melding?: string;
 }
 
 const Takk = (props: Props) => (
-    <div className="skjema">
+    <div className={appStyle.skjema}>
         <Alert variant={'success'}>
             {props.melding ? (
                 <span>{props.melding}</span>
