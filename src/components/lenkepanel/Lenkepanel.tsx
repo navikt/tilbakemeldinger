@@ -12,7 +12,6 @@ export interface Props {
     beskrivelse: string;
     lenkeTekst: string;
     to: string;
-    external?: boolean;
     icon?: string;
 }
 
