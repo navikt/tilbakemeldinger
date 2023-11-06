@@ -1,0 +1,12 @@
+.lenkePanel {
+    :global(.navds-link-panel__content) {
+        display: flex;
+        gap: 1rem;
+    }
+}
+
+.ikon {
+    flex-shrink: 0;
+    width: 5rem;
+    height: 5rem;
+}
