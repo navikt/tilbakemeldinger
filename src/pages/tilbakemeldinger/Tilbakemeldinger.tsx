@@ -27,11 +27,9 @@ const Tilbakemeldinger = () => {
                 <Lenkepanel
                     icon={lenke.icon}
                     key={lenke.tittel}
-                    id={lenke.tittel}
                     tittel={intl.messages[lenke.tittel] as string}
                     beskrivelse={lenke.beskrivelse}
                     to={lenke.lenke}
-                    lenkeTekst={intl.messages[lenke.lenkeTekst] as string}
                 />
             ))}
         </div>
