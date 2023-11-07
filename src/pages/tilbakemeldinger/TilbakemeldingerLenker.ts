@@ -10,6 +10,7 @@ export interface Lenke {
     beskrivelse: string;
     lenke: string;
     icon?: string;
+    external?: boolean;
 }
 
 export const lenker = (locale: Locale): Lenke[] => [
@@ -18,6 +19,7 @@ export const lenker = (locale: Locale): Lenke[] => [
         tittel: 'tilbakemeldinger.klageanke.tittel',
         beskrivelse: 'tilbakemeldinger.klageanke.beskrivelse',
         lenke: urls.tilbakemeldinger.klagepavedtak[locale],
+        external: true,
     },
     {
         icon: complaintIcon,

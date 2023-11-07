@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import { Link as RouterLink } from 'react-router-dom'; // Renamed
 import { FormattedMessage } from 'react-intl';
 import { urls } from 'Config';
 import { useStore } from 'providers/Provider';
@@ -10,6 +11,7 @@ export interface Props {
     tittel: string;
     beskrivelse: string;
     to: string;
+    external?: boolean;
     icon?: string;
 }
 
@@ -28,6 +30,17 @@ const Lenkepanel = (props: Props) => {
         <LinkPanel
             href={props.to}
             border
+            as={(p) => {
+                return props.external ? (
+                    <a href={props.to} {...p}>
+                        {p.children}
+                    </a>
+                ) : (
+                    <RouterLink to={props.to} {...p}>
+                        {p.children}
+                    </RouterLink>
+                );
+            }}
             onClick={() =>
                 logLinkClick(props.to, props.tittel, 'tilbakemelding')
             }
