@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import VeilederIcon from 'assets/icons/Veileder.svg';
 import { postRosTilNav } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import Header from 'components/header/Header';
@@ -32,7 +31,7 @@ export type OutboundRosTilNav = {
     | { hvemRoses: 'NAV_KONTAKTSENTER' }
     | { hvemRoses: 'NAV_DIGITALE_TJENESTER' }
     | { hvemRoses: 'NAV_KONTOR'; navKontor: string }
-);
+    );
 
 const Ros = () => {
     const {
@@ -77,7 +76,7 @@ const Ros = () => {
     };
 
     return (
-        <div className="pagecontent">
+        <div className='pagecontent'>
             <MetaTags
                 titleId={'tilbakemeldinger.ros.tittel'}
                 descriptionId={'seo.rostilnav.description'}
@@ -90,7 +89,6 @@ const Ros = () => {
             />
             <div className={'tb__veileder'}>
                 <GuidePanel
-                    illustration={<img src={VeilederIcon} alt="" />}
                     poster={true}
                 >
                     <div className={'tb__veileder-container'}>
@@ -145,9 +143,9 @@ const Ros = () => {
                             {watch().hvemRoses === 'NAV_KONTOR' && (
                                 <Controller
                                     render={({
-                                        field,
-                                        fieldState: { error },
-                                    }) => (
+                                                 field,
+                                                 fieldState: { error },
+                                             }) => (
                                         <SelectEnhet
                                             {...field}
                                             label={
@@ -185,7 +183,7 @@ const Ros = () => {
                                 value={watch().melding}
                                 error={errors?.melding?.message}
                                 maxLength={vars.maksLengdeMelding}
-                                autoComplete="off"
+                                autoComplete='off'
                             />
                             {error && (
                                 <Alert
@@ -197,8 +195,8 @@ const Ros = () => {
                                     />
                                 </Alert>
                             )}
-                            <div className="tb__knapper">
-                                <div className="tb__knapp">
+                            <div className='tb__knapper'>
+                                <div className='tb__knapp'>
                                     <Button
                                         type={'submit'}
                                         variant={'primary'}
