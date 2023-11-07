@@ -30,6 +30,7 @@ const Tilbakemeldinger = () => {
                     tittel={intl.messages[lenke.tittel] as string}
                     beskrivelse={lenke.beskrivelse}
                     to={lenke.lenke}
+                    external={lenke.external}
                 />
             ))}
         </div>
