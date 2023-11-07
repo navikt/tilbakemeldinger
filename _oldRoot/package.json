@@ -5,19 +5,21 @@
     "author": "NAV",
     "license": "MIT",
     "homepage": "/person/kontakt-oss/tilbakemeldinger",
-    "type": "module",
     "scripts": {
-        "build": "npm-run-all build:*",
-        "build:client": "vite build --outDir ./server/dist/client",
+        "start": "npm-run-all -p start:*",
+        "start:lint": "eslint src/**/*.ts*",
+        "start:ts": "react-scripts start",
+        "start:less": "less-watch-compiler",
         "build:css": "less-watch-compiler --run-once",
-        "build:ssr": "vite build --outDir ./server/src/_ssr-dist --ssr src/main-server.tsx",
-        "build:server": "npm run build --workspace server",
-        "analyze-bundle": "ANALYZE=true npm run build:client",
-        "start": "npm run start --workspace server",
-        "start-local": "cp .env.local-prod .env && npm run start --workspace server",
-        "decorator-local": "docker compose up",
-        "dev-prepare": "node preact-compat-symlinks.js && cp .env.development .env",
-        "dev": "npm run dev-prepare && npm run dev --workspace server"
+        "build:js": "react-scripts build",
+        "build:server": "cd server && npm run build",
+        "build": "npm-run-all -p build:*",
+        "docker-build": "docker build . -t tilbakemeldinger",
+        "docker-start": "docker run --name tilbakemeldinger -p 8080:8080 -t -d tilbakemeldinger",
+        "docker-kill": "npm run docker-stop && npm run docker-rm",
+        "docker-rm": "docker rm tilbakemeldinger",
+        "docker-stop": "docker stop tilbakemeldinger",
+        "analyze": "source-map-explorer 'build/static/js/*.js'"
     },
     "dependencies": {
         "@navikt/ds-css": "5.7.6",
@@ -67,9 +69,9 @@
         "typescript": "4.9.5",
         "vite": "4.5.0"
     },
-    "workspaces": [
-        "server"
-    ],
+    "eslintConfig": {
+        "extends": "react-app"
+    },
     "browserslist": {
         "production": [
             ">0.2%",
