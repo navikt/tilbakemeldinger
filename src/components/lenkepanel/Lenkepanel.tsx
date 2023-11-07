@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Link as RouterLink } from 'react-router-dom'; // Renamed
+import { Link as RouterLink } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { urls } from 'Config';
 import { useStore } from 'providers/Provider';
