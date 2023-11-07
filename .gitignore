@@ -29,3 +29,4 @@ yarn-error.log*
 /tilbakemeldinger.iml
 /pb-kontakt-oss.iml
 /public/static/css/index.css
+/.env
