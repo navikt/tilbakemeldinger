@@ -5,28 +5,23 @@ import { urls } from 'Config';
 import { Varsel } from 'components/varsel/Varsel';
 
 export const PersonvernInfo = () => (
-    <div>
-        <Varsel type={'info'}>
-            <>
-                <BodyLong>
-                    <FormattedMessage
-                        id={'felter.melding.beskrivelse'}
-                        values={{
-                            DatatilsynetLenke: (children: ReactNode[]) => (
-                                <Link
-                                    className={'lenke'}
-                                    href={
-                                        urls.tilbakemeldinger.serviceklage
-                                            .datatilsynet
-                                    }
-                                >
-                                    {children}
-                                </Link>
-                            ),
-                        }}
-                    />
-                </BodyLong>
-            </>
-        </Varsel>
-    </div>
+    <Varsel type={'info'}>
+        <BodyLong>
+            <FormattedMessage
+                id={'felter.melding.beskrivelse'}
+                values={{
+                    DatatilsynetLenke: (children: ReactNode[]) => (
+                        <Link
+                            className={'lenke'}
+                            href={
+                                urls.tilbakemeldinger.serviceklage.datatilsynet
+                            }
+                        >
+                            {children}
+                        </Link>
+                    ),
+                }}
+            />
+        </BodyLong>
+    </Varsel>
 );

@@ -5,6 +5,7 @@ import { Alert, TextField } from '@navikt/ds-react';
 import { useFormContext } from 'react-hook-form';
 import { FeilOgManglerFields } from './FeilOgMangler';
 import { EMAIL_PATTERN } from '../../../utils/validators';
+import appStyle from 'App.module.scss';
 
 const FeilOgManglerEpost = () => {
     const {
@@ -22,7 +23,7 @@ const FeilOgManglerEpost = () => {
     const [{ kontaktInfo }] = useStore();
 
     return (
-        <div className="serviceKlage__ekspandert">
+        <>
             <TextField
                 {...register('epost', {
                     required: formatMessage({ id: 'validering.epost.pakrevd' }),
@@ -33,7 +34,7 @@ const FeilOgManglerEpost = () => {
                         }),
                     },
                 })}
-                className="skjema__input--medium"
+                className={appStyle.inputMedium}
                 label={formatMessage({ id: 'felter.epost.tittel' })}
                 error={errors?.epost?.message}
                 defaultValue={kontaktInfo.epostadresse || ''}
@@ -46,7 +47,7 @@ const FeilOgManglerEpost = () => {
                     />
                 </Alert>
             </div>
-        </div>
+        </>
     );
 };
 export default FeilOgManglerEpost;

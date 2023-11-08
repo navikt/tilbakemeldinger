@@ -4,6 +4,7 @@ import { useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
 import { TextField } from '@navikt/ds-react';
 import { isLength, isNumeric, isValidFnr } from '../../../utils/validators';
+import appStyle from 'App.module.scss';
 
 interface Props {
     innmelderNavn: string | false;
@@ -27,7 +28,7 @@ const ServiceKlagePrivatperson = (props: Props) => {
     }, [isSubmitted, trigger]);
 
     return (
-        <div className="serviceKlage__ekspandert">
+        <>
             <TextField
                 {...register('innmelderNavn', {
                     value: innmelderNavn || undefined,
@@ -35,7 +36,7 @@ const ServiceKlagePrivatperson = (props: Props) => {
                 })}
                 label={formatMessage({ id: 'felter.navn.tittel' })}
                 error={errors?.innmelderNavn?.message}
-                className="skjema__input--medium"
+                className={appStyle.inputMedium}
                 disabled={!!innmelderNavn}
                 autoComplete={'name'}
             />
@@ -65,11 +66,11 @@ const ServiceKlagePrivatperson = (props: Props) => {
                 })}
                 label={formatMessage({ id: 'felter.fodselsnr' })}
                 error={errors?.innmelderFnr?.message}
-                className="skjema__input--small"
+                className={appStyle.inputSmall}
                 disabled={!!innmelderFnr}
                 autoComplete="off"
             />
-        </div>
+        </>
     );
 };
 export default ServiceKlagePrivatperson;

@@ -5,14 +5,11 @@ interface Props {
     title?: string;
 }
 
-const Header = (props: Props) => (
-    <div className="header">
-        {props.title && (
-            <Heading size={'large'} level={'1'} className="header__tittel">
-                {props.title}
-            </Heading>
-        )}
-    </div>
-);
+const Header = ({ title }: Props) =>
+    title ? (
+        <Heading align="center" size="large" level="1" spacing>
+            {title}
+        </Heading>
+    ) : null;
 
 export default Header;

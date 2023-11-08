@@ -4,6 +4,7 @@ import ServiceKlageTelefon from './ServiceKlageTelefon';
 import { useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
 import { TextField } from '@navikt/ds-react';
+import appStyle from 'App.module.scss';
 
 interface Props {
     innmelderNavn: string | false;
@@ -26,7 +27,7 @@ const ServiceKlageKontaktBedrift = (props: Props) => {
     }, [isSubmitted, trigger]);
 
     return (
-        <div className="serviceKlage__ekspandert">
+        <>
             <TextField
                 {...register('innmelderNavn', {
                     value: innmelderNavn || undefined,
@@ -34,12 +35,12 @@ const ServiceKlageKontaktBedrift = (props: Props) => {
                 })}
                 label={formatMessage({ id: 'felter.dittnavn' })}
                 error={errors?.innmelderNavn?.message}
-                className="skjema__input--medium"
+                className={appStyle.inputMedium}
                 disabled={!!innmelderNavn}
                 autoComplete={'name'}
             />
             <ServiceKlageTelefon />
-        </div>
+        </>
     );
 };
 export default ServiceKlageKontaktBedrift;
