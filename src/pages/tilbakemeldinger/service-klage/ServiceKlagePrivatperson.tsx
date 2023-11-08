@@ -27,7 +27,7 @@ const ServiceKlagePrivatperson = (props: Props) => {
     }, [isSubmitted, trigger]);
 
     return (
-        <div className="serviceKlage__ekspandert">
+        <>
             <TextField
                 {...register('innmelderNavn', {
                     value: innmelderNavn || undefined,
@@ -69,7 +69,7 @@ const ServiceKlagePrivatperson = (props: Props) => {
                 disabled={!!innmelderFnr}
                 autoComplete="off"
             />
-        </div>
+        </>
     );
 };
 export default ServiceKlagePrivatperson;

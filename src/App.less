@@ -1,197 +1,40 @@
 .app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: var(--a-bg-subtle);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--a-bg-subtle);
 }
 
 .decorator-utils-container {
-  background-color: var(--a-bg-subtle);
+    background-color: var(--a-bg-subtle);
 }
 
 .pagecontent {
-  width: 100%;
-  max-width: 800px;
-  padding: 1rem 1rem 4rem 1rem;
-  box-sizing: border-box;
-
-  &__frontpage {
-  }
-}
-
-.varsel {
-  &__body {
-    margin: 0.5rem 0;
-  }
-}
-
-.nav-veileder {
-  &__frame {
-    height: 100% !important;
-  }
-}
-
-.flex__rad {
-  display: flex;
-  @media @maxTablet {
-    flex-direction: column;
-  }
-  @media @minDesktop {
-    flex-direction: row;
-  }
-}
-
-.flex__kolonne-left,
-.flex__kolonne-right {
-  @media @maxMobile {
-    width: 100%;
-  }
-  @media @minDesktop {
-    width: 50%;
-  }
-}
-
-.flex__kolonne-left {
-  @media @minDesktop {
-    padding-right: 0.25rem;
-  }
-}
-.flex__kolonne-right {
-  @media @minDesktop {
-    padding-left: 0.25rem;
-  }
-}
-
-.mellomrom {
-  padding: 0.5rem 0;
-}
-
-.nav-veilederpanel {
-  min-height: 1rem !important;
-}
-
-.navds-guide-panel.navds-guide-panel--poster {
-  .navds-guide {
-    border: 0;
-  }
-
-  .navds-guide-panel__content {
-    border-color: var(--a-border-subtle);
-  }
-}
-
-.tb {
-  &__knapper {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    @media @maxMobile {
-      flex-direction: column;
-    }
-  }
-  &__knapp {
-    margin-right: 0.25rem;
-    @media @maxMobile {
-      margin-top: 1rem;
-    }
-  }
-  &__veileder {
-    margin-top: 1rem;
-    &-container {
-      @media @minMobile {
-        margin: 0 2rem 1rem 2rem;
-      }
-    }
-  }
+    flex-direction: column;
+    row-gap: 1rem;
+
+    width: 100%;
+    max-width: 800px;
+    padding: 1rem 1rem 4rem 1rem;
+    box-sizing: border-box;
 }
 
 .skjema {
-  &__content {
-    margin: 1rem 0;
-    > * {
-      &:not(:last-child) {
-        padding-bottom: 1rem;
-      }
-    }
-  }
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
 
-  &__input--medium {
-    max-width: 100%;
+    &__input--medium {
+        max-width: 100%;
 
-    @media @maxTablet {
-      width: 22rem;
-    }
-  }
-
-  &__input--small {
-    width: 12rem;
-  }
-}
-
-.radioPanel {
-  &__bool {
-    .inputPanelGruppe__inner {
-      @media @minDesktop {
-        display: flex;
-        :first-child {
-          margin-right: 0.25rem;
+        @media @maxTablet {
+            width: 22rem;
         }
-
-        :last-child {
-          margin-left: 0.25rem;
-        }
-
-        > * {
-          width: 100%;
-        }
-      }
     }
-  }
-}
 
-.felter {
-  &__melding-advarsel {
-    margin-bottom: 1rem;
-  }
-}
-
-.navds-form-field {
-  margin-bottom: 1rem;
-}
-
-.knapp--hoved {
-  max-height: 2.5rem;
-}
-
-.divider {
-  margin: 1rem 0;
-  border-top: 1px solid #78706a;
-}
-
-.teknisk-problem-stripe {
-  margin: 1rem 0;
-  padding: 1em;
-  width: 100%;
-  max-width: 600px;
-}
-
-/*
-  Overridden CSS
-  TODO: finn alternative løsninger
- */
-
-.fokus-overstyring() {
-  background-color: var(--a-white);
-  box-shadow: 3px 3px inset var(--a-border-focus),
-    -3px -3px inset var(--a-border-focus);
-}
-
-.lenkepanel:focus {
-  .fokus-overstyring();
-  color: var(--a-blue-500);
-}
-
-.btn-auth {
-  min-height: 1.5rem;
+    &__input--small {
+        width: 12rem;
+    }
 }

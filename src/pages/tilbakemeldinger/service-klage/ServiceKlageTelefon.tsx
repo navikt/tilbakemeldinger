@@ -22,23 +22,21 @@ const ServiceKlageTelefon = () => {
     }, [isSubmitted, trigger]);
 
     return (
-        <div className="serviceKlage__ekspandert">
-            <TextField
-                {...register('innmelderTlfnr', {
-                    value: kontaktInfo.mobiltelefonnummer ?? '',
-                    required: formatMessage({ id: 'validering.tlf.pakrevd' }),
-                    validate: {
-                        isValidTelefonnummer: (v) =>
-                            isValidTelefonnummer(v) ||
-                            formatMessage({ id: 'validering.tlf.ugyldig' }),
-                    },
-                })}
-                className="skjema__input--small"
-                label={formatMessage({ id: 'felter.tlf.tittel' })}
-                error={errors?.innmelderTlfnr?.message}
-                autoComplete={'tel'}
-            />
-        </div>
+        <TextField
+            {...register('innmelderTlfnr', {
+                value: kontaktInfo.mobiltelefonnummer ?? '',
+                required: formatMessage({ id: 'validering.tlf.pakrevd' }),
+                validate: {
+                    isValidTelefonnummer: (v) =>
+                        isValidTelefonnummer(v) ||
+                        formatMessage({ id: 'validering.tlf.ugyldig' }),
+                },
+            })}
+            className="skjema__input--small"
+            label={formatMessage({ id: 'felter.tlf.tittel' })}
+            error={errors?.innmelderTlfnr?.message}
+            autoComplete={'tel'}
+        />
     );
 };
 export default ServiceKlageTelefon;

@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const Varsel = ({ type, tekstId, children }: Props) => (
-    <Alert variant={type} className={'varsel-panel'}>
+    <Alert variant={type} className="varsel-panel">
         {tekstId && <FormattedMessage id={tekstId} />}
         {children}
     </Alert>

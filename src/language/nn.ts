@@ -27,7 +27,6 @@ const nn = {
     'tilbakemeldinger.sidetittel': 'Klage og tilbakemelding',
     'tilbakemeldinger.klageanke.tittel': 'Klage eller anke på vedtak',
     'tilbakemeldinger.klageanke.beskrivelse': `Dersom du har fått eit vedtak frå NAV og du er usamd i vedtaket, har du rett til å klage eller anke. Les meir om <KlagerettigheterLenke>klagerettane dine</KlagerettigheterLenke>.`,
-    'tilbakemeldinger.klageanke.link': 'Send klage eller anke på vedtak',
 
     'tilbakemeldinger.serviceklage.tittel': 'Klage på service',
     'tilbakemeldinger.serviceklage.beskrivelse':
@@ -40,7 +39,6 @@ const nn = {
     'tilbakemeldinger.serviceklage.login.knapp': 'Logg inn',
     'tilbakemeldinger.serviceklage.login.knapp.fortsettuten':
         'Fortsett utan å logge inn',
-    'tilbakemeldinger.serviceklage.link': 'Send tilbakemelding på service',
     'tilbakemeldinger.serviceklage.form.veileder':
         'Her kan du klage på servicen du har fått. Du vil få svar innan 3 veker.',
     'tilbakemeldinger.serviceklage.form.tittel': 'Klage på service',
@@ -57,7 +55,6 @@ const nn = {
     'tilbakemeldinger.feilogmangler.beskrivelse':
         'Har du oppdaga ein feil på nav.no? Kanskje ein teknisk feil, feil informasjon eller for låg grad av universell' +
         ' utforming? Då vil vi gjerne høyre frå deg.',
-    'tilbakemeldinger.feilogmangler.link': 'Meld frå om feil og manglar',
     'tilbakemeldinger.feilogmangler.form.tittel': 'Feil og manglar',
     'tilbakemeldinger.feilogmangler.form.veileder':
         'Her kan du melde frå om tekniske feil og manglar. Du kan ikkje sende inn generelle spørsmål eller førespurnadar om saka di.',
@@ -69,7 +66,6 @@ const nn = {
     'tilbakemeldinger.ros.tittel': 'Ros til NAV',
     'tilbakemeldinger.ros.beskrivelse':
         'Har du ei god oppleving? Vil du rose ein medarbeidar, eller er det noko anna positivt du vil dele med NAV?',
-    'tilbakemeldinger.ros.link': 'Gi ros til NAV',
     'tilbakemeldinger.ros.form.tittel': 'Ros til NAV',
     'tilbakemeldinger.ros.form.overskrift': 'Send inn ros til NAV',
     'tilbakemeldinger.ros.form.veileder':
