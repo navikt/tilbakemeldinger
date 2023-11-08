@@ -10,10 +10,21 @@ import {
     isNumeric,
     isValidFnr,
 } from '../../../utils/validators';
+import appStyle from 'App.module.scss';
 
 interface Props {
     innmelderNavn: string | false;
 }
+
+const FullmaktskjemaLenke = (children: ReactNode[]) => (
+    <Link
+        href={urls.tilbakemeldinger.serviceklage.fullmaktskjema}
+        rel="noopener noreferrer"
+        target="_blank"
+    >
+        {children}
+    </Link>
+);
 
 const ServiceKlageForAnnenPerson = (props: Props) => {
     const {
@@ -34,7 +45,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
     }, [isSubmitted, trigger]);
 
     return (
-        <div className="serviceKlage__ekspandert">
+        <>
             <TextField
                 {...register('innmelderNavn', {
                     value: innmelderNavn || undefined,
@@ -42,7 +53,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                 })}
                 label={formatMessage({ id: 'felter.dittnavn' })}
                 error={errors?.innmelderNavn?.message}
-                className="skjema__input--medium"
+                className={appStyle.inputMedium}
                 disabled={!!innmelderNavn}
                 autoComplete={'name'}
             />
@@ -50,7 +61,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                 {...register('innmelderRolle', {
                     required: formatMessage({ id: 'validering.rolle.pakrevd' }),
                 })}
-                className="skjema__input--medium"
+                className={appStyle.inputMedium}
                 label={formatMessage({ id: 'felter.dinrolle.annenperson' })}
                 error={errors?.innmelderRolle?.message}
                 autoComplete="off"
@@ -59,7 +70,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                 {...register('paaVegneAvNavn', {
                     required: formatMessage({ id: 'validering.navn.pakrevd' }),
                 })}
-                className="skjema__input--medium"
+                className={appStyle.inputMedium}
                 label={formatMessage({ id: 'felter.navntilklager' })}
                 error={errors?.paaVegneAvNavn?.message}
                 autoComplete="off"
@@ -87,7 +98,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                             }),
                     },
                 })}
-                className="skjema__input--small"
+                className={appStyle.inputSmall}
                 label={formatMessage({ id: 'felter.fodselsnrtilklager' })}
                 error={errors?.paaVegneAvFodselsnr?.message}
                 autoComplete="off"
@@ -120,19 +131,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                                     values={{
                                         FullmaktskjemaLenke: (
                                             children: ReactNode[]
-                                        ) => (
-                                            <Link
-                                                href={
-                                                    urls.tilbakemeldinger
-                                                        .serviceklage
-                                                        .fullmaktskjema
-                                                }
-                                                rel="noopener noreferrer"
-                                                target="_blank"
-                                            >
-                                                {children}
-                                            </Link>
-                                        ),
+                                        ) => FullmaktskjemaLenke(children),
                                     }}
                                 />
                             </Alert>
@@ -151,7 +150,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                     },
                 }}
             />
-        </div>
+        </>
     );
 };
 export default ServiceKlageForAnnenPerson;

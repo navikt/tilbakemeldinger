@@ -5,6 +5,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
 import { TextField } from '@navikt/ds-react';
 import { isLength, isNumeric } from '../../../utils/validators';
+import appStyle from 'App.module.scss';
 
 const ServiceKlageForBedrift = () => {
     const {
@@ -22,10 +23,10 @@ const ServiceKlageForBedrift = () => {
     }, [isSubmitted, trigger]);
 
     return (
-        <div className="serviceKlage__ekspandert">
+        <>
             <TextField
                 {...register('innmelderRolle')}
-                className="skjema__input--medium"
+                className={appStyle.inputMedium}
                 label={formatMessage({ id: 'felter.dinrolle.bedrift' })}
                 error={errors?.innmelderRolle?.message}
                 autoComplete="off"
@@ -36,7 +37,7 @@ const ServiceKlageForBedrift = () => {
                         id: 'validering.orgnavn.pakrevd',
                     }),
                 })}
-                className="skjema__input--medium"
+                className={appStyle.inputMedium}
                 label={formatMessage({ id: 'felter.orgnavn' })}
                 error={errors?.orgNavn?.message}
                 autoComplete="off"
@@ -55,7 +56,7 @@ const ServiceKlageForBedrift = () => {
                             }),
                     },
                 })}
-                className="skjema__input--medium"
+                className={appStyle.inputMedium}
                 label={formatMessage({ id: 'felter.orgnr' })}
                 error={errors?.orgNummer?.message}
                 autoComplete="off"
@@ -78,7 +79,7 @@ const ServiceKlageForBedrift = () => {
                     }),
                 }}
             />
-        </div>
+        </>
     );
 };
 export default ServiceKlageForBedrift;

@@ -5,6 +5,7 @@ import { useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
 import { TextField } from '@navikt/ds-react';
 import { isValidTelefonnummer } from '../../../utils/validators';
+import appStyle from 'App.module.scss';
 
 const ServiceKlageTelefon = () => {
     const {
@@ -22,23 +23,21 @@ const ServiceKlageTelefon = () => {
     }, [isSubmitted, trigger]);
 
     return (
-        <div className="serviceKlage__ekspandert">
-            <TextField
-                {...register('innmelderTlfnr', {
-                    value: kontaktInfo.mobiltelefonnummer ?? '',
-                    required: formatMessage({ id: 'validering.tlf.pakrevd' }),
-                    validate: {
-                        isValidTelefonnummer: (v) =>
-                            isValidTelefonnummer(v) ||
-                            formatMessage({ id: 'validering.tlf.ugyldig' }),
-                    },
-                })}
-                className="skjema__input--small"
-                label={formatMessage({ id: 'felter.tlf.tittel' })}
-                error={errors?.innmelderTlfnr?.message}
-                autoComplete={'tel'}
-            />
-        </div>
+        <TextField
+            {...register('innmelderTlfnr', {
+                value: kontaktInfo.mobiltelefonnummer ?? '',
+                required: formatMessage({ id: 'validering.tlf.pakrevd' }),
+                validate: {
+                    isValidTelefonnummer: (v) =>
+                        isValidTelefonnummer(v) ||
+                        formatMessage({ id: 'validering.tlf.ugyldig' }),
+                },
+            })}
+            className={appStyle.inputSmall}
+            label={formatMessage({ id: 'felter.tlf.tittel' })}
+            error={errors?.innmelderTlfnr?.message}
+            autoComplete={'tel'}
+        />
     );
 };
 export default ServiceKlageTelefon;
