@@ -15,6 +15,16 @@ interface Props {
     innmelderNavn: string | false;
 }
 
+const FullmaktskjemaLenke = (children: ReactNode[]) => (
+    <Link
+        href={urls.tilbakemeldinger.serviceklage.fullmaktskjema}
+        rel="noopener noreferrer"
+        target="_blank"
+    >
+        {children}
+    </Link>
+);
+
 const ServiceKlageForAnnenPerson = (props: Props) => {
     const {
         register,
@@ -34,7 +44,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
     }, [isSubmitted, trigger]);
 
     return (
-        <div className="serviceKlage__ekspandert">
+        <>
             <TextField
                 {...register('innmelderNavn', {
                     value: innmelderNavn || undefined,
@@ -120,19 +130,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                                     values={{
                                         FullmaktskjemaLenke: (
                                             children: ReactNode[]
-                                        ) => (
-                                            <Link
-                                                href={
-                                                    urls.tilbakemeldinger
-                                                        .serviceklage
-                                                        .fullmaktskjema
-                                                }
-                                                rel="noopener noreferrer"
-                                                target="_blank"
-                                            >
-                                                {children}
-                                            </Link>
-                                        ),
+                                        ) => FullmaktskjemaLenke(children),
                                     }}
                                 />
                             </Alert>
@@ -151,7 +149,7 @@ const ServiceKlageForAnnenPerson = (props: Props) => {
                     },
                 }}
             />
-        </div>
+        </>
     );
 };
 export default ServiceKlageForAnnenPerson;

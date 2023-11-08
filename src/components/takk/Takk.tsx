@@ -8,21 +8,17 @@ interface Props {
 }
 
 const Takk = (props: Props) => (
-    <div className={'skjema__content'}>
-        <div className="takk__alert">
-            <Alert variant={'success'}>
-                {props.melding ? (
-                    <span>{props.melding}</span>
-                ) : (
-                    <FormattedMessage id={'takk.melding'} />
-                )}
-            </Alert>
-        </div>
-        <div className="takk__knapp">
-            <Button variant="secondary" as={Link} href={Environment().baseUrl}>
-                <FormattedMessage id={'takk.knapp'} />
-            </Button>
-        </div>
+    <div className="skjema">
+        <Alert variant={'success'}>
+            {props.melding ? (
+                <span>{props.melding}</span>
+            ) : (
+                <FormattedMessage id={'takk.melding'} />
+            )}
+        </Alert>
+        <Button variant="secondary" as={Link} href={Environment().baseUrl}>
+            <FormattedMessage id={'takk.knapp'} />
+        </Button>
     </div>
 );
 

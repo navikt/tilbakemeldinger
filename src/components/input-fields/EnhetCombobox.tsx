@@ -82,7 +82,7 @@ const Combobox = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
                 <button
                     type="button"
                     {...getToggleButtonProps({ tabIndex: 0 })}
-                    className={`${cssPrefix}__button knapp knapp--kompakt`}
+                    className={`${cssPrefix}__button`}
                     aria-label={intl.formatMessage({
                         id: 'felter.combobox.knapp.beskrivelse',
                     })}

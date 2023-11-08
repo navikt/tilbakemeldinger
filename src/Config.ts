@@ -21,8 +21,8 @@ export const urls = {
     tilbakemeldinger: {
         klagepavedtak: {
             nb: klageUrl,
-            nn:  klageUrl,
-            en: klageUrlEn
+            nn: klageUrl,
+            en: klageUrlEn,
         },
         klagerettigheter: {
             nb: `${navUrl}/klagerettigheter`,
@@ -30,7 +30,7 @@ export const urls = {
             nn: `${navUrl}/klagerettigheter/nn`,
         },
         serviceklage: {
-            fullmaktskjema: `${navUrl}/soknader/nb/person/diverse/fullmaktskjema`,
+            fullmaktskjema: `${navUrl}/soknader#fullmakt`,
             datatilsynet: `https://www.datatilsynet.no/rettigheter-og-plikter/personopplysninger/`,
         },
     },
