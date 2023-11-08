@@ -3,13 +3,14 @@ import { paths } from '../../Config';
 import { FormattedMessage } from 'react-intl';
 import { Heading, Link } from '@navikt/ds-react';
 import { Helmet } from 'react-helmet-async';
+import style from './404.module.scss';
 
 const NotFound = () => (
     <>
         <Helmet>
             <meta name="robots" content="noindex" />
         </Helmet>
-        <div className="notfound__container">
+        <div className={style.container}>
             <Heading size={'medium'} level={'2'}>
                 <FormattedMessage id={'feil.404'} />
             </Heading>

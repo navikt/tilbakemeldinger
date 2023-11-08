@@ -20,6 +20,7 @@ import {
 import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { resolveErrorCode } from '../../../utils/errorCodes';
+import appStyle from 'App.module.scss';
 
 type HVEM_ROSES = 'NAV_KONTAKTSENTER' | 'NAV_DIGITALE_TJENESTER' | 'NAV_KONTOR';
 
@@ -83,7 +84,7 @@ const Ros = () => {
     };
 
     return (
-        <div className="pagecontent">
+        <div className={appStyle.pageContent}>
             <MetaTags
                 titleId={'tilbakemeldinger.ros.tittel'}
                 descriptionId={'seo.rostilnav.description'}
@@ -101,7 +102,10 @@ const Ros = () => {
                 {success ? (
                     <Takk />
                 ) : (
-                    <form className="skjema" onSubmit={handleSubmit(send)}>
+                    <form
+                        className={appStyle.skjema}
+                        onSubmit={handleSubmit(send)}
+                    >
                         <PersonvernInfo />
                         <Controller
                             render={({ field, fieldState: { error } }) => (
