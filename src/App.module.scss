@@ -1,0 +1,27 @@
+.pageContent {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    width: 100%;
+    max-width: 800px;
+    padding: 1rem 1rem 4rem 1rem;
+    box-sizing: border-box;
+}
+
+.skjema {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.inputMedium {
+    max-width: 100%;
+
+    @media all and (max-width: 959px) {
+        width: 22rem;
+    }
+}
+
+.inputSmall {
+    width: 12rem;
+}
