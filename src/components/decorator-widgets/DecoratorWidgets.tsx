@@ -22,13 +22,15 @@ export const DecoratorWidgets = () => {
     const [{ locale }, dispatch] = useStore();
     const { formatMessage } = useIntl();
 
-    onLanguageSelect((breadcrumb) => {
-        setNewLocale(breadcrumb.locale as Locale, dispatch);
-    });
+    useEffect(() => {
+        onLanguageSelect((breadcrumb) => {
+            setNewLocale(breadcrumb.locale as Locale, dispatch);
+        });
 
-    onBreadcrumbClick((breadcrumb) => {
-        navigate(breadcrumb.url);
-    });
+        onBreadcrumbClick((breadcrumb) => {
+            navigate(breadcrumb.url);
+        });
+    }, []);
 
     // Set languages in decorator
     useEffect(() => {
