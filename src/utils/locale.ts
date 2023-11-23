@@ -5,8 +5,7 @@ export type Locale = 'nb' | 'en' | 'nn';
 export const validLocales: Locale[] = ['nb', 'en', 'nn']; // :(
 export const defaultLocale = 'nb' as Locale;
 
-export const localePath = (path: string, locale: Locale) =>
-    `${paths.kontaktOss.forside}/${locale}${path}`;
+export const localePath = (path: string, locale: Locale) => `/${locale}${path}`;
 
 const isLocale = (str: string): str is Locale =>
     validLocales.includes(str as Locale);
