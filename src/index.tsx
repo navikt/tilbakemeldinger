@@ -4,7 +4,6 @@ import { IntlProvider } from 'react-intl';
 import { StoreProvider, useStore } from './providers/Provider';
 import { initialState, reducer } from './providers/Store';
 import { setLocaleFromUrl } from './utils/locale';
-import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { App } from './App';
 
 import msgsNb from './language/nb';
@@ -18,18 +17,11 @@ const messages = {
 };
 
 export const AppRoot = () => {
-    // if (process.env.NODE_ENV === 'development') {
-    //     await import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
-    //     injectDecoratorClientSide({
-    //         env: 'localhost',
-    //         localUrl: 'http://localhost:8100/dekoratoren',
-    //         params: {
-    //             simple: false,
-    //             chatbot: false,
-    //             logoutWarning: true,
-    //         },
-    //     });
-    // }
+    useEffect(() => {
+        if (process.env.NODE_ENV === 'development') {
+            import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
+        }
+    }, []);
 
     return (
         <StoreProvider initialState={initialState} reducer={reducer}>
@@ -48,8 +40,6 @@ const RenderApp = () => {
     useEffect(() => {
         document.documentElement.setAttribute('lang', locale);
     }, [locale]);
-
-    console.log(locale);
 
     return (
         <IntlProvider locale={locale} messages={messages[locale]}>
