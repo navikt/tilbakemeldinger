@@ -18,25 +18,21 @@ const messages = {
     nn: msgsNn,
 };
 
-const init = async () => {
-    if (process.env.NODE_ENV === 'development') {
-        await import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
-        injectDecoratorClientSide({
-            env: 'localhost',
-            localUrl: 'http://localhost:8100/dekoratoren',
-            params: {
-                simple: false,
-                chatbot: false,
-                logoutWarning: true,
-            },
-        });
-    }
+export const AppRoot = () => {
+    // if (process.env.NODE_ENV === 'development') {
+    //     await import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
+    //     injectDecoratorClientSide({
+    //         env: 'localhost',
+    //         localUrl: 'http://localhost:8100/dekoratoren',
+    //         params: {
+    //             simple: false,
+    //             chatbot: false,
+    //             logoutWarning: true,
+    //         },
+    //     });
+    // }
 
-    const container = document.getElementById('maincontent') as HTMLElement;
-    if (!container) {
-        return;
-    }
-    createRoot(container).render(
+    return (
         <StoreProvider initialState={initialState} reducer={reducer}>
             <RenderApp />
         </StoreProvider>
@@ -51,7 +47,7 @@ const RenderApp = () => {
     }, []);
 
     useEffect(() => {
-        document.documentElement.setAttribute('lang', locale);
+        // document.documentElement.setAttribute('lang', locale);
     }, [locale]);
 
     return (
@@ -60,5 +56,3 @@ const RenderApp = () => {
         </IntlProvider>
     );
 };
-
-init();

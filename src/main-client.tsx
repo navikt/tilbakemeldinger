@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { DummyApp } from './DummyApp';
 import App from './App';
+import { AppRoot } from './index';
 
 const parseAppContext = () => {
     try {
@@ -22,7 +23,7 @@ const AppWithContext = () => {
     return (
         <React.StrictMode>
             <BrowserRouter basename={import.meta.env.BASE_URL}>
-                <App />
+                <AppRoot />
             </BrowserRouter>
         </React.StrictMode>
     );

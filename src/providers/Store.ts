@@ -6,7 +6,7 @@ import { defaultLocale, getLocaleFromUrl, Locale } from '../utils/locale';
 
 export const initialState = {
     fodselsnr: '',
-    locale: getLocaleFromUrl() || defaultLocale,
+    locale: defaultLocale,
     enheter: { status: 'LOADING' } as FetchEnheter,
     auth: { authenticated: false, loaded: false } as AuthInfo,
     kontaktInfo: { mobiltelefonnummer: '' },
