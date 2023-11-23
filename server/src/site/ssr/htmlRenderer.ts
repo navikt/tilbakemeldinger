@@ -42,9 +42,9 @@ export const devRender =
             const appHtml = render(url, context);
             const html = await vite.transformIndexHtml(url, template);
             return processTemplate(html, appHtml, context);
-        } catch (e) {
+        } catch (e: any) {
             vite.ssrFixStacktrace(e as Error);
-            console.error(`Dev render error: ${e}`);
+            console.error(`Dev render error: ${e}`, e.stack);
             return '';
         }
     };
