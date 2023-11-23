@@ -6,7 +6,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { DummyApp } from './DummyApp';
-import App from './App';
+import { App } from './App';
 import { AppRoot } from './index';
 
 const parseAppContext = () => {

@@ -1,12 +1,11 @@
 import './polyfills';
 import React, { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
-import { createRoot } from 'react-dom/client';
 import { StoreProvider, useStore } from './providers/Provider';
 import { initialState, reducer } from './providers/Store';
 import { setLocaleFromUrl } from './utils/locale';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
-import App from './App';
+import { App } from './App';
 
 import msgsNb from './language/nb';
 import msgsEn from './language/en';
@@ -47,8 +46,10 @@ const RenderApp = () => {
     }, []);
 
     useEffect(() => {
-        // document.documentElement.setAttribute('lang', locale);
+        document.documentElement.setAttribute('lang', locale);
     }, [locale]);
+
+    console.log(locale);
 
     return (
         <IntlProvider locale={locale} messages={messages[locale]}>
