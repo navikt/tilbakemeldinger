@@ -61,7 +61,6 @@ export const App = () => {
     return (
         <HelmetProvider>
             <DecoratorWidgets />
-            {'Hello world'}
             <ScrollToTop>
                 <Routes>
                     {validLocales.flatMap((locale) => [
@@ -114,7 +113,7 @@ export const App = () => {
                             key={key++}
                         />,
                     ])}
-                    <Route path="*" element={<RedirectToLocaleOrError />} />
+                    {/*<Route path="*" element={<RedirectToLocaleOrError />} />*/}
                 </Routes>
             </ScrollToTop>
         </HelmetProvider>

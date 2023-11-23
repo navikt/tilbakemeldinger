@@ -43,7 +43,7 @@ export const devRender =
             const html = await vite.transformIndexHtml(url, template);
             return processTemplate(html, appHtml, context);
         } catch (e: any) {
-            vite.ssrFixStacktrace(e as Error);
+            vite.ssrFixStacktrace(e);
             console.error(`Dev render error: ${e}`, e.stack);
             return '';
         }
