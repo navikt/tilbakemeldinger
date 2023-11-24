@@ -22,6 +22,7 @@ import { DecoratorWidgets } from './components/decorator-widgets/DecoratorWidget
 import '@navikt/ds-css';
 import { HelmetProvider } from 'react-helmet-async';
 import './App.scss';
+import './App.css';
 
 export const App = () => {
     const [{ auth }, dispatch] = useStore();
