@@ -33,18 +33,29 @@ export const prodRender: HtmlRenderer = async (url, context) => {
     }
 };
 
+const devErrorHtml = (e: Error) => {
+    return `
+        <div style='max-width: 1344px;width: 100%;margin: 1rem auto'>
+            <span>Server rendering error: ${e}</span>
+            <div style='font-size: 0.75rem; margin-top: 1rem'>
+                <code>${e.stack}</code>
+            </div>
+        </div>`;
+};
+
 export const devRender =
     (vite: ViteDevServer): HtmlRenderer =>
     async (url, context) => {
+        const template = await buildHtmlTemplate();
+        const html = await vite.transformIndexHtml(url, template);
+
         try {
-            const template = await buildHtmlTemplate();
             const { render } = await vite.ssrLoadModule('/src/main-server.tsx');
             const appHtml = render(url, context);
-            const html = await vite.transformIndexHtml(url, template);
             return processTemplate(html, appHtml, context);
         } catch (e: any) {
             vite.ssrFixStacktrace(e);
-            console.error(`Dev render error: ${e}`, e.stack);
-            return '';
+            console.error(`Dev render error: ${e} \n ${e.stack}`);
+            return processTemplate(html, devErrorHtml(e), context);
         }
     };
