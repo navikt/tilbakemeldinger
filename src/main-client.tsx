@@ -1,6 +1,6 @@
 // Import global style early to ensure the later component-level imports
 // gets higher specificity
-// import './global.css';
+import './App.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
