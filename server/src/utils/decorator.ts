@@ -1,17 +1,18 @@
 import {
     injectDecoratorServerSide,
-    DecoratorParams, DecoratorEnvProps,
+    DecoratorParams,
+    DecoratorEnvProps,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 
 const DECORATOR_ENV = process.env.ENV;
-const DECORATOR_LOCAL_URL = 'http://localhost:8100';
+const DECORATOR_LOCAL_URL = 'https://www.nav.no/dekoratoren';
 
 export const decoratorEnvProps: DecoratorEnvProps =
     DECORATOR_ENV === 'localhost'
         ? {
-            env: DECORATOR_ENV,
-            localUrl: DECORATOR_LOCAL_URL,
-        }
+              env: DECORATOR_ENV,
+              localUrl: DECORATOR_LOCAL_URL,
+          }
         : { env: DECORATOR_ENV };
 
 const paramsDefault: DecoratorParams = {
@@ -26,7 +27,7 @@ const paramsDefault: DecoratorParams = {
 const _injectWithDecorator = (
     params: DecoratorParams,
     templatePath: string,
-    retries = 3,
+    retries = 3
 ): Promise<string | null> =>
     injectDecoratorServerSide({
         ...params,
@@ -42,7 +43,7 @@ const _injectWithDecorator = (
         // Probably means the docker-compose network isn't running
         if (DECORATOR_ENV === 'localhost') {
             console.log(
-                'Local decorator did not respond, using prod decorator',
+                'Local decorator did not respond, using prod decorator'
             );
             return injectDecoratorServerSide({
                 ...params,
@@ -56,5 +57,5 @@ const _injectWithDecorator = (
 
 export const injectWithDecorator = async (
     templatePath: string,
-    params: DecoratorParams = paramsDefault,
+    params: DecoratorParams = paramsDefault
 ) => _injectWithDecorator(params, templatePath);
