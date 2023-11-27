@@ -1,4 +1,3 @@
-import './polyfills';
 import React, { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { StoreProvider, useStore } from './providers/Provider';
