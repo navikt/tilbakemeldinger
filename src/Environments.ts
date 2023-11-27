@@ -12,7 +12,7 @@ const Environment = () => {
             mineSakerUrl: 'https://www.intern.dev.nav.no/mine-saker',
             loginUrl: `${host}/personbruker-api/local/cookie`,
             klageUrl: 'https://www.ekstern.dev.nav.no/klage',
-            klageUrlEn: 'https://klage.intern.dev.nav.no/en',
+            klageUrlEn: 'https://www.ekstern.dev.nav.no/klage/en',
         };
     }
 
@@ -26,7 +26,7 @@ const Environment = () => {
             mineSakerUrl: `${host}/mine-saker`,
             loginUrl: 'https://login.ekstern.dev.nav.no/oauth2/login',
             klageUrl: 'https://www.ekstern.dev.nav.no/klage',
-            klageUrlEn: 'https://klage.intern.dev.nav.no/en',
+            klageUrlEn: 'https://www.ekstern.dev.nav.no/klage/en',
         };
     }
 
@@ -38,7 +38,7 @@ const Environment = () => {
         mineSakerUrl: 'https://person.nav.no/mine-saker',
         loginUrl: 'https://login.nav.no/oauth2/login',
         klageUrl: 'https://www.nav.no/klage',
-        klageUrlEn: 'https://klage.nav.no/en',
+        klageUrlEn: 'https://www.nav.no/klage/en',
     };
 };
 
