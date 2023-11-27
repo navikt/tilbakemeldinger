@@ -21,8 +21,6 @@ import { defaultLocale, localePath, validLocales } from './utils/locale';
 import { DecoratorWidgets } from './components/decorator-widgets/DecoratorWidgets';
 import '@navikt/ds-css';
 import { HelmetProvider } from 'react-helmet-async';
-import './App.scss';
-import './App.css';
 
 export const App = () => {
     const [{ auth }, dispatch] = useStore();
