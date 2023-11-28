@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { postFeilOgMangler } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import Header from 'components/header/Header';
-import { paths, vars } from 'Config';
+import { paths, vars } from 'src/Config';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Takk from 'components/takk/Takk';
 import FeilgOgManglerOnskerAaKontaktes from './FeilOgManglerOnskerAaKontaktes';
-import { triggerHotjar } from '../../../utils/hotjar';
-import { MetaTags } from '../../../components/metatags/MetaTags';
+import { triggerHotjar } from 'utils/hotjar';
+import { MetaTags } from 'components/metatags/MetaTags';
 import {
     Alert,
     Box,
@@ -25,7 +25,7 @@ import {
     useForm,
 } from 'react-hook-form';
 import { resolveErrorCode } from '../../../utils/errorCodes';
-import appStyle from 'App.module.scss';
+import appStyle from 'src/App.module.scss';
 
 type FEILTYPE = 'TEKNISK_FEIL' | 'FEIL_INFO' | 'UNIVERSELL_UTFORMING';
 

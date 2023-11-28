@@ -4,7 +4,7 @@ import FeilOgManglerEpost from './FeilOgManglerEpost';
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { FeilOgManglerFields } from './FeilOgMangler';
-import { isBoolean } from '../../../utils/validators';
+import { isBoolean } from 'utils/validators';
 
 const FeilgOgManglerOnskerAaKontaktes = () => {
     const { watch, control } = useFormContext<FeilOgManglerFields>();

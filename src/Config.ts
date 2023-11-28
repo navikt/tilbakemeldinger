@@ -1,4 +1,4 @@
-import Environment from './Environments';
+import Environment from 'src/Environments';
 
 const { klageUrl, klageUrlEn, baseUrl: navUrl } = Environment();
 

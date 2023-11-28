@@ -1,5 +1,5 @@
-import { paths } from '../Config';
-import { Action } from '../providers/Store';
+import { paths } from 'src/Config';
+import { Action } from 'providers/Store';
 
 export type Locale = 'nb' | 'en' | 'nn';
 export const validLocales: Locale[] = ['nb', 'en', 'nn']; // :(

@@ -1,16 +1,11 @@
 import React, { ReactNode, useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { urls } from '../../../Config';
+import { urls } from 'src/Config';
 import { Alert, Link, Radio, RadioGroup, TextField } from '@navikt/ds-react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
-import {
-    isBoolean,
-    isLength,
-    isNumeric,
-    isValidFnr,
-} from '../../../utils/validators';
-import appStyle from 'App.module.scss';
+import { isBoolean, isLength, isNumeric, isValidFnr } from 'utils/validators';
+import appStyle from 'src/App.module.scss';
 
 interface Props {
     innmelderNavn: string | false;

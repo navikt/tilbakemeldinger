@@ -43,11 +43,17 @@ export default defineConfig(({ mode }) => {
                 }),
             },
         },
-
-        // resolve: {
-        //     alias: {
-        //         "/": "/src",
-        //     },
-        // },
+        resolve: {
+            alias: {
+                src: '/src',
+                assets: '/src/assets',
+                clients: '/src/clients',
+                components: '/src/components',
+                pages: '/src/pages',
+                providers: '/src/providers',
+                types: '/src/types',
+                utils: '/src/utils',
+            },
+        },
     };
 });

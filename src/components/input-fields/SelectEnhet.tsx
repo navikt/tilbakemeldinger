@@ -3,7 +3,7 @@ import { useStore } from 'providers/Provider';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { fetchEnheter } from 'clients/apiClient';
 import { Enhet } from 'types/enheter';
-import { HTTPError } from 'types/errors';
+import { HTTPError } from 'src/types/errors';
 import Combobox from './EnhetCombobox';
 import { ErrorMessage, Label, Loader } from '@navikt/ds-react';
 import './SelectEnhet.scss';

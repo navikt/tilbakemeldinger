@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { BodyLong, Link } from '@navikt/ds-react';
-import { urls } from 'Config';
+import { urls } from 'src/Config';
 import { Varsel } from 'components/varsel/Varsel';
 
 export const PersonvernInfo = () => (
