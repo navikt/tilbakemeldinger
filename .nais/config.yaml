@@ -3,11 +3,11 @@ apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
   name: tilbakemeldinger
-  namespace: {{namespace}}
+  namespace: personbruker
   labels:
     team: personbruker
 spec:
-  image: {{image}}:{{version}}
+  image: {{image}}
   team: personbruker
   port: 8080
   ingresses:
@@ -20,10 +20,6 @@ spec:
   readiness:
     path: /person/kontakt-oss/tilbakemeldinger/internal/isReady
     initialDelay: 10
-  replicas:
-    min: 2
-    max: 4
-  webproxy: true
   azure:
     application:
       enabled: true
@@ -34,28 +30,31 @@ spec:
     sidecar:
       enabled: true
       level: Level3
-  accessPolicy:
-    outbound:
-      rules:
-        - application: tilbakemeldingsmottak-api
-          namespace: teamserviceklage
-        - application: nav-dekoratoren
-          namespace: personbruker
-      external:
-        - host: nav.no
-        - host: norg2.prod-fss-pub.nais.io
-  leaderElection: true
   env:
     - name: ENV
       value: prod
     - name: API_URL
       value: http://tilbakemeldingsmottak-api.teamserviceklage
     - name: NORG2_URL
-      value: https://norg2.prod-fss-pub.nais.io
-
+      value: https://{{norg2Host}}
+  accessPolicy:
+    outbound:
+      rules:
+        - application: tilbakemeldingsmottak-api
+          namespace: teamserviceklage
+        - application: nav-dekoratoren
+      external:
+        - host: {{norg2Host}}
+  replicas:
+  {{#with replicas}}
+    min: {{min}}
+    max: {{max}}
+  {{/with}}
   resources:
-    limits:
-      memory: 512Mi
+  {{#with resources}}
     requests:
-      cpu: 200m
-      memory: 128Mi
+      cpu: {{requests.cpu}}
+      memory: {{requests.memory}}
+    limits:
+      memory: {{limits.memory}}
+  {{/with}}
