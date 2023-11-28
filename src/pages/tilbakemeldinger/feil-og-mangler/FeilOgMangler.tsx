@@ -56,9 +56,9 @@ const FOM = () => {
         formState: { errors, isValid, isSubmitted },
     } = methods;
 
-    const [loading, settLoading] = useState(false);
-    const [success, settSuccess] = useState(false);
-    const [error, settError] = useState<ErrorResponse>();
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState<ErrorResponse>();
     const { formatMessage } = useIntl();
 
     const send = (values: FieldValues) => {
@@ -73,17 +73,17 @@ const FOM = () => {
             melding,
         };
 
-        settLoading(true);
+        setLoading(true);
         postFeilOgMangler(outbound)
             .then(() => {
-                settSuccess(true);
+                setSuccess(true);
                 triggerHotjar('feilogmangler');
             })
             .catch((error: ErrorResponse) => {
-                settError(error);
+                setError(error);
             })
             .then(() => {
-                settLoading(false);
+                setLoading(false);
             });
     };
 
