@@ -3,7 +3,7 @@
 declare global {
     interface ImportMeta {
         env: {
-            APP_BASEPATH: string;
+            VITE_APP_BASEPATH: string;
         };
     }
 }

@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => {
                 'react-intl',
             ],
         },
-        base: process.env.CDN_BASE || process.env.APP_BASEPATH,
+        base: process.env.CDN_BASE || process.env.VITE_APP_BASEPATH,
         css: {
             modules: {
                 // Create stable (but verbose!) classnames in dev mode, in order

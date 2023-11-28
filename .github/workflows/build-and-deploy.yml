@@ -37,7 +37,7 @@ jobs:
         run: |
           cat > .env <<EOF
           ENV=${{ inputs.env }}
-          APP_BASEPATH=/person/kontakt-oss
+          VITE_APP_BASEPATH=/person/kontakt-oss
           APP_PORT=9001
           API_URL=http://tilbakemeldingsmottak-api.teamserviceklage
           NORG2_URL=https://norg2.${{ inputs.env }}-fss-pub.nais.io
