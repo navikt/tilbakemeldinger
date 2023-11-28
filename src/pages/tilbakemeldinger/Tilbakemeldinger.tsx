@@ -1,12 +1,12 @@
 import React from 'react';
 import { lenker } from './TilbakemeldingerLenker';
-import Header from '../../components/header/Header';
-import Lenkepanel from '../../components/lenkepanel/Lenkepanel';
+import Header from 'components/header/Header';
+import Lenkepanel from 'components/lenkepanel/Lenkepanel';
 import { useIntl } from 'react-intl';
-import { useStore } from '../../providers/Provider';
-import { MetaTags } from '../../components/metatags/MetaTags';
-import { paths } from '../../Config';
-import appStyle from 'App.module.scss';
+import { useStore } from 'providers/Provider';
+import { MetaTags } from 'components/metatags/MetaTags';
+import { paths } from 'src/Config';
+import appStyle from 'src/App.module.scss';
 
 const Tilbakemeldinger = () => {
     const intl = useIntl();

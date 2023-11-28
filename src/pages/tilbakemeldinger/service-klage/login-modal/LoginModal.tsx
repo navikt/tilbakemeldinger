@@ -1,5 +1,5 @@
 import React from 'react';
-import Environment from 'Environments';
+import Environment from 'src/Environments';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { BodyLong, Button, Modal } from '@navikt/ds-react';
 

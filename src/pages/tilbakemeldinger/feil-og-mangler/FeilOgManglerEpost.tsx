@@ -4,8 +4,8 @@ import { useStore } from 'providers/Provider';
 import { Alert, TextField } from '@navikt/ds-react';
 import { useFormContext } from 'react-hook-form';
 import { FeilOgManglerFields } from './FeilOgMangler';
-import { EMAIL_PATTERN } from '../../../utils/validators';
-import appStyle from 'App.module.scss';
+import { EMAIL_PATTERN } from 'utils/validators';
+import appStyle from 'src/App.module.scss';
 
 const FeilOgManglerEpost = () => {
     const {

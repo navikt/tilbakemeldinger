@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import { urls } from 'Config';
+import { urls } from 'src/Config';
 import { useStore } from 'providers/Provider';
 import { logLinkClick } from 'utils/amplitude';
 import { Link, LinkPanel } from '@navikt/ds-react';

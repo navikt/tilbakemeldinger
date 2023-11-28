@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { localePath } from '../../utils/locale';
+import { localePath } from 'utils/locale';
 import { useIntl } from 'react-intl';
-import { useStore } from '../../providers/Provider';
-import Environment from '../../Environments';
-import { logPageview } from '../../utils/amplitude';
+import { useStore } from 'providers/Provider';
+import Environment from 'src/Environments';
+import { logPageview } from 'utils/amplitude';
 import { Helmet } from 'react-helmet-async';
 
 type Props = {

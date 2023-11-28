@@ -9,7 +9,7 @@ import {
     OutboundServiceKlageExtend,
 } from 'types/serviceklage';
 import Header from 'components/header/Header';
-import { paths, vars } from 'Config';
+import { paths, vars } from 'src/Config';
 import { FormattedMessage, useIntl } from 'react-intl';
 import ServiceKlagePrivatperson from './ServiceKlagePrivatperson';
 import ServiceKlageForAnnenPerson from './ServiceKlageAnnenPerson';
@@ -19,7 +19,7 @@ import Takk from 'components/takk/Takk';
 import { triggerHotjar } from 'utils/hotjar';
 import ServiceKlageOnskerAaKontaktes from './ServiceKlageOnskerAaKontaktes';
 import ServiceKlageTypeUtdypning from './ServiceKlageTypeUtdypning';
-import { MetaTags } from '../../../components/metatags/MetaTags';
+import { MetaTags } from 'components/metatags/MetaTags';
 import LoginModal from './login-modal/LoginModal';
 import {
     Alert,
@@ -39,8 +39,8 @@ import {
     useForm,
 } from 'react-hook-form';
 import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
-import { resolveErrorCode } from '../../../utils/errorCodes';
-import appStyle from 'App.module.scss';
+import { resolveErrorCode } from 'utils/errorCodes';
+import appStyle from 'src/App.module.scss';
 
 export interface ServiceklageFormFields {
     klagetekst: string;

@@ -1,24 +1,24 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import Tilbakemeldinger from './pages/tilbakemeldinger/Tilbakemeldinger';
-import Ros from './pages/tilbakemeldinger/ros-til-nav/Ros';
-import PageNotFound from './pages/404/404';
-import FeilOgMangler from './pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler';
+import Tilbakemeldinger from 'pages/tilbakemeldinger/Tilbakemeldinger';
+import Ros from 'pages/tilbakemeldinger/ros-til-nav/Ros';
+import PageNotFound from 'pages/404/404';
+import FeilOgMangler from 'pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler';
 import {
     fetchAuthInfo,
     fetchFodselsnr,
     fetchKontaktInfo,
-} from './clients/apiClient';
-import { useStore } from './providers/Provider';
-import { AuthInfo } from './types/authInfo';
-import { HTTPError } from './types/errors';
-import ServiceKlage from './pages/tilbakemeldinger/service-klage/ServiceKlage';
-import { KontaktInfo } from './types/kontaktInfo';
-import { Fodselsnr } from './types/fodselsnr';
-import ScrollToTop from './components/scroll-to-top/ScrollToTop';
-import { paths } from './Config';
-import { defaultLocale, localePath, validLocales } from './utils/locale';
-import { DecoratorWidgets } from './components/decorator-widgets/DecoratorWidgets';
+} from 'clients/apiClient';
+import { useStore } from 'providers/Provider';
+import { AuthInfo } from 'types/authInfo';
+import { HTTPError } from 'types/errors';
+import ServiceKlage from 'pages/tilbakemeldinger/service-klage/ServiceKlage';
+import { KontaktInfo } from 'types/kontaktInfo';
+import { Fodselsnr } from 'types/fodselsnr';
+import ScrollToTop from 'components/scroll-to-top/ScrollToTop';
+import { paths } from 'src/Config';
+import { defaultLocale, localePath, validLocales } from 'utils/locale';
+import { DecoratorWidgets } from 'components/decorator-widgets/DecoratorWidgets';
 import '@navikt/ds-css';
 import { HelmetProvider } from 'react-helmet-async';
 
