@@ -5,6 +5,9 @@ on:
       env:
         required: true
         type: string
+      imageSuffix:
+        required: true
+        type: string
     secrets:
       READER_TOKEN:
         required: true
@@ -56,7 +59,7 @@ jobs:
           team: personbruker
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-          image_suffix: ${{ inputs.env }}
+          image_suffix: ${{ inputs.imageSuffix }}
       - name: Deploy to nais
         uses: nais/deploy/actions/deploy@v1
         env:
