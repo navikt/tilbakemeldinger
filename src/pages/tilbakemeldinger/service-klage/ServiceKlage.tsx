@@ -85,9 +85,9 @@ const ServiceKlage = () => {
     } = methods;
 
     const [{ auth, fodselsnr }] = useStore();
-    const [loading, settLoading] = useState(false);
-    const [success, settSuccess] = useState(false);
-    const [error, settError] = useState<ErrorResponse>();
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState<ErrorResponse>();
     const [loginClosed, setLoginClosed] = useState(false);
 
     const { formatMessage } = useIntl();
@@ -164,17 +164,17 @@ const ServiceKlage = () => {
             ...outboundExtend[values.paaVegneAv as ON_BEHALF_OF],
         };
 
-        settLoading(true);
+        setLoading(true);
         postServiceKlage(outbound)
             .then(() => {
-                settSuccess(true);
+                setSuccess(true);
                 triggerHotjar('serviceklage');
             })
             .catch((error: ErrorResponse) => {
-                settError(error);
+                setError(error);
             })
             .then(() => {
-                settLoading(false);
+                setLoading(false);
             });
     };
 
