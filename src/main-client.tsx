@@ -7,16 +7,6 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { AppRoot } from './index';
 
-const parseAppContext = () => {
-    try {
-        const contextElement = document.getElementById('app-context');
-        return contextElement ? JSON.parse(contextElement.innerText) : {};
-    } catch (e) {
-        console.error(`Failed to parse app context - ${e}`);
-        return {};
-    }
-};
-
 const AppWithContext = () => {
     return (
         <React.StrictMode>
