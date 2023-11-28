@@ -10,7 +10,7 @@ import { AppRoot } from './index';
 const AppWithContext = () => {
     return (
         <React.StrictMode>
-            <BrowserRouter basename={import.meta.env.BASE_URL}>
+            <BrowserRouter basename={import.meta.env.VITE_APP_BASEPATH}>
                 <AppRoot />
             </BrowserRouter>
         </React.StrictMode>
