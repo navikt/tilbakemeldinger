@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Tilbakemeldinger from 'pages/tilbakemeldinger/Tilbakemeldinger';
 import Ros from 'pages/tilbakemeldinger/ros-til-nav/Ros';
 import PageNotFound from 'pages/404/404';
