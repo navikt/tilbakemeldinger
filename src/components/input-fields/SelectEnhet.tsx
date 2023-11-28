@@ -6,6 +6,7 @@ import { Enhet } from 'types/enheter';
 import { HTTPError } from 'types/errors';
 import Combobox from './EnhetCombobox';
 import { ErrorMessage, Label, Loader } from '@navikt/ds-react';
+import './SelectEnhet.scss';
 
 const cssPrefix = 'selectEnhet';
 
