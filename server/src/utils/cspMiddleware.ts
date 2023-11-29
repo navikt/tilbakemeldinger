@@ -9,7 +9,7 @@ import { CSPDirectives, SELF } from 'csp-header';
  * Refresh every 10 minutes to ensure we stay in sync with nav-dekoratoren
  * */
 
-const HMR_SERVER = 'ws://localhost:24678';
+const HMR_HOST = 'localhost:24678';
 
 const myDirectives: Partial<CSPDirectives> = {
     'script-src': [SELF],
@@ -18,7 +18,7 @@ const myDirectives: Partial<CSPDirectives> = {
     'style-src-elem': [SELF],
     'img-src': [SELF],
     ...(process.env.NODE_ENV === 'development' && {
-        'connect-src': [HMR_SERVER],
+        'connect-src': [`ws://${HMR_HOST}`, `http://${HMR_HOST}`],
     }),
 };
 
