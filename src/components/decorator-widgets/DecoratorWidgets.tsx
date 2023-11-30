@@ -18,7 +18,6 @@ const basePathFilter = new RegExp(
 
 export const DecoratorWidgets = () => {
     const { pathname } = useLocation();
-    const pathnamePrefixed = `${paths.kontaktOss.forside}${pathname}`;
     const navigate = useNavigate();
     const [{ locale }, dispatch] = useStore();
     const { formatMessage } = useIntl();
@@ -69,7 +68,8 @@ export const DecoratorWidgets = () => {
             title: formatMessage({ id: 'breadcrumb.base' }),
             handleInApp: false,
         };
-        const internalBreadcrumbs = pathnamePrefixed
+
+        const internalBreadcrumbs = pathname
             .replace(basePathFilter, '')
             .split('/')
             .filter((pathSegment) => pathSegment !== '')
@@ -83,7 +83,7 @@ export const DecoratorWidgets = () => {
             });
 
         setBreadcrumbs([baseBreadcrumb, ...internalBreadcrumbs]);
-    }, [pathnamePrefixed, locale]);
+    }, [pathname, locale]);
 
     return null;
 };
