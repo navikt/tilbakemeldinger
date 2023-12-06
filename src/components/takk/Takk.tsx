@@ -10,15 +10,15 @@ interface Props {
 
 const Takk = (props: Props) => (
     <div className={appStyle.skjema}>
-        <Alert variant={'success'}>
+        <Alert role="info" variant="success">
             {props.melding ? (
                 <span>{props.melding}</span>
             ) : (
-                <FormattedMessage id={'takk.melding'} />
+                <FormattedMessage id="takk.melding" />
             )}
         </Alert>
         <Button variant="secondary" as={Link} href={Environment().baseUrl}>
-            <FormattedMessage id={'takk.knapp'} />
+            <FormattedMessage id="takk.knapp" />
         </Button>
     </div>
 );
