@@ -9,8 +9,15 @@ type Props = {
     children?: JSX.Element;
 };
 
+const role = {
+    success: 'status',
+    warning: 'status',
+    info: undefined,
+    error: 'alert'
+};
+
 export const Varsel = ({ type, tekstId, children }: Props) => (
-    <Alert variant={type} className={style.varsel}>
+    <Alert role={role[type]} variant={type} className={style.varsel}>
         {tekstId && <FormattedMessage id={tekstId} />}
         {children}
     </Alert>
