@@ -9,6 +9,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 export default defineConfig(({ mode }) => {
     process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
     process.env.NODE_ENV = process.env.NODE_ENV || 'production';
+    process.env.VITE_ENV = process.env.ENV;
 
     return {
         plugins: [
