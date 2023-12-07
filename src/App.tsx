@@ -132,7 +132,10 @@ const RedirectToLocaleOrError = () => {
             paths.kontaktOss.forside
         )[1];
         return (
-            <Navigate to={localePath(subPath ? subPath : '', defaultLocale)} />
+            <Navigate
+                to={localePath(subPath ? subPath : '', defaultLocale)}
+                replace={true}
+            />
         );
     }
     return <PageNotFound />;
