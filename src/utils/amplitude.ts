@@ -17,7 +17,7 @@ const logAmplitudeEventDev = (eventName: string, data?: any) => {
 };
 
 export const logAmplitudeEvent =
-    process.env.NODE_ENV === 'development'
+    import.meta.env.VITE_ENV === 'localhost'
         ? logAmplitudeEventDev
         : logAmplitudeEventProd;
 
