@@ -1,7 +1,8 @@
 const Environment = () => {
     const isLocal = process.env.ENV === 'localhost';
     const isDev = process.env.ENV === 'dev';
-    const host = isLocal ? 'http://localhost:8080' : process.env.REACT_APP_HOST;
+    // const host = isLocal ? 'http://localhost:8080' : process.env.REACT_APP_HOST;
+    const host = 'https://www.intern.dev.nav.no';
     console.log('isLocal:', isLocal);
     console.log('isDev:', isDev);
     console.log('host:', host);
