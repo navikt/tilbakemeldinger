@@ -39,6 +39,7 @@ jobs:
       - name: Set app environment and ENV variable
         run: |
           echo "ENV=${{ inputs.env }}" >> $GITHUB_ENV
+          echo "REACT_APP_HOST=https://www.intern.dev.nav.no" >> $GITHUB_ENV
           cat > .env <<EOF
           ENV=${{ inputs.env }}
           VITE_APP_BASEPATH=/person/kontakt-oss
