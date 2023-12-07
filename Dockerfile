@@ -1,8 +1,8 @@
 FROM node:20-alpine
 
-WORKDIR /app
-
 ENV NODE_ENV production
+
+WORKDIR /app
 
 COPY package*.json .env /app/
 COPY node_modules /app/node_modules/
