@@ -39,7 +39,7 @@ jobs:
       - name: Set app environmment
         run: |
           cat > .env <<EOF
-          ENV=dev
+          ENV=${{ inputs.env }}
           VITE_APP_BASEPATH=/person/kontakt-oss
           APP_PORT=9001
           API_URL=http://tilbakemeldingsmottak-api.teamserviceklage
