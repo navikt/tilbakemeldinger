@@ -5,6 +5,7 @@ const Environment = () => {
     console.log('isLocal:', isLocal);
     console.log('isDev:', isDev);
     console.log('host:', host);
+    console.log('process.env.ENV', process.env.ENV);
 
     if (isLocal) {
         return {
