@@ -17,7 +17,7 @@ const messages = {
 
 export const AppRoot = () => {
     useEffect(() => {
-        if (process.env.NODE_ENV === 'development') {
+        if (process.env.ENV === 'localhost') {
             import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
         }
     }, []);
