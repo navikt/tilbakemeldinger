@@ -5,7 +5,9 @@
     flex-direction: column;
     background-color: var(--a-bg-subtle);
 }
-
+.navds-textarea__counter {
+    color: var(--a-text-default);  // For å sikre nok kontrast
+}
 .decorator-utils-container {
     background-color: var(--a-bg-subtle);
 }
