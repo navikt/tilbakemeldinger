@@ -53,7 +53,7 @@ export const App = () => {
                 })
                 .catch((error: HTTPError) => console.error(error));
         }
-    }, [auth, dispatch]);
+    }, [auth.authenticated, dispatch]);
 
     let key = 0;
 
