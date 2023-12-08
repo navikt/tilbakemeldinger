@@ -1,8 +1,9 @@
 const Environment = () => {
     const isLocal = import.meta.env.VITE_ENV === 'localhost';
     const isDev = import.meta.env.VITE_ENV === 'dev';
-    const host = isLocal ? 'http://localhost:8080' : import.meta.env.VITE_HOST;
-    // const host = 'https://www.intern.dev.nav.no';
+    const host = isLocal
+        ? 'http://localhost:8080'
+        : import.meta.env.VITE_APP_HOST;
     console.log('isLocal:', isLocal);
     console.log('isDev:', isDev);
     console.log('host:', host);

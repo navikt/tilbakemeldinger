@@ -41,16 +41,12 @@ jobs:
           cat > .env <<EOF
           ENV=${{ inputs.env }}
           VITE_APP_BASEPATH=/person/kontakt-oss
-          VITE_HOST=${{ inputs.appHost }}
+          VITE_APP_HOST=${{ inputs.appHost }}
           APP_PORT=9001
           API_URL=http://tilbakemeldingsmottak-api.teamserviceklage
           NORG2_URL=https://norg2.${{ inputs.env }}-fss-pub.nais.io
           CDN_BASE=https://cdn.nav.no/personbruker/tilbakemeldinger/${{ inputs.env }}
           EOF
-      - name: Print environment variables
-        run: |
-          echo "ENV: ${{ env.ENV }}"
-          echo "APP_HOST: ${{ env.VITE_HOST }}"
       - name: Install dependencies
         run: npm ci
         env:
