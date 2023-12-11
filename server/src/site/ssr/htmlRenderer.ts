@@ -12,7 +12,7 @@ const processTemplate = async (templateHtml: string, appHtml: string) => {
 export const prodRender: HtmlRenderer = async (url) => {
     try {
         const template = await buildHtmlTemplate();
-        const appHtml = render(url, {});
+        const appHtml = render(url);
         return processTemplate(template, appHtml);
     } catch (e) {
         //TODO legg til noe mer?
