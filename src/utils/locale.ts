@@ -27,6 +27,10 @@ export const setNewLocale = (
 };
 
 export const getLocaleFromUrl = () => {
+    if (typeof window === 'undefined') {
+        return defaultLocale;
+    }
+
     const locale = window.location.pathname
         .split(paths.kontaktOss.forside)[1]
         .split('/')[1];
