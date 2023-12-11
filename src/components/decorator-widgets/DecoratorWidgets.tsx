@@ -18,6 +18,7 @@ const basePathFilter = new RegExp(
 
 export const DecoratorWidgets = () => {
     const { pathname } = useLocation();
+    const pathnamePrefixed = `${paths.kontaktOss.forside}${pathname}`;
     const navigate = useNavigate();
     const [{ locale }, dispatch] = useStore();
     const { formatMessage } = useIntl();
@@ -34,7 +35,7 @@ export const DecoratorWidgets = () => {
 
     // Set languages in decorator
     useEffect(() => {
-        const subPath = pathname.replace(
+        const subPath = pathnamePrefixed.replace(
             `${paths.kontaktOss.forside}/${locale}`,
             ''
         );
@@ -56,7 +57,7 @@ export const DecoratorWidgets = () => {
                 handleInApp: true,
             },
         ]);
-    }, [pathname, locale]);
+    }, [pathnamePrefixed, locale]);
 
     // Set breadcrumbs in decorator
     useEffect(() => {
@@ -69,21 +70,21 @@ export const DecoratorWidgets = () => {
             handleInApp: false,
         };
 
-        const internalBreadcrumbs = pathname
+        const internalBreadcrumbs = pathnamePrefixed
             .replace(basePathFilter, '')
             .split('/')
             .filter((pathSegment) => pathSegment !== '')
             .map((pathSegment, index, pathSegmentArray) => {
                 const subPath = pathSegmentArray.slice(0, index + 1).join('/');
                 return {
-                    url: `${paths.kontaktOss.forside}/${locale}/${subPath}`,
+                    url: `/${locale}/${subPath}`,
                     title: formatMessage({ id: `breadcrumb.${pathSegment}` }),
                     handleInApp: true,
                 };
             });
 
         setBreadcrumbs([baseBreadcrumb, ...internalBreadcrumbs]);
-    }, [pathname, locale]);
+    }, [pathnamePrefixed, locale]);
 
     return null;
 };
