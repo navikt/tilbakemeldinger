@@ -120,6 +120,10 @@ export const App = () => {
 };
 
 const RedirectToLocaleOrError = () => {
+    if (typeof window === 'undefined') {
+        return <PageNotFound />;
+    }
+
     const isLocaleUrl = window.location.pathname
         .split('/')
         .some((segment) => validLocales.some((locale) => segment === locale));
