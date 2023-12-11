@@ -4,10 +4,6 @@ const Environment = () => {
     const host = isLocal
         ? 'http://localhost:8080'
         : import.meta.env.VITE_APP_HOST;
-    console.log('isLocal:', isLocal);
-    console.log('isDev:', isDev);
-    console.log('host:', host);
-    console.log('VITE_ENV', import.meta.env.VITE_ENV);
 
     if (isLocal) {
         return {
