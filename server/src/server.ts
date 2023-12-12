@@ -53,4 +53,9 @@ setupApiRoutes(apiRouter)
 
         process.on('SIGTERM', shutdown);
         process.on('SIGINT', shutdown);
+    })
+    .then(() => {
+        console.log("siteRouter.get('/api/*')");
+        console.log('siteRouter', siteRouter);
+        console.log('apiRouter', apiRouter);
     });
