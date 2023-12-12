@@ -4,7 +4,7 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 export const enheterHandler: RequestHandler = createProxyMiddleware(
     ['/enheter'],
     {
-        target: '/enheter',
+        target: process.env.NORG2_URL || '/enheter',
         pathRewrite: {
             ['^/enheter']: '/norg2/api/v1/enhet?enhetStatusListe=AKTIV',
         },
