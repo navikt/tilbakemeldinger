@@ -4,6 +4,9 @@ import { isAliveHandler } from './routes/isAlive/isAliveHandler';
 import { fodselsNrHandler } from './routes/fodselsNr/fodselsNrHandler';
 import { postToTilbakemeldingsmottakHandler } from './routes/postToTilbakemeldingsmottak/postToTilbakemeldingsmottakHandler';
 import { enheterHandler } from './routes/enheter/enheterHandler';
+import { createProxyMiddleware } from 'http-proxy-middleware';
+
+const baseUrl = '/person/kontakt-oss/tilbakemeldinger';
 
 export const setupApiRoutes = async (router: Router) => {
     router.get('/internal/isAlive', isAliveHandler);
@@ -13,5 +16,14 @@ export const setupApiRoutes = async (router: Router) => {
         '/mottak/:path(ros|serviceklage|feil-og-mangler)',
         postToTilbakemeldingsmottakHandler
     );
-    router.use('/enheter', enheterHandler);
+    router.use(
+        createProxyMiddleware([`${baseUrl}/enheter`], {
+            target: process.env.NORG2_URL,
+            pathRewrite: {
+                [`^${baseUrl}/enheter`]:
+                    '/norg2/api/v1/enhet?enhetStatusListe=AKTIV',
+            },
+            changeOrigin: true,
+        })
+    );
 };
