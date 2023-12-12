@@ -10,14 +10,14 @@ const processTemplate = async (templateHtml: string, appHtml: string) => {
 };
 
 export const prodRender: HtmlRenderer = async (url) => {
+    const template = await buildHtmlTemplate();
+
     try {
-        const template = await buildHtmlTemplate();
         const appHtml = render(url);
         return processTemplate(template, appHtml);
     } catch (e) {
-        //TODO legg til noe mer?
-        console.error(`Rendering failed ${e}`);
-        return '';
+        console.error(`Rendering failed ${e}}`);
+        return processTemplate(template, '');
     }
 };
 
