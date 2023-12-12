@@ -13,5 +13,5 @@ export const setupApiRoutes = async (router: Router) => {
         '/mottak/:path(ros|serviceklage|feil-og-mangler)',
         postToTilbakemeldingsmottakHandler
     );
-    router.get('/enheter', enheterHandler);
+    router.use('/enheter', enheterHandler);
 };
