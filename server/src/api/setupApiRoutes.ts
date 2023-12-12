@@ -16,14 +16,5 @@ export const setupApiRoutes = async (router: Router) => {
         '/mottak/:path(ros|serviceklage|feil-og-mangler)',
         postToTilbakemeldingsmottakHandler
     );
-    router.use(
-        createProxyMiddleware([`${baseUrl}/enheter`], {
-            target: process.env.NORG2_URL,
-            pathRewrite: {
-                [`^${baseUrl}/enheter`]:
-                    '/norg2/api/v1/enhet?enhetStatusListe=AKTIV',
-            },
-            changeOrigin: true,
-        })
-    );
+    router.get('/enheter', enheterHandler);
 };
