@@ -25,7 +25,10 @@ const hentJson = (url: string) =>
             };
         });
 
-export const fetchEnheter = () => hentJson(`${appUrl}/enheter`);
+export const fetchEnheter = () =>
+    hentJson(
+        'https://norg2.dev-fss-pub.nais.io/norg2/api/v1/enhet?enhetStatusListe=AKTIV'
+    );
 
 export const fetchFodselsnr = () => hentJson(`${appUrl}/fodselsnr`);
 
