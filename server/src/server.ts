@@ -21,7 +21,7 @@ const siteRouter = express.Router();
 const apiRouter = express.Router();
 
 app.use(VITE_APP_BASEPATH, siteRouter);
-siteRouter.use('/api', apiRouter);
+siteRouter.use('/tilbakemeldinger/api', apiRouter);
 
 // Redirect from root to basepath in local development environments
 if (isLocal && VITE_APP_BASEPATH && VITE_APP_BASEPATH !== '/') {

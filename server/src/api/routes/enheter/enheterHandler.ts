@@ -1,13 +1,9 @@
 import { RequestHandler } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
+import { URLs } from '../../../urls';
 
-export const enheterHandler: RequestHandler = createProxyMiddleware(
-    ['/enheter'],
-    {
-        target: process.env.NORG2_URL || '/enheter',
-        pathRewrite: {
-            ['^/enheter']: '/norg2/api/v1/enhet?enhetStatusListe=AKTIV',
-        },
-        changeOrigin: true,
-    }
-);
+export const enheterHandler: RequestHandler = createProxyMiddleware({
+    target: URLs.norg2Origin,
+    pathRewrite: () => URLs.norg2Path,
+    changeOrigin: true,
+});

@@ -17,9 +17,12 @@ const myDirectives: Partial<CSPDirectives> = {
     'style-src': [SELF],
     'style-src-elem': [SELF],
     'img-src': [SELF],
-    ...(process.env.NODE_ENV === 'development' && {
-        'connect-src': [`ws://${HMR_HOST}`, `http://${HMR_HOST}`],
-    }),
+    'connect-src': [
+        SELF,
+        ...(process.env.NODE_ENV === 'development'
+            ? [`ws://${HMR_HOST}`, `http://${HMR_HOST}`]
+            : []),
+    ],
 };
 
 const cache = new Cache({ deleteOnExpire: false, stdTTL: 600 });

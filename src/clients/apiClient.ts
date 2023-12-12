@@ -6,6 +6,8 @@ import { OutboundServiceKlage } from 'pages/tilbakemeldinger/service-klage/Servi
 
 const { appUrl, personInfoApiUrl, authUrl } = Environment();
 
+const API_URL = `${appUrl}/api`;
+
 /*
     GET
  */
@@ -25,9 +27,9 @@ const hentJson = (url: string) =>
             };
         });
 
-export const fetchEnheter = () => hentJson(`${appUrl}/enheter`);
+export const fetchEnheter = () => hentJson(`${API_URL}/enheter`);
 
-export const fetchFodselsnr = () => hentJson(`${appUrl}/fodselsnr`);
+export const fetchFodselsnr = () => hentJson(`${API_URL}/fodselsnr`);
 
 export const fetchAuthInfo = () => hentJson(`${authUrl}`);
 
@@ -60,13 +62,13 @@ const sendJson = async (url: string, data: Outbound) => {
 };
 
 export const postRosTilNav = (data: OutboundRosTilNav) =>
-    sendJson(`${appUrl}/mottak/ros`, data);
+    sendJson(`${API_URL}/mottak/ros`, data);
 
 export const postServiceKlage = (data: OutboundServiceKlage) =>
-    sendJson(`${appUrl}/mottak/serviceklage`, data);
+    sendJson(`${API_URL}/mottak/serviceklage`, data);
 
 export const postFeilOgMangler = (data: OutboundFeilOgMangler) =>
-    sendJson(`${appUrl}/mottak/feil-og-mangler`, data);
+    sendJson(`${API_URL}/mottak/feil-og-mangler`, data);
 
 /*
     Utils
