@@ -7,6 +7,7 @@ import compression from 'compression';
 import { setupSiteRoutes } from './site/setupSiteRoutes.js';
 import { setupApiRoutes } from './api/setupApiRoutes';
 import { setupErrorHandlers } from './utils/errorHandlers';
+import { paths } from '../../src/Config';
 
 const { APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV } = process.env;
 
@@ -26,7 +27,7 @@ siteRouter.use('/api', apiRouter);
 // Redirect from root to basepath in local development environments
 if (isLocal && VITE_APP_BASEPATH && VITE_APP_BASEPATH !== '/') {
     app.get('/', (req, res) =>
-        res.redirect(`${VITE_APP_BASEPATH}/tilbakemeldinger`)
+        res.redirect(`${VITE_APP_BASEPATH}${paths.tilbakemeldinger.forside}`)
     );
 }
 
@@ -53,4 +54,9 @@ setupApiRoutes(apiRouter)
 
         process.on('SIGTERM', shutdown);
         process.on('SIGINT', shutdown);
+    })
+    .then(() => {
+        console.log("siteRouter.get('/api/*')");
+        console.log('siteRouter', siteRouter);
+        console.log('apiRouter', apiRouter);
     });
