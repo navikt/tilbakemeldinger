@@ -16,11 +16,11 @@ const messages = {
 };
 
 export const AppRoot = () => {
-    useEffect(() => {
-        if (import.meta.env.VITE_ENV === 'localhost') {
-            import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (import.meta.env.VITE_ENV === 'localhost') {
+    //         import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
+    //     }
+    // }, []);
 
     return (
         <StoreProvider initialState={initialState} reducer={reducer}>

@@ -1,9 +1,9 @@
 import { ErrorRequestHandler, Express, RequestHandler } from 'express';
-import { Properties } from '../urls';
+import { URLs } from '../urls';
 
 const createNotFoundHandler = async (): Promise<RequestHandler> => {
     // Fetch static 404-page from the nav.no frontend
-    const notFoundHtml = await fetch(Properties.URLs.navno404)
+    const notFoundHtml = await fetch(URLs.navno404)
         .then((res) => {
             if (res.status === 404) {
                 return res.text();
