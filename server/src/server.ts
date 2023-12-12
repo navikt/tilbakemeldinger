@@ -25,7 +25,9 @@ siteRouter.use('/api', apiRouter);
 
 // Redirect from root to basepath in local development environments
 if (isLocal && VITE_APP_BASEPATH && VITE_APP_BASEPATH !== '/') {
-    app.get('/', (req, res) => res.redirect(VITE_APP_BASEPATH));
+    app.get('/', (req, res) =>
+        res.redirect(`${VITE_APP_BASEPATH}/tilbakemeldinger`)
+    );
 }
 
 setupApiRoutes(apiRouter)
