@@ -13,9 +13,6 @@ const mockFodselsnr = true;
 const mockKontaktInfo = true;
 const mockEnheter = true;
 
-//TODO fjern
-console.log('appUrl', appUrl);
-
 export const setUpMock = async () => {
     mockAuthInfo &&
         fetchMock.get(
