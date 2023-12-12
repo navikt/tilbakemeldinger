@@ -4,9 +4,6 @@ import { isAliveHandler } from './routes/isAlive/isAliveHandler';
 import { fodselsNrHandler } from './routes/fodselsNr/fodselsNrHandler';
 import { postToTilbakemeldingsmottakHandler } from './routes/postToTilbakemeldingsmottak/postToTilbakemeldingsmottakHandler';
 import { enheterHandler } from './routes/enheter/enheterHandler';
-import { createProxyMiddleware } from 'http-proxy-middleware';
-
-const baseUrl = '/person/kontakt-oss/tilbakemeldinger';
 
 export const setupApiRoutes = async (router: Router) => {
     router.get('/internal/isAlive', isAliveHandler);
