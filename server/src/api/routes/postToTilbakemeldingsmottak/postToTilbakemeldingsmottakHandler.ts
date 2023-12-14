@@ -1,8 +1,13 @@
 import { RequestHandler } from 'express';
 import { getAccessToken } from '../../../utils/auth/common';
 
-export const postToTilbakemeldingsmottakHandler: RequestHandler = async (req, res) => {
+export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
+    req,
+    res
+) => {
     const path = req.params.path;
+    console.log(`POST /mottak/${path}`);
+    console.log('API_URL', process.env.API_URL);
 
     const accessToken = await getAccessToken(req);
 
@@ -23,7 +28,7 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (req, re
         const error = await response.json();
         const errorString = await response.text();
         console.log(
-            `Feil i kall til tilbakemeldingsmottak-api: ${errorString}`,
+            `Feil i kall til tilbakemeldingsmottak-api: ${errorString}`
         );
         return res.status(response.status).send(error);
     }
