@@ -16,6 +16,7 @@ const messages = {
 };
 
 export const AppRoot = () => {
+    //TODO uncomment igjen?
     // useEffect(() => {
     //     if (import.meta.env.VITE_ENV === 'localhost') {
     //         import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
