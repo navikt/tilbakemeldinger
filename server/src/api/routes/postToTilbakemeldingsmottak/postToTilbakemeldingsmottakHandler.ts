@@ -15,7 +15,7 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
         return res.status(500).send('Failed to populate auth header');
     }
 
-    const response = await fetch(`${process.env.API_URL}/rest/${path}`, {
+    const response = await fetch(`${process.env.API_URL}/rest/ros}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
