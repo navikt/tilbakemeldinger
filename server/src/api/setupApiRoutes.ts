@@ -6,6 +6,7 @@ import { postToTilbakemeldingsmottakHandler } from './routes/postToTilbakemeldin
 import { enheterHandler } from './routes/enheter/enheterHandler';
 
 export const setupApiRoutes = async (router: Router) => {
+    //TODO teste at disse funker
     router.get('/internal/isAlive', isAliveHandler);
     router.get('/internal/isReady', isReadyHandler);
     router.get('/fodselsnr', fodselsNrHandler);
@@ -13,5 +14,6 @@ export const setupApiRoutes = async (router: Router) => {
         '/mottak/:path(ros|serviceklage|feil-og-mangler)',
         postToTilbakemeldingsmottakHandler
     );
+
     router.get('/enheter', enheterHandler);
 };
