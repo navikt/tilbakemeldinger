@@ -17,6 +17,11 @@ export const decoratorEnvProps: DecoratorEnvProps =
 
 const paramsDefault: DecoratorParams = {
     breadcrumbs: [
+        //TODO fjern
+        {
+            url: '/',
+            title: 'Min app2',
+        },
         {
             url: '/',
             title: 'Min app',
@@ -38,6 +43,10 @@ const _injectWithDecorator = (
             console.error(`Failed to fetch decorator - ${e}`);
             return null;
         }
+
+        console.log(
+            `Injecting decorator with params: ${JSON.stringify(params)}`
+        );
 
         // Use prod-decorator on localhost if the local decorator wasn't responding
         // Probably means the docker-compose network isn't running
