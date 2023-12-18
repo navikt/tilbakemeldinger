@@ -25,6 +25,8 @@ import { HelmetProvider } from 'react-helmet-async';
 export const App = () => {
     const [{ auth }, dispatch] = useStore();
 
+    console.log('App');
+
     useEffect(() => {
         if (!auth.authenticated) {
             fetchAuthInfo()

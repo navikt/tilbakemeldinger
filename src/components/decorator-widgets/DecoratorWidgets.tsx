@@ -23,6 +23,8 @@ export const DecoratorWidgets = () => {
     const [{ locale }, dispatch] = useStore();
     const { formatMessage } = useIntl();
 
+    console.log('DecoratorWidgets');
+
     useEffect(() => {
         onLanguageSelect((breadcrumb) => {
             setNewLocale(breadcrumb.locale as Locale, dispatch);

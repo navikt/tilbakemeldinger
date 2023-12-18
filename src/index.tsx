@@ -23,6 +23,8 @@ export const AppRoot = () => {
     //     }
     // }, []);
 
+    console.log('AppRoot');
+
     return (
         <StoreProvider initialState={initialState} reducer={reducer}>
             <RenderApp />
@@ -40,6 +42,8 @@ const RenderApp = () => {
     useEffect(() => {
         document.documentElement.setAttribute('lang', locale);
     }, [locale]);
+
+    console.log('RenderApp');
 
     return (
         <IntlProvider locale={locale} messages={messages[locale]}>
