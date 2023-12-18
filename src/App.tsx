@@ -28,33 +28,38 @@ export const App = () => {
     console.log('App');
 
     useEffect(() => {
-        if (!auth.authenticated) {
-            fetchAuthInfo()
-                .then((authInfo: AuthInfo) => {
-                    dispatch({ type: 'SETT_AUTH_RESULT', payload: authInfo });
-                    if (authInfo.authenticated) {
-                        fetchFodselsnr()
-                            .then((fodselsnr: Fodselsnr) =>
-                                dispatch({
-                                    type: 'SETT_FODSELSNR',
-                                    payload: fodselsnr,
-                                })
-                            )
-                            .catch((error: HTTPError) => {
-                                console.error(error);
-                            });
-                        fetchKontaktInfo()
-                            .then((kontaktInfo: KontaktInfo) =>
-                                dispatch({
-                                    type: 'SETT_KONTAKT_INFO_RESULT',
-                                    payload: kontaktInfo,
-                                })
-                            )
-                            .catch((error: HTTPError) => console.error(error));
-                    }
-                })
-                .catch((error: HTTPError) => console.error(error));
+        if (auth.authenticated) {
+            return;
         }
+
+        fetchAuthInfo()
+            .then((authInfo: AuthInfo) => {
+                dispatch({ type: 'SETT_AUTH_RESULT', payload: authInfo });
+                if (!authInfo.authenticated) {
+                    return;
+                }
+
+                fetchFodselsnr()
+                    .then((fodselsnr: Fodselsnr) =>
+                        dispatch({
+                            type: 'SETT_FODSELSNR',
+                            payload: fodselsnr,
+                        })
+                    )
+                    .catch((error: HTTPError) => {
+                        console.error(error);
+                    });
+
+                fetchKontaktInfo()
+                    .then((kontaktInfo: KontaktInfo) =>
+                        dispatch({
+                            type: 'SETT_KONTAKT_INFO_RESULT',
+                            payload: kontaktInfo,
+                        })
+                    )
+                    .catch((error: HTTPError) => console.error(error));
+            })
+            .catch((error: HTTPError) => console.error(error));
     }, [auth.authenticated, dispatch]);
 
     let key = 0;
