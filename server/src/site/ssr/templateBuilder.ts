@@ -30,7 +30,7 @@ export const buildHtmlTemplate = async () => {
     return templateWithDecorator;
 };
 
-const getDecoratorParams = (locale: Locale): DecoratorParams => ({
+const getDecoratorParams = (locale: Locale, url: string): DecoratorParams => ({
     context: 'privatperson',
     language: locale,
     breadcrumbs: [
@@ -42,9 +42,18 @@ const getDecoratorParams = (locale: Locale): DecoratorParams => ({
             url: `${process.env.VITE_APP_ORIGIN}/person/kontakt-oss/${locale}/tilbakemeldinger`,
             title: 'Tilbakemelding',
         },
+        ...(url.split('/').length > 5
+            ? [
+                  {
+                      url: '/',
+                      title: 'Ros',
+                  },
+              ]
+            : []),
     ],
     availableLanguages: [
         { locale: 'nb', handleInApp: true },
+        { locale: 'nn', handleInApp: true },
         { locale: 'en', handleInApp: true },
     ],
 });
@@ -66,7 +75,9 @@ export const getTemplateWithDecorator = async (url: string) => {
     const locale = url.split('/')[3] as Locale; //TODO sjekk om locale alltid hentes fra url
     console.log(`Locale: ${locale}`);
 
-    const params = getDecoratorParams(locale);
+    console.log('URL LENGTH: ', url.split('/').length);
+
+    const params = getDecoratorParams(locale, url);
 
     return injectDecoratorServerSide({
         ...envProps,
