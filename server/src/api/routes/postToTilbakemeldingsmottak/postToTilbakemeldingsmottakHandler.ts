@@ -8,6 +8,7 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
     const path = req.params.path;
     console.log(`POST /mottak/${path}`);
     console.log('API_URL', process.env.API_URL);
+    console.log('body: ', req.body);
 
     const accessToken = await getAccessToken(req);
 
@@ -15,8 +16,7 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
         return res.status(500).send('Failed to populate auth header');
     }
 
-    //TODO fjern hardkoding av path
-    const response = await fetch(`${process.env.API_URL}/rest/ros`, {
+    const response = await fetch(`${process.env.API_URL}/rest/${path}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
