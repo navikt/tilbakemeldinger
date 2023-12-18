@@ -10,7 +10,8 @@ const processTemplate = async (templateHtml: string, appHtml: string) => {
 };
 
 export const prodRender: HtmlRenderer = async (url) => {
-    const template = await getTemplateWithDecorator('nb');
+    console.log(`Rendering url: ${url}`);
+    const template = await getTemplateWithDecorator(url);
 
     try {
         //TODO bruk await? brukt i nav-office-search
