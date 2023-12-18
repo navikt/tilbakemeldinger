@@ -7,11 +7,14 @@ export const render = (url: string) => {
     console.log('Rendering url:', url, import.meta.env.VITE_APP_BASEPATH);
 
     return renderToString(
-        <StaticRouter
-            basename={import.meta.env.VITE_APP_BASEPATH}
-            location={url}
-        >
-            <AppRoot />
-        </StaticRouter>
+        <>
+            {'Hello world!'}
+            <StaticRouter
+                basename={import.meta.env.VITE_APP_BASEPATH}
+                location={url}
+            >
+                <AppRoot />
+            </StaticRouter>
+        </>
     );
 };
