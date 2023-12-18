@@ -12,6 +12,8 @@ const Tilbakemeldinger = () => {
     const intl = useIntl();
     const [{ locale }] = useStore();
 
+    console.log('FOrside');
+
     return (
         <div className={appStyle.pageContent}>
             <MetaTags
