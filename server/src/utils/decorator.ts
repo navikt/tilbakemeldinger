@@ -16,10 +16,11 @@ export const decoratorEnvProps: DecoratorEnvProps =
         : { env: DECORATOR_ENV };
 
 const paramsDefault: DecoratorParams = {
+    language: 'en',
     breadcrumbs: [
         //TODO fjern
         {
-            url: '/',
+            url: '/test',
             title: 'Min app2',
         },
         {
