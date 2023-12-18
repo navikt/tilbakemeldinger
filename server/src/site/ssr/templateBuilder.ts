@@ -39,8 +39,8 @@ const getDecoratorParams = (locale: Locale): DecoratorParams => ({
             title: 'Kontakt oss', //TODO bruk breadcrumb.base,
         },
         {
-            url: '/',
-            title: "localeString('breadcrumb2', locale) as string",
+            url: `${process.env.VITE_APP_ORIGIN}/person/kontakt-oss/${locale}/tilbakemeldinger`,
+            title: 'Tilbakemelding',
         },
     ],
     availableLanguages: [
