@@ -16,6 +16,7 @@ const isLocal = ENV === 'localhost';
 
 const app = express();
 app.use('*', compression());
+app.use('*', express.json());
 
 const siteRouter = express.Router();
 const apiRouter = express.Router();
