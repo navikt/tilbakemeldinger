@@ -14,6 +14,8 @@ export const prodRender: HtmlRenderer = async (url) => {
 
     try {
         const appHtml = render(url);
+        console.log(`App html: ${appHtml.slice(0, 200)}`);
+
         return processTemplate(template, appHtml);
     } catch (e) {
         console.error(`Rendering failed ${e}}`);

@@ -62,13 +62,13 @@ const sendJson = async (url: string, data: Outbound) => {
 };
 
 export const postRosTilNav = (data: OutboundRosTilNav) =>
-    sendJson(`${appUrl}/mottak/ros`, data);
+    sendJson(`${API_URL}/mottak/ros`, data);
 
 export const postServiceKlage = (data: OutboundServiceKlage) =>
-    sendJson(`${appUrl}/mottak/serviceklage`, data);
+    sendJson(`${API_URL}/mottak/serviceklage`, data);
 
 export const postFeilOgMangler = (data: OutboundFeilOgMangler) =>
-    sendJson(`${appUrl}/mottak/feil-og-mangler`, data);
+    sendJson(`${API_URL}/mottak/feil-og-mangler`, data);
 
 /*
     Utils
