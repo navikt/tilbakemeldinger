@@ -5,11 +5,11 @@ import {
     injectDecoratorServerSide,
     DecoratorEnvProps,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
-// import { getDecoratorParams } from '../../../../common/decoratorParams';
 
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
-// import { AppLocale } from './localization/types';
-// import { localeString } from './localization/localeString';
+
+//TODO import fra utils
+type Locale = 'nb' | 'en' | 'nn';
 
 const templatePath =
     process.env.NODE_ENV === 'development'
@@ -30,8 +30,8 @@ export const buildHtmlTemplate = async () => {
     return templateWithDecorator;
 };
 
-export const getDecoratorParams = (
-    locale: 'en' | 'nb' | 'nn',
+const getDecoratorParams = (
+    locale: Locale,
     kontaktOssUrl: string
 ): DecoratorParams => ({
     context: 'privatperson',
@@ -65,7 +65,7 @@ const envProps: DecoratorEnvProps =
     //     :
     { env: decoratorEnv };
 
-export const getTemplateWithDecorator = async (locale: 'nb' | 'nn' | 'en') => {
+export const getTemplateWithDecorator = async (locale: Locale) => {
     const params = getDecoratorParams(
         locale,
         `${process.env.VITE_APP_ORIGIN}/person/kontakt-oss`
