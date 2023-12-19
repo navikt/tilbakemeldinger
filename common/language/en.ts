@@ -1,6 +1,4 @@
-interface ITranslation {
-    [key: string]: string;
-}
+import { ITranslation } from '../breadcrumbs';
 
 const en: ITranslation = {
     //
