@@ -1,4 +1,8 @@
-const en = {
+interface ITranslation {
+    [key: string]: string;
+}
+
+const en: ITranslation = {
     //
     // Feilside
     //
