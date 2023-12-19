@@ -1,5 +1,4 @@
 import { paths } from './Config';
-import { IntlShape } from 'react-intl';
 import { Locale } from './locale';
 
 import nb from './language/nb';
@@ -36,8 +35,7 @@ function translate(locale: Locale, key: string): string {
 //TODO any
 export const getBreadcrumbsFromPathname: any = (
     url: string,
-    locale: string,
-    formatMessage: IntlShape['formatMessage']
+    locale: string
 ) => {
     console.log('URL: ', url);
 
@@ -54,7 +52,6 @@ export const getBreadcrumbsFromPathname: any = (
 
     const baseBreadcrumb = {
         url: basePath,
-        // title: formatMessage({ id: 'breadcrumb.base' }),
         title: translate(locale as Locale, 'breadcrumb.base'),
         handleInApp: false,
     };
@@ -67,7 +64,6 @@ export const getBreadcrumbsFromPathname: any = (
             const subPath = pathSegmentArray.slice(0, index + 1).join('/');
             return {
                 url: `/${locale}/${subPath}`,
-                // title: formatMessage({ id: `breadcrumb.${pathSegment}` }),
                 title: translate(locale as Locale, `breadcrumb.${pathSegment}`),
                 handleInApp: true,
             };

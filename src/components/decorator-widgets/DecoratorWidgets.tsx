@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useIntl } from 'react-intl';
 import { useStore } from 'providers/Provider';
-import { Locale, setNewLocale } from 'utils/locale';
-import { paths } from 'src/Config';
+import { setNewLocale } from 'utils/locale';
+import { Locale } from 'common/locale';
+import { paths } from 'common/Config';
 import {
     onBreadcrumbClick,
     onLanguageSelect,
@@ -17,7 +17,6 @@ export const DecoratorWidgets = () => {
     const pathnamePrefixed = `${paths.kontaktOss.forside}${pathname}`;
     const navigate = useNavigate();
     const [{ locale }, dispatch] = useStore();
-    const { formatMessage } = useIntl();
 
     console.log('DecoratorWidgets');
 
@@ -63,7 +62,6 @@ export const DecoratorWidgets = () => {
         const breadcrumbs = getBreadcrumbsFromPathname(
             pathnamePrefixed,
             locale
-            // formatMessage
         );
 
         setBreadcrumbs([...breadcrumbs]);
