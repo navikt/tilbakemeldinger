@@ -5,8 +5,7 @@ import nb from './language/nb';
 import nn from './language/nn';
 import en from './language/en';
 
-//TODO denne er duplisert pga import-trøbbel
-interface ITranslation {
+export interface ITranslation {
     [key: string]: string;
 }
 
