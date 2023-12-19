@@ -13,14 +13,11 @@ const translations: Record<Locale, ITranslation> = { en, nb, nn };
 
 function translate(locale: Locale, key: string): string {
     const translationKeys = translations[locale];
-    console.log('translationKeys: ', translationKeys);
     if (!translationKeys) {
         throw new Error(`No translations found for locale: ${locale}`);
     }
 
     const translation = translationKeys[key];
-    console.log('translation: ', translation);
-
     if (!translation) {
         console.warn(
             `No translation found for key: ${key} in locale: ${locale}`
@@ -36,8 +33,6 @@ export const getBreadcrumbsFromPathname: any = (
     url: string,
     locale: string
 ) => {
-    console.log('URL: ', url);
-
     const basePathFilter = new RegExp(
         `${paths.kontaktOss.forside}/(nb|nn|en)?`,
         'i'
@@ -46,8 +41,6 @@ export const getBreadcrumbsFromPathname: any = (
     const basePath = `${paths.kontaktOss.forside}/${
         locale === 'nn' ? 'nb' : locale
     }`;
-
-    console.log('LOCALE: ', locale);
 
     const baseBreadcrumb = {
         url: basePath,
