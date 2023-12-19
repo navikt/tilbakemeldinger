@@ -1,4 +1,8 @@
-const nb = {
+interface ITranslation {
+    [key: string]: string;
+}
+
+const nb: ITranslation = {
     //
     // Feilside
     //
