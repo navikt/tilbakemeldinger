@@ -1,7 +1,7 @@
 import { paths } from 'src/Config';
 import { Action } from 'providers/Store';
+import { Locale } from 'common/locale';
 
-export type Locale = 'nb' | 'en' | 'nn';
 export const validLocales: Locale[] = ['nb', 'en', 'nn']; // :(
 export const defaultLocale = 'nb' as Locale;
 

@@ -1,6 +1,6 @@
-import { paths } from '../src/Config';
+import { paths } from './Config';
 import { IntlShape } from 'react-intl';
-import { Locale } from '../src/utils/locale';
+import { Locale } from './locale';
 
 import nb from './language/nb';
 import nn from './language/nn';
@@ -33,6 +33,7 @@ function translate(locale: Locale, key: string): string {
     return translation;
 }
 
+//TODO any
 export const getBreadcrumbsFromPathname: any = (
     pathnamePrefixed: string,
     locale: string,
