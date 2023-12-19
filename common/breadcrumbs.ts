@@ -35,10 +35,12 @@ function translate(locale: Locale, key: string): string {
 
 //TODO any
 export const getBreadcrumbsFromPathname: any = (
-    pathnamePrefixed: string,
+    url: string,
     locale: string,
     formatMessage: IntlShape['formatMessage']
 ) => {
+    console.log('URL: ', url);
+
     const basePathFilter = new RegExp(
         `${paths.kontaktOss.forside}/(nb|nn|en)?`,
         'i'
@@ -57,7 +59,7 @@ export const getBreadcrumbsFromPathname: any = (
         handleInApp: false,
     };
 
-    const internalBreadcrumbs = pathnamePrefixed
+    const internalBreadcrumbs = url
         .replace(basePathFilter, '')
         .split('/')
         .filter((pathSegment) => pathSegment !== '')

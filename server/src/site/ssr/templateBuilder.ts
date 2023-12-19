@@ -5,8 +5,8 @@ import {
     injectDecoratorServerSide,
     DecoratorEnvProps,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
-
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
+import { getBreadcrumbsFromPathname } from '../../../../common/breadcrumbs';
 import nb from '../../../../common/language/nb';
 import nn from '../../../../common/language/nn';
 import en from '../../../../common/language/en';
@@ -50,26 +50,7 @@ const languageMap: LanguageMap = {
 const getDecoratorParams = (locale: Locale, url: string): DecoratorParams => ({
     context: 'privatperson',
     language: locale,
-    breadcrumbs: [
-        {
-            url: `${process.env.VITE_APP_ORIGIN}/person/kontakt-oss/${locale}`,
-            title: en['breadcrumb.base'],
-            // title: languageMap['en']['breadcrumb.base'],
-            // title: languageMap[locale]['breadcrumb.base'],
-        },
-        {
-            url: `${process.env.VITE_APP_ORIGIN}/person/kontakt-oss/${locale}/tilbakemeldinger`,
-            title: 'Tilbakemelding',
-        },
-        ...(url.split('/').length > 5
-            ? [
-                  {
-                      url: '/',
-                      title: 'Ros',
-                  },
-              ]
-            : []),
-    ],
+    breadcrumbs: [...getBreadcrumbsFromPathname(url, locale)],
     availableLanguages: [
         { locale: 'nb', handleInApp: true },
         { locale: 'nn', handleInApp: true },
@@ -92,10 +73,11 @@ const envProps: DecoratorEnvProps =
 
 export const getTemplateWithDecorator = async (url: string) => {
     const locale = url.split('/')[3] as Locale; //TODO sjekk om locale alltid hentes fra url
-    console.log(`Locale: ${locale}`);
+    // console.log(`Locale: ${locale}`);
+    // console.log('URL!!!!!!!!!!!!!!!!!: ', url);
 
+    console.log('TESTTEST');
     console.log('URL LENGTH: ', url.split('/').length);
-
     const params = getDecoratorParams(locale, url);
 
     return injectDecoratorServerSide({

@@ -59,10 +59,11 @@ export const DecoratorWidgets = () => {
 
     // Set breadcrumbs in decorator
     useEffect(() => {
+        console.log('pathnamePrefixed', pathnamePrefixed);
         const breadcrumbs = getBreadcrumbsFromPathname(
             pathnamePrefixed,
-            locale,
-            formatMessage
+            locale
+            // formatMessage
         );
 
         setBreadcrumbs([...breadcrumbs]);
