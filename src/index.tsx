@@ -5,9 +5,9 @@ import { initialState, reducer } from 'providers/Store';
 import { setLocaleFromUrl } from 'utils/locale';
 import { App } from './App';
 
-import msgsNb from './language/nb';
-import msgsEn from './language/en';
-import msgsNn from './language/nn';
+import msgsNb from '../common/language/nb';
+import msgsEn from '../common/language/en';
+import msgsNn from '../common/language/nn';
 
 const messages = {
     nb: msgsNb,
