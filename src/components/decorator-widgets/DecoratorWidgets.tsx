@@ -10,11 +10,7 @@ import {
     setAvailableLanguages,
     setBreadcrumbs,
 } from '@navikt/nav-dekoratoren-moduler';
-
-const basePathFilter = new RegExp(
-    `${paths.kontaktOss.forside}/(nb|nn|en)?`,
-    'i'
-);
+import { getBreadcrumbsFromPathname } from 'common/breadcrumbs';
 
 export const DecoratorWidgets = () => {
     const { pathname } = useLocation();
@@ -63,29 +59,13 @@ export const DecoratorWidgets = () => {
 
     // Set breadcrumbs in decorator
     useEffect(() => {
-        const basePath = `${paths.kontaktOss.forside}/${
-            locale === 'nn' ? 'nb' : locale
-        }`;
-        const baseBreadcrumb = {
-            url: basePath,
-            title: formatMessage({ id: 'breadcrumb.base' }),
-            handleInApp: false,
-        };
+        const breadcrumbs = getBreadcrumbsFromPathname(
+            pathnamePrefixed,
+            locale,
+            formatMessage
+        );
 
-        const internalBreadcrumbs = pathnamePrefixed
-            .replace(basePathFilter, '')
-            .split('/')
-            .filter((pathSegment) => pathSegment !== '')
-            .map((pathSegment, index, pathSegmentArray) => {
-                const subPath = pathSegmentArray.slice(0, index + 1).join('/');
-                return {
-                    url: `/${locale}/${subPath}`,
-                    title: formatMessage({ id: `breadcrumb.${pathSegment}` }),
-                    handleInApp: true,
-                };
-            });
-
-        setBreadcrumbs([baseBreadcrumb, ...internalBreadcrumbs]);
+        setBreadcrumbs([...breadcrumbs]);
     }, [pathnamePrefixed, locale]);
 
     return null;
