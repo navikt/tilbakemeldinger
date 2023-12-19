@@ -7,6 +7,9 @@ import {
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
+import nb from '../../../../common/language/nb';
+import nn from '../../../../common/language/nn';
+import en from '../../../../common/language/en';
 
 //TODO import fra utils
 type Locale = 'nb' | 'en' | 'nn';
@@ -30,13 +33,29 @@ export const buildHtmlTemplate = async () => {
     return templateWithDecorator;
 };
 
+// Define a mapping type that TypeScript can understand
+type LanguageMap = {
+    [key in Locale]: typeof nb | typeof nn | typeof en;
+};
+
+// Populate the map with your language objects
+const languageMap: LanguageMap = {
+    nb: nb,
+    nn: nn,
+    en: en,
+};
+
+//TODO useIntl her?
+
 const getDecoratorParams = (locale: Locale, url: string): DecoratorParams => ({
     context: 'privatperson',
     language: locale,
     breadcrumbs: [
         {
             url: `${process.env.VITE_APP_ORIGIN}/person/kontakt-oss/${locale}`,
-            title: 'Kontakt oss', //TODO bruk breadcrumb.base,
+            title: en['breadcrumb.base'],
+            // title: languageMap['en']['breadcrumb.base'],
+            // title: languageMap[locale]['breadcrumb.base'],
         },
         {
             url: `${process.env.VITE_APP_ORIGIN}/person/kontakt-oss/${locale}/tilbakemeldinger`,
