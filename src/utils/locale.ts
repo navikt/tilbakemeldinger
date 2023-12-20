@@ -1,4 +1,4 @@
-import { paths } from 'src/Config';
+import { paths } from 'common/Config';
 import { Action } from 'providers/Store';
 import { Locale } from 'common/locale';
 
