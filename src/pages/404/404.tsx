@@ -1,5 +1,5 @@
 import React from 'react';
-import { paths } from 'common/Config';
+import { paths } from 'common/paths';
 import { FormattedMessage } from 'react-intl';
 import { Heading, Link } from '@navikt/ds-react';
 import { Helmet } from 'react-helmet-async';

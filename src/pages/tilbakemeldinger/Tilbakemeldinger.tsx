@@ -5,7 +5,7 @@ import Lenkepanel from 'components/lenkepanel/Lenkepanel';
 import { useIntl } from 'react-intl';
 import { useStore } from 'providers/Provider';
 import { MetaTags } from 'components/metatags/MetaTags';
-import { paths } from 'common/Config';
+import { paths } from 'common/paths';
 import appStyle from 'src/App.module.scss';
 
 const Tilbakemeldinger = () => {
