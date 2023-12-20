@@ -2,7 +2,8 @@ import { AuthInfo } from 'types/authInfo';
 import { KontaktInfo } from 'types/kontaktInfo';
 import { Enhet, FetchEnheter } from 'types/enheter';
 import { HTTPError } from 'types/errors';
-import { defaultLocale, getLocaleFromUrl, Locale } from 'utils/locale';
+import { defaultLocale, Locale } from 'common/locale';
+import { getLocaleFromUrl } from 'utils/locale';
 
 export const initialState = {
     fodselsnr: '',

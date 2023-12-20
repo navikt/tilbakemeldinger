@@ -7,6 +7,7 @@ import {
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { getBreadcrumbsFromPathname } from '../../../../common/breadcrumbs';
+import { defaultLocale, isLocale } from '../../../../common/locale';
 import nb from '../../../../common/language/nb';
 import nn from '../../../../common/language/nn';
 import en from '../../../../common/language/en';
@@ -33,19 +34,15 @@ export const buildHtmlTemplate = async () => {
     return templateWithDecorator;
 };
 
-// Define a mapping type that TypeScript can understand
 type LanguageMap = {
     [key in Locale]: typeof nb | typeof nn | typeof en;
 };
 
-// Populate the map with your language objects
 const languageMap: LanguageMap = {
     nb: nb,
     nn: nn,
     en: en,
 };
-
-//TODO useIntl her?
 
 const getDecoratorParams = (locale: Locale, url: string): DecoratorParams => ({
     context: 'privatperson',
@@ -72,13 +69,12 @@ const envProps: DecoratorEnvProps =
     { env: decoratorEnv };
 
 export const getTemplateWithDecorator = async (url: string) => {
-    const locale = url.split('/')[3] as Locale; //TODO sjekk om locale alltid hentes fra url
-    // console.log(`Locale: ${locale}`);
-    // console.log('URL!!!!!!!!!!!!!!!!!: ', url);
+    const locale = url.split('/')[3] as Locale;
 
-    console.log('TESTTEST');
-    console.log('URL LENGTH: ', url.split('/').length);
-    const params = getDecoratorParams(locale, url);
+    const params = getDecoratorParams(
+        isLocale(locale) ? locale : defaultLocale,
+        url
+    );
 
     return injectDecoratorServerSide({
         ...envProps,

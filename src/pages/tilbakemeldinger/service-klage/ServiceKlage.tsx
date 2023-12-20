@@ -9,7 +9,8 @@ import {
     OutboundServiceKlageExtend,
 } from 'types/serviceklage';
 import Header from 'components/header/Header';
-import { paths, vars } from 'src/Config';
+import { vars } from 'src/Config';
+import { paths } from 'common/paths';
 import { FormattedMessage, useIntl } from 'react-intl';
 import ServiceKlagePrivatperson from './ServiceKlagePrivatperson';
 import ServiceKlageForAnnenPerson from './ServiceKlageAnnenPerson';
