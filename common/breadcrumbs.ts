@@ -1,4 +1,4 @@
-import { paths } from './Config';
+import { paths } from './paths';
 import { Locale } from './locale';
 
 import nb from './language/nb';

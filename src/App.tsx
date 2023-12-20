@@ -16,7 +16,7 @@ import ServiceKlage from 'pages/tilbakemeldinger/service-klage/ServiceKlage';
 import { KontaktInfo } from 'types/kontaktInfo';
 import { Fodselsnr } from 'types/fodselsnr';
 import ScrollToTop from 'components/scroll-to-top/ScrollToTop';
-import { paths } from 'common/Config';
+import { paths } from 'common/paths';
 import { defaultLocale, localePath, validLocales } from 'utils/locale';
 import { DecoratorWidgets } from 'components/decorator-widgets/DecoratorWidgets';
 import '@navikt/ds-css';

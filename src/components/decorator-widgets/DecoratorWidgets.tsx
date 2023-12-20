@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useStore } from 'providers/Provider';
 import { setNewLocale } from 'utils/locale';
 import { Locale } from 'common/locale';
-import { paths } from 'common/Config';
+import { paths } from 'common/paths';
 import {
     onBreadcrumbClick,
     onLanguageSelect,
