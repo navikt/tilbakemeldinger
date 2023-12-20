@@ -7,9 +7,9 @@ import style from './404.module.scss';
 
 const NotFound = () => (
     <>
-        {/*<Helmet>*/}
-        {/*    <meta name="robots" content="noindex" />*/}
-        {/*</Helmet>*/}
+        <Helmet>
+            <meta name="robots" content="noindex" />
+        </Helmet>
         <div className={style.container}>
             <Heading size={'medium'} level={'2'}>
                 <FormattedMessage id={'feil.404'} />
