@@ -1,14 +1,8 @@
 import { paths } from 'common/paths';
 import { Action } from 'providers/Store';
-import { Locale } from 'common/locale';
-
-export const validLocales: Locale[] = ['nb', 'en', 'nn']; // :(
-export const defaultLocale = 'nb' as Locale;
+import { Locale, defaultLocale, isLocale } from 'common/locale';
 
 export const localePath = (path: string, locale: Locale) => `/${locale}${path}`;
-
-const isLocale = (str: string): str is Locale =>
-    validLocales.includes(str as Locale);
 
 export const setNewLocale = (
     locale: Locale,
