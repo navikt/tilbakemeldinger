@@ -66,7 +66,7 @@ export const App = () => {
     let key = 0;
 
     return (
-        <HelmetProvider>
+        <>
             <DecoratorWidgets />
             <ScrollToTop>
                 <Routes>
@@ -123,7 +123,7 @@ export const App = () => {
                     <Route path="*" element={<RedirectToLocaleOrError />} />
                 </Routes>
             </ScrollToTop>
-        </HelmetProvider>
+        </>
     );
 };
 
