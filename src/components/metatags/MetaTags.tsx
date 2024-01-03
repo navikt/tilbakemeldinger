@@ -23,22 +23,22 @@ export const MetaTags = ({ path, titleId, descriptionId, children }: Props) => {
         logPageview(title);
     }, [title]);
 
-    return 'test';
-    //     <Helmet>
-    //         {titleId && <title>{`${title} - www.nav.no`}</title>}
-    //         {descriptionId && (
-    //             <meta
-    //                 name="description"
-    //                 content={intl.formatMessage({ id: descriptionId })}
-    //             />
-    //         )}
-    //         {(path || path === '') && (
-    //             <link
-    //                 rel="canonical"
-    //                 href={`${baseUrl}${localePath(path, locale)}`}
-    //             />
-    //         )}
-    //         {children}
-    //     </Helmet>
-    // );
+    return (
+        <Helmet>
+            {titleId && <title>{`${title} - www.nav.no`}</title>}
+            {descriptionId && (
+                <meta
+                    name="description"
+                    content={intl.formatMessage({ id: descriptionId })}
+                />
+            )}
+            {(path || path === '') && (
+                <link
+                    rel="canonical"
+                    href={`${baseUrl}${localePath(path, locale)}`}
+                />
+            )}
+            {children}
+        </Helmet>
+    );
 };
