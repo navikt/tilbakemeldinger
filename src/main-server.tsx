@@ -8,7 +8,6 @@ export const render = (url: string) => {
 
     return renderToString(
         <>
-            {'Hello world!'}
             <StaticRouter
                 basename={import.meta.env.VITE_APP_BASEPATH}
                 location={url}
