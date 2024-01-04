@@ -10,13 +10,13 @@ export const render = (url: string) => {
     const helmetContext = {};
 
     return renderToString(
-        <HelmetProvider context={helmetContext}>
-            <StaticRouter
-                basename={import.meta.env.VITE_APP_BASEPATH}
-                location={url}
-            >
-                <AppRoot />
-            </StaticRouter>
-        </HelmetProvider>
+        // <HelmetProvider context={helmetContext}>
+        <StaticRouter
+            basename={import.meta.env.VITE_APP_BASEPATH}
+            location={url}
+        >
+            <AppRoot />
+        </StaticRouter>
+        // </HelmetProvider>
     );
 };
