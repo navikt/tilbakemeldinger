@@ -11,7 +11,8 @@ export interface ITranslation {
 
 const translations: Record<Locale, ITranslation> = { en, nb, nn };
 
-function translate(locale: Locale, key: string): string {
+//TODO flytt til locale?
+export function translate(locale: Locale, key: string): string {
     const translationKeys = translations[locale];
     if (!translationKeys) {
         throw new Error(`No translations found for locale: ${locale}`);
