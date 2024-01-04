@@ -65,8 +65,10 @@ export const App = () => {
 
     let key = 0;
 
+    const helmetContext = {};
+
     return (
-        <HelmetProvider>
+        <HelmetProvider context={helmetContext}>
             <DecoratorWidgets />
             <ScrollToTop>
                 <Routes>
