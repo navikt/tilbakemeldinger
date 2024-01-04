@@ -21,7 +21,6 @@ import { localePath } from 'utils/locale';
 import { defaultLocale, validLocales } from 'common/locale';
 import { DecoratorWidgets } from 'components/decorator-widgets/DecoratorWidgets';
 import '@navikt/ds-css';
-import { HelmetProvider } from 'react-helmet-async';
 
 export const App = () => {
     const [{ auth }, dispatch] = useStore();
@@ -65,10 +64,8 @@ export const App = () => {
 
     let key = 0;
 
-    const helmetContext = {};
-
     return (
-        <HelmetProvider context={helmetContext}>
+        <>
             <DecoratorWidgets />
             <ScrollToTop>
                 <Routes>
@@ -125,7 +122,7 @@ export const App = () => {
                     <Route path="*" element={<RedirectToLocaleOrError />} />
                 </Routes>
             </ScrollToTop>
-        </HelmetProvider>
+        </>
     );
 };
 

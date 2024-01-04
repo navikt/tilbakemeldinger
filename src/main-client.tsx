@@ -6,13 +6,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { AppRoot } from './index';
+import { HelmetProvider } from 'react-helmet-async';
 
 const AppWithContext = () => {
     return (
         <React.StrictMode>
-            <BrowserRouter basename={import.meta.env.VITE_APP_BASEPATH}>
-                <AppRoot />
-            </BrowserRouter>
+            <HelmetProvider>
+                <BrowserRouter basename={import.meta.env.VITE_APP_BASEPATH}>
+                    <AppRoot />
+                </BrowserRouter>
+            </HelmetProvider>
         </React.StrictMode>
     );
 };
