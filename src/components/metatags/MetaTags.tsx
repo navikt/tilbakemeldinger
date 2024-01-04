@@ -14,30 +14,22 @@ type Props = {
 };
 
 export const MetaTags = ({ path, titleId, descriptionId, children }: Props) => {
-    const intl = useIntl();
-    const [{ locale }] = useStore();
-    const baseUrl = Environment().baseUrl;
-    const title = intl.formatMessage({ id: titleId });
+    // const intl = useIntl();
+    // const [{ locale }] = useStore();
+    // const baseUrl = Environment().baseUrl;
+    // const title = intl.formatMessage({ id: titleId });
 
-    useEffect(() => {
-        logPageview(title);
-    }, [title]);
+    // useEffect(() => {
+    //     logPageview(title);
+    // }, [title]);
 
     return (
         <Helmet>
-            {titleId && <title>{`${title} - www.nav.no`}</title>}
+            {titleId && <title>{`www.nav.no`}</title>}
             {descriptionId && (
-                <meta
-                    name="description"
-                    content={intl.formatMessage({ id: descriptionId })}
-                />
+                <meta name="description" content={descriptionId} />
             )}
-            {(path || path === '') && (
-                <link
-                    rel="canonical"
-                    href={`${baseUrl}${localePath(path, locale)}`}
-                />
-            )}
+            {(path || path === '') && <link rel="canonical" href={path} />}
             {children}
         </Helmet>
     );
