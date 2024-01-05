@@ -18,8 +18,6 @@ export const DecoratorWidgets = () => {
     const navigate = useNavigate();
     const [{ locale }, dispatch] = useStore();
 
-    console.log('DecoratorWidgets');
-
     useEffect(() => {
         onLanguageSelect((breadcrumb) => {
             setNewLocale(breadcrumb.locale as Locale, dispatch);
