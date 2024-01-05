@@ -70,6 +70,5 @@ jobs:
       - uses: nais/deploy/actions/deploy@v1
         env:
           CLUSTER: dev-gcp
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: .nais/config-dev.yaml
           VARS: .nais/vars.yaml
