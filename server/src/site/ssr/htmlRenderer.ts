@@ -47,15 +47,9 @@ const processTemplate = async (
     return templateHtml
         .replace('<!--ssr-app-html-->', appHtml)
         .replace('%%TITLE%%', `${title} - www.nav.no`)
-        .replace('%%DESCRIPTION%%', description);
-    // .replace('%%CANONICAL_URL%%', `${baseUrl}${localePath(path, locale)}`);
+        .replace('%%DESCRIPTION%%', description)
+        .replace('CANONICAL_TO_BE_REPLACED', `https://www.nav.no${url}`);
 };
-//         {(path || path === '') && (
-//             <link
-//                 rel="canonical"
-//                 href={`${baseUrl}${localePath(path, locale)}`}
-//             />
-//         )}
 
 export const prodRender: HtmlRenderer = async (url) => {
     console.log(`Rendering url: ${url}`);
