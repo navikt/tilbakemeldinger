@@ -26,7 +26,7 @@ const en: ITranslation = {
     // Klage og tilbakemelding
     // Feil og mangler
     //
-    'tilbakemeldinger.sidetittel': 'Complaints and feedback',
+    'tilbakemeldinger.tilbakemeldinger.sidetittel': 'Complaints and feedback',
     'tilbakemeldinger.klageanke.tittel': 'Complain or appeal a decision',
     'tilbakemeldinger.klageanke.beskrivelse': `If you have received a decision from NAV and you disagree with the decision, you have the right to file a complaint or appeal. Read more about your <KlagerettigheterLenke>right to appeal</KlagerettigheterLenke> a decision. `,
 
@@ -43,7 +43,7 @@ const en: ITranslation = {
         'Continue without logging in',
     'tilbakemeldinger.serviceklage.form.veileder':
         'Here you can complain about the service you have received. You will receive an answer within 3 weeks.',
-    'tilbakemeldinger.serviceklage.form.tittel': 'Complaints about service',
+    'tilbakemeldinger.serviceklage.sidetittel': 'Complaints about service',
     'tilbakemeldinger.serviceklage.form.overskrift':
         'Submit a complaint about service',
     'tilbakemeldinger.serviceklage.form.onskersvar':
@@ -53,7 +53,7 @@ const en: ITranslation = {
     'tilbakemeldinger.serviceklage.form.onskersvar.nei':
         'No, I just wanted to inform you',
 
-    'tilbakemeldinger.feilogmangler.tittel':
+    'tilbakemeldinger.feil-og-mangler.sidetittel':
         'Errors and wrong or missing information',
     'tilbakemeldinger.feilogmangler.beskrivelse':
         'Have you found an error on nav.no? Is it a technical error, wrong or missing information, or an accessibility ' +
@@ -67,7 +67,7 @@ const en: ITranslation = {
     'tilbakemeldinger.feilogmangler.svartid':
         'You will receive a reply by email within two working days',
 
-    'tilbakemeldinger.ros.tittel': 'Praise for NAV',
+    'tilbakemeldinger.ros-til-nav.sidetittel': 'Praise for NAV',
     'tilbakemeldinger.ros.beskrivelse':
         'Have you had a good experience? Would you like to praise a colleague or employee or share other positive feedback with NAV?',
     'tilbakemeldinger.ros.form.tittel': 'Praise for NAV',
