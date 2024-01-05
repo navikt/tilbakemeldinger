@@ -87,7 +87,7 @@ const Ros = () => {
     return (
         <div className={appStyle.pageContent}>
             <MetaTags
-                titleId={'tilbakemeldinger.ros.tittel'}
+                titleId={'tilbakemeldinger.ros-til-nav.sidetittel'}
                 descriptionId={'seo.rostilnav.description'}
                 path={paths.tilbakemeldinger.rostilnav}
             />
