@@ -26,7 +26,7 @@ const nn: ITranslation = {
     // Klage og tilbakemelding
     // Feil og manglar
     //
-    'tilbakemeldinger.sidetittel': 'Klage og tilbakemelding',
+    'tilbakemeldinger.tilbakemeldinger.sidetittel': 'Klage og tilbakemelding',
     'tilbakemeldinger.klageanke.tittel': 'Klage eller anke på vedtak',
     'tilbakemeldinger.klageanke.beskrivelse': `Dersom du har fått eit vedtak frå NAV og du er usamd i vedtaket, har du rett til å klage eller anke. Les meir om <KlagerettigheterLenke>klagerettane dine</KlagerettigheterLenke>.`,
 
@@ -43,7 +43,7 @@ const nn: ITranslation = {
         'Fortsett utan å logge inn',
     'tilbakemeldinger.serviceklage.form.veileder':
         'Her kan du klage på servicen du har fått. Du vil få svar innan 3 veker.',
-    'tilbakemeldinger.serviceklage.form.tittel': 'Klage på service',
+    'tilbakemeldinger.serviceklage.sidetittel': 'Klage på service',
     'tilbakemeldinger.serviceklage.form.overskrift':
         'Send inn klage på service',
     'tilbakemeldinger.serviceklage.form.onskersvar':
@@ -53,7 +53,7 @@ const nn: ITranslation = {
     'tilbakemeldinger.serviceklage.form.onskersvar.nei':
         'Nei, eg ville berre seie frå',
 
-    'tilbakemeldinger.feilogmangler.tittel': 'Feil og manglar på nav.no',
+    'tilbakemeldinger.feil-og-mangler.sidetittel': 'Feil og manglar på nav.no',
     'tilbakemeldinger.feilogmangler.beskrivelse':
         'Har du oppdaga ein feil på nav.no? Kanskje ein teknisk feil, feil informasjon eller for låg grad av universell' +
         ' utforming? Då vil vi gjerne høyre frå deg.',
@@ -65,7 +65,7 @@ const nn: ITranslation = {
     'tilbakemeldinger.feilogmangler.svartid':
         'Du vil få eit svar på e-post i løpet av to arbeidsdagar',
 
-    'tilbakemeldinger.ros.tittel': 'Ros til NAV',
+    'tilbakemeldinger.ros-til-nav.sidetittel': 'Ros til NAV',
     'tilbakemeldinger.ros.beskrivelse':
         'Har du ei god oppleving? Vil du rose ein medarbeidar, eller er det noko anna positivt du vil dele med NAV?',
     'tilbakemeldinger.ros.form.tittel': 'Ros til NAV',
