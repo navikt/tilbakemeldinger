@@ -182,13 +182,13 @@ const ServiceKlage = () => {
     return (
         <div className={appStyle.pageContent}>
             <MetaTags
-                titleId={'tilbakemeldinger.serviceklage.form.tittel'}
+                titleId={'tilbakemeldinger.serviceklage.sidetittel'}
                 descriptionId={'seo.klagepaservice.description'}
                 path={paths.tilbakemeldinger.serviceklage.form}
             />
             <Header
                 title={formatMessage({
-                    id: 'tilbakemeldinger.serviceklage.form.tittel',
+                    id: 'tilbakemeldinger.serviceklage.sidetittel',
                 })}
             />
             <LoginModal

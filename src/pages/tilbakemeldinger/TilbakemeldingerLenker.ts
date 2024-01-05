@@ -31,13 +31,13 @@ export const lenker = (locale: Locale): Lenke[] => [
     },
     {
         icon: wrenchIcon,
-        tittel: 'tilbakemeldinger.feilogmangler.tittel',
+        tittel: 'tilbakemeldinger.feil-og-mangler.sidetittel',
         beskrivelse: 'tilbakemeldinger.feilogmangler.beskrivelse',
         lenke: localePath(paths.tilbakemeldinger.feilogmangler, locale),
     },
     {
         icon: heartIcon,
-        tittel: 'tilbakemeldinger.ros.tittel',
+        tittel: 'tilbakemeldinger.ros-til-nav.sidetittel',
         beskrivelse: 'tilbakemeldinger.ros.beskrivelse',
         lenke: localePath(paths.tilbakemeldinger.rostilnav, locale),
     },

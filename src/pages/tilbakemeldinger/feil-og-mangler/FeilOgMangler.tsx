@@ -91,7 +91,7 @@ const FOM = () => {
     return (
         <div className={appStyle.pageContent}>
             <MetaTags
-                titleId={'tilbakemeldinger.feilogmangler.tittel'}
+                titleId={'tilbakemeldinger.feil-og-mangler.sidetittel'}
                 descriptionId={'seo.feilogmangler.description'}
                 path={paths.tilbakemeldinger.feilogmangler}
             />

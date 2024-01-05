@@ -4,8 +4,6 @@ import { ViteDevServer } from 'vite';
 import { render } from '../../_ssr-dist/main-server';
 import { translate } from '../../../../common/breadcrumbs';
 import { Locale } from '../../../../common/locale';
-import { paths } from '../../../../common/paths';
-import { URLSearchParams } from 'url';
 
 export type HtmlRenderer = (url: string) => Promise<string>;
 
@@ -16,20 +14,20 @@ export const isLocale = (str: string): str is Locale =>
     validLocales.includes(str as Locale);
 
 function getLocaleFromUrl(url: string) {
-    // Regular expression to match the language code pattern in the URL
     //TODO bruk variabel for paths.kontaktOss.forside
     const regex = /\/kontakt-oss\/([a-z]{2})\//;
-
-    // Using regex to find the language code
     const match = url.match(regex);
 
-    // Check if a match is found, and return the language code
-    if (match && match[1]) {
-        return match[1];
-    } else {
-        // Return null or an appropriate default if no match is found
-        return defaultLocale;
-    }
+    if (match && match[1]) return match[1];
+    return defaultLocale;
+}
+
+function getLastSegmentFromUrl(url: string) {
+    // Split the URL by '/'
+    const segments = url.split('/');
+
+    // Return the last segment
+    return segments.pop();
 }
 
 const processTemplate = async (
@@ -37,32 +35,25 @@ const processTemplate = async (
     appHtml: string,
     url: string
 ) => {
-    console.log(`Processing template for url: ${url}`);
-    console.log('getLocaleFromUrl(url)', getLocaleFromUrl(url));
-    console.log(
-        translate(
-            getLocaleFromUrl(url) as Locale,
-            'seo.feilogmangler.description'
-        )
+    const lastURLSegment = getLastSegmentFromUrl(url);
+    const locale = getLocaleFromUrl(url) as Locale;
+
+    const title = translate(
+        locale,
+        `tilbakemeldinger.${lastURLSegment}.sidetittel`
     );
+    // const description = translate(locale, `seo.${lastURLSegment}.description`);
 
     return templateHtml
         .replace('<!--ssr-app-html-->', appHtml)
-        .replace('%%TITLE%%', 'Testtittel')
-        .replace(
-            '%%DESCRIPTION%%',
-            // translate(getLocaleFromUrl(), 'seo.feilogmangler.description')
-            translate(
-                getLocaleFromUrl(url) as Locale,
-                'seo.feilogmangler.description'
-            )
-        );
+        .replace('%%TITLE%%', `${title} - www.nav.no`);
+    // .replace('%%DESCRIPTION%%', description);
+    // .replace('%%CANONICAL_URL%%', `${baseUrl}${localePath(path, locale)}`);
 };
-
-//         {descriptionId && (
-//             <meta
-//                 name="description"
-//                 content={intl.formatMessage({ id: descriptionId })}
+//         {(path || path === '') && (
+//             <link
+//                 rel="canonical"
+//                 href={`${baseUrl}${localePath(path, locale)}`}
 //             />
 //         )}
 
