@@ -42,12 +42,12 @@ const processTemplate = async (
         locale,
         `tilbakemeldinger.${lastURLSegment}.sidetittel`
     );
-    // const description = translate(locale, `seo.${lastURLSegment}.description`);
+    const description = translate(locale, `seo.${lastURLSegment}.description`);
 
     return templateHtml
         .replace('<!--ssr-app-html-->', appHtml)
-        .replace('%%TITLE%%', `${title} - www.nav.no`);
-    // .replace('%%DESCRIPTION%%', description);
+        .replace('%%TITLE%%', `${title} - www.nav.no`)
+        .replace('%%DESCRIPTION%%', description);
     // .replace('%%CANONICAL_URL%%', `${baseUrl}${localePath(path, locale)}`);
 };
 //         {(path || path === '') && (

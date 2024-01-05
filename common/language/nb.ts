@@ -167,10 +167,10 @@ const nb: ITranslation = {
     'seo.tilbakemeldinger.description':
         'Her kan du gi tilbakemelding til NAV, klage eller anke på vedtak, service og melde fra om feil og mangler på' +
         ' nav.no. Du kan også gi oss ros om våre tjenester og medarbeidere.',
-    'seo.rostilnav.description':
+    'seo.ros-til-nav.description':
         'Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?',
-    'seo.feilogmangler.description': 'Meld fra om feil og mangler på nav.no',
-    'seo.klagepaservice.description':
+    'seo.feil-og-mangler.description': 'Meld fra om feil og mangler på nav.no',
+    'seo.serviceklage.description':
         'Send klage på service hos NAV. Hva gjelder tilbakemeldingen og hvem skriver du på vegne av?',
 
     'takk.melding': 'Meldingen din er sendt',
