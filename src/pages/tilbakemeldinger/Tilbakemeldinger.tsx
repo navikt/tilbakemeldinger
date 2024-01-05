@@ -12,18 +12,16 @@ const Tilbakemeldinger = () => {
     const intl = useIntl();
     const [{ locale }] = useStore();
 
-    console.log('FOrside');
-
     return (
         <div className={appStyle.pageContent}>
             <MetaTags
                 path={paths.tilbakemeldinger.forside}
-                titleId={'tilbakemeldinger.sidetittel'}
+                titleId={'tilbakemeldinger.tilbakemeldinger.sidetittel'}
                 descriptionId={'seo.tilbakemeldinger.description'}
             />
             <Header
                 title={intl.formatMessage({
-                    id: 'tilbakemeldinger.sidetittel',
+                    id: 'tilbakemeldinger.tilbakemeldinger.sidetittel',
                 })}
             />
             {lenker(locale).map((lenke) => (
