@@ -174,10 +174,10 @@ const en: ITranslation = {
     'seo.tilbakemeldinger.description':
         'Here you can give feedback to NAV, complain or appeal against decisions or service and report errors and defects on' +
         ' nav.no. You can also send praise about our services and employees.',
-    'seo.rostilnav.description':
+    'seo.ros-til-nav.description':
         'Have you had a good experience? Would you like to praise a colleague or employee or share other positive feedback with NAV?',
-    'seo.feilogmangler.description': 'Report errors and omissions at nav.no',
-    'seo.klagepaservice.description':
+    'seo.feil-og-mangler.description': 'Report errors and omissions at nav.no',
+    'seo.serviceklage.description':
         'Submit a complaint about service from NAV. What does your feedback apply to and who are you writing on behalf of?',
 
     'takk.melding': 'Your message has been sent',
