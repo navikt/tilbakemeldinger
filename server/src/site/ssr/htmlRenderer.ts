@@ -23,10 +23,7 @@ function getLocaleFromUrl(url: string) {
 }
 
 function getLastSegmentFromUrl(url: string) {
-    // Split the URL by '/'
     const segments = url.split('/');
-
-    // Return the last segment
     return segments.pop();
 }
 
