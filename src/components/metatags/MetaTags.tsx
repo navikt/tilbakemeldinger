@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { localePath } from 'utils/locale';
 import { useIntl } from 'react-intl';
 import { useStore } from 'providers/Provider';
@@ -18,12 +18,17 @@ export const MetaTags = ({ path, titleId, descriptionId, children }: Props) => {
     const [{ locale }] = useStore();
     const baseUrl = Environment().baseUrl;
     const title = intl.formatMessage({ id: titleId });
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     useEffect(() => {
         logPageview(title);
     }, [title]);
 
-    return (
+    return isClient ? (
         <Helmet>
             {titleId && <title>{`${title} - www.nav.no`}</title>}
             {descriptionId && (
@@ -40,5 +45,5 @@ export const MetaTags = ({ path, titleId, descriptionId, children }: Props) => {
             )}
             {children}
         </Helmet>
-    );
+    ) : null;
 };
