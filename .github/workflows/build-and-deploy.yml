@@ -16,8 +16,6 @@ on:
         required: true
       NAIS_WORKLOAD_IDENTITY_PROVIDER:
         required: true
-      NAIS_DEPLOY_APIKEY:
-        required: true
 
 jobs:
   build-and-deploy:
@@ -68,10 +66,9 @@ jobs:
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           image_suffix: ${{ inputs.imageSuffix }}
       - name: Deploy to nais
-        uses: nais/deploy/actions/deploy@v1
+        uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: ${{ inputs.env }}-gcp
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: .nais/config.yml
           VAR: image=${{ steps.docker-push.outputs.image }}
           VARS: .nais/vars-${{ inputs.env }}.yml
