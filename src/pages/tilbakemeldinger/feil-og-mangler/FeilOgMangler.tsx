@@ -92,7 +92,7 @@ const FOM = () => {
         <div className={appStyle.pageContent}>
             <MetaTags
                 titleId={'tilbakemeldinger.feil-og-mangler.sidetittel'}
-                descriptionId={'seo.feilogmangler.description'}
+                descriptionId={'seo.feil-og-mangler.description'}
                 path={paths.tilbakemeldinger.feilogmangler}
             />
             <Header

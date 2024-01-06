@@ -183,7 +183,7 @@ const ServiceKlage = () => {
         <div className={appStyle.pageContent}>
             <MetaTags
                 titleId={'tilbakemeldinger.serviceklage.sidetittel'}
-                descriptionId={'seo.klagepaservice.description'}
+                descriptionId={'seo.serviceklage.description'}
                 path={paths.tilbakemeldinger.serviceklage.form}
             />
             <Header
