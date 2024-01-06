@@ -11,6 +11,9 @@ type Props = {
 };
 
 const LoginModal = ({ open, closeFunc }: Props) => {
+    const currentUrl =
+        typeof window !== 'undefined' ? window.location.href : '';
+
     return (
         <Modal
             aria-labelledby="login-modal-heading"
@@ -35,7 +38,7 @@ const LoginModal = ({ open, closeFunc }: Props) => {
                 <Button
                     variant="primary"
                     as="a"
-                    href={`${loginUrl}?redirect=${window.location.href}`}
+                    href={`${loginUrl}?redirect=${currentUrl}`}
                 >
                     <FormattedMessage id="tilbakemeldinger.serviceklage.login.knapp" />
                 </Button>
