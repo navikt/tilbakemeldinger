@@ -6,7 +6,6 @@ import { Enhet } from 'types/enheter';
 import { HTTPError } from 'src/types/errors';
 import Combobox from './EnhetCombobox';
 import { ErrorMessage, Loader } from '@navikt/ds-react';
-import classNames from "classnames";
 import './SelectEnhet.scss';
 
 const cssPrefix = 'selectEnhet';
@@ -65,7 +64,7 @@ const SelectEnhet = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
     }, []);
 
     const comboBoxLabel = () => (
-        <div className={classNames(`${cssPrefix}__label`, "navds-label")}>
+        <div className={`${cssPrefix}__label navds-label`}>
             <FormattedMessage id={label} />
             <span className={`${cssPrefix}__hjelpetekst`}>
                 {`- ${intl.formatMessage({
