@@ -52,7 +52,6 @@ const processTemplate = async (
 };
 
 export const prodRender: HtmlRenderer = async (url) => {
-    console.log(`Rendering url: ${url}`);
     const template = await getTemplateWithDecorator(url);
 
     try {
