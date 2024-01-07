@@ -30,12 +30,11 @@ const processTemplate = async (
     const lastURLSegment = getLastSegmentFromUrl(url) as string;
     const locale = getLocaleFromUrl(url) as Locale;
 
-    const title = translate(
-        locale,
-        `tilbakemeldinger.${lastURLSegment}.sidetittel`
-    );
-
-    const description = URLs.allPages.includes(lastURLSegment)
+    const isAPage = URLs.allPages.includes(lastURLSegment);
+    const title = isAPage
+        ? translate(locale, `tilbakemeldinger.${lastURLSegment}.sidetittel`)
+        : '';
+    const description = isAPage
         ? translate(locale, `seo.${lastURLSegment}.description`)
         : '';
 
