@@ -4,6 +4,7 @@ import { ViteDevServer } from 'vite';
 import { render } from '../../_ssr-dist/main-server';
 import { translate } from '../../../../common/breadcrumbs';
 import { Locale, defaultLocale } from '../../../../common/locale';
+import { URLs } from '../../urls';
 
 export type HtmlRenderer = (url: string) => Promise<string>;
 
@@ -26,14 +27,17 @@ const processTemplate = async (
     appHtml: string,
     url: string
 ) => {
-    const lastURLSegment = getLastSegmentFromUrl(url);
+    const lastURLSegment = getLastSegmentFromUrl(url) as string;
     const locale = getLocaleFromUrl(url) as Locale;
 
     const title = translate(
         locale,
         `tilbakemeldinger.${lastURLSegment}.sidetittel`
     );
-    const description = translate(locale, `seo.${lastURLSegment}.description`);
+
+    const description = URLs.allPages.includes(lastURLSegment)
+        ? translate(locale, `seo.${lastURLSegment}.description`)
+        : '';
 
     return templateHtml
         .replace('<!--ssr-app-html-->', appHtml)
