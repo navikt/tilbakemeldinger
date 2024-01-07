@@ -7,13 +7,10 @@ import {
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { getBreadcrumbsFromPathname } from '../../../../common/breadcrumbs';
-import { defaultLocale, isLocale } from '../../../../common/locale';
+import { Locale, defaultLocale, isLocale } from '../../../../common/locale';
 import nb from '../../../../common/language/nb';
 import nn from '../../../../common/language/nn';
 import en from '../../../../common/language/en';
-
-//TODO import fra utils
-type Locale = 'nb' | 'en' | 'nn';
 
 const templatePath =
     process.env.NODE_ENV === 'development'
