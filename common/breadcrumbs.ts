@@ -1,11 +1,7 @@
 import { paths } from './paths';
 import { Locale, translate } from './locale';
 
-//TODO any
-export const getBreadcrumbsFromPathname: any = (
-    url: string,
-    locale: string
-) => {
+export const getBreadcrumbsFromPathname = (url: string, locale: string) => {
     const basePathFilter = new RegExp(
         `${paths.kontaktOss.forside}/(nb|nn|en)?`,
         'i'
