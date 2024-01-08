@@ -1,33 +1,5 @@
 import { paths } from './paths';
-import { Locale } from './locale';
-
-import nb from './language/nb';
-import nn from './language/nn';
-import en from './language/en';
-
-export interface ITranslation {
-    [key: string]: string;
-}
-
-const translations: Record<Locale, ITranslation> = { en, nb, nn };
-
-//TODO flytt til locale?
-export function translate(locale: Locale, key: string): string {
-    const translationKeys = translations[locale];
-    if (!translationKeys) {
-        throw new Error(`No translations found for locale: ${locale}`);
-    }
-
-    const translation = translationKeys[key];
-    if (!translation) {
-        console.warn(
-            `No translation found for key: ${key} in locale: ${locale}`
-        );
-        return key;
-    }
-
-    return translation;
-}
+import { Locale, translate } from './locale';
 
 //TODO any
 export const getBreadcrumbsFromPathname: any = (
