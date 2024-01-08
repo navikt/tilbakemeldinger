@@ -15,7 +15,11 @@ const messages = {
     nn: msgsNn,
 };
 
-export const AppRoot = () => {
+type Props = {
+    url?: string;
+};
+
+export const AppRoot = ({ url }: Props) => {
     //TODO uncomment igjen?
     // useEffect(() => {
     //     if (import.meta.env.VITE_ENV === 'localhost') {
@@ -25,12 +29,12 @@ export const AppRoot = () => {
 
     return (
         <StoreProvider initialState={initialState} reducer={reducer}>
-            <RenderApp />
+            <RenderApp url={url} />
         </StoreProvider>
     );
 };
 
-const RenderApp = () => {
+const RenderApp = ({ url }: Props) => {
     const [{ locale }, dispatch] = useStore();
 
     useEffect(() => {
@@ -43,7 +47,7 @@ const RenderApp = () => {
 
     return (
         <IntlProvider locale={locale} messages={messages[locale]}>
-            <App />
+            <App url={url} />
         </IntlProvider>
     );
 };
