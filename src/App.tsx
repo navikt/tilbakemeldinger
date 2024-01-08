@@ -77,6 +77,11 @@ export const App = () => {
                             key={key++}
                         />,
                         <Route
+                            path={paths.tilbakemeldinger.forside}
+                            element={<Tilbakemeldinger />}
+                            key={key++}
+                        />,
+                        <Route
                             path={localePath(
                                 paths.tilbakemeldinger.serviceklage.login,
                                 locale
