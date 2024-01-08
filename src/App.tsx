@@ -147,9 +147,32 @@ export const App = () => {
                         path={paths.tilbakemeldinger.feilogmangler}
                         element={<FeilOgMangler />}
                     />
-                    <Route path="*" element={<PageNotFound />} />
+                    <Route path="*" element={<RedirectToLocaleOrError />} />
                 </Routes>
             </ScrollToTop>
         </>
     );
+};
+
+const RedirectToLocaleOrError = () => {
+    if (typeof window === 'undefined') {
+        return <PageNotFound />;
+    }
+
+    const isLocaleUrl = window.location.pathname
+        .split('/')
+        .some((segment) => validLocales.some((locale) => segment === locale));
+
+    if (!isLocaleUrl) {
+        const subPath = window.location.pathname.split(
+            paths.kontaktOss.forside
+        )[1];
+        return (
+            <Navigate
+                to={localePath(subPath || '', defaultLocale)}
+                replace={true}
+            />
+        );
+    }
+    return <PageNotFound />;
 };
