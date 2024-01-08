@@ -8,7 +8,6 @@ export const setNewLocale = (
     locale: Locale,
     dispatch: (action: Action) => void
 ) => {
-    // TODO: bruk regex?
     const subSegments = window.location.pathname
         .split(paths.kontaktOss.forside)[1]
         .split('/')

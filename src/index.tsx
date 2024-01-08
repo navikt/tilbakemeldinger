@@ -20,12 +20,11 @@ type Props = {
 };
 
 export const AppRoot = ({ url }: Props) => {
-    //TODO uncomment igjen?
-    // useEffect(() => {
-    //     if (import.meta.env.VITE_ENV === 'localhost') {
-    //         import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (import.meta.env.VITE_ENV === 'localhost') {
+            import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
+        }
+    }, []);
 
     return (
         <StoreProvider initialState={initialState} reducer={reducer}>
