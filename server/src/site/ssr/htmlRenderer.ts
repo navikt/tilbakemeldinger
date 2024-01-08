@@ -21,7 +21,7 @@ const processTemplate = async (
     url: string
 ) => {
     const locale = getLocaleFromUrl(url) as Locale;
-    const lastURLSegment = getLastSegmentFromUrl(url) as string;
+    const lastURLSegment = getLastSegmentFromUrl(url);
     const isAPage = checkIfPage(url);
 
     const title = isAPage
