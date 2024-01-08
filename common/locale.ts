@@ -17,13 +17,10 @@ const translations: Record<Locale, ITranslation> = { en, nb, nn };
 
 export function translate(locale: Locale, key: string): string {
     const translationKeys = translations[locale];
-    if (!translationKeys) {
-        throw new Error(`No translations found for locale: ${locale}`);
-    }
-
     const translation = translationKeys[key];
+
     if (!translation) {
-        console.warn(
+        console.log(
             `No translation found for key: ${key} in locale: ${locale}`
         );
         return key;
