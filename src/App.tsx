@@ -122,6 +122,31 @@ export const App = () => {
                             key={key++}
                         />,
                     ])}
+                    {/* Define non-locale specific routes */}
+                    <Route
+                        path={paths.tilbakemeldinger.forside}
+                        element={<Tilbakemeldinger />}
+                    />
+                    <Route
+                        path={paths.tilbakemeldinger.serviceklage.login}
+                        element={
+                            <Navigate
+                                to={paths.tilbakemeldinger.serviceklage.form}
+                            />
+                        }
+                    />
+                    <Route
+                        path={paths.tilbakemeldinger.serviceklage.form}
+                        element={<ServiceKlage />}
+                    />
+                    <Route
+                        path={paths.tilbakemeldinger.rostilnav}
+                        element={<Ros />}
+                    />
+                    <Route
+                        path={paths.tilbakemeldinger.feilogmangler}
+                        element={<FeilOgMangler />}
+                    />
                     <Route path="*" element={<RedirectToLocaleOrError />} />
                 </Routes>
             </ScrollToTop>
