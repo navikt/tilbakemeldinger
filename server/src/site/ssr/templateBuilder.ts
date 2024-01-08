@@ -53,17 +53,7 @@ const getDecoratorParams = (locale: Locale, url: string): DecoratorParams => ({
 });
 
 const decoratorEnv = 'prod';
-// const decoratorEnv = process.env.ENV || 'prod';
-const decoratorLocalUrl = process.env.DECORATOR_LOCAL_URL;
-
-const envProps: DecoratorEnvProps =
-    // decoratorEnv === 'localhost'
-    //     ? {
-    //           env: decoratorEnv,
-    //           localUrl: decoratorLocalUrl,
-    //       }
-    //     :
-    { env: decoratorEnv };
+const envProps: DecoratorEnvProps = { env: decoratorEnv };
 
 export const getTemplateWithDecorator = async (url: string) => {
     const locale = url.split('/')[3] as Locale;
