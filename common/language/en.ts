@@ -1,4 +1,4 @@
-import { ITranslation } from '../breadcrumbs';
+import { ITranslation } from '../locale';
 
 const en: ITranslation = {
     //
