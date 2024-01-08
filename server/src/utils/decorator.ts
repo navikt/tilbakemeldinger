@@ -17,14 +17,9 @@ export const decoratorEnvProps: DecoratorEnvProps =
 
 const paramsDefault: DecoratorParams = {
     breadcrumbs: [
-        //TODO fjern
         {
             url: '/',
-            title: 'Min app2',
-        },
-        {
-            url: '/',
-            title: 'Min app',
+            title: 'Tilbakemelding',
         },
     ],
 };
