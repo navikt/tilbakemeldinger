@@ -133,16 +133,13 @@ export const App = ({ url }: Props) => {
 
 const RedirectToLocaleOrError = ({ url }: Props) => {
     const currentUrl = url ?? window.location.pathname;
-    console.log('currentUrl', currentUrl);
 
     const isLocaleUrl = currentUrl
         .split('/')
         .some((segment) => validLocales.some((locale) => segment === locale));
-    console.log('isLocaleUrl', isLocaleUrl);
 
     if (!isLocaleUrl) {
         const subPath = currentUrl.split(paths.kontaktOss.forside)[1];
-        console.log('subPath', subPath);
         return (
             <Navigate
                 to={localePath(subPath || '', defaultLocale)}
