@@ -37,7 +37,6 @@ export const setupErrorHandlers = async (expressApp: Express) => {
 
         console.error(`Server error on ${path}: ${statusCode} ${msg}`);
 
-        // TODO: Html for server errors
         return res.status(statusCode).end();
     };
 
