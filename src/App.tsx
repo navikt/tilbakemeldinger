@@ -18,7 +18,7 @@ import { Fodselsnr } from 'types/fodselsnr';
 import ScrollToTop from 'components/scroll-to-top/ScrollToTop';
 import { paths } from 'common/paths';
 import { localePath } from 'utils/locale';
-import { defaultLocale, validLocales } from 'common/locale';
+import { validLocales } from 'common/locale';
 import { DecoratorWidgets } from 'components/decorator-widgets/DecoratorWidgets';
 import '@navikt/ds-css';
 
