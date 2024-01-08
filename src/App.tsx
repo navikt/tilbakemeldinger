@@ -22,7 +22,11 @@ import { defaultLocale, validLocales } from 'common/locale';
 import { DecoratorWidgets } from 'components/decorator-widgets/DecoratorWidgets';
 import '@navikt/ds-css';
 
-export const App = () => {
+type Props = {
+    url?: string;
+};
+
+export const App = ({ url }: Props) => {
     const [{ auth }, dispatch] = useStore();
 
     useEffect(() => {
@@ -77,11 +81,6 @@ export const App = () => {
                             key={key++}
                         />,
                         <Route
-                            path={paths.tilbakemeldinger.forside}
-                            element={<Tilbakemeldinger />}
-                            key={key++}
-                        />,
-                        <Route
                             path={localePath(
                                 paths.tilbakemeldinger.serviceklage.login,
                                 locale
@@ -122,51 +121,28 @@ export const App = () => {
                             key={key++}
                         />,
                     ])}
-                    {/* Define non-locale specific routes */}
                     <Route
-                        path={paths.tilbakemeldinger.forside}
-                        element={<Tilbakemeldinger />}
+                        path="*"
+                        element={<RedirectToLocaleOrError url={url} />}
                     />
-                    <Route
-                        path={paths.tilbakemeldinger.serviceklage.login}
-                        element={
-                            <Navigate
-                                to={paths.tilbakemeldinger.serviceklage.form}
-                            />
-                        }
-                    />
-                    <Route
-                        path={paths.tilbakemeldinger.serviceklage.form}
-                        element={<ServiceKlage />}
-                    />
-                    <Route
-                        path={paths.tilbakemeldinger.rostilnav}
-                        element={<Ros />}
-                    />
-                    <Route
-                        path={paths.tilbakemeldinger.feilogmangler}
-                        element={<FeilOgMangler />}
-                    />
-                    <Route path="*" element={<RedirectToLocaleOrError />} />
                 </Routes>
             </ScrollToTop>
         </>
     );
 };
 
-const RedirectToLocaleOrError = () => {
-    if (typeof window === 'undefined') {
-        return <PageNotFound />;
-    }
+const RedirectToLocaleOrError = ({ url }: Props) => {
+    const currentUrl = url ?? window.location.pathname;
+    console.log('currentUrl', currentUrl);
 
-    const isLocaleUrl = window.location.pathname
+    const isLocaleUrl = currentUrl
         .split('/')
         .some((segment) => validLocales.some((locale) => segment === locale));
+    console.log('isLocaleUrl', isLocaleUrl);
 
     if (!isLocaleUrl) {
-        const subPath = window.location.pathname.split(
-            paths.kontaktOss.forside
-        )[1];
+        const subPath = currentUrl.split(paths.kontaktOss.forside)[1];
+        console.log('subPath', subPath);
         return (
             <Navigate
                 to={localePath(subPath || '', defaultLocale)}
