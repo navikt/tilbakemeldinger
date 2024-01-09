@@ -33,9 +33,6 @@
         "react-router": "6.16.0",
         "react-router-dom": "6.16.0"
     },
-    "optionalDependencies": {
-        "fsevents": "2.3.3"
-    },
     "devDependencies": {
         "@babel/preset-react": "7.22.15",
         "@preact/preset-vite": "2.8.1",
