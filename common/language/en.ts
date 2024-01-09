@@ -33,7 +33,6 @@ const en: ITranslation = {
     'tilbakemeldinger.serviceklage.tittel': 'Complaints about service',
     'tilbakemeldinger.serviceklage.beskrivelse':
         'Have you been treated poorly? Or had a bad experience with NAV?',
-    'tilbakemeldinger.serviceklage.login.tittel': 'Complaints about service',
     'tilbakemeldinger.serviceklage.login.overskrift': 'Do you want to log in?',
     'tilbakemeldinger.serviceklage.login.beskrivelse':
         "We recommend logging in so you don't have to enter any personal information.<br></br>" +
