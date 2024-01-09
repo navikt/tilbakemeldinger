@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Tilbakemeldinger from 'pages/tilbakemeldinger/Tilbakemeldinger';
 import Ros from 'pages/tilbakemeldinger/ros-til-nav/Ros';
@@ -132,11 +132,19 @@ export const App = ({ url }: Props) => {
 };
 
 const RedirectToLocaleOrError = ({ url }: Props) => {
+    const [isReadyToRedirect, setIsReadyToRedirect] = useState(false);
     const currentUrl = url ?? window.location.pathname;
-
     const isLocaleUrl = currentUrl
         .split('/')
         .some((segment) => validLocales.some((locale) => segment === locale));
+
+    useEffect(() => {
+        setIsReadyToRedirect(true);
+    }, []);
+
+    if (!isReadyToRedirect) {
+        return null;
+    }
 
     if (!isLocaleUrl) {
         const subPath = currentUrl.split(paths.kontaktOss.forside)[1];
