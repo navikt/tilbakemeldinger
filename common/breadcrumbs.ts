@@ -1,7 +1,7 @@
 import { paths } from './paths';
 import { Locale, translate } from './locale';
 
-export const getBreadcrumbsFromPathname = (url: string, locale: string) => {
+export const getBreadcrumbsFromPathname = (url: string, locale: Locale) => {
     const basePathFilter = new RegExp(
         `${paths.kontaktOss.forside}/(nb|nn|en)?`,
         'i'
@@ -13,7 +13,7 @@ export const getBreadcrumbsFromPathname = (url: string, locale: string) => {
 
     const baseBreadcrumb = {
         url: basePath,
-        title: translate(locale as Locale, 'breadcrumb.base'),
+        title: translate(locale, 'breadcrumb.base'),
         handleInApp: false,
     };
 
@@ -25,7 +25,7 @@ export const getBreadcrumbsFromPathname = (url: string, locale: string) => {
             const subPath = pathSegmentArray.slice(0, index + 1).join('/');
             return {
                 url: `/${locale}/${subPath}`,
-                title: translate(locale as Locale, `breadcrumb.${pathSegment}`),
+                title: translate(locale, `breadcrumb.${pathSegment}`),
                 handleInApp: true,
             };
         });
