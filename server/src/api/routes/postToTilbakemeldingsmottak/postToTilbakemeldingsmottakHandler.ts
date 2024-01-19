@@ -6,10 +6,6 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
     res
 ) => {
     const path = req.params.path;
-    console.log(`POST /mottak/${path}`);
-    console.log('API_URL', process.env.API_URL);
-    console.log('body: ', req.body);
-
     const accessToken = await getAccessToken(req);
 
     if (!accessToken) {
