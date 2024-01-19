@@ -80,22 +80,6 @@ export const App = ({ url }: Props) => {
                             element={<Tilbakemeldinger />}
                             key={key++}
                         />,
-                        // <Route
-                        //     path={localePath(
-                        //         paths.tilbakemeldinger.serviceklage.login,
-                        //         locale
-                        //     )}
-                        //     element={
-                        //         <Navigate
-                        //             to={localePath(
-                        //                 paths.tilbakemeldinger.serviceklage
-                        //                     .form,
-                        //                 locale
-                        //             )}
-                        //         />
-                        //     }
-                        //     key={key++}
-                        // />,
                         <Route
                             path={localePath(
                                 paths.tilbakemeldinger.serviceklage.form,
