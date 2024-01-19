@@ -26,37 +26,12 @@ const paramsDefault: DecoratorParams = {
 
 const _injectWithDecorator = (
     params: DecoratorParams,
-    templatePath: string,
-    retries = 3
+    templatePath: string
 ): Promise<string | null> =>
     injectDecoratorServerSide({
         ...params,
         ...decoratorEnvProps,
         filePath: templatePath,
-    }).catch((e) => {
-        if (retries <= 0) {
-            console.error(`Failed to fetch decorator - ${e}`);
-            return null;
-        }
-
-        console.log(
-            `Injecting decorator with params: ${JSON.stringify(params)}`
-        );
-
-        // Use prod-decorator on localhost if the local decorator wasn't responding
-        // Probably means the docker-compose network isn't running
-        if (DECORATOR_ENV === 'localhost') {
-            console.log(
-                'Local decorator did not respond, using prod decorator'
-            );
-            return injectDecoratorServerSide({
-                ...params,
-                env: 'prod',
-                filePath: templatePath,
-            });
-        }
-
-        return _injectWithDecorator(params, templatePath, retries - 1);
     });
 
 export const injectWithDecorator = async (
