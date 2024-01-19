@@ -9,6 +9,5 @@ export const fodselsNrHandler: RequestHandler = (req, res) => {
         return res.status(401).send();
     }
 
-    // @ts-ignore
-    return res.send({ fodselsnr: decodeJWT(token).pid });
+    return res.send({ fodselsnr: decodeJWT<{ pid: string }> });
 };
