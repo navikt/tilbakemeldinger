@@ -8,9 +8,6 @@ import {
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { getBreadcrumbsFromPathname } from '../../../../common/breadcrumbs';
 import { Locale, defaultLocale, isLocale } from '../../../../common/locale';
-import nb from '../../../../common/language/nb';
-import nn from '../../../../common/language/nn';
-import en from '../../../../common/language/en';
 
 const templatePath =
     process.env.NODE_ENV === 'development'
@@ -29,16 +26,6 @@ export const buildHtmlTemplate = async () => {
     }
 
     return templateWithDecorator;
-};
-
-type LanguageMap = {
-    [key in Locale]: typeof nb | typeof nn | typeof en;
-};
-
-const languageMap: LanguageMap = {
-    nb: nb,
-    nn: nn,
-    en: en,
 };
 
 const getDecoratorParams = (locale: Locale, url: string): DecoratorParams => ({
