@@ -32,6 +32,9 @@ export default defineConfig(({ mode }) => {
                 'react-router',
                 'react-router-dom',
                 'react-intl',
+                'react-helmet-async',
+                'react-hook-form',
+                // 'downshift', //TODO comment for now, leads to 'ERR_REQUIRE_ESM'
             ],
         },
         base: process.env.CDN_BASE || process.env.VITE_APP_BASEPATH,
