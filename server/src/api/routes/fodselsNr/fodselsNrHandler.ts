@@ -8,6 +8,6 @@ export const fodselsNrHandler: RequestHandler = (req, res) => {
     if (!token) {
         return res.status(401).send();
     }
-    return res.send({ fodselsnr: decodeJWT(token).pid });
+
     return res.send({ fodselsnr: decodeJWT<{ pid: string }>(token).pid });
 };
