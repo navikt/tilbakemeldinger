@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStore } from 'providers/Provider';
 import { postServiceKlage } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
@@ -90,6 +90,7 @@ const ServiceKlage = () => {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState<ErrorResponse>();
     const [loginClosed, setLoginClosed] = useState(false);
+    const [isClient, setIsClient] = useState(false);
 
     const { formatMessage } = useIntl();
 
@@ -179,6 +180,10 @@ const ServiceKlage = () => {
             });
     };
 
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
     return (
         <div className={appStyle.pageContent}>
             <MetaTags
@@ -191,10 +196,12 @@ const ServiceKlage = () => {
                     id: 'tilbakemeldinger.serviceklage.sidetittel',
                 })}
             />
-            <LoginModal
-                open={auth.loaded && !auth.authenticated && !loginClosed}
-                closeFunc={closeModal}
-            />
+            {isClient && (
+                <LoginModal
+                    open={auth.loaded && !auth.authenticated && !loginClosed}
+                    closeFunc={closeModal}
+                />
+            )}
             <GuidePanel poster>
                 <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
             </GuidePanel>
