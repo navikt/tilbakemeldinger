@@ -59,7 +59,9 @@
     font-weight: normal;
 }
 .selectEnhet__label {
-    margin: 0.75rem 0;
+    margin-bottom: var(
+        --a-spacing-2
+    ) !important; //Fjernes uansett "snart" når Combobox er ute av beta
 }
 @media all and (max-width: 420px) {
     .selectEnhet__label span {
@@ -71,9 +73,8 @@
     margin: 0 1rem;
 }
 .selectEnhet__navkontor {
-    max-width: 380px;
-    display: grid;
-    gap: var(--a-spacing-2);
+    max-width: 500px;
+    position: relative;
 }
 .selectEnhet__feilmelding {
     padding-top: var(--a-spacing-2);
