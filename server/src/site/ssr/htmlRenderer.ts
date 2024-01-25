@@ -4,6 +4,7 @@ import { ViteDevServer } from 'vite';
 import { render } from '../../_ssr-dist/main-server';
 import { Locale, defaultLocale, translate } from '../../../../common/locale';
 import { getLastSegmentFromUrl, checkIfPage } from '../../utils/utils';
+import { HelmetServerState } from 'react-helmet-async';
 
 export type HtmlRenderer = (url: string) => Promise<string>;
 
@@ -18,23 +19,18 @@ function getLocaleFromUrl(url: string) {
 const processTemplate = async (
     templateHtml: string,
     appHtml: string,
-    url: string
+    url: string,
+    helmet?: HelmetServerState //TODO type
 ) => {
-    const locale = getLocaleFromUrl(url) as Locale;
-    const lastURLSegment = getLastSegmentFromUrl(url);
-    const isAPage = checkIfPage(url);
+    const title = helmet?.title.toString();
+    const description = helmet?.meta.toString();
 
-    const title = isAPage
-        ? translate(locale, `tilbakemeldinger.${lastURLSegment}.sidetittel`)
-        : '';
-    const description = isAPage
-        ? translate(locale, `seo.${lastURLSegment}.description`)
-        : '';
+    console.log('helmet', helmet?.meta.toString());
 
     return templateHtml
         .replace('<!--ssr-app-html-->', appHtml)
         .replace('%%TITLE%%', `${title} - www.nav.no`)
-        .replace('%%DESCRIPTION%%', description)
+        .replace('%%DESCRIPTION%%', description ? description : 'nodescription')
         .replace('CANONICAL_TO_BE_REPLACED', `https://www.nav.no${url}`);
 };
 
@@ -42,8 +38,8 @@ export const prodRender: HtmlRenderer = async (url) => {
     const template = await getTemplateWithDecorator(url);
 
     try {
-        const appHtml = render(url);
-        return processTemplate(template, appHtml, url);
+        const { html, helmet } = render(url);
+        return processTemplate(template, html, url, helmet); //TODO fjern url?
     } catch (e) {
         console.error(`Rendering failed ${e}}`);
         return processTemplate(template, '', url);
