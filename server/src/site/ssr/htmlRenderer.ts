@@ -8,45 +8,22 @@ import { HelmetServerState } from 'react-helmet-async';
 
 export type HtmlRenderer = (url: string) => Promise<string>;
 
-function getLocaleFromUrl(url: string) {
-    const regex = /\/kontakt-oss\/([a-z]{2})\//;
-    const match = url.match(regex);
-
-    if (match && match[1]) return match[1];
-    return defaultLocale;
-}
-
 const processTemplate = async (
     templateHtml: string,
     appHtml: string,
-    url: string,
-    helmet?: HelmetServerState //TODO type
+    helmet?: HelmetServerState
 ) => {
-    const title = helmet?.title.toString();
-    const description = helmet?.meta.toString();
-
-    // const descriptionMetaTag = helmet?.meta.find(
-    //     (meta) => meta.name === 'description'
-    // );
-    // const description = descriptionMetaTag
-    //     ? descriptionMetaTag.content
-    //     : 'nodescription';
-
-    const canonical = helmet?.link.toString();
-
     return templateHtml
         .replace('<!--ssr-app-html-->', appHtml)
-        .replace('<title>%%TITLE%%</title>', title ? title : 'notitle')
+        .replace('<title>%%TITLE%%</title>', helmet?.title.toString() ?? '')
         .replace(
             '<template>%%DESCRIPTION%%</template>',
-            description ? description : 'nodescription'
+            helmet?.meta.toString() ?? ''
+        )
+        .replace(
+            '<template>%%CANONICAL%%</template>',
+            helmet?.link.toString() ?? ''
         );
-    // .replace(
-    //     'CANONICAL_TO_BE_REPLACED',
-    //     canonical ? canonical : 'nocanonical'
-    // );
-
-    // .replace('CANONICAL_TO_BE_REPLACED', `https://www.nav.no${url}`);
 };
 
 export const prodRender: HtmlRenderer = async (url) => {
@@ -54,10 +31,10 @@ export const prodRender: HtmlRenderer = async (url) => {
 
     try {
         const { html, helmet } = render(url);
-        return processTemplate(template, html, url, helmet); //TODO fjern url?
+        return processTemplate(template, html, helmet);
     } catch (e) {
         console.error(`Rendering failed ${e}}`);
-        return processTemplate(template, '', url);
+        return processTemplate(template, '');
     }
 };
 
@@ -80,10 +57,10 @@ export const devRender =
         try {
             const { render } = await vite.ssrLoadModule('/src/main-server.tsx');
             const { appHtml, helmet } = render(url);
-            return processTemplate(html, appHtml, url, helmet);
+            return processTemplate(html, appHtml, helmet);
         } catch (e: any) {
             vite.ssrFixStacktrace(e);
             console.error(`Dev render error: ${e} \n ${e.stack}`);
-            return processTemplate(html, devErrorHtml(e), url);
+            return processTemplate(html, devErrorHtml(e));
         }
     };
