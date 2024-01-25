@@ -32,6 +32,7 @@ export default defineConfig(({ mode }) => {
                 'react-router',
                 'react-router-dom',
                 'react-intl',
+                'react-helmet-async',
                 'react-hook-form',
             ],
         },
