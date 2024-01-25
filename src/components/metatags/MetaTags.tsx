@@ -5,6 +5,7 @@ import { useStore } from 'providers/Provider';
 import Environment from 'src/Environments';
 import { logPageview } from 'utils/amplitude';
 import { Helmet } from 'react-helmet-async';
+import { paths } from 'common/paths';
 
 type Props = {
     path: string;
@@ -35,7 +36,10 @@ export const MetaTags = ({ path, titleId, descriptionId, children }: Props) => {
             {(path || path === '') && (
                 <link
                     rel="canonical"
-                    href={`${baseUrl}${localePath(path, locale)}`}
+                    href={`${baseUrl}${paths.kontaktOss.forside}${localePath(
+                        path,
+                        locale
+                    )}`}
                 />
             )}
             {children}
