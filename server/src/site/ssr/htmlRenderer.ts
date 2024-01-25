@@ -34,20 +34,17 @@ const processTemplate = async (
 
     const canonical = helmet?.link.toString();
 
-    return (
-        templateHtml
-            .replace('<!--ssr-app-html-->', appHtml)
-            .replace('<title>%%TITLE%%</title>', title ? title : 'notitle')
-            // .replace('<title>%%TITLE%%</title>', `${title} - www.nav.no`)
-            .replace(
-                '%%DESCRIPTION%%',
-                description ? description : 'nodescription'
-            )
-            .replace(
-                'CANONICAL_TO_BE_REPLACED',
-                canonical ? canonical : 'nocanonical'
-            )
-    );
+    return templateHtml
+        .replace('<!--ssr-app-html-->', appHtml)
+        .replace('<title>%%TITLE%%</title>', title ? title : 'notitle')
+        .replace(
+            '<template>%%DESCRIPTION%%</template>',
+            description ? description : 'nodescription'
+        );
+    // .replace(
+    //     'CANONICAL_TO_BE_REPLACED',
+    //     canonical ? canonical : 'nocanonical'
+    // );
 
     // .replace('CANONICAL_TO_BE_REPLACED', `https://www.nav.no${url}`);
 };
