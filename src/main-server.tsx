@@ -9,7 +9,7 @@ type HelmetContext = {
 };
 
 export const render = (url: string) => {
-    const helmetContext: HelmetContext = {}; // Use your custom type here
+    const helmetContext: HelmetContext = {};
 
     const html = renderToString(
         <HelmetProvider context={helmetContext}>
@@ -22,7 +22,6 @@ export const render = (url: string) => {
         </HelmetProvider>
     );
 
-    // After rendering, helmetContext will contain the Helmet state
     const { helmet } = helmetContext;
 
     return { html, helmet };
