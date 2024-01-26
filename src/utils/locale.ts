@@ -19,20 +19,14 @@ export const setNewLocale = (
     dispatch({ type: 'SETT_LOCALE', payload: locale });
 };
 
-export const getLocaleFromUrl = () => {
-    if (typeof window === 'undefined') {
-        return defaultLocale;
-    }
-
-    const locale = window.location.pathname
-        .split(paths.kontaktOss.forside)[1]
-        .split('/')[1];
+export const getLocaleFromUrl = (url: string) => {
+    const locale = url.split(paths.kontaktOss.forside)[1].split('/')[1];
 
     return isLocale(locale) ? locale : defaultLocale;
 };
 
 export const setLocaleFromUrl = (dispatch: (action: Action) => void) => {
-    const localeFromUrl = getLocaleFromUrl();
+    const localeFromUrl = getLocaleFromUrl(window.location.pathname);
 
     dispatch({ type: 'SETT_LOCALE', payload: localeFromUrl });
 };

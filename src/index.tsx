@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { StoreProvider, useStore } from 'providers/Provider';
 import { initialState, reducer } from 'providers/Store';
-import { setLocaleFromUrl } from 'utils/locale';
+import { getLocaleFromUrl, setLocaleFromUrl } from 'utils/locale';
 import { App } from './App';
 
 import msgsNb from '../common/language/nb';
@@ -26,8 +26,13 @@ export const AppRoot = ({ url }: Props) => {
         }
     }, []);
 
+    const locale = url
+        ? getLocaleFromUrl(url)
+        : getLocaleFromUrl(window.location.pathname);
+    const initialStateWithLocale = { ...initialState, locale };
+
     return (
-        <StoreProvider initialState={initialState} reducer={reducer}>
+        <StoreProvider initialState={initialStateWithLocale} reducer={reducer}>
             <RenderApp url={url} />
         </StoreProvider>
     );

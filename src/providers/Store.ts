@@ -2,12 +2,11 @@ import { AuthInfo } from 'types/authInfo';
 import { KontaktInfo } from 'types/kontaktInfo';
 import { Enhet, FetchEnheter } from 'types/enheter';
 import { HTTPError } from 'types/errors';
-import { defaultLocale, Locale } from 'common/locale';
-import { getLocaleFromUrl } from 'utils/locale';
+import { Locale } from 'common/locale';
 
 export const initialState = {
     fodselsnr: '',
-    locale: getLocaleFromUrl() || defaultLocale,
+    // locale: window ? getLocaleFromUrl(window.location.pathname) : defaultLocale,
     enheter: { status: 'LOADING' } as FetchEnheter,
     auth: { authenticated: false, loaded: false } as AuthInfo,
     kontaktInfo: { mobiltelefonnummer: '' },
