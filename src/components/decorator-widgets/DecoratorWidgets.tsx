@@ -24,7 +24,7 @@ export const DecoratorWidgets = () => {
         });
 
         onBreadcrumbClick((breadcrumb) => {
-            navigate(breadcrumb.url);
+            navigate(breadcrumb.url.replace(paths.kontaktOss.forside, ''));
         });
     }, []);
 

@@ -24,7 +24,7 @@ export const getBreadcrumbsFromPathname = (url: string, locale: Locale) => {
         .map((pathSegment, index, pathSegmentArray) => {
             const subPath = pathSegmentArray.slice(0, index + 1).join('/');
             return {
-                url: `/${locale}/${subPath}`,
+                url: `${paths.kontaktOss.forside}/${locale}/${subPath}`,
                 title: translate(locale, `breadcrumb.${pathSegment}`),
                 handleInApp: true,
             };
