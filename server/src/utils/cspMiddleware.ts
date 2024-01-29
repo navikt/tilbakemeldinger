@@ -2,7 +2,7 @@ import { RequestHandler } from 'express';
 import Cache from 'node-cache';
 import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { decoratorEnvProps } from './decorator';
-import { CSPDirectives, SELF } from 'csp-header';
+import { CSPDirectives, DATA, SELF } from 'csp-header';
 
 /*
  * This middleware sets a CSP-header compatible with nav-dekoratoren
@@ -16,7 +16,7 @@ const myDirectives: Partial<CSPDirectives> = {
     'script-src-elem': [SELF],
     'style-src': [SELF],
     'style-src-elem': [SELF],
-    'img-src': [SELF],
+    'img-src': [SELF, DATA],
     'connect-src': [
         SELF,
         ...(process.env.NODE_ENV === 'development'
