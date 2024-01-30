@@ -1,9 +1,11 @@
-import { paths, urls } from '../../Config';
+import { urls } from 'src/Config';
+import { paths } from 'common/paths';
 import heartIcon from 'assets/icons/line/line-version-logo-heart.svg';
 import paperIcon from 'assets/icons/line/line-version-logo-paper.svg';
 import complaintIcon from 'assets/icons/line/line-version-logo-complaint.svg';
 import wrenchIcon from 'assets/icons/line/line-version-logo-wrench.svg';
-import { Locale, localePath } from '../../utils/locale';
+import { localePath } from 'utils/locale';
+import { Locale } from 'common/locale';
 
 export interface Lenke {
     tittel: string;
@@ -29,13 +31,13 @@ export const lenker = (locale: Locale): Lenke[] => [
     },
     {
         icon: wrenchIcon,
-        tittel: 'tilbakemeldinger.feilogmangler.tittel',
+        tittel: 'tilbakemeldinger.feil-og-mangler.sidetittel',
         beskrivelse: 'tilbakemeldinger.feilogmangler.beskrivelse',
         lenke: localePath(paths.tilbakemeldinger.feilogmangler, locale),
     },
     {
         icon: heartIcon,
-        tittel: 'tilbakemeldinger.ros.tittel',
+        tittel: 'tilbakemeldinger.ros-til-nav.sidetittel',
         beskrivelse: 'tilbakemeldinger.ros.beskrivelse',
         lenke: localePath(paths.tilbakemeldinger.rostilnav, locale),
     },

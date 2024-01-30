@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import SelectEnhet from '../../../components/input-fields/SelectEnhet';
+import SelectEnhet from 'components/input-fields/SelectEnhet';
 import { Controller, useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
 import { TextField } from '@navikt/ds-react';
-import { isLength, isNumeric } from '../../../utils/validators';
-import appStyle from 'App.module.scss';
+import { isLength, isNumeric } from 'utils/validators';
+import appStyle from 'src/App.module.scss';
 
 const ServiceKlageForBedrift = () => {
     const {

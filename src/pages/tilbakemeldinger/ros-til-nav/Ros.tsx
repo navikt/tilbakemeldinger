@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { postRosTilNav } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import Header from 'components/header/Header';
-import { paths, vars } from 'Config';
+import { vars } from 'src/Config';
+import { paths } from 'common/paths';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Takk from 'components/takk/Takk';
 import { triggerHotjar } from 'utils/hotjar';
 import SelectEnhet from 'components/input-fields/SelectEnhet';
-import { MetaTags } from '../../../components/metatags/MetaTags';
+import { MetaTags } from 'components/metatags/MetaTags';
 import {
     Alert,
     Box,
@@ -19,8 +20,8 @@ import {
 } from '@navikt/ds-react';
 import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
-import { resolveErrorCode } from '../../../utils/errorCodes';
-import appStyle from 'App.module.scss';
+import { resolveErrorCode } from 'utils/errorCodes';
+import appStyle from 'src/App.module.scss';
 
 type HVEM_ROSES = 'NAV_KONTAKTSENTER' | 'NAV_DIGITALE_TJENESTER' | 'NAV_KONTOR';
 
@@ -53,9 +54,9 @@ const Ros = () => {
         reValidateMode: 'onChange',
     });
 
-    const [loading, settLoading] = useState(false);
-    const [success, settSuccess] = useState(false);
-    const [error, settError] = useState<ErrorResponse>();
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState<ErrorResponse>();
     const { formatMessage } = useIntl();
 
     const send = (values: FieldValues) => {
@@ -69,25 +70,25 @@ const Ros = () => {
             }),
         } as OutboundRosTilNav;
 
-        settLoading(true);
+        setLoading(true);
         postRosTilNav(outbound)
             .then(() => {
-                settSuccess(true);
+                setSuccess(true);
                 triggerHotjar('rosnav');
             })
             .catch((error: ErrorResponse) => {
-                settError(error);
+                setError(error);
             })
             .then(() => {
-                settLoading(false);
+                setLoading(false);
             });
     };
 
     return (
         <div className={appStyle.pageContent}>
             <MetaTags
-                titleId={'tilbakemeldinger.ros.tittel'}
-                descriptionId={'seo.rostilnav.description'}
+                titleId={'tilbakemeldinger.ros-til-nav.sidetittel'}
+                descriptionId={'seo.ros-til-nav.description'}
                 path={paths.tilbakemeldinger.rostilnav}
             />
             <Header

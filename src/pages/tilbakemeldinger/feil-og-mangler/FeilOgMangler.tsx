@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { postFeilOgMangler } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import Header from 'components/header/Header';
-import { paths, vars } from 'Config';
+import { vars } from 'src/Config';
+import { paths } from 'common/paths';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Takk from 'components/takk/Takk';
 import FeilgOgManglerOnskerAaKontaktes from './FeilOgManglerOnskerAaKontaktes';
-import { triggerHotjar } from '../../../utils/hotjar';
-import { MetaTags } from '../../../components/metatags/MetaTags';
+import { triggerHotjar } from 'utils/hotjar';
+import { MetaTags } from 'components/metatags/MetaTags';
 import {
     Alert,
     Box,
@@ -25,7 +26,7 @@ import {
     useForm,
 } from 'react-hook-form';
 import { resolveErrorCode } from '../../../utils/errorCodes';
-import appStyle from 'App.module.scss';
+import appStyle from 'src/App.module.scss';
 
 type FEILTYPE = 'TEKNISK_FEIL' | 'FEIL_INFO' | 'UNIVERSELL_UTFORMING';
 
@@ -56,9 +57,9 @@ const FOM = () => {
         formState: { errors, isValid, isSubmitted },
     } = methods;
 
-    const [loading, settLoading] = useState(false);
-    const [success, settSuccess] = useState(false);
-    const [error, settError] = useState<ErrorResponse>();
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState<ErrorResponse>();
     const { formatMessage } = useIntl();
 
     const send = (values: FieldValues) => {
@@ -73,25 +74,25 @@ const FOM = () => {
             melding,
         };
 
-        settLoading(true);
+        setLoading(true);
         postFeilOgMangler(outbound)
             .then(() => {
-                settSuccess(true);
+                setSuccess(true);
                 triggerHotjar('feilogmangler');
             })
             .catch((error: ErrorResponse) => {
-                settError(error);
+                setError(error);
             })
             .then(() => {
-                settLoading(false);
+                setLoading(false);
             });
     };
 
     return (
         <div className={appStyle.pageContent}>
             <MetaTags
-                titleId={'tilbakemeldinger.feilogmangler.tittel'}
-                descriptionId={'seo.feilogmangler.description'}
+                titleId={'tilbakemeldinger.feil-og-mangler.sidetittel'}
+                descriptionId={'seo.feil-og-mangler.description'}
                 path={paths.tilbakemeldinger.feilogmangler}
             />
             <Header

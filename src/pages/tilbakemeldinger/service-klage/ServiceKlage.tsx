@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStore } from 'providers/Provider';
 import { postServiceKlage } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
@@ -9,7 +9,8 @@ import {
     OutboundServiceKlageExtend,
 } from 'types/serviceklage';
 import Header from 'components/header/Header';
-import { paths, vars } from 'Config';
+import { vars } from 'src/Config';
+import { paths } from 'common/paths';
 import { FormattedMessage, useIntl } from 'react-intl';
 import ServiceKlagePrivatperson from './ServiceKlagePrivatperson';
 import ServiceKlageForAnnenPerson from './ServiceKlageAnnenPerson';
@@ -19,7 +20,7 @@ import Takk from 'components/takk/Takk';
 import { triggerHotjar } from 'utils/hotjar';
 import ServiceKlageOnskerAaKontaktes from './ServiceKlageOnskerAaKontaktes';
 import ServiceKlageTypeUtdypning from './ServiceKlageTypeUtdypning';
-import { MetaTags } from '../../../components/metatags/MetaTags';
+import { MetaTags } from 'components/metatags/MetaTags';
 import LoginModal from './login-modal/LoginModal';
 import {
     Alert,
@@ -39,8 +40,8 @@ import {
     useForm,
 } from 'react-hook-form';
 import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
-import { resolveErrorCode } from '../../../utils/errorCodes';
-import appStyle from 'App.module.scss';
+import { resolveErrorCode } from 'utils/errorCodes';
+import appStyle from 'src/App.module.scss';
 
 export interface ServiceklageFormFields {
     klagetekst: string;
@@ -85,10 +86,11 @@ const ServiceKlage = () => {
     } = methods;
 
     const [{ auth, fodselsnr }] = useStore();
-    const [loading, settLoading] = useState(false);
-    const [success, settSuccess] = useState(false);
-    const [error, settError] = useState<ErrorResponse>();
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState<ErrorResponse>();
     const [loginClosed, setLoginClosed] = useState(false);
+    const [isClient, setIsClient] = useState(false);
 
     const { formatMessage } = useIntl();
 
@@ -164,36 +166,42 @@ const ServiceKlage = () => {
             ...outboundExtend[values.paaVegneAv as ON_BEHALF_OF],
         };
 
-        settLoading(true);
+        setLoading(true);
         postServiceKlage(outbound)
             .then(() => {
-                settSuccess(true);
+                setSuccess(true);
                 triggerHotjar('serviceklage');
             })
             .catch((error: ErrorResponse) => {
-                settError(error);
+                setError(error);
             })
             .then(() => {
-                settLoading(false);
+                setLoading(false);
             });
     };
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     return (
         <div className={appStyle.pageContent}>
             <MetaTags
-                titleId={'tilbakemeldinger.serviceklage.form.tittel'}
-                descriptionId={'seo.klagepaservice.description'}
+                titleId={'tilbakemeldinger.serviceklage.sidetittel'}
+                descriptionId={'seo.serviceklage.description'}
                 path={paths.tilbakemeldinger.serviceklage.form}
             />
             <Header
                 title={formatMessage({
-                    id: 'tilbakemeldinger.serviceklage.form.tittel',
+                    id: 'tilbakemeldinger.serviceklage.sidetittel',
                 })}
             />
-            <LoginModal
-                open={auth.loaded && !auth.authenticated && !loginClosed}
-                closeFunc={closeModal}
-            />
+            {isClient && (
+                <LoginModal
+                    open={auth.loaded && !auth.authenticated && !loginClosed}
+                    closeFunc={closeModal}
+                />
+            )}
             <GuidePanel poster>
                 <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
             </GuidePanel>

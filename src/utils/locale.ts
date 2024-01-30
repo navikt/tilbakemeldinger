@@ -1,21 +1,13 @@
-import { paths } from '../Config';
-import { Action } from '../providers/Store';
+import { paths } from 'common/paths';
+import { Action } from 'providers/Store';
+import { Locale, defaultLocale, isLocale } from 'common/locale';
 
-export type Locale = 'nb' | 'en' | 'nn';
-export const validLocales: Locale[] = ['nb', 'en', 'nn']; // :(
-export const defaultLocale = 'nb' as Locale;
-
-export const localePath = (path: string, locale: Locale) =>
-    `${paths.kontaktOss.forside}/${locale}${path}`;
-
-const isLocale = (str: string): str is Locale =>
-    validLocales.includes(str as Locale);
+export const localePath = (path: string, locale: Locale) => `/${locale}${path}`;
 
 export const setNewLocale = (
     locale: Locale,
     dispatch: (action: Action) => void
 ) => {
-    // TODO: bruk regex?
     const subSegments = window.location.pathname
         .split(paths.kontaktOss.forside)[1]
         .split('/')
@@ -27,16 +19,14 @@ export const setNewLocale = (
     dispatch({ type: 'SETT_LOCALE', payload: locale });
 };
 
-export const getLocaleFromUrl = () => {
-    const locale = window.location.pathname
-        .split(paths.kontaktOss.forside)[1]
-        .split('/')[1];
+export const getLocaleFromUrl = (url: string) => {
+    const locale = url.split(paths.kontaktOss.forside)[1].split('/')[1];
 
     return isLocale(locale) ? locale : defaultLocale;
 };
 
 export const setLocaleFromUrl = (dispatch: (action: Action) => void) => {
-    const localeFromUrl = getLocaleFromUrl();
+    const localeFromUrl = getLocaleFromUrl(window.location.pathname);
 
     dispatch({ type: 'SETT_LOCALE', payload: localeFromUrl });
 };
