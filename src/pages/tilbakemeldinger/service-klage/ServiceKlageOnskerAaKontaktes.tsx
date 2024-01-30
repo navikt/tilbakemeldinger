@@ -5,7 +5,7 @@ import ServiceKlageKontaktBedrift from './ServiceKlageKontaktBedrift';
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
-import { isBoolean } from '../../../utils/validators';
+import { isBoolean } from 'utils/validators';
 
 interface Props {
     innmelderNavn: string | false;

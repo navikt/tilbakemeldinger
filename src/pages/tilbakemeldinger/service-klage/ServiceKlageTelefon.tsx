@@ -4,8 +4,8 @@ import { useStore } from 'providers/Provider';
 import { useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
 import { TextField } from '@navikt/ds-react';
-import { isValidTelefonnummer } from '../../../utils/validators';
-import appStyle from 'App.module.scss';
+import { isValidTelefonnummer } from 'utils/validators';
+import appStyle from 'src/App.module.scss';
 
 const ServiceKlageTelefon = () => {
     const {

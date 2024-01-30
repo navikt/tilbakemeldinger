@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
 import { TextField } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
-import appStyle from 'App.module.scss';
+import appStyle from 'src/App.module.scss';
 
 const ServiceKlageTypeUtdypning = () => {
     const {

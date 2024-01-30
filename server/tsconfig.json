@@ -1,5 +1,4 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "jsx": "react",
     "allowJs": true,
@@ -9,17 +8,16 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "lib": [
-      "es2021",
-      "dom"
+      "dom",
+      "es2021"
     ],
     "moduleResolution": "node",
-    "module": "NodeNext",
-    "outDir": "./dist",
+    "module": "commonjs",
+    "outDir": "dist/server",
     "strict": true,
-    "target": "ES2021",
-    "resolveJsonModule": true
+    "target": "ES2021"
   },
   "include": [
-    "**/*.ts"
+    "src/**/*.ts"
   ]
 }

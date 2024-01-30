@@ -1,16 +1,14 @@
-import './polyfills';
 import React, { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
-import { createRoot } from 'react-dom/client';
-import { StoreProvider, useStore } from './providers/Provider';
-import { initialState, reducer } from './providers/Store';
-import { setLocaleFromUrl } from './utils/locale';
-import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
-import App from './App';
+import { StoreProvider, useStore } from 'providers/Provider';
+import { initialState, reducer } from 'providers/Store';
+import { getLocaleFromUrl, setLocaleFromUrl } from 'utils/locale';
+import { defaultLocale } from 'common/locale';
+import { App } from './App';
 
-import msgsNb from './language/nb';
-import msgsEn from './language/en';
-import msgsNn from './language/nn';
+import msgsNb from '../common/language/nb';
+import msgsEn from '../common/language/en';
+import msgsNn from '../common/language/nn';
 
 const messages = {
     nb: msgsNb,
@@ -18,32 +16,34 @@ const messages = {
     nn: msgsNn,
 };
 
-const init = async () => {
-    if (process.env.NODE_ENV === 'development') {
-        await import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
-        injectDecoratorClientSide({
-            env: 'localhost',
-            localUrl: 'http://localhost:8100/dekoratoren',
-            params: {
-                simple: false,
-                chatbot: false,
-                logoutWarning: true,
-            },
-        });
-    }
+type Props = {
+    url?: string;
+};
 
-    const container = document.getElementById('maincontent') as HTMLElement;
-    if (!container) {
-        return;
-    }
-    createRoot(container).render(
-        <StoreProvider initialState={initialState} reducer={reducer}>
-            <RenderApp />
+export const AppRoot = ({ url }: Props) => {
+    useEffect(() => {
+        if (import.meta.env.VITE_ENV === 'localhost') {
+            import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
+        }
+    }, []);
+
+    const locale = url
+        ? getLocaleFromUrl(url)
+        : getLocaleFromUrl(window?.location?.pathname);
+
+    const initialStateWithLocale = {
+        ...initialState,
+        locale: locale || defaultLocale,
+    };
+
+    return (
+        <StoreProvider initialState={initialStateWithLocale} reducer={reducer}>
+            <RenderApp url={url} />
         </StoreProvider>
     );
 };
 
-const RenderApp = () => {
+const RenderApp = ({ url }: Props) => {
     const [{ locale }, dispatch] = useStore();
 
     useEffect(() => {
@@ -56,9 +56,7 @@ const RenderApp = () => {
 
     return (
         <IntlProvider locale={locale} messages={messages[locale]}>
-            <App />
+            <App url={url} />
         </IntlProvider>
     );
 };
-
-init();

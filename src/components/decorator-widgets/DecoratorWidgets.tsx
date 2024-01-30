@@ -1,38 +1,36 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useIntl } from 'react-intl';
 import { useStore } from 'providers/Provider';
-import { Locale, setNewLocale } from 'utils/locale';
-import { paths } from 'Config';
+import { setNewLocale } from 'utils/locale';
+import { Locale } from 'common/locale';
+import { paths } from 'common/paths';
 import {
     onBreadcrumbClick,
     onLanguageSelect,
     setAvailableLanguages,
     setBreadcrumbs,
 } from '@navikt/nav-dekoratoren-moduler';
-
-const basePathFilter = new RegExp(
-    `${paths.kontaktOss.forside}/(nb|nn|en)?`,
-    'i'
-);
+import { getBreadcrumbsFromPathname } from 'common/breadcrumbs';
 
 export const DecoratorWidgets = () => {
     const { pathname } = useLocation();
+    const pathnamePrefixed = `${paths.kontaktOss.forside}${pathname}`;
     const navigate = useNavigate();
     const [{ locale }, dispatch] = useStore();
-    const { formatMessage } = useIntl();
 
-    onLanguageSelect((breadcrumb) => {
-        setNewLocale(breadcrumb.locale as Locale, dispatch);
-    });
+    useEffect(() => {
+        onLanguageSelect((breadcrumb) => {
+            setNewLocale(breadcrumb.locale as Locale, dispatch);
+        });
 
-    onBreadcrumbClick((breadcrumb) => {
-        navigate(breadcrumb.url);
-    });
+        onBreadcrumbClick((breadcrumb) => {
+            navigate(breadcrumb.url.replace(paths.kontaktOss.forside, ''));
+        });
+    }, []);
 
     // Set languages in decorator
     useEffect(() => {
-        const subPath = pathname.replace(
+        const subPath = pathnamePrefixed.replace(
             `${paths.kontaktOss.forside}/${locale}`,
             ''
         );
@@ -54,34 +52,17 @@ export const DecoratorWidgets = () => {
                 handleInApp: true,
             },
         ]);
-    }, [pathname, locale]);
+    }, [pathnamePrefixed, locale]);
 
     // Set breadcrumbs in decorator
     useEffect(() => {
-        const basePath = `${paths.kontaktOss.forside}/${
-            locale === 'nn' ? 'nb' : locale
-        }`;
-        const baseBreadcrumb = {
-            url: basePath,
-            title: formatMessage({ id: 'breadcrumb.base' }),
-            handleInApp: false,
-        };
+        const breadcrumbs = getBreadcrumbsFromPathname(
+            pathnamePrefixed,
+            locale
+        );
 
-        const internalBreadcrumbs = pathname
-            .replace(basePathFilter, '')
-            .split('/')
-            .filter((pathSegment) => pathSegment !== '')
-            .map((pathSegment, index, pathSegmentArray) => {
-                const subPath = pathSegmentArray.slice(0, index + 1).join('/');
-                return {
-                    url: `${paths.kontaktOss.forside}/${locale}/${subPath}`,
-                    title: formatMessage({ id: `breadcrumb.${pathSegment}` }),
-                    handleInApp: true,
-                };
-            });
-
-        setBreadcrumbs([baseBreadcrumb, ...internalBreadcrumbs]);
-    }, [pathname, locale]);
+        setBreadcrumbs([...breadcrumbs]);
+    }, [pathnamePrefixed, locale]);
 
     return null;
 };
