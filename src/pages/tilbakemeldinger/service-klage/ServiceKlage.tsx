@@ -173,7 +173,6 @@ const ServiceKlage = () => {
                 triggerHotjar('serviceklage');
             })
             .catch((error: ErrorResponse) => {
-                console.log('Error! : ', error);
                 setError(error);
             })
             .then(() => {
