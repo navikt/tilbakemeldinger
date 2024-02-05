@@ -27,15 +27,15 @@ export const setupErrorHandlers = async (expressApp: Express) => {
     const serverErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
         const { path } = req;
         const { status, stack } = err;
-        const msg = stack?.split('\n')[0];
+        // const msg = stack?.split('\n')[0]; TODO reverser?
         const statusCode = status || 500;
 
         if (statusCode < 500) {
-            console.log(`Invalid request to ${path}: ${statusCode} ${msg}`);
+            console.log(`Invalid request to ${path}: ${statusCode} ${stack}`);
             return notFoundHandler(req, res, next);
         }
 
-        console.error(`Server error on ${path}: ${statusCode} ${msg}`);
+        console.error(`Server error on ${path}: ${statusCode} ${stack}`);
 
         return res.status(statusCode).end();
     };
