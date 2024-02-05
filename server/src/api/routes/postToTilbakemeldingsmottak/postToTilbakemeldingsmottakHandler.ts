@@ -35,6 +35,6 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
         res.status(response.status).send(responseData);
     } catch (error) {
         console.error(`Error in postToTilbakemeldingsmottakHandler: ${error}`);
-        res.status(500).send('Internal server error TEST');
+        res.status(500).send('Internal server error');
     }
 };
