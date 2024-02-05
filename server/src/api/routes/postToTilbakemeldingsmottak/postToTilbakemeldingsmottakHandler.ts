@@ -12,24 +12,29 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
         return res.status(500).send('Failed to populate auth header');
     }
 
-    const response = await fetch(`${process.env.API_URL}/rest/${path}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}`,
-        },
-        body: JSON.stringify(req.body),
-    });
+    try {
+        const response = await fetch(`${process.env.API_URL}/rest/${path}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify(req.body),
+        });
 
-    if (!response.ok) {
-        const error = await response.json();
-        const errorString = await response.text();
-        console.log(
-            `Feil i kall til tilbakemeldingsmottak-api: ${errorString}`
-        );
-        return res.status(response.status).send(error);
+        if (!response.ok) {
+            const error = await response.json();
+            const errorString = await response.text();
+            console.log(
+                `Feil i kall til tilbakemeldingsmottak-api: ${errorString}`
+            );
+            return res.status(response.status).send(error);
+        }
+
+        const responseData = await response.json();
+        res.status(response.status).send(responseData);
+    } catch (error) {
+        console.error(`Error in postToTilbakemeldingsmottakHandler: ${error}`);
+        res.status(500).send('Internal server error TEST');
     }
-
-    const responseData = await response.json();
-    res.status(response.status).send(responseData);
 };
