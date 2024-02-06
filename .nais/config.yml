@@ -6,8 +6,6 @@ metadata:
   namespace: personbruker
   labels:
     team: personbruker
-  annotations:
-    nginx.ingress.kubernetes.io/limit-rpm: 3
 spec:
   image: {{image}}
   port: 9001
