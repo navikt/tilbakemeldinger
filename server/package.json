@@ -12,6 +12,7 @@
         "csp-header": "5.2.1",
         "dotenv": "16.3.1",
         "express": "4.18.2",
+        "express-rate-limit": "7.1.5",
         "http-proxy-middleware": "2.0.6",
         "lru-cache": "10.0.1",
         "jwt-decode": "3.1.2",
