@@ -19,7 +19,7 @@ app.use('*', compression());
 app.use('*', express.json());
 
 app.use(
-    '/mottak/*',
+    '/tilbakemeldinger/api/mottak/*',
     rateLimit({
         windowMs: 60 * 1000, // 1 minutes
         max: 3,
