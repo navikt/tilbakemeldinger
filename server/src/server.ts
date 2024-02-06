@@ -1,12 +1,8 @@
-import dotenv from 'dotenv';
 import express from 'express';
 import compression from 'compression';
 import { setupSiteRoutes } from './site/setupSiteRoutes.js';
 import { setupApiRoutes } from './api/setupApiRoutes';
 import { setupErrorHandlers } from './utils/errorHandlers';
-import { rateLimit } from 'express-rate-limit';
-
-dotenv.config({ path: '../.env' });
 
 const { APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV } = process.env;
 
@@ -17,15 +13,6 @@ const isLocal = ENV === 'localhost';
 const app = express();
 app.use('*', compression());
 app.use('*', express.json());
-
-app.use(
-    '/tilbakemeldinger/api/mottak/*',
-    rateLimit({
-        windowMs: 60 * 1000, // 1 minutes
-        max: 3,
-        standardHeaders: true,
-    })
-);
 
 const siteRouter = express.Router();
 const apiRouter = express.Router();
