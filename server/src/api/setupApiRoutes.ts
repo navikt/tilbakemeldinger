@@ -22,7 +22,8 @@ export const setupApiRoutes = async (router: Router) => {
 
 const ipRateLimit = rateLimit({
     windowMs: 30 * 60 * 1000, // 30 minutes
-    max: 5,
+    //max: 5,
+    max: 7,
     standardHeaders: true,
     message: 'Rate limit IP',
 });
