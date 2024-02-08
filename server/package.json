@@ -17,12 +17,14 @@
         "lru-cache": "10.0.1",
         "jwt-decode": "3.1.2",
         "node-cache": "5.1.2",
-        "openid-client": "5.4.3"
+        "openid-client": "5.4.3",
+        "request-ip": "3.3.0"
     },
     "devDependencies": {
         "@types/compression": "1.7.4",
         "@types/express": "4.17.20",
         "@types/node": "20.8.10",
+        "@types/request-ip": "0.0.41",
         "concurrently": "8.2.2",
         "nodemon": "3.0.1",
         "vite": "5.0.12"

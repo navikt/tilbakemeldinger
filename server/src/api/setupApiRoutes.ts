@@ -6,6 +6,7 @@ import { postToTilbakemeldingsmottakHandler } from './routes/postToTilbakemeldin
 import { enheterHandler } from './routes/enheter/enheterHandler';
 import { rateLimit } from 'express-rate-limit';
 import { getAccessToken } from '../utils/auth/common';
+import requestIp from 'request-ip';
 
 export const setupApiRoutes = async (router: Router) => {
     router.get('/internal/isAlive', isAliveHandler);
@@ -13,6 +14,7 @@ export const setupApiRoutes = async (router: Router) => {
     router.get('/fodselsnr', fodselsNrHandler);
     router.post(
         '/mottak/:path(ros|serviceklage|feil-og-mangler)',
+        requestIp.mw(),
         globalRateLimit,
         ipRateLimit,
         postToTilbakemeldingsmottakHandler
@@ -35,5 +37,9 @@ const ipRateLimit = rateLimit({
     windowMs: 30 * 60 * 1000, // 30 minutes
     max: 5,
     standardHeaders: true,
+    keyGenerator: (req) => {
+        console.log(`IP: ${req.clientIp}`);
+        return req.clientIp || 'default'; // IP address from requestIp.mw(), as opposed to req.ip
+    },
     message: 'Rate limit IP',
 });
