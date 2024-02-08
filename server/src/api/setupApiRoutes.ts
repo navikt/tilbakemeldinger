@@ -36,13 +36,12 @@ const ipRateLimit = rateLimit({
     max: 5,
     standardHeaders: true,
     keyGenerator: (req) => {
-        const ip =
+        return (
             req.ip ||
             req.get('x-real-ip') ||
             req.get('x-forwarded-for') ||
-            'default';
-        console.log(ip);
-        return ip;
+            'default'
+        );
     },
     message: 'Rate limit IP',
 });
