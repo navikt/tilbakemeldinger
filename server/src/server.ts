@@ -14,6 +14,8 @@ const app = express();
 app.use('*', compression());
 app.use('*', express.json());
 
+app.set('trust proxy', 1);
+
 const siteRouter = express.Router();
 const apiRouter = express.Router();
 
