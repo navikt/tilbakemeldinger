@@ -32,7 +32,7 @@ const globalRateLimit = rateLimit({
 });
 
 const ipRateLimit = rateLimit({
-    windowMs: 30 * 60 * 1000, // 30 minutes
+    windowMs: 2 * 60 * 1000, // 2 minutes
     max: 5,
     standardHeaders: true,
     keyGenerator: (req) => {
