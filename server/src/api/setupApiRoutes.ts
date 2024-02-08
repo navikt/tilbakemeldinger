@@ -36,11 +36,7 @@ const ipRateLimit = rateLimit({
     max: 5,
     standardHeaders: true,
     keyGenerator: (req) => {
-        const ip =
-            req.ip ||
-            req.get('x-real-ip') ||
-            req.get('x-forwarded-for') ||
-            'default';
+        const ip = req.clientIp || 'default'
         console.log(ip);
         return ip;
     },
