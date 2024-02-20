@@ -1,7 +1,6 @@
 import { buildHtmlTemplate, getTemplateWithDecorator } from './templateBuilder';
 import { ViteDevServer } from 'vite';
-import { render } from '../../../dist/';
-        ///server/dist/_ssr-dist/main-server'
+import { render } from '../../_ssr-dist/main-server';
 import { HelmetServerState } from 'react-helmet-async';
 
 export type HtmlRenderer = (url: string) => Promise<string>;
