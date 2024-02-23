@@ -29,6 +29,8 @@ export default defineConfig(({ mode }) => {
             noExternal: [
                 '@navikt/ds-react',
                 '@navikt/aksel-icons',
+                '@navikt/nav-dekoratoren-moduler',
+                '@radix-ui/*',
                 'react-router',
                 'react-router-dom',
                 'react-intl',
