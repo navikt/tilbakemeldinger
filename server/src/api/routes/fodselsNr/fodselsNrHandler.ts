@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import decodeJWT from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import { getAuthToken } from '../../../utils/auth/common';
 
 export const fodselsNrHandler: RequestHandler = (req, res) => {
@@ -9,5 +9,5 @@ export const fodselsNrHandler: RequestHandler = (req, res) => {
         return res.status(401).send();
     }
 
-    return res.send({ fodselsnr: decodeJWT<{ pid: string }>(token).pid });
+    return res.send({ fodselsnr: jwtDecode<{ pid: string }>(token).pid });
 };
