@@ -1,13 +1,9 @@
 import { HTTPError } from './errors';
+import { Enhet } from '../../common/enhet';
 
 export type FetchEnheter =
     | { status: 'LOADING' }
     | { status: 'RESULT'; data: Enhet[] }
     | { status: 'ERROR'; error: HTTPError };
 
-export interface Enhet {
-    enhetNr: string;
-    navn: string;
-    type: string;
-    status: string;
-}
+export type { Enhet };
