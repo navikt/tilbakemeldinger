@@ -1,6 +1,6 @@
 # Tilbakemeldinger
 
-![Deploy-to-prod](https://github.com/navikt/tilbakemeldinger/workflows/Deploy-to-prod/badge.svg) | ![Deploy-to-dev](https://github.com/navikt/tilbakemeldinger/workflows/Deploy-to-dev/badge.svg)
+![Deploy to prod](https://github.com/navikt/tilbakemeldinger/workflows/Deploy%20to%20prod/badge.svg) | ![Deploy to dev](https://github.com/navikt/tilbakemeldinger/workflows/Deploy%20to%20dev/badge.svg)
 
 Frontend for innsending av tilbakemeldinger til NAV: Klage, ros og tekniske feil og mangler.
 
