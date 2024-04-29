@@ -1,4 +1,4 @@
-name: Build and deploy to gcp
+name: Build and deploy to nais
 on:
   workflow_call:
     inputs:
