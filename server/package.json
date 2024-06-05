@@ -1,6 +1,6 @@
 {
     "name": "tilbakemeldinger-server",
-    "version": "4.10.4",
+    "version": "4.10.5",
     "private": true,
     "scripts": {
         "build": "tsc",
@@ -12,19 +12,19 @@
         "csp-header": "5.2.1",
         "dotenv": "16.4.5",
         "express": "4.19.2",
-        "express-rate-limit": "7.2.0",
+        "express-rate-limit": "7.3.0",
         "jwt-decode": "4.0.0",
-        "lru-cache": "10.2.0",
+        "lru-cache": "10.2.2",
         "node-cache": "5.1.2",
         "openid-client": "5.6.5"
     },
     "devDependencies": {
         "@types/compression": "1.7.5",
         "@types/express": "4.17.21",
-        "@types/node": "20.12.7",
+        "@types/node": "20.14.0",
         "concurrently": "8.2.2",
-        "nodemon": "3.1.0",
-        "vite": "5.2.8"
+        "nodemon": "3.1.2",
+        "vite": "5.2.12"
     },
     "nodemonConfig": {
         "delay": 500
