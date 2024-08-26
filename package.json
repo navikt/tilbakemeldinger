@@ -14,9 +14,11 @@
         "analyze-bundle": "ANALYZE=true npm run build:client",
         "start": "npm run start --workspace server",
         "start-local": "cp .env.local-prod .env && npm run start --workspace server",
+        "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
         "decorator-local": "docker compose up",
         "dev-prepare": "node preact-compat-symlinks.js && cp .env.development .env",
-        "dev": "npm run dev-prepare && npm run dev --workspace server"
+        "dev": "npm run dev-prepare && npm run dev --workspace server",
+        "prepare": "husky"
     },
     "dependencies": {
         "@navikt/aksel-icons": "6.8.0",
