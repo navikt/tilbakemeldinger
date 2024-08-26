@@ -13,8 +13,11 @@ interface Props {
     children: JSX.Element | JSX.Element[];
 }
 
-// @ts-ignore
-export const StoreContext = createContext([{}, () => {}] as [Store, Dispatch<Action>]);
+// @ts-expect-error Store type is missing definition
+export const StoreContext = createContext([{}, () => {}] as [
+    Store,
+    Dispatch<Action>,
+]);
 export const StoreProvider = ({ reducer, initialState, children }: Props) => (
     <StoreContext.Provider value={useReducer(reducer, initialState)}>
         {children}
