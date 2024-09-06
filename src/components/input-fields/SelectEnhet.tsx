@@ -92,7 +92,7 @@ const SelectEnhet = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
                         .sort((a, b) => (a.navn < b.navn ? -1 : 1))
                         .map((enhet) => ({
                             value: enhet.enhetNr,
-                            label: `${enhet.navn} - ${enhet.enhetNr}`,
+                            label: `${enhet.navn}`,
                         }))}
                 />
             ) : (
