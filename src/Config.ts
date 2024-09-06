@@ -23,4 +23,5 @@ export const urls = {
 
 export const vars = {
     maksLengdeMelding: 10000,
+    maksLengdeMeldingServiceKlage: 1000,
 };
