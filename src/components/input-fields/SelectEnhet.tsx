@@ -44,7 +44,6 @@ const SelectEnhet = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
         'HMS',
         'INTRO',
         'KLAGE',
-        'KO',
         'KONTROLL',
         'LOKAL',
         'OKONOMI',
