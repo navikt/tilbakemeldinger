@@ -18,6 +18,12 @@ Installer nødvendige pakker:
 npm install
 ```
 
+Bygg:
+
+```
+npm run build
+```
+
 Start applikasjonen lokalt:
 
 ```
