@@ -2048,79 +2048,79 @@
     {
         "enhetNr": "4100",
         "status": "Aktiv",
-        "navn": "Nav Styringsenhet Kontaktsenter",
+        "navn": "Nav Styringsenhet kontaktsenter",
         "type": "KONTAKT"
     },
     {
         "enhetNr": "4101",
         "status": "Aktiv",
-        "navn": "Nav Kontaktsenter Øst-Viken",
+        "navn": "Nav kontaktsenter Øst-Viken",
         "type": "KONTAKT"
     },
     {
         "enhetNr": "4105",
         "status": "Aktiv",
-        "navn": "Nav Kontaktsenter Innlandet",
+        "navn": "Nav kontaktsenter Innlandet",
         "type": "KONTAKT"
     },
     {
         "enhetNr": "4106",
         "status": "Aktiv",
-        "navn": "Nav Kontaktsenter Oslo og Vest-Viken",
+        "navn": "Nav kontaktsenter Oslo og Vest-Viken",
         "type": "KONTAKT"
     },
     {
         "enhetNr": "4107",
         "status": "Aktiv",
-        "navn": "Nav Kontaktsenter Vestfold og Telemark",
+        "navn": "Nav kontaktsenter Vestfold og Telemark",
         "type": "KONTAKT"
     },
     {
         "enhetNr": "4110",
         "status": "Aktiv",
-        "navn": "Nav Kontaktsenter Agder",
+        "navn": "Nav kontaktsenter Agder",
         "type": "KONTAKT"
     },
     {
         "enhetNr": "4111",
         "status": "Aktiv",
-        "navn": "Nav Kontaktsenter Rogaland",
+        "navn": "Nav kontaktsenter Rogaland",
         "type": "KONTAKT"
     },
     {
         "enhetNr": "4112",
         "status": "Aktiv",
-        "navn": "Nav Kontaktsenter Vestland",
+        "navn": "Nav kontaktsenter Vestland",
         "type": "KONTAKT"
     },
     {
         "enhetNr": "4114",
         "status": "Aktiv",
-        "navn": "Nav Kontaktsenter Nord-Vestlandet",
+        "navn": "Nav kontaktsenter Nord-Vestlandet",
         "type": "KONTAKT"
     },
     {
         "enhetNr": "4116",
         "status": "Aktiv",
-        "navn": "Nav Kontaktsenter Trøndelag",
+        "navn": "Nav kontaktsenter Trøndelag",
         "type": "KONTAKT"
     },
     {
         "enhetNr": "4118",
         "status": "Aktiv",
-        "navn": "Nav Kontaktsenter Nordland Bodø",
+        "navn": "Nav kontaktsenter Nordland Bodø",
         "type": "KONTAKT"
     },
     {
         "enhetNr": "4119",
         "status": "Aktiv",
-        "navn": "Nav Kontaktsenter Troms og Finnmark",
+        "navn": "Nav kontaktsenter Troms og Finnmark",
         "type": "KONTAKT"
     },
     {
         "enhetNr": "4121",
         "status": "Aktiv",
-        "navn": "Nav Kontaktsenter Nordland Mo",
+        "navn": "Nav kontaktsenter Nordland Mo",
         "type": "KONTAKT"
     },
     {

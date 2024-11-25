@@ -121,7 +121,7 @@ const nb: ITranslation = {
     'felter.send': 'Send tilbakemelding',
     'felter.tilbake': 'Tilbake',
     'felter.hvemroses.tittel': 'Hvem vil du gi ros til?',
-    'felter.hvemroses.navkontaktsenter': 'Nav Kontaktsenter',
+    'felter.hvemroses.navkontaktsenter': 'Nav kontaktsenter',
     'felter.hvemroses.digitaletjenester': 'Navs digitale tjenester',
     'felter.hvemroses.navkontor': 'Nav-kontor',
     'felter.hvemroses.navkontor.velg': 'Velg Nav-enhet',

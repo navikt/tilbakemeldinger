@@ -127,7 +127,7 @@ const en: ITranslation = {
     'felter.send': 'Send feedback',
     'felter.tilbake': 'Back',
     'felter.hvemroses.tittel': 'Who do you want to praise?',
-    'felter.hvemroses.navkontaktsenter': 'Nav Contact centre',
+    'felter.hvemroses.navkontaktsenter': 'Nav contact centre',
     'felter.hvemroses.digitaletjenester': 'Navs digital services',
     'felter.hvemroses.navkontor': 'Nav office',
     'felter.hvemroses.navkontor.velg': 'Choose Nav unit',
