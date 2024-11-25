@@ -2,7 +2,7 @@
     "name": "tilbakemeldinger",
     "version": "4.10.5",
     "private": true,
-    "author": "NAV",
+    "author": "Nav",
     "license": "MIT",
     "homepage": "/person/kontakt-oss/tilbakemeldinger",
     "type": "module",

@@ -28,11 +28,11 @@ const en: ITranslation = {
     //
     'tilbakemeldinger.tilbakemeldinger.sidetittel': 'Complaints and feedback',
     'tilbakemeldinger.klageanke.tittel': 'Complain or appeal a decision',
-    'tilbakemeldinger.klageanke.beskrivelse': `If you have received a decision from NAV and you disagree with the decision, you have the right to file a complaint or appeal. Read more about your <KlagerettigheterLenke>right to appeal</KlagerettigheterLenke> a decision. `,
+    'tilbakemeldinger.klageanke.beskrivelse': `If you have received a decision from Nav and you disagree with the decision, you have the right to file a complaint or appeal. Read more about your <KlagerettigheterLenke>right to appeal</KlagerettigheterLenke> a decision. `,
 
     'tilbakemeldinger.serviceklage.tittel': 'Complaints about service',
     'tilbakemeldinger.serviceklage.beskrivelse':
-        'Have you been treated poorly? Or had a bad experience with NAV?',
+        'Have you been treated poorly? Or had a bad experience with Nav?',
     'tilbakemeldinger.serviceklage.login.overskrift': 'Do you want to log in?',
     'tilbakemeldinger.serviceklage.login.beskrivelse':
         "We recommend logging in so you don't have to enter any personal information.<br></br>" +
@@ -60,17 +60,17 @@ const en: ITranslation = {
     'tilbakemeldinger.feilogmangler.form.tittel': 'Errors and omissions',
     'tilbakemeldinger.feilogmangler.form.veileder':
         'You can report technical errors as well as wrong or missing information. You cannot send a general question or ' +
-        'requests regarding your cases with NAV.',
+        'requests regarding your cases with Nav.',
     'tilbakemeldinger.feilogmangler.form.overskrift':
         'Submit errors and omissions on nav.no',
     'tilbakemeldinger.feilogmangler.svartid':
         'You will receive a reply by email within two working days',
 
-    'tilbakemeldinger.ros-til-nav.sidetittel': 'Praise for NAV',
+    'tilbakemeldinger.ros-til-nav.sidetittel': 'Praise for Nav',
     'tilbakemeldinger.ros.beskrivelse':
-        'Have you had a good experience? Would you like to praise a colleague or employee or share other positive feedback with NAV?',
-    'tilbakemeldinger.ros.form.tittel': 'Praise for NAV',
-    'tilbakemeldinger.ros.form.overskrift': 'Submit praise to NAV',
+        'Have you had a good experience? Would you like to praise a colleague or employee or share other positive feedback with Nav?',
+    'tilbakemeldinger.ros.form.tittel': 'Praise for Nav',
+    'tilbakemeldinger.ros.form.overskrift': 'Submit praise to Nav',
     'tilbakemeldinger.ros.form.veileder':
         'Thanks for sharing your experience with us! We will make sure the praise reaches the right person.',
 
@@ -87,7 +87,7 @@ const en: ITranslation = {
     'validering.melding.pakrevd': 'Message is required',
     'validering.melding.tegn': 'You have entered too many characters',
     'validering.hvemroses.pakrevd': 'You must select who to praise',
-    'validering.navkontor.pakrevd': 'You must select a NAV department',
+    'validering.navkontor.pakrevd': 'You must select a Nav department',
     'validering.klagetyper.pakrevd': 'You must select a category',
     'validering.klagetyper.velg': 'You must select at least one category',
     'validering.hvemfra.pakrevd':
@@ -127,20 +127,20 @@ const en: ITranslation = {
     'felter.send': 'Send feedback',
     'felter.tilbake': 'Back',
     'felter.hvemroses.tittel': 'Who do you want to praise?',
-    'felter.hvemroses.navkontaktsenter': 'NAV Contact centre',
-    'felter.hvemroses.digitaletjenester': 'NAVs digital services',
-    'felter.hvemroses.navkontor': 'NAV office',
-    'felter.hvemroses.navkontor.velg': 'Choose NAV unit',
+    'felter.hvemroses.navkontaktsenter': 'Nav Contact centre',
+    'felter.hvemroses.digitaletjenester': "Navs' digital services",
+    'felter.hvemroses.navkontor': 'Nav office',
+    'felter.hvemroses.navkontor.velg': 'Choose Nav unit',
     'felter.combobox.knapp.beskrivelse': 'Open list',
     'felter.klagerpa.navkontor.velg':
-        'Which NAV department does the complaint relate to?',
+        'Which Nav department does the complaint relate to?',
     'felter.hvemroses.navkontor.skrivinn': 'Search or select using arrow keys',
     'felter.klagetyper': 'What is the feedback about?',
     'felter.klagetyper.info':
         'Select the most appropriate option. You can select multiple categories.',
     'felter.klagetyper.telefon': 'Telephone',
-    'felter.klagetyper.navkontor': 'Local NAV office',
-    'felter.klagetyper.digitaletjenester': 'NAVs digital services',
+    'felter.klagetyper.navkontor': 'Local Nav office',
+    'felter.klagetyper.digitaletjenester': "Navs' digital services",
     'felter.klagetyper.brev': 'Letter',
     'felter.klagetyper.annet': 'Other',
     'felter.hvemfra': 'Who are you writing on behalf of?',
@@ -171,13 +171,13 @@ const en: ITranslation = {
     'felter.gjeldersosialhjelp.vetikke': 'Don’t know',
 
     'seo.tilbakemeldinger.description':
-        'Here you can give feedback to NAV, complain or appeal against decisions or service and report errors and defects on' +
+        'Here you can give feedback to Nav, complain or appeal against decisions or service and report errors and defects on' +
         ' nav.no. You can also send praise about our services and employees.',
     'seo.ros-til-nav.description':
-        'Have you had a good experience? Would you like to praise a colleague or employee or share other positive feedback with NAV?',
+        'Have you had a good experience? Would you like to praise a colleague or employee or share other positive feedback with Nav?',
     'seo.feil-og-mangler.description': 'Report errors and omissions at nav.no',
     'seo.serviceklage.description':
-        'Submit a complaint about service from NAV. What does your feedback apply to and who are you writing on behalf of?',
+        'Submit a complaint about service from Nav. What does your feedback apply to and who are you writing on behalf of?',
 
     'takk.melding': 'Your message has been sent',
     'takk.knapp': 'Go to nav.no',
