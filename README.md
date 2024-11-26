@@ -42,6 +42,6 @@ Publiser en ny release på master for å starte deploy til prod
 
 Spørsmål knyttet til koden eller prosjektet kan rettes mot https://github.com/orgs/navikt/teams/personbruker
 
-## For NAV-ansatte
+## For Nav-ansatte
 
 Interne henvendelser kan sendes via Slack i kanalen #team-personbruker.

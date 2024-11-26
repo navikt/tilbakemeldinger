@@ -28,11 +28,11 @@ const nb: ITranslation = {
     //
     'tilbakemeldinger.tilbakemeldinger.sidetittel': 'Klage og tilbakemelding',
     'tilbakemeldinger.klageanke.tittel': 'Klage eller anke på vedtak',
-    'tilbakemeldinger.klageanke.beskrivelse': `Hvis du har fått et vedtak fra NAV og du er uenig i vedtaket, har du rett til å klage eller anke. Les mer om dine <KlagerettigheterLenke>klagerettigheter</KlagerettigheterLenke>.`,
+    'tilbakemeldinger.klageanke.beskrivelse': `Hvis du har fått et vedtak fra Nav og du er uenig i vedtaket, har du rett til å klage eller anke. Les mer om dine <KlagerettigheterLenke>klagerettigheter</KlagerettigheterLenke>.`,
 
     'tilbakemeldinger.serviceklage.tittel': 'Klage på service',
     'tilbakemeldinger.serviceklage.beskrivelse':
-        'Har du blitt møtt på en dårlig måte? Eller hatt en annen negativ opplevelse i møte med NAV?',
+        'Har du blitt møtt på en dårlig måte? Eller hatt en annen negativ opplevelse i møte med Nav?',
     'tilbakemeldinger.serviceklage.login.overskrift': 'Ønsker du å logge inn?',
     'tilbakemeldinger.serviceklage.login.beskrivelse':
         'Vi anbefaler at du logger inn, så slipper du å fylle inn all informasjonen om deg selv.<br></br>' +
@@ -64,11 +64,11 @@ const nb: ITranslation = {
     'tilbakemeldinger.feilogmangler.svartid':
         'Du vil få et svar per e-post i løpet av to virkedager',
 
-    'tilbakemeldinger.ros-til-nav.sidetittel': 'Ros til NAV',
+    'tilbakemeldinger.ros-til-nav.sidetittel': 'Ros til Nav',
     'tilbakemeldinger.ros.beskrivelse':
-        'Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?',
-    'tilbakemeldinger.ros.form.tittel': 'Ros til NAV',
-    'tilbakemeldinger.ros.form.overskrift': 'Send inn ros til NAV',
+        'Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med Nav?',
+    'tilbakemeldinger.ros.form.tittel': 'Ros til Nav',
+    'tilbakemeldinger.ros.form.overskrift': 'Send inn ros til Nav',
     'tilbakemeldinger.ros.form.veileder':
         'Takk for at du vil dele opplevelsen med oss! Vi sørger for at rosen kommer fram til riktig person.',
 
@@ -84,7 +84,7 @@ const nb: ITranslation = {
     'validering.melding.pakrevd': 'Melding er nødvendig',
     'validering.melding.tegn': 'Du har tastet inn for mange tegn',
     'validering.hvemroses.pakrevd': 'Du må velge hvem du skal gi ros til',
-    'validering.navkontor.pakrevd': 'Du må velge NAV-enhet',
+    'validering.navkontor.pakrevd': 'Du må velge Nav-enhet',
     'validering.klagetyper.pakrevd': 'Du må velge kategori',
     'validering.klagetyper.velg': 'Du må velge minst en kategori',
     'validering.hvemfra.pakrevd':
@@ -121,19 +121,19 @@ const nb: ITranslation = {
     'felter.send': 'Send tilbakemelding',
     'felter.tilbake': 'Tilbake',
     'felter.hvemroses.tittel': 'Hvem vil du gi ros til?',
-    'felter.hvemroses.navkontaktsenter': 'NAV Kontaktsenter',
-    'felter.hvemroses.digitaletjenester': 'NAVs digitale tjenester',
-    'felter.hvemroses.navkontor': 'NAV-kontor',
-    'felter.hvemroses.navkontor.velg': 'Velg NAV-enhet',
-    'felter.klagerpa.navkontor.velg': 'Hvilken enhet i NAV gjelder klagen?',
+    'felter.hvemroses.navkontaktsenter': 'Nav kontaktsenter',
+    'felter.hvemroses.digitaletjenester': 'Navs digitale tjenester',
+    'felter.hvemroses.navkontor': 'Nav-kontor',
+    'felter.hvemroses.navkontor.velg': 'Velg Nav-enhet',
+    'felter.klagerpa.navkontor.velg': 'Hvilken enhet i Nav gjelder klagen?',
     'felter.hvemroses.navkontor.skrivinn': 'Søk eller velg med piltast',
     'felter.combobox.knapp.beskrivelse': 'Åpne lista',
     'felter.klagetyper': 'Hva gjelder tilbakemeldingen?',
     'felter.klagetyper.info':
         'Velg det alternativet som passer best. Du har mulighet til å velge flere kategorier.',
     'felter.klagetyper.telefon': 'Telefon',
-    'felter.klagetyper.navkontor': 'Lokalt NAV-kontor',
-    'felter.klagetyper.digitaletjenester': 'NAVs digitale tjenester',
+    'felter.klagetyper.navkontor': 'Lokalt Nav-kontor',
+    'felter.klagetyper.digitaletjenester': 'Navs digitale tjenester',
     'felter.klagetyper.brev': 'Brev',
     'felter.klagetyper.annet': 'Annet',
     'felter.hvemfra': 'Hvem skriver du på vegne av?',
@@ -164,13 +164,13 @@ const nb: ITranslation = {
     'felter.gjeldersosialhjelp.vetikke': 'Vet ikke',
 
     'seo.tilbakemeldinger.description':
-        'Her kan du gi tilbakemelding til NAV, klage eller anke på vedtak, service og melde fra om feil og mangler på' +
+        'Her kan du gi tilbakemelding til Nav, klage eller anke på vedtak, service og melde fra om feil og mangler på' +
         ' nav.no. Du kan også gi oss ros om våre tjenester og medarbeidere.',
     'seo.ros-til-nav.description':
-        'Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med NAV?',
+        'Har du en god opplevelse? Vil du rose en medarbeider, eller er det noe annet positivt du vil dele med Nav?',
     'seo.feil-og-mangler.description': 'Meld fra om feil og mangler på nav.no',
     'seo.serviceklage.description':
-        'Send klage på service hos NAV. Hva gjelder tilbakemeldingen og hvem skriver du på vegne av?',
+        'Send klage på service hos Nav. Hva gjelder tilbakemeldingen og hvem skriver du på vegne av?',
 
     'takk.melding': 'Meldingen din er sendt',
     'takk.knapp': 'Gå til nav.no',
