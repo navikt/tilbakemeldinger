@@ -26,14 +26,6 @@ type Props = {
     url?: string;
 };
 
-const RedirectToNavno = () => {
-    if (typeof window !== 'undefined') {
-        window.location.href = 'https://www.nav.no';
-    }
-
-    return null;
-};
-
 export const App = ({ url }: Props) => {
     const [{ auth }, dispatch] = useStore();
 
@@ -85,7 +77,7 @@ export const App = ({ url }: Props) => {
                                 paths.tilbakemeldinger.forside,
                                 locale
                             )}
-                            element={<RedirectToNavno />}
+                            element={<Tilbakemeldinger />}
                             key={key++}
                         />,
                         <Route

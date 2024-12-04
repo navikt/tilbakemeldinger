@@ -48,6 +48,13 @@ export const setupSiteRoutes = async (router: Router) => {
     );
 
     router.get('*', async (req, res) => {
+        const originalUrlSegment = req.originalUrl.split('/');
+        if (
+            originalUrlSegment[originalUrlSegment.length - 1] ===
+            'tilbakemeldinger'
+        ) {
+            return res.redirect(301, 'http://www.nav.no');
+        }
         const html = await render(req.originalUrl);
         return res.status(200).send(html);
     });
