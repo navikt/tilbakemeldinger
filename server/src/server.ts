@@ -3,12 +3,11 @@ import compression from 'compression';
 import { setupSiteRoutes } from './site/setupSiteRoutes.js';
 import { setupApiRoutes } from './api/setupApiRoutes';
 import { setupErrorHandlers } from './utils/errorHandlers';
+import { isLocal } from './utils/environment';
 
 const { APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV } = process.env;
 
 console.log('env:', APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV);
-
-const isLocal = ENV === 'localhost';
 
 const app = express();
 app.use('*', compression());
@@ -21,7 +20,7 @@ app.use(VITE_APP_BASEPATH, siteRouter);
 siteRouter.use('/tilbakemeldinger/api', apiRouter);
 
 // Redirect from root to basepath in local development environments
-if (isLocal && VITE_APP_BASEPATH && VITE_APP_BASEPATH !== '/') {
+if (isLocal() && VITE_APP_BASEPATH && VITE_APP_BASEPATH !== '/') {
     app.get('/', (req, res) =>
         res.redirect(`${VITE_APP_BASEPATH}/tilbakemeldinger`)
     );

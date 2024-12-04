@@ -14,6 +14,7 @@ jobs:
       env: prod
       imageSuffix: release-${{ github.ref_name }}
       appOrigin: "https://www.nav.no"
+      editorialFrontpageOrigin: "https://www.nav.no/tilbakemeldinger"
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
       NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}

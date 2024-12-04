@@ -4,6 +4,9 @@ import { createServer } from 'vite';
 import { HtmlRenderer, devRender, prodRender } from './ssr/htmlRenderer';
 import { createCacheMiddleware } from '../utils/cacheMiddleware';
 import { createCspMiddleware } from '../utils/cspMiddleware';
+import { isLocal } from '../utils/environment';
+
+const { VITE_APP_BASEPATH, VITE_EDITORIAL_FRONTPAGE_ORIGIN } = process.env;
 
 const assetsDir = path.resolve(process.cwd(), 'dist', 'client', 'assets');
 
@@ -33,7 +36,7 @@ export const setupSiteRoutes = async (router: Router) => {
             server: { middlewareMode: true },
             appType: 'custom',
             root: '../',
-            base: process.env.VITE_APP_BASEPATH,
+            base: VITE_APP_BASEPATH,
         });
 
         router.use(vite.middlewares);
@@ -48,14 +51,23 @@ export const setupSiteRoutes = async (router: Router) => {
     );
 
     router.get('*', async (req, res) => {
-        const originalUrlSegment = req.originalUrl.split('/');
+        const { originalUrl } = req;
+
+        const routeRegex = new RegExp(
+            `^${VITE_APP_BASEPATH}/(nb|nn|en|se)/tilbakemeldinger$`
+        );
+
+        // If not running locally, redirect the front page to the editorial front page
+        // at nav.no (Enoonic)
         if (
-            originalUrlSegment[originalUrlSegment.length - 1] ===
-            'tilbakemeldinger'
+            routeRegex.test(originalUrl) &&
+            !isLocal() &&
+            VITE_EDITORIAL_FRONTPAGE_ORIGIN
         ) {
-            return res.redirect(301, 'http://www.nav.no');
+            res.redirect(301, VITE_EDITORIAL_FRONTPAGE_ORIGIN);
+            return;
         }
         const html = await render(req.originalUrl);
-        return res.status(200).send(html);
+        res.status(200).send(html);
     });
 };
