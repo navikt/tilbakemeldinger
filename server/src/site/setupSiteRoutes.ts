@@ -57,6 +57,8 @@ export const setupSiteRoutes = async (router: Router) => {
             `^${VITE_APP_BASEPATH}(?:/(nb|nn|en|se))?/tilbakemeldinger$`
         );
 
+        const localeEnding = originalUrl.includes('/en/') ? 'en' : '';
+
         // If not running locally, redirect the front page to the editorial front page
         // at nav.no (Enoonic)
         if (
@@ -64,7 +66,10 @@ export const setupSiteRoutes = async (router: Router) => {
             !isLocal() &&
             VITE_EDITORIAL_FRONTPAGE_ORIGIN
         ) {
-            res.redirect(301, VITE_EDITORIAL_FRONTPAGE_ORIGIN);
+            res.redirect(
+                301,
+                `${VITE_EDITORIAL_FRONTPAGE_ORIGIN}/${localeEnding}`
+            );
             return;
         }
         const html = await render(req.originalUrl);
