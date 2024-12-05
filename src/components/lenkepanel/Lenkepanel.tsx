@@ -17,14 +17,11 @@ const Lenkepanel = (props: Props) => {
             className={style.lenkePanel}
             href={props.to}
             border
-            as={(p: LinkPanelProps) => {
-                console.log(p);
-                return (
-                    <RouterLink to={props.to} {...p}>
-                        {p.children}
-                    </RouterLink>
-                );
-            }}
+            as={(p: LinkPanelProps) => (
+                <RouterLink to={props.to} {...p}>
+                    {p.children}
+                </RouterLink>
+            )}
             onClick={() =>
                 logLinkClick(props.to, props.tittel, 'tilbakemelding')
             }
