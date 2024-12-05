@@ -31,8 +31,6 @@ const nn: ITranslation = {
     'tilbakemeldinger.klageanke.beskrivelse': `Dersom du har fått eit vedtak frå Nav og du er usamd i vedtaket, har du rett til å klage eller anke. Les meir om <KlagerettigheterLenke>klagerettane dine</KlagerettigheterLenke>.`,
 
     'tilbakemeldinger.serviceklage.tittel': 'Klage på service',
-    'tilbakemeldinger.serviceklage.beskrivelse':
-        'Har du blitt møtt på ein dårleg måte? Eller hatt ei anna negativ oppleving i møte med Nav?',
     'tilbakemeldinger.serviceklage.login.overskrift': 'Ønsker du å logge inn?',
     'tilbakemeldinger.serviceklage.login.beskrivelse':
         'Vi anbefaler at du loggar inn, så treng du ikkje å fylle inn all informasjonen om deg sjølv.<br></br>' +
@@ -53,9 +51,6 @@ const nn: ITranslation = {
         'Nei, eg ville berre seie frå',
 
     'tilbakemeldinger.feil-og-mangler.sidetittel': 'Feil og manglar på nav.no',
-    'tilbakemeldinger.feilogmangler.beskrivelse':
-        'Har du oppdaga ein feil på nav.no? Kanskje ein teknisk feil, feil informasjon eller for låg grad av universell' +
-        ' utforming? Då vil vi gjerne høyre frå deg.',
     'tilbakemeldinger.feilogmangler.form.tittel': 'Feil og manglar',
     'tilbakemeldinger.feilogmangler.form.veileder':
         'Her kan du melde frå om tekniske feil og manglar. Du kan ikkje sende inn generelle spørsmål eller førespurnadar om saka di.',
@@ -65,8 +60,6 @@ const nn: ITranslation = {
         'Du vil få eit svar på e-post i løpet av to arbeidsdagar',
 
     'tilbakemeldinger.ros-til-nav.sidetittel': 'Ros til Nav',
-    'tilbakemeldinger.ros.beskrivelse':
-        'Har du ei god oppleving? Vil du rose ein medarbeidar, eller er det noko anna positivt du vil dele med Nav?',
     'tilbakemeldinger.ros.form.tittel': 'Ros til Nav',
     'tilbakemeldinger.ros.form.overskrift': 'Send inn ros til Nav',
     'tilbakemeldinger.ros.form.veileder':

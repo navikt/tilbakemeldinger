@@ -7,6 +7,7 @@ import { useStore } from 'providers/Provider';
 import { MetaTags } from 'components/metatags/MetaTags';
 import { paths } from 'common/paths';
 import appStyle from 'src/App.module.scss';
+import { Alert } from '@navikt/ds-react';
 
 const Tilbakemeldinger = () => {
     const intl = useIntl();
@@ -24,6 +25,18 @@ const Tilbakemeldinger = () => {
                     id: 'tilbakemeldinger.tilbakemeldinger.sidetittel',
                 })}
             />
+            <Alert variant="info">
+                <p>
+                    Denne siden er ikke lenger i bruk. I prod og dev vil
+                    requests til /person/kontakt-oss/:locale/tilbakemeldinger
+                    sende brukeren til en redaksjonell side.
+                </p>
+                <p>
+                    Linkene i denne redaksjonelle siden sender brukeren til
+                    undersider i denne appen:
+                </p>{' '}
+                - Serviceklage - Feil og mangler - Ros til NAV
+            </Alert>
             {lenker(locale).map((lenke) => (
                 <Lenkepanel
                     icon={lenke.icon}

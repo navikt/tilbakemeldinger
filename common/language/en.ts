@@ -31,8 +31,6 @@ const en: ITranslation = {
     'tilbakemeldinger.klageanke.beskrivelse': `If you have received a decision from Nav and you disagree with the decision, you have the right to file a complaint or appeal. Read more about your <KlagerettigheterLenke>right to appeal</KlagerettigheterLenke> a decision. `,
 
     'tilbakemeldinger.serviceklage.tittel': 'Complaints about service',
-    'tilbakemeldinger.serviceklage.beskrivelse':
-        'Have you been treated poorly? Or had a bad experience with Nav?',
     'tilbakemeldinger.serviceklage.login.overskrift': 'Do you want to log in?',
     'tilbakemeldinger.serviceklage.login.beskrivelse':
         "We recommend logging in so you don't have to enter any personal information.<br></br>" +
@@ -54,9 +52,6 @@ const en: ITranslation = {
 
     'tilbakemeldinger.feil-og-mangler.sidetittel':
         'Errors and wrong or missing information',
-    'tilbakemeldinger.feilogmangler.beskrivelse':
-        'Have you found an error on nav.no? Is it a technical error, wrong or missing information, or an accessibility ' +
-        'issue? We would like to hear from you about these cases.',
     'tilbakemeldinger.feilogmangler.form.tittel': 'Errors and omissions',
     'tilbakemeldinger.feilogmangler.form.veileder':
         'You can report technical errors as well as wrong or missing information. You cannot send a general question or ' +
@@ -67,8 +62,6 @@ const en: ITranslation = {
         'You will receive a reply by email within two working days',
 
     'tilbakemeldinger.ros-til-nav.sidetittel': 'Praise for Nav',
-    'tilbakemeldinger.ros.beskrivelse':
-        'Have you had a good experience? Would you like to praise a colleague or employee or share other positive feedback with Nav?',
     'tilbakemeldinger.ros.form.tittel': 'Praise for Nav',
     'tilbakemeldinger.ros.form.overskrift': 'Submit praise to Nav',
     'tilbakemeldinger.ros.form.veileder':
