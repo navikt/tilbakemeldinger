@@ -12,6 +12,22 @@ const assetsDir = path.resolve(process.cwd(), 'dist', 'client', 'assets');
 
 const isProd = process.env.NODE_ENV !== 'development';
 
+// Helper function to extract locale from the URL
+const extractLocale = (url: string) => {
+    const localeMatch = url.match(
+        new RegExp(`^${VITE_APP_BASEPATH}/(nb|nn|en|se)/`)
+    );
+    return localeMatch ? localeMatch[1] : '';
+};
+
+// Determine if the route matches the required pattern
+const isPathToFrontPage = (url: string) =>
+    new RegExp(
+        `^${VITE_APP_BASEPATH}(?:/(nb|nn|en|se))?/tilbakemeldinger$`
+    ).test(url);
+
+// Get locale from the URL
+
 export const setupSiteRoutes = async (router: Router) => {
     let render: HtmlRenderer;
 
@@ -53,25 +69,18 @@ export const setupSiteRoutes = async (router: Router) => {
     router.get('*', async (req, res) => {
         const { originalUrl } = req;
 
-        const routeRegex = new RegExp(
-            `^${VITE_APP_BASEPATH}(?:/(nb|nn|en|se))?/tilbakemeldinger$`
-        );
-
-        const localeEnding = originalUrl.includes('/en/') ? 'en' : '';
-
-        // If not running locally, redirect the front page to the editorial front page
-        // at nav.no (Enoonic)
+        // Redirect to editorial front page (Enonic XP) if conditions are met
         if (
-            routeRegex.test(originalUrl) &&
+            isPathToFrontPage(originalUrl) &&
             !isLocal() &&
             VITE_EDITORIAL_FRONTPAGE_ORIGIN
         ) {
-            res.redirect(
-                301,
-                `${VITE_EDITORIAL_FRONTPAGE_ORIGIN}/${localeEnding}`
-            );
+            const localeEnding = extractLocale(originalUrl);
+            const redirectUrl = `${VITE_EDITORIAL_FRONTPAGE_ORIGIN}/${localeEnding}`;
+            res.redirect(301, redirectUrl);
             return;
         }
+
         const html = await render(req.originalUrl);
         res.status(200).send(html);
     });
