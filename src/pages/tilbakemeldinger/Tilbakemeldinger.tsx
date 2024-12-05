@@ -32,7 +32,7 @@ const Tilbakemeldinger = () => {
                     sende brukeren til en redaksjonell side.
                 </p>
                 <p>
-                    Linkene i denne redaksjonelle siden sender brukeren til
+                    Lenkene i den redaksjonelle siden sender brukeren til
                     undersider i denne appen:
                 </p>{' '}
                 - Serviceklage - Feil og mangler - Ros til NAV
