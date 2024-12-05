@@ -5,8 +5,6 @@ import { Locale } from 'common/locale';
 export interface Lenke {
     tittel: string;
     lenke: string;
-    icon?: string;
-    external?: boolean;
 }
 
 export const lenker = (locale: Locale): Lenke[] => [

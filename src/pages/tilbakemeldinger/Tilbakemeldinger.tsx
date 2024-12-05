@@ -39,12 +39,9 @@ const Tilbakemeldinger = () => {
             </Alert>
             {lenker(locale).map((lenke) => (
                 <Lenkepanel
-                    icon={lenke.icon}
                     key={lenke.tittel}
                     tittel={intl.messages[lenke.tittel] as string}
-                    beskrivelse={lenke.beskrivelse}
                     to={lenke.lenke}
-                    external={lenke.external}
                 />
             ))}
         </div>

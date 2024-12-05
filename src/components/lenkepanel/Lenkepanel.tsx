@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { logLinkClick } from 'utils/amplitude';
-import { LinkPanel } from '@navikt/ds-react';
+import { LinkPanel, LinkPanelProps } from '@navikt/ds-react';
 import style from './Lenkepanel.module.scss';
 
 export interface Props {
@@ -17,12 +17,9 @@ const Lenkepanel = (props: Props) => {
             className={style.lenkePanel}
             href={props.to}
             border
-            as={(p) => {
-                return props.external ? (
-                    <a href={props.to} {...p}>
-                        {p.children}
-                    </a>
-                ) : (
+            as={(p: LinkPanelProps) => {
+                console.log(p);
+                return (
                     <RouterLink to={props.to} {...p}>
                         {p.children}
                     </RouterLink>
