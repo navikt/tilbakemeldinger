@@ -12,7 +12,7 @@ jobs:
       env: dev
       imageSuffix: dev-deploy
       appOrigin: "https://www.ansatt.dev.nav.no"
-      editorialFrontpageOrigin: "https://www.ansatt.dev.nav.no/tilbakemeldinger"
+      editorialFrontpageOrigin: "https://www.ansatt.dev.nav.no/tilbakemelding"
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
       NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
