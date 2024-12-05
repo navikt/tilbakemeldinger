@@ -54,7 +54,7 @@ export const setupSiteRoutes = async (router: Router) => {
         const { originalUrl } = req;
 
         const routeRegex = new RegExp(
-            `^${VITE_APP_BASEPATH}/(nb|nn|en|se)/tilbakemeldinger$`
+            `^${VITE_APP_BASEPATH}(?:/(nb|nn|en|se))?/tilbakemeldinger$`
         );
 
         // If not running locally, redirect the front page to the editorial front page
