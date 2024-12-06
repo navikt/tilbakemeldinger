@@ -17,7 +17,7 @@ const extractLocale = (url: string) => {
     const localeMatch = url.match(
         new RegExp(`^${VITE_APP_BASEPATH}/(nb|nn|en|se)/`)
     );
-    return localeMatch ? localeMatch[1] : '';
+    return localeMatch && localeMatch[1] == 'en' ? localeMatch[1] : '';
 };
 
 // Determine if the route matches the required pattern
