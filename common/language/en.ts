@@ -18,7 +18,7 @@ const en: ITranslation = {
     //
     'breadcrumb.base': 'Contact us',
     'breadcrumb.tilbakemeldinger': 'Feedback',
-    'breadcrumb.serviceklage': 'Complain about service',
+    'breadcrumb.serviceklage': 'Service complaint',
     'breadcrumb.feil-og-mangler': 'Errors and issues on nav.no',
     'breadcrumb.ros-til-nav': 'Praise',
 
