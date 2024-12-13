@@ -18,8 +18,8 @@ const en: ITranslation = {
     //
     'breadcrumb.base': 'Contact us',
     'breadcrumb.tilbakemeldinger': 'Feedback',
-    'breadcrumb.serviceklage': 'Complain about service',
-    'breadcrumb.feil-og-mangler': 'Errors and omissions',
+    'breadcrumb.serviceklage': 'Service complaint',
+    'breadcrumb.feil-og-mangler': 'Errors and issues on nav.no',
     'breadcrumb.ros-til-nav': 'Praise',
 
     //
@@ -30,7 +30,7 @@ const en: ITranslation = {
     'tilbakemeldinger.klageanke.tittel': 'Complain or appeal a decision',
     'tilbakemeldinger.klageanke.beskrivelse': `If you have received a decision from Nav and you disagree with the decision, you have the right to file a complaint or appeal. Read more about your <KlagerettigheterLenke>right to appeal</KlagerettigheterLenke> a decision. `,
 
-    'tilbakemeldinger.serviceklage.tittel': 'Complaints about service',
+    'tilbakemeldinger.serviceklage.tittel': 'Service complaint',
     'tilbakemeldinger.serviceklage.login.overskrift': 'Do you want to log in?',
     'tilbakemeldinger.serviceklage.login.beskrivelse':
         "We recommend logging in so you don't have to enter any personal information.<br></br>" +
@@ -40,7 +40,7 @@ const en: ITranslation = {
         'Continue without logging in',
     'tilbakemeldinger.serviceklage.form.veileder':
         'Here you can complain about the service you have received. You will receive an answer within 3 weeks.',
-    'tilbakemeldinger.serviceklage.sidetittel': 'Complaints about service',
+    'tilbakemeldinger.serviceklage.sidetittel': 'Service complaint',
     'tilbakemeldinger.serviceklage.form.overskrift':
         'Submit a complaint about service',
     'tilbakemeldinger.serviceklage.form.onskersvar':
@@ -52,12 +52,12 @@ const en: ITranslation = {
 
     'tilbakemeldinger.feil-og-mangler.sidetittel':
         'Errors and wrong or missing information',
-    'tilbakemeldinger.feilogmangler.form.tittel': 'Errors and omissions',
+    'tilbakemeldinger.feilogmangler.form.tittel': 'Errors and issues on nav.no',
     'tilbakemeldinger.feilogmangler.form.veileder':
         'You can report technical errors as well as wrong or missing information. You cannot send a general question or ' +
         'requests regarding your cases with Nav.',
     'tilbakemeldinger.feilogmangler.form.overskrift':
-        'Submit errors and omissions on nav.no',
+        'Submit errors and issues on nav.no',
     'tilbakemeldinger.feilogmangler.svartid':
         'You will receive a reply by email within two working days',
 
@@ -168,7 +168,7 @@ const en: ITranslation = {
         ' nav.no. You can also send praise about our services and employees.',
     'seo.ros-til-nav.description':
         'Have you had a good experience? Would you like to praise a colleague or employee or share other positive feedback with Nav?',
-    'seo.feil-og-mangler.description': 'Report errors and omissions at nav.no',
+    'seo.feil-og-mangler.description': 'Report errors and issues on nav.no',
     'seo.serviceklage.description':
         'Submit a complaint about service from Nav. What does your feedback apply to and who are you writing on behalf of?',
 
