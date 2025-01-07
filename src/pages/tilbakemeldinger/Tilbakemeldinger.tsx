@@ -15,7 +15,7 @@ const Tilbakemeldinger = () => {
     const [{ locale }] = useStore();
 
     useEffect(() => {
-        if (window.location.hostname.includes('localhost')) {
+        if (!window.location.hostname.includes('localhost')) {
             const localeVariation = locale === 'en' ? 'en' : '';
             history.replaceState(
                 {},
