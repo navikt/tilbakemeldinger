@@ -8,10 +8,18 @@ import { MetaTags } from 'components/metatags/MetaTags';
 import { paths } from 'common/paths';
 import appStyle from 'src/App.module.scss';
 import { Alert } from '@navikt/ds-react';
+import { useEffect } from 'react';
 
 const Tilbakemeldinger = () => {
     const intl = useIntl();
     const [{ locale }] = useStore();
+
+    useEffect(() => {
+        if (!window.location.hostname.includes('localhost')) {
+            const localeVariation = locale === 'en' ? 'en' : '';
+            window.location.href = `https://www.nav.no/tilbakemeldinger/${localeVariation}`;
+        }
+    }, []);
 
     return (
         <div className={appStyle.pageContent}>
