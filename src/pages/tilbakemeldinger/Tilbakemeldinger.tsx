@@ -15,9 +15,14 @@ const Tilbakemeldinger = () => {
     const [{ locale }] = useStore();
 
     useEffect(() => {
-        if (!window.location.hostname.includes('localhost')) {
+        if (window.location.hostname.includes('localhost')) {
             const localeVariation = locale === 'en' ? 'en' : '';
-            window.location.href = `https://www.nav.no/tilbakemeldinger/${localeVariation}`;
+            history.replaceState(
+                {},
+                '',
+                `/tilbakemeldinger/${localeVariation}`
+            );
+            window.location.href = `/tilbakemeldinger/${localeVariation}`;
         }
     }, []);
 
