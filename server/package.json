@@ -8,13 +8,13 @@
         "dev": "npm run build && concurrently \"tsc -w\" \"nodemon -r dotenv/config -w ./dist/server ./dist/server/server/src/server.js dotenv_config_path=../.env\""
     },
     "dependencies": {
-        "compression": "1.7.4",
-        "csp-header": "5.2.1",
-        "dotenv": "16.4.5",
-        "express": "4.21.1",
-        "express-rate-limit": "7.3.0",
+        "compression": "1.7.5",
+        "csp-header": "6.0.0",
+        "dotenv": "16.4.7",
+        "express": "4.21.2",
+        "express-rate-limit": "7.5.0",
         "jwt-decode": "4.0.0",
-        "lru-cache": "10.2.2",
+        "lru-cache": "11.0.2",
         "node-cache": "5.1.2",
         "openid-client": "5.6.5"
     },
