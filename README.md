@@ -36,7 +36,7 @@ npm start
 
 ## Prodsetting
 
-Publiser en ny release på master for å starte deploy til prod
+Publiser en ny release på main for å starte deploy til prod
 
 ## Henvendelser
 
