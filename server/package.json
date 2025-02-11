@@ -24,7 +24,7 @@
         "@types/node": "20.14.0",
         "concurrently": "8.2.2",
         "nodemon": "3.1.2",
-        "vite": "5.4.14"
+        "vite": "5.4.12"
     },
     "nodemonConfig": {
         "delay": 500
