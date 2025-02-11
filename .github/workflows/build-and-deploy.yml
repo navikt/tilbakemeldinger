@@ -56,7 +56,7 @@ jobs:
       - name: Build application
         run: npm run build
       - name: Upload static files to CDN
-        uses: nais/deploy/actions/cdn-upload/v2@main
+        uses: nais/deploy/actions/cdn-upload/v2@master
         with:
           team: personbruker
           source: ./server/dist/client/assets
