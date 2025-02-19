@@ -1,4 +1,4 @@
-name: Deploy to prod
+name: Build and deploy to prod and create a new release
 on:
     push:
         branches:
@@ -6,7 +6,6 @@ on:
 
 jobs:
     build-and-deploy:
-        if: github.event.release.target_commitish == 'main'
         uses: ./.github/workflows/build-and-deploy.yml
         permissions:
             contents: read
@@ -28,14 +27,6 @@ jobs:
             contents: write
             id-token: write
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 20
             - name: Generate unique tag name
               run: echo "TAG_NAME=$(date +%s)" >> $GITHUB_ENV
             - name: Create GitHub Release
