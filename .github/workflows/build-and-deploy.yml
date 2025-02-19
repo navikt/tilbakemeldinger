@@ -1,82 +1,82 @@
 name: Build and deploy to nais
 on:
-  workflow_call:
-    inputs:
-      env:
-        required: true
-        type: string
-      imageSuffix:
-        required: true
-        type: string
-      appOrigin:
-          required: true
-          type: string
-      editorialFrontpageOrigin:
-          required: true
-          type: string
-    secrets:
-      READER_TOKEN:
-        required: true
-      NAIS_WORKLOAD_IDENTITY_PROVIDER:
-        required: true
+    workflow_call:
+        inputs:
+            env:
+                required: true
+                type: string
+            imageSuffix:
+                required: true
+                type: string
+            appOrigin:
+                required: true
+                type: string
+            editorialFrontpageOrigin:
+                required: true
+                type: string
+        secrets:
+            READER_TOKEN:
+                required: true
+            NAIS_WORKLOAD_IDENTITY_PROVIDER:
+                required: true
 
 jobs:
-  build-and-deploy:
-    name: Build and deploy
-    runs-on: ubuntu-latest
-    permissions:
-      contents: "read"
-      id-token: "write"
-    environment: ${{ inputs.env }}
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-      - name: Setup node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://npm.pkg.github.com'
-          cache: 'npm'
-      - name: Set app environment
-        run: |
-          cat > .env <<EOF
-          ENV=${{ inputs.env }}
-          VITE_APP_BASEPATH=/person/kontakt-oss
-          VITE_APP_ORIGIN=${{ inputs.appOrigin }}
-          VITE_EDITORIAL_FRONTPAGE_ORIGIN=${{ inputs.editorialFrontpageOrigin }}
-          APP_PORT=9001
-          API_URL=http://tilbakemeldingsmottak-api.teamserviceklage
-          NORG2_ORIGIN=https://norg2.${{ inputs.env }}-fss-pub.nais.io
-          CDN_BASE=https://cdn.nav.no/personbruker/tilbakemeldinger/${{ inputs.env }}
-          EOF
-      - name: Install dependencies
-        run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-      - name: Build application
-        run: npm run build
-      - name: Upload static files to CDN
-        uses: nais/deploy/actions/cdn-upload/v2@master
-        with:
-          team: personbruker
-          source: ./server/dist/client/assets
-          destination: tilbakemeldinger/${{ inputs.env }}
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-          run: echo uploaded file ${{ steps.upload.outputs.uploaded }}
-          shell: bash
-      - name: Build and push docker image
-        uses: nais/docker-build-push@v0
-        id: docker-push
-        with:
-          team: personbruker
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-          image_suffix: ${{ inputs.imageSuffix }}
-      - name: Deploy to nais
-        uses: nais/deploy/actions/deploy@v2
-        env:
-          CLUSTER: ${{ inputs.env }}-gcp
-          RESOURCE: .nais/config.yml
-          VAR: image=${{ steps.docker-push.outputs.image }}
-          VARS: .nais/vars-${{ inputs.env }}.yml
+    build-and-deploy:
+        name: Build and deploy
+        runs-on: ubuntu-latest
+        permissions:
+            contents: 'read'
+            id-token: 'write'
+        environment: ${{ inputs.env }}
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+            - name: Setup node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+                  registry-url: 'https://npm.pkg.github.com'
+                  cache: 'npm'
+            - name: Set app environment
+              run: |
+                  cat > .env <<EOF
+                  ENV=${{ inputs.env }}
+                  VITE_APP_BASEPATH=/person/kontakt-oss
+                  VITE_APP_ORIGIN=${{ inputs.appOrigin }}
+                  VITE_EDITORIAL_FRONTPAGE_ORIGIN=${{ inputs.editorialFrontpageOrigin }}
+                  APP_PORT=9001
+                  API_URL=http://tilbakemeldingsmottak-api.teamserviceklage
+                  NORG2_ORIGIN=https://norg2.${{ inputs.env }}-fss-pub.nais.io
+                  CDN_BASE=https://cdn.nav.no/personbruker/tilbakemeldinger/${{ inputs.env }}
+                  EOF
+            - name: Install dependencies
+              run: npm ci
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+            - name: Build application
+              run: npm run build
+            - name: Upload static files to CDN
+              uses: nais/deploy/actions/cdn-upload/v2@master
+              with:
+                  team: personbruker
+                  source: ./server/dist/client/assets
+                  destination: tilbakemeldinger/${{ inputs.env }}
+                  project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+                  identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+                  run: echo uploaded file ${{ steps.upload.outputs.uploaded }}
+                  shell: bash
+            - name: Build and push docker image
+              uses: nais/docker-build-push@v0
+              id: docker-push
+              with:
+                  team: personbruker
+                  project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+                  identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+                  image_suffix: ${{ inputs.imageSuffix }}
+            - name: Deploy to nais
+              uses: nais/deploy/actions/deploy@v2
+              env:
+                  CLUSTER: ${{ inputs.env }}-gcp
+                  RESOURCE: .nais/config.yml
+                  VAR: image=${{ steps.docker-push.outputs.image }}
+                  VARS: .nais/vars-${{ inputs.env }}.yml
