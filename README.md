@@ -36,7 +36,7 @@ npm start
 
 ## Prodsetting
 
-Publiser en ny release på main for å starte deploy til prod
+Lag en PR til main, og merge inn etter godkjenning (En automatisk release vil oppstå ved deploy til main)
 
 ## Henvendelser
 
