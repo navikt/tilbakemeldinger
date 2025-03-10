@@ -19,6 +19,10 @@ spec:
   readiness:
     path: /person/kontakt-oss/tilbakemeldinger/internal/isReady
     initialDelay: 10
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: nodejs
   azure:
     application:
       enabled: true
