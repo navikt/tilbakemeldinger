@@ -1,13 +1,12 @@
 import { RequestHandler } from 'express';
 import { getAccessToken } from '../../../utils/auth/common';
-import { sanitizePath } from '../../../../../common/paths';
 import { sanitizeString } from '../../../../../common/string';
 
 export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
     req,
     res
 ) => {
-    const path = sanitizePath(req.params.path);
+    const path = req.params.path;
     const accessToken = await getAccessToken(req);
     const body = sanitizeString(req.body);
 
