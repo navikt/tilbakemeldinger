@@ -11,3 +11,10 @@ export const paths = {
         rostilnav: '/tilbakemeldinger/ros-til-nav',
     },
 };
+
+export const sanitizePath = (path: string) => {
+    // Remove leading and trailing slashes
+    const sanitizedPath = path.replace(/^\/+|\/+$/g, '');
+    // Remove any double slashes
+    return sanitizedPath.replace(/\/{2,}/g, '/');
+};
