@@ -14,7 +14,11 @@ export const paths = {
 
 export const sanitizePath = (path: string) => {
     // Remove leading and trailing slashes
-    const sanitizedPath = path.replace(/^\/+|\/+$/g, '');
+    if (!path) return '';
+
+    if (path.length > 1000 || path.split('/').length > 50) return '';
+
+    const sanitizedPath = path.replace(/^\/{1,}/, '').replace(/\/{1,}$/, '');
     // Remove any double slashes
     return sanitizedPath.replace(/\/{2,}/g, '/');
 };

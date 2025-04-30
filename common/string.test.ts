@@ -1,11 +1,13 @@
-import { sanitizeString } from './string';
+import { sanitizeString, escapeHtml } from './string';
 
 describe('sanitizeString', () => {
     it('should remove HTML tags', () => {
         expect(sanitizeString('<script>alert("XSS")</script>')).toBe(
-            'alert(XSS)'
+            '&lt;script&gt;alert(XSS)&lt;/script&gt;'
         );
-        expect(sanitizeString('<div>Content</div>')).toBe('Content');
+        expect(sanitizeString('<div>Content</div>')).toBe(
+            '&lt;div&gt;Content&lt;/div&gt;'
+        );
     });
 
     it('should remove special characters', () => {
@@ -33,5 +35,33 @@ describe('sanitizeString', () => {
         expect(sanitizeString('')).toBe('');
         expect(sanitizeString(null)).toBe('');
         expect(sanitizeString(undefined)).toBe('');
+    });
+});
+
+describe('escapeHtml', () => {
+    test('should escape HTML special characters', () => {
+        expect(escapeHtml('<div>')).toBe('&lt;div&gt;');
+        expect(escapeHtml('Hello & World')).toBe('Hello &amp; World');
+        expect(escapeHtml('"quoted"')).toBe('&quot;quoted&quot;');
+        expect(escapeHtml("'single'")).toBe('&#039;single&#039;');
+    });
+
+    test('should handle strings with multiple HTML special characters', () => {
+        expect(escapeHtml('<div class="test">Hello & World</div>')).toBe(
+            '&lt;div class=&quot;test&quot;&gt;Hello &amp; World&lt;/div&gt;'
+        );
+    });
+
+    test('should return the same string if no HTML special characters are present', () => {
+        expect(escapeHtml('Hello World')).toBe('Hello World');
+        expect(escapeHtml('12345')).toBe('12345');
+    });
+
+    test('should handle empty strings', () => {
+        expect(escapeHtml('')).toBe('');
+    });
+
+    test('should handle strings with only HTML special characters', () => {
+        expect(escapeHtml('<>&"\'')).toBe('&lt;&gt;&amp;&quot;&#039;');
     });
 });
