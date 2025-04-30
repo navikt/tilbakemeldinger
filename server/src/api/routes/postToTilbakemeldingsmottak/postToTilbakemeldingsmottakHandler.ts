@@ -1,12 +1,15 @@
 import { RequestHandler } from 'express';
 import { getAccessToken } from '../../../utils/auth/common';
+import { sanitizePath } from '../../../../../common/paths';
+import { sanitizeString } from '../../../../../common/string';
 
 export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
     req,
     res
 ) => {
-    const path = req.params.path;
+    const path = sanitizePath(req.params.path);
     const accessToken = await getAccessToken(req);
+    const body = sanitizeString(req.body);
 
     if (!accessToken) {
         return res.status(500).send('Failed to populate auth header');
@@ -19,7 +22,7 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${accessToken}`,
             },
-            body: JSON.stringify(req.body),
+            body: JSON.stringify(body),
         });
 
         if (!response.ok) {
