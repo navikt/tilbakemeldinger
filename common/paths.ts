@@ -17,9 +17,7 @@ export const sanitizePath = (path: string): string => {
 
     if (path.length > 1000 || path.split('/').length > 50) return '';
 
-    let sanitizedPath = path
-        .replace(/\/{2,}/g, '/') // Replace multiple slashes with a single one
-        .replace(/\/+$/, ''); // Remove trailing slash(es)
+    let sanitizedPath = path.replace(/\/{2,}/g, '/').replace(/\/+$/, '');
 
     return `/${sanitizedPath.replace(/^\/+/, '')}`;
 };
