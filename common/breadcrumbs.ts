@@ -2,7 +2,6 @@ import { paths, sanitizePath } from './paths';
 import { Locale, translate } from './locale';
 
 export const getBreadcrumbsFromPathname = (url: string, locale: Locale) => {
-    console.log(url);
     const sanitizedUrl = sanitizePath(url);
     const basePathFilter = new RegExp(
         `${paths.kontaktOss.forside}/(nb|nn|en)?`,
