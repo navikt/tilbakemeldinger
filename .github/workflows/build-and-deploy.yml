@@ -65,6 +65,8 @@ jobs:
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
                   run: echo uploaded file ${{ steps.upload.outputs.uploaded }}
                   shell: bash
+            - name: Prune dependencies
+              run: npm prune --omit=dev --workspaces
             - name: Build and push docker image
               uses: nais/docker-build-push@v0
               id: docker-push
