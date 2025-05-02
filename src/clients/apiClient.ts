@@ -3,6 +3,7 @@ import { BadRequest, HTTPError } from 'types/errors';
 import { OutboundRosTilNav } from 'pages/tilbakemeldinger/ros-til-nav/Ros';
 import { OutboundFeilOgMangler } from 'pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler';
 import { OutboundServiceKlage } from 'pages/tilbakemeldinger/service-klage/ServiceKlage';
+import { sanitize } from 'common/sanitize';
 
 const { appUrl, personInfoApiUrl, authUrl } = Environment();
 
@@ -46,10 +47,12 @@ type Outbound =
     | OutboundServiceKlage;
 
 const sendJson = async (url: string, data: Outbound) => {
-    console.log(url, data);
+    const sanitizedData = sanitize(data);
+    console.log('Original data', data);
+    console.log('Sending data to', url, sanitizedData);
     const res = await fetch(url, {
         method: 'POST',
-        body: JSON.stringify(data),
+        body: JSON.stringify(sanitizedData),
         headers: { 'Content-Type': 'application/json;charset=UTF-8' },
         credentials: 'include',
     });
