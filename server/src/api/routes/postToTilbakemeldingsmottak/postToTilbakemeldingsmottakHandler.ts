@@ -8,7 +8,8 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
 ) => {
     const path = req.params.path;
     const accessToken = await getAccessToken(req);
-    const body = sanitize(req.body);
+    const bodyCopy = JSON.parse(JSON.stringify(req.body));
+    const body = sanitize(bodyCopy);
 
     if (!accessToken) {
         return res.status(500).send('Failed to populate auth header');
