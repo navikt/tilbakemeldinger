@@ -28,6 +28,7 @@ export const sanitizeString = (input: string | null | undefined): string => {
 
     // Escape special characters such as quotes, semicolons, and double dashes
     clean = clean
+        .replace(/\\/g, '\\\\') // Escape backslashes FIRST
         .replace(/;/g, '\\;')
         .replace(/--/g, '\\--')
         .replace(/[ \t\f\v]+/g, ' ')
