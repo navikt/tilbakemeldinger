@@ -1,6 +1,5 @@
-/* This is the main function that takes any input, checks the type
- * and sanitizes it accordingly. It handles strings, arrays, and objects.
- * The function is recursive for nested objects and arrays.
+/* This is the main function used for sanitizing. It takes any input, checks the type
+ * and sanitizes it accordingly.
  */
 export const sanitize = (item: any): any => {
     if (Array.isArray(item)) {
@@ -19,7 +18,7 @@ export const sanitize = (item: any): any => {
     return item;
 };
 
-/* This function is used to sanitize strings by escaping HTML tags
+/* This function is used to sanitize strings specifically by escaping HTML tags
  * and removing special characters that could lead to XSS attacks.
  */
 export const sanitizeString = (input: string | null | undefined): string => {

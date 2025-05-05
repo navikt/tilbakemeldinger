@@ -100,7 +100,7 @@ describe('sanitizeString', () => {
         expect(sanitizeString(undefined)).toBe('');
     });
 
-    it('shoul preserve newlines', () => {
+    it('should preserve newlines', () => {
         const input = 'Hello\nWorld';
         expect(sanitizeString(input)).toBe(input);
     });

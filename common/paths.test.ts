@@ -1,13 +1,13 @@
 import { sanitizePath } from './paths';
 
 describe('sanitizePath', () => {
-    test('should remove leading and trailing slashes', () => {
+    test('should remove trailing slashes', () => {
         expect(sanitizePath('/example/')).toBe('/example');
         expect(sanitizePath('/example')).toBe('/example');
         expect(sanitizePath('example/')).toBe('/example');
     });
 
-    test('should remove multiple leading, mid or trailing slashes', () => {
+    test('should remove multiple mid or trailing slashes', () => {
         expect(sanitizePath('///example///')).toBe('/example');
         expect(sanitizePath('///example')).toBe('/example');
         expect(sanitizePath('example//path')).toBe('/example/path');
