@@ -5,7 +5,6 @@ import { getAzureadToken } from './azuread';
 export const getAuthToken = (req: Request) =>
     req.headers.authorization?.split('Bearer ')[1];
 
-
 export const getAccessToken = async (req: Request) => {
     const authToken = getAuthToken(req);
 

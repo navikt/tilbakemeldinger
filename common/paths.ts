@@ -11,3 +11,13 @@ export const paths = {
         rostilnav: '/tilbakemeldinger/ros-til-nav',
     },
 };
+
+export const sanitizePath = (path: string): string => {
+    if (!path) return '';
+
+    if (path.length > 1000 || path.split('/').length > 50) return '';
+
+    let sanitizedPath = path.replace(/\/{2,}/g, '/').replace(/\/+$/, '');
+
+    return `/${sanitizedPath.replace(/^\/+/, '')}`;
+};
