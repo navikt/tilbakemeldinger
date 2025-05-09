@@ -32,9 +32,6 @@ export const sanitizeString = (input: string | null | undefined): string => {
         .replace(/;/g, '\\;')
         .replace(/--/g, '\\--')
         .replace(/[ \t\f\v]+/g, ' ')
-        .replace(/%/g, '&#37;')
-        .replace(/\(/g, '&#40;')
-        .replace(/\)/g, '&#41;')
         .trim();
 
     // Remove all HTML tags, including nested or malformed ones
