@@ -1,8 +1,8 @@
 import Environment from 'src/Environments';
 import { BadRequest, HTTPError } from 'types/errors';
-import { OutboundRosTilNav } from 'pages/tilbakemeldinger/ros-til-nav/Ros';
 import { OutboundFeilOgMangler } from 'pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler';
 import { OutboundServiceKlage } from 'pages/tilbakemeldinger/service-klage/ServiceKlage';
+import { RosTilNav } from 'common/types/RosTilNav';
 
 const { appUrl, personInfoApiUrl, authUrl } = Environment();
 
@@ -40,10 +40,7 @@ export const fetchKontaktInfo = () =>
     POST
  */
 
-type Outbound =
-    | OutboundRosTilNav
-    | OutboundFeilOgMangler
-    | OutboundServiceKlage;
+type Outbound = RosTilNav | OutboundFeilOgMangler | OutboundServiceKlage;
 
 const sendJson = async (url: string, data: Outbound) => {
     const res = await fetch(url, {
@@ -60,7 +57,7 @@ const sendJson = async (url: string, data: Outbound) => {
     }
 };
 
-export const postRosTilNav = (data: OutboundRosTilNav) =>
+export const postRosTilNav = (data: RosTilNav) =>
     sendJson(`${API_URL}/mottak/ros`, data);
 
 export const postServiceKlage = (data: OutboundServiceKlage) =>
