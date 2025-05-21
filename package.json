@@ -37,7 +37,8 @@
         "react-intl": "6.6.8",
         "react-router": "6.23.1",
         "react-router-dom": "6.23.1",
-        "vite": "6.3.4"
+        "vite": "6.3.4",
+        "zod": "^3.25.7"
     },
     "devDependencies": {
         "@babel/preset-react": "7.24.6",
