@@ -1,5 +1,21 @@
 import { RequestHandler } from 'express';
 import { getAccessToken } from '../../../utils/auth/common';
+import { serviceKlageSchema } from '../../../../../common/schema/ServiceKlage';
+import { feilOgManglerSchema } from '../../../../../common/schema/FeilOgMangler';
+import { rosTilNavSchema } from '../../../../../common/schema/RosTilNav';
+
+const deriveSchemaFromPath = (path: string) => {
+    switch (path) {
+        case 'ros':
+            return rosTilNavSchema;
+        case 'serviceklage':
+            return serviceKlageSchema;
+        case 'feil-og-mangler':
+            return feilOgManglerSchema;
+        default:
+            throw new Error(`Unknown path: ${path}`);
+    }
+};
 
 export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
     req,
@@ -11,6 +27,13 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
 
     if (!accessToken) {
         return res.status(500).send('Failed to populate auth header');
+    }
+
+    const schema = deriveSchemaFromPath(path);
+
+    const validationResult = schema.safeParse(body);
+    if (!validationResult.success) {
+        return res.status(400).send('Feil i validering av skjema');
     }
 
     try {
@@ -26,7 +49,10 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
         if (!response.ok) {
             const error = await response.json();
             const errorString = await response.text();
-            console.log(
+
+            // Log error because validation should have been done both frontend and further up,
+            // so something is wrong at this point
+            console.error(
                 `Feil i kall til tilbakemeldingsmottak-api: ${errorString}`
             );
             return res.status(response.status).send(error);

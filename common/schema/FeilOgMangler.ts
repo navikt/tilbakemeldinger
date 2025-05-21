@@ -7,11 +7,11 @@ export const FeilOgManglerTypeSchema = zod.enum([
     'UNIVERSELL_UTFORMING',
 ]);
 
-export const FeilOgManglerSchema = zod.object({
+export const feilOgManglerSchema = zod.object({
     onskerKontakt: zod.boolean(),
     epost: zod.string().email('Invalid email address').optional(),
     feiltype: FeilOgManglerTypeSchema,
     melding: zodString,
 });
 
-export type FeilOgManglerSchemaType = zod.infer<typeof FeilOgManglerSchema>;
+export type FeilOgManglerSchemaType = zod.infer<typeof feilOgManglerSchema>;

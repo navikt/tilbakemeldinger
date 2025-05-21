@@ -6,6 +6,9 @@ export const getAuthToken = (req: Request) =>
     req.headers.authorization?.split('Bearer ')[1];
 
 export const getAccessToken = async (req: Request) => {
+    if (process.env.ENV === 'localhost') {
+        return process.env.MOCK_ACCESS_TOKEN;
+    }
     const authToken = getAuthToken(req);
 
     if (req.params.path === 'serviceklage' && authToken) {

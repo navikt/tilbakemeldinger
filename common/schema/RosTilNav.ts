@@ -5,23 +5,23 @@ const baseRosTilNavSchema = zod.object({
     melding: zodString,
 });
 
-export const RosNavKontaktsenterSchema = baseRosTilNavSchema.extend({
+export const rosNavKontaktsenterSchema = baseRosTilNavSchema.extend({
     hvemRoses: zod.literal('NAV_KONTAKTSENTER'),
 });
 
-export const RosNavDigitaleTjenesterSchema = baseRosTilNavSchema.extend({
+export const rosNavDigitaleTjenesterSchema = baseRosTilNavSchema.extend({
     hvemRoses: zod.literal('NAV_DIGITALE_TJENESTER'),
 });
 
-export const RosNavKontorSchema = baseRosTilNavSchema.extend({
+export const rosNavKontorSchema = baseRosTilNavSchema.extend({
     hvemRoses: zod.literal('NAV_KONTOR'),
     navKontor: zodString,
 });
 
-export const RosTilNavSchema = zod.discriminatedUnion('hvemRoses', [
-    RosNavKontaktsenterSchema,
-    RosNavDigitaleTjenesterSchema,
-    RosNavKontorSchema,
+export const rosTilNavSchema = zod.discriminatedUnion('hvemRoses', [
+    rosNavKontaktsenterSchema,
+    rosNavDigitaleTjenesterSchema,
+    rosNavKontorSchema,
 ]);
 
-export type RosTilNavSchemaType = zod.infer<typeof RosTilNavSchema>;
+export type RosTilNavSchemaType = zod.infer<typeof rosTilNavSchema>;
