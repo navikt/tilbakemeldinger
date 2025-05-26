@@ -27,22 +27,14 @@ import {
 } from 'react-hook-form';
 import { resolveErrorCode } from '../../../utils/errorCodes';
 import appStyle from 'src/App.module.scss';
-
-type FEILTYPE = 'TEKNISK_FEIL' | 'FEIL_INFO' | 'UNIVERSELL_UTFORMING';
+import { FEIL_OG_MANGLER_TYPE } from 'common/types/FeilOgMangler';
 
 export interface FeilOgManglerFields {
     onskerKontakt: boolean;
     epost: string;
-    feiltype: FEILTYPE;
+    feiltype: FEIL_OG_MANGLER_TYPE;
     melding: string;
 }
-
-export type OutboundFeilOgMangler = {
-    onskerKontakt: boolean;
-    epost?: string;
-    feiltype: FEILTYPE;
-    melding: string;
-};
 
 const FOM = () => {
     const methods = useForm<FeilOgManglerFields>({

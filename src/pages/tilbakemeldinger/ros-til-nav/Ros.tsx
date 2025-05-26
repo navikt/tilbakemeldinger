@@ -20,6 +20,7 @@ import {
 } from '@navikt/ds-react';
 import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
+import { RosTilNav } from 'common/types/RosTilNav';
 import { resolveErrorCode } from 'utils/errorCodes';
 import appStyle from 'src/App.module.scss';
 
@@ -33,14 +34,6 @@ interface FormFields {
         value: string;
     };
 }
-
-export type OutboundRosTilNav = {
-    melding: string;
-} & (
-    | { hvemRoses: 'NAV_KONTAKTSENTER' }
-    | { hvemRoses: 'NAV_DIGITALE_TJENESTER' }
-    | { hvemRoses: 'NAV_KONTOR'; navKontor: string }
-);
 
 const Ros = () => {
     const {
@@ -68,7 +61,7 @@ const Ros = () => {
             ...(hvemRoses === 'NAV_KONTOR' && {
                 navKontor: navKontor ? navKontor.label : undefined,
             }),
-        } as OutboundRosTilNav;
+        } as RosTilNav;
 
         setLoading(true);
         postRosTilNav(outbound)

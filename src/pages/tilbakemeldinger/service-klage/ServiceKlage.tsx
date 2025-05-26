@@ -3,11 +3,11 @@ import { useStore } from 'providers/Provider';
 import { postServiceKlage } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import {
-    KLAGE_TYPE,
+    SERVICE_KLAGE_TYPE,
     ON_BEHALF_OF,
-    OutboundServiceKlageBase,
-    OutboundServiceKlageExtend,
-} from 'types/serviceklage';
+    ServiceKlage,
+    ServiceKlageFragment,
+} from 'common/types/ServiceKlage';
 import Header from 'components/header/Header';
 import { vars } from 'src/Config';
 import { paths } from 'common/paths';
@@ -48,7 +48,7 @@ export interface ServiceklageFormFields {
     oenskerAaKontaktes?: boolean;
     gjelderSosialhjelp?: 'JA' | 'NEI' | 'VET_IKKE';
     klagetypeUtdypning?: string;
-    klagetyper: KLAGE_TYPE[];
+    klagetyper: SERVICE_KLAGE_TYPE[];
     paaVegneAv: 'PRIVATPERSON' | 'ANNEN_PERSON' | 'BEDRIFT';
     innmelderNavn: string;
     innmelderTlfnr: string;
@@ -65,10 +65,7 @@ export interface ServiceklageFormFields {
     orgNummer: string;
 }
 
-export type OutboundServiceKlage = OutboundServiceKlageBase &
-    OutboundServiceKlageExtend;
-
-const ServiceKlage = () => {
+const ServiceKlageComponent = () => {
     const methods = useForm<ServiceklageFormFields>({
         reValidateMode: 'onChange',
         shouldUnregister: true,
@@ -100,7 +97,7 @@ const ServiceKlage = () => {
     const closeModal = () => setLoginClosed(true);
 
     const send = (values: FieldValues) => {
-        const outboundBase: OutboundServiceKlageBase = {
+        const outboundBase: ServiceKlage = {
             klagetekst: values.klagetekst,
             klagetyper: values.klagetyper,
             ...(values.klagetyper.includes('ANNET') && {
@@ -113,7 +110,7 @@ const ServiceKlage = () => {
         };
 
         const outboundExtend: {
-            [key in ON_BEHALF_OF]: OutboundServiceKlageExtend;
+            [key in ON_BEHALF_OF]: ServiceKlageFragment;
         } = {
             PRIVATPERSON: {
                 paaVegneAv: 'PRIVATPERSON',
@@ -224,7 +221,7 @@ const ServiceKlage = () => {
                                         })}
                                         error={error?.message}
                                         onChange={async (
-                                            values: KLAGE_TYPE[]
+                                            values: SERVICE_KLAGE_TYPE[]
                                         ) => {
                                             setValue('klagetyper', values);
                                             isSubmitted && (await trigger());
@@ -386,4 +383,4 @@ const ServiceKlage = () => {
     );
 };
 
-export default ServiceKlage;
+export default ServiceKlageComponent;
