@@ -6,7 +6,7 @@ const Environment = () => {
     const commonUrls = {
         baseUrl: origin,
         appUrl: `${origin}/person/kontakt-oss/tilbakemeldinger`,
-        personInfoApiUrl: `${origin}/person/personopplysninger-api`,
+        personInfoApiUrl: `${origin}/tms-personopplysninger-api/kontaktinformasjon`,
     };
 
     if (isLocal) {
