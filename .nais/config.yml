@@ -3,17 +3,16 @@ apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
   name: tilbakemeldinger
-  namespace: navno
+  namespace: personbruker
   labels:
-    team: navno
+    team: personbruker
 spec:
   image: {{image}}
   port: 9001
   ingresses:
-    https://www.tilbakemeldinger.intern.nav.no
-#  { { #each ingresses as |url|}}
-#      - {{url } }
-#  {{/each}}
+    {{ #each ingresses as |url|}}
+      - {{url } }
+    {{/each}}
   liveness:
     path: /person/kontakt-oss/tilbakemeldinger/internal/isAlive
     initialDelay: 10
