@@ -11,9 +11,6 @@ spec:
   port: 9001
   ingresses:
     https://www.tilbakemeldinger.intern.nav.no
-#  { { #each ingresses as |url|}}
-#      - {{url } }
-#  {{/each}}
   liveness:
     path: /person/kontakt-oss/tilbakemeldinger/internal/isAlive
     initialDelay: 10
