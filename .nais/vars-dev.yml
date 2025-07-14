@@ -1,10 +1,9 @@
 norg2Host: norg2.dev-fss-pub.nais.io
 ingresses:
-#  - https://www.ansatt.dev.nav.no/person/kontakt-oss/nn/tilbakemeldinger
-#  - https://www.ansatt.dev.nav.no/person/kontakt-oss/nb/tilbakemeldinger
-#  - https://www.ansatt.dev.nav.no/person/kontakt-oss/en/tilbakemeldinger
-#  - https://www.ansatt.dev.nav.no/person/kontakt-oss/tilbakemeldinger
-  - https://www.ansatt.dev.nav.no/tilbakemeldinger-test
+  - https://www.ansatt.dev.nav.no/person/kontakt-oss/nn/tilbakemeldinger
+  - https://www.ansatt.dev.nav.no/person/kontakt-oss/nb/tilbakemeldinger
+  - https://www.ansatt.dev.nav.no/person/kontakt-oss/en/tilbakemeldinger
+  - https://www.ansatt.dev.nav.no/person/kontakt-oss/tilbakemeldinger
 
 replicas:
   min: 1
