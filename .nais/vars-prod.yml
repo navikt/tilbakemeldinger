@@ -1,9 +1,11 @@
 norg2Host: norg2.prod-fss-pub.nais.io
 ingresses:
-  - https://www.nav.no/person/kontakt-oss/nb/tilbakemeldinger
-  - https://www.nav.no/person/kontakt-oss/nn/tilbakemeldinger
-  - https://www.nav.no/person/kontakt-oss/en/tilbakemeldinger
-  - https://www.nav.no/person/kontakt-oss/tilbakemeldinger
+#  - https://www.nav.no/person/kontakt-oss/nb/tilbakemeldinger
+#  - https://www.nav.no/person/kontakt-oss/nn/tilbakemeldinger
+#  - https://www.nav.no/person/kontakt-oss/en/tilbakemeldinger
+#  - https://www.nav.no/person/kontakt-oss/tilbakemeldinger
+  - https://www.tilbakemeldinger.intern.nav.no
+
 replicas:
   min: 2
   max: 4
