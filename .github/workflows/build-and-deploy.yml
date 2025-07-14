@@ -60,7 +60,7 @@ jobs:
             - name: Upload static files to CDN
               uses: nais/deploy/actions/cdn-upload/v2@master
               with:
-                  team: personbruker
+                  team: navno
                   source: ./server/dist/client/assets
                   destination: tilbakemeldinger/${{ inputs.env }}
                   project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
@@ -73,7 +73,7 @@ jobs:
               uses: nais/docker-build-push@v0
               id: docker-push
               with:
-                  team: personbruker
+                  team: navno
                   project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
                   image_suffix: ${{ inputs.imageSuffix }}
