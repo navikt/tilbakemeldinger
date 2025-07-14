@@ -10,7 +10,7 @@ spec:
   image: {{image}}
   port: 9001
   ingresses:
-    https://www.tilbakemeldinger.intern.nav.no
+    - https://www.tilbakemeldinger.intern.nav.no
   liveness:
     path: /person/kontakt-oss/tilbakemeldinger/internal/isAlive
     initialDelay: 10
