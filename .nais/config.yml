@@ -10,8 +10,8 @@ spec:
   image: {{image}}
   port: 9001
   ingresses:
-  { { #each ingresses as |url|}}
-      - {{url } }
+  {{#each ingresses as |url|}}
+     - {{url}}
   {{/each}}
   liveness:
     path: /person/kontakt-oss/tilbakemeldinger/internal/isAlive
