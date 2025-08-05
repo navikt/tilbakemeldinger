@@ -13,7 +13,7 @@ const Environment = () => {
         return {
             authUrl: `${origin}/person/nav-dekoratoren-api/auth`,
             mineSakerUrl: 'https://www.intern.dev.nav.no/mine-saker',
-            loginUrl: `${origin}/personbruker-api/local/cookie`,
+            loginUrl: `https://login.ekstern.dev.nav.no/oauth2/login`,
             klageUrl: 'https://www.ekstern.dev.nav.no/klage',
             klageUrlEn: 'https://www.ekstern.dev.nav.no/klage/en',
             ...commonUrls,
