@@ -8,7 +8,7 @@
         "dev": "npm run build && concurrently \"tsc -w\" \"nodemon -r dotenv/config -w ./dist/server ./dist/server/server/src/server.js dotenv_config_path=../.env\""
     },
     "dependencies": {
-        "compression": "1.7.5",
+        "compression": "^1.8.1",
         "csp-header": "6.0.0",
         "dotenv": "16.4.7",
         "express": "4.21.2",
