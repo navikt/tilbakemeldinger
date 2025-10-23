@@ -25,6 +25,14 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
     const accessToken = await getAccessToken(req);
     const body = req.body;
 
+    if (
+        path !== 'ros' &&
+        path !== 'serviceklage' &&
+        path !== 'feil-og-mangler'
+    ) {
+        return res.status(404).send('Path not found');
+    }
+
     if (!accessToken) {
         return res.status(500).send('Failed to populate auth header');
     }
