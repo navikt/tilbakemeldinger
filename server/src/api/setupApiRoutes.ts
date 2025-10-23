@@ -8,15 +8,18 @@ import { rateLimit } from 'express-rate-limit';
 import { getAccessToken } from '../utils/auth/common';
 
 export const setupApiRoutes = async (router: Router) => {
+    const mottakHandler = [
+        globalRateLimit,
+        ipRateLimit,
+        postToTilbakemeldingsmottakHandler,
+    ];
+
     router.get('/internal/isAlive', isAliveHandler);
     router.get('/internal/isReady', isReadyHandler);
     router.get('/fodselsnr', fodselsNrHandler);
-    router.post(
-        '/mottak/:path(ros|serviceklage|feil-og-mangler)',
-        globalRateLimit,
-        ipRateLimit,
-        postToTilbakemeldingsmottakHandler
-    );
+    router.post('/mottak/ros', ...mottakHandler);
+    router.post('/mottak/serviceklage', ...mottakHandler);
+    router.post('/mottak/feil-og-mangler', ...mottakHandler);
     router.get('/enheter', enheterHandler);
 };
 

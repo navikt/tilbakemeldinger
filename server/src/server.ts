@@ -12,8 +12,8 @@ const { APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV } = process.env;
 console.log('env:', APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV);
 
 const app = express();
-app.use('*', compression());
-app.use('*', express.json());
+app.use(compression());
+app.use(express.json());
 
 const siteRouter = express.Router();
 const apiRouter = express.Router();
