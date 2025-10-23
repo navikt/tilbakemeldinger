@@ -50,6 +50,10 @@ export const getTemplateWithDecorator = async (url: string) => {
         url
     );
 
+    const file = fs.readFileSync(templatePath).toString();
+
+    console.log(`Read file: ${file}`);
+
     return injectDecoratorServerSide({
         ...envProps,
         filePath: templatePath,

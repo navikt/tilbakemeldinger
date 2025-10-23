@@ -29,6 +29,10 @@ const cache = new Cache({ deleteOnExpire: false, stdTTL: 600 });
 const cacheKey = 'csp';
 
 const buildAndCache = async () => {
+    console.log('Building CSP header');
+    console.log('Using directives:', JSON.stringify(myDirectives));
+    console.log('Using decoratorEnvProps:', JSON.stringify(decoratorEnvProps));
+
     const csp = await buildCspHeader(myDirectives, decoratorEnvProps);
     cache.set(cacheKey, csp);
 };

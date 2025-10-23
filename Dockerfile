@@ -8,5 +8,8 @@ COPY server/dist  /app/server/dist/
 COPY server/package*.json /app/server/
 COPY server/node_modules* /app/server/node_modules/
 
+ENV NODE_ENV production
+
 EXPOSE 9001
-CMD ["node", "-r", "dotenv/config", "server/dist/server/server/src/server.js", "dotenv_config_path=.env"]
+ENTRYPOINT ["node"]
+CMD ["server/dist/server/server/src/server.js"]

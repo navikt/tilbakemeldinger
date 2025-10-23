@@ -5,6 +5,8 @@ import { setupApiRoutes } from './api/setupApiRoutes';
 import { setupErrorHandlers } from './utils/errorHandlers';
 import { isLocal } from './utils/environment';
 
+import 'dotenv/config';
+
 const { APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV } = process.env;
 
 console.log('env:', APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV);
