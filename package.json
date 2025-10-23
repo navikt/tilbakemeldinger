@@ -24,7 +24,7 @@
         "test:coverage": "node --experimental-vm-modules node_modules/.bin/jest --config jest.config.js --coverage"
     },
     "dependencies": {
-        "@floating-ui/react": "^0.27.16",
+        "@floating-ui/react": "0.27.16",
         "@navikt/aksel-icons": "7.32.3",
         "@navikt/ds-css": "7.32.3",
         "@navikt/ds-react": "7.32.3",
@@ -40,7 +40,7 @@
         "react-router": "6.23.1",
         "react-router-dom": "6.23.1",
         "vite": "7.1.12",
-        "zod": "3.25.7"
+        "zod": "4.1.12"
     },
     "devDependencies": {
         "@babel/preset-react": "7.24.6",
