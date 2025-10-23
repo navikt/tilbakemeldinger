@@ -12,7 +12,7 @@ import { Locale, defaultLocale, isLocale } from '../../../../common/locale';
 const templatePath =
     process.env.NODE_ENV === 'development'
         ? path.resolve(process.cwd(), '..', 'index.html')
-        : path.resolve(process.cwd(), 'dist', 'client', 'index.html');
+        : path.resolve(process.cwd(), 'server', 'dist', 'client', 'index.html');
 
 const getUndecoratedTemplate = () =>
     fs.readFileSync(templatePath, { encoding: 'utf-8' });

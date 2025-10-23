@@ -8,7 +8,13 @@ import { isLocal } from '../utils/environment';
 
 const { VITE_APP_BASEPATH, VITE_EDITORIAL_FRONTPAGE_ORIGIN } = process.env;
 
-const assetsDir = path.resolve(process.cwd(), 'dist', 'client', 'assets');
+const assetsDir = path.resolve(
+    process.cwd(),
+    'server',
+    'dist',
+    'client',
+    'assets'
+);
 
 const isProd = process.env.NODE_ENV !== 'development';
 

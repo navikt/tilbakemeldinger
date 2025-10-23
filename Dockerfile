@@ -1,4 +1,4 @@
-FROM node:22-alpine
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:22
 
 WORKDIR /app
 
@@ -9,4 +9,4 @@ COPY server/package*.json /app/server/
 COPY server/node_modules* /app/server/node_modules/
 
 EXPOSE 9001
-CMD ["npm", "run", "start"]
+CMD ["node", "-r", "dotenv/config", "server/dist/server/server/src/server.js", "dotenv_config_path=.env"]
