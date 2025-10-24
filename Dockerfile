@@ -8,7 +8,7 @@ COPY server/dist  /app/server/dist/
 COPY server/package*.json /app/server/
 COPY server/node_modules* /app/server/node_modules/
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 EXPOSE 9001
 ENTRYPOINT ["node"]
