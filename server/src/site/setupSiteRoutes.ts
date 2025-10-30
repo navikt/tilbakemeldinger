@@ -67,12 +67,11 @@ export const setupSiteRoutes = async (router: Router) => {
     }
 
     router.use(
-        '*',
         createCacheMiddleware({ ttlSec: 600, maxSize: 100 }),
         await createCspMiddleware()
     );
 
-    router.get('*', async (req, res) => {
+    router.get('/{*splat}', async (req, res) => {
         const { originalUrl } = req;
 
         // Redirect to editorial front page (Enonic XP) if conditions are met

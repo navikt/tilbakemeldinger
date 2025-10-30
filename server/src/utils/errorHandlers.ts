@@ -40,7 +40,7 @@ export const setupErrorHandlers = async (expressApp: Express) => {
         return res.status(statusCode).end();
     };
 
-    expressApp.use('*', notFoundHandler);
+    expressApp.use(notFoundHandler);
 
     expressApp.use(serverErrorHandler);
 };

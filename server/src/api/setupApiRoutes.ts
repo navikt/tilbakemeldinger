@@ -4,7 +4,7 @@ import { isAliveHandler } from './routes/isAlive/isAliveHandler';
 import { fodselsNrHandler } from './routes/fodselsNr/fodselsNrHandler';
 import { postToTilbakemeldingsmottakHandler } from './routes/postToTilbakemeldingsmottak/postToTilbakemeldingsmottakHandler';
 import { enheterHandler } from './routes/enheter/enheterHandler';
-import { rateLimit } from 'express-rate-limit';
+import { rateLimit, ipKeyGenerator } from 'express-rate-limit';
 import { getAccessToken } from '../utils/auth/common';
 
 export const setupApiRoutes = async (router: Router) => {
@@ -12,7 +12,7 @@ export const setupApiRoutes = async (router: Router) => {
     router.get('/internal/isReady', isReadyHandler);
     router.get('/fodselsnr', fodselsNrHandler);
     router.post(
-        '/mottak/:path(ros|serviceklage|feil-og-mangler)',
+        '/mottak/:path',
         globalRateLimit,
         ipRateLimit,
         postToTilbakemeldingsmottakHandler
@@ -36,12 +36,9 @@ const ipRateLimit = rateLimit({
     max: 5,
     standardHeaders: true,
     keyGenerator: (req) => {
-        return (
-            req.ip ||
-            req.get('x-real-ip') ||
-            req.get('x-forwarded-for') ||
-            'default'
-        );
+        // Use ipKeyGenerator helper to properly handle IPv6 addresses
+        const ip = req.ip || req.socket.remoteAddress || '';
+        return ipKeyGenerator(ip);
     },
     message: 'Rate limit IP',
 });
