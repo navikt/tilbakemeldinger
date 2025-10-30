@@ -8,7 +8,13 @@ import { isLocal } from '../utils/environment';
 
 const { VITE_APP_BASEPATH, VITE_EDITORIAL_FRONTPAGE_ORIGIN } = process.env;
 
-const assetsDir = path.resolve(process.cwd(), 'dist', 'client', 'assets');
+const assetsDir = path.resolve(
+    process.cwd(),
+    'server',
+    'dist',
+    'client',
+    'assets'
+);
 
 const isProd = process.env.NODE_ENV !== 'development';
 
@@ -61,12 +67,11 @@ export const setupSiteRoutes = async (router: Router) => {
     }
 
     router.use(
-        '*',
         createCacheMiddleware({ ttlSec: 600, maxSize: 100 }),
         await createCspMiddleware()
     );
 
-    router.get('*', async (req, res) => {
+    router.get('/{*splat}', async (req, res) => {
         const { originalUrl } = req;
 
         // Redirect to editorial front page (Enonic XP) if conditions are met
