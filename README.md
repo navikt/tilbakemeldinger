@@ -10,6 +10,8 @@ Preact-basert frontend serves av Express-server. Express-serveren eksponerer API
 
 ### Endepunkter
 
+Disse endepunktene fungerer som proxy mellom frontend-klienten og [tilbakemeldingsmottak-api](https://github.com/navikt/tilbakemeldingsmottak-api).
+
 | Endepunkt               | Metode | Beskrivelse                                                                                                                          |
 | ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | /mottak/serviceklage    | POST   | Mottar object fra klienten. Videresender til tilbakemeldingmsottak-api. [Typedefinisjon](common/types/ServiceKlage.ts) for payload.  |
