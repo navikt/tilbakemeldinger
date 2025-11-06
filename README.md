@@ -2,41 +2,37 @@
 
 ![Deploy to prod](https://github.com/navikt/tilbakemeldinger/workflows/Deploy%20to%20prod/badge.svg) | ![Deploy to dev](https://github.com/navikt/tilbakemeldinger/workflows/Deploy%20to%20dev/badge.svg)
 
-Frontend for innsending av tilbakemeldinger til NAV: Klage, ros og tekniske feil og mangler.
+Frackend for innsending av tilbakemeldinger til NAV: Klage, ros og tekniske feil og mangler.
 
-## Komme i gang
+## Arkitektur
 
-Hent repoet fra github
+Preact-basert frontend serves av Express-server. Express-serveren eksponerer API-endepunkter og fungerer dermed som en proxy mot internt tilbakemeldingsmottak-api.
 
-```
-git clone https://github.com/navikt/tilbakemeldinger.git
-```
+### Endepunkter
 
-Installer nødvendige pakker:
+Disse endepunktene fungerer som proxy mellom frontend-klienten og [tilbakemeldingsmottak-api](https://github.com/navikt/tilbakemeldingsmottak-api).
 
-```
-npm install
-```
+| Endepunkt               | Metode | Beskrivelse                                                                                                                          |
+| ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| /mottak/serviceklage    | POST   | Mottar object fra klienten. Videresender til tilbakemeldingmsottak-api. [Typedefinisjon](common/types/ServiceKlage.ts) for payload.  |
+| /mottak/feil-og-mangler | POST   | Mottar object fra klienten. Videresender til tilbakemeldingmsottak-api. [Typedefinisjon](common/types/FeilOgMangler.ts) for payload. |
+| /mottak/ros-til-nav     | POST   | Mottar object fra klienten. Videresender til tilbakemeldingmsottak-api [Typedefinisjon](common/types/RosTilNav.ts) for payload.      |
 
-Bygg:
+## Ingress i dev
 
-```
-npm run build
-```
+https://www.ansatt.dev.nav.no/person/kontakt-oss/nb/tilbakemeldinger/serviceklage
+https://www.ansatt.dev.nav.no/person/kontakt-oss/nb/tilbakemeldinger/feil-og-mangler
+https://www.ansatt.dev.nav.no/person/kontakt-oss/nb/tilbakemeldinger/ros-til-nav
 
-Start applikasjonen lokalt:
+## Ingress i prod
 
-```
-npm start
-```
+https://www.nav.no/person/kontakt-oss/nb/tilbakemeldinger/serviceklage
+https://www.nav.no/person/kontakt-oss/nb/tilbakemeldinger/feil-og-mangler
+https://www.nav.no/person/kontakt-oss/nb/tilbakemeldinger/ros-til-nav
 
-## Deploy til dev-miljø
+# Kom i gang
 
-[Deploy-to-dev](https://github.com/navikt/tilbakemeldinger/actions/workflows/deploy.dev.yml) -> Run workflow -> Velg branch -> Run workflow
-
-## Prodsetting
-
-Lag en PR til main, og merge inn etter godkjenning (En automatisk release vil oppstå ved deploy til main)
+Se [Contribute.md](CONTRIBUTE.md) for informasjon om hvordan du starter applikasjonen lokalt på egen maskin og hvordan du deployer til miljøer.
 
 ## Henvendelser
 
