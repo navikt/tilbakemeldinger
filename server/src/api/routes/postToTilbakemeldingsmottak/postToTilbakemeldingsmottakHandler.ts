@@ -55,15 +55,24 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
         });
 
         if (!response.ok) {
-            const error = await response.json();
-            const errorString = await response.text();
+            const errorText = await response.text();
 
             // Log error because validation should have been done both frontend and further up,
             // so something is wrong at this point
             console.error(
-                `Feil i kall til tilbakemeldingsmottak-api: ${errorString}`
+                `Feil i kall til tilbakemeldingsmottak-api: ${errorText}`
             );
-            return res.status(response.status).send(error);
+
+            // Try to parse as JSON, otherwise return the raw text
+            try {
+                const errorJson = JSON.parse(errorText);
+                return res.status(response.status).send(errorJson);
+            } catch {
+                console.error(
+                    `Kunne ikke parse feilmelding fra tilbakemeldingsmottak-api som JSON: ${errorText}`
+                );
+                return res.status(response.status).send(errorText);
+            }
         }
 
         const responseData = await response.json();
