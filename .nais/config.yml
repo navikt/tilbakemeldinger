@@ -14,10 +14,10 @@ spec:
      - {{url}}
   {{/each}}
   liveness:
-    path: /person/kontakt-oss/tilbakemeldinger/internal/isAlive
+    path: /person/kontakt-oss/tilbakemeldinger/api/internal/isAlive
     initialDelay: 10
   readiness:
-    path: /person/kontakt-oss/tilbakemeldinger/internal/isReady
+    path: /person/kontakt-oss/tilbakemeldinger/api/internal/isReady
     initialDelay: 10
   observability:
     logging:
