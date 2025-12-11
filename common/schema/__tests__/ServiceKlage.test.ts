@@ -267,6 +267,7 @@ describe('ServiceKlage Schema', () => {
                 klagetekst: 'Dette er en klage på service',
                 klagetyper: ['NAV_DIGITALE_TJENESTER'],
                 gjelderSosialhjelp: 'VET_IKKE',
+                oenskerAaKontaktes: true,
                 paaVegneAv: 'BEDRIFT',
                 enhetsnummerPaaklaget: '123',
                 innmelder: {
@@ -283,6 +284,53 @@ describe('ServiceKlage Schema', () => {
 
             const result = serviceKlageSchema.safeParse(validData);
             expect(result.success).toBe(true);
+        });
+
+        test('should fail bedrift service klage when oenskerAaKontaktes is false', () => {
+            const invalidData = {
+                klagetekst: 'Dette er en klage på service',
+                klagetyper: ['NAV_DIGITALE_TJENESTER'],
+                gjelderSosialhjelp: 'VET_IKKE',
+                oenskerAaKontaktes: false,
+                paaVegneAv: 'BEDRIFT',
+                enhetsnummerPaaklaget: '123',
+                innmelder: {
+                    navn: 'Ola Chef',
+                    telefonnummer: '99988777',
+                    rolle: 'HR Ansvarlig',
+                },
+                paaVegneAvBedrift: {
+                    navn: 'Acme AS',
+                    organisasjonsnummer: '123456789',
+                    postadresse: 'Acmeveien 1, 0123 Oslo',
+                },
+            };
+
+            const result = serviceKlageSchema.safeParse(invalidData);
+            expect(result.success).toBe(false);
+        });
+
+        test('should fail bedrift service klage when oenskerAaKontaktes is missing', () => {
+            const invalidData = {
+                klagetekst: 'Dette er en klage på service',
+                klagetyper: ['NAV_DIGITALE_TJENESTER'],
+                gjelderSosialhjelp: 'VET_IKKE',
+                paaVegneAv: 'BEDRIFT',
+                enhetsnummerPaaklaget: '123',
+                innmelder: {
+                    navn: 'Ola Chef',
+                    telefonnummer: '99988777',
+                    rolle: 'HR Ansvarlig',
+                },
+                paaVegneAvBedrift: {
+                    navn: 'Acme AS',
+                    organisasjonsnummer: '123456789',
+                    postadresse: 'Acmeveien 1, 0123 Oslo',
+                },
+            };
+
+            const result = serviceKlageSchema.safeParse(invalidData);
+            expect(result.success).toBe(false);
         });
 
         test('should fail when combining invalid parts', () => {

@@ -84,6 +84,8 @@ const nb: ITranslation = {
         'Du må velge hvem tilbakemeldingen er på vegne av',
     'validering.onskerkontakt.pakrevd':
         'Du må velge om du ønsker at vi tar kontakt',
+    'validering.onskerkontakt.bedrift.pakrevd':
+        'Når du sender inn på vegne av en virksomhet, må du samtykke til å bli kontaktet',
     'validering.fodselsnr.pakrevd': 'Fødselsnummer er nødvendig',
     'validering.fodselsnr.siffer': 'Fødselsnummer kan kun bestå av siffer',
     'validering.fodselsnr.korrektsiffer': 'Fødselsnummer må være 11 siffer',

@@ -61,6 +61,17 @@ const ServiceKlageOnskerAaKontaktes = (props: Props) => {
                             formatMessage({
                                 id: 'validering.onskerkontakt.pakrevd',
                             }),
+                        mustBeTrueForBedrift: (v) => {
+                            if (
+                                watch().paaVegneAv === 'BEDRIFT' &&
+                                v !== true
+                            ) {
+                                return formatMessage({
+                                    id: 'validering.onskerkontakt.bedrift.pakrevd',
+                                });
+                            }
+                            return true;
+                        },
                     },
                 }}
             />

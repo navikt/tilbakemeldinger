@@ -87,6 +87,8 @@ const en: ITranslation = {
         'You must select who the feedback is on behalf of',
     'validering.onskerkontakt.pakrevd':
         'You must select whether you want us to contact you',
+    'validering.onskerkontakt.bedrift.pakrevd':
+        'When submitting on behalf of an organisation, you must consent to being contacted',
     'validering.fodselsnr.pakrevd': 'National identity number is required',
     'validering.fodselsnr.siffer':
         'National identity number can only consist of digits',
