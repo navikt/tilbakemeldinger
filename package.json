@@ -33,7 +33,7 @@
         "@preact/compat": "18.3.1",
         "@prefresh/vite": "2.4.11",
         "date-fns": "^4.1.0",
-        "downshift": "9.0.10",
+        "downshift": "9.0.12",
         "preact-render-to-string": "6.6.3",
         "react-helmet-async": "2.0.5",
         "react-hook-form": "7.65.0",
