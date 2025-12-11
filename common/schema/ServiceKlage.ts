@@ -82,8 +82,20 @@ export const serviceKlageFragmentSchema = zod.discriminatedUnion('paaVegneAv', [
 ]);
 
 // Combine the base schema with the fragment schema
-export const serviceKlageSchema = serviceKlageBaseSchema.and(
-    serviceKlageFragmentSchema
-);
+export const serviceKlageSchema = serviceKlageBaseSchema
+    .and(serviceKlageFragmentSchema)
+    .refine(
+        (data) => {
+            if (data.paaVegneAv === 'BEDRIFT') {
+                return data.oenskerAaKontaktes === true;
+            }
+            return true;
+        },
+        {
+            message:
+                'oenskerAaKontaktes must be true when paaVegneAv is BEDRIFT',
+            path: ['oenskerAaKontaktes'],
+        }
+    );
 
 export type ServiceKlageSchemaType = zod.infer<typeof serviceKlageSchema>;
