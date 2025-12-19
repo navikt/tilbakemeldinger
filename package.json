@@ -39,7 +39,7 @@
         "react-hook-form": "7.65.0",
         "react-intl": "6.6.8",
         "react-router": "6.23.1",
-        "react-router-dom": "6.23.1",
+        "react-router-dom": "7.10.1",
         "vite": "7.2.6",
         "zod": "4.1.12"
     },
