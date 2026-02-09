@@ -37,7 +37,7 @@
         "preact-render-to-string": "6.6.3",
         "react-helmet-async": "2.0.5",
         "react-hook-form": "7.65.0",
-        "react-intl": "6.6.8",
+        "react-intl": "8.1.1",
         "react-router": "6.30.3",
         "react-router-dom": "6.30.3",
         "vite": "7.2.6",
