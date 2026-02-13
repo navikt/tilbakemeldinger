@@ -31,12 +31,14 @@ jobs:
         steps:
             - name: Checkout repo
               uses: actions/checkout@v6
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
             - name: Setup node.js
               uses: actions/setup-node@v6
               with:
                   node-version: 24
                   registry-url: 'https://npm.pkg.github.com'
-                  cache: 'npm'
+                  cache: 'pnpm'
             - name: Set app environment
               run: |
                   cat > .env <<EOF
@@ -50,13 +52,13 @@ jobs:
                   CDN_BASE=https://cdn.nav.no/navno/tilbakemeldinger/${{ inputs.env }}
                   EOF
             - name: Install dependencies
-              run: npm ci --ignore-scripts
+              run: pnpm install --frozen-lockfile
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
             - name: Build application
-              run: npm run build
+              run: pnpm run build
             - name: Run tests
-              run: npm run test
+              run: pnpm run test
             - name: Upload static files to CDN
               uses: nais/deploy/actions/cdn-upload/v2@master
               with:
@@ -67,8 +69,10 @@ jobs:
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
                   run: echo uploaded file ${{ steps.upload.outputs.uploaded }}
                   shell: bash
-            - name: Prune dependencies
-              run: npm prune --omit=dev --workspaces
+            - name: Install production dependencies only
+              run: |
+                  rm -rf node_modules server/node_modules
+                  pnpm install --prod --frozen-lockfile
             - name: Build and push docker image
               uses: nais/docker-build-push@v0
               id: docker-push

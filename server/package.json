@@ -5,7 +5,7 @@
     "scripts": {
         "build": "tsc",
         "start": "node -r dotenv/config ./dist/server/server/src/server.js dotenv_config_path=../.env",
-        "dev": "npm run build && concurrently \"tsc -w\" \"nodemon -r dotenv/config -w ./dist/server ./dist/server/server/src/server.js dotenv_config_path=../.env\""
+        "dev": "pnpm run build && concurrently \"tsc -w\" \"nodemon -r dotenv/config -w ./dist/server ./dist/server/server/src/server.js dotenv_config_path=../.env\""
     },
     "dependencies": {
         "compression": "1.8.1",
