@@ -6,16 +6,30 @@ Hent repoet fra github
 git clone https://github.com/navikt/tilbakemeldinger.git
 ```
 
+## Installere pnpm
+
+Dette prosjektet bruker **pnpm** som package manager. Node.js kommer med Corepack som automatisk bruker riktig pnpm-versjon:
+
+```bash
+corepack enable
+```
+
+Corepack leser `packageManager`-feltet i `package.json` og installerer riktig versjon automatisk.
+
+**Merk:** Når Corepack er aktivert, vil `npm`-kommandoer ikke fungere.
+
+## Installer avhengigheter
+
 Installer nødvendige pakker:
 
 ```
-npm install
+pnpm install
 ```
 
 Start applikasjonen lokalt:
 
 ```
-npm run dev
+pnpm run dev
 ```
 
 ## Deploy

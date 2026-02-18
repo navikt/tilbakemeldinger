@@ -3,9 +3,6 @@ import preact from '@preact/preset-vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-// https://vitejs.dev/config/
-
-// @ts-ignore
 export default defineConfig(({ mode }) => {
     process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
     process.env.NODE_ENV = process.env.NODE_ENV || 'production';
