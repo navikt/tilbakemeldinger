@@ -26,7 +26,7 @@ export const getAccessToken = async (
         }
     }
 
-    return (await getAzureadToken(
+    return await getAzureadToken(
         `api://${process.env.ENV}-gcp.teamserviceklage.tilbakemeldingsmottak-api/.default`
-    )) as string | undefined;
+    );
 };
