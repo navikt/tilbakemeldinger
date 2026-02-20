@@ -1,6 +1,5 @@
 import * as querystring from 'querystring';
-
-const Cache = require('node-cache');
+import Cache from 'node-cache';
 
 const cacheKey = 'authHeader';
 
@@ -47,12 +46,12 @@ const fetchAccessToken = async (
 
 export const getAzureadToken = async (scope: string) => {
     if (cache.has(cacheKey)) {
-        return cache.get(cacheKey);
+        return cache.get<string>(cacheKey);
     }
 
     const accessToken = await fetchAccessToken(scope);
     if (!accessToken) {
-        return null;
+        return undefined;
     }
 
     cache.set(cacheKey, accessToken.access_token, accessToken.expires_in - 60);

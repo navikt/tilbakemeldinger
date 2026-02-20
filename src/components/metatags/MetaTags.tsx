@@ -6,12 +6,13 @@ import Environment from 'src/Environments';
 import { logPageview } from 'utils/amplitude';
 import { Helmet } from 'react-helmet-async';
 import { paths } from 'common/paths';
+import type { ReactNode } from 'react';
 
 type Props = {
     path: string;
     titleId: string;
     descriptionId?: string;
-    children?: JSX.Element;
+    children?: ReactNode;
 };
 
 export const MetaTags = ({ path, titleId, descriptionId, children }: Props) => {

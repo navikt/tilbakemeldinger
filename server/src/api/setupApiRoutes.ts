@@ -24,9 +24,12 @@ const globalRateLimit = rateLimit({
     windowMs: 30 * 60 * 1000, // 30 minutes
     max: 100,
     standardHeaders: true,
-    keyGenerator: async (req) => {
+    keyGenerator: async (req): Promise<string> => {
         const accessToken = await getAccessToken(req);
-        return accessToken || 'unauthenticated';
+        if (!accessToken) {
+            return 'unauthenticated';
+        }
+        return accessToken;
     },
     message: 'Rate limit',
 });
