@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
+import type { ReactNode } from 'react';
 
 interface Props {
-    children: JSX.Element | JSX.Element[];
+    children: ReactNode;
 }
 
 const ScrollToTop = (props: Props) => {

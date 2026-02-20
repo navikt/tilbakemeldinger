@@ -16,7 +16,7 @@ const createNotFoundHandler = async (): Promise<RequestHandler> => {
             return 'Not found';
         });
 
-    return (req, res, _) => {
+    return (req, res) => {
         res.status(404).send(notFoundHtml);
     };
 };

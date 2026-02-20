@@ -6,7 +6,7 @@ on:
                 required: true
                 type: string
             imageSuffix:
-                required: true
+                required: false
                 type: string
             appOrigin:
                 required: true
@@ -14,11 +14,15 @@ on:
             editorialFrontpageOrigin:
                 required: true
                 type: string
+            skipDeploy:
+                required: false
+                type: boolean
+                default: false
         secrets:
             READER_TOKEN:
                 required: true
             NAIS_WORKLOAD_IDENTITY_PROVIDER:
-                required: true
+                required: false
 
 jobs:
     build-and-deploy:
@@ -60,6 +64,7 @@ jobs:
             - name: Run tests
               run: pnpm run test
             - name: Upload static files to CDN
+              if: ${{ !inputs.skipDeploy }}
               uses: nais/deploy/actions/cdn-upload/v2@master
               with:
                   team: navno
@@ -70,10 +75,12 @@ jobs:
                   run: echo uploaded file ${{ steps.upload.outputs.uploaded }}
                   shell: bash
             - name: Install production dependencies only
+              if: ${{ !inputs.skipDeploy }}
               run: |
                   rm -rf node_modules server/node_modules
                   pnpm install --prod --frozen-lockfile
             - name: Build and push docker image
+              if: ${{ !inputs.skipDeploy }}
               uses: nais/docker-build-push@v0
               id: docker-push
               with:
@@ -82,6 +89,7 @@ jobs:
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
                   image_suffix: ${{ inputs.imageSuffix }}
             - name: Deploy to nais
+              if: ${{ !inputs.skipDeploy }}
               uses: nais/deploy/actions/deploy@v2
               env:
                   CLUSTER: ${{ inputs.env }}-gcp
