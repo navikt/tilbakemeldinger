@@ -34,6 +34,9 @@ export default defineConfig(({ mode }) => {
                 'react-helmet-async',
                 'react-hook-form',
             ],
+            resolve: {
+                conditions: ['import', 'module', 'default'],
+            },
         },
         base: process.env.CDN_BASE || process.env.VITE_APP_BASEPATH,
         css: {
