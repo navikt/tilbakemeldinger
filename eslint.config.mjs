@@ -23,6 +23,9 @@ const cleanGlobals = Object.fromEntries(
 
 export default defineConfig([
     {
+        ignores: ['**/node_modules/**', '**/dist/**', '**/_ssr-dist/**'],
+    },
+    {
         extends: compat.extends(
             'eslint:recommended',
             'plugin:react/recommended',

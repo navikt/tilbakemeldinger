@@ -67,8 +67,8 @@ export async function getTokenxToken(subject_token: string, audience: string) {
     try {
         const grant = await _client.grant(grantBody, additionalClaims);
         return grant.access_token;
-    } catch (err: any) {
-        if (err.constructor === OPError && err.response !== undefined) {
+    } catch (err) {
+        if (err instanceof OPError && err.response !== undefined) {
             console.error(
                 `Noe gikk galt med token exchange mot TokenX.
       Feilmelding fra openid-client: (${err}).

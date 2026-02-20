@@ -5,7 +5,9 @@ import { getAzureadToken } from './azuread';
 export const getAuthToken = (req: Request) =>
     req.headers.authorization?.split('Bearer ')[1];
 
-export const getAccessToken = async (req: Request) => {
+export const getAccessToken = async (
+    req: Request
+): Promise<string | undefined> => {
     if (process.env.ENV === 'localhost') {
         return process.env.MOCK_ACCESS_TOKEN;
     }
@@ -17,14 +19,14 @@ export const getAccessToken = async (req: Request) => {
                 authToken,
                 `${process.env.ENV}-gcp:teamserviceklage:tilbakemeldingsmottak-api`
             );
-        } catch (e) {
+        } catch {
             console.log(
                 'Failed to fetch tokenx token, fetching Azure AD token as fallback'
             );
         }
     }
 
-    return await getAzureadToken(
+    return (await getAzureadToken(
         `api://${process.env.ENV}-gcp.teamserviceklage.tilbakemeldingsmottak-api/.default`
-    );
+    )) as string | undefined;
 };

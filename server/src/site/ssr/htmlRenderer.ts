@@ -55,9 +55,10 @@ export const devRender =
             const { render } = await vite.ssrLoadModule('/src/main-server.tsx');
             const { appHtml, helmet } = render(url);
             return processTemplate(html, appHtml, helmet);
-        } catch (e: any) {
-            vite.ssrFixStacktrace(e);
-            console.error(`Dev render error: ${e} \n ${e.stack}`);
-            return processTemplate(html, devErrorHtml(e));
+        } catch (e) {
+            const error = e instanceof Error ? e : new Error(String(e));
+            vite.ssrFixStacktrace(error);
+            console.error(`Dev render error: ${error} \n ${error.stack}`);
+            return processTemplate(html, devErrorHtml(error));
         }
     };

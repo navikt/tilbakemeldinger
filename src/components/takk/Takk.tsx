@@ -10,7 +10,7 @@ interface Props {
 
 const Takk = (props: Props) => (
     <div className={appStyle.skjema}>
-        <Alert role="info" variant="success">
+        <Alert variant="success">
             {props.melding ? (
                 <span>{props.melding}</span>
             ) : (

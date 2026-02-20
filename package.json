@@ -6,7 +6,7 @@
     "license": "MIT",
     "homepage": "/person/kontakt-oss/tilbakemeldinger",
     "type": "module",
-    "packageManager": "pnpm@10.29.2+sha512.bef43fa759d91fd2da4b319a5a0d13ef7a45bb985a3d7342058470f9d2051a3ba8674e629672654686ef9443ad13a82da2beb9eeb3e0221c87b8154fff9d74b8",
+    "packageManager": "pnpm@10.30.1+sha512.3590e550d5384caa39bd5c7c739f72270234b2f6059e13018f975c313b1eb9fefcc09714048765d4d9efe961382c312e624572c0420762bdc5d5940cdf9be73a",
     "scripts": {
         "build": "pnpm run build:client && pnpm run build:ssr && pnpm run build:server",
         "build:client": "vite build --outDir ./server/dist/client",
@@ -15,7 +15,9 @@
         "analyze-bundle": "ANALYZE=true pnpm run build:client",
         "start": "pnpm --filter tilbakemeldinger-server run start",
         "start-local": "cp .env.local-prod .env && pnpm --filter tilbakemeldinger-server run start",
-        "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+        "lint": "pnpm run lint:eslint && pnpm run lint:types",
+        "lint:eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" \"common/**/*.{js,jsx,ts,tsx}\" \"server/src/**/*.{js,jsx,ts,tsx}\"",
+        "lint:types": "tsc --noEmit && pnpm --filter tilbakemeldinger-server exec tsc --noEmit",
         "decorator-local": "docker compose up",
         "dev-prepare": "node preact-compat-symlinks.js && cp .env.development .env",
         "dev": "pnpm run dev-prepare && pnpm --filter tilbakemeldinger-server run dev",
@@ -33,7 +35,7 @@
         "@navikt/nav-dekoratoren-moduler": "3.6.1",
         "@preact/compat": "18.3.1",
         "@prefresh/vite": "2.4.11",
-        "date-fns": "^4.1.0",
+        "date-fns": "4.1.0",
         "downshift": "9.0.12",
         "preact": "10.28.3",
         "preact-render-to-string": "6.6.3",
@@ -49,12 +51,13 @@
         "@eslint/eslintrc": "3.3.3",
         "@eslint/js": "9.39.2",
         "@preact/preset-vite": "2.10.2",
-        "@testing-library/jest-dom": "^6.6.3",
-        "@testing-library/preact": "^3.2.4",
-        "@testing-library/react": "^16.3.0",
+        "@testing-library/jest-dom": "6.6.3",
+        "@testing-library/preact": "3.2.4",
+        "@testing-library/react": "16.3.0",
         "@types/fetch-mock": "7.3.8",
         "@types/jest": "30.0.0",
         "@types/node": "24.1.0",
+        "@types/react": "18.3.27",
         "@types/react-dom": "18.3.0",
         "@types/react-router-dom": "5.3.3",
         "@typescript-eslint/eslint-plugin": "8.46.2",
@@ -67,6 +70,7 @@
         "identity-obj-proxy": "3.0.0",
         "jest": "30.2.0",
         "jest-environment-jsdom": "30.2.0",
+        "lint-staged": "16.2.7",
         "prettier": "3.2.5",
         "rollup-plugin-visualizer": "5.12.0",
         "sass": "1.94.2",
@@ -74,5 +78,9 @@
         "ts-node": "10.9.2",
         "typescript": "5.9.3",
         "vite-tsconfig-paths": "4.3.2"
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,json,css,scss,md}": "prettier --write",
+        "*.{js,jsx,ts,tsx}": "eslint --fix"
     }
 }

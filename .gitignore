@@ -13,6 +13,9 @@ npm-debug.log*
 # vite
 *.timestamp-*.mjs
 
+# typescript
+*.tsbuildinfo
+
 .idea
 
 /tilbakemeldinger.iml

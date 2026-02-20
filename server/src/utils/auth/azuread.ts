@@ -1,6 +1,5 @@
 import * as querystring from 'querystring';
-
-const Cache = require('node-cache');
+import Cache from 'node-cache';
 
 const cacheKey = 'authHeader';
 
