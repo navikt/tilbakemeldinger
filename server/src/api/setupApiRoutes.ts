@@ -26,7 +26,10 @@ const globalRateLimit = rateLimit({
     standardHeaders: true,
     keyGenerator: async (req): Promise<string> => {
         const accessToken = await getAccessToken(req);
-        return (accessToken as string) || 'unauthenticated';
+        if (!accessToken) {
+            return 'unauthenticated';
+        }
+        return accessToken;
     },
     message: 'Rate limit',
 });
