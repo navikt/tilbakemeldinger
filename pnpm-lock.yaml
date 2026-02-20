@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@floating-ui/react':
         specifier: 0.27.16
-        version: 0.27.16(react-dom@19.2.4(react@18.3.1))(react@18.3.1)
+        version: 0.27.16(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))
       '@navikt/aksel-icons':
         specifier: 7.32.3
         version: 7.32.3
@@ -19,13 +19,13 @@ importers:
         version: 7.32.3
       '@navikt/ds-react':
         specifier: 7.35.1
-        version: 7.35.1(@types/react@18.3.18)(react-dom@19.2.4(react@18.3.1))(react@18.3.1)
+        version: 7.35.1(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))(@types/react@18.3.18)
       '@navikt/fnrvalidator':
         specifier: 1.3.3
         version: 1.3.3
       '@navikt/nav-dekoratoren-moduler':
         specifier: 3.6.2
-        version: 3.6.2(csp-header@6.2.1)(html-react-parser@5.2.15(@types/react@18.3.18)(react@18.3.1))(jsdom@26.1.0)(react@18.3.1)
+        version: 3.6.2(@preact/compat@18.3.1(preact@10.28.3))(csp-header@6.2.1)(html-react-parser@5.2.15(@preact/compat@18.3.1(preact@10.28.3))(@types/react@18.3.18))(jsdom@26.1.0)
       '@preact/compat':
         specifier: 18.3.1
         version: 18.3.1(preact@10.28.3)
@@ -37,28 +37,34 @@ importers:
         version: 4.1.0
       downshift:
         specifier: 9.0.12
-        version: 9.0.12(react@18.3.1)
+        version: 9.0.12(@preact/compat@18.3.1(preact@10.28.3))
       preact:
         specifier: 10.28.3
         version: 10.28.3
       preact-render-to-string:
         specifier: 6.6.3
         version: 6.6.3(preact@10.28.3)
+      react:
+        specifier: npm:@preact/compat@18.3.1
+        version: '@preact/compat@18.3.1(preact@10.28.3)'
+      react-dom:
+        specifier: npm:@preact/compat@18.3.1
+        version: '@preact/compat@18.3.1(preact@10.28.3)'
       react-helmet-async:
         specifier: 2.0.5
-        version: 2.0.5(react@18.3.1)
+        version: 2.0.5(@preact/compat@18.3.1(preact@10.28.3))
       react-hook-form:
         specifier: 7.65.0
-        version: 7.65.0(react@18.3.1)
+        version: 7.65.0(@preact/compat@18.3.1(preact@10.28.3))
       react-intl:
         specifier: 6.6.8
-        version: 6.6.8(react@18.3.1)(typescript@5.9.3)
+        version: 6.6.8(@preact/compat@18.3.1(preact@10.28.3))(typescript@5.9.3)
       react-router:
         specifier: 7.13.0
-        version: 7.13.0(react-dom@19.2.4(react@18.3.1))(react@18.3.1)
+        version: 7.13.0(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))
       react-router-dom:
         specifier: 7.13.0
-        version: 7.13.0(react-dom@19.2.4(react@18.3.1))(react@18.3.1)
+        version: 7.13.0(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))
       vite:
         specifier: 7.2.6
         version: 7.2.6(@types/node@24.1.0)(sass@1.94.2)(yaml@2.8.2)
@@ -3291,11 +3297,6 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
 
-  react-dom@19.2.4:
-    resolution: {integrity: sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==}
-    peerDependencies:
-      react: ^19.2.4
-
   react-fast-compare@3.2.2:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
 
@@ -3350,10 +3351,6 @@ packages:
     peerDependenciesMeta:
       react-dom:
         optional: true
-
-  react@18.3.1:
-    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
-    engines: {node: '>=0.10.0'}
 
   readdirp@3.6.0:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
@@ -3464,9 +3461,6 @@ packages:
   saxes@6.0.0:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
-
-  scheduler@0.27.0:
-    resolution: {integrity: sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==}
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -4454,26 +4448,26 @@ snapshots:
       '@floating-ui/core': 1.7.4
       '@floating-ui/utils': 0.2.10
 
-  '@floating-ui/react-dom@2.1.7(react-dom@19.2.4(react@18.3.1))(react@18.3.1)':
+  '@floating-ui/react-dom@2.1.7(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))':
     dependencies:
       '@floating-ui/dom': 1.7.5
-      react: 18.3.1
-      react-dom: 19.2.4(react@18.3.1)
+      react: '@preact/compat@18.3.1(preact@10.28.3)'
+      react-dom: '@preact/compat@18.3.1(preact@10.28.3)'
 
-  '@floating-ui/react@0.27.16(react-dom@19.2.4(react@18.3.1))(react@18.3.1)':
+  '@floating-ui/react@0.27.16(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))':
     dependencies:
-      '@floating-ui/react-dom': 2.1.7(react-dom@19.2.4(react@18.3.1))(react@18.3.1)
+      '@floating-ui/react-dom': 2.1.7(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))
       '@floating-ui/utils': 0.2.10
-      react: 18.3.1
-      react-dom: 19.2.4(react@18.3.1)
+      react: '@preact/compat@18.3.1(preact@10.28.3)'
+      react-dom: '@preact/compat@18.3.1(preact@10.28.3)'
       tabbable: 6.4.0
 
-  '@floating-ui/react@0.27.8(react-dom@19.2.4(react@18.3.1))(react@18.3.1)':
+  '@floating-ui/react@0.27.8(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))':
     dependencies:
-      '@floating-ui/react-dom': 2.1.7(react-dom@19.2.4(react@18.3.1))(react@18.3.1)
+      '@floating-ui/react-dom': 2.1.7(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))
       '@floating-ui/utils': 0.2.10
-      react: 18.3.1
-      react-dom: 19.2.4(react@18.3.1)
+      react: '@preact/compat@18.3.1(preact@10.28.3)'
+      react-dom: '@preact/compat@18.3.1(preact@10.28.3)'
       tabbable: 6.4.0
 
   '@floating-ui/utils@0.2.10': {}
@@ -4783,17 +4777,17 @@ snapshots:
 
   '@navikt/ds-css@7.32.3': {}
 
-  '@navikt/ds-react@7.35.1(@types/react@18.3.18)(react-dom@19.2.4(react@18.3.1))(react@18.3.1)':
+  '@navikt/ds-react@7.35.1(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))(@types/react@18.3.18)':
     dependencies:
-      '@floating-ui/react': 0.27.8(react-dom@19.2.4(react@18.3.1))(react@18.3.1)
-      '@floating-ui/react-dom': 2.1.7(react-dom@19.2.4(react@18.3.1))(react@18.3.1)
+      '@floating-ui/react': 0.27.8(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))
+      '@floating-ui/react-dom': 2.1.7(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))
       '@navikt/aksel-icons': 7.40.0
       '@navikt/ds-tokens': 7.40.0
       clsx: 2.1.1
       date-fns: 4.1.0
-      react: 18.3.1
-      react-day-picker: 9.7.0(react@18.3.1)
-      react-dom: 19.2.4(react@18.3.1)
+      react: '@preact/compat@18.3.1(preact@10.28.3)'
+      react-day-picker: 9.7.0(@preact/compat@18.3.1(preact@10.28.3))
+      react-dom: '@preact/compat@18.3.1(preact@10.28.3)'
     optionalDependencies:
       '@types/react': 18.3.18
 
@@ -4801,14 +4795,14 @@ snapshots:
 
   '@navikt/fnrvalidator@1.3.3': {}
 
-  '@navikt/nav-dekoratoren-moduler@3.6.2(csp-header@6.2.1)(html-react-parser@5.2.15(@types/react@18.3.18)(react@18.3.1))(jsdom@26.1.0)(react@18.3.1)':
+  '@navikt/nav-dekoratoren-moduler@3.6.2(@preact/compat@18.3.1(preact@10.28.3))(csp-header@6.2.1)(html-react-parser@5.2.15(@preact/compat@18.3.1(preact@10.28.3))(@types/react@18.3.18))(jsdom@26.1.0)':
     dependencies:
       csp-header: 6.2.1
-      html-react-parser: 5.2.15(@types/react@18.3.18)(react@18.3.1)
+      html-react-parser: 5.2.15(@preact/compat@18.3.1(preact@10.28.3))(@types/react@18.3.18)
       js-cookie: 3.0.5
       jsdom: 26.1.0
     optionalDependencies:
-      react: 18.3.1
+      react: '@preact/compat@18.3.1(preact@10.28.3)'
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -5885,12 +5879,12 @@ snapshots:
 
   dotenv@17.2.3: {}
 
-  downshift@9.0.12(react@18.3.1):
+  downshift@9.0.12(@preact/compat@18.3.1(preact@10.28.3)):
     dependencies:
       '@babel/runtime': 7.28.6
       compute-scroll-into-view: 3.1.1
       prop-types: 15.8.1
-      react: 18.3.1
+      react: '@preact/compat@18.3.1(preact@10.28.3)'
       react-is: 18.2.0
       tslib: 2.8.1
 
@@ -6469,11 +6463,11 @@ snapshots:
 
   html-escaper@2.0.2: {}
 
-  html-react-parser@5.2.15(@types/react@18.3.18)(react@18.3.1):
+  html-react-parser@5.2.15(@preact/compat@18.3.1(preact@10.28.3))(@types/react@18.3.18):
     dependencies:
       domhandler: 5.0.3
       html-dom-parser: 5.1.4
-      react: 18.3.1
+      react: '@preact/compat@18.3.1(preact@10.28.3)'
       react-property: 2.0.2
       style-to-js: 1.1.21
     optionalDependencies:
@@ -7557,32 +7551,27 @@ snapshots:
       iconv-lite: 0.7.2
       unpipe: 1.0.0
 
-  react-day-picker@9.7.0(react@18.3.1):
+  react-day-picker@9.7.0(@preact/compat@18.3.1(preact@10.28.3)):
     dependencies:
       '@date-fns/tz': 1.2.0
       date-fns: 4.1.0
       date-fns-jalali: 4.1.0-0
-      react: 18.3.1
-
-  react-dom@19.2.4(react@18.3.1):
-    dependencies:
-      react: 18.3.1
-      scheduler: 0.27.0
+      react: '@preact/compat@18.3.1(preact@10.28.3)'
 
   react-fast-compare@3.2.2: {}
 
-  react-helmet-async@2.0.5(react@18.3.1):
+  react-helmet-async@2.0.5(@preact/compat@18.3.1(preact@10.28.3)):
     dependencies:
       invariant: 2.2.4
-      react: 18.3.1
+      react: '@preact/compat@18.3.1(preact@10.28.3)'
       react-fast-compare: 3.2.2
       shallowequal: 1.1.0
 
-  react-hook-form@7.65.0(react@18.3.1):
+  react-hook-form@7.65.0(@preact/compat@18.3.1(preact@10.28.3)):
     dependencies:
-      react: 18.3.1
+      react: '@preact/compat@18.3.1(preact@10.28.3)'
 
-  react-intl@6.6.8(react@18.3.1)(typescript@5.9.3):
+  react-intl@6.6.8(@preact/compat@18.3.1(preact@10.28.3))(typescript@5.9.3):
     dependencies:
       '@formatjs/ecma402-abstract': 2.0.0
       '@formatjs/icu-messageformat-parser': 2.7.8
@@ -7593,7 +7582,7 @@ snapshots:
       '@types/react': 18.3.18
       hoist-non-react-statics: 3.3.2
       intl-messageformat: 10.5.14
-      react: 18.3.1
+      react: '@preact/compat@18.3.1(preact@10.28.3)'
       tslib: 2.8.1
     optionalDependencies:
       typescript: 5.9.3
@@ -7608,23 +7597,19 @@ snapshots:
 
   react-property@2.0.2: {}
 
-  react-router-dom@7.13.0(react-dom@19.2.4(react@18.3.1))(react@18.3.1):
+  react-router-dom@7.13.0(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3)):
     dependencies:
-      react: 18.3.1
-      react-dom: 19.2.4(react@18.3.1)
-      react-router: 7.13.0(react-dom@19.2.4(react@18.3.1))(react@18.3.1)
+      react: '@preact/compat@18.3.1(preact@10.28.3)'
+      react-dom: '@preact/compat@18.3.1(preact@10.28.3)'
+      react-router: 7.13.0(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))
 
-  react-router@7.13.0(react-dom@19.2.4(react@18.3.1))(react@18.3.1):
+  react-router@7.13.0(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3)):
     dependencies:
       cookie: 1.1.1
-      react: 18.3.1
+      react: '@preact/compat@18.3.1(preact@10.28.3)'
       set-cookie-parser: 2.7.2
     optionalDependencies:
-      react-dom: 19.2.4(react@18.3.1)
-
-  react@18.3.1:
-    dependencies:
-      loose-envify: 1.4.0
+      react-dom: '@preact/compat@18.3.1(preact@10.28.3)'
 
   readdirp@3.6.0:
     dependencies:
@@ -7778,8 +7763,6 @@ snapshots:
   saxes@6.0.0:
     dependencies:
       xmlchars: 2.2.0
-
-  scheduler@0.27.0: {}
 
   semver@6.3.1: {}
 

@@ -39,6 +39,8 @@
         "downshift": "9.0.12",
         "preact": "10.28.3",
         "preact-render-to-string": "6.6.3",
+        "react": "npm:@preact/compat@18.3.1",
+        "react-dom": "npm:@preact/compat@18.3.1",
         "react-helmet-async": "2.0.5",
         "react-hook-form": "7.65.0",
         "react-intl": "6.6.8",
