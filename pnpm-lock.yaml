@@ -24,8 +24,8 @@ importers:
         specifier: 1.3.3
         version: 1.3.3
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 3.6.1
-        version: 3.6.1(csp-header@6.2.1)(html-react-parser@5.2.15(@types/react@18.3.27)(react@18.3.1))(jsdom@26.1.0)(react@18.3.1)
+        specifier: 3.6.2
+        version: 3.6.2(csp-header@6.2.1)(html-react-parser@5.2.15(@types/react@18.3.27)(react@18.3.1))(jsdom@26.1.0)(react@18.3.1)
       '@preact/compat':
         specifier: 18.3.1
         version: 18.3.1(preact@10.28.3)
@@ -859,17 +859,14 @@ packages:
   '@navikt/fnrvalidator@1.3.3':
     resolution: {integrity: sha512-GsLa9ioYPGsDMBHcgKUNoYbZor09KyFIqSaWy8jy1I7f06q6DgUhdpZuRTHLVRCPjWqF2aLzKtvAfrw5dSeakg==, tarball: https://npm.pkg.github.com/download/@navikt/fnrvalidator/1.3.3/8414963a30e59e3056c9befea7bb022498a2a742}
 
-  '@navikt/nav-dekoratoren-moduler@3.6.1':
-    resolution: {integrity: sha512-vfq24tA2eKEsZ9/qRzobRlrKV5NUbSuI9FA60AUhH+BX+61WE/ZsvHhNbFiO9NlXg/yYLmVZCg1uJB5V4QnU7A==, tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/3.6.1/b0dfb47266ce90ffacd1905cd4feb53d8194dbcb}
-    engines: {node: '>=18'}
+  '@navikt/nav-dekoratoren-moduler@3.6.2':
+    resolution: {integrity: sha512-863vAyH9VjmRi8q4Aci4RQ3MaOG5faupzOD77IyhhTUmlyIxRw62jngX2j8c7wjavwwalhNnmie226NjYoNxjQ==, tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/3.6.2/70dac085c605d0299f03a122646aecefea764d30}
+    engines: {node: 24.x}
     peerDependencies:
       csp-header: '>=5.x'
       html-react-parser: '>=5.x'
       jsdom: '>=16.x'
       react: '>=17.x'
-    peerDependenciesMeta:
-      react:
-        optional: true
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -4723,13 +4720,12 @@ snapshots:
 
   '@navikt/fnrvalidator@1.3.3': {}
 
-  '@navikt/nav-dekoratoren-moduler@3.6.1(csp-header@6.2.1)(html-react-parser@5.2.15(@types/react@18.3.27)(react@18.3.1))(jsdom@26.1.0)(react@18.3.1)':
+  '@navikt/nav-dekoratoren-moduler@3.6.2(csp-header@6.2.1)(html-react-parser@5.2.15(@types/react@18.3.27)(react@18.3.1))(jsdom@26.1.0)(react@18.3.1)':
     dependencies:
       csp-header: 6.2.1
       html-react-parser: 5.2.15(@types/react@18.3.27)(react@18.3.1)
       js-cookie: 3.0.5
       jsdom: 26.1.0
-    optionalDependencies:
       react: 18.3.1
 
   '@nodelib/fs.scandir@2.1.5':
