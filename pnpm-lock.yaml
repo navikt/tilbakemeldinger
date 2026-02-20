@@ -151,8 +151,8 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
       vite-tsconfig-paths:
-        specifier: 4.3.2
-        version: 4.3.2(typescript@5.9.3)(vite@7.2.6(@types/node@24.1.0)(sass@1.94.2))
+        specifier: 6.1.1
+        version: 6.1.1(typescript@5.9.3)(vite@7.2.6(@types/node@24.1.0)(sass@1.94.2))
 
   server:
     dependencies:
@@ -3812,13 +3812,10 @@ packages:
     peerDependencies:
       vite: 5.x || 6.x || 7.x
 
-  vite-tsconfig-paths@4.3.2:
-    resolution: {integrity: sha512-0Vd/a6po6Q+86rPlntHye7F31zA2URZMbH8M3saAZ/xR9QoGN/L21bxEGfXdWmFdNkqPpRdxFT7nmNe12e9/uA==}
+  vite-tsconfig-paths@6.1.1:
+    resolution: {integrity: sha512-2cihq7zliibCCZ8P9cKJrQBkfgdvcFkOOc3Y02o3GWUDLgqjWsZudaoiuOwO/gzTzy17cS5F7ZPo4bsnS4DGkg==}
     peerDependencies:
       vite: '*'
-    peerDependenciesMeta:
-      vite:
-        optional: true
 
   vite@7.2.6:
     resolution: {integrity: sha512-tI2l/nFHC5rLh7+5+o7QjKjSR04ivXDF4jcgV0f/bTQ+OJiITy5S6gaynVsEM+7RqzufMnVbIon6Sr5x1SDYaQ==}
@@ -8099,12 +8096,11 @@ snapshots:
       stack-trace: 1.0.0-pre2
       vite: 7.2.6(@types/node@24.1.0)(sass@1.94.2)
 
-  vite-tsconfig-paths@4.3.2(typescript@5.9.3)(vite@7.2.6(@types/node@24.1.0)(sass@1.94.2)):
+  vite-tsconfig-paths@6.1.1(typescript@5.9.3)(vite@7.2.6(@types/node@24.1.0)(sass@1.94.2)):
     dependencies:
       debug: 4.4.3(supports-color@5.5.0)
       globrex: 0.1.2
       tsconfck: 3.1.6(typescript@5.9.3)
-    optionalDependencies:
       vite: 7.2.6(@types/node@24.1.0)(sass@1.94.2)
     transitivePeerDependencies:
       - supports-color
