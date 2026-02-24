@@ -1,0 +1,108 @@
+name: Build and deploy
+
+inputs:
+  env:
+    required: true
+    description: Environment name (dev/prod/etc)
+  imageSuffix:
+    required: false
+    default: ""
+    description: Docker image suffix
+  appOrigin:
+    required: true
+    description: VITE_APP_ORIGIN
+  editorialFrontpageOrigin:
+    required: true
+    description: VITE_EDITORIAL_FRONTPAGE_ORIGIN
+  skipDeploy:
+    required: false
+    default: "false"
+    description: If true, only build+test (no CDN upload, no docker push, no deploy)
+
+outputs:
+  image:
+    description: Built image reference (empty if skipDeploy=true)
+    value: ${{ steps.docker-push.outputs.image }}
+
+runs:
+  using: composite
+  steps:
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+
+    - name: Setup node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: 24
+        registry-url: https://npm.pkg.github.com
+        cache: pnpm
+
+    - name: Set app environment
+      shell: bash
+      env:
+        ENVIRONMENT: ${{ inputs.env }}
+        APP_ORIGIN: ${{ inputs.appOrigin }}
+        EDITORIAL_FRONTPAGE_ORIGIN: ${{ inputs.editorialFrontpageOrigin }}
+      run: |
+        cat > .env <<EOF
+        ENV=$ENVIRONMENT
+        VITE_APP_BASEPATH=/person/kontakt-oss
+        VITE_APP_ORIGIN=$APP_ORIGIN
+        VITE_EDITORIAL_FRONTPAGE_ORIGIN=$EDITORIAL_FRONTPAGE_ORIGIN
+        APP_PORT=9001
+        API_URL=http://tilbakemeldingsmottak-api.teamserviceklage
+        NORG2_ORIGIN=https://norg2.$ENVIRONMENT-fss-pub.nais.io
+        CDN_BASE=https://cdn.nav.no/navno/tilbakemeldinger/$ENVIRONMENT
+        EOF
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile
+      env:
+        NODE_AUTH_TOKEN: ${{ env.NODE_AUTH_TOKEN }}
+
+    - name: Build application
+      shell: bash
+      run: pnpm run build
+
+    - name: Run tests
+      shell: bash
+      run: pnpm run test
+
+    - name: Upload static files to CDN
+      if: ${{ inputs.skipDeploy != 'true' }}
+      uses: nais/deploy/actions/cdn-upload/v2@master
+      with:
+        team: navno
+        source: ./server/dist/client/assets
+        destination: tilbakemeldinger/${{ inputs.env }}
+        project_id: ${{ env.NAIS_MANAGEMENT_PROJECT_ID }}
+        identity_provider: ${{ env.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+
+    - name: Install production dependencies only
+      if: ${{ inputs.skipDeploy != 'true' }}
+      shell: bash
+      run: |
+        rm -rf node_modules server/node_modules
+        pnpm install --prod --frozen-lockfile
+      env:
+        NODE_AUTH_TOKEN: ${{ env.NODE_AUTH_TOKEN }}
+
+    - name: Build and push docker image
+      if: ${{ inputs.skipDeploy != 'true' }}
+      uses: nais/docker-build-push@v0
+      id: docker-push
+      with:
+        team: navno
+        project_id: ${{ env.NAIS_MANAGEMENT_PROJECT_ID }}
+        identity_provider: ${{ env.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+        image_suffix: ${{ inputs.imageSuffix }}
+
+    - name: Deploy to nais
+      if: ${{ inputs.skipDeploy != 'true' }}
+      uses: nais/deploy/actions/deploy@v2
+      env:
+        CLUSTER: ${{ inputs.env }}-gcp
+        RESOURCE: .nais/config.yml
+        VAR: image=${{ steps.docker-push.outputs.image }}
+        VARS: .nais/vars-${{ inputs.env }}.yml

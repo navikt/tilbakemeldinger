@@ -1,23 +1,23 @@
-name: PR Checks
-on:
-  pull_request:
-    branches:
-      - 'main'
+name: Deploy to dev
+on: workflow_dispatch
 
 jobs:
-  pr-checks:
+  build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      id-token: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
-      - name: Build and deploy
+
+      - name: Build and deploy to dev
         uses: ./.github/actions/build-and-deploy
         with:
           env: dev
+          imageSuffix: dev-deploy
           appOrigin: 'https://www.ansatt.dev.nav.no'
           editorialFrontpageOrigin: 'https://www.ansatt.dev.nav.no/tilbakemelding'
-          skipDeploy: true
         env:
           READER_TOKEN: ${{ secrets.READER_TOKEN }}
+          NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
