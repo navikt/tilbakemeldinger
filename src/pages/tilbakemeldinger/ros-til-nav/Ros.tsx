@@ -89,7 +89,7 @@ const Ros = () => {
                     id: 'tilbakemeldinger.ros.form.tittel',
                 })}
             />
-            <GuidePanel poster>
+            <GuidePanel>
                 <FormattedMessage id={'tilbakemeldinger.ros.form.veileder'} />
             </GuidePanel>
             <Box

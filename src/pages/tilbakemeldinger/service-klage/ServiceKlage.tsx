@@ -199,7 +199,7 @@ const ServiceKlageComponent = () => {
                     closeFunc={closeModal}
                 />
             )}
-            <GuidePanel poster>
+            <GuidePanel>
                 <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
             </GuidePanel>
             <Box
