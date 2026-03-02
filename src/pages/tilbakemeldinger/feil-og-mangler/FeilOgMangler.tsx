@@ -92,7 +92,7 @@ const FOM = () => {
                     id: 'tilbakemeldinger.feilogmangler.form.tittel',
                 })}
             />
-            <GuidePanel>
+            <GuidePanel poster>
                 <FormattedMessage
                     id={'tilbakemeldinger.feilogmangler.form.veileder'}
                 />
