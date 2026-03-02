@@ -202,7 +202,10 @@ const ServiceKlageComponent = () => {
             <GuidePanel poster>
                 <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
             </GuidePanel>
-            <Box background="surface-default" padding={{ xs: '4', md: '8' }}>
+            <Box
+                background="default"
+                padding={{ xs: 'space-16', md: 'space-32' }}
+            >
                 {success ? (
                     <Takk />
                 ) : (
