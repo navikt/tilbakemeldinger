@@ -75,7 +75,7 @@ const Combobox = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
                 <input
                     ref={ref}
                     {...getInputProps()}
-                    className={`${cssPrefix}__input navds-select__input${
+                    className={`${cssPrefix}__input aksel-select__input${
                         harFeil ? ` ${cssPrefix}__hasError` : ''
                     }`}
                 />
