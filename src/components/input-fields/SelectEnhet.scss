@@ -44,11 +44,11 @@
     cursor: pointer;
     padding: 0.5rem;
     border: 1px solid var(--ax-neutral-200);
-    background-color: var(--a-white);
+    background-color: white;
 }
 .enhetCombo__menu li.menuItem__highlighted {
     background-color: var(--ax-accent-600);
-    color: var(--a-white);
+    color: white;
 }
 .enhetCombo__menu li.menuItem:not(:last-child) {
     border-bottom: 0;
