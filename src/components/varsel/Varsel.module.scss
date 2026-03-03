@@ -1,5 +1,5 @@
 .varsel {
-    :global(.lenke:not(:focus):not(:active)) {
+    :global(.lenke) {
         color: var(--ax-accent-600);
     }
 }
