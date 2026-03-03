@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       '@navikt/aksel-icons':
-        specifier: 7.32.3
-        version: 7.32.3
+        specifier: 8.6.0
+        version: 8.6.0
       '@navikt/ds-css':
-        specifier: 7.32.3
-        version: 7.32.3
+        specifier: 8.6.0
+        version: 8.6.0
       '@navikt/ds-react':
-        specifier: 7.35.1
-        version: 7.35.1(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))(@types/react@18.3.18)
+        specifier: 8.6.0
+        version: 8.6.0(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))(@types/react@18.3.18)
       '@navikt/fnrvalidator':
         specifier: 1.3.3
         version: 1.3.3
@@ -828,27 +828,21 @@ packages:
   '@napi-rs/wasm-runtime@0.2.12':
     resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
 
-  '@navikt/aksel-icons@7.32.3':
-    resolution: {integrity: sha512-l78szC7BHSp0pVv5qSZYZO0uQxltN1DyHODMjeqRBQUdctxA+5+WziGZiYohrSLQTgT3VJmy7btnq5A76smRhQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.32.3/cae4a9d7f509452709ad48644ad5a915daf2a0ba}
+  '@navikt/aksel-icons@8.6.0':
+    resolution: {integrity: sha512-e+evlFA6eq7vW1pZDg1Fc9V7L7h/Mp1Luubv7kTJUp4IrWQN7Is+nfVj65TLcrQqMm9fjkmc1eI5PcmuY9ibvQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.6.0/ff360cbe68f878b6e8deb59c19a23aa30eacab9e}
 
-  '@navikt/aksel-icons@7.40.0':
-    resolution: {integrity: sha512-1xuhplMhKCEPn2iMFypMVgkRNxUd5iupQ7HP2itdQCkK3K2mm2b8HsDwL9d7YDWcxowq5ff7ewpKgQFPn6o1UQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.40.0/16d67c0742bcf2a2c38ad37be6c287765640fd7f}
+  '@navikt/ds-css@8.6.0':
+    resolution: {integrity: sha512-Rv39j5USosDDcOlcfNUG9uVOJ+ZgMjEvVRQdAN0QTVY3rBpceNlMbrBQEo1YzDlA6WpD9d8DyiGuDYYVpakoLw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.6.0/4c763d8f5f64587336bba5cba74b8a16ab379619}
 
-  '@navikt/ds-css@7.32.3':
-    resolution: {integrity: sha512-g2aGpLjD/l5y9nHao4iKrAZj+fEEjBQMTtZnjKDemGNxrvvOuVAOHq0AyBDbhZNOx5rFfYl3hGeC6hYLPdQzfw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/7.32.3/6be2189f2bb288fba3acc03425281b1aed86f4aa}
-
-  '@navikt/ds-react@7.35.1':
-    resolution: {integrity: sha512-aYgeTSY2HejC3wEZDJgeDENIYC7gyq1t12BckpAqCPUhOOpE9W6bCad+YfwANcpM1UEKUsq5UdERAP2atU2D4g==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/7.35.1/bf251df91151f40d3157a88cd6768ef1c6d5a4af}
+  '@navikt/ds-react@8.6.0':
+    resolution: {integrity: sha512-yAZAZT+Ii9exJFbxqVy1ONjJvb1k+iKH8KoIFgroPHS6k+QhiBnB52aas1LSoWR7eqHpgUNV6QMUsQt24kmT3A==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.6.0/484ac00ed4dbee8147f6a6cde76720bd7874b93b}
     peerDependencies:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
-  '@navikt/ds-tokens@7.40.0':
-    resolution: {integrity: sha512-zBaBKLS5R2OZyXI4UUPOmiB15L/u/aJPHiyoccJDtmqrv5wRkc1oM6UCjzKK0D4gLZHBoxp7YBT0sR9Mp4DXFQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/7.40.0/36f981e12d4d90f18155615b7666b737039a3ff0}
+  '@navikt/ds-tokens@8.6.0':
+    resolution: {integrity: sha512-MdnPFvi7wPF0N5ms6psNqW0IevlHhoswUCOYFQl7hFwL+uRcqFna6rT8fm/co04z/HDUKKfadbrW0yodzDxj1w==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.6.0/acac1517c2bc4c4eda259f1bc591db24656f102f}
 
   '@navikt/fnrvalidator@1.3.3':
     resolution: {integrity: sha512-GsLa9ioYPGsDMBHcgKUNoYbZor09KyFIqSaWy8jy1I7f06q6DgUhdpZuRTHLVRCPjWqF2aLzKtvAfrw5dSeakg==, tarball: https://npm.pkg.github.com/download/@navikt/fnrvalidator/1.3.3/8414963a30e59e3056c9befea7bb022498a2a742}
@@ -1730,10 +1724,6 @@ packages:
   clone@2.1.2:
     resolution: {integrity: sha512-3Pe/CF1Nn94hyhIYpjtiLhdCoEoz0DqQ+988E9gmeEdQZlojxnOb74wctFyuwWQHzqyf9X7C7MG8juUpqBJT8w==}
     engines: {node: '>=0.8'}
-
-  clsx@2.1.1:
-    resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
-    engines: {node: '>=6'}
 
   co@4.6.0:
     resolution: {integrity: sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==}
@@ -4063,7 +4053,7 @@ snapshots:
       '@babel/types': 7.29.0
       '@jridgewell/remapping': 2.3.5
       convert-source-map: 2.0.0
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -4244,7 +4234,7 @@ snapshots:
       '@babel/parser': 7.29.0
       '@babel/template': 7.28.6
       '@babel/types': 7.29.0
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -4385,7 +4375,7 @@ snapshots:
   '@eslint/config-array@0.21.1':
     dependencies:
       '@eslint/object-schema': 2.1.7
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
@@ -4405,7 +4395,7 @@ snapshots:
   '@eslint/eslintrc@3.3.3':
     dependencies:
       ajv: 6.12.6
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       espree: 10.4.0
       globals: 14.0.0
       ignore: 5.3.2
@@ -4751,27 +4741,23 @@ snapshots:
       '@tybys/wasm-util': 0.10.1
     optional: true
 
-  '@navikt/aksel-icons@7.32.3': {}
+  '@navikt/aksel-icons@8.6.0': {}
 
-  '@navikt/aksel-icons@7.40.0': {}
+  '@navikt/ds-css@8.6.0': {}
 
-  '@navikt/ds-css@7.32.3': {}
-
-  '@navikt/ds-react@7.35.1(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))(@types/react@18.3.18)':
+  '@navikt/ds-react@8.6.0(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))(@types/react@18.3.18)':
     dependencies:
       '@floating-ui/react': 0.27.8(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))
       '@floating-ui/react-dom': 2.1.7(@preact/compat@18.3.1(preact@10.28.3))(@preact/compat@18.3.1(preact@10.28.3))
-      '@navikt/aksel-icons': 7.40.0
-      '@navikt/ds-tokens': 7.40.0
-      clsx: 2.1.1
+      '@navikt/aksel-icons': 8.6.0
+      '@navikt/ds-tokens': 8.6.0
+      '@types/react': 18.3.18
       date-fns: 4.1.0
       react: '@preact/compat@18.3.1(preact@10.28.3)'
       react-day-picker: 9.7.0(@preact/compat@18.3.1(preact@10.28.3))
       react-dom: '@preact/compat@18.3.1(preact@10.28.3)'
-    optionalDependencies:
-      '@types/react': 18.3.18
 
-  '@navikt/ds-tokens@7.40.0': {}
+  '@navikt/ds-tokens@8.6.0': {}
 
   '@navikt/fnrvalidator@1.3.3': {}
 
@@ -4874,7 +4860,7 @@ snapshots:
       '@prefresh/vite': 2.4.11(preact@10.28.3)(vite@7.2.6(@types/node@24.1.0)(sass@1.94.2)(yaml@2.8.2))
       '@rollup/pluginutils': 4.2.1
       babel-plugin-transform-hook-names: 1.0.2(@babel/core@7.29.0)
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       picocolors: 1.1.1
       vite: 7.2.6(@types/node@24.1.0)(sass@1.94.2)(yaml@2.8.2)
       vite-prerender-plugin: 0.5.12(vite@7.2.6(@types/node@24.1.0)(sass@1.94.2)(yaml@2.8.2))
@@ -5177,7 +5163,7 @@ snapshots:
       '@typescript-eslint/types': 8.48.0
       '@typescript-eslint/typescript-estree': 8.48.0(typescript@5.9.3)
       '@typescript-eslint/visitor-keys': 8.48.0
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       eslint: 9.38.0
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -5187,7 +5173,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.46.2(typescript@5.9.3)
       '@typescript-eslint/types': 8.46.2
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -5196,7 +5182,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.48.0(typescript@5.9.3)
       '@typescript-eslint/types': 8.48.0
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -5224,7 +5210,7 @@ snapshots:
       '@typescript-eslint/types': 8.46.2
       '@typescript-eslint/typescript-estree': 8.46.2(typescript@5.9.3)
       '@typescript-eslint/utils': 8.46.2(eslint@9.38.0)(typescript@5.9.3)
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       eslint: 9.38.0
       ts-api-utils: 2.4.0(typescript@5.9.3)
       typescript: 5.9.3
@@ -5241,7 +5227,7 @@ snapshots:
       '@typescript-eslint/tsconfig-utils': 8.46.2(typescript@5.9.3)
       '@typescript-eslint/types': 8.46.2
       '@typescript-eslint/visitor-keys': 8.46.2
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       fast-glob: 3.3.3
       is-glob: 4.0.3
       minimatch: 9.0.5
@@ -5257,7 +5243,7 @@ snapshots:
       '@typescript-eslint/tsconfig-utils': 8.48.0(typescript@5.9.3)
       '@typescript-eslint/types': 8.48.0
       '@typescript-eslint/visitor-keys': 8.48.0
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       minimatch: 9.0.5
       semver: 7.7.3
       tinyglobby: 0.2.15
@@ -5654,8 +5640,6 @@ snapshots:
 
   clone@2.1.2: {}
 
-  clsx@2.1.1: {}
-
   co@4.6.0: {}
 
   collect-v8-coverage@1.0.3: {}
@@ -5770,10 +5754,6 @@ snapshots:
   debug@2.6.9:
     dependencies:
       ms: 2.0.0
-
-  debug@4.4.3:
-    dependencies:
-      ms: 2.1.3
 
   debug@4.4.3(supports-color@5.5.0):
     dependencies:
@@ -6104,7 +6084,7 @@ snapshots:
       ajv: 6.12.6
       chalk: 4.1.2
       cross-spawn: 7.0.6
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       escape-string-regexp: 4.0.0
       eslint-scope: 8.4.0
       eslint-visitor-keys: 4.2.1
@@ -6475,14 +6455,14 @@ snapshots:
   http-proxy-agent@7.0.2:
     dependencies:
       agent-base: 7.1.4
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
 
   https-proxy-agent@7.0.6:
     dependencies:
       agent-base: 7.1.4
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -6720,7 +6700,7 @@ snapshots:
   istanbul-lib-source-maps@5.0.6:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       istanbul-lib-coverage: 3.2.2
     transitivePeerDependencies:
       - supports-color
@@ -8216,7 +8196,7 @@ snapshots:
 
   vite-tsconfig-paths@6.1.1(typescript@5.9.3)(vite@7.2.6(@types/node@24.1.0)(sass@1.94.2)(yaml@2.8.2)):
     dependencies:
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@5.5.0)
       globrex: 0.1.2
       tsconfck: 3.1.6(typescript@5.9.3)
       vite: 7.2.6(@types/node@24.1.0)(sass@1.94.2)(yaml@2.8.2)

@@ -63,7 +63,7 @@ const SelectEnhet = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
     }, []);
 
     const comboBoxLabel = () => (
-        <div className={`${cssPrefix}__label navds-label`}>
+        <div className={`${cssPrefix}__label aksel-label`}>
             <FormattedMessage id={label} />
             <span className={`${cssPrefix}__hjelpetekst`}>
                 {`- ${intl.formatMessage({
