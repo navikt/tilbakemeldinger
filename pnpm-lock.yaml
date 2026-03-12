@@ -16,13 +16,13 @@ importers:
         version: 8.6.0
       '@navikt/ds-react':
         specifier: 8.6.0
-        version: 8.6.0(@preact/compat@18.3.1(preact@10.28.4))(@preact/compat@18.3.1(preact@10.28.4))(@types/react@18.3.28)
+        version: 8.6.0(@preact/compat@18.3.2(preact@10.28.4))(@preact/compat@18.3.2(preact@10.28.4))(@types/react@18.3.28)
       '@navikt/fnrvalidator':
         specifier: 1.3.3
         version: 1.3.3
       '@navikt/nav-dekoratoren-moduler':
         specifier: 3.6.2
-        version: 3.6.2(@preact/compat@18.3.1(preact@10.28.4))(csp-header@6.3.0)(html-react-parser@5.2.15(@preact/compat@18.3.1(preact@10.28.4))(@types/react@18.3.28))(jsdom@26.1.0)
+        version: 3.6.2(@preact/compat@18.3.2(preact@10.28.4))(csp-header@6.3.0)(html-react-parser@5.2.15(@preact/compat@18.3.2(preact@10.28.4))(@types/react@18.3.28))(jsdom@26.1.0)
       '@preact/compat':
         specifier: 18.3.2
         version: 18.3.2(preact@10.28.4)
@@ -31,7 +31,7 @@ importers:
         version: 4.1.0
       downshift:
         specifier: 9.3.2
-        version: 9.3.2(@preact/compat@18.3.1(preact@10.28.4))
+        version: 9.3.2(@preact/compat@18.3.2(preact@10.28.4))
       preact:
         specifier: 10.28.4
         version: 10.28.4
@@ -39,26 +39,26 @@ importers:
         specifier: 6.6.6
         version: 6.6.6(preact@10.28.4)
       react:
-        specifier: npm:@preact/compat@18.3.1
-        version: '@preact/compat@18.3.1(preact@10.28.4)'
+        specifier: npm:@preact/compat@18.3.2
+        version: '@preact/compat@18.3.2(preact@10.28.4)'
       react-dom:
-        specifier: npm:@preact/compat@18.3.1
-        version: '@preact/compat@18.3.1(preact@10.28.4)'
+        specifier: npm:@preact/compat@18.3.2
+        version: '@preact/compat@18.3.2(preact@10.28.4)'
       react-helmet-async:
         specifier: 2.0.5
-        version: 2.0.5(@preact/compat@18.3.1(preact@10.28.4))
+        version: 2.0.5(@preact/compat@18.3.2(preact@10.28.4))
       react-hook-form:
         specifier: 7.71.2
-        version: 7.71.2(@preact/compat@18.3.1(preact@10.28.4))
+        version: 7.71.2(@preact/compat@18.3.2(preact@10.28.4))
       react-intl:
         specifier: 6.6.8
-        version: 6.6.8(@preact/compat@18.3.1(preact@10.28.4))(typescript@5.9.3)
+        version: 6.6.8(@preact/compat@18.3.2(preact@10.28.4))(typescript@5.9.3)
       react-router:
         specifier: 7.13.1
-        version: 7.13.1(@preact/compat@18.3.1(preact@10.28.4))(@preact/compat@18.3.1(preact@10.28.4))
+        version: 7.13.1(@preact/compat@18.3.2(preact@10.28.4))(@preact/compat@18.3.2(preact@10.28.4))
       react-router-dom:
         specifier: 7.13.1
-        version: 7.13.1(@preact/compat@18.3.1(preact@10.28.4))(@preact/compat@18.3.1(preact@10.28.4))
+        version: 7.13.1(@preact/compat@18.3.2(preact@10.28.4))(@preact/compat@18.3.2(preact@10.28.4))
       vite:
         specifier: 7.3.1
         version: 7.3.1(@types/node@24.1.0)(sass@1.97.3)(yaml@2.8.2)
@@ -957,11 +957,6 @@ packages:
   '@pkgr/core@0.2.9':
     resolution: {integrity: sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
-
-  '@preact/compat@18.3.1':
-    resolution: {integrity: sha512-Kog4PSRxtT4COtOXjsuQPV1vMXpUzREQfv+6Dmcy9/rMk0HOPK0HTE9fspFjAmY8R80T/T8gtgmZ68u5bOSngw==}
-    peerDependencies:
-      preact: '*'
 
   '@preact/compat@18.3.2':
     resolution: {integrity: sha512-5vSl55K5yLMvocT7PBKxDOHGgYPjMrKQqqr6roSNjIXcJOtSgDDMjpiCAF3s7klRdmGrN75b/Przmjw8gmlg/w==}
@@ -4403,18 +4398,18 @@ snapshots:
       '@floating-ui/core': 1.7.4
       '@floating-ui/utils': 0.2.10
 
-  '@floating-ui/react-dom@2.1.7(@preact/compat@18.3.1(preact@10.28.4))(@preact/compat@18.3.1(preact@10.28.4))':
+  '@floating-ui/react-dom@2.1.7(@preact/compat@18.3.2(preact@10.28.4))(@preact/compat@18.3.2(preact@10.28.4))':
     dependencies:
       '@floating-ui/dom': 1.7.5
-      react: '@preact/compat@18.3.1(preact@10.28.4)'
-      react-dom: '@preact/compat@18.3.1(preact@10.28.4)'
+      react: '@preact/compat@18.3.2(preact@10.28.4)'
+      react-dom: '@preact/compat@18.3.2(preact@10.28.4)'
 
-  '@floating-ui/react@0.27.8(@preact/compat@18.3.1(preact@10.28.4))(@preact/compat@18.3.1(preact@10.28.4))':
+  '@floating-ui/react@0.27.8(@preact/compat@18.3.2(preact@10.28.4))(@preact/compat@18.3.2(preact@10.28.4))':
     dependencies:
-      '@floating-ui/react-dom': 2.1.7(@preact/compat@18.3.1(preact@10.28.4))(@preact/compat@18.3.1(preact@10.28.4))
+      '@floating-ui/react-dom': 2.1.7(@preact/compat@18.3.2(preact@10.28.4))(@preact/compat@18.3.2(preact@10.28.4))
       '@floating-ui/utils': 0.2.10
-      react: '@preact/compat@18.3.1(preact@10.28.4)'
-      react-dom: '@preact/compat@18.3.1(preact@10.28.4)'
+      react: '@preact/compat@18.3.2(preact@10.28.4)'
+      react-dom: '@preact/compat@18.3.2(preact@10.28.4)'
       tabbable: 6.4.0
 
   '@floating-ui/utils@0.2.10': {}
@@ -4722,16 +4717,16 @@ snapshots:
 
   '@navikt/ds-css@8.6.0': {}
 
-  '@navikt/ds-react@8.6.0(@preact/compat@18.3.1(preact@10.28.4))(@preact/compat@18.3.1(preact@10.28.4))(@types/react@18.3.28)':
+  '@navikt/ds-react@8.6.0(@preact/compat@18.3.2(preact@10.28.4))(@preact/compat@18.3.2(preact@10.28.4))(@types/react@18.3.28)':
     dependencies:
-      '@floating-ui/react': 0.27.8(@preact/compat@18.3.1(preact@10.28.4))(@preact/compat@18.3.1(preact@10.28.4))
-      '@floating-ui/react-dom': 2.1.7(@preact/compat@18.3.1(preact@10.28.4))(@preact/compat@18.3.1(preact@10.28.4))
+      '@floating-ui/react': 0.27.8(@preact/compat@18.3.2(preact@10.28.4))(@preact/compat@18.3.2(preact@10.28.4))
+      '@floating-ui/react-dom': 2.1.7(@preact/compat@18.3.2(preact@10.28.4))(@preact/compat@18.3.2(preact@10.28.4))
       '@navikt/aksel-icons': 8.6.0
       '@navikt/ds-tokens': 8.6.0
       date-fns: 4.1.0
-      react: '@preact/compat@18.3.1(preact@10.28.4)'
-      react-day-picker: 9.7.0(@preact/compat@18.3.1(preact@10.28.4))
-      react-dom: '@preact/compat@18.3.1(preact@10.28.4)'
+      react: '@preact/compat@18.3.2(preact@10.28.4)'
+      react-day-picker: 9.7.0(@preact/compat@18.3.2(preact@10.28.4))
+      react-dom: '@preact/compat@18.3.2(preact@10.28.4)'
     optionalDependencies:
       '@types/react': 18.3.28
 
@@ -4739,14 +4734,14 @@ snapshots:
 
   '@navikt/fnrvalidator@1.3.3': {}
 
-  '@navikt/nav-dekoratoren-moduler@3.6.2(@preact/compat@18.3.1(preact@10.28.4))(csp-header@6.3.0)(html-react-parser@5.2.15(@preact/compat@18.3.1(preact@10.28.4))(@types/react@18.3.28))(jsdom@26.1.0)':
+  '@navikt/nav-dekoratoren-moduler@3.6.2(@preact/compat@18.3.2(preact@10.28.4))(csp-header@6.3.0)(html-react-parser@5.2.15(@preact/compat@18.3.2(preact@10.28.4))(@types/react@18.3.28))(jsdom@26.1.0)':
     dependencies:
       csp-header: 6.3.0
-      html-react-parser: 5.2.15(@preact/compat@18.3.1(preact@10.28.4))(@types/react@18.3.28)
+      html-react-parser: 5.2.15(@preact/compat@18.3.2(preact@10.28.4))(@types/react@18.3.28)
       js-cookie: 3.0.5
       jsdom: 26.1.0
     optionalDependencies:
-      react: '@preact/compat@18.3.1(preact@10.28.4)'
+      react: '@preact/compat@18.3.2(preact@10.28.4)'
 
   '@parcel/watcher-android-arm64@2.5.6':
     optional: true
@@ -4813,10 +4808,6 @@ snapshots:
     optional: true
 
   '@pkgr/core@0.2.9': {}
-
-  '@preact/compat@18.3.1(preact@10.28.4)':
-    dependencies:
-      preact: 10.28.4
 
   '@preact/compat@18.3.2(preact@10.28.4)':
     dependencies:
@@ -5791,12 +5782,12 @@ snapshots:
 
   dotenv@17.3.1: {}
 
-  downshift@9.3.2(@preact/compat@18.3.1(preact@10.28.4)):
+  downshift@9.3.2(@preact/compat@18.3.2(preact@10.28.4)):
     dependencies:
       '@babel/runtime': 7.28.6
       compute-scroll-into-view: 3.1.1
       prop-types: 15.8.1
-      react: '@preact/compat@18.3.1(preact@10.28.4)'
+      react: '@preact/compat@18.3.2(preact@10.28.4)'
       react-is: 18.3.1
       tslib: 2.8.1
 
@@ -6363,11 +6354,11 @@ snapshots:
 
   html-escaper@2.0.2: {}
 
-  html-react-parser@5.2.15(@preact/compat@18.3.1(preact@10.28.4))(@types/react@18.3.28):
+  html-react-parser@5.2.15(@preact/compat@18.3.2(preact@10.28.4))(@types/react@18.3.28):
     dependencies:
       domhandler: 5.0.3
       html-dom-parser: 5.1.4
-      react: '@preact/compat@18.3.1(preact@10.28.4)'
+      react: '@preact/compat@18.3.2(preact@10.28.4)'
       react-property: 2.0.2
       style-to-js: 1.1.21
     optionalDependencies:
@@ -7450,27 +7441,27 @@ snapshots:
       iconv-lite: 0.7.2
       unpipe: 1.0.0
 
-  react-day-picker@9.7.0(@preact/compat@18.3.1(preact@10.28.4)):
+  react-day-picker@9.7.0(@preact/compat@18.3.2(preact@10.28.4)):
     dependencies:
       '@date-fns/tz': 1.2.0
       date-fns: 4.1.0
       date-fns-jalali: 4.1.0-0
-      react: '@preact/compat@18.3.1(preact@10.28.4)'
+      react: '@preact/compat@18.3.2(preact@10.28.4)'
 
   react-fast-compare@3.2.2: {}
 
-  react-helmet-async@2.0.5(@preact/compat@18.3.1(preact@10.28.4)):
+  react-helmet-async@2.0.5(@preact/compat@18.3.2(preact@10.28.4)):
     dependencies:
       invariant: 2.2.4
-      react: '@preact/compat@18.3.1(preact@10.28.4)'
+      react: '@preact/compat@18.3.2(preact@10.28.4)'
       react-fast-compare: 3.2.2
       shallowequal: 1.1.0
 
-  react-hook-form@7.71.2(@preact/compat@18.3.1(preact@10.28.4)):
+  react-hook-form@7.71.2(@preact/compat@18.3.2(preact@10.28.4)):
     dependencies:
-      react: '@preact/compat@18.3.1(preact@10.28.4)'
+      react: '@preact/compat@18.3.2(preact@10.28.4)'
 
-  react-intl@6.6.8(@preact/compat@18.3.1(preact@10.28.4))(typescript@5.9.3):
+  react-intl@6.6.8(@preact/compat@18.3.2(preact@10.28.4))(typescript@5.9.3):
     dependencies:
       '@formatjs/ecma402-abstract': 2.0.0
       '@formatjs/icu-messageformat-parser': 2.7.8
@@ -7481,7 +7472,7 @@ snapshots:
       '@types/react': 18.3.28
       hoist-non-react-statics: 3.3.2
       intl-messageformat: 10.5.14
-      react: '@preact/compat@18.3.1(preact@10.28.4)'
+      react: '@preact/compat@18.3.2(preact@10.28.4)'
       tslib: 2.8.1
     optionalDependencies:
       typescript: 5.9.3
@@ -7494,19 +7485,19 @@ snapshots:
 
   react-property@2.0.2: {}
 
-  react-router-dom@7.13.1(@preact/compat@18.3.1(preact@10.28.4))(@preact/compat@18.3.1(preact@10.28.4)):
+  react-router-dom@7.13.1(@preact/compat@18.3.2(preact@10.28.4))(@preact/compat@18.3.2(preact@10.28.4)):
     dependencies:
-      react: '@preact/compat@18.3.1(preact@10.28.4)'
-      react-dom: '@preact/compat@18.3.1(preact@10.28.4)'
-      react-router: 7.13.1(@preact/compat@18.3.1(preact@10.28.4))(@preact/compat@18.3.1(preact@10.28.4))
+      react: '@preact/compat@18.3.2(preact@10.28.4)'
+      react-dom: '@preact/compat@18.3.2(preact@10.28.4)'
+      react-router: 7.13.1(@preact/compat@18.3.2(preact@10.28.4))(@preact/compat@18.3.2(preact@10.28.4))
 
-  react-router@7.13.1(@preact/compat@18.3.1(preact@10.28.4))(@preact/compat@18.3.1(preact@10.28.4)):
+  react-router@7.13.1(@preact/compat@18.3.2(preact@10.28.4))(@preact/compat@18.3.2(preact@10.28.4)):
     dependencies:
       cookie: 1.1.1
-      react: '@preact/compat@18.3.1(preact@10.28.4)'
+      react: '@preact/compat@18.3.2(preact@10.28.4)'
       set-cookie-parser: 2.7.2
     optionalDependencies:
-      react-dom: '@preact/compat@18.3.1(preact@10.28.4)'
+      react-dom: '@preact/compat@18.3.2(preact@10.28.4)'
 
   readdirp@3.6.0:
     dependencies:
