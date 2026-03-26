@@ -131,6 +131,7 @@ const nb: ITranslation = {
     'felter.klagetyper.digitaletjenester': 'Navs digitale tjenester',
     'felter.klagetyper.brev': 'Brev',
     'felter.klagetyper.annet': 'Annet',
+    'felter.klagetyper.annenKategori': 'Annen kategori',
     'felter.hvemfra': 'Hvem skriver du på vegne av?',
     'felter.hvemfra.megselv': 'Meg selv som privatperson',
     'felter.hvemfra.enannen': 'På vegne av en annen privatperson',
