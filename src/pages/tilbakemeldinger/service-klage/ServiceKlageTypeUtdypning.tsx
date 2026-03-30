@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
-import { Textarea } from '@navikt/ds-react';
+import { TextField } from '@navikt/ds-react';
 import { useIntl } from 'react-intl';
 import appStyle from 'src/App.module.scss';
 import { vars } from 'src/Config';
@@ -22,23 +22,18 @@ const ServiceKlageTypeUtdypning = () => {
     }, [isSubmitted, trigger]);
 
     return (
-        <Textarea
+        <TextField
             {...register('klagetypeUtdypning', {
                 required: formatMessage({
                     id: 'validering.klagetype.utdypning.pakrevd',
                 }),
-                maxLength: {
-                    value: vars.maksLengdeMeldingServiceKlage,
-                    message: formatMessage({
-                        id: 'validering.melding.tegn',
-                    }),
-                },
             })}
             label={formatMessage({
-                id: 'felter.melding.tittel',
+                id: 'felter.klagetyper.annenKategori',
             })}
-            className={appStyle.inputMedium}
+            className={`${appStyle.inputMedium} ${appStyle.indent}`}
             value={watch().klagetypeUtdypning}
+            hideLabel
             error={errors?.klagetypeUtdypning?.message}
             maxLength={vars.maksLengdeMeldingServiceKlage}
             autoComplete="off"
