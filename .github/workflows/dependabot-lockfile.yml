@@ -1,5 +1,4 @@
 name: Dependabot lockfile fix
-description: Automatically update the lockfile when Dependabot opens a PR to keep it up-to-date and prevent merge conflicts. This is because of limitations to dependabot pnpm support with workspaces. Might be removed later if support is added to dependabpt.
 on:
     pull_request:
         branches:
