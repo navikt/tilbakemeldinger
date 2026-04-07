@@ -138,6 +138,7 @@ const en: ITranslation = {
     'felter.klagetyper.digitaletjenester': 'Navs digital services',
     'felter.klagetyper.brev': 'Letter',
     'felter.klagetyper.annet': 'Other',
+    'felter.klagetyper.annenKategori': 'Other category',
     'felter.hvemfra': 'Who are you writing on behalf of?',
     'felter.hvemfra.megselv': 'Myself as a private individual',
     'felter.hvemfra.enannen': 'On behalf of another private individual',
