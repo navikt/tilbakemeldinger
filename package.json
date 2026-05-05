@@ -39,7 +39,7 @@
         "preact-render-to-string": "6.6.7",
         "react": "npm:@preact/compat@18.3.2",
         "react-dom": "npm:@preact/compat@18.3.2",
-        "react-helmet-async": "2.0.5",
+        "react-helmet-async": "3.0.0",
         "react-hook-form": "7.74.0",
         "react-intl": "6.6.8",
         "react-router": "7.14.2",
