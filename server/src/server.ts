@@ -1,9 +1,9 @@
 import express from 'express';
 import compression from 'compression';
 import { setupSiteRoutes } from './site/setupSiteRoutes.js';
-import { setupApiRoutes } from './api/setupApiRoutes';
-import { setupErrorHandlers } from './utils/errorHandlers';
-import { isLocal } from './utils/environment';
+import { setupApiRoutes } from './api/setupApiRoutes.js';
+import { setupErrorHandlers } from './utils/errorHandlers.js';
+import { isLocal } from './utils/environment.js';
 
 import 'dotenv/config';
 

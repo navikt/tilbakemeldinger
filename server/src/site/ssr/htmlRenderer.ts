@@ -1,6 +1,9 @@
-import { buildHtmlTemplate, getTemplateWithDecorator } from './templateBuilder';
+import {
+    buildHtmlTemplate,
+    getTemplateWithDecorator,
+} from './templateBuilder.js';
 import { ViteDevServer } from 'vite';
-import { render } from '../../_ssr-dist/main-server';
+import { render } from '../../_ssr-dist/main-server.js';
 import { HelmetServerState } from 'react-helmet-async';
 
 export type HtmlRenderer = (url: string) => Promise<string>;

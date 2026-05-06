@@ -1,13 +1,13 @@
 import path from 'path';
 import fs from 'fs';
-import { injectWithDecorator } from '../../utils/decorator';
+import { injectWithDecorator } from '../../utils/decorator.js';
 import {
     injectDecoratorServerSide,
     DecoratorEnvProps,
-} from '@navikt/nav-dekoratoren-moduler/ssr';
+} from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
-import { getBreadcrumbsFromPathname } from '../../../../common/breadcrumbs';
-import { Locale, defaultLocale, isLocale } from '../../../../common/locale';
+import { getBreadcrumbsFromPathname } from '../../../../common/breadcrumbs.js';
+import { Locale, defaultLocale, isLocale } from '../../../../common/locale.js';
 
 const templatePath =
     process.env.NODE_ENV === 'development'

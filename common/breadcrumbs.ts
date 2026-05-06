@@ -1,5 +1,5 @@
-import { paths } from './paths';
-import { Locale, translate } from './locale';
+import { paths } from './paths.js';
+import { Locale, translate } from './locale.js';
 
 export const getBreadcrumbsFromPathname = (url: string, locale: Locale) => {
     const basePathFilter = new RegExp(

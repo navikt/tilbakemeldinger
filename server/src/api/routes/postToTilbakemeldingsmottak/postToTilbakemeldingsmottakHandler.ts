@@ -1,8 +1,8 @@
 import { RequestHandler } from 'express';
-import { getAccessToken } from '../../../utils/auth/common';
-import { serviceKlageSchema } from '../../../../../common/schema/ServiceKlage';
-import { feilOgManglerSchema } from '../../../../../common/schema/FeilOgMangler';
-import { rosTilNavSchema } from '../../../../../common/schema/RosTilNav';
+import { getAccessToken } from '../../../utils/auth/common.js';
+import { serviceKlageSchema } from '../../../../../common/schema/ServiceKlage.js';
+import { feilOgManglerSchema } from '../../../../../common/schema/FeilOgMangler.js';
+import { rosTilNavSchema } from '../../../../../common/schema/RosTilNav.js';
 
 const deriveSchemaFromPath = (path: string) => {
     switch (path) {

@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express';
 import Cache from 'node-cache';
-import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr';
-import { decoratorEnvProps } from './decorator';
+import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
+import { decoratorEnvProps } from './decorator.js';
 import { CSPDirectives, DATA, SELF } from 'csp-header';
 
 /*

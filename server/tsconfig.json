@@ -1,26 +1,19 @@
 {
-  "compilerOptions": {
-    "jsx": "react",
-    "allowJs": true,
-    "baseUrl": "src",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "skipLibCheck": true,
-    "lib": [
-      "dom",
-      "es2021"
-    ],
-    "moduleResolution": "node",
-    "module": "commonjs",
-    "outDir": "dist/server",
-    "strict": true,
-    "target": "ES2021"
-  },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "src/**/*.test.ts"
-  ]
+    "compilerOptions": {
+        "jsx": "react",
+        "allowJs": true,
+        "baseUrl": "src",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "isolatedModules": true,
+        "skipLibCheck": true,
+        "lib": ["dom", "es2021"],
+        "moduleResolution": "nodenext",
+        "module": "nodenext",
+        "outDir": "dist/server",
+        "strict": true,
+        "target": "ES2021"
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["src/**/*.test.ts"]
 }

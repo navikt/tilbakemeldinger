@@ -2,7 +2,7 @@ import {
     injectDecoratorServerSide,
     DecoratorParams,
     DecoratorEnvProps,
-} from '@navikt/nav-dekoratoren-moduler/ssr';
+} from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 
 import 'dotenv/config';
 
