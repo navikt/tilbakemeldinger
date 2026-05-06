@@ -13,8 +13,8 @@
         "build:ssr": "vite build --outDir ./server/src/_ssr-dist --ssr src/main-server.tsx",
         "build:server": "pnpm --filter tilbakemeldinger-server run build",
         "analyze-bundle": "ANALYZE=true pnpm run build:client",
-        "start": "pnpm --filter tilbakemeldinger-server run start",
-        "start-local": "cp .env.local-prod .env && pnpm --filter tilbakemeldinger-server run start",
+        "start": "node server/dist/server/server/src/server.js",
+        "start-local": "cp .env.local-prod .env && node server/dist/server/server/src/server.js",
         "lint": "pnpm run lint:eslint && pnpm run lint:types",
         "lint:eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" \"common/**/*.{js,jsx,ts,tsx}\" \"server/src/**/*.{js,jsx,ts,tsx}\"",
         "lint:types": "tsc --noEmit && pnpm --filter tilbakemeldinger-server exec tsc --noEmit",
@@ -44,7 +44,7 @@
         "react-intl": "6.6.8",
         "react-router": "7.14.2",
         "react-router-dom": "7.14.2",
-        "vite": "7.3.1",
+        "vite": "8.0.9",
         "zod": "4.3.6"
     },
     "devDependencies": {

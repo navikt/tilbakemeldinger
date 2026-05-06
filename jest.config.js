@@ -2,6 +2,8 @@ export default {
     preset: 'ts-jest/presets/js-with-ts-esm',
     testEnvironment: 'jsdom',
     moduleNameMapper: {
+        // Handle .js extensions in ESM imports (from .ts files)
+        '^(\\.{1,2}/.*)\\.js$': '$1',
         // Handle CSS imports
         '\\.module\\.(css|scss)$': 'identity-obj-proxy',
         '\\.(css|scss)$': 'identity-obj-proxy',

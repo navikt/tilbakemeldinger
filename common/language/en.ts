@@ -1,4 +1,4 @@
-import { ITranslation } from '../locale';
+import { ITranslation } from '../locale.js';
 
 const en: ITranslation = {
     //

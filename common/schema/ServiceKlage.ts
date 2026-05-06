@@ -1,5 +1,5 @@
 import zod from 'zod';
-import { zodString } from './helpers';
+import { zodString } from './helpers.js';
 
 // Enums as zod schemas
 export const onBehalfOfSchema = zod.enum([

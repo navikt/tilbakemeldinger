@@ -1,10 +1,10 @@
 import express, { Router } from 'express';
 import path from 'path';
 import { createServer } from 'vite';
-import { HtmlRenderer, devRender, prodRender } from './ssr/htmlRenderer';
-import { createCacheMiddleware } from '../utils/cacheMiddleware';
-import { createCspMiddleware } from '../utils/cspMiddleware';
-import { isLocal } from '../utils/environment';
+import { HtmlRenderer, devRender, prodRender } from './ssr/htmlRenderer.js';
+import { createCacheMiddleware } from '../utils/cacheMiddleware.js';
+import { createCspMiddleware } from '../utils/cspMiddleware.js';
+import { isLocal } from '../utils/environment.js';
 
 const { VITE_APP_BASEPATH, VITE_EDITORIAL_FRONTPAGE_ORIGIN } = process.env;
 
