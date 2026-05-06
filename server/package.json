@@ -5,7 +5,6 @@
     "type": "module",
     "scripts": {
         "build": "tsc",
-        "start": "node ./dist/server/server/src/server.js",
         "dev": "pnpm run build && concurrently \"tsc -w\" \"nodemon -w ./dist/server ./dist/server/server/src/server.js\""
     },
     "dependencies": {
