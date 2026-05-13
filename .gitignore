@@ -22,3 +22,5 @@ npm-debug.log*
 /pb-kontakt-oss.iml
 /.env
 /server/src/_ssr-dist
+
+package-lock.json
