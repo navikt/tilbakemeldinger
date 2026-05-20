@@ -1,4 +1,4 @@
-import { feilOgManglerSchema, FeilOgManglerTypeSchema } from '../FeilOgMangler';
+import { feilOgManglerSchema } from '../FeilOgMangler';
 
 describe('FeilOgMangler Schema', () => {
     // Valid test cases
