@@ -4,9 +4,6 @@ import {
     privatpersonSchema,
     annenPersonSchema,
     bedriftSchema,
-    onBehalfOfSchema,
-    serviceKlageTypeSchema,
-    sosialhjelpChoiceSchema,
 } from '../ServiceKlage';
 
 describe('ServiceKlage Schema', () => {
