@@ -12,7 +12,17 @@
 .skjema {
     display: flex;
     flex-direction: column;
-    row-gap: var(--ax-space-40);
+    row-gap: var(--ax-space-32);
+}
+
+.skjemaInline {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--ax-space-12);
+}
+
+.veileder {
+    max-width: 60ch;
 }
 
 .inputMedium {

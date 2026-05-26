@@ -33,13 +33,14 @@ const en: ITranslation = {
     'tilbakemeldinger.serviceklage.tittel': 'Service complaint',
     'tilbakemeldinger.serviceklage.login.overskrift': 'Do you want to log in?',
     'tilbakemeldinger.serviceklage.login.beskrivelse':
-        "We recommend logging in so you don't have to enter any personal information.<br></br>" +
+        "We recommend logging in so you don't have to enter any personal information." +
         'You must state who you are in both cases.',
     'tilbakemeldinger.serviceklage.login.knapp': 'Log in',
     'tilbakemeldinger.serviceklage.login.knapp.fortsettuten':
         'Continue without logging in',
     'tilbakemeldinger.serviceklage.form.veileder':
-        'Here you can complain about the service you have received. You will receive an answer within 3 weeks.',
+        'Here you can complain about the service you have received. You will receive an answer within 3 weeks.' +
+        'All fields are required.',
     'tilbakemeldinger.serviceklage.sidetittel': 'Service complaint',
     'tilbakemeldinger.serviceklage.form.overskrift':
         'Submit a complaint about service',
@@ -54,8 +55,8 @@ const en: ITranslation = {
         'Errors and wrong or missing information',
     'tilbakemeldinger.feilogmangler.form.tittel': 'Errors and issues on nav.no',
     'tilbakemeldinger.feilogmangler.form.veileder':
-        'You can report technical errors as well as wrong or missing information. You cannot send a general question or ' +
-        'requests regarding your cases with Nav.',
+        'You can report technical errors as well as wrong or missing information. You cannot send a general question or requests regarding your cases with Nav.' +
+        'All fields are required.',
     'tilbakemeldinger.feilogmangler.form.overskrift':
         'Submit errors and issues on nav.no',
     'tilbakemeldinger.feilogmangler.svartid':
@@ -65,7 +66,8 @@ const en: ITranslation = {
     'tilbakemeldinger.ros.form.tittel': 'Praise for Nav',
     'tilbakemeldinger.ros.form.overskrift': 'Submit praise to Nav',
     'tilbakemeldinger.ros.form.veileder':
-        'Thanks for sharing your experience with us! We will make sure the praise reaches the right person.',
+        'Thanks for sharing your experience with us! We will make sure the praise reaches the right person.' +
+        'All fields are required.',
 
     'validering.navn.pakrevd': 'Name is required',
     'validering.epost.pakrevd': 'Email is required',

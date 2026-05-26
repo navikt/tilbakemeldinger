@@ -199,7 +199,7 @@ const ServiceKlageComponent = () => {
                     closeFunc={closeModal}
                 />
             )}
-            <GuidePanel poster>
+            <GuidePanel poster className={appStyle.veileder}>
                 <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
             </GuidePanel>
             <Box
@@ -214,7 +214,6 @@ const ServiceKlageComponent = () => {
                             className={appStyle.skjema}
                             onSubmit={handleSubmit(send)}
                         >
-                            <PersonvernInfo />
                             <Controller
                                 render={({ field, fieldState: { error } }) => (
                                     <CheckboxGroup
@@ -337,26 +336,31 @@ const ServiceKlageComponent = () => {
                                 <ServiceKlageForBedrift />
                             )}
 
-                            <Textarea
-                                {...register('klagetekst', {
-                                    required: formatMessage({
-                                        id: 'validering.melding.pakrevd',
-                                    }),
-                                    maxLength: {
-                                        value: vars.maksLengdeMelding,
-                                        message: formatMessage({
-                                            id: 'validering.melding.tegn',
+                            <div className={appStyle.skjemaInline}>
+                                <PersonvernInfo />
+                                <Textarea
+                                    aria-required
+                                    {...register('klagetekst', {
+                                        required: formatMessage({
+                                            id: 'validering.melding.pakrevd',
                                         }),
-                                    },
-                                })}
-                                label={formatMessage({
-                                    id: 'felter.melding.tittel',
-                                })}
-                                value={watch().klagetekst}
-                                error={errors?.klagetekst?.message}
-                                maxLength={vars.maksLengdeMelding}
-                                autoComplete="off"
-                            />
+                                        maxLength: {
+                                            value: vars.maksLengdeMelding,
+                                            message: formatMessage({
+                                                id: 'validering.melding.tegn',
+                                            }),
+                                        },
+                                    })}
+                                    label={formatMessage({
+                                        id: 'felter.melding.tittel',
+                                    })}
+                                    value={watch().klagetekst}
+                                    error={errors?.klagetekst?.message}
+                                    maxLength={vars.maksLengdeMelding}
+                                    autoComplete="off"
+                                />
+                            </div>
+
                             {(watch().paaVegneAv !== 'ANNEN_PERSON' ||
                                 watch().innmelderHarFullmakt !== false) && (
                                 <ServiceKlageOnskerAaKontaktes
