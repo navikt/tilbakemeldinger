@@ -33,13 +33,13 @@ const nn: ITranslation = {
     'tilbakemeldinger.serviceklage.tittel': 'Klage på service',
     'tilbakemeldinger.serviceklage.login.overskrift': 'Ønsker du å logge inn?',
     'tilbakemeldinger.serviceklage.login.beskrivelse':
-        'Vi anbefaler at du loggar inn, så treng du ikkje å fylle inn all informasjonen om deg sjølv.' +
+        'Vi anbefaler at du loggar inn, så treng du ikkje å fylle inn all informasjonen om deg sjølv. ' +
         'Du må oppgje kven du er anten du loggar inn eller ikkje.',
     'tilbakemeldinger.serviceklage.login.knapp': 'Logg inn',
     'tilbakemeldinger.serviceklage.login.knapp.fortsettuten':
         'Fortsett utan å logge inn',
     'tilbakemeldinger.serviceklage.form.veileder':
-        'Her kan du klage på servicen du har fått. Du vil få svar innan 3 veker.' +
+        'Her kan du klage på servicen du har fått. Du vil få svar innan 3 veker. ' +
         'Alle felt må fyllast ut.',
     'tilbakemeldinger.serviceklage.sidetittel': 'Klage på service',
     'tilbakemeldinger.serviceklage.form.overskrift':
@@ -54,7 +54,7 @@ const nn: ITranslation = {
     'tilbakemeldinger.feil-og-mangler.sidetittel': 'Feil og manglar på nav.no',
     'tilbakemeldinger.feilogmangler.form.tittel': 'Feil og manglar',
     'tilbakemeldinger.feilogmangler.form.veileder':
-        'Her kan du melde frå om tekniske feil og manglar. Du kan ikkje sende inn generelle spørsmål eller førespurnadar om saka di.' +
+        'Her kan du melde frå om tekniske feil og manglar. Du kan ikkje sende inn generelle spørsmål eller førespurnadar om saka di. ' +
         'Alle felt må fyllast ut.',
     'tilbakemeldinger.feilogmangler.form.overskrift':
         'Send inn feil og manglar på nav.no',
@@ -65,7 +65,7 @@ const nn: ITranslation = {
     'tilbakemeldinger.ros.form.tittel': 'Ros til Nav',
     'tilbakemeldinger.ros.form.overskrift': 'Send inn ros til Nav',
     'tilbakemeldinger.ros.form.veileder':
-        'Takk for at du vil dele opplevinga med oss! Vi sørger for at rosen kjem fram til rett person.\n' +
+        'Takk for at du vil dele opplevinga med oss! Vi sørger for at rosen kjem fram til rett person. ' +
         'Alle felt må fyllast ut.',
 
     'validering.navn.pakrevd': 'Namn er nødvendig',
