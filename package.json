@@ -41,7 +41,7 @@
         "react-dom": "npm:@preact/compat@18.3.2",
         "react-helmet-async": "3.0.0",
         "react-hook-form": "7.76.1",
-        "react-intl": "10.1.5",
+        "react-intl": "10.1.8",
         "react-router": "7.15.1",
         "react-router-dom": "7.15.1",
         "vite": "8.0.14",
