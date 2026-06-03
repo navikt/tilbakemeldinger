@@ -60,7 +60,7 @@
         "@types/react-dom": "18.3.5",
         "@typescript-eslint/eslint-plugin": "8.60.0",
         "@typescript-eslint/parser": "8.60.0",
-        "eslint": "9.38.0",
+        "eslint": "10.4.0",
         "eslint-plugin-react": "7.37.5",
         "fetch-mock": "11.1.5",
         "globals": "17.6.0",
