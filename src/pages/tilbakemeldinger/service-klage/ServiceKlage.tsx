@@ -39,7 +39,6 @@ import {
     FormProvider,
     useForm,
 } from 'react-hook-form';
-import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import { resolveErrorCode } from 'utils/errorCodes';
 import appStyle from 'src/App.module.scss';
 
@@ -337,9 +336,13 @@ const ServiceKlageComponent = () => {
                             )}
 
                             <div className={appStyle.skjemaInline}>
-                                <PersonvernInfo />
                                 <Textarea
                                     aria-required
+                                    description={
+                                        <FormattedMessage
+                                            id={'felter.melding.beskrivelse'}
+                                        />
+                                    }
                                     {...register('klagetekst', {
                                         required: formatMessage({
                                             id: 'validering.melding.pakrevd',

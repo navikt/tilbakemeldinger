@@ -12,13 +12,13 @@
 .skjema {
     display: flex;
     flex-direction: column;
-    row-gap: var(--ax-space-32);
+    row-gap: var(--ax-space-40);
 }
 
 .skjemaInline {
     display: flex;
     flex-direction: column;
-    row-gap: var(--ax-space-12);
+    row-gap: var(--ax-space-20);
 }
 
 .veileder {

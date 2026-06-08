@@ -115,7 +115,8 @@ const nb: ITranslation = {
     'felter.typefeil.uu':
         'Feil på siden ved bruk av skjermleser eller annet hjelpemiddel',
     'felter.melding.tittel': 'Din tilbakemelding',
-    'felter.melding.beskrivelse': `Ikke send sensitive personopplysninger om deg selv eller andre. Les mer om personopplysninger hos <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
+    'felter.melding.beskrivelse':
+        'NB! Ikke skriv sensitive personopplysninger om deg selv eller andre.',
     'felter.send': 'Send tilbakemelding',
     'felter.tilbake': 'Tilbake',
     'felter.hvemroses.tittel': 'Hvem vil du gi ros til?',

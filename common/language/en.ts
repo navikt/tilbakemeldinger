@@ -120,7 +120,8 @@ const en: ITranslation = {
     'felter.typefeil.uu':
         'Error when using screen readers or other accessibility devices',
     'felter.melding.tittel': 'Your feedback',
-    'felter.melding.beskrivelse': `Do not send sensitive personal information about yourself or others. Read more about personal information at <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
+    'felter.melding.beskrivelse':
+        'Do not use any sensitive personal information about yourself or others.',
     'felter.send': 'Send feedback',
     'felter.tilbake': 'Back',
     'felter.hvemroses.tittel': 'Who do you want to praise?',

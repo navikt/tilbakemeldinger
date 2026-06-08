@@ -18,7 +18,6 @@ import {
     RadioGroup,
     Textarea,
 } from '@navikt/ds-react';
-import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { RosTilNav } from 'common/types/RosTilNav';
 import { resolveErrorCode } from 'utils/errorCodes';
@@ -163,9 +162,13 @@ const Ros = () => {
                         )}
 
                         <div className={appStyle.skjemaInline}>
-                            <PersonvernInfo />
                             <Textarea
                                 aria-required
+                                description={
+                                    <FormattedMessage
+                                        id={'felter.melding.beskrivelse'}
+                                    />
+                                }
                                 {...register('melding', {
                                     required: formatMessage({
                                         id: 'validering.melding.pakrevd',

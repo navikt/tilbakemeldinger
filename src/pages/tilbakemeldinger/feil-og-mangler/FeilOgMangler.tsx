@@ -18,7 +18,6 @@ import {
     RadioGroup,
     Textarea,
 } from '@navikt/ds-react';
-import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import {
     Controller,
     FieldValues,
@@ -146,9 +145,13 @@ const FOM = () => {
                             />
 
                             <div className={appStyle.skjemaInline}>
-                                <PersonvernInfo />
                                 <Textarea
                                     aria-required
+                                    description={
+                                        <FormattedMessage
+                                            id={'felter.melding.beskrivelse'}
+                                        />
+                                    }
                                     {...register('melding', {
                                         required: formatMessage({
                                             id: 'validering.melding.pakrevd',
