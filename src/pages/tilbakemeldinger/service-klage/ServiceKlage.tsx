@@ -39,7 +39,6 @@ import {
     FormProvider,
     useForm,
 } from 'react-hook-form';
-import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import { resolveErrorCode } from 'utils/errorCodes';
 import appStyle from 'src/App.module.scss';
 
@@ -199,7 +198,7 @@ const ServiceKlageComponent = () => {
                     closeFunc={closeModal}
                 />
             )}
-            <GuidePanel poster>
+            <GuidePanel poster className={appStyle.veileder}>
                 <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
             </GuidePanel>
             <Box
@@ -214,7 +213,6 @@ const ServiceKlageComponent = () => {
                             className={appStyle.skjema}
                             onSubmit={handleSubmit(send)}
                         >
-                            <PersonvernInfo />
                             <Controller
                                 render={({ field, fieldState: { error } }) => (
                                     <CheckboxGroup
@@ -337,26 +335,35 @@ const ServiceKlageComponent = () => {
                                 <ServiceKlageForBedrift />
                             )}
 
-                            <Textarea
-                                {...register('klagetekst', {
-                                    required: formatMessage({
-                                        id: 'validering.melding.pakrevd',
-                                    }),
-                                    maxLength: {
-                                        value: vars.maksLengdeMelding,
-                                        message: formatMessage({
-                                            id: 'validering.melding.tegn',
+                            <div className={appStyle.skjemaInline}>
+                                <Textarea
+                                    aria-required
+                                    description={
+                                        <FormattedMessage
+                                            id={'felter.melding.beskrivelse'}
+                                        />
+                                    }
+                                    {...register('klagetekst', {
+                                        required: formatMessage({
+                                            id: 'validering.melding.pakrevd',
                                         }),
-                                    },
-                                })}
-                                label={formatMessage({
-                                    id: 'felter.melding.tittel',
-                                })}
-                                value={watch().klagetekst}
-                                error={errors?.klagetekst?.message}
-                                maxLength={vars.maksLengdeMelding}
-                                autoComplete="off"
-                            />
+                                        maxLength: {
+                                            value: vars.maksLengdeMelding,
+                                            message: formatMessage({
+                                                id: 'validering.melding.tegn',
+                                            }),
+                                        },
+                                    })}
+                                    label={formatMessage({
+                                        id: 'felter.melding.tittel',
+                                    })}
+                                    value={watch().klagetekst}
+                                    error={errors?.klagetekst?.message}
+                                    maxLength={vars.maksLengdeMelding}
+                                    autoComplete="off"
+                                />
+                            </div>
+
                             {(watch().paaVegneAv !== 'ANNEN_PERSON' ||
                                 watch().innmelderHarFullmakt !== false) && (
                                 <ServiceKlageOnskerAaKontaktes

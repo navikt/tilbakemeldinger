@@ -18,7 +18,6 @@ import {
     RadioGroup,
     Textarea,
 } from '@navikt/ds-react';
-import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import {
     Controller,
     FieldValues,
@@ -92,7 +91,7 @@ const FOM = () => {
                     id: 'tilbakemeldinger.feilogmangler.form.tittel',
                 })}
             />
-            <GuidePanel poster>
+            <GuidePanel poster className={appStyle.veileder}>
                 <FormattedMessage
                     id={'tilbakemeldinger.feilogmangler.form.veileder'}
                 />
@@ -109,7 +108,6 @@ const FOM = () => {
                             className={appStyle.skjema}
                             onSubmit={handleSubmit(send)}
                         >
-                            <PersonvernInfo />
                             <Controller
                                 render={({ field, fieldState: { error } }) => (
                                     <RadioGroup
@@ -146,27 +144,37 @@ const FOM = () => {
                                 }}
                             />
 
-                            <Textarea
-                                {...register('melding', {
-                                    required: formatMessage({
-                                        id: 'validering.melding.pakrevd',
-                                    }),
-                                    maxLength: {
-                                        value: vars.maksLengdeMelding,
-                                        message: formatMessage({
-                                            id: 'validering.melding.tegn',
+                            <div className={appStyle.skjemaInline}>
+                                <Textarea
+                                    aria-required
+                                    description={
+                                        <FormattedMessage
+                                            id={'felter.melding.beskrivelse'}
+                                        />
+                                    }
+                                    {...register('melding', {
+                                        required: formatMessage({
+                                            id: 'validering.melding.pakrevd',
                                         }),
-                                    },
-                                })}
-                                label={formatMessage({
-                                    id: 'felter.melding.tittel',
-                                })}
-                                value={watch().melding}
-                                error={errors?.melding?.message}
-                                maxLength={vars.maksLengdeMelding}
-                                autoComplete="off"
-                            />
+                                        maxLength: {
+                                            value: vars.maksLengdeMelding,
+                                            message: formatMessage({
+                                                id: 'validering.melding.tegn',
+                                            }),
+                                        },
+                                    })}
+                                    label={formatMessage({
+                                        id: 'felter.melding.tittel',
+                                    })}
+                                    value={watch().melding}
+                                    error={errors?.melding?.message}
+                                    maxLength={vars.maksLengdeMelding}
+                                    autoComplete="off"
+                                />
+                            </div>
+
                             <FeilgOgManglerOnskerAaKontaktes />
+
                             {error && (
                                 <Alert variant={'error'}>
                                     <FormattedMessage
