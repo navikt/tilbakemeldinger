@@ -88,15 +88,43 @@ runs:
           env:
               NODE_AUTH_TOKEN: ${{ env.READER_TOKEN }}
 
-        - name: Build and push docker image
+        - name: Build and push docker image (attempt 1)
           if: ${{ inputs.skipDeploy != 'true' }}
           uses: nais/docker-build-push@v0
-          id: docker-push
+          id: docker-push-attempt-1
+          continue-on-error: true
           with:
               team: navno
               project_id: ${{ env.NAIS_MANAGEMENT_PROJECT_ID }}
               identity_provider: ${{ env.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
               image_suffix: ${{ inputs.imageSuffix }}
+
+        - name: Build and push docker image (attempt 2)
+          if: ${{ inputs.skipDeploy != 'true' && steps.docker-push-attempt-1.outcome == 'failure' }}
+          uses: nais/docker-build-push@v0
+          id: docker-push-attempt-2
+          with:
+              team: navno
+              project_id: ${{ env.NAIS_MANAGEMENT_PROJECT_ID }}
+              identity_provider: ${{ env.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+              image_suffix: ${{ inputs.imageSuffix }}
+
+        - name: Resolve docker image output
+          if: ${{ inputs.skipDeploy != 'true' }}
+          id: docker-push
+          shell: bash
+          run: |
+              IMAGE='${{ steps.docker-push-attempt-1.outputs.image }}'
+              if [ -z "$IMAGE" ]; then
+                  IMAGE='${{ steps.docker-push-attempt-2.outputs.image }}'
+              fi
+
+              if [ -z "$IMAGE" ]; then
+                  echo "Both docker push attempts failed"
+                  exit 1
+              fi
+
+              echo "image=$IMAGE" >> "$GITHUB_OUTPUT"
 
         - name: Deploy to nais
           if: ${{ inputs.skipDeploy != 'true' }}
