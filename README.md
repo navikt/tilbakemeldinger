@@ -10,18 +10,18 @@ Applikasjonen er en full-stack Node.js-løsning med server-side rendering (SSR) 
 
 ### Teknisk stack
 
--   **Frontend**: Preact
--   **Backend**: Express.js
--   **Språk**: TypeScript
--   **Byggverktøy**: Vite
+- **Frontend**: Preact
+- **Backend**: Express.js
+- **Språk**: TypeScript
+- **Byggverktøy**: Vite
 
 ### Struktur
 
 Applikasjonen bruker en monorepo-struktur med pnpm workspaces:
 
--   `src/` - Frontend-kode (Preact-komponenter, utilities, entry points)
--   `server/` - Backend-kode (Express-server, API-ruter, SSR-logikk)
--   `common/` - Delt kode mellom frontend og backend (lokalisering)
+- `src/` - Frontend-kode (Preact-komponenter, utilities, entry points)
+- `server/` - Backend-kode (Express-server, API-ruter, SSR-logikk)
+- `common/` - Delt kode mellom frontend og backend (lokalisering)
 
 ### Endepunkter
 
@@ -72,3 +72,4 @@ Spørsmål knyttet til koden eller prosjektet kan rettes mot https://github.com/
 ## For Nav-ansatte
 
 Interne henvendelser kan sendes via Slack i kanalen #team-navno.
+Sjekk at jeg kan pushe på Windows
