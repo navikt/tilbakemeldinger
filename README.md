@@ -72,4 +72,3 @@ Spørsmål knyttet til koden eller prosjektet kan rettes mot https://github.com/
 ## For Nav-ansatte
 
 Interne henvendelser kan sendes via Slack i kanalen #team-navno.
-Sjekk at jeg kan pushe på Windows
