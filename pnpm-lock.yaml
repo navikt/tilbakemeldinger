@@ -102,6 +102,9 @@ importers:
       '@typescript-eslint/parser':
         specifier: 8.60.0
         version: 8.60.0(eslint@9.38.0)(typescript@6.0.3)
+      cross-env:
+        specifier: 10.1.0
+        version: 10.1.0
       eslint:
         specifier: 9.38.0
         version: 9.38.0
@@ -193,6 +196,9 @@ importers:
       concurrently:
         specifier: 9.2.1
         version: 9.2.1
+      cross-env:
+        specifier: 10.1.0
+        version: 10.1.0
       nodemon:
         specifier: 3.1.14
         version: 3.1.14
@@ -433,6 +439,9 @@ packages:
 
   '@emnapi/wasi-threads@1.2.1':
     resolution: {integrity: sha512-uTII7OYF+/Mes/MrcIOYp5yOtSMLBWSIoLPpcgwipoiKbli6k322tcoFsxoIIxPDqW01SQGAgko4EzZi2BNv2w==}
+
+  '@epic-web/invariant@1.0.0':
+    resolution: {integrity: sha512-lrTPqgvfFQtR/eY/qkIzp98OGdNJu0m5ji3q/nJI8v3SXkRKEnWiOxMmbvcSoAIzv/cGiuvRy57k4suKQSAdwA==}
 
   '@eslint-community/eslint-utils@4.9.1':
     resolution: {integrity: sha512-phrYmNiYppR7znFEdqgfWHXR6NCkZEK7hwWDHZUjit/2/U0r6XvkDl0SYnoM51Hq7FhCGdLDT6zxCCOY1hexsQ==}
@@ -709,6 +718,9 @@ packages:
     peerDependencies:
       html-react-parser: '>=5.x'
       react: '>=17.x'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   '@oxc-project/types@0.132.0':
     resolution: {integrity: sha512-FESMOxil5Se014ui/Eq8fT5uHJo6nIRwH0PfJrZJXs6Gek3ZVFOrpUv3YIZT20m+extU98Hg1Ym72U58rlsxUQ==}
@@ -1593,6 +1605,11 @@ packages:
 
   create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
+
+  cross-env@10.1.0:
+    resolution: {integrity: sha512-GsYosgnACZTADcmEyJctkJIoqAhHjttw7RsFrVoJNXbsWWqaq6Ym+7kZjq6mS45O0jij6vtiReppKQEtqWy6Dw==}
+    engines: {node: '>=20'}
+    hasBin: true
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -4225,6 +4242,8 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
+  '@epic-web/invariant@1.0.0': {}
+
   '@eslint-community/eslint-utils@4.9.1(eslint@9.38.0)':
     dependencies:
       eslint: 9.38.0
@@ -4624,6 +4643,7 @@ snapshots:
       csp-header: 6.3.1
       html-react-parser: 5.2.15(@preact/compat@18.3.2(preact@10.29.2))(@types/react@19.2.15)
       js-cookie: 3.0.7
+    optionalDependencies:
       react: '@preact/compat@18.3.2(preact@10.29.2)'
 
   '@oxc-project/types@0.132.0': {}
@@ -5501,6 +5521,11 @@ snapshots:
   cookie@1.1.1: {}
 
   create-require@1.1.1: {}
+
+  cross-env@10.1.0:
+    dependencies:
+      '@epic-web/invariant': 1.0.0
+      cross-spawn: 7.0.6
 
   cross-spawn@7.0.6:
     dependencies:
