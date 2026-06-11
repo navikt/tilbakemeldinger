@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "build": "tsc",
-        "dev": "pnpm run build && concurrently \"tsc -w\" \"DOTENV_CONFIG_PATH=../.env nodemon -w ./dist/server ./dist/server/server/src/server.js\""
+        "dev": "pnpm run build && concurrently \"tsc -w\" \"cross-env DOTENV_CONFIG_PATH=../.env nodemon -w ./dist/server ./dist/server/server/src/server.js\""
     },
     "dependencies": {
         "compression": "1.8.1",
@@ -23,6 +23,7 @@
         "@types/express": "5.0.6",
         "@types/node": "25.9.1",
         "concurrently": "9.2.1",
+        "cross-env": "10.1.0",
         "nodemon": "3.1.14"
     },
     "nodemonConfig": {
