@@ -74,6 +74,10 @@ export const setupSiteRoutes = async (router: Router) => {
     router.get('/{*splat}', async (req, res) => {
         const { originalUrl } = req;
 
+        console.log(
+            `NAIS_APP_NAME and NAIS_NAMESPACE: ${process.env.NAIS_APP_NAME}, ${process.env.NAIS_NAMESPACE}`
+        );
+
         // Redirect to editorial front page (Enonic XP) if conditions are met
         if (
             isPathToFrontPage(originalUrl) &&
