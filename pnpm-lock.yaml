@@ -21,8 +21,8 @@ importers:
         specifier: 1.3.3
         version: 1.3.3
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 4.2.3-beta.3
-        version: 4.2.3-beta.3(@preact/compat@18.3.2(preact@10.29.2))(html-react-parser@5.2.15(@preact/compat@18.3.2(preact@10.29.2))(@types/react@19.2.15))
+        specifier: 4.2.3-beta.5
+        version: 4.2.3-beta.5(@preact/compat@18.3.2(preact@10.29.2))(html-react-parser@5.2.15(@preact/compat@18.3.2(preact@10.29.2))(@types/react@19.2.15))
       '@preact/compat':
         specifier: 18.3.2
         version: 18.3.2(preact@10.29.2)
@@ -707,8 +707,8 @@ packages:
   '@navikt/fnrvalidator@1.3.3':
     resolution: {integrity: sha512-GsLa9ioYPGsDMBHcgKUNoYbZor09KyFIqSaWy8jy1I7f06q6DgUhdpZuRTHLVRCPjWqF2aLzKtvAfrw5dSeakg==, tarball: https://npm.pkg.github.com/download/@navikt/fnrvalidator/1.3.3/8414963a30e59e3056c9befea7bb022498a2a742}
 
-  '@navikt/nav-dekoratoren-moduler@4.2.3-beta.3':
-    resolution: {integrity: sha512-cVJOrVKuKPD+eJQvIYT3nzda70BSwQ84JkBKMapdIVGA3iRtCSU9QFWQgkwhsndNdyG/3jbLZLLIZtPY6HjHRg==, tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.2.3-beta.3/a4c944e0e657e90e43c47df8b242fbb2fbcda6c2}
+  '@navikt/nav-dekoratoren-moduler@4.2.3-beta.5':
+    resolution: {integrity: sha512-GazoJp6gqxyuiMP6ROgbQXXiU2CRFuXQYLWwduTdEuLnhYdTe17cfCXFeD0lCMw2bjG+Apn82ygA+eqN0liEXQ==, tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.2.3-beta.5/d9e53d7394de2019cf325abcd64b0bb9c21ffc31}
     engines: {node: 24.x}
     peerDependencies:
       html-react-parser: '>=5.x'
@@ -4625,7 +4625,7 @@ snapshots:
 
   '@navikt/fnrvalidator@1.3.3': {}
 
-  '@navikt/nav-dekoratoren-moduler@4.2.3-beta.3(@preact/compat@18.3.2(preact@10.29.2))(html-react-parser@5.2.15(@preact/compat@18.3.2(preact@10.29.2))(@types/react@19.2.15))':
+  '@navikt/nav-dekoratoren-moduler@4.2.3-beta.5(@preact/compat@18.3.2(preact@10.29.2))(html-react-parser@5.2.15(@preact/compat@18.3.2(preact@10.29.2))(@types/react@19.2.15))':
     dependencies:
       '@navikt/analytics-types': 0.0.9
       csp-header: 6.3.1
