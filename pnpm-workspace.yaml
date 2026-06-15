@@ -1,5 +1,7 @@
 packages:
   - 'server'
+overrides:
+  shell-quote: '>=1.8.4'
 allowBuilds:
   '@parcel/watcher': true
   esbuild: true
