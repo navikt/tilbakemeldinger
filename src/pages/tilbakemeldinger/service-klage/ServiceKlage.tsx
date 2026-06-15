@@ -3,9 +3,8 @@ import { useStore } from 'providers/Provider';
 import { postServiceKlage } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import {
-    SERVICE_KLAGE_TYPE,
     ON_BEHALF_OF,
-    ServiceKlage,
+    ServiceKlageBase,
     ServiceKlageFragment,
 } from 'common/types/ServiceKlage';
 import Header from 'components/header/Header';
@@ -15,19 +14,15 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import ServiceKlagePrivatperson from './ServiceKlagePrivatperson';
 import ServiceKlageForAnnenPerson from './ServiceKlageAnnenPerson';
 import ServiceKlageForBedrift from './ServiceKlageBedrift';
-import ServiceKlageGjelderSosialhjelp from './ServiceKlageGjelderSosialhjelp';
 import Takk from 'components/takk/Takk';
 import { triggerHotjar } from 'utils/hotjar';
 import ServiceKlageOnskerAaKontaktes from './ServiceKlageOnskerAaKontaktes';
-import ServiceKlageTypeUtdypning from './ServiceKlageTypeUtdypning';
 import { MetaTags } from 'components/metatags/MetaTags';
 import LoginModal from './login-modal/LoginModal';
 import {
     Alert,
     Box,
     Button,
-    Checkbox,
-    CheckboxGroup,
     GuidePanel,
     Radio,
     RadioGroup,
@@ -45,9 +40,6 @@ import appStyle from 'src/App.module.scss';
 export interface ServiceklageFormFields {
     klagetekst: string;
     oenskerAaKontaktes?: boolean;
-    gjelderSosialhjelp?: 'JA' | 'NEI' | 'VET_IKKE';
-    klagetypeUtdypning?: string;
-    klagetyper: SERVICE_KLAGE_TYPE[];
     paaVegneAv: 'PRIVATPERSON' | 'ANNEN_PERSON' | 'BEDRIFT';
     innmelderNavn: string;
     innmelderTlfnr: string;
@@ -75,8 +67,6 @@ const ServiceKlageComponent = () => {
         unregister,
         handleSubmit,
         watch,
-        setValue,
-        trigger,
         control,
         formState: { errors, isValid, isSubmitted },
     } = methods;
@@ -96,16 +86,9 @@ const ServiceKlageComponent = () => {
     const closeModal = () => setLoginClosed(true);
 
     const send = (values: FieldValues) => {
-        const outboundBase: ServiceKlage = {
+        const outboundBase: ServiceKlageBase = {
             klagetekst: values.klagetekst,
-            klagetyper: values.klagetyper,
-            ...(values.klagetyper.includes('ANNET') && {
-                klagetypeUtdypning: values.klagetypeUtdypning,
-            }),
             oenskerAaKontaktes: values.oenskerAaKontaktes,
-            ...(values.klagetyper.includes('LOKALT_NAV_KONTOR') && {
-                gjelderSosialhjelp: values.gjelderSosialhjelp,
-            }),
         };
 
         const outboundExtend: {
@@ -213,72 +196,6 @@ const ServiceKlageComponent = () => {
                             className={appStyle.skjema}
                             onSubmit={handleSubmit(send)}
                         >
-                            <Controller
-                                render={({ field, fieldState: { error } }) => (
-                                    <CheckboxGroup
-                                        {...field}
-                                        legend={formatMessage({
-                                            id: 'felter.klagetyper',
-                                        })}
-                                        error={error?.message}
-                                        onChange={async (
-                                            values: SERVICE_KLAGE_TYPE[]
-                                        ) => {
-                                            setValue('klagetyper', values);
-                                            isSubmitted && (await trigger());
-                                        }}
-                                        value={field.value ?? []}
-                                        description={
-                                            <FormattedMessage
-                                                id={'felter.klagetyper.info'}
-                                            />
-                                        }
-                                    >
-                                        <Checkbox value={'TELEFON'}>
-                                            {formatMessage({
-                                                id: 'felter.klagetyper.telefon',
-                                            })}
-                                        </Checkbox>
-                                        <Checkbox value={'LOKALT_NAV_KONTOR'}>
-                                            {formatMessage({
-                                                id: 'felter.klagetyper.navkontor',
-                                            })}
-                                        </Checkbox>
-                                        <Checkbox
-                                            value={'NAV_DIGITALE_TJENESTER'}
-                                        >
-                                            {formatMessage({
-                                                id: 'felter.klagetyper.digitaletjenester',
-                                            })}
-                                        </Checkbox>
-                                        <Checkbox value={'BREV'}>
-                                            {formatMessage({
-                                                id: 'felter.klagetyper.brev',
-                                            })}
-                                        </Checkbox>
-                                        <Checkbox value={'ANNET'}>
-                                            {formatMessage({
-                                                id: 'felter.klagetyper.annet',
-                                            })}
-                                        </Checkbox>
-                                        {watch().klagetyper?.includes(
-                                            'ANNET'
-                                        ) && <ServiceKlageTypeUtdypning />}
-                                    </CheckboxGroup>
-                                )}
-                                control={control}
-                                name={'klagetyper'}
-                                rules={{
-                                    required: formatMessage({
-                                        id: 'validering.klagetyper.pakrevd',
-                                    }),
-                                }}
-                            />
-
-                            {watch().klagetyper?.includes(
-                                'LOKALT_NAV_KONTOR'
-                            ) && <ServiceKlageGjelderSosialhjelp />}
-
                             <Controller
                                 render={({ field, fieldState: { error } }) => (
                                     <RadioGroup

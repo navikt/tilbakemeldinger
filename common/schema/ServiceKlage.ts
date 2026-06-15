@@ -8,25 +8,10 @@ export const onBehalfOfSchema = zod.enum([
     'BEDRIFT',
 ]);
 
-export const serviceKlageTypeSchema = zod.enum([
-    'LOKALT_NAV_KONTOR',
-    'TELEFON',
-    'NAV_DIGITALE_TJENESTER',
-    'BREV',
-    'ANNET',
-]);
-
-export const sosialhjelpChoiceSchema = zod.enum(['JA', 'NEI', 'VET_IKKE']);
-
 // Base schema for all service complaints
 export const serviceKlageBaseSchema = zod.object({
     klagetekst: zodString,
     oenskerAaKontaktes: zod.boolean().optional(),
-    gjelderSosialhjelp: sosialhjelpChoiceSchema.optional(),
-    klagetypeUtdypning: zod.string().optional(),
-    klagetyper: zod
-        .array(serviceKlageTypeSchema)
-        .min(1, 'At least one complaint type must be selected'),
 });
 
 // Specific schemas for different complaint types

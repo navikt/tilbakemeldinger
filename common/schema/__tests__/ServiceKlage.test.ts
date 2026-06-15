@@ -12,49 +12,16 @@ describe('ServiceKlage Schema', () => {
         test('should validate when all required fields are present', () => {
             const validData = {
                 klagetekst: 'Dette er en klage på service',
-                klagetyper: ['LOKALT_NAV_KONTOR'],
                 oenskerAaKontaktes: true,
-                gjelderSosialhjelp: 'JA',
             };
 
             const result = serviceKlageBaseSchema.safeParse(validData);
             expect(result.success).toBe(true);
-        });
-
-        test('should validate with multiple klagetyper', () => {
-            const validData = {
-                klagetekst: 'Dette er en klage på service',
-                klagetyper: ['LOKALT_NAV_KONTOR', 'TELEFON', 'BREV'],
-            };
-
-            const result = serviceKlageBaseSchema.safeParse(validData);
-            expect(result.success).toBe(true);
-        });
-
-        test('should fail when required fields are missing', () => {
-            const invalidData = {
-                klagetekst: 'Dette er en klage',
-                // Missing klagetyper
-            };
-
-            const result = serviceKlageBaseSchema.safeParse(invalidData);
-            expect(result.success).toBe(false);
-        });
-
-        test('should fail when klagetyper is empty', () => {
-            const invalidData = {
-                klagetekst: 'Dette er en klage',
-                klagetyper: [],
-            };
-
-            const result = serviceKlageBaseSchema.safeParse(invalidData);
-            expect(result.success).toBe(false);
         });
 
         test('should fail when klagetekst is empty', () => {
             const invalidData = {
                 klagetekst: '',
-                klagetyper: ['TELEFON'],
             };
 
             const result = serviceKlageBaseSchema.safeParse(invalidData);
@@ -220,10 +187,7 @@ describe('ServiceKlage Schema', () => {
         test('should validate complete privatperson service klage', () => {
             const validData = {
                 klagetekst: 'Dette er en klage på service',
-                klagetyper: ['LOKALT_NAV_KONTOR'],
                 oenskerAaKontaktes: true,
-                gjelderSosialhjelp: 'JA',
-                klagetypeUtdypning: 'Utdypende informasjon',
                 paaVegneAv: 'PRIVATPERSON',
                 innmelder: {
                     navn: 'Ola Nordmann',
@@ -239,9 +203,7 @@ describe('ServiceKlage Schema', () => {
         test('should validate complete annen person service klage', () => {
             const validData = {
                 klagetekst: 'Dette er en klage på service',
-                klagetyper: ['TELEFON', 'BREV'],
                 oenskerAaKontaktes: false,
-                gjelderSosialhjelp: 'NEI',
                 paaVegneAv: 'ANNEN_PERSON',
                 innmelder: {
                     navn: 'Kari Nordmann',
@@ -262,8 +224,6 @@ describe('ServiceKlage Schema', () => {
         test('should validate complete bedrift service klage', () => {
             const validData = {
                 klagetekst: 'Dette er en klage på service',
-                klagetyper: ['NAV_DIGITALE_TJENESTER'],
-                gjelderSosialhjelp: 'VET_IKKE',
                 oenskerAaKontaktes: true,
                 paaVegneAv: 'BEDRIFT',
                 enhetsnummerPaaklaget: '123',
@@ -286,8 +246,6 @@ describe('ServiceKlage Schema', () => {
         test('should fail bedrift service klage when oenskerAaKontaktes is false', () => {
             const invalidData = {
                 klagetekst: 'Dette er en klage på service',
-                klagetyper: ['NAV_DIGITALE_TJENESTER'],
-                gjelderSosialhjelp: 'VET_IKKE',
                 oenskerAaKontaktes: false,
                 paaVegneAv: 'BEDRIFT',
                 enhetsnummerPaaklaget: '123',
@@ -310,8 +268,6 @@ describe('ServiceKlage Schema', () => {
         test('should fail bedrift service klage when oenskerAaKontaktes is missing', () => {
             const invalidData = {
                 klagetekst: 'Dette er en klage på service',
-                klagetyper: ['NAV_DIGITALE_TJENESTER'],
-                gjelderSosialhjelp: 'VET_IKKE',
                 paaVegneAv: 'BEDRIFT',
                 enhetsnummerPaaklaget: '123',
                 innmelder: {
@@ -333,7 +289,6 @@ describe('ServiceKlage Schema', () => {
         test('should fail when combining invalid parts', () => {
             const invalidData = {
                 klagetekst: 'Dette er en klage på service',
-                klagetyper: ['LOKALT_NAV_KONTOR'],
                 paaVegneAv: 'PRIVATPERSON',
                 innmelder: {
                     navn: 'Ola Nordmann',

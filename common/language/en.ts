@@ -75,16 +75,12 @@ const en: ITranslation = {
         'Must be a valid email address, e.g. yourname@example.com',
     'validering.tlf.pakrevd': 'Phone number is required',
     'validering.tlf.ugyldig': 'Invalid phone number',
-    'validering.klagetype.utdypning.pakrevd':
-        'You must provide more information about what the appeal concerns',
     'validering.feiltype.pakrevd':
         'You must select the type of error or omission you discovered',
     'validering.melding.pakrevd': 'Message is required',
     'validering.melding.tegn': 'You have entered too many characters',
     'validering.hvemroses.pakrevd': 'You must select who to praise',
     'validering.navkontor.pakrevd': 'You must select a Nav department',
-    'validering.klagetyper.pakrevd': 'You must select a category',
-    'validering.klagetyper.velg': 'You must select at least one category',
     'validering.hvemfra.pakrevd':
         'You must select who the feedback is on behalf of',
     'validering.onskerkontakt.pakrevd':
@@ -104,8 +100,6 @@ const en: ITranslation = {
     'validering.orgnr.siffer': 'Organisation number can only consist of digits',
     'validering.orgnr.korrektsiffer': 'Organisation number must be 9 digits',
     'validering.postadr.pakrevd': 'Postal address is required',
-    'validering.gjeldersosialhjelp.pakrevd':
-        'You must select whether the feedback applies to financial social assistance/social services',
     'feilmelding.generell':
         'Oops! A technical error occurred while submitting the form - please try again later.',
     'feilmelding.orgnr': 'Organisation number was not found.',
@@ -133,15 +127,6 @@ const en: ITranslation = {
     'felter.klagerpa.navkontor.velg':
         'Which Nav department does the complaint relate to?',
     'felter.hvemroses.navkontor.skrivinn': 'Search or select using arrow keys',
-    'felter.klagetyper': 'What is the feedback about?',
-    'felter.klagetyper.info':
-        'Select the most appropriate option. You can select multiple categories.',
-    'felter.klagetyper.telefon': 'Telephone',
-    'felter.klagetyper.navkontor': 'Local Nav office',
-    'felter.klagetyper.digitaletjenester': 'Navs digital services',
-    'felter.klagetyper.brev': 'Letter',
-    'felter.klagetyper.annet': 'Other',
-    'felter.klagetyper.annenKategori': 'Other category',
     'felter.hvemfra': 'Who are you writing on behalf of?',
     'felter.hvemfra.megselv': 'Myself as a private individual',
     'felter.hvemfra.enannen': 'On behalf of another private individual',
@@ -163,11 +148,6 @@ const en: ITranslation = {
     'felter.orgnr': 'Organisation number (for your local department)',
     'felter.postadr': 'Company postal address',
     'felter.tlf.bedrift': 'Company phone number',
-    'felter.gjeldersosialhjelp':
-        'Is this regarding financial social assistance/social services?',
-    'felter.gjeldersosialhjelp.ja': 'Yes',
-    'felter.gjeldersosialhjelp.nei': 'No',
-    'felter.gjeldersosialhjelp.vetikke': 'Don’t know',
 
     'seo.tilbakemeldinger.description':
         'Here you can give feedback to Nav, complain or appeal against decisions or service and report errors and defects on' +
