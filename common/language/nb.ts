@@ -74,16 +74,7 @@ const nb: ITranslation = {
         'Må være en gyldig e-postadresse, f.eks. navnetditt@eksempel.no',
     'validering.tlf.pakrevd': 'Telefonnummer er nødvendig',
     'validering.tlf.ugyldig': 'Ugyldig telefonnummer',
-    'validering.klagetype.utdypning.pakrevd': 'Du må utdype hva klagen gjelder',
     'validering.feiltype.pakrevd':
-        'Du må velge hvilken type feil eller mangel du fant',
-    'validering.melding.pakrevd': 'Melding er nødvendig',
-    'validering.melding.tegn': 'Du har tastet inn for mange tegn',
-    'validering.hvemroses.pakrevd': 'Du må velge hvem du skal gi ros til',
-    'validering.navkontor.pakrevd': 'Du må velge Nav-enhet',
-    'validering.klagetyper.pakrevd': 'Du må velge kategori',
-    'validering.klagetyper.velg': 'Du må velge minst en kategori',
-    'validering.hvemfra.pakrevd':
         'Du må velge hvem tilbakemeldingen er på vegne av',
     'validering.onskerkontakt.pakrevd':
         'Du må velge om du ønsker at vi tar kontakt',
@@ -100,8 +91,6 @@ const nb: ITranslation = {
     'validering.orgnr.siffer': 'Organisasjonsnummer kan kun bestå av siffer',
     'validering.orgnr.korrektsiffer': 'Organisasjonsnummer må ha 9 siffer',
     'validering.postadr.pakrevd': 'Postadresse er nødvendig',
-    'validering.gjeldersosialhjelp.pakrevd':
-        'Du må velge om tilbakemeldingen gjelder økonomisk sosialhjelp / sosiale tjenester',
     'feilmelding.generell':
         'Oi! Det skjedde en teknisk feil ved innsending av skjemaet, prøv igjen senere.',
     'feilmelding.orgnr': 'Kunne ikke finne organisasjonsnummer.',
@@ -127,15 +116,6 @@ const nb: ITranslation = {
     'felter.klagerpa.navkontor.velg': 'Hvilken enhet i Nav gjelder klagen?',
     'felter.hvemroses.navkontor.skrivinn': 'Søk eller velg med piltast',
     'felter.combobox.knapp.beskrivelse': 'Åpne lista',
-    'felter.klagetyper': 'Hva gjelder tilbakemeldingen?',
-    'felter.klagetyper.info':
-        'Velg det alternativet som passer best. Du har mulighet til å velge flere kategorier.',
-    'felter.klagetyper.telefon': 'Telefon',
-    'felter.klagetyper.navkontor': 'Lokalt Nav-kontor',
-    'felter.klagetyper.digitaletjenester': 'Navs digitale tjenester',
-    'felter.klagetyper.brev': 'Brev',
-    'felter.klagetyper.annet': 'Annet',
-    'felter.klagetyper.annenKategori': 'Annen kategori',
     'felter.hvemfra': 'Hvem skriver du på vegne av?',
     'felter.hvemfra.megselv': 'Meg selv som privatperson',
     'felter.hvemfra.enannen': 'På vegne av en annen privatperson',
@@ -157,11 +137,6 @@ const nb: ITranslation = {
     'felter.orgnr': 'Organisasjonsnummer (til din lokale enhet)',
     'felter.postadr': 'Bedriftens postadresse',
     'felter.tlf.bedrift': 'Bedriftens telefonnummer',
-    'felter.gjeldersosialhjelp':
-        'Gjelder det økonomisk sosialhjelp / sosiale tjenester?',
-    'felter.gjeldersosialhjelp.ja': 'Ja',
-    'felter.gjeldersosialhjelp.nei': 'Nei',
-    'felter.gjeldersosialhjelp.vetikke': 'Vet ikke',
 
     'seo.tilbakemeldinger.description':
         'Her kan du gi tilbakemelding til Nav, klage eller anke på vedtak, service og melde fra om feil og mangler på' +

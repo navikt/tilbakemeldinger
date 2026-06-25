@@ -45,7 +45,7 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (
     }
 
     try {
-        const response = await fetch(`${process.env.API_URL}/rest/${path}`, {
+        const response = await fetch(`${process.env.API_URL}/rest/v2/${path}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
