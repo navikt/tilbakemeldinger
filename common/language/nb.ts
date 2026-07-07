@@ -75,6 +75,12 @@ const nb: ITranslation = {
     'validering.tlf.pakrevd': 'Telefonnummer er nødvendig',
     'validering.tlf.ugyldig': 'Ugyldig telefonnummer',
     'validering.feiltype.pakrevd':
+        'Du må velge hva slags type feil eller mangel du fant',
+    'validering.melding.pakrevd': 'Melding er nødvendig',
+    'validering.melding.tegn': 'Du har tastet inn for mange tegn',
+    'validering.hvemroses.pakrevd': 'Du må velge hvem du vil gi ros til',
+    'validering.navkontor.pakrevd': 'Du må velge Nav-enhet',
+    'validering.hvemfra.pakrevd':
         'Du må velge hvem tilbakemeldingen er på vegne av',
     'validering.onskerkontakt.pakrevd':
         'Du må velge om du ønsker at vi tar kontakt',
