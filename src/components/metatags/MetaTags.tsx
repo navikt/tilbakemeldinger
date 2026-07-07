@@ -3,7 +3,7 @@ import { localePath } from 'utils/locale';
 import { useIntl } from 'react-intl';
 import { useStore } from 'providers/Provider';
 import Environment from 'src/Environments';
-import { logPageview } from 'utils/amplitude';
+import { logPageview } from 'src/utils/analytics';
 import { Helmet } from 'react-helmet-async';
 import { paths } from 'common/paths';
 import type { ReactNode } from 'react';

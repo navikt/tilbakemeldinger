@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { logLinkClick } from 'utils/amplitude';
+import { logLinkClick } from 'src/utils/analytics';
 import { LinkPanel, LinkPanelProps } from '@navikt/ds-react';
 
 export interface Props {
