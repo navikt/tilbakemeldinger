@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { captureException } from '@nais/apm';
 import { postFeilOgMangler } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import Header from 'components/header/Header';
@@ -73,6 +74,14 @@ const FOM = () => {
             })
             .catch((error: ErrorResponse) => {
                 setError(error);
+                captureException(error, {
+                    fingerprint: 'feil-og-mangler.post-feil-og-mangler',
+                    context: {
+                        component: 'FeilOgMangler',
+                        action: 'postFeilOgMangler',
+                        errorCode: error?.errorCode,
+                    },
+                });
             })
             .then(() => {
                 setLoading(false);

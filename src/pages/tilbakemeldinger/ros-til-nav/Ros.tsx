@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { captureException } from '@nais/apm';
 import { postRosTilNav } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import Header from 'components/header/Header';
@@ -70,6 +71,14 @@ const Ros = () => {
             })
             .catch((error: ErrorResponse) => {
                 setError(error);
+                captureException(error, {
+                    fingerprint: 'ros.post-ros-til-nav',
+                    context: {
+                        component: 'Ros',
+                        action: 'postRosTilNav',
+                        errorCode: error?.errorCode,
+                    },
+                });
             })
             .then(() => {
                 setLoading(false);

@@ -1,6 +1,7 @@
 import React, { ForwardedRef, useEffect } from 'react';
 import { useStore } from 'providers/Provider';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { captureException } from '@nais/apm';
 import { fetchEnheter } from 'clients/apiClient';
 import { Enhet } from 'types/enheter';
 import { HTTPError } from 'src/types/errors';
@@ -59,6 +60,13 @@ const SelectEnhet = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
             })
             .catch((error: HTTPError) => {
                 dispatch({ type: 'SETT_ENHETER_ERROR', payload: error });
+                captureException(error, {
+                    fingerprint: 'select-enhet.fetch-enheter',
+                    context: {
+                        component: 'SelectEnhet',
+                        action: 'fetchEnheter',
+                    },
+                });
             });
     }, []);
 

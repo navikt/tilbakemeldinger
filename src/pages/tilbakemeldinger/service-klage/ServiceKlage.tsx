@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useStore } from 'providers/Provider';
+import { captureException } from '@nais/apm';
 import { postServiceKlage } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import {
@@ -153,6 +154,14 @@ const ServiceKlageComponent = () => {
             })
             .catch((error: ErrorResponse) => {
                 setError(error);
+                captureException(error, {
+                    fingerprint: 'service-klage.post-service-klage',
+                    context: {
+                        component: 'ServiceKlage',
+                        action: 'postServiceKlage',
+                        errorCode: error?.errorCode,
+                    },
+                });
             })
             .then(() => {
                 setLoading(false);

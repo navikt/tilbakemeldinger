@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { captureException, init as apmInit } from '@nais/apm';
 import Tilbakemeldinger from 'pages/tilbakemeldinger/Tilbakemeldinger';
 import Ros from 'pages/tilbakemeldinger/ros-til-nav/Ros';
 import PageNotFound from 'pages/404/404';
@@ -30,6 +31,10 @@ export const App = ({ url }: Props) => {
     const [{ auth }, dispatch] = useStore();
 
     useEffect(() => {
+        apmInit();
+    }, []);
+
+    useEffect(() => {
         if (auth.authenticated) {
             return;
         }
@@ -50,6 +55,13 @@ export const App = ({ url }: Props) => {
                     )
                     .catch((error: HTTPError) => {
                         console.error(error);
+                        captureException(error, {
+                            fingerprint: 'app.fetch-fodselsnr',
+                            context: {
+                                source: 'App',
+                                action: 'fetchFodselsnr',
+                            },
+                        });
                     });
 
                 fetchKontaktInfo()
@@ -59,9 +71,24 @@ export const App = ({ url }: Props) => {
                             payload: kontaktInfo,
                         })
                     )
-                    .catch((error: HTTPError) => console.error(error));
+                    .catch((error: HTTPError) => {
+                        console.error(error);
+                        captureException(error, {
+                            fingerprint: 'app.fetch-kontakt-info',
+                            context: {
+                                source: 'App',
+                                action: 'fetchKontaktInfo',
+                            },
+                        });
+                    });
             })
-            .catch((error: HTTPError) => console.error(error));
+            .catch((error: HTTPError) => {
+                console.error(error);
+                captureException(error, {
+                    fingerprint: 'app.fetch-auth-info',
+                    context: { source: 'App', action: 'fetchAuthInfo' },
+                });
+            });
     }, [auth.authenticated, dispatch]);
 
     let key = 0;

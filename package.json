@@ -27,6 +27,7 @@
         "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.config.js --coverage"
     },
     "dependencies": {
+        "@nais/apm": "0.4.0",
         "@navikt/aksel-icons": "8.11.0",
         "@navikt/ds-css": "8.11.0",
         "@navikt/ds-react": "8.11.0",
