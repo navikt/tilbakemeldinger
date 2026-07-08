@@ -31,7 +31,7 @@ export const App = ({ url }: Props) => {
     const [{ auth }, dispatch] = useStore();
 
     useEffect(() => {
-        apmInit();
+        apmInit({ namespace: 'navno', app: 'tilbakemeldinger' });
     }, []);
 
     useEffect(() => {
