@@ -31,7 +31,11 @@ export const App = ({ url }: Props) => {
     const [{ auth }, dispatch] = useStore();
 
     useEffect(() => {
-        apmInit({ namespace: 'navno', app: 'tilbakemeldinger' });
+        apmInit({
+            namespace: 'navno',
+            app: 'tilbakemeldinger',
+            telemetryUrl: import.meta.env.VITE_TELEMETRY_URL,
+        });
     }, []);
 
     useEffect(() => {

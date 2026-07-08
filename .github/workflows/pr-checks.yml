@@ -18,6 +18,7 @@ jobs:
           env: dev
           appOrigin: 'https://www.ansatt.dev.nav.no'
           editorialFrontpageOrigin: 'https://www.ansatt.dev.nav.no/tilbakemelding'
+          telemetryUrl: 'https://telemetry.ekstern.dev.nav.no/collect'
           skipDeploy: true
         env:
           READER_TOKEN: ${{ secrets.READER_TOKEN }}

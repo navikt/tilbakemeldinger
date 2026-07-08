@@ -14,6 +14,9 @@ inputs:
     editorialFrontpageOrigin:
         required: true
         description: VITE_EDITORIAL_FRONTPAGE_ORIGIN
+    telemetryUrl:
+        required: true
+        description: VITE_TELEMETRY_URL
     skipDeploy:
         required: false
         default: 'false'
@@ -43,12 +46,14 @@ runs:
               ENVIRONMENT: ${{ inputs.env }}
               APP_ORIGIN: ${{ inputs.appOrigin }}
               EDITORIAL_FRONTPAGE_ORIGIN: ${{ inputs.editorialFrontpageOrigin }}
+              TELEMETRY_URL: ${{ inputs.telemetryUrl }}
           run: |
               cat > .env <<EOF
               ENV=$ENVIRONMENT
               VITE_APP_BASEPATH=/person/kontakt-oss
               VITE_APP_ORIGIN=$APP_ORIGIN
               VITE_EDITORIAL_FRONTPAGE_ORIGIN=$EDITORIAL_FRONTPAGE_ORIGIN
+              VITE_TELEMETRY_URL=$TELEMETRY_URL
               APP_PORT=9001
               API_URL=http://tilbakemeldingsmottak-api.teamserviceklage
               NORG2_ORIGIN=https://norg2.$ENVIRONMENT-fss-pub.nais.io
