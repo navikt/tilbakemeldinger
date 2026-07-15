@@ -177,6 +177,9 @@ importers:
       express-rate-limit:
         specifier: 8.5.2
         version: 8.5.2(express@5.2.1)
+      jose:
+        specifier: 6.2.3
+        version: 6.2.3
       jwt-decode:
         specifier: 4.0.0
         version: 4.0.0
