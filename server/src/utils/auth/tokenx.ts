@@ -12,7 +12,7 @@ function jwk() {
 }
 
 async function config() {
-    if (typeof _config === 'undefined') {
+    if (_config === undefined) {
         if (!process.env.TOKEN_X_WELL_KNOWN_URL)
             throw new TypeError(
                 'Miljøvariabelen "TOKEN_X_WELL_KNOWN_URL må være satt'
