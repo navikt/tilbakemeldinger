@@ -1,5 +1,5 @@
 import { defineConfig } from 'eslint/config';
-import react from 'eslint-plugin-react';
+import reactPlugin from '@eslint-react/eslint-plugin';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import globals from 'globals';
 import tsParser from '@typescript-eslint/parser';
@@ -26,14 +26,15 @@ export default defineConfig([
         ignores: ['**/node_modules/**', '**/dist/**', '**/_ssr-dist/**'],
     },
     {
-        extends: compat.extends(
-            'eslint:recommended',
-            'plugin:react/recommended',
-            'plugin:@typescript-eslint/recommended'
-        ),
+        extends: [
+            ...compat.extends(
+                'eslint:recommended',
+                'plugin:@typescript-eslint/recommended'
+            ),
+            reactPlugin.configs['recommended-typescript'],
+        ],
 
         plugins: {
-            react,
             '@typescript-eslint': typescriptEslint,
         },
 
@@ -44,15 +45,11 @@ export default defineConfig([
             sourceType: 'module',
         },
 
-        settings: {
-            react: {
-                version: 'detect',
-            },
-        },
-
         rules: {
             '@typescript-eslint/no-unused-vars': 'warn',
             '@typescript-eslint/no-unused-expressions': 'off',
+            '@eslint-react/exhaustive-deps': 'off',
+            '@eslint-react/set-state-in-effect': 'off',
         },
     },
 ]);
