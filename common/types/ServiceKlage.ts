@@ -1,18 +1,8 @@
 export type ON_BEHALF_OF = 'PRIVATPERSON' | 'ANNEN_PERSON' | 'BEDRIFT';
 
-export type SERVICE_KLAGE_TYPE =
-    | 'LOKALT_NAV_KONTOR'
-    | 'TELEFON'
-    | 'NAV_DIGITALE_TJENESTER'
-    | 'BREV'
-    | 'ANNET';
-
 export type ServiceKlageBase = {
     klagetekst: string;
     oenskerAaKontaktes?: boolean;
-    gjelderSosialhjelp?: 'JA' | 'NEI' | 'VET_IKKE';
-    klagetypeUtdypning?: string;
-    klagetyper: SERVICE_KLAGE_TYPE[];
 };
 
 export type ServiceKlageFragment =

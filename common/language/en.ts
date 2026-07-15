@@ -33,13 +33,14 @@ const en: ITranslation = {
     'tilbakemeldinger.serviceklage.tittel': 'Service complaint',
     'tilbakemeldinger.serviceklage.login.overskrift': 'Do you want to log in?',
     'tilbakemeldinger.serviceklage.login.beskrivelse':
-        "We recommend logging in so you don't have to enter any personal information.<br></br>" +
+        "We recommend logging in so you don't have to enter any personal information. " +
         'You must state who you are in both cases.',
     'tilbakemeldinger.serviceklage.login.knapp': 'Log in',
     'tilbakemeldinger.serviceklage.login.knapp.fortsettuten':
         'Continue without logging in',
     'tilbakemeldinger.serviceklage.form.veileder':
-        'Here you can complain about the service you have received. You will receive an answer within 3 weeks.',
+        'Here you can complain about the service you have received. You will receive an answer within 3 weeks. ' +
+        'All fields are required.',
     'tilbakemeldinger.serviceklage.sidetittel': 'Service complaint',
     'tilbakemeldinger.serviceklage.form.overskrift':
         'Submit a complaint about service',
@@ -54,8 +55,8 @@ const en: ITranslation = {
         'Errors and wrong or missing information',
     'tilbakemeldinger.feilogmangler.form.tittel': 'Errors and issues on nav.no',
     'tilbakemeldinger.feilogmangler.form.veileder':
-        'You can report technical errors as well as wrong or missing information. You cannot send a general question or ' +
-        'requests regarding your cases with Nav.',
+        'You can report technical errors as well as wrong or missing information. You cannot send a general question or requests regarding your cases with Nav. ' +
+        'All fields are required.',
     'tilbakemeldinger.feilogmangler.form.overskrift':
         'Submit errors and issues on nav.no',
     'tilbakemeldinger.feilogmangler.svartid':
@@ -65,7 +66,8 @@ const en: ITranslation = {
     'tilbakemeldinger.ros.form.tittel': 'Praise for Nav',
     'tilbakemeldinger.ros.form.overskrift': 'Submit praise to Nav',
     'tilbakemeldinger.ros.form.veileder':
-        'Thanks for sharing your experience with us! We will make sure the praise reaches the right person.',
+        'Thanks for sharing your experience with us! We will make sure the praise reaches the right person. ' +
+        'All fields are required.',
 
     'validering.navn.pakrevd': 'Name is required',
     'validering.epost.pakrevd': 'Email is required',
@@ -73,16 +75,12 @@ const en: ITranslation = {
         'Must be a valid email address, e.g. yourname@example.com',
     'validering.tlf.pakrevd': 'Phone number is required',
     'validering.tlf.ugyldig': 'Invalid phone number',
-    'validering.klagetype.utdypning.pakrevd':
-        'You must provide more information about what the appeal concerns',
     'validering.feiltype.pakrevd':
         'You must select the type of error or omission you discovered',
     'validering.melding.pakrevd': 'Message is required',
     'validering.melding.tegn': 'You have entered too many characters',
     'validering.hvemroses.pakrevd': 'You must select who to praise',
     'validering.navkontor.pakrevd': 'You must select a Nav department',
-    'validering.klagetyper.pakrevd': 'You must select a category',
-    'validering.klagetyper.velg': 'You must select at least one category',
     'validering.hvemfra.pakrevd':
         'You must select who the feedback is on behalf of',
     'validering.onskerkontakt.pakrevd':
@@ -102,8 +100,6 @@ const en: ITranslation = {
     'validering.orgnr.siffer': 'Organisation number can only consist of digits',
     'validering.orgnr.korrektsiffer': 'Organisation number must be 9 digits',
     'validering.postadr.pakrevd': 'Postal address is required',
-    'validering.gjeldersosialhjelp.pakrevd':
-        'You must select whether the feedback applies to financial social assistance/social services',
     'feilmelding.generell':
         'Oops! A technical error occurred while submitting the form - please try again later.',
     'feilmelding.orgnr': 'Organisation number was not found.',
@@ -118,7 +114,8 @@ const en: ITranslation = {
     'felter.typefeil.uu':
         'Error when using screen readers or other accessibility devices',
     'felter.melding.tittel': 'Your feedback',
-    'felter.melding.beskrivelse': `Do not send sensitive personal information about yourself or others. Read more about personal information at <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
+    'felter.melding.beskrivelse':
+        'Do not use any sensitive personal information about yourself or others.',
     'felter.send': 'Send feedback',
     'felter.tilbake': 'Back',
     'felter.hvemroses.tittel': 'Who do you want to praise?',
@@ -130,15 +127,6 @@ const en: ITranslation = {
     'felter.klagerpa.navkontor.velg':
         'Which Nav department does the complaint relate to?',
     'felter.hvemroses.navkontor.skrivinn': 'Search or select using arrow keys',
-    'felter.klagetyper': 'What is the feedback about?',
-    'felter.klagetyper.info':
-        'Select the most appropriate option. You can select multiple categories.',
-    'felter.klagetyper.telefon': 'Telephone',
-    'felter.klagetyper.navkontor': 'Local Nav office',
-    'felter.klagetyper.digitaletjenester': 'Navs digital services',
-    'felter.klagetyper.brev': 'Letter',
-    'felter.klagetyper.annet': 'Other',
-    'felter.klagetyper.annenKategori': 'Other category',
     'felter.hvemfra': 'Who are you writing on behalf of?',
     'felter.hvemfra.megselv': 'Myself as a private individual',
     'felter.hvemfra.enannen': 'On behalf of another private individual',
@@ -160,11 +148,6 @@ const en: ITranslation = {
     'felter.orgnr': 'Organisation number (for your local department)',
     'felter.postadr': 'Company postal address',
     'felter.tlf.bedrift': 'Company phone number',
-    'felter.gjeldersosialhjelp':
-        'Is this regarding financial social assistance/social services?',
-    'felter.gjeldersosialhjelp.ja': 'Yes',
-    'felter.gjeldersosialhjelp.nei': 'No',
-    'felter.gjeldersosialhjelp.vetikke': 'Don’t know',
 
     'seo.tilbakemeldinger.description':
         'Here you can give feedback to Nav, complain or appeal against decisions or service and report errors and defects on' +

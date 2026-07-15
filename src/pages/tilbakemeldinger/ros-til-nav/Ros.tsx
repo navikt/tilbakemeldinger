@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { captureException } from '@nais/apm';
 import { postRosTilNav } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import Header from 'components/header/Header';
@@ -18,7 +19,6 @@ import {
     RadioGroup,
     Textarea,
 } from '@navikt/ds-react';
-import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { RosTilNav } from 'common/types/RosTilNav';
 import { resolveErrorCode } from 'utils/errorCodes';
@@ -71,6 +71,14 @@ const Ros = () => {
             })
             .catch((error: ErrorResponse) => {
                 setError(error);
+                captureException(error, {
+                    fingerprint: 'ros.post-ros-til-nav',
+                    context: {
+                        component: 'Ros',
+                        action: 'postRosTilNav',
+                        errorCode: error?.errorCode,
+                    },
+                });
             })
             .then(() => {
                 setLoading(false);
@@ -89,7 +97,7 @@ const Ros = () => {
                     id: 'tilbakemeldinger.ros.form.tittel',
                 })}
             />
-            <GuidePanel poster>
+            <GuidePanel poster className={appStyle.veileder}>
                 <FormattedMessage id={'tilbakemeldinger.ros.form.veileder'} />
             </GuidePanel>
             <Box
@@ -103,7 +111,6 @@ const Ros = () => {
                         className={appStyle.skjema}
                         onSubmit={handleSubmit(send)}
                     >
-                        <PersonvernInfo />
                         <Controller
                             render={({ field, fieldState: { error } }) => (
                                 <RadioGroup
@@ -163,26 +170,34 @@ const Ros = () => {
                             />
                         )}
 
-                        <Textarea
-                            {...register('melding', {
-                                required: formatMessage({
-                                    id: 'validering.melding.pakrevd',
-                                }),
-                                maxLength: {
-                                    value: vars.maksLengdeMelding,
-                                    message: formatMessage({
-                                        id: 'validering.melding.tegn',
+                        <div className={appStyle.skjemaInline}>
+                            <Textarea
+                                aria-required
+                                description={
+                                    <FormattedMessage
+                                        id={'felter.melding.beskrivelse'}
+                                    />
+                                }
+                                {...register('melding', {
+                                    required: formatMessage({
+                                        id: 'validering.melding.pakrevd',
                                     }),
-                                },
-                            })}
-                            label={formatMessage({
-                                id: 'felter.melding.tittel',
-                            })}
-                            value={watch().melding}
-                            error={errors?.melding?.message}
-                            maxLength={vars.maksLengdeMelding}
-                            autoComplete="off"
-                        />
+                                    maxLength: {
+                                        value: vars.maksLengdeMelding,
+                                        message: formatMessage({
+                                            id: 'validering.melding.tegn',
+                                        }),
+                                    },
+                                })}
+                                label={formatMessage({
+                                    id: 'felter.melding.tittel',
+                                })}
+                                value={watch().melding}
+                                error={errors?.melding?.message}
+                                maxLength={vars.maksLengdeMelding}
+                                autoComplete="off"
+                            />
+                        </div>
 
                         {error && (
                             <Alert variant={'error'}>

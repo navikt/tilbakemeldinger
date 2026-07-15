@@ -11,13 +11,14 @@ jobs:
       contents: read
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Build and deploy
         uses: ./.github/actions/build-and-deploy
         with:
           env: dev
           appOrigin: 'https://www.ansatt.dev.nav.no'
           editorialFrontpageOrigin: 'https://www.ansatt.dev.nav.no/tilbakemelding'
+          telemetryUrl: 'https://telemetry.ekstern.dev.nav.no/collect'
           skipDeploy: true
         env:
           READER_TOKEN: ${{ secrets.READER_TOKEN }}

@@ -104,7 +104,7 @@ const Combobox = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
                                     ? 'menuItem__highlighted'
                                     : ''
                             }`}
-                            key={`${item.value}${index}`}
+                            key={`${item.value}${item.label}`}
                             {...getItemProps({ item, index })}
                         >
                             {item.label}

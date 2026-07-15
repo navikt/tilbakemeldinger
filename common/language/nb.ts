@@ -33,13 +33,14 @@ const nb: ITranslation = {
     'tilbakemeldinger.serviceklage.tittel': 'Klage på service',
     'tilbakemeldinger.serviceklage.login.overskrift': 'Ønsker du å logge inn?',
     'tilbakemeldinger.serviceklage.login.beskrivelse':
-        'Vi anbefaler at du logger inn, så slipper du å fylle inn all informasjonen om deg selv.<br></br>' +
+        'Vi anbefaler at du logger inn, så slipper du å fylle inn all informasjonen om deg selv. ' +
         'Du må oppgi hvem du er uansett om du logger inn eller ikke.',
     'tilbakemeldinger.serviceklage.login.knapp': 'Logg inn',
     'tilbakemeldinger.serviceklage.login.knapp.fortsettuten':
         'Fortsett uten å logge inn',
     'tilbakemeldinger.serviceklage.form.veileder':
-        'Her kan du klage på servicen du har fått. Du vil få svar innen 3 uker.',
+        'Her kan du klage på servicen du har fått. Du vil få svar innen 3 uker. ' +
+        'Alle felt må fylles ut.',
     'tilbakemeldinger.serviceklage.sidetittel': 'Klage på service',
     'tilbakemeldinger.serviceklage.form.overskrift':
         'Send inn klage på service',
@@ -53,7 +54,8 @@ const nb: ITranslation = {
     'tilbakemeldinger.feil-og-mangler.sidetittel': 'Feil og mangler på nav.no',
     'tilbakemeldinger.feilogmangler.form.tittel': 'Feil og mangler',
     'tilbakemeldinger.feilogmangler.form.veileder':
-        'Her kan du melde ifra om tekniske feil og mangler. Du kan ikke sende inn generelle spørsmål eller henvendelser om saken din.',
+        'Her kan du melde ifra om tekniske feil og mangler. Du kan ikke sende inn generelle spørsmål eller henvendelser om saken din. ' +
+        'Alle felt må fylles ut.',
     'tilbakemeldinger.feilogmangler.form.overskrift':
         'Send inn feil og mangler på nav.no',
     'tilbakemeldinger.feilogmangler.svartid':
@@ -63,7 +65,8 @@ const nb: ITranslation = {
     'tilbakemeldinger.ros.form.tittel': 'Ros til Nav',
     'tilbakemeldinger.ros.form.overskrift': 'Send inn ros til Nav',
     'tilbakemeldinger.ros.form.veileder':
-        'Takk for at du vil dele opplevelsen med oss! Vi sørger for at rosen kommer fram til riktig person.',
+        'Takk for at du vil dele opplevelsen med oss! Vi sørger for at rosen kommer fram til riktig person. ' +
+        'Alle felt må fylles ut.',
 
     'validering.navn.pakrevd': 'Navn er nødvendig',
     'validering.epost.pakrevd': 'E-post er nødvendig',
@@ -71,15 +74,12 @@ const nb: ITranslation = {
         'Må være en gyldig e-postadresse, f.eks. navnetditt@eksempel.no',
     'validering.tlf.pakrevd': 'Telefonnummer er nødvendig',
     'validering.tlf.ugyldig': 'Ugyldig telefonnummer',
-    'validering.klagetype.utdypning.pakrevd': 'Du må utdype hva klagen gjelder',
     'validering.feiltype.pakrevd':
-        'Du må velge hvilken type feil eller mangel du fant',
+        'Du må velge hva slags type feil eller mangel du fant',
     'validering.melding.pakrevd': 'Melding er nødvendig',
     'validering.melding.tegn': 'Du har tastet inn for mange tegn',
-    'validering.hvemroses.pakrevd': 'Du må velge hvem du skal gi ros til',
+    'validering.hvemroses.pakrevd': 'Du må velge hvem du vil gi ros til',
     'validering.navkontor.pakrevd': 'Du må velge Nav-enhet',
-    'validering.klagetyper.pakrevd': 'Du må velge kategori',
-    'validering.klagetyper.velg': 'Du må velge minst en kategori',
     'validering.hvemfra.pakrevd':
         'Du må velge hvem tilbakemeldingen er på vegne av',
     'validering.onskerkontakt.pakrevd':
@@ -97,8 +97,6 @@ const nb: ITranslation = {
     'validering.orgnr.siffer': 'Organisasjonsnummer kan kun bestå av siffer',
     'validering.orgnr.korrektsiffer': 'Organisasjonsnummer må ha 9 siffer',
     'validering.postadr.pakrevd': 'Postadresse er nødvendig',
-    'validering.gjeldersosialhjelp.pakrevd':
-        'Du må velge om tilbakemeldingen gjelder økonomisk sosialhjelp / sosiale tjenester',
     'feilmelding.generell':
         'Oi! Det skjedde en teknisk feil ved innsending av skjemaet, prøv igjen senere.',
     'feilmelding.orgnr': 'Kunne ikke finne organisasjonsnummer.',
@@ -112,7 +110,8 @@ const nb: ITranslation = {
     'felter.typefeil.uu':
         'Feil på siden ved bruk av skjermleser eller annet hjelpemiddel',
     'felter.melding.tittel': 'Din tilbakemelding',
-    'felter.melding.beskrivelse': `Ikke send sensitive personopplysninger om deg selv eller andre. Les mer om personopplysninger hos <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
+    'felter.melding.beskrivelse':
+        'NB! Ikke skriv sensitive personopplysninger om deg selv eller andre.',
     'felter.send': 'Send tilbakemelding',
     'felter.tilbake': 'Tilbake',
     'felter.hvemroses.tittel': 'Hvem vil du gi ros til?',
@@ -123,15 +122,6 @@ const nb: ITranslation = {
     'felter.klagerpa.navkontor.velg': 'Hvilken enhet i Nav gjelder klagen?',
     'felter.hvemroses.navkontor.skrivinn': 'Søk eller velg med piltast',
     'felter.combobox.knapp.beskrivelse': 'Åpne lista',
-    'felter.klagetyper': 'Hva gjelder tilbakemeldingen?',
-    'felter.klagetyper.info':
-        'Velg det alternativet som passer best. Du har mulighet til å velge flere kategorier.',
-    'felter.klagetyper.telefon': 'Telefon',
-    'felter.klagetyper.navkontor': 'Lokalt Nav-kontor',
-    'felter.klagetyper.digitaletjenester': 'Navs digitale tjenester',
-    'felter.klagetyper.brev': 'Brev',
-    'felter.klagetyper.annet': 'Annet',
-    'felter.klagetyper.annenKategori': 'Annen kategori',
     'felter.hvemfra': 'Hvem skriver du på vegne av?',
     'felter.hvemfra.megselv': 'Meg selv som privatperson',
     'felter.hvemfra.enannen': 'På vegne av en annen privatperson',
@@ -153,11 +143,6 @@ const nb: ITranslation = {
     'felter.orgnr': 'Organisasjonsnummer (til din lokale enhet)',
     'felter.postadr': 'Bedriftens postadresse',
     'felter.tlf.bedrift': 'Bedriftens telefonnummer',
-    'felter.gjeldersosialhjelp':
-        'Gjelder det økonomisk sosialhjelp / sosiale tjenester?',
-    'felter.gjeldersosialhjelp.ja': 'Ja',
-    'felter.gjeldersosialhjelp.nei': 'Nei',
-    'felter.gjeldersosialhjelp.vetikke': 'Vet ikke',
 
     'seo.tilbakemeldinger.description':
         'Her kan du gi tilbakemelding til Nav, klage eller anke på vedtak, service og melde fra om feil og mangler på' +

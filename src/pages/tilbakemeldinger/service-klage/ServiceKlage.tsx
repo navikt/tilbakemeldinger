@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useStore } from 'providers/Provider';
+import { captureException } from '@nais/apm';
 import { postServiceKlage } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
 import {
-    SERVICE_KLAGE_TYPE,
     ON_BEHALF_OF,
-    ServiceKlage,
+    ServiceKlageBase,
     ServiceKlageFragment,
 } from 'common/types/ServiceKlage';
 import Header from 'components/header/Header';
@@ -15,19 +15,15 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import ServiceKlagePrivatperson from './ServiceKlagePrivatperson';
 import ServiceKlageForAnnenPerson from './ServiceKlageAnnenPerson';
 import ServiceKlageForBedrift from './ServiceKlageBedrift';
-import ServiceKlageGjelderSosialhjelp from './ServiceKlageGjelderSosialhjelp';
 import Takk from 'components/takk/Takk';
 import { triggerHotjar } from 'utils/hotjar';
 import ServiceKlageOnskerAaKontaktes from './ServiceKlageOnskerAaKontaktes';
-import ServiceKlageTypeUtdypning from './ServiceKlageTypeUtdypning';
 import { MetaTags } from 'components/metatags/MetaTags';
 import LoginModal from './login-modal/LoginModal';
 import {
     Alert,
     Box,
     Button,
-    Checkbox,
-    CheckboxGroup,
     GuidePanel,
     Radio,
     RadioGroup,
@@ -39,16 +35,12 @@ import {
     FormProvider,
     useForm,
 } from 'react-hook-form';
-import { PersonvernInfo } from 'components/personvernInfo/PersonvernInfo';
 import { resolveErrorCode } from 'utils/errorCodes';
 import appStyle from 'src/App.module.scss';
 
 export interface ServiceklageFormFields {
     klagetekst: string;
     oenskerAaKontaktes?: boolean;
-    gjelderSosialhjelp?: 'JA' | 'NEI' | 'VET_IKKE';
-    klagetypeUtdypning?: string;
-    klagetyper: SERVICE_KLAGE_TYPE[];
     paaVegneAv: 'PRIVATPERSON' | 'ANNEN_PERSON' | 'BEDRIFT';
     innmelderNavn: string;
     innmelderTlfnr: string;
@@ -76,8 +68,6 @@ const ServiceKlageComponent = () => {
         unregister,
         handleSubmit,
         watch,
-        setValue,
-        trigger,
         control,
         formState: { errors, isValid, isSubmitted },
     } = methods;
@@ -97,16 +87,9 @@ const ServiceKlageComponent = () => {
     const closeModal = () => setLoginClosed(true);
 
     const send = (values: FieldValues) => {
-        const outboundBase: ServiceKlage = {
+        const outboundBase: ServiceKlageBase = {
             klagetekst: values.klagetekst,
-            klagetyper: values.klagetyper,
-            ...(values.klagetyper.includes('ANNET') && {
-                klagetypeUtdypning: values.klagetypeUtdypning,
-            }),
             oenskerAaKontaktes: values.oenskerAaKontaktes,
-            ...(values.klagetyper.includes('LOKALT_NAV_KONTOR') && {
-                gjelderSosialhjelp: values.gjelderSosialhjelp,
-            }),
         };
 
         const outboundExtend: {
@@ -171,6 +154,14 @@ const ServiceKlageComponent = () => {
             })
             .catch((error: ErrorResponse) => {
                 setError(error);
+                captureException(error, {
+                    fingerprint: 'service-klage.post-service-klage',
+                    context: {
+                        component: 'ServiceKlage',
+                        action: 'postServiceKlage',
+                        errorCode: error?.errorCode,
+                    },
+                });
             })
             .then(() => {
                 setLoading(false);
@@ -199,7 +190,7 @@ const ServiceKlageComponent = () => {
                     closeFunc={closeModal}
                 />
             )}
-            <GuidePanel poster>
+            <GuidePanel poster className={appStyle.veileder}>
                 <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
             </GuidePanel>
             <Box
@@ -214,73 +205,6 @@ const ServiceKlageComponent = () => {
                             className={appStyle.skjema}
                             onSubmit={handleSubmit(send)}
                         >
-                            <PersonvernInfo />
-                            <Controller
-                                render={({ field, fieldState: { error } }) => (
-                                    <CheckboxGroup
-                                        {...field}
-                                        legend={formatMessage({
-                                            id: 'felter.klagetyper',
-                                        })}
-                                        error={error?.message}
-                                        onChange={async (
-                                            values: SERVICE_KLAGE_TYPE[]
-                                        ) => {
-                                            setValue('klagetyper', values);
-                                            isSubmitted && (await trigger());
-                                        }}
-                                        value={field.value ?? []}
-                                        description={
-                                            <FormattedMessage
-                                                id={'felter.klagetyper.info'}
-                                            />
-                                        }
-                                    >
-                                        <Checkbox value={'TELEFON'}>
-                                            {formatMessage({
-                                                id: 'felter.klagetyper.telefon',
-                                            })}
-                                        </Checkbox>
-                                        <Checkbox value={'LOKALT_NAV_KONTOR'}>
-                                            {formatMessage({
-                                                id: 'felter.klagetyper.navkontor',
-                                            })}
-                                        </Checkbox>
-                                        <Checkbox
-                                            value={'NAV_DIGITALE_TJENESTER'}
-                                        >
-                                            {formatMessage({
-                                                id: 'felter.klagetyper.digitaletjenester',
-                                            })}
-                                        </Checkbox>
-                                        <Checkbox value={'BREV'}>
-                                            {formatMessage({
-                                                id: 'felter.klagetyper.brev',
-                                            })}
-                                        </Checkbox>
-                                        <Checkbox value={'ANNET'}>
-                                            {formatMessage({
-                                                id: 'felter.klagetyper.annet',
-                                            })}
-                                        </Checkbox>
-                                        {watch().klagetyper?.includes(
-                                            'ANNET'
-                                        ) && <ServiceKlageTypeUtdypning />}
-                                    </CheckboxGroup>
-                                )}
-                                control={control}
-                                name={'klagetyper'}
-                                rules={{
-                                    required: formatMessage({
-                                        id: 'validering.klagetyper.pakrevd',
-                                    }),
-                                }}
-                            />
-
-                            {watch().klagetyper?.includes(
-                                'LOKALT_NAV_KONTOR'
-                            ) && <ServiceKlageGjelderSosialhjelp />}
-
                             <Controller
                                 render={({ field, fieldState: { error } }) => (
                                     <RadioGroup
@@ -337,26 +261,35 @@ const ServiceKlageComponent = () => {
                                 <ServiceKlageForBedrift />
                             )}
 
-                            <Textarea
-                                {...register('klagetekst', {
-                                    required: formatMessage({
-                                        id: 'validering.melding.pakrevd',
-                                    }),
-                                    maxLength: {
-                                        value: vars.maksLengdeMelding,
-                                        message: formatMessage({
-                                            id: 'validering.melding.tegn',
+                            <div className={appStyle.skjemaInline}>
+                                <Textarea
+                                    aria-required
+                                    description={
+                                        <FormattedMessage
+                                            id={'felter.melding.beskrivelse'}
+                                        />
+                                    }
+                                    {...register('klagetekst', {
+                                        required: formatMessage({
+                                            id: 'validering.melding.pakrevd',
                                         }),
-                                    },
-                                })}
-                                label={formatMessage({
-                                    id: 'felter.melding.tittel',
-                                })}
-                                value={watch().klagetekst}
-                                error={errors?.klagetekst?.message}
-                                maxLength={vars.maksLengdeMelding}
-                                autoComplete="off"
-                            />
+                                        maxLength: {
+                                            value: vars.maksLengdeMelding,
+                                            message: formatMessage({
+                                                id: 'validering.melding.tegn',
+                                            }),
+                                        },
+                                    })}
+                                    label={formatMessage({
+                                        id: 'felter.melding.tittel',
+                                    })}
+                                    value={watch().klagetekst}
+                                    error={errors?.klagetekst?.message}
+                                    maxLength={vars.maksLengdeMelding}
+                                    autoComplete="off"
+                                />
+                            </div>
+
                             {(watch().paaVegneAv !== 'ANNEN_PERSON' ||
                                 watch().innmelderHarFullmakt !== false) && (
                                 <ServiceKlageOnskerAaKontaktes

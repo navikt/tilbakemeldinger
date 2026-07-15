@@ -33,13 +33,14 @@ const nn: ITranslation = {
     'tilbakemeldinger.serviceklage.tittel': 'Klage på service',
     'tilbakemeldinger.serviceklage.login.overskrift': 'Ønsker du å logge inn?',
     'tilbakemeldinger.serviceklage.login.beskrivelse':
-        'Vi anbefaler at du loggar inn, så treng du ikkje å fylle inn all informasjonen om deg sjølv.<br></br>' +
+        'Vi anbefaler at du loggar inn, så treng du ikkje å fylle inn all informasjonen om deg sjølv. ' +
         'Du må oppgje kven du er anten du loggar inn eller ikkje.',
     'tilbakemeldinger.serviceklage.login.knapp': 'Logg inn',
     'tilbakemeldinger.serviceklage.login.knapp.fortsettuten':
         'Fortsett utan å logge inn',
     'tilbakemeldinger.serviceklage.form.veileder':
-        'Her kan du klage på servicen du har fått. Du vil få svar innan 3 veker.',
+        'Her kan du klage på servicen du har fått. Du vil få svar innan 3 veker. ' +
+        'Alle felt må fyllast ut.',
     'tilbakemeldinger.serviceklage.sidetittel': 'Klage på service',
     'tilbakemeldinger.serviceklage.form.overskrift':
         'Send inn klage på service',
@@ -53,7 +54,8 @@ const nn: ITranslation = {
     'tilbakemeldinger.feil-og-mangler.sidetittel': 'Feil og manglar på nav.no',
     'tilbakemeldinger.feilogmangler.form.tittel': 'Feil og manglar',
     'tilbakemeldinger.feilogmangler.form.veileder':
-        'Her kan du melde frå om tekniske feil og manglar. Du kan ikkje sende inn generelle spørsmål eller førespurnadar om saka di.',
+        'Her kan du melde frå om tekniske feil og manglar. Du kan ikkje sende inn generelle spørsmål eller førespurnadar om saka di. ' +
+        'Alle felt må fyllast ut.',
     'tilbakemeldinger.feilogmangler.form.overskrift':
         'Send inn feil og manglar på nav.no',
     'tilbakemeldinger.feilogmangler.svartid':
@@ -63,7 +65,8 @@ const nn: ITranslation = {
     'tilbakemeldinger.ros.form.tittel': 'Ros til Nav',
     'tilbakemeldinger.ros.form.overskrift': 'Send inn ros til Nav',
     'tilbakemeldinger.ros.form.veileder':
-        'Takk for at du vil dele opplevinga med oss! Vi sørger for at rosen kjem fram til rett person.',
+        'Takk for at du vil dele opplevinga med oss! Vi sørger for at rosen kjem fram til rett person. ' +
+        'Alle felt må fyllast ut.',
 
     'validering.navn.pakrevd': 'Namn er nødvendig',
     'validering.epost.pakrevd': 'E-post er nødvendig',
@@ -71,16 +74,12 @@ const nn: ITranslation = {
         'Må vere ei gjeldande e-postadresse, til dømes navnetditt@eksempel.no',
     'validering.tlf.pakrevd': 'Telefonnummer er nødvendig',
     'validering.tlf.ugyldig': 'Ugyldig telefonnummer',
-    'validering.klagetype.utdypning.pakrevd':
-        'Du må forklare kvifor du klagar ',
     'validering.feiltype.pakrevd':
         'Du må velje kva for ein type feil eller mangel du fann',
     'validering.melding.pakrevd': 'Melding er nødvendig',
     'validering.melding.tegn': 'Du har tasta inn for mange teikn',
     'validering.hvemroses.pakrevd': 'Du må velje kven du skal gje ros til',
     'validering.navkontor.pakrevd': 'Du må velje Nav-eining',
-    'validering.klagetyper.pakrevd': 'Du må velje kategori',
-    'validering.klagetyper.velg': 'Du må velje minst ein kategori',
     'validering.hvemfra.pakrevd':
         'Du må velje kven tilbakemeldinga er på vegne av',
     'validering.onskerkontakt.pakrevd':
@@ -98,8 +97,6 @@ const nn: ITranslation = {
     'validering.orgnr.siffer': 'Organisasjonsnummer kan berre vere siffer',
     'validering.orgnr.korrektsiffer': 'Organisasjonsnummer må ha 9 siffer',
     'validering.postadr.pakrevd': 'Postadresse er nødvendig',
-    'validering.gjeldersosialhjelp.pakrevd':
-        'Du må velje om tilbakemeldinga gjeld økonomisk sosialhjelp / sosiale tenester',
     'feilmelding.generell':
         'Oi! Det skjedde ein teknisk feil ved sending av skjemaet, prøv igjen seinare.',
     'feilmelding.orgnr': 'Kunne ikkje finne organisasjonsnummer.',
@@ -113,7 +110,8 @@ const nn: ITranslation = {
     'felter.typefeil.uu':
         'Feil på sida ved bruk av skjermlesar eller anna hjelpemiddel',
     'felter.melding.tittel': 'Tilbakemeldinga di',
-    'felter.melding.beskrivelse': `Ikkje send sensitive personopplysningar om deg sjølv eller andre. Les meir om personopplysningar hos <DatatilsynetLenke>Datatilsynet</DatatilsynetLenke>.`,
+    'felter.melding.beskrivelse':
+        'Ikkje skriv sensitive personopplysningar om deg sjølv eller andre.',
     'felter.send': 'Send tilbakemelding',
     'felter.tilbake': 'Tilbake',
     'felter.hvemroses.tittel': 'Kven vil du gje ros til?',
@@ -124,15 +122,6 @@ const nn: ITranslation = {
     'felter.klagerpa.navkontor.velg': 'Kva for ei eining i Nav gjeld klagen?',
     'felter.hvemroses.navkontor.skrivinn': 'Søk eller vel med piltast',
     'felter.combobox.knapp.beskrivelse': 'Opne lista',
-    'felter.klagetyper': 'Kva gjeld tilbakemeldinga?',
-    'felter.klagetyper.info':
-        'Vel det alternativet som passar best. Du kan velje fleire kategoriar.',
-    'felter.klagetyper.telefon': 'Telefon',
-    'felter.klagetyper.navkontor': 'Lokalt Nav-kontor',
-    'felter.klagetyper.digitaletjenester': 'Nav sine digitale tenester',
-    'felter.klagetyper.brev': 'Brev',
-    'felter.klagetyper.annet': 'Anna',
-    'felter.klagetyper.annenKategori': 'Anna kategori',
     'felter.hvemfra': 'Kven skriv du på vegne av?',
     'felter.hvemfra.megselv': 'Meg sjølv som privatperson',
     'felter.hvemfra.enannen': 'På vegne av ein annan privatperson',
@@ -154,11 +143,6 @@ const nn: ITranslation = {
     'felter.orgnr': 'Organisasjonsnummer (til di lokale eining)',
     'felter.postadr': 'Postadressa til bedrifta',
     'felter.tlf.bedrift': 'Telefonnummeret til bedrifta',
-    'felter.gjeldersosialhjelp':
-        'Gjeld det økonomisk sosialhjelp / sosiale tenester?',
-    'felter.gjeldersosialhjelp.ja': 'Ja',
-    'felter.gjeldersosialhjelp.nei': 'Nei',
-    'felter.gjeldersosialhjelp.vetikke': 'Veit ikkje',
 
     'seo.tilbakemeldinger.description':
         'Her kan du gje tilbakemelding til Nav om service, klage eller anke på vedtak og melde frå om feil og manglar på' +

@@ -48,11 +48,19 @@ const devErrorHtml = (e: Error) => {
         </div>`;
 };
 
+// parse5 (used by Vite's transformIndexHtml) rejects </link> closing tags
+// because <link> is a void element. The decorator may inject these in dev.
+const stripVoidElementClosingTags = (html: string) =>
+    html.replace(/<\/link>/gi, '');
+
 export const devRender =
     (vite: ViteDevServer): HtmlRenderer =>
     async (url) => {
         const template = await buildHtmlTemplate();
-        const html = await vite.transformIndexHtml(url, template);
+        const html = await vite.transformIndexHtml(
+            url,
+            stripVoidElementClosingTags(template)
+        );
 
         try {
             const { render } = await vite.ssrLoadModule('/src/main-server.tsx');
