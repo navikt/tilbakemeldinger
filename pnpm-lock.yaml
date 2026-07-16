@@ -13,7 +13,7 @@ importers:
     dependencies:
       '@nais/apm':
         specifier: 0.4.0
-        version: 0.4.0(@grafana/faro-react@2.8.2(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2))(react-router-dom@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2)))(react-router@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2))))(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2))(react-router-dom@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2)))(react-router@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2)))
+        version: 0.4.0(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2))(react-router-dom@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2)))(react-router@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2)))
       '@navikt/aksel-icons':
         specifier: 8.11.0
         version: 8.11.0
@@ -177,6 +177,9 @@ importers:
       express-rate-limit:
         specifier: 8.5.2
         version: 8.5.2(express@5.2.1)
+      jose:
+        specifier: 6.2.3
+        version: 6.2.3
       jwt-decode:
         specifier: 4.0.0
         version: 4.0.0
@@ -187,8 +190,8 @@ importers:
         specifier: 5.1.2
         version: 5.1.2
       openid-client:
-        specifier: 5.6.5
-        version: 5.6.5
+        specifier: 6.8.4
+        version: 6.8.4
     devDependencies:
       '@types/compression':
         specifier: 1.8.1
@@ -586,21 +589,6 @@ packages:
   '@grafana/faro-core@2.8.2':
     resolution: {integrity: sha512-63C6+N/P9/ySUMaGut8yVb1DkPuHS5I/lfRm97+aDXFj3+8pxRT/QzyXNe0r6KMU5O95wC9FLVGxG9ZvkwEhJQ==}
 
-  '@grafana/faro-react@2.8.2':
-    resolution: {integrity: sha512-Cd32yIDTIR+kqAZkP8m4Vpz84+/D77ODMyR9Ame7psCg89NwoA30m+C7lPWzkGdFpKJdX47Sd3JGzii+cVoXwQ==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-router: ^7.12.0 || ^8.0.0
-      react-router-dom: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-router:
-        optional: true
-      react-router-dom:
-        optional: true
-
   '@grafana/faro-web-sdk@2.8.2':
     resolution: {integrity: sha512-WnUDnyQSQRq22Nb5kqm+g9SellSEUfiEuWQ7Pgwnvj5tnIO72E9JHNnJdurk4MveX8ulWrdyKxyk1L10FUJyzg==}
 
@@ -790,6 +778,17 @@ packages:
       react-dom: '>=17.0.0'
       react-router: '>=6.0.0'
       react-router-dom: '>=6.0.0'
+    peerDependenciesMeta:
+      '@grafana/faro-react':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      react-router:
+        optional: true
+      react-router-dom:
+        optional: true
 
   '@napi-rs/wasm-runtime@0.2.12':
     resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
@@ -816,6 +815,9 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@navikt/ds-tokens@8.11.0':
     resolution: {integrity: sha512-4vte9eN1/6h/Gnbh1Ls9kOt+jRYjNYs/uNk3CzYW/5cSDrmjKnCMhdFKQdpkfolu4ff+GCDoHc1WaJJpeYn/dQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.11.0/247cb6dd6c04352aceea2df5f3ce9588f6cd5883}
@@ -829,6 +831,9 @@ packages:
     peerDependencies:
       html-react-parser: '>=5.x'
       react: '>=17.x'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   '@opentelemetry/api-logs@0.219.0':
     resolution: {integrity: sha512-FFx7YnaYJlIjqWW/AG/yAZ0L/NEY724PipXXXQLdtZPbLwBGbUMTGL1i/esI56TWfTUXxhLfpgrnWJCG8aUJyg==}
@@ -2424,9 +2429,6 @@ packages:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
 
-  hoist-non-react-statics@3.3.2:
-    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
-
   html-dom-parser@5.1.4:
     resolution: {integrity: sha512-UGjp7y8jSrDU2RdN2J9FDOo3X+WBu+LkS/I3TjjFW020ocZWjPvave+RKk1zeuY2sUWy5fh6zHgXHthzDGlFNQ==}
 
@@ -2857,8 +2859,8 @@ packages:
       node-notifier:
         optional: true
 
-  jose@4.15.9:
-    resolution: {integrity: sha512-1vUQX+IdDMVPj4k8kOxgUqlcK518yluMuGZwqlr44FS1ppZB/5GWh4rZG89erpOBOJjU/OBsnCVFfapsRz6nEA==}
+  jose@6.2.3:
+    resolution: {integrity: sha512-YYVDInQKFJfR/xa3ojUTl8c2KoTwiL1R5Wg9YCydwH0x0B9grbzlg5HC7mMjCtUJjbQ/YnGEZIhI5tCgfTb4Hw==}
 
   js-cookie@3.0.7:
     resolution: {integrity: sha512-z/wZZgDrkNV1eA0ULjM/F9/50Ya8fbzgKneSpoPsXSGd0KnpdtHfOZWK+GcwLk+EZbS4F9RBhU+K2RgzuDaItw==}
@@ -3039,10 +3041,6 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lru-cache@6.0.0:
-    resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
-    engines: {node: '>=10'}
-
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
     hasBin: true
@@ -3188,13 +3186,12 @@ packages:
   nwsapi@2.2.23:
     resolution: {integrity: sha512-7wfH4sLbt4M0gCDzGE6vzQBo0bfTKjU7Sfpqy/7gs1qBfYz2vEJH6vXcBKpO3+6Yu1telwd0t9HpyOoLEQQbIQ==}
 
+  oauth4webapi@3.8.6:
+    resolution: {integrity: sha512-iwemM91xz8nryHti2yTmg5fhyEMVOkOXwHNqbvcATjyajb5oQxCQzrNOA6uElRHuMhQQTKUyFKV9y/CNyg25BQ==}
+
   object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
-
-  object-hash@2.2.0:
-    resolution: {integrity: sha512-gScRMn0bS5fH+IuwyIFgnh9zBdo4DV+6GhygmWM9HyNJSgS0hScp1f5vjtm7oIIOiT9trXrShAkLFSc2IqKNgw==}
-    engines: {node: '>= 6'}
 
   object-inspect@1.13.4:
     resolution: {integrity: sha512-W67iLl4J2EXEGTbfeHCffrjDfitvLANg0UlX3wFUUSTx92KXRFegMHUVgSqE+wvhAbi4WqjGg9czysTV2Epbew==}
@@ -3211,10 +3208,6 @@ packages:
   object.assign@4.1.7:
     resolution: {integrity: sha512-nK28WOo+QIjBkDduTINE4JkF/UJJKyf2EJxvJKfblDpyg0Q+pkOHNTL0Qwy6NP6FhE/EnzV73BxxqcJaXY9anw==}
     engines: {node: '>= 0.4'}
-
-  oidc-token-hash@5.2.0:
-    resolution: {integrity: sha512-6gj2m8cJZ+iSW8bm0FXdGF0YhIQbKrfP4yWTNzxc31U6MOjfEmB1rHvlYvxI1B7t7BCi1F2vYTT6YhtQRG4hxw==}
-    engines: {node: ^10.13.0 || >=12.0.0}
 
   on-finished@2.4.1:
     resolution: {integrity: sha512-oVlzkg3ENAhCk2zdv7IJwd/QUD4z2RxRwpkcGY8psCVcCYZNq4wYnVWALHM+brtuJjePWiYF/ClmuDr8Ch5+kg==}
@@ -3239,8 +3232,8 @@ packages:
     resolution: {integrity: sha512-smsWv2LzFjP03xmvFoJ331ss6h+jixfA4UUV/Bsiyuu4YJPfN+FIQGOIiv4w9/+MoHkfkJ22UIaQWRVFRfH6Vw==}
     engines: {node: '>=20'}
 
-  openid-client@5.6.5:
-    resolution: {integrity: sha512-5P4qO9nGJzB5PI0LFlhj4Dzg3m4odt0qsJTfyEtZyOlkgpILwEioOhVVJOrS1iVH494S4Ee5OCjjg6Bf5WOj3w==}
+  openid-client@6.8.4:
+    resolution: {integrity: sha512-QSw0BA08piujetEwfZsHoTrDpMEha7GDZDicQqVwX4u0ChCjefvjDB++TZ8BTg76UpwhzIQgdvvfgfl3HpCSAw==}
 
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
@@ -4099,9 +4092,6 @@ packages:
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
 
-  yallist@4.0.0:
-    resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
-
   yaml@2.9.0:
     resolution: {integrity: sha512-2AvhNX3mb8zd6Zy7INTtSpl1F15HW6Wnqj0srWlkKLcpYl/gMIMJiyuGq2KeI2YFxUPjdlB+3Lc10seMLtL4cA==}
     engines: {node: '>= 14.6'}
@@ -4601,19 +4591,6 @@ snapshots:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/otlp-transformer': 0.219.0(@opentelemetry/api@1.9.1)
 
-  '@grafana/faro-react@2.8.2(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2))(react-router-dom@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2)))(react-router@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2)))':
-    dependencies:
-      '@grafana/faro-web-sdk': 2.8.2
-      '@grafana/faro-web-tracing': 2.8.2
-      hoist-non-react-statics: 3.3.2
-      react: '@preact/compat@18.3.2(preact@10.29.2)'
-    optionalDependencies:
-      react-dom: '@preact/compat@18.3.2(preact@10.29.2)'
-      react-router: 7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2))
-      react-router-dom: 7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2))
-    transitivePeerDependencies:
-      - supports-color
-
   '@grafana/faro-web-sdk@2.8.2':
     dependencies:
       '@grafana/faro-core': 2.8.2
@@ -4927,14 +4904,14 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@nais/apm@0.4.0(@grafana/faro-react@2.8.2(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2))(react-router-dom@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2)))(react-router@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2))))(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2))(react-router-dom@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2)))(react-router@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2)))':
+  '@nais/apm@0.4.0(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2))(react-router-dom@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2)))(react-router@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2)))':
     dependencies:
-      '@grafana/faro-react': 2.8.2(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2))(react-router-dom@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2)))(react-router@7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2)))
       '@grafana/faro-web-sdk': 2.8.2
       '@grafana/faro-web-tracing': 2.8.2
       '@grafana/rrweb': 2.0.0-grafana.2
       '@grafana/rrweb-snapshot': 2.0.0-grafana.2
       fflate: 0.8.3
+    optionalDependencies:
       react: '@preact/compat@18.3.2(preact@10.29.2)'
       react-dom: '@preact/compat@18.3.2(preact@10.29.2)'
       react-router: 7.15.1(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2))
@@ -4968,11 +4945,12 @@ snapshots:
       '@floating-ui/react-dom': 2.1.8(@preact/compat@18.3.2(preact@10.29.2))(@preact/compat@18.3.2(preact@10.29.2))
       '@navikt/aksel-icons': 8.11.0
       '@navikt/ds-tokens': 8.11.0
-      '@types/react': 19.2.15
       date-fns: 4.1.0
       react: '@preact/compat@18.3.2(preact@10.29.2)'
       react-day-picker: 9.14.0(@preact/compat@18.3.2(preact@10.29.2))
       react-dom: '@preact/compat@18.3.2(preact@10.29.2)'
+    optionalDependencies:
+      '@types/react': 19.2.15
 
   '@navikt/ds-tokens@8.11.0': {}
 
@@ -4984,6 +4962,7 @@ snapshots:
       csp-header: 6.3.1
       html-react-parser: 5.2.15(@preact/compat@18.3.2(preact@10.29.2))(@types/react@19.2.15)
       js-cookie: 3.0.7
+    optionalDependencies:
       react: '@preact/compat@18.3.2(preact@10.29.2)'
 
   '@opentelemetry/api-logs@0.219.0':
@@ -6650,10 +6629,6 @@ snapshots:
 
   he@1.2.0: {}
 
-  hoist-non-react-statics@3.3.2:
-    dependencies:
-      react-is: 16.13.1
-
   html-dom-parser@5.1.4:
     dependencies:
       domhandler: 5.0.3
@@ -7321,7 +7296,7 @@ snapshots:
       - supports-color
       - ts-node
 
-  jose@4.15.9: {}
+  jose@6.2.3: {}
 
   js-cookie@3.0.7: {}
 
@@ -7488,10 +7463,6 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lru-cache@6.0.0:
-    dependencies:
-      yallist: 4.0.0
-
   lz-string@1.5.0: {}
 
   magic-string@0.30.21:
@@ -7610,9 +7581,9 @@ snapshots:
 
   nwsapi@2.2.23: {}
 
-  object-assign@4.1.1: {}
+  oauth4webapi@3.8.6: {}
 
-  object-hash@2.2.0: {}
+  object-assign@4.1.1: {}
 
   object-inspect@1.13.4: {}
 
@@ -7631,8 +7602,6 @@ snapshots:
       es-object-atoms: 1.1.1
       has-symbols: 1.1.0
       object-keys: 1.1.1
-
-  oidc-token-hash@5.2.0: {}
 
   on-finished@2.4.1:
     dependencies:
@@ -7661,12 +7630,10 @@ snapshots:
       powershell-utils: 0.1.0
       wsl-utils: 0.3.1
 
-  openid-client@5.6.5:
+  openid-client@6.8.4:
     dependencies:
-      jose: 4.15.9
-      lru-cache: 6.0.0
-      object-hash: 2.2.0
-      oidc-token-hash: 5.2.0
+      jose: 6.2.3
+      oauth4webapi: 3.8.6
 
   optionator@0.9.4:
     dependencies:
@@ -8496,8 +8463,6 @@ snapshots:
   y18n@5.0.8: {}
 
   yallist@3.1.1: {}
-
-  yallist@4.0.0: {}
 
   yaml@2.9.0:
     optional: true
