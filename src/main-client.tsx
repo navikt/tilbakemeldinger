@@ -7,12 +7,13 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { AppRoot } from './index';
 import { HelmetProvider } from 'react-helmet-async';
+import { env } from './env';
 
 const AppWithContext = () => {
     return (
         <React.StrictMode>
             <HelmetProvider>
-                <BrowserRouter basename={import.meta.env.VITE_APP_BASEPATH}>
+                <BrowserRouter basename={env.VITE_APP_BASEPATH}>
                     <AppRoot />
                 </BrowserRouter>
             </HelmetProvider>

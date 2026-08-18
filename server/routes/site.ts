@@ -2,11 +2,11 @@ import { Hono } from 'hono';
 import { serveStatic } from '@hono/node-server/serve-static';
 import { createCspMiddleware } from '../middleware/csp.js';
 import { getPage } from '../ssr/pageStore.js';
-import { isLocal } from '../utils/environment.js';
+import { env, isLocalhost } from '../env.js';
 import { paths } from '../../common/paths.js';
 import { validLocales } from '../../common/locale.js';
 
-const { VITE_APP_BASEPATH, VITE_EDITORIAL_FRONTPAGE_ORIGIN } = process.env;
+const { VITE_APP_BASEPATH, VITE_EDITORIAL_FRONTPAGE_ORIGIN } = env;
 
 const localeGroup = validLocales.join('|');
 
@@ -54,7 +54,7 @@ export const createSiteRoutes = async (apiRoutes: Hono) => {
 
         if (
             isPathToFrontPage(path) &&
-            !isLocal() &&
+            !isLocalhost(env) &&
             VITE_EDITORIAL_FRONTPAGE_ORIGIN
         ) {
             return c.redirect(

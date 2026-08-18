@@ -26,6 +26,59 @@ export default defineConfig([
         ignores: ['**/node_modules/**', '**/dist/**'],
     },
     {
+        // Config is defined once, in env.schema.ts, and read through the two
+        // validated accessors. Without this rule the next PR reintroduces
+        // scattered process.env reads.
+        files: ['**/*.{js,jsx,ts,tsx,mjs}'],
+        ignores: ['env.schema.ts', 'server/env.ts', 'vite.config.ts'],
+        rules: {
+            'no-restricted-syntax': [
+                'error',
+                {
+                    selector:
+                        "MemberExpression[object.object.name='process'][object.property.name='env']",
+                    message:
+                        'Les konfigurasjon fra server/env.ts (eller src/env.ts), ikke process.env. Definisjonen ligger i env.schema.ts.',
+                },
+            ],
+        },
+    },
+    {
+        // The browser bundle must stay free of zod and of raw env reads.
+        files: ['src/**/*.{ts,tsx}'],
+        ignores: ['src/env.ts'],
+        rules: {
+            'no-restricted-imports': [
+                'error',
+                {
+                    paths: [
+                        {
+                            name: 'zod',
+                            message:
+                                'zod må ikke havne i klientbundelen — VITE_*-variabler valideres på byggetidspunkt i vite.config.ts.',
+                        },
+                    ],
+                    patterns: [
+                        {
+                            group: ['**/env.schema*'],
+                            message:
+                                'Importer typen fra src/env.ts i stedet — env.schema.ts drar med seg zod.',
+                        },
+                    ],
+                },
+            ],
+            'no-restricted-syntax': [
+                'error',
+                {
+                    selector:
+                        "MemberExpression[object.object.type='MetaProperty'][object.property.name='env'][property.name=/^VITE_/]",
+                    message:
+                        'Les konfigurasjon fra src/env.ts, ikke import.meta.env direkte.',
+                },
+            ],
+        },
+    },
+    {
         extends: [
             ...compat.extends(
                 'eslint:recommended',

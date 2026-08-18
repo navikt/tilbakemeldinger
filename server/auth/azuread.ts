@@ -1,4 +1,4 @@
-const azureAdTokenApi = `https://login.microsoftonline.com/${process.env.AZURE_APP_TENANT_ID}/oauth2/v2.0/token`;
+import { env, isLocalhost } from '../env.js';
 
 type TokenResponse = {
     token_type: 'Bearer';
@@ -16,19 +16,28 @@ const fetchAccessToken = async (
 ): Promise<TokenResponse | null> => {
     console.log('Refreshing access token...');
 
-    const response = await fetch(azureAdTokenApi, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            accept: 'application/json',
-        },
-        body: new URLSearchParams({
-            grant_type: 'client_credentials',
-            client_id: process.env.AZURE_APP_CLIENT_ID,
-            client_secret: process.env.AZURE_APP_CLIENT_SECRET,
-            scope,
-        }),
-    });
+    // Built here rather than at module load: on localhost these are absent, and
+    // interpolating undefined would silently bake a broken URL at import time.
+    if (isLocalhost(env)) {
+        throw new Error('Azure AD er ikke tilgjengelig på localhost');
+    }
+
+    const response = await fetch(
+        `https://login.microsoftonline.com/${env.AZURE_APP_TENANT_ID}/oauth2/v2.0/token`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                accept: 'application/json',
+            },
+            body: new URLSearchParams({
+                grant_type: 'client_credentials',
+                client_id: env.AZURE_APP_CLIENT_ID,
+                client_secret: env.AZURE_APP_CLIENT_SECRET,
+                scope,
+            }),
+        }
+    );
 
     const responseJson = await response.json();
 

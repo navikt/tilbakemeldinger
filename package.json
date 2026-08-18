@@ -15,7 +15,7 @@
         "start": "node --env-file-if-exists=.env dist/server/index.js",
         "start-local": "node -e \"require('fs').copyFileSync('.env.local-prod', '.env')\" && node --env-file-if-exists=.env dist/server/index.js",
         "lint": "pnpm run lint:eslint && pnpm run lint:types",
-        "lint:eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" \"common/**/*.{js,jsx,ts,tsx}\" \"server/**/*.{js,jsx,ts,tsx}\"",
+        "lint:eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" \"common/**/*.{js,jsx,ts,tsx}\" \"server/**/*.{js,jsx,ts,tsx}\" env.schema.ts vite.config.ts",
         "lint:types": "tsc --noEmit",
         "decorator-local": "docker compose up",
         "dev-prepare": "node -e \"require('fs').copyFileSync('.env.development', '.env')\"",

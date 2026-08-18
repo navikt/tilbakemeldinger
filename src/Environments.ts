@@ -1,7 +1,7 @@
+import { env, isDev, isLocalhost } from './env';
+
 const Environment = () => {
-    const isLocal = import.meta.env.VITE_ENV === 'localhost';
-    const isDev = import.meta.env.VITE_ENV === 'dev';
-    const origin = import.meta.env.VITE_APP_ORIGIN;
+    const origin = env.VITE_APP_ORIGIN;
 
     const commonUrls = {
         baseUrl: origin,
@@ -9,7 +9,7 @@ const Environment = () => {
         personInfoApiUrl: `${origin}/tms-personopplysninger-api`,
     };
 
-    if (isLocal) {
+    if (isLocalhost) {
         return {
             authUrl: `${origin}/person/nav-dekoratoren-api/auth`,
             mineSakerUrl: 'https://www.intern.dev.nav.no/mine-saker',

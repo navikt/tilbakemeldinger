@@ -29,6 +29,6 @@
         },
         "types": ["node", "vite/client"]
     },
-    "include": ["src", "common", "server", "vite.config.ts"],
+    "include": ["src", "common", "server", "env.schema.ts", "vite.config.ts"],
     "exclude": ["**/*.test.ts", "**/*.test.tsx"]
 }

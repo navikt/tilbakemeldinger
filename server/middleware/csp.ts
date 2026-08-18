@@ -2,13 +2,15 @@ import { MiddlewareHandler } from 'hono';
 import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import { CSPDirectives, DATA, SELF } from 'csp-header';
 import { decoratorEnvProps } from '../utils/decorator.js';
+import { env } from '../env.js';
 
 /*
  * Sets a CSP header compatible with nav-dekoratoren, rebuilt periodically so we
  * stay in sync with the decorator.
  */
 
-const HMR_HOST = 'localhost:24678';
+// Vite serves the app and its HMR socket on the same origin in dev.
+const HMR_HOST = `localhost:${env.APP_PORT}`;
 const REFRESH_MS = 600_000;
 
 const myDirectives: Partial<CSPDirectives> = {

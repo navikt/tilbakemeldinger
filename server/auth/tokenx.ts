@@ -1,33 +1,27 @@
 import * as client from 'openid-client';
 import { importJWK } from 'jose';
+import { env, isLocalhost } from '../env.js';
 
 let _config: client.Configuration | undefined;
 
-function jwk() {
-    if (!process.env.TOKEN_X_PRIVATE_JWK)
-        throw new TypeError(
-            'Miljøvariabelen "TOKEN_X_PRIVATE_JWK må være satt'
-        );
-    return JSON.parse(process.env.TOKEN_X_PRIVATE_JWK);
-}
+// TokenX is never used on localhost, so the config below is only reachable in a
+// cluster. The env schema has already validated and JSON-parsed these values.
+const tokenxEnv = () => {
+    if (isLocalhost(env)) {
+        throw new Error('TokenX er ikke tilgjengelig på localhost');
+    }
+    return env;
+};
 
 async function config() {
     if (_config === undefined) {
-        if (!process.env.TOKEN_X_WELL_KNOWN_URL)
-            throw new TypeError(
-                'Miljøvariabelen "TOKEN_X_WELL_KNOWN_URL må være satt'
-            );
-        if (!process.env.TOKEN_X_CLIENT_ID)
-            throw new TypeError(
-                'Miljøvariabelen "TOKEN_X_CLIENT_ID må være satt'
-            );
-
-        const _jwk = jwk();
+        const cluster = tokenxEnv();
+        const _jwk = cluster.TOKEN_X_PRIVATE_JWK;
         const privateKey = await importJWK(_jwk, _jwk.alg ?? 'RS256');
 
         _config = await client.discovery(
-            new URL(process.env.TOKEN_X_WELL_KNOWN_URL),
-            process.env.TOKEN_X_CLIENT_ID,
+            new URL(cluster.TOKEN_X_WELL_KNOWN_URL),
+            cluster.TOKEN_X_CLIENT_ID,
             { token_endpoint_auth_method: 'private_key_jwt' },
             client.PrivateKeyJwt(
                 { key: privateKey as CryptoKey, kid: _jwk.kid },

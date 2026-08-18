@@ -4,6 +4,7 @@ import { decodeJwt } from 'jose';
 import { getAccessToken, getAuthToken } from '../auth/common.js';
 import { rateLimit } from '../middleware/rateLimit.js';
 import { URLs } from '../utils/urls.js';
+import { env, isLocalhost } from '../env.js';
 import { Enhet } from '../../common/enhet.js';
 import { serviceKlageSchema } from '../../common/schema/ServiceKlage.js';
 import { feilOgManglerSchema } from '../../common/schema/FeilOgMangler.js';
@@ -90,6 +91,12 @@ export const apiRoutes = new Hono()
                 return c.text('Feil i validering av skjema', 400);
             }
 
+            // API_URL is only defined in deployed environments; locally the
+            // client mocks /api, so this path is unreachable there.
+            if (isLocalhost(env)) {
+                return c.text('API_URL er ikke konfigurert på localhost', 501);
+            }
+
             const accessToken = await getAccessToken({
                 authHeader: c.req.header('authorization'),
                 path,
@@ -99,17 +106,14 @@ export const apiRoutes = new Hono()
             }
 
             try {
-                const response = await fetch(
-                    `${process.env.API_URL}${route.apiPath}`,
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: `Bearer ${accessToken}`,
-                        },
-                        body: JSON.stringify(body),
-                    }
-                );
+                const response = await fetch(`${env.API_URL}${route.apiPath}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                    body: JSON.stringify(body),
+                });
 
                 if (!response.ok) {
                     const errorText = await response.text();

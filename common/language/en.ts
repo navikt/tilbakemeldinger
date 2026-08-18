@@ -1,6 +1,6 @@
-import { ITranslation } from '../locale.js';
+import type { TranslationKey } from '../locale.js';
 
-const en: ITranslation = {
+const en: Record<TranslationKey, string> = {
     //
     // Feilside
     //

@@ -1,8 +1,9 @@
 import { paths } from '../../common/paths.js';
 import { Locale, validLocales } from '../../common/locale.js';
 import { renderPage } from './htmlRenderer.js';
+import { env } from '../env.js';
 
-const BASEPATH = process.env.VITE_APP_BASEPATH;
+const BASEPATH = env.VITE_APP_BASEPATH;
 
 // SSR output is a pure function of the pathname: render() takes only a URL, and
 // all user-specific data is fetched client-side. The set of pages that actually

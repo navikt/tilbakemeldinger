@@ -22,6 +22,7 @@ import { localePath } from 'utils/locale';
 import { defaultLocale, validLocales } from 'common/locale';
 import { DecoratorWidgets } from 'components/decorator-widgets/DecoratorWidgets';
 import '@navikt/ds-css';
+import { env } from './env';
 
 type Props = {
     url?: string;
@@ -34,7 +35,7 @@ export const App = ({ url }: Props) => {
         apmInit({
             namespace: 'navno',
             app: 'tilbakemeldinger',
-            telemetryUrl: import.meta.env.VITE_TELEMETRY_URL,
+            telemetryUrl: env.VITE_TELEMETRY_URL,
         });
     }, []);
 
