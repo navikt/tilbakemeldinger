@@ -1,49 +1,56 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import devServer from '@hono/vite-dev-server';
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, command, isSsrBuild }) => {
     process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
-    process.env.NODE_ENV = process.env.NODE_ENV || 'production';
     process.env.VITE_ENV = process.env.ENV;
 
     return {
         plugins: [
             react(),
-            tsconfigPaths(),
+            // Dev runs the Hono app inside Vite: one process, HMR included, and
+            // the same module graph the production bundle is built from.
+            devServer({ entry: './server/index.ts' }),
             ...(process.env.ANALYZE
                 ? [visualizer({ gzipSize: true, open: true, sourcemap: true })]
                 : []),
         ],
+        resolve: {
+            // Aliases come from tsconfig paths - declared once, not three times.
+            tsconfigPaths: true,
+        },
         build: {
             sourcemap: true,
+            outDir: isSsrBuild ? 'dist/server' : 'dist/client',
+            // The server bundle carries the SSR render and its dependencies, so
+            // the runtime image needs almost no node_modules.
+            ...(isSsrBuild && {
+                rollupOptions: {
+                    input: './server/index.ts',
+                    output: { entryFileNames: 'index.js' },
+                },
+            }),
         },
         ssr: {
-            resolve: {
-                conditions: ['import', 'module', 'default'],
-            },
+            // Bundle dependencies into the server build so the runtime image
+            // needs no node_modules. In dev, keep Vite's default externalisation:
+            // several deps (csp-header, the decorator's SSR entry) are CommonJS
+            // and Vite's dev module runner cannot evaluate them, while node can.
+            noExternal: command === 'build' ? true : undefined,
+            resolve: { conditions: ['import', 'module', 'default'] },
+        },
+        test: {
+            environment: 'node',
+            include: ['{src,common,server}/**/*.test.{ts,tsx}'],
         },
         base: process.env.CDN_BASE || process.env.VITE_APP_BASEPATH,
         css: {
             modules: {
-                // Create stable (but verbose!) classnames in dev mode, in order
-                // to support HMR
-                ...(process.env.NODE_ENV === 'development' && {
+                ...(mode === 'development' && {
                     generateScopedName: '[path][name]__[local]',
                 }),
-            },
-        },
-        resolve: {
-            alias: {
-                src: '/src',
-                assets: '/src/assets',
-                clients: '/src/clients',
-                components: '/src/components',
-                pages: '/src/pages',
-                providers: '/src/providers',
-                types: '/src/types',
-                utils: '/src/utils',
             },
         },
     };

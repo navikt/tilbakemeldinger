@@ -1,19 +1,23 @@
-import { Request } from 'express';
 import { getTokenxToken } from './tokenx.js';
 import { getAzureadToken } from './azuread.js';
 
-export const getAuthToken = (req: Request) =>
-    req.headers.authorization?.split('Bearer ')[1];
+export const getAuthToken = (authHeader: string | undefined) =>
+    authHeader?.split('Bearer ')[1];
 
-export const getAccessToken = async (
-    req: Request
-): Promise<string | undefined> => {
+export const getAccessToken = async ({
+    authHeader,
+    path,
+}: {
+    authHeader: string | undefined;
+    path: string;
+}): Promise<string | undefined> => {
     if (process.env.ENV === 'localhost') {
         return process.env.MOCK_ACCESS_TOKEN;
     }
-    const authToken = getAuthToken(req);
 
-    if (req.params.path === 'serviceklage' && authToken) {
+    const authToken = getAuthToken(authHeader);
+
+    if (path === 'serviceklage' && authToken) {
         try {
             return await getTokenxToken(
                 authToken,

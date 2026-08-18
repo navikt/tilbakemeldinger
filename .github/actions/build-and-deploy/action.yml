@@ -66,6 +66,10 @@ runs:
           env:
               NODE_AUTH_TOKEN: ${{ env.READER_TOKEN }}
 
+        - name: Lint and typecheck
+          shell: bash
+          run: pnpm run lint
+
         - name: Build application
           shell: bash
           run: pnpm run build
@@ -79,19 +83,10 @@ runs:
           uses: nais/deploy/actions/cdn-upload/v2@master
           with:
               team: navno
-              source: ./server/dist/client/assets
+              source: ./dist/client/assets
               destination: tilbakemeldinger/${{ inputs.env }}
               project_id: ${{ env.NAIS_MANAGEMENT_PROJECT_ID }}
               identity_provider: ${{ env.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-
-        - name: Install production dependencies only
-          if: ${{ inputs.skipDeploy != 'true' }}
-          shell: bash
-          run: |
-              rm -rf node_modules server/node_modules
-              pnpm install --prod --frozen-lockfile
-          env:
-              NODE_AUTH_TOKEN: ${{ env.READER_TOKEN }}
 
         - name: Build and push docker image
           if: ${{ inputs.skipDeploy != 'true' }}

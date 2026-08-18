@@ -1,12 +1,3 @@
-import * as querystring from 'querystring';
-import Cache from 'node-cache';
-
-const cacheKey = 'authHeader';
-
-const cache = new Cache({
-    deleteOnExpire: true,
-});
-
 const azureAdTokenApi = `https://login.microsoftonline.com/${process.env.AZURE_APP_TENANT_ID}/oauth2/v2.0/token`;
 
 type TokenResponse = {
@@ -14,6 +5,11 @@ type TokenResponse = {
     expires_in: number;
     access_token: string;
 };
+
+// Cached per scope. The previous implementation keyed every scope under a
+// single constant, which would have silently returned the wrong token had a
+// second scope ever been introduced.
+const cache = new Map<string, { token: string; expiresAt: number }>();
 
 const fetchAccessToken = async (
     scope: string
@@ -26,11 +22,11 @@ const fetchAccessToken = async (
             'Content-Type': 'application/x-www-form-urlencoded',
             accept: 'application/json',
         },
-        body: querystring.stringify({
+        body: new URLSearchParams({
             grant_type: 'client_credentials',
             client_id: process.env.AZURE_APP_CLIENT_ID,
             client_secret: process.env.AZURE_APP_CLIENT_SECRET,
-            scope: scope,
+            scope,
         }),
     });
 
@@ -41,12 +37,13 @@ const fetchAccessToken = async (
         return null;
     }
 
-    return responseJson;
+    return responseJson as TokenResponse;
 };
 
 export const getAzureadToken = async (scope: string) => {
-    if (cache.has(cacheKey)) {
-        return cache.get<string>(cacheKey);
+    const cached = cache.get(scope);
+    if (cached && cached.expiresAt > Date.now()) {
+        return cached.token;
     }
 
     const accessToken = await fetchAccessToken(scope);
@@ -54,7 +51,10 @@ export const getAzureadToken = async (scope: string) => {
         return undefined;
     }
 
-    cache.set(cacheKey, accessToken.access_token, accessToken.expires_in - 60);
+    cache.set(scope, {
+        token: accessToken.access_token,
+        expiresAt: Date.now() + (accessToken.expires_in - 60) * 1000,
+    });
 
     return accessToken.access_token;
 };

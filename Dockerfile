@@ -2,14 +2,12 @@ FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24-slim
 
 WORKDIR /app
 
+# The server bundle is self-contained - no node_modules in the image.
 COPY package.json .env /app/
-COPY node_modules /app/node_modules/
-COPY server/dist  /app/server/dist/
-COPY server/package.json /app/server/
-COPY server/node_modules /app/server/node_modules/
+COPY dist /app/dist/
 
 ENV NODE_ENV=production
 
 EXPOSE 9001
 ENTRYPOINT ["node"]
-CMD ["--env-file-if-exists=.env", "server/dist/server/server/src/server.js"]
+CMD ["--env-file-if-exists=.env", "dist/server/index.js"]

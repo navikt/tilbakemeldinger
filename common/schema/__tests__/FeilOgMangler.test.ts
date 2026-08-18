@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'vitest';
 import { feilOgManglerSchema } from '../FeilOgMangler';
 
 describe('FeilOgMangler Schema', () => {
