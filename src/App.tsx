@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { captureException, init as apmInit } from '@nais/apm';
 import Tilbakemeldinger from 'pages/tilbakemeldinger/Tilbakemeldinger';

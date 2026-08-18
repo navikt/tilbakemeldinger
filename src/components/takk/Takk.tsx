@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Alert, Button, Link } from '@navikt/ds-react';
 import Environment from 'src/Environments';

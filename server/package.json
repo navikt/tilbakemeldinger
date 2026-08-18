@@ -5,12 +5,11 @@
     "type": "module",
     "scripts": {
         "build": "tsc",
-        "dev": "pnpm run build && concurrently \"tsc -w\" \"cross-env DOTENV_CONFIG_PATH=../.env nodemon -w ./dist/server ./dist/server/server/src/server.js\""
+        "dev": "pnpm run build && concurrently \"tsc -w\" \"nodemon -w ./dist/server --exec \\\"node --env-file-if-exists=../.env\\\" ./dist/server/server/src/server.js\""
     },
     "dependencies": {
         "compression": "1.8.1",
         "csp-header": "6.3.1",
-        "dotenv": "17.4.2",
         "express": "5.2.1",
         "express-rate-limit": "8.5.2",
         "jose": "6.2.3",
@@ -24,7 +23,6 @@
         "@types/express": "5.0.6",
         "@types/node": "25.9.1",
         "concurrently": "10.0.3",
-        "cross-env": "10.1.0",
         "nodemon": "3.1.14"
     },
     "nodemonConfig": {

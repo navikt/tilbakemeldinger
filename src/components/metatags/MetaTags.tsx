@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { localePath } from 'utils/locale';
 import { useIntl } from 'react-intl';
 import { useStore } from 'providers/Provider';

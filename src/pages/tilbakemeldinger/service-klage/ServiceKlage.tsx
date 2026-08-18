@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useStore } from 'providers/Provider';
 import { captureException } from '@nais/apm';
 import { postServiceKlage } from 'clients/apiClient';

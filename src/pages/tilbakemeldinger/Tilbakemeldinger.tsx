@@ -1,4 +1,3 @@
-import React from 'react';
 import { lenker } from './TilbakemeldingerLenker';
 import Header from 'components/header/Header';
 import Lenkepanel from 'components/lenkepanel/Lenkepanel';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { captureException } from '@nais/apm';
 import { postRosTilNav } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';

@@ -12,4 +12,4 @@ ENV NODE_ENV=production
 
 EXPOSE 9001
 ENTRYPOINT ["node"]
-CMD ["server/dist/server/server/src/server.js"]
+CMD ["--env-file-if-exists=.env", "server/dist/server/server/src/server.js"]

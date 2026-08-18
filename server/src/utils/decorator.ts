@@ -4,8 +4,6 @@ import {
     DecoratorEnvProps,
 } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 
-import 'dotenv/config';
-
 const DECORATOR_ENV = process.env.ENV;
 const DECORATOR_LOCAL_URL = 'https://www.nav.no/dekoratoren';
 

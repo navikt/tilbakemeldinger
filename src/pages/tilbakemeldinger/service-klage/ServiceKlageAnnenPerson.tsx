@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { urls } from 'src/Config';
 import { Alert, Link, Radio, RadioGroup, TextField } from '@navikt/ds-react';

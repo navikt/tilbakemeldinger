@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useStore } from 'providers/Provider';
 import { Alert, TextField } from '@navikt/ds-react';

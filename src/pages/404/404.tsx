@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { paths } from 'common/paths';
 import { FormattedMessage } from 'react-intl';
 import { Heading, Link } from '@navikt/ds-react';

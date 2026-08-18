@@ -1,5 +1,5 @@
 import { defineConfig, loadEnv } from 'vite';
-import preact from '@preact/preset-vite';
+import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
 
     return {
         plugins: [
-            preact(),
+            react(),
             tsconfigPaths(),
             ...(process.env.ANALYZE
                 ? [visualizer({ gzipSize: true, open: true, sourcemap: true })]
@@ -20,20 +20,6 @@ export default defineConfig(({ mode }) => {
             sourcemap: true,
         },
         ssr: {
-            // Dependencies containing React components must not be externalized
-            // from the SSR bundle, in order to work with preact/compat. This
-            // list must also include transitive dependencies.
-            noExternal: [
-                '@navikt/ds-react',
-                '@navikt/aksel-icons',
-                '@navikt/nav-dekoratoren-moduler',
-                '@radix-ui/*',
-                'react-router',
-                'react-router-dom',
-                'react-intl',
-                'react-helmet-async',
-                'react-hook-form',
-            ],
             resolve: {
                 conditions: ['import', 'module', 'default'],
             },

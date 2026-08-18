@@ -1,11 +1,13 @@
+// Env comes from node's --env-file-if-exists flag, not a dotenv import, so it is
+// populated before the first module loads. React picks its development or
+// production build from NODE_ENV at import time; if that is set too late, react
+// and react-dom disagree and SSR fails silently with an empty page.
 import express from 'express';
 import compression from 'compression';
 import { setupSiteRoutes } from './site/setupSiteRoutes.js';
 import { setupApiRoutes } from './api/setupApiRoutes.js';
 import { setupErrorHandlers } from './utils/errorHandlers.js';
 import { isLocal } from './utils/environment.js';
-
-import 'dotenv/config';
 
 const { APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV } = process.env;
 
