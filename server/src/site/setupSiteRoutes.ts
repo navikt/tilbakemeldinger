@@ -67,8 +67,8 @@ export const setupSiteRoutes = async (router: Router) => {
     }
 
     router.use(
-        createCacheMiddleware({ ttlSec: 600, maxSize: 100 }),
-        await createCspMiddleware()
+        await createCspMiddleware(),
+        createCacheMiddleware({ ttlSec: 600, maxSize: 100 })
     );
 
     router.get('/{*splat}', async (req, res) => {
