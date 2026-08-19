@@ -21,7 +21,7 @@ const REFRESH_MS = 600_000;
 type Entry = { html: string; renderedAt: number };
 
 const store = new Map<string, Entry>();
-const inFlight = new Set<string>();
+const inFlight = new Map<string, Promise<string>>();
 
 export const knownPages: { url: string; locale: Locale }[] =
     validLocales.flatMap((locale) =>
@@ -33,20 +33,37 @@ export const knownPages: { url: string; locale: Locale }[] =
 
 const localeOf = (url: string) => knownPages.find((p) => p.url === url)?.locale;
 
-const renderInto = async (url: string, locale: Locale) => {
-    const html = await renderPage(url, locale);
-    store.set(url, { html, renderedAt: Date.now() });
-    return html;
+/*
+ * Deduplicates by URL, so concurrent callers share one render. Both the cold
+ * path and background refreshes go through here: without that, a burst of
+ * requests for a page that is not cached yet would each start their own render
+ * and its own decorator fetch. That window is real — startup begins serving
+ * before warmPageStore() completes, by design.
+ */
+const render = (url: string, locale: Locale): Promise<string> => {
+    const pending = inFlight.get(url);
+
+    if (pending) {
+        return pending;
+    }
+
+    const started = renderPage(url, locale)
+        .then((html) => {
+            // Stored only on success, so a failed refresh leaves the previous
+            // page in place rather than emptying the entry.
+            store.set(url, { html, renderedAt: Date.now() });
+            return html;
+        })
+        .finally(() => inFlight.delete(url));
+
+    inFlight.set(url, started);
+    return started;
 };
 
 const refreshInBackground = (url: string, locale: Locale) => {
-    if (inFlight.has(url)) return;
-    inFlight.add(url);
-    renderInto(url, locale)
-        .catch((e) =>
-            console.error(`Background refresh failed for ${url}: ${e}`)
-        )
-        .finally(() => inFlight.delete(url));
+    void render(url, locale).catch((e) =>
+        console.error(`Background refresh failed for ${url}: ${e}`)
+    );
 };
 
 export const getPage = async (url: string): Promise<string> => {
@@ -65,7 +82,7 @@ export const getPage = async (url: string): Promise<string> => {
 
     const entry = store.get(url);
     if (!entry) {
-        return renderInto(url, locale);
+        return render(url, locale);
     }
 
     // Serve immediately and revalidate behind the request, so no user ever waits
@@ -81,7 +98,7 @@ export const getPage = async (url: string): Promise<string> => {
 // depend on nav-dekoratoren being reachable.
 export const warmPageStore = async () => {
     const results = await Promise.allSettled(
-        knownPages.map(({ url, locale }) => renderInto(url, locale))
+        knownPages.map(({ url, locale }) => render(url, locale))
     );
     const failed = results.filter((r) => r.status === 'rejected').length;
     console.log(

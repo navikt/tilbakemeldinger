@@ -5,12 +5,17 @@ import { env, isLocalhost } from '../env.js';
 export const getAuthToken = (authHeader: string | undefined) =>
     authHeader?.split('Bearer ')[1];
 
+/**
+ * `onBehalfOfUser` picks the token type: a TokenX exchange carrying the user's
+ * identity, or a machine token. Only serviceklage is submitted on behalf of a
+ * logged-in user — this used to be inferred here from the route parameter.
+ */
 export const getAccessToken = async ({
     authHeader,
-    path,
+    onBehalfOfUser,
 }: {
     authHeader: string | undefined;
-    path: string;
+    onBehalfOfUser: boolean;
 }): Promise<string | undefined> => {
     if (isLocalhost(env)) {
         return env.MOCK_ACCESS_TOKEN;
@@ -18,7 +23,7 @@ export const getAccessToken = async ({
 
     const authToken = getAuthToken(authHeader);
 
-    if (path === 'serviceklage' && authToken) {
+    if (onBehalfOfUser && authToken) {
         try {
             return await getTokenxToken(
                 authToken,

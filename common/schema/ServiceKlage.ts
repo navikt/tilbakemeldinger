@@ -1,5 +1,5 @@
 import zod from 'zod';
-import { zodString } from './helpers.js';
+import { RequiredString } from './helpers.js';
 
 // Enums as zod schemas
 export const onBehalfOfSchema = zod.enum([
@@ -10,7 +10,7 @@ export const onBehalfOfSchema = zod.enum([
 
 // Base schema for all service complaints
 export const serviceKlageBaseSchema = zod.object({
-    klagetekst: zodString,
+    klagetekst: RequiredString,
     oenskerAaKontaktes: zod.boolean().optional(),
 });
 
@@ -18,7 +18,7 @@ export const serviceKlageBaseSchema = zod.object({
 export const privatpersonSchema = zod.object({
     paaVegneAv: zod.literal('PRIVATPERSON'),
     innmelder: zod.object({
-        navn: zodString,
+        navn: RequiredString,
         telefonnummer: zod.string().optional(),
         personnummer: zod
             .string()
@@ -29,13 +29,13 @@ export const privatpersonSchema = zod.object({
 export const annenPersonSchema = zod.object({
     paaVegneAv: zod.literal('ANNEN_PERSON'),
     innmelder: zod.object({
-        navn: zodString,
+        navn: RequiredString,
         telefonnummer: zod.string().optional(),
         harFullmakt: zod.boolean(),
-        rolle: zodString,
+        rolle: RequiredString,
     }),
     paaVegneAvPerson: zod.object({
-        navn: zodString,
+        navn: RequiredString,
         personnummer: zod
             .string()
             .regex(/^\d{11}$/, 'Personal ID number must be 11 digits'),
@@ -44,14 +44,14 @@ export const annenPersonSchema = zod.object({
 
 export const bedriftSchema = zod.object({
     paaVegneAv: zod.literal('BEDRIFT'),
-    enhetsnummerPaaklaget: zodString,
+    enhetsnummerPaaklaget: RequiredString,
     innmelder: zod.object({
-        navn: zodString,
+        navn: RequiredString,
         telefonnummer: zod.string().optional(),
         rolle: zod.string().optional(),
     }),
     paaVegneAvBedrift: zod.object({
-        navn: zodString,
+        navn: RequiredString,
         organisasjonsnummer: zod
             .string()
             .regex(/^\d{9}$/, 'Organization number must be 9 digits'),

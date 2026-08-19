@@ -1,5 +1,6 @@
 import { Hono } from 'hono';
 import { compress } from 'hono/compress';
+import { HTTPException } from 'hono/http-exception';
 import { serve } from '@hono/node-server';
 import { apiRoutes } from './routes/api.js';
 import { createSiteRoutes } from './routes/site.js';
@@ -41,6 +42,12 @@ export const createApp = async () => {
     app.notFound(await createNotFoundHandler());
 
     app.onError((err, c) => {
+        // Hono signals intentional HTTP errors this way — bodyLimit's 413, for
+        // one. Without this they would all be flattened into a 500.
+        if (err instanceof HTTPException) {
+            return err.getResponse();
+        }
+
         console.error(`Server error on ${c.req.path}: ${err.stack ?? err}`);
         return c.body(null, 500);
     });

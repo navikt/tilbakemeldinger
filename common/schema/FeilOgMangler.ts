@@ -1,5 +1,5 @@
 import zod from 'zod';
-import { zodString } from './helpers.js';
+import { RequiredString } from './helpers.js';
 
 export const FeilOgManglerTypeSchema = zod.enum([
     'TEKNISK_FEIL',
@@ -9,9 +9,9 @@ export const FeilOgManglerTypeSchema = zod.enum([
 
 export const feilOgManglerSchema = zod.object({
     onskerKontakt: zod.boolean(),
-    epost: zod.string().email('Invalid email address').optional(),
+    epost: zod.email('Invalid email address').optional(),
     feiltype: FeilOgManglerTypeSchema,
-    melding: zodString,
+    melding: RequiredString,
 });
 
 export type FeilOgManglerSchemaType = zod.infer<typeof feilOgManglerSchema>;

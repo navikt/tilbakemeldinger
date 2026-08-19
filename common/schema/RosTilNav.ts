@@ -1,8 +1,8 @@
 import zod from 'zod';
-import { zodString } from './helpers.js';
+import { RequiredString } from './helpers.js';
 
 const baseRosTilNavSchema = zod.object({
-    melding: zodString,
+    melding: RequiredString,
 });
 
 export const rosNavKontaktsenterSchema = baseRosTilNavSchema.extend({
@@ -15,7 +15,7 @@ export const rosNavDigitaleTjenesterSchema = baseRosTilNavSchema.extend({
 
 export const rosNavKontorSchema = baseRosTilNavSchema.extend({
     hvemRoses: zod.literal('NAV_KONTOR'),
-    navKontor: zodString,
+    navKontor: RequiredString,
 });
 
 export const rosTilNavSchema = zod.discriminatedUnion('hvemRoses', [

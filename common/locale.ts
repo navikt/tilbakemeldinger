@@ -21,6 +21,14 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
     nn,
 };
 
+/**
+ * Whether a key exists, without the console warning `translate` emits on a miss.
+ * Callers building keys from user-controlled input (see getBreadcrumbsFromPathname)
+ * need to ask before translating.
+ */
+export const hasTranslation = (locale: Locale, key: string): boolean =>
+    Object.hasOwn(translations[locale], key);
+
 export function translate(locale: Locale, key: string): string {
     // Keys are also composed at runtime (see getBreadcrumbsFromPathname), hence
     // the plain string parameter and the fallback below.
