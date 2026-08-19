@@ -112,11 +112,10 @@ export default defineConfig(({ mode, command, isSsrBuild }) => {
         },
         base,
         css: {
-            modules: {
-                ...(mode === 'development' && {
-                    generateScopedName: '[path][name]__[local]',
-                }),
-            },
+            // Scoped class names are opaque hashes, so let devtools name the
+            // originating .module.scss and line for each rule instead. Applies
+            // to dev only — builds follow build.sourcemap.
+            devSourcemap: true,
         },
     };
 });
