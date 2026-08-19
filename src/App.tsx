@@ -28,6 +28,17 @@ type Props = {
     url?: string;
 };
 
+// Every page is rendered once per locale. Keys are the localised path: unique,
+// stable across renders, and readable in a component tree - unlike the index
+// counter this replaced, whose numbers meant nothing and shifted if the list
+// ever changed shape.
+const PAGES = [
+    { path: paths.tilbakemeldinger.forside, Component: Tilbakemeldinger },
+    { path: paths.tilbakemeldinger.serviceklage.form, Component: ServiceKlage },
+    { path: paths.tilbakemeldinger.rostilnav, Component: Ros },
+    { path: paths.tilbakemeldinger.feilogmangler, Component: FeilOgMangler },
+];
+
 export const App = ({ url }: Props) => {
     const [{ auth }, dispatch] = useStore();
 
@@ -96,47 +107,23 @@ export const App = ({ url }: Props) => {
             });
     }, [auth.authenticated, dispatch]);
 
-    let key = 0;
-
     return (
         <>
             <DecoratorWidgets />
             <ScrollToTop>
                 <Routes>
-                    {validLocales.flatMap((locale) => [
-                        <Route
-                            path={localePath(
-                                paths.tilbakemeldinger.forside,
-                                locale
-                            )}
-                            element={<Tilbakemeldinger />}
-                            key={key++}
-                        />,
-                        <Route
-                            path={localePath(
-                                paths.tilbakemeldinger.serviceklage.form,
-                                locale
-                            )}
-                            element={<ServiceKlage />}
-                            key={key++}
-                        />,
-                        <Route
-                            path={localePath(
-                                paths.tilbakemeldinger.rostilnav,
-                                locale
-                            )}
-                            element={<Ros />}
-                            key={key++}
-                        />,
-                        <Route
-                            path={localePath(
-                                paths.tilbakemeldinger.feilogmangler,
-                                locale
-                            )}
-                            element={<FeilOgMangler />}
-                            key={key++}
-                        />,
-                    ])}
+                    {validLocales.flatMap((locale) =>
+                        PAGES.map(({ path, Component }) => {
+                            const localisedPath = localePath(path, locale);
+                            return (
+                                <Route
+                                    key={localisedPath}
+                                    path={localisedPath}
+                                    element={<Component />}
+                                />
+                            );
+                        })
+                    )}
                     <Route
                         path="*"
                         element={<RedirectToLocaleOrError url={url} />}
