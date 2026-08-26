@@ -1,0 +1,11 @@
+# Commits som skal hoppes over av git blame.
+#
+# Kun rene formaterings- eller opprydningscommits hører hjemme her — aldri
+# commits med funksjonelle endringer.
+#
+# GitHub bruker denne fila automatisk. Lokalt må du si fra én gang:
+#
+#     git config blame.ignoreRevsFile .git-blame-ignore-revs
+#
+# Formaterer hele repoet med oxfmt
+7404cc439c6287ee82697951f9521e5d8b376eab
