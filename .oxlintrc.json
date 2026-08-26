@@ -1,0 +1,100 @@
+{
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "plugins": [
+        "eslint",
+        "typescript",
+        "oxc",
+        "unicorn",
+        "react",
+        "jsx-a11y",
+        "react-perf"
+    ],
+    "categories": {
+        "correctness": "error"
+    },
+    "env": {
+        "browser": true,
+        "es2024": true
+    },
+    "ignorePatterns": ["**/dist/**"],
+    "rules": {
+        "eslint/no-unused-vars": "warn",
+        "eslint/no-unused-expressions": "off",
+        "react/exhaustive-deps": "off",
+        "react/set-state-in-effect": "off",
+
+        // React Compiler rule. We don't run the compiler (see vite.config.ts —
+        // plain @vitejs/plugin-react, no babel-plugin-react-compiler), so its
+        // "this library can't be memoized" advisories are not actionable.
+        "react/incompatible-library": "off",
+
+        // Config is defined once, in env.schema.ts, and read through the two
+        // validated accessors. Without this rule the next PR reintroduces
+        // scattered process.env reads.
+        "eslint/no-restricted-properties": [
+            "error",
+            {
+                "object": "process",
+                "property": "env",
+                "message": "Les konfigurasjon fra server/env.ts (eller src/env.ts), ikke process.env. Definisjonen ligger i env.schema.ts."
+            }
+        ]
+    },
+    "overrides": [
+        {
+            // The sanctioned env accessors/definition.
+            "files": ["env.schema.ts", "server/env.ts", "vite.config.ts"],
+            "rules": {
+                "eslint/no-restricted-properties": "off"
+            }
+        },
+        {
+            "files": ["server/**", "env.schema.ts", "vite.config.ts"],
+            "env": {
+                "node": true,
+                "browser": false
+            }
+        },
+        {
+            // The browser bundle must stay free of zod.
+            "files": ["src/**"],
+            "rules": {
+                "eslint/no-restricted-imports": [
+                    "error",
+                    {
+                        "paths": [
+                            {
+                                "name": "zod",
+                                "message": "zod må ikke havne i klientbundelen — VITE_*-variabler valideres på byggetidspunkt i vite.config.ts."
+                            }
+                        ],
+                        "patterns": [
+                            {
+                                "group": ["**/env.schema*"],
+                                "message": "Importer typen fra src/env.ts i stedet — env.schema.ts drar med seg zod."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            // src/env.ts is the sanctioned re-export of the client env type.
+            "files": ["src/env.ts"],
+            "rules": {
+                "eslint/no-restricted-imports": "off"
+            }
+        },
+        {
+            "files": ["**/*.test.{ts,tsx}", "**/__tests__/**"],
+            "plugins": ["vitest"],
+            "env": {
+                "vitest": true
+            },
+            "rules": {
+                // Would require an explicit type parameter on every bare vi.fn().
+                "vitest/require-mock-type-parameters": "off"
+            }
+        }
+    ]
+}

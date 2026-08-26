@@ -14,9 +14,11 @@
         "analyze-bundle": "cross-env ANALYZE=true pnpm run build:client",
         "start": "node --env-file-if-exists=.env dist/server/index.js",
         "start-local": "node -e \"require('fs').copyFileSync('.env.local-prod', '.env')\" && node --env-file-if-exists=.env dist/server/index.js",
-        "lint": "pnpm run lint:eslint && pnpm run lint:types",
-        "lint:eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" \"common/**/*.{js,jsx,ts,tsx}\" \"server/**/*.{js,jsx,ts,tsx}\" env.schema.ts vite.config.ts",
+        "lint": "pnpm run lint:oxlint && pnpm run lint:types",
+        "lint:oxlint": "oxlint src common server env.schema.ts vite.config.ts",
         "lint:types": "tsc --noEmit",
+        "format": "oxfmt",
+        "format:check": "oxfmt --check",
         "decorator-local": "docker compose up",
         "dev-prepare": "node -e \"require('fs').copyFileSync('.env.development', '.env')\"",
         "dev": "pnpm run dev-prepare && vite",
@@ -49,24 +51,18 @@
         "zod": "4.4.3"
     },
     "devDependencies": {
-        "@eslint-react/eslint-plugin": "5.11.2",
-        "@eslint/eslintrc": "3.3.5",
-        "@eslint/js": "10.0.1",
         "@hono/vite-dev-server": "0.26.1",
         "@types/fetch-mock": "7.3.8",
         "@types/node": "25.9.1",
         "@types/react": "19.2.15",
         "@types/react-dom": "19.2.4",
-        "@typescript-eslint/eslint-plugin": "8.60.0",
-        "@typescript-eslint/parser": "8.60.0",
         "@vitejs/plugin-react": "6.0.5",
         "cross-env": "10.1.0",
-        "eslint": "10.8.0",
         "fetch-mock": "11.1.5",
-        "globals": "17.6.0",
         "husky": "9.1.7",
         "lint-staged": "17.0.7",
-        "prettier": "3.8.3",
+        "oxfmt": "0.64.0",
+        "oxlint": "1.79.0",
         "rollup-plugin-visualizer": "7.0.1",
         "sass": "1.100.0",
         "typescript": "6.0.3",
@@ -74,7 +70,7 @@
         "vitest": "4.1.10"
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx,json,css,scss,md}": "prettier --write",
-        "*.{js,jsx,ts,tsx}": "eslint --fix"
+        "*": "oxfmt --no-error-on-unmatched-pattern",
+        "*.{js,jsx,ts,tsx}": "oxlint --fix"
     }
 }
