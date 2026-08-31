@@ -1,14 +1,6 @@
 import { paths } from './paths.js';
-import { Locale, hasTranslation, translate, validLocales } from './locale.js';
-
-const escapeRegExp = (value: string) =>
-    value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-// Anchored, so only a real prefix is stripped, and the locale alternation comes
-// from validLocales so adding a locale stays the one-line change it claims to be.
-const BASE_PATH_PREFIX = new RegExp(
-    `^${escapeRegExp(paths.kontaktOss.forside)}(?:/(?:${validLocales.join('|')}))?`
-);
+import { Locale, hasTranslation, translate } from './locale.js';
+import { appPathFromPathname } from './appPath.js';
 
 const breadcrumbKey = (segment: string) => `breadcrumb.${segment}`;
 
@@ -26,8 +18,7 @@ export const getBreadcrumbsFromPathname = (
         handleInApp: false,
     };
 
-    const segments = pathname
-        .replace(BASE_PATH_PREFIX, '')
+    const segments = appPathFromPathname(pathname)
         .split('/')
         .filter((segment) => segment !== '');
 

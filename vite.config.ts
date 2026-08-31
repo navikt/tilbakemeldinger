@@ -52,6 +52,11 @@ export default defineConfig(({ mode, command, isSsrBuild }) => {
             // Dev runs the Hono app inside Vite
             devServer({
                 entry: './server/index.ts',
+                // htmlRenderer runs every response through transformIndexHtml,
+                // which already injects <script src="<base>/@vite/client"> into
+                // the head. The plugin's own injection is unconditional and
+                // lands after </html>, so it would only duplicate it.
+                injectClientScript: false,
                 // The app is served under a base path, so Vite's own dev
                 // endpoints arrive prefixed (e.g. /person/kontakt-oss/@vite/
                 // client). The plugin's default excludes only match unprefixed

@@ -6,6 +6,7 @@ const localhostEnv = {
     ENV: 'localhost',
     APP_PORT: '9001',
     VITE_APP_BASEPATH: '/person/kontakt-oss',
+    VITE_APP_ORIGIN: 'http://localhost:9001',
     NORG2_ORIGIN: 'https://norg2.dev-fss-pub.nais.io',
     MOCK_ACCESS_TOKEN: 'mock',
 };
@@ -14,6 +15,7 @@ const clusterEnv = {
     ENV: 'dev',
     APP_PORT: '9001',
     VITE_APP_BASEPATH: '/person/kontakt-oss',
+    VITE_APP_ORIGIN: 'https://www.ansatt.dev.nav.no',
     NORG2_ORIGIN: 'https://norg2.dev-fss-pub.nais.io',
     API_URL: 'http://tilbakemeldingsmottak-api.teamserviceklage',
     TOKEN_X_WELL_KNOWN_URL: 'https://tokenx.example/.well-known',

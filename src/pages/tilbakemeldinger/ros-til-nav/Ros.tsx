@@ -87,11 +87,7 @@ const Ros = () => {
 
     return (
         <div className={appStyle.pageContent}>
-            <MetaTags
-                titleId={'tilbakemeldinger.ros-til-nav.sidetittel'}
-                descriptionId={'seo.ros-til-nav.description'}
-                path={paths.tilbakemeldinger.rostilnav}
-            />
+            <MetaTags path={paths.tilbakemeldinger.rostilnav} />
             <Header
                 title={formatMessage({
                     id: 'tilbakemeldinger.ros.form.tittel',

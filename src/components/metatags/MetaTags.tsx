@@ -1,49 +1,41 @@
 import { useEffect } from 'react';
-import { localePath } from 'utils/locale';
-import { useIntl } from 'react-intl';
 import { useStore } from 'providers/Provider';
-import Environment from 'src/Environments';
 import { logPageview } from 'src/utils/analytics';
-import { Helmet } from 'react-helmet-async';
-import { paths } from 'common/paths';
-import type { ReactNode } from 'react';
+import { applyDocumentMetadata } from 'src/utils/documentMetadata';
+import { getPageMetadata } from 'common/metadata';
+import { env } from 'src/env';
 
 type Props = {
+    /** Route-relative path, as written in common/paths. */
     path: string;
-    titleId: string;
-    descriptionId?: string;
-    children?: ReactNode;
 };
 
-export const MetaTags = ({ path, titleId, descriptionId, children }: Props) => {
-    const intl = useIntl();
+/**
+ * Renders nothing. The server writes this page's <head> from the same metadata
+ * (see server/ssr/htmlRenderer.ts); this only keeps it current as the app moves
+ * between pages and locales without a page load.
+ */
+export const MetaTags = ({ path }: Props) => {
     const [{ locale }] = useStore();
-    const baseUrl = Environment().baseUrl;
-    const title = intl.formatMessage({ id: titleId });
+
+    const { title, documentTitle, description, canonicalUrl } = getPageMetadata(
+        path,
+        locale,
+        env.VITE_APP_ORIGIN
+    );
+
+    useEffect(() => {
+        applyDocumentMetadata({
+            title,
+            documentTitle,
+            description,
+            canonicalUrl,
+        });
+    }, [title, documentTitle, description, canonicalUrl]);
 
     useEffect(() => {
         logPageview(title);
     }, [title]);
 
-    return (
-        <Helmet>
-            {titleId && <title>{`${title} - www.nav.no`}</title>}
-            {descriptionId && (
-                <meta
-                    name="description"
-                    content={intl.formatMessage({ id: descriptionId })}
-                />
-            )}
-            {(path || path === '') && (
-                <link
-                    rel="canonical"
-                    href={`${baseUrl}${paths.kontaktOss.forside}${localePath(
-                        path,
-                        locale
-                    )}`}
-                />
-            )}
-            {children}
-        </Helmet>
-    );
+    return null;
 };

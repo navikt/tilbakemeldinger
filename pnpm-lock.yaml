@@ -57,9 +57,6 @@ importers:
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
-      react-helmet-async:
-        specifier: 3.0.0
-        version: 3.0.0(react@19.2.8)
       react-hook-form:
         specifier: 7.76.1
         version: 7.76.1(react@19.2.8)
@@ -1173,9 +1170,6 @@ packages:
   intl-messageformat@11.2.6:
     resolution: {integrity: sha512-afAN2yNN7zjB77G1ZC5L8GtLrEshyBvOQXz88flxCO/ocTIQist98gu0r/O6H/SSiQhQsOOtWPxmCEvtDABXXQ==}
 
-  invariant@2.2.4:
-    resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
-
   is-docker@3.0.0:
     resolution: {integrity: sha512-eljcgEDlEns/7AXFosB5K/2nCM4P7FQPkGc/DWLy5rmFEWvZayGrik1d9/QIY5nJ4f9YsVvBkA6kJpHn9rISdQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -1429,14 +1423,6 @@ packages:
     peerDependencies:
       react: ^19.2.8
 
-  react-fast-compare@3.2.2:
-    resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
-
-  react-helmet-async@3.0.0:
-    resolution: {integrity: sha512-nA3IEZfXiclgrz4KLxAhqJqIfFDuvzQwlKwpdmzZIuC1KNSghDEIXmyU0TKtbM+NafnkICcwx8CECFrZ/sL/1w==}
-    peerDependencies:
-      react: ^16.6.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-
   react-hook-form@7.76.1:
     resolution: {integrity: sha512-rYM7tPiWlu3nZchkR/ex7piyzui2vFPyaLnXnI/RnblB/L4qfMmyses8llJVtF1NpE9WBBsJlGtcSZzPCXW1qQ==}
     engines: {node: '>=18.0.0'}
@@ -1530,9 +1516,6 @@ packages:
 
   set-cookie-parser@2.7.2:
     resolution: {integrity: sha512-oeM1lpU/UvhTxw+g3cIfxXHyJRc/uidd3yK1P242gzHds0udQBYzs3y8j4gCCW+ZJ7ad0yctld8RYO+bdurlvw==}
-
-  shallowequal@1.1.0:
-    resolution: {integrity: sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==}
 
   shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
@@ -2588,10 +2571,6 @@ snapshots:
       '@formatjs/fast-memoize': 3.1.5
       '@formatjs/icu-messageformat-parser': 3.5.9
 
-  invariant@2.2.4:
-    dependencies:
-      loose-envify: 1.4.0
-
   is-docker@3.0.0: {}
 
   is-extglob@2.1.1:
@@ -2832,15 +2811,6 @@ snapshots:
       react: 19.2.8
       scheduler: 0.27.0
 
-  react-fast-compare@3.2.2: {}
-
-  react-helmet-async@3.0.0(react@19.2.8):
-    dependencies:
-      invariant: 2.2.4
-      react: 19.2.8
-      react-fast-compare: 3.2.2
-      shallowequal: 1.1.0
-
   react-hook-form@7.76.1(react@19.2.8):
     dependencies:
       react: 19.2.8
@@ -2936,8 +2906,6 @@ snapshots:
   scheduler@0.27.0: {}
 
   set-cookie-parser@2.7.2: {}
-
-  shallowequal@1.1.0: {}
 
   shebang-command@2.0.0:
     dependencies:

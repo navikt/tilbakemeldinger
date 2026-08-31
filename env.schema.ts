@@ -93,6 +93,8 @@ const serverShared = {
     /** Only used for a log line here; vitest sets it to "test". */
     NODE_ENV: z.string().optional(),
     VITE_APP_BASEPATH: basepath,
+    /** The SSR head needs it for the canonical link (see common/metadata.ts). */
+    VITE_APP_ORIGIN: z.url(),
     /** Truthiness-guarded in server/routes/site.ts — the redirect is optional. */
     VITE_EDITORIAL_FRONTPAGE_ORIGIN: z.url().optional(),
     NORG2_ORIGIN: z.url(),

@@ -1,33 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { paths } from 'common/paths';
 import { FormattedMessage } from 'react-intl';
 import { Heading, Link } from '@navikt/ds-react';
-import { Helmet } from 'react-helmet-async';
+import { useStore } from 'providers/Provider';
+import { addNoindex, applyDocumentMetadata } from 'src/utils/documentMetadata';
+import { fallbackMetadata } from 'common/metadata';
 import style from './404.module.scss';
 
 const NotFound = () => {
-    const [isClient, setIsClient] = useState(false);
+    const [{ locale }] = useStore();
 
+    // Reached in-app as well as on load, and the page navigated away from left
+    // its title and canonical behind. The fallback carries neither a
+    // description nor a canonical, so applying it clears them.
     useEffect(() => {
-        setIsClient(true);
-    }, []);
+        applyDocumentMetadata(fallbackMetadata(locale));
+    }, [locale]);
+
+    // Client-side only, as before: this route is also what an unlocalised URL
+    // renders for the instant before it redirects, so a noindex written during
+    // SSR would outlive the page it applies to.
+    useEffect(addNoindex, []);
 
     return (
-        <>
-            {isClient && (
-                <Helmet>
-                    <meta name="robots" content="noindex" />
-                </Helmet>
-            )}
-            <div className={style.container}>
-                <Heading size={'medium'} level={'2'}>
-                    <FormattedMessage id={'feil.404'} />
-                </Heading>
-                <Link href={paths.kontaktOss.forside}>
-                    <FormattedMessage id={'feil.lenke'} />
-                </Link>
-            </div>
-        </>
+        <div className={style.container}>
+            <Heading size={'medium'} level={'2'}>
+                <FormattedMessage id={'feil.404'} />
+            </Heading>
+            <Link href={paths.kontaktOss.forside}>
+                <FormattedMessage id={'feil.lenke'} />
+            </Link>
+        </div>
     );
 };
 
