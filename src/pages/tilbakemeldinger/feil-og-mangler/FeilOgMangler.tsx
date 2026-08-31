@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { captureException } from '@nais/apm';
 import { postFeilOgMangler } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
@@ -90,11 +90,7 @@ const FOM = () => {
 
     return (
         <div className={appStyle.pageContent}>
-            <MetaTags
-                titleId={'tilbakemeldinger.feil-og-mangler.sidetittel'}
-                descriptionId={'seo.feil-og-mangler.description'}
-                path={paths.tilbakemeldinger.feilogmangler}
-            />
+            <MetaTags path={paths.tilbakemeldinger.feilogmangler} />
             <Header
                 title={formatMessage({
                     id: 'tilbakemeldinger.feilogmangler.form.tittel',

@@ -1,6 +1,5 @@
-import { ITranslation } from '../locale.js';
-
-const nb: ITranslation = {
+// The reference locale: nn.ts and en.ts are typed against these keys.
+const nb = {
     //
     // Feilside
     //

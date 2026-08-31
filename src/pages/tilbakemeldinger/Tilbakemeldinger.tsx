@@ -1,4 +1,3 @@
-import React from 'react';
 import { lenker } from './TilbakemeldingerLenker';
 import Header from 'components/header/Header';
 import Lenkepanel from 'components/lenkepanel/Lenkepanel';
@@ -27,11 +26,7 @@ const Tilbakemeldinger = () => {
 
     return (
         <div className={appStyle.pageContent}>
-            <MetaTags
-                path={paths.tilbakemeldinger.forside}
-                titleId={'tilbakemeldinger.tilbakemeldinger.sidetittel'}
-                descriptionId={'seo.tilbakemeldinger.description'}
-            />
+            <MetaTags path={paths.tilbakemeldinger.forside} />
             <Header
                 title={intl.formatMessage({
                     id: 'tilbakemeldinger.tilbakemeldinger.sidetittel',

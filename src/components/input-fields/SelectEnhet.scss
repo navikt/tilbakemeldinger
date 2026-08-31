@@ -59,9 +59,7 @@
     font-weight: normal;
 }
 .selectEnhet__label {
-    margin-bottom: var(
-        --ax-space-8
-    ) !important; //Fjernes uansett "snart" når Combobox er ute av beta
+    margin-bottom: var(--ax-space-8) !important; //Fjernes uansett "snart" når Combobox er ute av beta
 }
 @media all and (max-width: 420px) {
     .selectEnhet__label span {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { StoreProvider, useStore } from 'providers/Provider';
 import { initialState, reducer } from 'providers/Store';
@@ -9,6 +9,7 @@ import { App } from './App';
 import msgsNb from '../common/language/nb';
 import msgsEn from '../common/language/en';
 import msgsNn from '../common/language/nn';
+import { isLocalhost } from './env';
 
 const messages = {
     nb: msgsNb,
@@ -22,7 +23,7 @@ type Props = {
 
 export const AppRoot = ({ url }: Props) => {
     useEffect(() => {
-        if (import.meta.env.VITE_ENV === 'localhost') {
+        if (isLocalhost) {
             import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
         }
     }, []);

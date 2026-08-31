@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import ServiceKlageTelefon from './ServiceKlageTelefon';
 import ServiceKlageKontaktBedrift from './ServiceKlageKontaktBedrift';

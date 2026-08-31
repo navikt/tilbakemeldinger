@@ -16,10 +16,7 @@
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "react-jsx",
-        "jsxImportSource": "preact",
         "paths": {
-            "react": ["./node_modules/preact/compat"],
-            "react-dom": ["./node_modules/preact/compat"],
             "src/*": ["./src/*"],
             "assets/*": ["./src/assets/*"],
             "clients/*": ["./src/clients/*"],
@@ -30,13 +27,8 @@
             "utils/*": ["./src/utils/*"],
             "common/*": ["./common/*"]
         },
-        "types": ["node", "jest", "vite/client"]
+        "types": ["node", "vite/client"]
     },
-    "include": ["src", "common"],
-    "exclude": ["**/*.test.ts", "**/*.test.tsx"],
-    "references": [
-        {
-            "path": "./tsconfig.node.json"
-        }
-    ]
+    "include": ["src", "common", "server", "env.schema.ts", "vite.config.ts"],
+    "exclude": ["**/*.test.ts", "**/*.test.tsx"]
 }
