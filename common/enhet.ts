@@ -3,4 +3,4 @@ export type Enhet = {
     navn: string;
     type: string;
     status: string;
-}
+};
