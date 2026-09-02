@@ -1,13 +1,13 @@
 packages:
-  - 'server'
+    - 'server'
 overrides:
-  shell-quote: '>=1.8.4'
-  postcss: '>=8.5.18'
+    shell-quote: '>=1.8.5'
+    postcss: '>=8.5.18'
 allowBuilds:
-  '@parcel/watcher': true
-  esbuild: true
-  unrs-resolver: true
+    '@parcel/watcher': true
+    esbuild: true
+    unrs-resolver: true
 minimumReleaseAge: 5760
 minimumReleaseAgeExclude:
-  - '@navikt/*'
-  - '@nais/*'
+    - '@navikt/*'
+    - '@nais/*'
