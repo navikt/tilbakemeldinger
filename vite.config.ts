@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from 'vite';
 import preact from '@preact/preset-vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import NavBrowserTargets from '@navikt/browserslist-config/vite';
 
 export default defineConfig(({ mode }) => {
     process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
@@ -10,6 +11,7 @@ export default defineConfig(({ mode }) => {
 
     return {
         plugins: [
+            NavBrowserTargets(),
             preact(),
             tsconfigPaths(),
             ...(process.env.ANALYZE
