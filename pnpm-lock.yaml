@@ -82,6 +82,9 @@ importers:
       '@eslint/js':
         specifier: 10.0.1
         version: 10.0.1(eslint@10.8.0)
+      '@navikt/browserslist-config':
+        specifier: ^0.1.0
+        version: 0.1.0(vite@8.2.0(@types/node@25.9.1)(sass@1.100.0)(yaml@2.9.0))
       '@preact/preset-vite':
         specifier: 2.10.5
         version: 2.10.5(@babel/core@7.29.7)(preact@10.29.8)(vite@8.2.0(@types/node@25.9.1)(sass@1.100.0)(yaml@2.9.0))
@@ -855,6 +858,12 @@ packages:
   '@navikt/analytics-types@0.0.9':
     resolution: {integrity: sha512-bopCvqEogyFcmrJiBxK/Mr25d6yPKF7GR36MGrJqiHCPJYf1rDu6lK4cpooTG4Q//D/1xTkHRom8ZH5BI6dTew==, tarball: https://npm.pkg.github.com/download/@navikt/analytics-types/0.0.9/5919241a6dbb782eb101fff3234ce5c36d16e942}
     engines: {node: '>=20.0.0', npm: '>=9.0.0'}
+
+  '@navikt/browserslist-config@0.1.0':
+    resolution: {integrity: sha512-F0UK+jKpAtbrCVDNvo4VH2HKpAXmDO61gt97p0j+LrfGlo3o4TasNSLc0TAfYej+p+WD06Ykau+LmFDHfCOXHQ==, tarball: https://npm.pkg.github.com/download/@navikt/browserslist-config/0.1.0/d50de0fec87da901e73431d4c11e425d8173897c}
+    engines: {node: '>=24'}
+    peerDependencies:
+      vite: '>=7'
 
   '@navikt/ds-css@8.11.0':
     resolution: {integrity: sha512-UxPVWtZC9JW1vho0JFdxh9XmQpiKVQgM2+HhE5st5h8W5AUKOgzrSUkSjQQNEdeAg1RhWhJ2Jwu3W2rC4VZS1Q==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.11.0/888861af213f1f01d1becab42fe59810b6dba2be}
@@ -5199,6 +5208,10 @@ snapshots:
   '@navikt/aksel-icons@8.11.0': {}
 
   '@navikt/analytics-types@0.0.9': {}
+
+  '@navikt/browserslist-config@0.1.0(vite@8.2.0(@types/node@25.9.1)(sass@1.100.0)(yaml@2.9.0))':
+    dependencies:
+      vite: 8.2.0(@types/node@25.9.1)(sass@1.100.0)(yaml@2.9.0)
 
   '@navikt/ds-css@8.11.0': {}
 
