@@ -1,24 +1,35 @@
 name: Deploy to dev
 on: workflow_dispatch
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v7
+permissions:
+  contents: read
+  id-token: write
 
-      - name: Build and deploy to dev
-        uses: ./.github/actions/build-and-deploy
-        with:
-          env: dev
-          imageSuffix: dev-deploy
-          appOrigin: 'https://www.ansatt.dev.nav.no'
-          editorialFrontpageOrigin: 'https://www.ansatt.dev.nav.no/tilbakemelding'
-          telemetryUrl: 'https://telemetry.ekstern.dev.nav.no/collect'
-        env:
-          READER_TOKEN: ${{ secrets.READER_TOKEN }}
-          NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+jobs:
+  build:
+    uses: navikt/navno-ci/.github/workflows/node-build.yml@v1
+    with:
+      image-suffix: dev-deploy
+      cdn-source: ./server/dist/client/assets
+      cdn-destination: tilbakemeldinger/dev
+      prune-remove: node_modules server/node_modules
+      env-file: |
+        ENV=dev
+        VITE_APP_BASEPATH=/person/kontakt-oss
+        VITE_APP_ORIGIN=https://www.ansatt.dev.nav.no
+        VITE_EDITORIAL_FRONTPAGE_ORIGIN=https://www.ansatt.dev.nav.no/tilbakemelding
+        VITE_TELEMETRY_URL=https://telemetry.ekstern.dev.nav.no/collect
+        APP_PORT=9001
+        API_URL=http://tilbakemeldingsmottak-api.teamserviceklage
+        NORG2_ORIGIN=https://norg2.dev-fss-pub.nais.io
+        CDN_BASE=https://cdn.nav.no/navno/tilbakemeldinger/dev
+    secrets: inherit
+
+  deploy:
+    needs: build
+    uses: navikt/navno-ci/.github/workflows/nais-deploy.yml@v1
+    with:
+      cluster: dev-gcp
+      resource: .nais/config.yml
+      vars: .nais/vars-dev.yml
+      var: image=${{ needs.build.outputs.image }}

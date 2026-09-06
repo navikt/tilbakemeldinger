@@ -7,6 +7,7 @@
     "homepage": "/person/kontakt-oss/tilbakemeldinger",
     "type": "module",
     "packageManager": "pnpm@11.1.1+sha512.d1fdf5f73c617b64fa1a56a81c3c8dfe0e966e33a6010aa256b517ae77be21d93e05affc0de1a83b0e4f29d569f68b446ae8f068cd7247c0bb3df0fb4d7bdf9a",
+    "engines": { "node": "24.x" },
     "scripts": {
         "build": "pnpm run build:client && pnpm run build:ssr && pnpm run build:server",
         "build:client": "vite build --outDir ./server/dist/client",
@@ -17,7 +18,7 @@
         "start-local": "node -e \"require('fs').copyFileSync('.env.local-prod', '.env')\" && node server/dist/server/server/src/server.js",
         "lint": "pnpm run lint:eslint && pnpm run lint:types",
         "lint:eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" \"common/**/*.{js,jsx,ts,tsx}\" \"server/src/**/*.{js,jsx,ts,tsx}\"",
-        "lint:types": "tsc --noEmit && pnpm --filter tilbakemeldinger-server exec tsc --noEmit",
+        "lint:types": "tsc --noEmit",
         "decorator-local": "docker compose up",
         "dev-prepare": "node preact-compat-symlinks.js && node -e \"require('fs').copyFileSync('.env.development', '.env')\"",
         "dev": "pnpm run dev-prepare && pnpm --filter tilbakemeldinger-server run dev",

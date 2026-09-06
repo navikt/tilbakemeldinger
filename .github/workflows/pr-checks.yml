@@ -1,24 +1,25 @@
 name: PR Checks
 on:
   pull_request:
-    branches:
-      - 'main'
+    branches: [main]
+
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
-  pr-checks:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v7
-      - name: Build and deploy
-        uses: ./.github/actions/build-and-deploy
-        with:
-          env: dev
-          appOrigin: 'https://www.ansatt.dev.nav.no'
-          editorialFrontpageOrigin: 'https://www.ansatt.dev.nav.no/tilbakemelding'
-          telemetryUrl: 'https://telemetry.ekstern.dev.nav.no/collect'
-          skipDeploy: true
-        env:
-          READER_TOKEN: ${{ secrets.READER_TOKEN }}
+  check:
+    uses: navikt/navno-ci/.github/workflows/node-build.yml@v1
+    with:
+      push-image: false
+      env-file: |
+        ENV=dev
+        VITE_APP_BASEPATH=/person/kontakt-oss
+        VITE_APP_ORIGIN=https://www.ansatt.dev.nav.no
+        VITE_EDITORIAL_FRONTPAGE_ORIGIN=https://www.ansatt.dev.nav.no/tilbakemelding
+        VITE_TELEMETRY_URL=https://telemetry.ekstern.dev.nav.no/collect
+        APP_PORT=9001
+        API_URL=http://tilbakemeldingsmottak-api.teamserviceklage
+        NORG2_ORIGIN=https://norg2.dev-fss-pub.nais.io
+        CDN_BASE=https://cdn.nav.no/navno/tilbakemeldinger/dev
+    secrets: inherit
