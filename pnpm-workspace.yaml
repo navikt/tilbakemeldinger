@@ -1,7 +1,7 @@
 packages:
   - 'server'
 overrides:
-  shell-quote: '>=1.8.4'
+  shell-quote: '>=1.8.5'
   postcss: '>=8.5.18'
 allowBuilds:
   '@parcel/watcher': true
