@@ -19,9 +19,9 @@ This is a "frackend" application (frontend + backend) for collecting feedback to
 
 1. **Preact Frontend**: User-facing feedback forms
 2. **Express Backend**:
-    - Serves static frontend assets
-    - Exposes three API endpoints (see below)
-    - Proxies certain API requests to internal `tilbakemeldingsmottak-api`.
+   - Serves static frontend assets
+   - Exposes three API endpoints (see below)
+   - Proxies certain API requests to internal `tilbakemeldingsmottak-api`.
 
 ## API Endpoints
 

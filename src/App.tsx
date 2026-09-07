@@ -5,11 +5,7 @@ import Tilbakemeldinger from 'pages/tilbakemeldinger/Tilbakemeldinger';
 import Ros from 'pages/tilbakemeldinger/ros-til-nav/Ros';
 import PageNotFound from 'pages/404/404';
 import FeilOgMangler from 'pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler';
-import {
-    fetchAuthInfo,
-    fetchFodselsnr,
-    fetchKontaktInfo,
-} from 'clients/apiClient';
+import { fetchAuthInfo, fetchFodselsnr, fetchKontaktInfo } from 'clients/apiClient';
 import { useStore } from 'providers/Provider';
 import { AuthInfo } from 'types/authInfo';
 import { HTTPError } from 'types/errors';
@@ -24,151 +20,125 @@ import { DecoratorWidgets } from 'components/decorator-widgets/DecoratorWidgets'
 import '@navikt/ds-css';
 
 type Props = {
-    url?: string;
+	url?: string;
 };
 
 export const App = ({ url }: Props) => {
-    const [{ auth }, dispatch] = useStore();
+	const [{ auth }, dispatch] = useStore();
 
-    useEffect(() => {
-        apmInit({
-            namespace: 'navno',
-            app: 'tilbakemeldinger',
-            telemetryUrl: import.meta.env.VITE_TELEMETRY_URL,
-        });
-    }, []);
+	useEffect(() => {
+		apmInit({
+			namespace: 'navno',
+			app: 'tilbakemeldinger',
+			telemetryUrl: import.meta.env.VITE_TELEMETRY_URL,
+		});
+	}, []);
 
-    useEffect(() => {
-        if (auth.authenticated) {
-            return;
-        }
+	useEffect(() => {
+		if (auth.authenticated) {
+			return;
+		}
 
-        fetchAuthInfo()
-            .then((authInfo: AuthInfo) => {
-                dispatch({ type: 'SETT_AUTH_RESULT', payload: authInfo });
-                if (!authInfo.authenticated) {
-                    return;
-                }
+		fetchAuthInfo()
+			.then((authInfo: AuthInfo) => {
+				dispatch({ type: 'SETT_AUTH_RESULT', payload: authInfo });
+				if (!authInfo.authenticated) {
+					return;
+				}
 
-                fetchFodselsnr()
-                    .then((fodselsnr: Fodselsnr) =>
-                        dispatch({
-                            type: 'SETT_FODSELSNR',
-                            payload: fodselsnr,
-                        })
-                    )
-                    .catch((error: HTTPError) => {
-                        console.error(error);
-                        captureException(error, {
-                            fingerprint: 'app.fetch-fodselsnr',
-                            context: {
-                                source: 'App',
-                                action: 'fetchFodselsnr',
-                            },
-                        });
-                    });
+				fetchFodselsnr()
+					.then((fodselsnr: Fodselsnr) =>
+						dispatch({
+							type: 'SETT_FODSELSNR',
+							payload: fodselsnr,
+						})
+					)
+					.catch((error: HTTPError) => {
+						console.error(error);
+						captureException(error, {
+							fingerprint: 'app.fetch-fodselsnr',
+							context: {
+								source: 'App',
+								action: 'fetchFodselsnr',
+							},
+						});
+					});
 
-                fetchKontaktInfo()
-                    .then((kontaktInfo: KontaktInfo) =>
-                        dispatch({
-                            type: 'SETT_KONTAKT_INFO_RESULT',
-                            payload: kontaktInfo,
-                        })
-                    )
-                    .catch((error: HTTPError) => {
-                        console.error(error);
-                        captureException(error, {
-                            fingerprint: 'app.fetch-kontakt-info',
-                            context: {
-                                source: 'App',
-                                action: 'fetchKontaktInfo',
-                            },
-                        });
-                    });
-            })
-            .catch((error: HTTPError) => {
-                console.error(error);
-                captureException(error, {
-                    fingerprint: 'app.fetch-auth-info',
-                    context: { source: 'App', action: 'fetchAuthInfo' },
-                });
-            });
-    }, [auth.authenticated, dispatch]);
+				fetchKontaktInfo()
+					.then((kontaktInfo: KontaktInfo) =>
+						dispatch({
+							type: 'SETT_KONTAKT_INFO_RESULT',
+							payload: kontaktInfo,
+						})
+					)
+					.catch((error: HTTPError) => {
+						console.error(error);
+						captureException(error, {
+							fingerprint: 'app.fetch-kontakt-info',
+							context: {
+								source: 'App',
+								action: 'fetchKontaktInfo',
+							},
+						});
+					});
+			})
+			.catch((error: HTTPError) => {
+				console.error(error);
+				captureException(error, {
+					fingerprint: 'app.fetch-auth-info',
+					context: { source: 'App', action: 'fetchAuthInfo' },
+				});
+			});
+	}, [auth.authenticated, dispatch]);
 
-    let key = 0;
+	let key = 0;
 
-    return (
-        <>
-            <DecoratorWidgets />
-            <ScrollToTop>
-                <Routes>
-                    {validLocales.flatMap((locale) => [
-                        <Route
-                            path={localePath(
-                                paths.tilbakemeldinger.forside,
-                                locale
-                            )}
-                            element={<Tilbakemeldinger />}
-                            key={key++}
-                        />,
-                        <Route
-                            path={localePath(
-                                paths.tilbakemeldinger.serviceklage.form,
-                                locale
-                            )}
-                            element={<ServiceKlage />}
-                            key={key++}
-                        />,
-                        <Route
-                            path={localePath(
-                                paths.tilbakemeldinger.rostilnav,
-                                locale
-                            )}
-                            element={<Ros />}
-                            key={key++}
-                        />,
-                        <Route
-                            path={localePath(
-                                paths.tilbakemeldinger.feilogmangler,
-                                locale
-                            )}
-                            element={<FeilOgMangler />}
-                            key={key++}
-                        />,
-                    ])}
-                    <Route
-                        path="*"
-                        element={<RedirectToLocaleOrError url={url} />}
-                    />
-                </Routes>
-            </ScrollToTop>
-        </>
-    );
+	return (
+		<>
+			<DecoratorWidgets />
+			<ScrollToTop>
+				<Routes>
+					{validLocales.flatMap((locale) => [
+						<Route
+							path={localePath(paths.tilbakemeldinger.forside, locale)}
+							element={<Tilbakemeldinger />}
+							key={key++}
+						/>,
+						<Route
+							path={localePath(paths.tilbakemeldinger.serviceklage.form, locale)}
+							element={<ServiceKlage />}
+							key={key++}
+						/>,
+						<Route path={localePath(paths.tilbakemeldinger.rostilnav, locale)} element={<Ros />} key={key++} />,
+						<Route
+							path={localePath(paths.tilbakemeldinger.feilogmangler, locale)}
+							element={<FeilOgMangler />}
+							key={key++}
+						/>,
+					])}
+					<Route path="*" element={<RedirectToLocaleOrError url={url} />} />
+				</Routes>
+			</ScrollToTop>
+		</>
+	);
 };
 
 const RedirectToLocaleOrError = ({ url }: Props) => {
-    const [isReadyToRedirect, setIsReadyToRedirect] = useState(false);
-    const currentUrl = url ?? window.location.pathname;
-    const isLocaleUrl = currentUrl
-        .split('/')
-        .some((segment) => validLocales.some((locale) => segment === locale));
+	const [isReadyToRedirect, setIsReadyToRedirect] = useState(false);
+	const currentUrl = url ?? window.location.pathname;
+	const isLocaleUrl = currentUrl.split('/').some((segment) => validLocales.some((locale) => segment === locale));
 
-    useEffect(() => {
-        setIsReadyToRedirect(true);
-    }, []);
+	useEffect(() => {
+		setIsReadyToRedirect(true);
+	}, []);
 
-    if (!isReadyToRedirect) {
-        return null;
-    }
+	if (!isReadyToRedirect) {
+		return null;
+	}
 
-    if (!isLocaleUrl) {
-        const subPath = currentUrl.split(paths.kontaktOss.forside)[1];
-        return (
-            <Navigate
-                to={localePath(subPath || '', defaultLocale)}
-                replace={true}
-            />
-        );
-    }
-    return <PageNotFound />;
+	if (!isLocaleUrl) {
+		const subPath = currentUrl.split(paths.kontaktOss.forside)[1];
+		return <Navigate to={localePath(subPath || '', defaultLocale)} replace={true} />;
+	}
+	return <PageNotFound />;
 };
