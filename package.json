@@ -7,7 +7,16 @@
     "homepage": "/person/kontakt-oss/tilbakemeldinger",
     "type": "module",
     "packageManager": "pnpm@11.1.1+sha512.d1fdf5f73c617b64fa1a56a81c3c8dfe0e966e33a6010aa256b517ae77be21d93e05affc0de1a83b0e4f29d569f68b446ae8f068cd7247c0bb3df0fb4d7bdf9a",
-    "engines": { "node": "24.x" },
+    "engines": {
+        "node": "24"
+    },
+    "devEngines": {
+        "runtime": {
+            "name": "node",
+            "version": "^24.19.0",
+            "onFail": "download"
+        }
+    },
     "scripts": {
         "build": "pnpm run build:client && pnpm run build:ssr && pnpm run build:server",
         "build:client": "vite build --outDir ./server/dist/client",
@@ -53,6 +62,7 @@
         "@eslint-react/eslint-plugin": "5.11.2",
         "@eslint/eslintrc": "3.3.5",
         "@eslint/js": "10.0.1",
+        "@navikt/browserslist-config": "^0.1.0",
         "@preact/preset-vite": "2.10.5",
         "@testing-library/jest-dom": "6.9.1",
         "@testing-library/preact": "3.2.4",
