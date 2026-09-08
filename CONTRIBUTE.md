@@ -32,6 +32,19 @@ Start applikasjonen lokalt:
 pnpm run dev
 ```
 
+## Formatering og git blame
+
+Prosjektet bruker **oxfmt** for formatering, konfigurert i `oxfmt.config.ts`.
+
+Kodebasen ble reformatert i én egen commit. For at `git blame` skal hoppe over denne
+commiten og vise den opprinnelige forfatteren, kjør følgende én gang per klone:
+
+```bash
+git config blame.ignoreRevsFile .git-blame-ignore-revs
+```
+
+GitHub bruker `.git-blame-ignore-revs` automatisk, så dette gjelder kun lokalt.
+
 ## Deploy
 
 Vi deployer med Github Actions. Denne applikasjonen kan deployes til prod og dev som skal være identiske miljøer med hensyn til testing.

@@ -3,11 +3,7 @@ import { useStore } from 'providers/Provider';
 import { captureException } from '@nais/apm';
 import { postServiceKlage } from 'clients/apiClient';
 import { ErrorResponse } from 'types/errors';
-import {
-    ON_BEHALF_OF,
-    ServiceKlageBase,
-    ServiceKlageFragment,
-} from 'common/types/ServiceKlage';
+import { ON_BEHALF_OF, ServiceKlageBase, ServiceKlageFragment } from 'common/types/ServiceKlage';
 import Header from 'components/header/Header';
 import { vars } from 'src/Config';
 import { paths } from 'common/paths';
@@ -20,303 +16,261 @@ import { triggerHotjar } from 'utils/hotjar';
 import ServiceKlageOnskerAaKontaktes from './ServiceKlageOnskerAaKontaktes';
 import { MetaTags } from 'components/metatags/MetaTags';
 import LoginModal from './login-modal/LoginModal';
-import {
-    Alert,
-    Box,
-    Button,
-    GuidePanel,
-    Radio,
-    RadioGroup,
-    Textarea,
-} from '@navikt/ds-react';
-import {
-    Controller,
-    FieldValues,
-    FormProvider,
-    useForm,
-} from 'react-hook-form';
+import { Alert, Box, Button, GuidePanel, Radio, RadioGroup, Textarea } from '@navikt/ds-react';
+import { Controller, FieldValues, FormProvider, useForm } from 'react-hook-form';
 import { resolveErrorCode } from 'utils/errorCodes';
 import appStyle from 'src/App.module.scss';
 
 export interface ServiceklageFormFields {
-    klagetekst: string;
-    oenskerAaKontaktes?: boolean;
-    paaVegneAv: 'PRIVATPERSON' | 'ANNEN_PERSON' | 'BEDRIFT';
-    innmelderNavn: string;
-    innmelderTlfnr: string;
-    innmelderFnr: string;
-    innmelderRolle: string;
-    innmelderHarFullmakt: boolean | undefined;
-    paaVegneAvNavn: string;
-    paaVegneAvFodselsnr: string;
-    enhetsnummerPaaklaget?: {
-        label: string;
-        value: string;
-    };
-    orgNavn: string;
-    orgNummer: string;
+	klagetekst: string;
+	oenskerAaKontaktes?: boolean;
+	paaVegneAv: 'PRIVATPERSON' | 'ANNEN_PERSON' | 'BEDRIFT';
+	innmelderNavn: string;
+	innmelderTlfnr: string;
+	innmelderFnr: string;
+	innmelderRolle: string;
+	innmelderHarFullmakt: boolean | undefined;
+	paaVegneAvNavn: string;
+	paaVegneAvFodselsnr: string;
+	enhetsnummerPaaklaget?: {
+		label: string;
+		value: string;
+	};
+	orgNavn: string;
+	orgNummer: string;
 }
 
 const ServiceKlageComponent = () => {
-    const methods = useForm<ServiceklageFormFields>({
-        reValidateMode: 'onChange',
-        shouldUnregister: true,
-    });
+	const methods = useForm<ServiceklageFormFields>({
+		reValidateMode: 'onChange',
+		shouldUnregister: true,
+	});
 
-    const {
-        register,
-        unregister,
-        handleSubmit,
-        watch,
-        control,
-        formState: { errors, isValid, isSubmitted },
-    } = methods;
+	const {
+		register,
+		unregister,
+		handleSubmit,
+		watch,
+		control,
+		formState: { errors, isValid, isSubmitted },
+	} = methods;
 
-    const [{ auth, fodselsnr }] = useStore();
-    const [loading, setLoading] = useState(false);
-    const [success, setSuccess] = useState(false);
-    const [error, setError] = useState<ErrorResponse>();
-    const [loginClosed, setLoginClosed] = useState(false);
-    const [isClient, setIsClient] = useState(false);
+	const [{ auth, fodselsnr }] = useStore();
+	const [loading, setLoading] = useState(false);
+	const [success, setSuccess] = useState(false);
+	const [error, setError] = useState<ErrorResponse>();
+	const [loginClosed, setLoginClosed] = useState(false);
+	const [isClient, setIsClient] = useState(false);
 
-    const { formatMessage } = useIntl();
+	const { formatMessage } = useIntl();
 
-    const innmelderNavn = auth.authenticated && auth.name;
-    const innmelderFnr = auth.authenticated && fodselsnr;
+	const innmelderNavn = auth.authenticated && auth.name;
+	const innmelderFnr = auth.authenticated && fodselsnr;
 
-    const closeModal = () => setLoginClosed(true);
+	const closeModal = () => setLoginClosed(true);
 
-    const send = (values: FieldValues) => {
-        const outboundBase: ServiceKlageBase = {
-            klagetekst: values.klagetekst,
-            oenskerAaKontaktes: values.oenskerAaKontaktes,
-        };
+	const send = (values: FieldValues) => {
+		const outboundBase: ServiceKlageBase = {
+			klagetekst: values.klagetekst,
+			oenskerAaKontaktes: values.oenskerAaKontaktes,
+		};
 
-        const outboundExtend: {
-            [key in ON_BEHALF_OF]: ServiceKlageFragment;
-        } = {
-            PRIVATPERSON: {
-                paaVegneAv: 'PRIVATPERSON',
-                innmelder: {
-                    navn: values.innmelderNavn,
-                    ...(values.oenskerAaKontaktes && {
-                        telefonnummer: values.innmelderTlfnr,
-                    }),
-                    personnummer: values.innmelderFnr,
-                },
-            },
-            ANNEN_PERSON: {
-                paaVegneAv: 'ANNEN_PERSON',
-                innmelder: {
-                    navn: values.innmelderNavn,
-                    ...(values.oenskerAaKontaktes && {
-                        telefonnummer: values.innmelderTlfnr,
-                    }),
-                    harFullmakt: values.innmelderHarFullmakt,
-                    rolle: values.innmelderRolle,
-                },
-                paaVegneAvPerson: {
-                    navn: values.paaVegneAvNavn,
-                    personnummer: values.paaVegneAvFodselsnr,
-                },
-            },
-            BEDRIFT: {
-                paaVegneAv: 'BEDRIFT',
-                ...(values.enhetsnummerPaaklaget && {
-                    enhetsnummerPaaklaget: values.enhetsnummerPaaklaget.value,
-                }),
-                innmelder: {
-                    ...(values.oenskerAaKontaktes && {
-                        navn: values.innmelderNavn,
-                        telefonnummer: values.innmelderTlfnr,
-                    }),
-                    ...(values.innmelderRolle && {
-                        rolle: values.innmelderRolle,
-                    }),
-                },
-                paaVegneAvBedrift: {
-                    navn: values.orgNavn,
-                    organisasjonsnummer: values.orgNummer,
-                },
-            },
-        };
+		const outboundExtend: {
+			[key in ON_BEHALF_OF]: ServiceKlageFragment;
+		} = {
+			PRIVATPERSON: {
+				paaVegneAv: 'PRIVATPERSON',
+				innmelder: {
+					navn: values.innmelderNavn,
+					...(values.oenskerAaKontaktes && {
+						telefonnummer: values.innmelderTlfnr,
+					}),
+					personnummer: values.innmelderFnr,
+				},
+			},
+			ANNEN_PERSON: {
+				paaVegneAv: 'ANNEN_PERSON',
+				innmelder: {
+					navn: values.innmelderNavn,
+					...(values.oenskerAaKontaktes && {
+						telefonnummer: values.innmelderTlfnr,
+					}),
+					harFullmakt: values.innmelderHarFullmakt,
+					rolle: values.innmelderRolle,
+				},
+				paaVegneAvPerson: {
+					navn: values.paaVegneAvNavn,
+					personnummer: values.paaVegneAvFodselsnr,
+				},
+			},
+			BEDRIFT: {
+				paaVegneAv: 'BEDRIFT',
+				...(values.enhetsnummerPaaklaget && {
+					enhetsnummerPaaklaget: values.enhetsnummerPaaklaget.value,
+				}),
+				innmelder: {
+					...(values.oenskerAaKontaktes && {
+						navn: values.innmelderNavn,
+						telefonnummer: values.innmelderTlfnr,
+					}),
+					...(values.innmelderRolle && {
+						rolle: values.innmelderRolle,
+					}),
+				},
+				paaVegneAvBedrift: {
+					navn: values.orgNavn,
+					organisasjonsnummer: values.orgNummer,
+				},
+			},
+		};
 
-        const outbound = {
-            ...outboundBase,
-            ...outboundExtend[values.paaVegneAv as ON_BEHALF_OF],
-        };
+		const outbound = {
+			...outboundBase,
+			...outboundExtend[values.paaVegneAv as ON_BEHALF_OF],
+		};
 
-        setLoading(true);
-        postServiceKlage(outbound)
-            .then(() => {
-                setSuccess(true);
-                triggerHotjar('serviceklage');
-            })
-            .catch((error: ErrorResponse) => {
-                setError(error);
-                captureException(error, {
-                    fingerprint: 'service-klage.post-service-klage',
-                    context: {
-                        component: 'ServiceKlage',
-                        action: 'postServiceKlage',
-                        errorCode: error?.errorCode,
-                    },
-                });
-            })
-            .then(() => {
-                setLoading(false);
-            });
-    };
+		setLoading(true);
+		postServiceKlage(outbound)
+			.then(() => {
+				setSuccess(true);
+				triggerHotjar('serviceklage');
+			})
+			.catch((error: ErrorResponse) => {
+				setError(error);
+				captureException(error, {
+					fingerprint: 'service-klage.post-service-klage',
+					context: {
+						component: 'ServiceKlage',
+						action: 'postServiceKlage',
+						errorCode: error?.errorCode,
+					},
+				});
+			})
+			.then(() => {
+				setLoading(false);
+			});
+	};
 
-    useEffect(() => {
-        setIsClient(true);
-    }, []);
+	useEffect(() => {
+		setIsClient(true);
+	}, []);
 
-    return (
-        <div className={appStyle.pageContent}>
-            <MetaTags
-                titleId={'tilbakemeldinger.serviceklage.sidetittel'}
-                descriptionId={'seo.serviceklage.description'}
-                path={paths.tilbakemeldinger.serviceklage.form}
-            />
-            <Header
-                title={formatMessage({
-                    id: 'tilbakemeldinger.serviceklage.sidetittel',
-                })}
-            />
-            {isClient && (
-                <LoginModal
-                    open={auth.loaded && !auth.authenticated && !loginClosed}
-                    closeFunc={closeModal}
-                />
-            )}
-            <GuidePanel poster className={appStyle.veileder}>
-                <FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
-            </GuidePanel>
-            <Box
-                background="default"
-                padding={{ xs: 'space-16', md: 'space-32' }}
-            >
-                {success ? (
-                    <Takk />
-                ) : (
-                    <FormProvider {...methods}>
-                        <form
-                            className={appStyle.skjema}
-                            onSubmit={handleSubmit(send)}
-                        >
-                            <Controller
-                                render={({ field, fieldState: { error } }) => (
-                                    <RadioGroup
-                                        {...field}
-                                        legend={formatMessage({
-                                            id: 'felter.hvemfra',
-                                        })}
-                                        error={error?.message}
-                                        value={field.value ?? null}
-                                        onChange={(value) => {
-                                            // Unregister innmelderRolle så verdi og validering resettes mellom Bedrift/AnnenPerson
-                                            unregister('innmelderRolle');
-                                            field.onChange(value);
-                                        }}
-                                    >
-                                        <Radio value={'PRIVATPERSON'}>
-                                            {formatMessage({
-                                                id: 'felter.hvemfra.megselv',
-                                            })}
-                                        </Radio>
-                                        <Radio value={'ANNEN_PERSON'}>
-                                            {formatMessage({
-                                                id: 'felter.hvemfra.enannen',
-                                            })}
-                                        </Radio>
-                                        <Radio value={'BEDRIFT'}>
-                                            {formatMessage({
-                                                id: 'felter.hvemfra.virksomhet',
-                                            })}
-                                        </Radio>
-                                    </RadioGroup>
-                                )}
-                                control={control}
-                                name={'paaVegneAv'}
-                                rules={{
-                                    required: formatMessage({
-                                        id: 'validering.hvemfra.pakrevd',
-                                    }),
-                                }}
-                            />
+	return (
+		<div className={appStyle.pageContent}>
+			<MetaTags
+				titleId={'tilbakemeldinger.serviceklage.sidetittel'}
+				descriptionId={'seo.serviceklage.description'}
+				path={paths.tilbakemeldinger.serviceklage.form}
+			/>
+			<Header
+				title={formatMessage({
+					id: 'tilbakemeldinger.serviceklage.sidetittel',
+				})}
+			/>
+			{isClient && <LoginModal open={auth.loaded && !auth.authenticated && !loginClosed} closeFunc={closeModal} />}
+			<GuidePanel poster className={appStyle.veileder}>
+				<FormattedMessage id="tilbakemeldinger.serviceklage.form.veileder" />
+			</GuidePanel>
+			<Box background="default" padding={{ xs: 'space-16', md: 'space-32' }}>
+				{success ? (
+					<Takk />
+				) : (
+					<FormProvider {...methods}>
+						<form className={appStyle.skjema} onSubmit={handleSubmit(send)}>
+							<Controller
+								render={({ field, fieldState: { error } }) => (
+									<RadioGroup
+										{...field}
+										legend={formatMessage({
+											id: 'felter.hvemfra',
+										})}
+										error={error?.message}
+										value={field.value ?? null}
+										onChange={(value) => {
+											// Unregister innmelderRolle så verdi og validering resettes mellom Bedrift/AnnenPerson
+											unregister('innmelderRolle');
+											field.onChange(value);
+										}}
+									>
+										<Radio value={'PRIVATPERSON'}>
+											{formatMessage({
+												id: 'felter.hvemfra.megselv',
+											})}
+										</Radio>
+										<Radio value={'ANNEN_PERSON'}>
+											{formatMessage({
+												id: 'felter.hvemfra.enannen',
+											})}
+										</Radio>
+										<Radio value={'BEDRIFT'}>
+											{formatMessage({
+												id: 'felter.hvemfra.virksomhet',
+											})}
+										</Radio>
+									</RadioGroup>
+								)}
+								control={control}
+								name={'paaVegneAv'}
+								rules={{
+									required: formatMessage({
+										id: 'validering.hvemfra.pakrevd',
+									}),
+								}}
+							/>
 
-                            {watch().paaVegneAv === 'PRIVATPERSON' && (
-                                <ServiceKlagePrivatperson
-                                    innmelderNavn={innmelderNavn}
-                                    innmelderFnr={innmelderFnr}
-                                />
-                            )}
-                            {watch().paaVegneAv === 'ANNEN_PERSON' && (
-                                <ServiceKlageForAnnenPerson
-                                    innmelderNavn={innmelderNavn}
-                                />
-                            )}
-                            {watch().paaVegneAv === 'BEDRIFT' && (
-                                <ServiceKlageForBedrift />
-                            )}
+							{watch().paaVegneAv === 'PRIVATPERSON' && (
+								<ServiceKlagePrivatperson innmelderNavn={innmelderNavn} innmelderFnr={innmelderFnr} />
+							)}
+							{watch().paaVegneAv === 'ANNEN_PERSON' && <ServiceKlageForAnnenPerson innmelderNavn={innmelderNavn} />}
+							{watch().paaVegneAv === 'BEDRIFT' && <ServiceKlageForBedrift />}
 
-                            <div className={appStyle.skjemaInline}>
-                                <Textarea
-                                    aria-required
-                                    description={
-                                        <FormattedMessage
-                                            id={'felter.melding.beskrivelse'}
-                                        />
-                                    }
-                                    {...register('klagetekst', {
-                                        required: formatMessage({
-                                            id: 'validering.melding.pakrevd',
-                                        }),
-                                        maxLength: {
-                                            value: vars.maksLengdeMelding,
-                                            message: formatMessage({
-                                                id: 'validering.melding.tegn',
-                                            }),
-                                        },
-                                    })}
-                                    label={formatMessage({
-                                        id: 'felter.melding.tittel',
-                                    })}
-                                    value={watch().klagetekst}
-                                    error={errors?.klagetekst?.message}
-                                    maxLength={vars.maksLengdeMelding}
-                                    autoComplete="off"
-                                />
-                            </div>
+							<div className={appStyle.skjemaInline}>
+								<Textarea
+									aria-required
+									description={<FormattedMessage id={'felter.melding.beskrivelse'} />}
+									{...register('klagetekst', {
+										required: formatMessage({
+											id: 'validering.melding.pakrevd',
+										}),
+										maxLength: {
+											value: vars.maksLengdeMelding,
+											message: formatMessage({
+												id: 'validering.melding.tegn',
+											}),
+										},
+									})}
+									label={formatMessage({
+										id: 'felter.melding.tittel',
+									})}
+									value={watch().klagetekst}
+									error={errors?.klagetekst?.message}
+									maxLength={vars.maksLengdeMelding}
+									autoComplete="off"
+								/>
+							</div>
 
-                            {(watch().paaVegneAv !== 'ANNEN_PERSON' ||
-                                watch().innmelderHarFullmakt !== false) && (
-                                <ServiceKlageOnskerAaKontaktes
-                                    innmelderNavn={innmelderNavn}
-                                />
-                            )}
-                            {error && (
-                                <Alert variant={'error'}>
-                                    <FormattedMessage
-                                        id={resolveErrorCode(error.errorCode)}
-                                    />
-                                </Alert>
-                            )}
-                            <Button
-                                type={'submit'}
-                                variant={'primary'}
-                                disabled={loading || (isSubmitted && !isValid)}
-                                loading={loading}
-                            >
-                                <FormattedMessage id={'felter.send'} />
-                            </Button>
-                        </form>
-                    </FormProvider>
-                )}
-            </Box>
-        </div>
-    );
+							{(watch().paaVegneAv !== 'ANNEN_PERSON' || watch().innmelderHarFullmakt !== false) && (
+								<ServiceKlageOnskerAaKontaktes innmelderNavn={innmelderNavn} />
+							)}
+							{error && (
+								<Alert variant={'error'}>
+									<FormattedMessage id={resolveErrorCode(error.errorCode)} />
+								</Alert>
+							)}
+							<Button
+								type={'submit'}
+								variant={'primary'}
+								disabled={loading || (isSubmitted && !isValid)}
+								loading={loading}
+							>
+								<FormattedMessage id={'felter.send'} />
+							</Button>
+						</form>
+					</FormProvider>
+				)}
+			</Box>
+		</div>
+	);
 };
 
 export default ServiceKlageComponent;

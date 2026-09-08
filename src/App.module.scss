@@ -1,43 +1,43 @@
 .pageContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 1rem;
-    padding: 1rem 1rem 4rem 1rem;
-    box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 1rem;
+	padding: 1rem 1rem 4rem 1rem;
+	box-sizing: border-box;
 }
 
 .skjema {
-    display: flex;
-    flex-direction: column;
-    row-gap: var(--ax-space-40);
+	display: flex;
+	flex-direction: column;
+	row-gap: var(--ax-space-40);
 
-    @media all and (min-width: 960px) {
-        min-width: 78ch;
-    }
+	@media all and (min-width: 960px) {
+		min-width: 78ch;
+	}
 }
 .skjemaInline {
-    display: flex;
-    flex-direction: column;
-    row-gap: var(--ax-space-20);
+	display: flex;
+	flex-direction: column;
+	row-gap: var(--ax-space-20);
 }
 
 .veileder {
-    max-width: 60ch;
+	max-width: 60ch;
 }
 
 .inputMedium {
-    max-width: 100%;
+	max-width: 100%;
 
-    @media all and (max-width: 959px) {
-        width: 22rem;
-    }
+	@media all and (max-width: 959px) {
+		width: 22rem;
+	}
 }
 
 .indent {
-    padding-left: 2rem;
+	padding-left: 2rem;
 }
 
 .inputSmall {
-    width: 12rem;
+	width: 12rem;
 }

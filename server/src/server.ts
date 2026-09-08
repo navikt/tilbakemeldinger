@@ -23,32 +23,30 @@ siteRouter.use('/tilbakemeldinger/api', apiRouter);
 
 // Redirect from root to basepath in local development environments
 if (isLocal() && VITE_APP_BASEPATH && VITE_APP_BASEPATH !== '/') {
-    app.get('/', (req, res) =>
-        res.redirect(`${VITE_APP_BASEPATH}/tilbakemeldinger`)
-    );
+	app.get('/', (req, res) => res.redirect(`${VITE_APP_BASEPATH}/tilbakemeldinger`));
 }
 
 setupApiRoutes(apiRouter)
-    .then(() => setupSiteRoutes(siteRouter))
-    .then(() => setupErrorHandlers(app))
-    .catch((e) => {
-        console.error(`Error occured while initializing server! - ${e}`);
-        throw e;
-    })
-    .then(() => {
-        const server = app.listen(APP_PORT, () => {
-            console.log(`Server starting on port ${APP_PORT}`);
-        });
+	.then(() => setupSiteRoutes(siteRouter))
+	.then(() => setupErrorHandlers(app))
+	.catch((e) => {
+		console.error(`Error occured while initializing server! - ${e}`);
+		throw e;
+	})
+	.then(() => {
+		const server = app.listen(APP_PORT, () => {
+			console.log(`Server starting on port ${APP_PORT}`);
+		});
 
-        const shutdown = () => {
-            console.log('Server shutting down');
+		const shutdown = () => {
+			console.log('Server shutting down');
 
-            server.close(() => {
-                console.log('Shutdown complete!');
-                process.exit(0);
-            });
-        };
+			server.close(() => {
+				console.log('Shutdown complete!');
+				process.exit(0);
+			});
+		};
 
-        process.on('SIGTERM', shutdown);
-        process.on('SIGINT', shutdown);
-    });
+		process.on('SIGTERM', shutdown);
+		process.on('SIGINT', shutdown);
+	});

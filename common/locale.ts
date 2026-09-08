@@ -2,29 +2,26 @@ export type Locale = 'nb' | 'en' | 'nn';
 export const validLocales: Locale[] = ['nb', 'en', 'nn']; // :(
 export const defaultLocale = 'nb' as Locale;
 
-export const isLocale = (str: string): str is Locale =>
-    validLocales.includes(str as Locale);
+export const isLocale = (str: string): str is Locale => validLocales.includes(str as Locale);
 
 import nb from './language/nb.js';
 import nn from './language/nn.js';
 import en from './language/en.js';
 
 export interface ITranslation {
-    [key: string]: string;
+	[key: string]: string;
 }
 
 const translations: Record<Locale, ITranslation> = { en, nb, nn };
 
 export function translate(locale: Locale, key: string): string {
-    const translationKeys = translations[locale];
-    const translation = translationKeys[key];
+	const translationKeys = translations[locale];
+	const translation = translationKeys[key];
 
-    if (!translation) {
-        console.log(
-            `No translation found for key: ${key} in locale: ${locale}`
-        );
-        return key;
-    }
+	if (!translation) {
+		console.log(`No translation found for key: ${key} in locale: ${locale}`);
+		return key;
+	}
 
-    return translation;
+	return translation;
 }

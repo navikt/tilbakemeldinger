@@ -3,11 +3,11 @@ import { jwtDecode } from 'jwt-decode';
 import { getAuthToken } from '../../../utils/auth/common.js';
 
 export const fodselsNrHandler: RequestHandler = (req, res) => {
-    const token = getAuthToken(req);
+	const token = getAuthToken(req);
 
-    if (!token) {
-        return res.status(401).send();
-    }
+	if (!token) {
+		return res.status(401).send();
+	}
 
-    return res.send({ fodselsnr: jwtDecode<{ pid: string }>(token).pid });
+	return res.send({ fodselsnr: jwtDecode<{ pid: string }>(token).pid });
 };

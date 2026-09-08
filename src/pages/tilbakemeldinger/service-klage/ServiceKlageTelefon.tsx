@@ -8,36 +8,34 @@ import { isValidTelefonnummer } from 'utils/validators';
 import appStyle from 'src/App.module.scss';
 
 const ServiceKlageTelefon = () => {
-    const {
-        register,
-        trigger,
-        formState: { errors, isSubmitted },
-    } = useFormContext<ServiceklageFormFields>();
+	const {
+		register,
+		trigger,
+		formState: { errors, isSubmitted },
+	} = useFormContext<ServiceklageFormFields>();
 
-    const { formatMessage } = useIntl();
-    const [{ kontaktInfo }] = useStore();
+	const { formatMessage } = useIntl();
+	const [{ kontaktInfo }] = useStore();
 
-    // Trigger validering etter mount dersom form er submitted
-    useEffect(() => {
-        isSubmitted && trigger();
-    }, [isSubmitted, trigger]);
+	// Trigger validering etter mount dersom form er submitted
+	useEffect(() => {
+		isSubmitted && trigger();
+	}, [isSubmitted, trigger]);
 
-    return (
-        <TextField
-            {...register('innmelderTlfnr', {
-                value: kontaktInfo.mobiltelefonnummer ?? '',
-                required: formatMessage({ id: 'validering.tlf.pakrevd' }),
-                validate: {
-                    isValidTelefonnummer: (v) =>
-                        isValidTelefonnummer(v) ||
-                        formatMessage({ id: 'validering.tlf.ugyldig' }),
-                },
-            })}
-            className={appStyle.inputSmall}
-            label={formatMessage({ id: 'felter.tlf.tittel' })}
-            error={errors?.innmelderTlfnr?.message}
-            autoComplete={'tel'}
-        />
-    );
+	return (
+		<TextField
+			{...register('innmelderTlfnr', {
+				value: kontaktInfo.mobiltelefonnummer ?? '',
+				required: formatMessage({ id: 'validering.tlf.pakrevd' }),
+				validate: {
+					isValidTelefonnummer: (v) => isValidTelefonnummer(v) || formatMessage({ id: 'validering.tlf.ugyldig' }),
+				},
+			})}
+			className={appStyle.inputSmall}
+			label={formatMessage({ id: 'felter.tlf.tittel' })}
+			error={errors?.innmelderTlfnr?.message}
+			autoComplete={'tel'}
+		/>
+	);
 };
 export default ServiceKlageTelefon;
