@@ -2,6 +2,7 @@ import { buildHtmlTemplate, getTemplateWithDecorator } from './templateBuilder.j
 import { ViteDevServer } from 'vite';
 import { render } from '../../_ssr-dist/main-server.js';
 import { HelmetServerState } from 'react-helmet-async';
+import { escapeHtml } from './escapeHtml.js';
 
 export type HtmlRenderer = (url: string) => Promise<string>;
 
@@ -26,11 +27,14 @@ export const prodRender: HtmlRenderer = async (url) => {
 };
 
 const devErrorHtml = (e: Error) => {
+	const safeMessage = escapeHtml(e.message);
+	const safeStack = escapeHtml(e.stack ?? '');
+
 	return `
         <div style='max-width: 1344px;width: 100%;margin: 1rem auto'>
-            <span>Server rendering error: ${e}</span>
+            <span>Server rendering error: ${safeMessage}</span>
             <div style='font-size: 0.75rem; margin-top: 1rem'>
-                <code>${e.stack}</code>
+                <code>${safeStack}</code>
             </div>
         </div>`;
 };
