@@ -11,45 +11,50 @@ import { FlatCompat } from '@eslint/eslintrc';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all,
+	baseDirectory: __dirname,
+	recommendedConfig: js.configs.recommended,
+	allConfig: js.configs.all,
 });
 
 // Clean globals to remove any with whitespace
-const cleanGlobals = Object.fromEntries(
-    Object.entries(globals.browser).map(([key, value]) => [key.trim(), value])
-);
+const cleanGlobals = Object.fromEntries(Object.entries(globals.browser).map(([key, value]) => [key.trim(), value]));
 
 export default defineConfig([
-    {
-        ignores: ['**/node_modules/**', '**/dist/**', '**/_ssr-dist/**'],
-    },
-    {
-        extends: [
-            ...compat.extends(
-                'eslint:recommended',
-                'plugin:@typescript-eslint/recommended'
-            ),
-            reactPlugin.configs['recommended-typescript'],
-        ],
+	{
+		ignores: ['**/node_modules/**', '**/dist/**', '**/_ssr-dist/**'],
+	},
+	{
+		extends: [
+			...compat.extends('eslint:recommended', 'plugin:@typescript-eslint/recommended'),
+			reactPlugin.configs['recommended-typescript'],
+		],
 
-        plugins: {
-            '@typescript-eslint': typescriptEslint,
-        },
+		plugins: {
+			'@typescript-eslint': typescriptEslint,
+		},
 
-        languageOptions: {
-            globals: cleanGlobals,
-            parser: tsParser,
-            ecmaVersion: 'latest',
-            sourceType: 'module',
-        },
+		languageOptions: {
+			globals: cleanGlobals,
+			parser: tsParser,
+			ecmaVersion: 'latest',
+			sourceType: 'module',
+		},
 
-        rules: {
-            '@typescript-eslint/no-unused-vars': 'warn',
-            '@typescript-eslint/no-unused-expressions': 'off',
-            '@eslint-react/exhaustive-deps': 'off',
-            '@eslint-react/set-state-in-effect': 'off',
-        },
-    },
+		rules: {
+			'@typescript-eslint/no-unused-vars': 'warn',
+			'@typescript-eslint/no-unused-expressions': 'off',
+			'@eslint-react/exhaustive-deps': 'off',
+			'@eslint-react/set-state-in-effect': 'off',
+		},
+	},
+	{
+		// Root-level config/setup scripts run in Node (and Jest), not the browser
+		files: ['*.js', '*.mjs', '*.cjs'],
+		languageOptions: {
+			globals: {
+				...globals.node,
+				...globals.jest,
+			},
+		},
+	},
 ]);

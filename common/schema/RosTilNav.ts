@@ -2,26 +2,26 @@ import zod from 'zod';
 import { zodString } from './helpers.js';
 
 const baseRosTilNavSchema = zod.object({
-    melding: zodString,
+	melding: zodString,
 });
 
 export const rosNavKontaktsenterSchema = baseRosTilNavSchema.extend({
-    hvemRoses: zod.literal('NAV_KONTAKTSENTER'),
+	hvemRoses: zod.literal('NAV_KONTAKTSENTER'),
 });
 
 export const rosNavDigitaleTjenesterSchema = baseRosTilNavSchema.extend({
-    hvemRoses: zod.literal('NAV_DIGITALE_TJENESTER'),
+	hvemRoses: zod.literal('NAV_DIGITALE_TJENESTER'),
 });
 
 export const rosNavKontorSchema = baseRosTilNavSchema.extend({
-    hvemRoses: zod.literal('NAV_KONTOR'),
-    navKontor: zodString,
+	hvemRoses: zod.literal('NAV_KONTOR'),
+	navKontor: zodString,
 });
 
 export const rosTilNavSchema = zod.discriminatedUnion('hvemRoses', [
-    rosNavKontaktsenterSchema,
-    rosNavDigitaleTjenesterSchema,
-    rosNavKontorSchema,
+	rosNavKontaktsenterSchema,
+	rosNavDigitaleTjenesterSchema,
+	rosNavKontorSchema,
 ]);
 
 export type RosTilNavSchemaType = zod.infer<typeof rosTilNavSchema>;

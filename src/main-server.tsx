@@ -5,24 +5,21 @@ import { AppRoot } from './index';
 import { HelmetProvider, HelmetServerState } from 'react-helmet-async';
 
 type HelmetContext = {
-    helmet?: HelmetServerState;
+	helmet?: HelmetServerState;
 };
 
 export const render = (url: string) => {
-    const helmetContext: HelmetContext = {};
+	const helmetContext: HelmetContext = {};
 
-    const html = renderToString(
-        <HelmetProvider context={helmetContext}>
-            <StaticRouter
-                basename={import.meta.env.VITE_APP_BASEPATH}
-                location={url}
-            >
-                <AppRoot url={url} />
-            </StaticRouter>
-        </HelmetProvider>
-    );
+	const html = renderToString(
+		<HelmetProvider context={helmetContext}>
+			<StaticRouter basename={import.meta.env.VITE_APP_BASEPATH} location={url}>
+				<AppRoot url={url} />
+			</StaticRouter>
+		</HelmetProvider>
+	);
 
-    const { helmet } = helmetContext;
+	const { helmet } = helmetContext;
 
-    return { html, helmet };
+	return { html, helmet };
 };

@@ -6,29 +6,29 @@ import { Helmet } from 'react-helmet-async';
 import style from './404.module.scss';
 
 const NotFound = () => {
-    const [isClient, setIsClient] = useState(false);
+	const [isClient, setIsClient] = useState(false);
 
-    useEffect(() => {
-        setIsClient(true);
-    }, []);
+	useEffect(() => {
+		setIsClient(true);
+	}, []);
 
-    return (
-        <>
-            {isClient && (
-                <Helmet>
-                    <meta name="robots" content="noindex" />
-                </Helmet>
-            )}
-            <div className={style.container}>
-                <Heading size={'medium'} level={'2'}>
-                    <FormattedMessage id={'feil.404'} />
-                </Heading>
-                <Link href={paths.kontaktOss.forside}>
-                    <FormattedMessage id={'feil.lenke'} />
-                </Link>
-            </div>
-        </>
-    );
+	return (
+		<>
+			{isClient && (
+				<Helmet>
+					<meta name="robots" content="noindex" />
+				</Helmet>
+			)}
+			<div className={style.container}>
+				<Heading size={'medium'} level={'2'}>
+					<FormattedMessage id={'feil.404'} />
+				</Heading>
+				<Link href={paths.kontaktOss.forside}>
+					<FormattedMessage id={'feil.lenke'} />
+				</Link>
+			</div>
+		</>
+	);
 };
 
 export default NotFound;

@@ -8,7 +8,7 @@ global.fetch = jest.fn();
 
 // Reset mocks between tests
 beforeEach(() => {
-    jest.clearAllMocks();
+	jest.clearAllMocks();
 });
 
 // Fix for ES modules in Jest

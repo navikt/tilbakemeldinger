@@ -7,40 +7,40 @@ import { TextField } from '@navikt/ds-react';
 import appStyle from 'src/App.module.scss';
 
 interface Props {
-    innmelderNavn: string | false;
+	innmelderNavn: string | false;
 }
 
 const ServiceKlageKontaktBedrift = (props: Props) => {
-    const {
-        register,
-        trigger,
-        formState: { errors, isSubmitted },
-    } = useFormContext<ServiceklageFormFields>();
+	const {
+		register,
+		trigger,
+		formState: { errors, isSubmitted },
+	} = useFormContext<ServiceklageFormFields>();
 
-    const { formatMessage } = useIntl();
+	const { formatMessage } = useIntl();
 
-    const { innmelderNavn } = props;
+	const { innmelderNavn } = props;
 
-    // Trigger validering etter mount dersom form er submitted
-    useEffect(() => {
-        isSubmitted && trigger();
-    }, [isSubmitted, trigger]);
+	// Trigger validering etter mount dersom form er submitted
+	useEffect(() => {
+		isSubmitted && trigger();
+	}, [isSubmitted, trigger]);
 
-    return (
-        <>
-            <TextField
-                {...register('innmelderNavn', {
-                    value: innmelderNavn || undefined,
-                    required: formatMessage({ id: 'validering.navn.pakrevd' }),
-                })}
-                label={formatMessage({ id: 'felter.dittnavn' })}
-                error={errors?.innmelderNavn?.message}
-                className={appStyle.inputMedium}
-                disabled={!!innmelderNavn}
-                autoComplete={'name'}
-            />
-            <ServiceKlageTelefon />
-        </>
-    );
+	return (
+		<>
+			<TextField
+				{...register('innmelderNavn', {
+					value: innmelderNavn || undefined,
+					required: formatMessage({ id: 'validering.navn.pakrevd' }),
+				})}
+				label={formatMessage({ id: 'felter.dittnavn' })}
+				error={errors?.innmelderNavn?.message}
+				className={appStyle.inputMedium}
+				disabled={!!innmelderNavn}
+				autoComplete={'name'}
+			/>
+			<ServiceKlageTelefon />
+		</>
+	);
 };
 export default ServiceKlageKontaktBedrift;

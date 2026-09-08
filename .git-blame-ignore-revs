@@ -1,0 +1,9 @@
+# Commits som kun endrer formatering. Ignoreres av `git blame`.
+#
+# For å aktivere lokalt (én gang per klone):
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+#
+# GitHub bruker denne filen automatisk.
+
+# chore: formater kodebasen med tabs, bredde 120
+6d7c278aba2cd94e4c1de10111cbb08306e29edd
