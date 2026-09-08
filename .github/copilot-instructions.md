@@ -105,6 +105,7 @@ When adding or modifying code:
 
 - Automated via GitHub Actions
 - Workflows: "Deploy to dev" and "Deploy to prod"
+- The workflows are thin callers of the shared `navikt/navno-ci` reusable workflows (build → deploy → release); build steps and action versions live there, per-environment values (`.env` lines, CDN path, NAIS vars file) live here.
 - Deploys to Nais. See [Nais documentation](https://nais.io/docs/) for details when troubleshooting.
 - See workflows in `.github/workflows/`
 

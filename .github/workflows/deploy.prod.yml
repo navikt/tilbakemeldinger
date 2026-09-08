@@ -1,47 +1,46 @@
 name: Build and deploy to prod and create a new release
 on:
   push:
-    branches:
-      - 'main'
+    branches: [main]
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  build:
+    uses: navikt/navno-ci/.github/workflows/node-build.yml@v1
     permissions:
       contents: read
       id-token: write
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v7
+    with:
+      image-suffix: release-${{ github.ref_name }}
+      cdn-source: ./server/dist/client/assets
+      cdn-destination: tilbakemeldinger/prod
+      prune-remove: node_modules server/node_modules
+      env-file: |
+        ENV=prod
+        VITE_APP_BASEPATH=/person/kontakt-oss
+        VITE_APP_ORIGIN=https://www.nav.no
+        VITE_EDITORIAL_FRONTPAGE_ORIGIN=https://www.nav.no/tilbakemeldinger
+        VITE_TELEMETRY_URL=https://telemetry.nav.no/collect
+        APP_PORT=9001
+        API_URL=http://tilbakemeldingsmottak-api.teamserviceklage
+        NORG2_ORIGIN=https://norg2.prod-fss-pub.nais.io
+        CDN_BASE=https://cdn.nav.no/navno/tilbakemeldinger/prod
+    secrets: inherit
 
-      - name: Build and deploy to prod
-        uses: ./.github/actions/build-and-deploy
-        with:
-          env: prod
-          imageSuffix: release-${{ github.ref_name }}
-          appOrigin: 'https://www.nav.no'
-          editorialFrontpageOrigin: 'https://www.nav.no/tilbakemeldinger'
-          telemetryUrl: 'https://telemetry.nav.no/collect'
-        env:
-          READER_TOKEN: ${{ secrets.READER_TOKEN }}
-          NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+  deploy:
+    needs: build
+    uses: navikt/navno-ci/.github/workflows/nais-deploy.yml@v1
+    permissions:
+      contents: read
+      id-token: write
+    with:
+      cluster: prod-gcp
+      resource: .nais/config.yml
+      vars: .nais/vars-prod.yml
+      var: image=${{ needs.build.outputs.image }}
 
   release:
-    name: Create a new release
-    needs: build-and-deploy
-    runs-on: ubuntu-latest
+    needs: deploy
+    uses: navikt/navno-ci/.github/workflows/release.yml@v1
     permissions:
       contents: write
-      id-token: write
-    steps:
-      - name: Generate unique tag name
-        run: echo "TAG_NAME=$(date +%s)" >> $GITHUB_ENV
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v3
-        with:
-          target_commitish: main
-          tag_name: release/prod@${{ env.TAG_NAME }} # Generates a unique tag using timestamp
-          name: Release ${{ github.ref_name }}
-          generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }} # This is a PAT with repo permissions
+    secrets: inherit
