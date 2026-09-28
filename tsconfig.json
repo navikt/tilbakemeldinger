@@ -30,7 +30,7 @@
 			"utils/*": ["./src/utils/*"],
 			"common/*": ["./common/*"]
 		},
-		"types": ["node", "jest", "vite/client"]
+		"types": ["node", "vite/client"]
 	},
 	"include": ["src", "common"],
 	"exclude": ["**/*.test.ts", "**/*.test.tsx"],
