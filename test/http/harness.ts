@@ -14,16 +14,8 @@ export const ENTRY = ['server/dist/server/server/src/server.js'];
 export const BASE = '/person/kontakt-oss';
 export const API = `${BASE}/tilbakemeldinger/api`;
 
-// Values baked into the client/SSR bundles by globalSetup
-export const BUILD_ENV = {
-	NODE_ENV: 'production',
-	ENV: 'dev',
-	VITE_APP_BASEPATH: BASE,
-	VITE_APP_ORIGIN: 'https://www.nav.test',
-	VITE_TELEMETRY_URL: 'https://telemetry.test/collect',
-	CDN_BASE: '',
-	ANALYZE: '',
-};
+// Baked into the client/SSR bundles by `pretest:http` in package.json
+export const APP_ORIGIN = 'https://www.nav.test';
 
 const { privateKey } = generateKeyPairSync('rsa', { modulusLength: 2048 });
 const tokenxJwk = { ...privateKey.export({ format: 'jwk' }), kid: 'test-kid', alg: 'RS256' };

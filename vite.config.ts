@@ -86,11 +86,13 @@ export default defineConfig(({ mode }) => {
 				{
 					extends: true,
 					test: {
-						// Black-box tests against the built server. Run separately with
-						// `pnpm run test:http`, never as part of `pnpm test` (see globalSetup.ts)
+						// Black-box tests against the built server. `pnpm run test:http`
+						// first rebuilds the app with a pinned env (`pretest:http`), so it
+						// must never be part of `pnpm test`: CI deploys run `test` between
+						// the real build and the CDN upload/Docker build. To rerun against
+						// the existing build: `pnpm exec vitest run --project http`
 						name: 'http',
 						include: ['test/http/**/*.test.ts'],
-						globalSetup: ['./test/http/globalSetup.ts'],
 						hookTimeout: 30_000,
 						testTimeout: 30_000,
 					},

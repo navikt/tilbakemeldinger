@@ -22,6 +22,7 @@
 		"dev": "pnpm run dev-prepare && pnpm --filter tilbakemeldinger-server run dev",
 		"prepare": "husky || true",
 		"test": "vitest run --project unit",
+		"pretest:http": "cross-env NODE_ENV=production ENV=dev VITE_APP_BASEPATH=/person/kontakt-oss VITE_APP_ORIGIN=https://www.nav.test VITE_TELEMETRY_URL=https://telemetry.test/collect CDN_BASE= ANALYZE= pnpm run build",
 		"test:http": "vitest run --project http",
 		"test:watch": "vitest --project unit",
 		"test:coverage": "vitest run --project unit --coverage"

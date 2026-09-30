@@ -2,7 +2,7 @@ import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import nb from '../../common/language/nb';
 import nn from '../../common/language/nn';
 import en from '../../common/language/en';
-import { BASE, BUILD_ENV, parseHtml, startServer, type TestServer } from './harness';
+import { APP_ORIGIN, BASE, parseHtml, startServer, type TestServer } from './harness';
 import { expectNoUnexpectedHosts } from './fixtures';
 
 const translations = { nb, nn, en };
@@ -75,7 +75,7 @@ describe('server-side rendered pages', () => {
 			expect(doc.head.querySelector('title')?.textContent).toBe(`${t[page.title]} - www.nav.no`);
 			expect(doc.head.querySelector('meta[name="description"]')?.getAttribute('content')).toBe(t[page.description]);
 			expect(doc.head.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-				`${BUILD_ENV.VITE_APP_ORIGIN}${BASE}/${locale}${page.path}`
+				`${APP_ORIGIN}${BASE}/${locale}${page.path}`
 			);
 			expect(doc.querySelector('#maincontent h1')?.textContent).toBe(t[page.h1]);
 
