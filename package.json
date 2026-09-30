@@ -21,10 +21,11 @@
 		"dev-prepare": "node preact-compat-symlinks.js && node -e \"require('fs').copyFileSync('.env.development', '.env')\"",
 		"dev": "pnpm run dev-prepare && pnpm --filter tilbakemeldinger-server run dev",
 		"prepare": "husky || true",
-		"test": "vitest run",
-		"test:unit": "vitest run --project unit",
-		"test:watch": "vitest",
-		"test:coverage": "vitest run --coverage"
+		"test": "vitest run --project unit",
+		"pretest:http": "cross-env NODE_ENV=production ENV=dev VITE_APP_BASEPATH=/person/kontakt-oss VITE_APP_ORIGIN=https://www.nav.test VITE_TELEMETRY_URL=https://telemetry.test/collect CDN_BASE= ANALYZE= pnpm run build",
+		"test:http": "vitest run --project http",
+		"test:watch": "vitest --project unit",
+		"test:coverage": "vitest run --project unit --coverage"
 	},
 	"dependencies": {
 		"@nais/apm": "0.4.0",
@@ -77,7 +78,7 @@
 		"sass": "1.100.0",
 		"ts-node": "10.9.2",
 		"typescript": "6.0.3",
-		"vite-tsconfig-paths": "6.1.1",
+		"undici": "8.11.2",
 		"vitest": "5.0.1"
 	},
 	"lint-staged": {

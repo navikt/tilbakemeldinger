@@ -2,7 +2,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import preact from '@preact/preset-vite';
 import { visualizer } from 'rollup-plugin-visualizer';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import NavBrowserTargets from '@navikt/browserslist-config/vite';
 
 export default defineConfig(({ mode }) => {
@@ -14,7 +13,6 @@ export default defineConfig(({ mode }) => {
 		plugins: [
 			NavBrowserTargets(),
 			preact(),
-			tsconfigPaths(),
 			...(process.env.ANALYZE ? [visualizer({ gzipSize: true, open: true, sourcemap: true })] : []),
 		],
 		build: {
@@ -50,6 +48,7 @@ export default defineConfig(({ mode }) => {
 			},
 		},
 		resolve: {
+			tsconfigPaths: true,
 			alias: {
 				src: '/src',
 				assets: '/src/assets',
@@ -87,9 +86,15 @@ export default defineConfig(({ mode }) => {
 				{
 					extends: true,
 					test: {
-						// Black-box tests against the built server
+						// Black-box tests against the built server. `pnpm run test:http`
+						// first rebuilds the app with a pinned env (`pretest:http`), so it
+						// must never be part of `pnpm test`: CI deploys run `test` between
+						// the real build and the CDN upload/Docker build. To rerun against
+						// the existing build: `pnpm exec vitest run --project http`
 						name: 'http',
 						include: ['test/http/**/*.test.ts'],
+						hookTimeout: 30_000,
+						testTimeout: 30_000,
 					},
 				},
 			],
