@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig, loadEnv } from 'vite';
 import preact from '@preact/preset-vite';
 import { visualizer } from 'rollup-plugin-visualizer';
@@ -59,6 +60,39 @@ export default defineConfig(({ mode }) => {
 				types: '/src/types',
 				utils: '/src/utils',
 			},
+		},
+		test: {
+			environment: 'node',
+			clearMocks: true,
+			setupFiles: ['./test/setup.ts'],
+			// Pinned so a local .env (e.g. ENV=localhost, which enables fetch-mock)
+			// can't change behavior or API URLs under test
+			env: {
+				VITE_APP_BASEPATH: '/person/kontakt-oss',
+				VITE_APP_ORIGIN: 'http://localhost:9001',
+				VITE_ENV: 'dev',
+				VITE_TELEMETRY_URL: 'http://localhost:9001/collect',
+			},
+			coverage: {
+				include: ['src/**/*.{ts,tsx}', 'common/**/*.ts', 'server/src/**/*.ts'],
+			},
+			projects: [
+				{
+					extends: true,
+					test: {
+						name: 'unit',
+						include: ['{src,common,server/src}/**/*.test.{ts,tsx}'],
+					},
+				},
+				{
+					extends: true,
+					test: {
+						// Black-box tests against the built server
+						name: 'http',
+						include: ['test/http/**/*.test.ts'],
+					},
+				},
+			],
 		},
 	};
 });

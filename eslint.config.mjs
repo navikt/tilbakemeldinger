@@ -48,12 +48,11 @@ export default defineConfig([
 		},
 	},
 	{
-		// Root-level config/setup scripts run in Node (and Jest), not the browser
+		// Root-level config/setup scripts run in Node, not the browser
 		files: ['*.js', '*.mjs', '*.cjs'],
 		languageOptions: {
 			globals: {
 				...globals.node,
-				...globals.jest,
 			},
 		},
 	},
