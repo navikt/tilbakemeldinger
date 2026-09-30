@@ -87,9 +87,13 @@ export default defineConfig(({ mode }) => {
 				{
 					extends: true,
 					test: {
-						// Black-box tests against the built server
+						// Black-box tests against the built server. Run separately with
+						// `pnpm run test:http`, never as part of `pnpm test` (see globalSetup.ts)
 						name: 'http',
 						include: ['test/http/**/*.test.ts'],
+						globalSetup: ['./test/http/globalSetup.ts'],
+						hookTimeout: 30_000,
+						testTimeout: 30_000,
 					},
 				},
 			],

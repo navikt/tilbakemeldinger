@@ -21,10 +21,10 @@
 		"dev-prepare": "node preact-compat-symlinks.js && node -e \"require('fs').copyFileSync('.env.development', '.env')\"",
 		"dev": "pnpm run dev-prepare && pnpm --filter tilbakemeldinger-server run dev",
 		"prepare": "husky || true",
-		"test": "vitest run",
-		"test:unit": "vitest run --project unit",
-		"test:watch": "vitest",
-		"test:coverage": "vitest run --coverage"
+		"test": "vitest run --project unit",
+		"test:http": "vitest run --project http",
+		"test:watch": "vitest --project unit",
+		"test:coverage": "vitest run --project unit --coverage"
 	},
 	"dependencies": {
 		"@nais/apm": "0.4.0",
