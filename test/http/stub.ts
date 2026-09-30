@@ -4,7 +4,7 @@ import type { AddressInfo } from 'node:net';
 /*
  * Stand-in for every service outside the app (decorator, nav.no, Azure AD,
  * TokenX, norg2, tilbakemeldingsmottak-api). The server's outbound fetches are
- * rerouted here by preload.ts, with the original host in the x-stub-host header.
+ * rerouted here by preload.ts, with the original host in the Host header.
  */
 
 export type StubRequest = {
@@ -106,7 +106,7 @@ export const startStub = async (extraRoutes: StubRoute[] = []): Promise<Stub> =>
 
 		const url = new URL(incoming.url ?? '/', 'http://stub');
 		const req: StubRequest = {
-			host: String(incoming.headers['x-stub-host'] ?? ''),
+			host: incoming.headers.host ?? '',
 			method: incoming.method ?? 'GET',
 			path: url.pathname,
 			query: url.searchParams,
