@@ -78,6 +78,10 @@ export default defineConfig(({ mode }) => {
 			projects: [
 				{
 					extends: true,
+					// Resolve packages like Node does. Otherwise Vite picks the CJS build of
+					// react-router while react-router-dom loads the ESM one, and the app ends
+					// up with two router contexts
+					resolve: { conditions: ['module-sync'] },
 					test: {
 						name: 'unit',
 						include: ['{src,common,server/src}/**/*.test.{ts,tsx}'],

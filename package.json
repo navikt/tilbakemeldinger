@@ -6,6 +6,9 @@
 	"license": "MIT",
 	"author": "Nav",
 	"type": "module",
+	"imports": {
+		"#test/*": "./test/*.tsx"
+	},
 	"scripts": {
 		"build": "pnpm run build:client && pnpm run build:ssr && pnpm run build:server",
 		"build:client": "vite build --outDir ./server/dist/client",
@@ -60,6 +63,7 @@
 		"@testing-library/preact": "3.2.4",
 		"@testing-library/user-event": "14.6.7",
 		"@types/fetch-mock": "7.3.8",
+		"@types/jsdom": "30.0.0",
 		"@types/node": "25.9.1",
 		"@types/react": "19.2.15",
 		"@types/react-dom": "18.3.5",
