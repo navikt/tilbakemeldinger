@@ -1,7 +1,6 @@
 import express, { Router } from 'express';
 import path from 'path';
-import { createServer } from 'vite';
-import { HtmlRenderer, devRender, prodRender } from './ssr/htmlRenderer.js';
+import { HtmlRenderer, createProdRender, devRender } from './ssr/htmlRenderer.js';
 import { createCacheMiddleware } from '../utils/cacheMiddleware.js';
 import { createCspMiddleware } from '../utils/cspMiddleware.js';
 import { isLocal } from '../utils/environment.js';
@@ -30,6 +29,8 @@ export const setupSiteRoutes = async (router: Router) => {
 	if (isProd) {
 		console.log(`Configuring site endpoints for production mode - Using assets dir ${assetsDir}`);
 
+		render = await createProdRender();
+
 		router.use(
 			'/assets',
 			express.static(assetsDir, {
@@ -37,11 +38,10 @@ export const setupSiteRoutes = async (router: Router) => {
 				index: 'false',
 			})
 		);
-
-		render = prodRender;
 	} else {
 		console.log('Configuring site endpoints for development mode');
 
+		const { createServer } = await import('vite');
 		const vite = await createServer({
 			server: { middlewareMode: true },
 			appType: 'custom',

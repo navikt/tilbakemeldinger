@@ -6,7 +6,7 @@ import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { getBreadcrumbsFromPathname } from '../../../../common/breadcrumbs.js';
 import { Locale, defaultLocale, isLocale } from '../../../../common/locale.js';
 
-const templatePath =
+export const templatePath =
 	process.env.NODE_ENV === 'development'
 		? path.resolve(process.cwd(), '..', 'index.html')
 		: path.resolve(process.cwd(), 'server', 'dist', 'client', 'index.html');
