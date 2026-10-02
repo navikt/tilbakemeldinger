@@ -1,6 +1,6 @@
-import { RequestHandler } from 'express';
+import type { RequestHandler } from 'express';
 import { jwtDecode } from 'jwt-decode';
-import { getAuthToken } from '../../../utils/auth/common.js';
+import { getAuthToken } from '../../../utils/auth/common.ts';
 
 export const fodselsNrHandler: RequestHandler = (req, res) => {
 	const token = getAuthToken(req);

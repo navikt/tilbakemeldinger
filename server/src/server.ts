@@ -1,9 +1,9 @@
 import express from 'express';
 import compression from 'compression';
-import { setupSiteRoutes } from './site/setupSiteRoutes.js';
-import { setupApiRoutes } from './api/setupApiRoutes.js';
-import { setupErrorHandlers } from './utils/errorHandlers.js';
-import { isLocal } from './utils/environment.js';
+import { setupSiteRoutes } from './site/setupSiteRoutes.ts';
+import { setupApiRoutes } from './api/setupApiRoutes.ts';
+import { setupErrorHandlers } from './utils/errorHandlers.ts';
+import { isLocal } from './utils/environment.ts';
 
 const { APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV } = process.env;
 

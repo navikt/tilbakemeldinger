@@ -1,8 +1,8 @@
-import { RequestHandler } from 'express';
+import type { RequestHandler } from 'express';
 import Cache from 'node-cache';
 import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
-import { decoratorEnvProps } from './decorator.js';
-import { CSPDirectives, DATA, SELF } from 'csp-header';
+import { decoratorEnvProps } from './decorator.ts';
+import { type CSPDirectives, DATA, SELF } from 'csp-header';
 
 /*
  * This middleware sets a CSP-header compatible with nav-dekoratoren

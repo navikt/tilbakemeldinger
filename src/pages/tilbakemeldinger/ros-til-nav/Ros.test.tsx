@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { screen } from '@testing-library/dom';
 import { expect, test } from 'vitest';
-import { renderApp, t } from '#test/render';
+import { renderApp, t } from '#test/render.tsx';
 
 test('sends ros to a Nav-kontor picked in the combobox, by name', async () => {
 	const { user, posts } = renderApp('/nb/tilbakemeldinger/ros-til-nav');

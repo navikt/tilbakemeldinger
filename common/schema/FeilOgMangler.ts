@@ -1,5 +1,5 @@
 import zod from 'zod';
-import { zodString } from './helpers.js';
+import { zodString } from './helpers.ts';
 
 export const FeilOgManglerTypeSchema = zod.enum(['TEKNISK_FEIL', 'FEIL_INFO', 'UNIVERSELL_UTFORMING']);
 
