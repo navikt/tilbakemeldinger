@@ -1,7 +1,9 @@
 import fs from 'node:fs';
-import { buildHtmlTemplate, getTemplateWithDecorator, templatePath } from './templateBuilder.js';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { buildHtmlTemplate, getTemplateWithDecorator } from './templateBuilder.ts';
 import type { ViteDevServer } from 'vite';
-import { HelmetServerState } from 'react-helmet-async';
+import type { HelmetServerState } from 'react-helmet-async';
 
 export type HtmlRenderer = (url: string) => Promise<string>;
 
@@ -18,9 +20,11 @@ const processTemplate = async (templateHtml: string, appHtml: string, helmet?: H
 		.replace('<template>%%CANONICAL%%</template>', helmet?.link.toString() ?? '');
 };
 
+const prodTemplatePath = fileURLToPath(import.meta.resolve('#dist/client/index.html'));
+
 export const createProdRender = async (): Promise<HtmlRenderer> => {
-	if (!fs.existsSync(templatePath)) {
-		throw new Error(`HTML template not found at ${templatePath}`);
+	if (!fs.existsSync(prodTemplatePath)) {
+		throw new Error(`HTML template not found at ${prodTemplatePath}`);
 	}
 	// this is a variable instead of a literal in 'import'
 	// because TS is crazy and tries to resolve it immediately
@@ -31,7 +35,7 @@ export const createProdRender = async (): Promise<HtmlRenderer> => {
 };
 
 const prodRender = async (render: SsrModule['render'], url: string) => {
-	const template = await getTemplateWithDecorator(url);
+	const template = await getTemplateWithDecorator(url, prodTemplatePath);
 
 	try {
 		const { html, helmet } = render(url);
@@ -59,7 +63,7 @@ const stripVoidElementClosingTags = (html: string) => html.replace(/<\/link>/gi,
 export const devRender =
 	(vite: ViteDevServer): HtmlRenderer =>
 	async (url) => {
-		const template = await buildHtmlTemplate();
+		const template = await buildHtmlTemplate(path.join(vite.config.root, 'index.html'));
 		const html = await vite.transformIndexHtml(url, stripVoidElementClosingTags(template));
 
 		try {

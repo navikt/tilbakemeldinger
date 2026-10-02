@@ -11,9 +11,9 @@ jobs:
       id-token: write
     with:
       image-suffix: release-${{ github.ref_name }}
-      cdn-source: ./server/dist/client/assets
+      cdn-source: ./dist/client/assets
       cdn-destination: tilbakemeldinger/prod
-      prune-remove: node_modules server/node_modules
+      prune-remove: node_modules
       env-file: |
         ENV=prod
         VITE_APP_BASEPATH=/person/kontakt-oss

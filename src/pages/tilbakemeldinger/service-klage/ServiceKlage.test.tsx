@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { screen, waitFor } from '@testing-library/dom';
 import { expect, test } from 'vitest';
-import { renderApp, t } from '#test/render';
+import { renderApp, t } from '#test/render.tsx';
 
 test('a company must want contact, and gets the orgnr error back from the API', async () => {
 	const { user, posts } = renderApp('/nb/tilbakemeldinger/serviceklage', {

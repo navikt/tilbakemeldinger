@@ -21,7 +21,7 @@ const cleanGlobals = Object.fromEntries(Object.entries(globals.browser).map(([ke
 
 export default defineConfig([
 	{
-		ignores: ['**/node_modules/**', '**/dist/**', '**/_ssr-dist/**'],
+		ignores: ['**/node_modules/**', '**/dist/**'],
 	},
 	{
 		extends: [

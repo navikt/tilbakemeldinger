@@ -1,6 +1,6 @@
-import { RequestHandler } from 'express';
-import { URLs } from '../../../urls.js';
-import { Enhet } from '../../../../../common/enhet.js';
+import type { RequestHandler } from 'express';
+import { URLs } from '../../../urls.ts';
+import type { Enhet } from '#common/enhet.ts';
 
 const NORG2_API_URL = `${URLs.norg2Origin}${URLs.norg2Path}`;
 

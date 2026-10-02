@@ -1,5 +1,5 @@
 import zod from 'zod';
-import { zodString } from './helpers.js';
+import { zodString } from './helpers.ts';
 
 // Enums as zod schemas
 export const onBehalfOfSchema = zod.enum(['PRIVATPERSON', 'ANNEN_PERSON', 'BEDRIFT']);

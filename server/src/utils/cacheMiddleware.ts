@@ -1,5 +1,5 @@
 import { LRUCache } from 'lru-cache';
-import { RequestHandler } from 'express';
+import type { RequestHandler } from 'express';
 
 type CacheMiddlewareOptions = {
 	cacheOnErrors?: boolean;

@@ -4,9 +4,9 @@ export const defaultLocale = 'nb' as Locale;
 
 export const isLocale = (str: string): str is Locale => validLocales.includes(str as Locale);
 
-import nb from './language/nb.js';
-import nn from './language/nn.js';
-import en from './language/en.js';
+import nb from './language/nb.ts';
+import nn from './language/nn.ts';
+import en from './language/en.ts';
 
 export interface ITranslation {
 	[key: string]: string;
