@@ -36,6 +36,12 @@ export default defineConfig(({ mode }) => {
 			resolve: {
 				conditions: ['import', 'module', 'default'],
 			},
+			// Dev only (no effect on builds): the dev SSR runner can't load UMD/CommonJS
+			// from noExternal, so convert it up front. Without this, rendering throws
+			// "getAnalyticsInstance is not a function".
+			optimizeDeps: {
+				include: ['@navikt/nav-dekoratoren-moduler'],
+			},
 		},
 		base: process.env.CDN_BASE || process.env.VITE_APP_BASEPATH,
 		css: {

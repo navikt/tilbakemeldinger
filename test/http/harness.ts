@@ -68,8 +68,6 @@ const launch = async (stub: Stub, options: Options, attempt: number): Promise<Te
 		PATH: process.env.PATH,
 		APP_PORT: String(port),
 		STUB_ORIGIN: stub.origin,
-		DOTENV_CONFIG_PATH: '/dev/null',
-		DOTENV_CONFIG_QUIET: 'true',
 	};
 	for (const [key, value] of Object.entries(merged)) {
 		if (value !== undefined) {
