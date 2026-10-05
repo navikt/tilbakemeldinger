@@ -21,19 +21,18 @@
 		"paths": {
 			"react": ["./node_modules/preact/compat"],
 			"react-dom": ["./node_modules/preact/compat"],
-			"src/*": ["./src/*"],
-			"assets/*": ["./src/assets/*"],
-			"clients/*": ["./src/clients/*"],
-			"components/*": ["./src/components/*"],
-			"pages/*": ["./src/pages/*"],
-			"providers/*": ["./src/providers/*"],
-			"types/*": ["./src/types/*"],
-			"utils/*": ["./src/utils/*"],
-			"common/*": ["./common/*"]
+			"client/*": ["./client/*"],
+			"assets/*": ["./client/assets/*"],
+			"clients/*": ["./client/clients/*"],
+			"components/*": ["./client/components/*"],
+			"pages/*": ["./client/pages/*"],
+			"providers/*": ["./client/providers/*"],
+			"types/*": ["./client/types/*"],
+			"utils/*": ["./client/utils/*"]
 		},
 		"types": ["node", "vite/client"]
 	},
-	"include": ["src", "common", "test"],
+	"include": ["client", "shared", "test"],
 	"references": [
 		{
 			"path": "./tsconfig.node.json"

@@ -1,15 +1,23 @@
 /// <reference types="vitest/config" />
+import { fileURLToPath } from 'node:url';
 import { defineConfig, loadEnv } from 'vite';
 import preact from '@preact/preset-vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import NavBrowserTargets from '@navikt/browserslist-config/vite';
 
-export default defineConfig(({ mode }) => {
+// Paths outside Vite's root (client/), from the repo root where this file lives
+const fromRepoRoot = (path: string) => fileURLToPath(new URL(path, import.meta.url));
+
+export default defineConfig(({ mode, isSsrBuild }) => {
 	process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
 	process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 	process.env.VITE_ENV = process.env.ENV;
 
 	return {
+		// index.html and the client entries live in client/
+		root: 'client',
+		// .env is written to the repo root (by CI, and by `pnpm dev`)
+		envDir: fromRepoRoot('.'),
 		plugins: [
 			NavBrowserTargets(),
 			preact(),
@@ -17,6 +25,9 @@ export default defineConfig(({ mode }) => {
 		],
 		build: {
 			sourcemap: true,
+			outDir: fromRepoRoot(isSsrBuild ? 'dist/ssr' : 'dist/client'),
+			// outDir is outside root, which Vite otherwise refuses to empty
+			emptyOutDir: true,
 		},
 		ssr: {
 			// Dependencies containing React components must not be externalized
@@ -54,19 +65,12 @@ export default defineConfig(({ mode }) => {
 			},
 		},
 		resolve: {
+			// The aliases in tsconfig.json (components/*, utils/* ...) are the only ones
 			tsconfigPaths: true,
-			alias: {
-				src: '/src',
-				assets: '/src/assets',
-				clients: '/src/clients',
-				components: '/src/components',
-				pages: '/src/pages',
-				providers: '/src/providers',
-				types: '/src/types',
-				utils: '/src/utils',
-			},
 		},
 		test: {
+			// Tests live in client/, shared/, server/ and test/, not only under Vite's root
+			root: fromRepoRoot('.'),
 			environment: 'node',
 			clearMocks: true,
 			setupFiles: ['./test/setup.ts'],
@@ -79,7 +83,7 @@ export default defineConfig(({ mode }) => {
 				VITE_TELEMETRY_URL: 'http://localhost:9001/collect',
 			},
 			coverage: {
-				include: ['src/**/*.{ts,tsx}', 'common/**/*.ts', 'server/src/**/*.ts'],
+				include: ['client/**/*.{ts,tsx}', 'shared/**/*.ts', 'server/**/*.ts'],
 			},
 			projects: [
 				{
@@ -90,7 +94,7 @@ export default defineConfig(({ mode }) => {
 					resolve: { conditions: ['module-sync'] },
 					test: {
 						name: 'unit',
-						include: ['{src,common,server/src}/**/*.test.{ts,tsx}'],
+						include: ['{client,shared,server}/**/*.test.{ts,tsx}'],
 					},
 				},
 				{

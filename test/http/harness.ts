@@ -9,7 +9,7 @@ export const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 
 // How the built server is started. This is the only line that should change
 // when the server is ported or moved; the tests must stay the same.
-export const ENTRY = ['server/src/server.ts'];
+export const ENTRY = ['server/server.ts'];
 
 export const BASE = '/person/kontakt-oss';
 export const API = `${BASE}/tilbakemeldinger/api`;
