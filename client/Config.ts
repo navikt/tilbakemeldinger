@@ -1,4 +1,4 @@
-import Environment from 'client/Environments';
+import Environment from '#client/Environments.ts';
 
 const { klageUrl, klageUrlEn, baseUrl: navUrl } = Environment();
 

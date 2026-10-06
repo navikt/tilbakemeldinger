@@ -4,6 +4,7 @@ import { setupSiteRoutes } from './site/setupSiteRoutes.ts';
 import { setupApiRoutes } from './api/setupApiRoutes.ts';
 import { setupErrorHandlers } from './utils/errorHandlers.ts';
 import { isLocal } from './utils/environment.ts';
+import { metricsHandler } from './utils/metrics.ts';
 
 const { APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV } = process.env;
 
@@ -12,6 +13,10 @@ console.log('env:', APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV);
 const app = express();
 app.use(compression());
 app.use(express.json());
+
+// Scraped by NAIS straight from the pod (see .nais/config.yml). It's outside the
+// base path, so the ingress never exposes it
+app.get('/internal/metrics', metricsHandler);
 
 const siteRouter = express.Router();
 const apiRouter = express.Router();

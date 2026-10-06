@@ -18,17 +18,10 @@
 		"allowImportingTsExtensions": true,
 		"jsx": "react-jsx",
 		"jsxImportSource": "preact",
+		// These go away with the switch to React 19.
 		"paths": {
 			"react": ["./node_modules/preact/compat"],
-			"react-dom": ["./node_modules/preact/compat"],
-			"client/*": ["./client/*"],
-			"assets/*": ["./client/assets/*"],
-			"clients/*": ["./client/clients/*"],
-			"components/*": ["./client/components/*"],
-			"pages/*": ["./client/pages/*"],
-			"providers/*": ["./client/providers/*"],
-			"types/*": ["./client/types/*"],
-			"utils/*": ["./client/utils/*"]
+			"react-dom": ["./node_modules/preact/compat"]
 		},
 		"types": ["node", "vite/client"]
 	},

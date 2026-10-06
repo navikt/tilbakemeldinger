@@ -1,10 +1,10 @@
 import React, { ForwardedRef, useEffect } from 'react';
-import { useStore } from 'providers/Provider';
+import { useStore } from '#client/providers/Provider.tsx';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { captureException } from '@nais/apm';
-import { fetchEnheter } from 'clients/apiClient';
-import { Enhet } from 'types/enheter';
-import { HTTPError } from 'client/types/errors';
+import { fetchEnheter } from '#client/clients/apiClient.ts';
+import { Enhet } from '#client/types/enheter.ts';
+import { HTTPError } from '#client/types/errors.ts';
 import Combobox from './EnhetCombobox';
 import { ErrorMessage, Loader } from '@navikt/ds-react';
 import './SelectEnhet.scss';

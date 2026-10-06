@@ -48,6 +48,14 @@ Disse endepunktene fungerer som proxy mellom frontend-klienten og [tilbakemeldin
 | `/nn/tilbakemeldinger/ros-til-nav`     | Nynorsk (nn)      | Skjema for ros til NAV              |
 | `/en/tilbakemeldinger/ros-til-nav`     | English (en)      | Compliments to NAV form             |
 
+### Metrikker
+
+Nais henter metrikker fra `/internal/metrics` direkte fra poden (se `.nais/config.yml`). Endepunktet ligger utenfor base path, så det er ikke tilgjengelig via ingress.
+
+| Metrikk                              | Labels                                                                             | Beskrivelse                                                                                                                                         |
+| ------------------------------------ | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tilbakemeldinger_submissions_total` | `type` (`serviceklage`, `feil-og-mangler`, `ros`), `result` (`success`, `failure`) | Innsendte tilbakemeldinger. `success` når tilbakemeldingsmottak-api tok imot (2xx). Valideringsfeil, rate limiting og feil fra API-et er `failure`. |
+
 ## Ingress i dev
 
 https://www.ansatt.dev.nav.no/person/kontakt-oss/nb/tilbakemeldinger/serviceklage

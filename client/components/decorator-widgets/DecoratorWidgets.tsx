@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useStore } from 'providers/Provider';
-import { setNewLocale } from 'utils/locale';
+import { useStore } from '#client/providers/Provider.tsx';
+import { setNewLocale } from '#client/utils/locale.ts';
 import { Locale } from '#shared/locale.ts';
 import { paths } from '#shared/paths.ts';
 import {

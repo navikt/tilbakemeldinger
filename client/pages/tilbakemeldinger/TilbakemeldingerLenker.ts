@@ -1,5 +1,5 @@
 import { paths } from '#shared/paths.ts';
-import { localePath } from 'utils/locale';
+import { localePath } from '#client/utils/locale.ts';
 import { Locale } from '#shared/locale.ts';
 
 export interface Lenke {

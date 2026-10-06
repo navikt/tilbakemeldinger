@@ -7,6 +7,7 @@
 	"author": "Nav",
 	"type": "module",
 	"imports": {
+		"#client/*": "./client/*",
 		"#dist/*": "./dist/*",
 		"#server/*": "./server/*",
 		"#shared/*": "./shared/*",
@@ -40,6 +41,7 @@
 		"@navikt/fnrvalidator": "1.3.3",
 		"@navikt/nav-dekoratoren-moduler": "4.5.0",
 		"@preact/compat": "18.3.2",
+		"@prometheus-io/client": "0.16.1",
 		"compression": "1.8.1",
 		"csp-header": "6.3.1",
 		"date-fns": "4.4.0",

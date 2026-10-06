@@ -4,7 +4,7 @@ import {
 	rosNavKontaktsenterSchema,
 	rosNavDigitaleTjenesterSchema,
 	rosNavKontorSchema,
-} from '../RosTilNav';
+} from '#shared/schema/RosTilNav.ts';
 
 describe('RosTilNav Schema', () => {
 	// Testing the base discriminated union schema

@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { captureException } from '@nais/apm';
-import { postRosTilNav } from 'clients/apiClient';
-import { ErrorResponse } from 'types/errors';
-import Header from 'components/header/Header';
-import { vars } from 'client/Config';
+import { postRosTilNav } from '#client/clients/apiClient.ts';
+import { ErrorResponse } from '#client/types/errors.ts';
+import Header from '#client/components/header/Header.tsx';
+import { vars } from '#client/Config.ts';
 import { paths } from '#shared/paths.ts';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Takk from 'components/takk/Takk';
-import { triggerHotjar } from 'utils/hotjar';
-import SelectEnhet from 'components/input-fields/SelectEnhet';
-import { MetaTags } from 'components/metatags/MetaTags';
+import Takk from '#client/components/takk/Takk.tsx';
+import { triggerHotjar } from '#client/utils/hotjar.ts';
+import SelectEnhet from '#client/components/input-fields/SelectEnhet.tsx';
+import { MetaTags } from '#client/components/metatags/MetaTags.tsx';
 import { Alert, Box, Button, GuidePanel, Radio, RadioGroup, Textarea } from '@navikt/ds-react';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { RosTilNav } from '#shared/types/RosTilNav.ts';
-import { resolveErrorCode } from 'utils/errorCodes';
-import appStyle from 'client/App.module.scss';
+import { resolveErrorCode } from '#client/utils/errorCodes.ts';
+import appStyle from '#client/App.module.scss';
 
 type HVEM_ROSES = 'NAV_KONTAKTSENTER' | 'NAV_DIGITALE_TJENESTER' | 'NAV_KONTOR';
 

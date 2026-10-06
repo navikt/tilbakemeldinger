@@ -5,7 +5,7 @@ import {
 	privatpersonSchema,
 	annenPersonSchema,
 	bedriftSchema,
-} from '../ServiceKlage';
+} from '#shared/schema/ServiceKlage.ts';
 
 describe('ServiceKlage Schema', () => {
 	// Testing base schema

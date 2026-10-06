@@ -1,12 +1,12 @@
 import React from 'react';
 import { lenker } from './TilbakemeldingerLenker';
-import Header from 'components/header/Header';
-import Lenkepanel from 'components/lenkepanel/Lenkepanel';
+import Header from '#client/components/header/Header.tsx';
+import Lenkepanel from '#client/components/lenkepanel/Lenkepanel.tsx';
 import { useIntl } from 'react-intl';
-import { useStore } from 'providers/Provider';
-import { MetaTags } from 'components/metatags/MetaTags';
+import { useStore } from '#client/providers/Provider.tsx';
+import { MetaTags } from '#client/components/metatags/MetaTags.tsx';
 import { paths } from '#shared/paths.ts';
-import appStyle from 'client/App.module.scss';
+import appStyle from '#client/App.module.scss';
 import { useEffect } from 'react';
 
 const Tilbakemeldinger = () => {

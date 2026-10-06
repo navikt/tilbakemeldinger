@@ -4,7 +4,7 @@ import ServiceKlageTelefon from './ServiceKlageTelefon';
 import { useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
 import { TextField } from '@navikt/ds-react';
-import appStyle from 'client/App.module.scss';
+import appStyle from '#client/App.module.scss';
 
 interface Props {
 	innmelderNavn: string | false;

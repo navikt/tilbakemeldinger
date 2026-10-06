@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import { useStore } from 'providers/Provider';
+import { useStore } from '#client/providers/Provider.tsx';
 import { useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
 import { TextField } from '@navikt/ds-react';
-import { isValidTelefonnummer } from 'utils/validators';
-import appStyle from 'client/App.module.scss';
+import { isValidTelefonnummer } from '#client/utils/validators.ts';
+import appStyle from '#client/App.module.scss';
 
 const ServiceKlageTelefon = () => {
 	const {

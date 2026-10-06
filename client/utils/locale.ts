@@ -1,5 +1,5 @@
 import { paths } from '#shared/paths.ts';
-import { Action } from 'providers/Store';
+import { Action } from '#client/providers/Store.ts';
 import { Locale, defaultLocale, isLocale } from '#shared/locale.ts';
 
 export const localePath = (path: string, locale: Locale) => `/${locale}${path}`;

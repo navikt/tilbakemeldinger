@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
-import { StoreProvider, useStore } from 'providers/Provider';
-import { initialState, reducer } from 'providers/Store';
-import { getLocaleFromUrl, setLocaleFromUrl } from 'utils/locale';
+import { StoreProvider, useStore } from '#client/providers/Provider.tsx';
+import { initialState, reducer } from '#client/providers/Store.ts';
+import { getLocaleFromUrl, setLocaleFromUrl } from '#client/utils/locale.ts';
 import { defaultLocale } from '#shared/locale.ts';
 import { App } from './App';
 
