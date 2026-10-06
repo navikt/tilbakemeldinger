@@ -3,8 +3,8 @@ import { useIntl } from 'react-intl';
 import { useFormContext } from 'react-hook-form';
 import { ServiceklageFormFields } from './ServiceKlage';
 import { TextField } from '@navikt/ds-react';
-import { isLength, isNumeric, isValidFnr } from 'utils/validators';
-import appStyle from 'client/App.module.scss';
+import { isLength, isNumeric, isValidFnr } from '#client/utils/validators.ts';
+import appStyle from '#client/App.module.scss';
 
 interface Props {
 	innmelderNavn: string | false;

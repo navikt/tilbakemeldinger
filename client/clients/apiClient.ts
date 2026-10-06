@@ -1,5 +1,5 @@
-import Environment from 'client/Environments';
-import { BadRequest, HTTPError } from 'types/errors';
+import Environment from '#client/Environments.ts';
+import { BadRequest, HTTPError } from '#client/types/errors.ts';
 import { RosTilNav } from '#shared/types/RosTilNav.ts';
 import { FeilOgMangler } from '#shared/types/FeilOgMangler.ts';
 import { ServiceKlage } from '#shared/types/ServiceKlage.ts';

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useStore } from 'providers/Provider';
+import { useStore } from '#client/providers/Provider.tsx';
 import { Alert, TextField } from '@navikt/ds-react';
 import { useFormContext } from 'react-hook-form';
 import { FeilOgManglerFields } from './FeilOgMangler';
-import { EMAIL_PATTERN } from 'utils/validators';
-import appStyle from 'client/App.module.scss';
+import { EMAIL_PATTERN } from '#client/utils/validators.ts';
+import appStyle from '#client/App.module.scss';
 
 const FeilOgManglerEpost = () => {
 	const {

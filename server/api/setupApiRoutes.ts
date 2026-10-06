@@ -6,12 +6,13 @@ import { postToTilbakemeldingsmottakHandler } from './routes/postToTilbakemeldin
 import { enheterHandler } from './routes/enheter/enheterHandler.ts';
 import { rateLimit, ipKeyGenerator } from 'express-rate-limit';
 import { getAccessToken } from '#server/utils/auth/common.ts';
+import { countSubmission } from '#server/utils/metrics.ts';
 
 export const setupApiRoutes = async (router: Router) => {
 	router.get('/internal/isAlive', isAliveHandler);
 	router.get('/internal/isReady', isReadyHandler);
 	router.get('/fodselsnr', fodselsNrHandler);
-	router.post('/mottak/:path', globalRateLimit, ipRateLimit, postToTilbakemeldingsmottakHandler);
+	router.post('/mottak/:path', countSubmission, globalRateLimit, ipRateLimit, postToTilbakemeldingsmottakHandler);
 	router.get('/enheter', enheterHandler);
 };
 

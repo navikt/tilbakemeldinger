@@ -8,8 +8,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import { getGlobalDispatcher, MockAgent, setGlobalDispatcher } from 'undici';
 import { afterEach, expect, vi } from 'vitest';
-import { AppRoot } from 'client/index';
-import Environment from 'client/Environments';
+import { AppRoot } from '#client/index.tsx';
+import Environment from '#client/Environments.ts';
 import nb from '#shared/language/nb.ts';
 
 // Faro patches fetch and ships telemetry; not something the forms depend on

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { localePath } from 'utils/locale';
+import { localePath } from '#client/utils/locale.ts';
 import { useIntl } from 'react-intl';
-import { useStore } from 'providers/Provider';
-import Environment from 'client/Environments';
-import { logPageview } from 'client/utils/analytics';
+import { useStore } from '#client/providers/Provider.tsx';
+import Environment from '#client/Environments.ts';
+import { logPageview } from '#client/utils/analytics.ts';
 import { Helmet } from 'react-helmet-async';
 import { paths } from '#shared/paths.ts';
 import type { ReactNode } from 'react';

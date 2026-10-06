@@ -1,8 +1,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Alert, Button, Link } from '@navikt/ds-react';
-import Environment from 'client/Environments';
-import appStyle from 'client/App.module.scss';
+import Environment from '#client/Environments.ts';
+import appStyle from '#client/App.module.scss';
 
 interface Props {
 	melding?: string;

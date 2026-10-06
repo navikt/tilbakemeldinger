@@ -1,7 +1,7 @@
-import { AuthInfo } from 'types/authInfo';
-import { KontaktInfo } from 'types/kontaktInfo';
-import { Enhet, FetchEnheter } from 'types/enheter';
-import { HTTPError } from 'types/errors';
+import { AuthInfo } from '#client/types/authInfo.ts';
+import { KontaktInfo } from '#client/types/kontaktInfo.ts';
+import { Enhet, FetchEnheter } from '#client/types/enheter.ts';
+import { HTTPError } from '#client/types/errors.ts';
 import { Locale } from '#shared/locale.ts';
 
 export const initialState = {

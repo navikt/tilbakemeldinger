@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { captureException, init as apmInit } from '@nais/apm';
-import Tilbakemeldinger from 'pages/tilbakemeldinger/Tilbakemeldinger';
-import Ros from 'pages/tilbakemeldinger/ros-til-nav/Ros';
-import PageNotFound from 'pages/404/404';
-import FeilOgMangler from 'pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler';
-import { fetchAuthInfo, fetchFodselsnr, fetchKontaktInfo } from 'clients/apiClient';
-import { useStore } from 'providers/Provider';
-import { AuthInfo } from 'types/authInfo';
-import { HTTPError } from 'types/errors';
-import ServiceKlage from 'pages/tilbakemeldinger/service-klage/ServiceKlage';
-import { KontaktInfo } from 'types/kontaktInfo';
-import { Fodselsnr } from 'types/fodselsnr';
-import ScrollToTop from 'components/scroll-to-top/ScrollToTop';
+import Tilbakemeldinger from '#client/pages/tilbakemeldinger/Tilbakemeldinger.tsx';
+import Ros from '#client/pages/tilbakemeldinger/ros-til-nav/Ros.tsx';
+import PageNotFound from '#client/pages/404/404.tsx';
+import FeilOgMangler from '#client/pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler.tsx';
+import { fetchAuthInfo, fetchFodselsnr, fetchKontaktInfo } from '#client/clients/apiClient.ts';
+import { useStore } from '#client/providers/Provider.tsx';
+import { AuthInfo } from '#client/types/authInfo.ts';
+import { HTTPError } from '#client/types/errors.ts';
+import ServiceKlage from '#client/pages/tilbakemeldinger/service-klage/ServiceKlage.tsx';
+import { KontaktInfo } from '#client/types/kontaktInfo.ts';
+import { Fodselsnr } from '#client/types/fodselsnr.ts';
+import ScrollToTop from '#client/components/scroll-to-top/ScrollToTop.tsx';
 import { paths } from '#shared/paths.ts';
-import { localePath } from 'utils/locale';
+import { localePath } from '#client/utils/locale.ts';
 import { defaultLocale, validLocales } from '#shared/locale.ts';
-import { DecoratorWidgets } from 'components/decorator-widgets/DecoratorWidgets';
+import { DecoratorWidgets } from '#client/components/decorator-widgets/DecoratorWidgets.tsx';
 import '@navikt/ds-css';
 
 type Props = {

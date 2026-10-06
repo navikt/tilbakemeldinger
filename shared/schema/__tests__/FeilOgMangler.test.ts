@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { feilOgManglerSchema } from '../FeilOgMangler';
+import { feilOgManglerSchema } from '#shared/schema/FeilOgMangler.ts';
 
 describe('FeilOgMangler Schema', () => {
 	// Valid test cases

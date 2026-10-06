@@ -64,10 +64,6 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 				}),
 			},
 		},
-		resolve: {
-			// The aliases in tsconfig.json (components/*, utils/* ...) are the only ones
-			tsconfigPaths: true,
-		},
 		test: {
 			// Tests live in client/, shared/, server/ and test/, not only under Vite's root
 			root: fromRepoRoot('.'),
