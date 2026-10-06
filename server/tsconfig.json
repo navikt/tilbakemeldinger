@@ -1,7 +1,11 @@
 {
+	// Type-check only: Node runs the server's .ts files directly (type stripping),
+	// so imports use .ts extensions and type-only imports must say `import type`
 	"compilerOptions": {
-		"jsx": "react",
-		"allowJs": true,
+		"noEmit": true,
+		"allowImportingTsExtensions": true,
+		"erasableSyntaxOnly": true,
+		"verbatimModuleSyntax": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"isolatedModules": true,
@@ -9,8 +13,6 @@
 		"lib": ["dom", "es2022"],
 		"moduleResolution": "nodenext",
 		"module": "nodenext",
-		"outDir": "dist/server",
-		"rootDir": "..",
 		"strict": true,
 		"target": "ES2022",
 		"types": ["node"]

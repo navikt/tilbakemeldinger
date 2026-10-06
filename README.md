@@ -17,11 +17,10 @@ Applikasjonen er en full-stack Node.js-løsning med server-side rendering (SSR) 
 
 ### Struktur
 
-Applikasjonen bruker en monorepo-struktur med pnpm workspaces:
-
 - `src/` - Frontend-kode (Preact-komponenter, utilities, entry points)
-- `server/` - Backend-kode (Express-server, API-ruter, SSR-logikk)
-- `common/` - Delt kode mellom frontend og backend (lokalisering)
+- `server/` - Backend-kode (Express-server, API-ruter, SSR-logikk). Node kjører TypeScript-filene direkte (type stripping), uten eget byggesteg.
+- `common/` - Delt kode mellom frontend og backend (lokalisering, skjemaer)
+- `dist/` - Bygget klient (`dist/client`) og SSR-bundle (`dist/ssr`)
 
 ### Endepunkter
 

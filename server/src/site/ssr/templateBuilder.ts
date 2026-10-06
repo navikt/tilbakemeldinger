@@ -1,24 +1,16 @@
-import path from 'path';
 import fs from 'fs';
-import { injectWithDecorator } from '../../utils/decorator.js';
-import { injectDecoratorServerSide, DecoratorEnvProps } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
-import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
-import { getBreadcrumbsFromPathname } from '../../../../common/breadcrumbs.js';
-import { Locale, defaultLocale, isLocale } from '../../../../common/locale.js';
+import { injectWithDecorator } from '../../utils/decorator.ts';
+import { injectDecoratorServerSide, type DecoratorEnvProps } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
+import type { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
+import { getBreadcrumbsFromPathname } from '#common/breadcrumbs.ts';
+import { type Locale, defaultLocale, isLocale } from '#common/locale.ts';
 
-export const templatePath =
-	process.env.NODE_ENV === 'development'
-		? path.resolve(process.cwd(), '..', 'index.html')
-		: path.resolve(process.cwd(), 'server', 'dist', 'client', 'index.html');
-
-const getUndecoratedTemplate = () => fs.readFileSync(templatePath, { encoding: 'utf-8' });
-
-export const buildHtmlTemplate = async () => {
+export const buildHtmlTemplate = async (templatePath: string) => {
 	const templateWithDecorator = await injectWithDecorator(templatePath);
 
 	if (!templateWithDecorator) {
 		console.error(`Failed to fetch decorator, using undecorated template`);
-		return getUndecoratedTemplate();
+		return fs.readFileSync(templatePath, { encoding: 'utf-8' });
 	}
 
 	return templateWithDecorator;
@@ -38,7 +30,7 @@ const getDecoratorParams = (locale: Locale, url: string): DecoratorParams => ({
 const decoratorEnv = 'prod';
 const envProps: DecoratorEnvProps = { env: decoratorEnv };
 
-export const getTemplateWithDecorator = async (url: string) => {
+export const getTemplateWithDecorator = async (url: string, templatePath: string) => {
 	const locale = url.split('/')[3] as Locale;
 
 	const params = getDecoratorParams(isLocale(locale) ? locale : defaultLocale, url);

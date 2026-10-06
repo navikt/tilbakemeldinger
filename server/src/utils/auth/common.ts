@@ -1,6 +1,6 @@
-import { Request } from 'express';
-import { getTokenxToken } from './tokenx.js';
-import { getAzureadToken } from './azuread.js';
+import type { Request } from 'express';
+import { getTokenxToken } from './tokenx.ts';
+import { getAzureadToken } from './azuread.ts';
 
 export const getAuthToken = (req: Request) => req.headers.authorization?.split('Bearer ')[1];
 

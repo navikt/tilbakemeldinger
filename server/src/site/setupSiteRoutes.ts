@@ -1,13 +1,13 @@
-import express, { Router } from 'express';
-import path from 'path';
-import { HtmlRenderer, createProdRender, devRender } from './ssr/htmlRenderer.js';
-import { createCacheMiddleware } from '../utils/cacheMiddleware.js';
-import { createCspMiddleware } from '../utils/cspMiddleware.js';
-import { isLocal } from '../utils/environment.js';
+import express, { type Router } from 'express';
+import { fileURLToPath } from 'node:url';
+import { type HtmlRenderer, createProdRender, devRender } from './ssr/htmlRenderer.ts';
+import { createCacheMiddleware } from '../utils/cacheMiddleware.ts';
+import { createCspMiddleware } from '../utils/cspMiddleware.ts';
+import { isLocal } from '../utils/environment.ts';
 
 const { VITE_APP_BASEPATH, VITE_EDITORIAL_FRONTPAGE_ORIGIN } = process.env;
 
-const assetsDir = path.resolve(process.cwd(), 'server', 'dist', 'client', 'assets');
+const assetsDir = fileURLToPath(import.meta.resolve('#dist/client/assets'));
 
 const isProd = process.env.NODE_ENV !== 'development';
 
@@ -45,7 +45,9 @@ export const setupSiteRoutes = async (router: Router) => {
 		const vite = await createServer({
 			server: { middlewareMode: true },
 			appType: 'custom',
-			root: '../',
+			// Load vite.config.ts in Vite's own module runner. The default writes a
+			// temporary .mjs, which `node --watch` sees disappear and restarts on
+			configLoader: 'runner',
 			base: VITE_APP_BASEPATH,
 		});
 

@@ -1,5 +1,5 @@
 import zod from 'zod';
-import { zodString } from './helpers.js';
+import { zodString } from './helpers.ts';
 
 const baseRosTilNavSchema = zod.object({
 	melding: zodString,

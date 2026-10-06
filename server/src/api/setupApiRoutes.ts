@@ -1,11 +1,11 @@
-import { Router } from 'express';
-import { isReadyHandler } from './routes/isReady/isReadyHandler.js';
-import { isAliveHandler } from './routes/isAlive/isAliveHandler.js';
-import { fodselsNrHandler } from './routes/fodselsNr/fodselsNrHandler.js';
-import { postToTilbakemeldingsmottakHandler } from './routes/postToTilbakemeldingsmottak/postToTilbakemeldingsmottakHandler.js';
-import { enheterHandler } from './routes/enheter/enheterHandler.js';
+import type { Router } from 'express';
+import { isReadyHandler } from './routes/isReady/isReadyHandler.ts';
+import { isAliveHandler } from './routes/isAlive/isAliveHandler.ts';
+import { fodselsNrHandler } from './routes/fodselsNr/fodselsNrHandler.ts';
+import { postToTilbakemeldingsmottakHandler } from './routes/postToTilbakemeldingsmottak/postToTilbakemeldingsmottakHandler.ts';
+import { enheterHandler } from './routes/enheter/enheterHandler.ts';
 import { rateLimit, ipKeyGenerator } from 'express-rate-limit';
-import { getAccessToken } from '../utils/auth/common.js';
+import { getAccessToken } from '../utils/auth/common.ts';
 
 export const setupApiRoutes = async (router: Router) => {
 	router.get('/internal/isAlive', isAliveHandler);

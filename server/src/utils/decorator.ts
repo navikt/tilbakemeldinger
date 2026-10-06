@@ -1,7 +1,7 @@
 import {
 	injectDecoratorServerSide,
-	DecoratorParams,
-	DecoratorEnvProps,
+	type DecoratorParams,
+	type DecoratorEnvProps,
 } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 
 const DECORATOR_ENV = process.env.ENV;

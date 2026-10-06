@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { screen } from '@testing-library/dom';
 import { expect, test } from 'vitest';
-import { renderApp, t } from '#test/render';
+import { renderApp, t } from '#test/render.tsx';
 
 test('sends a feil og mangler report and thanks the user', async () => {
 	const { user, posts } = renderApp('/nb/tilbakemeldinger/feil-og-mangler');
