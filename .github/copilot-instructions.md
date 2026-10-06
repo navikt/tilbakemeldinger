@@ -29,15 +29,15 @@ All proxying endpoints are POST methods that receive typed payloads from the cli
 
 | Endpoint                  | Method | Type Definition                 | Purpose                                                                                      |
 | ------------------------- | ------ | ------------------------------- | -------------------------------------------------------------------------------------------- |
-| `/mottak/serviceklage`    | POST   | `common/types/ServiceKlage.ts`  | Send service complaints object to tilbakemeldingsmottak-api                                  |
-| `/mottak/feil-og-mangler` | POST   | `common/types/FeilOgMangler.ts` | Send technical issues and bugs to tilbakemeldingsmottak-api                                  |
-| `/mottak/ros-til-nav`     | POST   | `common/types/RosTilNav.ts`     | Send compliments to NAV to tilbakemeldingsmottak-api                                         |
+| `/mottak/serviceklage`    | POST   | `shared/types/ServiceKlage.ts`  | Send service complaints object to tilbakemeldingsmottak-api                                  |
+| `/mottak/feil-og-mangler` | POST   | `shared/types/FeilOgMangler.ts` | Send technical issues and bugs to tilbakemeldingsmottak-api                                  |
+| `/mottak/ros-til-nav`     | POST   | `shared/types/RosTilNav.ts`     | Send compliments to NAV to tilbakemeldingsmottak-api                                         |
 | `/fodselsnr`              | GET    |                                 | Takes the user token, and pulls out the fødselsnummer in order to display frontend in forms  |
 | `/enheter`                | GET    |                                 | Fetches list of Nav-kontore from internal API for populating dropdowns in the frontend forms |
 
 ## Type Safety
 
-**IMPORTANT**: Always use the TypeScript type definitions located in `common/types/` when:
+**IMPORTANT**: Always use the TypeScript type definitions located in `shared/types/` when:
 
 - Creating or modifying API endpoints
 - Handling request/response payloads
@@ -72,8 +72,8 @@ Type definitions are the source of truth for data contracts between frontend, ba
 
 ### File Structure
 
-- Type definitions: `common/types/`
-- Shared code should be in `common/` to be accessible by both frontend and backend
+- Type definitions: `shared/types/`
+- Shared code should be in `shared/` to be accessible by both frontend and backend
 
 ## Environment-Specific Behavior
 
@@ -89,7 +89,7 @@ Type definitions are the source of truth for data contracts between frontend, ba
 
 The application supports Norwegian (`/nb/`, `/nn/` and `/en/` locale). When adding user-facing text:
 
-- Language files are located in `common/language/[en|nb|nn].ts`
+- Language files are located in `shared/language/[en|nb|nn].ts`
 - When adding new translations, ensure consistency across all supported languages.
 
 ## Testing Considerations

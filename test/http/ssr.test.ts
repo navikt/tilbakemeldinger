@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
-import nb from '../../common/language/nb';
-import nn from '../../common/language/nn';
-import en from '../../common/language/en';
+import nb from '#shared/language/nb.ts';
+import nn from '#shared/language/nn.ts';
+import en from '#shared/language/en.ts';
 import { APP_ORIGIN, BASE, parseHtml, startServer, type TestServer } from './harness';
 import { expectNoUnexpectedHosts } from './fixtures';
 

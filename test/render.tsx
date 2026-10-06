@@ -8,9 +8,9 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import { getGlobalDispatcher, MockAgent, setGlobalDispatcher } from 'undici';
 import { afterEach, expect, vi } from 'vitest';
-import { AppRoot } from '../src/index';
-import Environment from '../src/Environments';
-import nb from '../common/language/nb';
+import { AppRoot } from 'client/index';
+import Environment from 'client/Environments';
+import nb from '#shared/language/nb.ts';
 
 // Faro patches fetch and ships telemetry; not something the forms depend on
 vi.mock('@nais/apm', () => ({ init: vi.fn(), captureException: vi.fn() }));

@@ -17,9 +17,9 @@ Applikasjonen er en full-stack Node.js-løsning med server-side rendering (SSR) 
 
 ### Struktur
 
-- `src/` - Frontend-kode (Preact-komponenter, utilities, entry points)
+- `client/` - Frontend-kode (Preact-komponenter, utilities, entry points, `index.html`)
 - `server/` - Backend-kode (Express-server, API-ruter, SSR-logikk). Node kjører TypeScript-filene direkte (type stripping), uten eget byggesteg.
-- `common/` - Delt kode mellom frontend og backend (lokalisering, skjemaer)
+- `shared/` - Delt kode mellom frontend og backend (lokalisering, skjemaer, typer)
 - `dist/` - Bygget klient (`dist/client`) og SSR-bundle (`dist/ssr`)
 
 ### Endepunkter
@@ -30,9 +30,9 @@ Disse endepunktene fungerer som proxy mellom frontend-klienten og [tilbakemeldin
 
 | Endepunkt               | Metode | Beskrivelse                                                                                                                          |
 | ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| /mottak/serviceklage    | POST   | Mottar object fra klienten. Videresender til tilbakemeldingmsottak-api. [Typedefinisjon](common/types/ServiceKlage.ts) for payload.  |
-| /mottak/feil-og-mangler | POST   | Mottar object fra klienten. Videresender til tilbakemeldingmsottak-api. [Typedefinisjon](common/types/FeilOgMangler.ts) for payload. |
-| /mottak/ros-til-nav     | POST   | Mottar object fra klienten. Videresender til tilbakemeldingmsottak-api [Typedefinisjon](common/types/RosTilNav.ts) for payload.      |
+| /mottak/serviceklage    | POST   | Mottar object fra klienten. Videresender til tilbakemeldingmsottak-api. [Typedefinisjon](shared/types/ServiceKlage.ts) for payload.  |
+| /mottak/feil-og-mangler | POST   | Mottar object fra klienten. Videresender til tilbakemeldingmsottak-api. [Typedefinisjon](shared/types/FeilOgMangler.ts) for payload. |
+| /mottak/ros-til-nav     | POST   | Mottar object fra klienten. Videresender til tilbakemeldingmsottak-api [Typedefinisjon](shared/types/RosTilNav.ts) for payload.      |
 
 ### Side-endepunkter
 
