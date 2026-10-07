@@ -52,9 +52,9 @@ Disse endepunktene fungerer som proxy mellom frontend-klienten og [tilbakemeldin
 
 Nais henter metrikker fra `/internal/metrics` direkte fra poden (se `.nais/config.yml`). Endepunktet ligger utenfor base path, så det er ikke tilgjengelig via ingress.
 
-| Metrikk                              | Labels                                                                             | Beskrivelse                                                                                                                                         |
-| ------------------------------------ | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `tilbakemeldinger_submissions_total` | `type` (`serviceklage`, `feil-og-mangler`, `ros`), `result` (`success`, `failure`) | Innsendte tilbakemeldinger. `success` når tilbakemeldingsmottak-api tok imot (2xx). Valideringsfeil, rate limiting og feil fra API-et er `failure`. |
+| Metrikk                              | Labels                                                                                                                                                                       | Beskrivelse                                                                                                                                                                                                |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tilbakemeldinger_submissions_total` | `type` (`serviceklage`, `feil-og-mangler`, `ros`), `result` (`success`, `failure`), `reason` (`none`, `validation`, `rate_limit`, `auth`, `upstream`, `internal`, `unknown`) | Innsendte tilbakemeldinger. `success` når tilbakemeldingsmottak-api tok imot (2xx). Valideringsfeil, rate limiting og feil fra API-et er `failure`. `reason` forklarer feilen, og er `none` ved `success`. |
 
 ## Ingress i dev
 

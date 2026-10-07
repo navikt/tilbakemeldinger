@@ -3,6 +3,7 @@ import { getAccessToken } from '#server/utils/auth/common.ts';
 import { serviceKlageSchema } from '#shared/schema/ServiceKlage.ts';
 import { feilOgManglerSchema } from '#shared/schema/FeilOgMangler.ts';
 import { rosTilNavSchema } from '#shared/schema/RosTilNav.ts';
+import { setFailureReason } from '#server/utils/metrics.ts';
 
 const deriveSchemaFromPath = (path: string) => {
 	switch (path) {
@@ -27,6 +28,7 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (req, re
 	}
 
 	if (!accessToken) {
+		setFailureReason(res, 'auth');
 		return res.status(500).send('Failed to populate auth header');
 	}
 
@@ -34,6 +36,7 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (req, re
 
 	const validationResult = schema.safeParse(body);
 	if (!validationResult.success) {
+		setFailureReason(res, 'validation');
 		return res.status(400).send('Feil i validering av skjema');
 	}
 
@@ -49,6 +52,7 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (req, re
 		});
 
 		if (!response.ok) {
+			setFailureReason(res, 'upstream');
 			const errorText = await response.text();
 
 			// Log error because validation should have been done both frontend and further up,
@@ -69,6 +73,7 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (req, re
 		res.status(response.status).send(responseData);
 	} catch (error) {
 		console.error(`Feil i postToTilbakemeldingsmottakHandler: ${error}`);
+		setFailureReason(res, 'internal');
 		res.status(500).send('Internal server error');
 	}
 };
