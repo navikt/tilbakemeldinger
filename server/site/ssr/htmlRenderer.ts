@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { LRUCache } from 'lru-cache';
 import { buildHtmlTemplate, getTemplateWithDecorator } from './templateBuilder.ts';
 import type { ViteDevServer } from 'vite';
 import type { HelmetServerState } from 'react-helmet-async';
@@ -34,7 +35,14 @@ export const createProdRender = async (): Promise<HtmlRenderer> => {
 	const ssrEntry = '#dist/ssr/main-server.js';
 	const { render }: SsrModule = await import(ssrEntry);
 
-	return (url) => prodRender(render, url);
+	// Rendered pages by URL (path and query), for 10 minutes
+	const cache = new LRUCache<string, string>({
+		ttl: 600 * 1000,
+		max: 100,
+		fetchMethod: (url) => prodRender(render, url),
+	});
+
+	return (url) => cache.forceFetch(url);
 };
 
 const prodRender = async (render: SsrModule['render'], url: string) => {

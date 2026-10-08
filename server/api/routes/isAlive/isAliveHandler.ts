@@ -1,5 +1,5 @@
-import type { RequestHandler } from 'express';
+import type { Handler } from 'hono';
 
-export const isAliveHandler: RequestHandler = (req, res) => {
-	return res.status(200).json({ message: 'I am alive!' });
+export const isAliveHandler: Handler = (c) => {
+	return c.json({ message: 'I am alive!' });
 };

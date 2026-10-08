@@ -11,14 +11,14 @@ This is a "frackend" application (frontend + backend) for collecting feedback to
 ### Tech Stack
 
 - **Frontend**: Preact with React components
-- **Backend**: Express.js (Node.js)
+- **Backend**: Hono (Node.js)
 - **Language**: TypeScript
-- **Architecture Pattern**: Express server serves the Preact frontend, artifacts AND acts as an API proxy to internal services
+- **Architecture Pattern**: Hono server serves the Preact frontend, artifacts AND acts as an API proxy to internal services
 
 ### Key Components
 
 1. **Preact Frontend**: User-facing feedback forms
-2. **Express Backend**:
+2. **Hono Backend**:
    - Serves static frontend assets
    - Exposes three API endpoints (see below)
    - Proxies certain API requests to internal `tilbakemeldingsmottak-api`.
@@ -51,7 +51,7 @@ Type definitions are the source of truth for data contracts between frontend, ba
 ### General Principles
 
 - **Type Safety First**: Use TypeScript strictly; avoid `any` types
-- **Proxy Pattern**: Express backend should remain a thin proxy layer - business logic belongs in internal APIs
+- **Proxy Pattern**: Hono backend should remain a thin proxy layer - business logic belongs in internal APIs
 - **Error Handling**: Always handle errors gracefully and provide meaningful error messages to users
 - **Validation**: Validate incoming data against type definitions before forwarding
 - **Keep to the scope:** When fixing bugs or errors, stick to the task. Do not introduce new features or improve parts of the code unrelated to the bug or error being fixed.
@@ -63,7 +63,7 @@ Type definitions are the source of truth for data contracts between frontend, ba
 - Follow Preact best practices (similar to React but lighter)
 - Consider accessibility (a11y) for all form inputs
 
-### Backend (Express)
+### Backend (Hono)
 
 - Keep route handlers thin - delegate to service/controller layers
 - Use async/await for asynchronous operations

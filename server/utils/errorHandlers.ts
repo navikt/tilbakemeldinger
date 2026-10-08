@@ -1,9 +1,11 @@
-import type { ErrorRequestHandler, Express, RequestHandler } from 'express';
+import type { Hono } from 'hono';
+import { HTTPException } from 'hono/http-exception';
 import { URLs } from '#server/urls.ts';
+import type { AppEnv } from '#server/types.ts';
 
-const createNotFoundHandler = async (): Promise<RequestHandler> => {
-	// Fetch static 404-page from the nav.no frontend
-	const notFoundHtml = await fetch(URLs.navno404)
+// Fetch static 404-page from the nav.no frontend
+const fetchNotFoundHtml = () =>
+	fetch(URLs.navno404)
 		.then((res) => {
 			if (res.status === 404) {
 				return res.text();
@@ -16,31 +18,23 @@ const createNotFoundHandler = async (): Promise<RequestHandler> => {
 			return 'Not found';
 		});
 
-	return (req, res) => {
-		res.status(404).send(notFoundHtml);
-	};
-};
+export const setupErrorHandlers = async (app: Hono<AppEnv>) => {
+	const notFoundHtml = await fetchNotFoundHtml();
 
-export const setupErrorHandlers = async (expressApp: Express) => {
-	const notFoundHandler = await createNotFoundHandler();
+	app.notFound((c) => c.html(notFoundHtml, 404));
 
-	const serverErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
-		const { path } = req;
-		const { status, stack } = err;
-		const msg = stack?.split('\n')[0];
-		const statusCode = status || 500;
+	app.onError((err, c) => {
+		const { path } = c.req;
+		const statusCode = err instanceof HTTPException ? err.status : 500;
+		const msg = err.stack?.split('\n')[0];
 
 		if (statusCode < 500) {
 			console.log(`Invalid request to ${path}: ${statusCode} ${msg}`);
-			return notFoundHandler(req, res, next);
+			return c.html(notFoundHtml, 404);
 		}
 
 		console.error(`Server error on ${path}: ${statusCode} ${msg}`);
 
-		return res.status(statusCode).end();
-	};
-
-	expressApp.use(notFoundHandler);
-
-	expressApp.use(serverErrorHandler);
+		return c.body(null, statusCode);
+	});
 };

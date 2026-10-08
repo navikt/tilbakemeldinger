@@ -22,7 +22,7 @@ describe('GET endpoints', () => {
 		const res = await server.fetch(`${API}/internal/${probe}`);
 
 		expect(res.status).toBe(200);
-		expect(res.headers.get('content-type')).toBe('application/json; charset=utf-8');
+		expect(res.headers.get('content-type')).toBe('application/json');
 		expect(res.headers.get('content-security-policy')).toBeNull();
 		expect(await res.json()).toEqual(body);
 	});

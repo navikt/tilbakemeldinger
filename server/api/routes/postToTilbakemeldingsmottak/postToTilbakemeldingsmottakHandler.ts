@@ -1,10 +1,12 @@
-import type { RequestHandler } from 'express';
+import type { Handler } from 'hono';
+import type { ContentfulStatusCode } from 'hono/utils/http-status';
 import { getAccessToken } from '#server/utils/auth/common.ts';
 import { serviceKlageSchema } from '#shared/schema/ServiceKlage.ts';
 import { feilOgManglerSchema } from '#shared/schema/FeilOgMangler.ts';
 import { rosTilNavSchema } from '#shared/schema/RosTilNav.ts';
 import { setFailureReason } from '#server/utils/metrics.ts';
 import { env } from '#server/utils/environment.ts';
+import type { AppEnv } from '#server/types.ts';
 
 const deriveSchemaFromPath = (path: string) => {
 	switch (path) {
@@ -19,26 +21,26 @@ const deriveSchemaFromPath = (path: string) => {
 	}
 };
 
-export const postToTilbakemeldingsmottakHandler: RequestHandler<{ path: string }> = async (req, res) => {
-	const path = req.params.path;
-	const accessToken = await getAccessToken({ authHeader: req.headers.authorization, path });
-	const body = req.body;
+export const postToTilbakemeldingsmottakHandler: Handler<AppEnv, '/mottak/:path'> = async (c) => {
+	const path = c.req.param('path');
+	const accessToken = await getAccessToken({ authHeader: c.req.header('authorization'), path });
+	const body = c.get('body');
 
 	if (path !== 'ros' && path !== 'serviceklage' && path !== 'feil-og-mangler') {
-		return res.status(404).send('Path not found');
+		return c.text('Path not found', 404);
 	}
 
 	if (!accessToken) {
-		setFailureReason(res, 'auth');
-		return res.status(500).send('Failed to populate auth header');
+		setFailureReason(c, 'auth');
+		return c.text('Failed to populate auth header', 500);
 	}
 
 	const schema = deriveSchemaFromPath(path);
 
 	const validationResult = schema.safeParse(body);
 	if (!validationResult.success) {
-		setFailureReason(res, 'validation');
-		return res.status(400).send('Feil i validering av skjema');
+		setFailureReason(c, 'validation');
+		return c.text('Feil i validering av skjema', 400);
 	}
 
 	try {
@@ -53,7 +55,8 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler<{ path: string }
 		});
 
 		if (!response.ok) {
-			setFailureReason(res, 'upstream');
+			setFailureReason(c, 'upstream');
+			const status = response.status as ContentfulStatusCode;
 			const errorText = await response.text();
 
 			// Log error because validation should have been done both frontend and further up,
@@ -63,18 +66,18 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler<{ path: string }
 			// Try to parse as JSON, otherwise return the raw text
 			try {
 				const errorJson = JSON.parse(errorText);
-				return res.status(response.status).send(errorJson);
+				return c.json(errorJson, status);
 			} catch {
 				console.error(`Kunne ikke parse feilmelding fra tilbakemeldingsmottak-api som JSON: ${errorText}`);
-				return res.status(response.status).send(errorText);
+				return c.text(errorText, status);
 			}
 		}
 
 		const responseData = await response.json();
-		res.status(response.status).send(responseData);
+		return c.json(responseData, response.status as ContentfulStatusCode);
 	} catch (error) {
 		console.error(`Feil i postToTilbakemeldingsmottakHandler: ${error}`);
-		setFailureReason(res, 'internal');
-		res.status(500).send('Internal server error');
+		setFailureReason(c, 'internal');
+		return c.text('Internal server error', 500);
 	}
 };

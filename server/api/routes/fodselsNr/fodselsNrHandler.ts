@@ -1,13 +1,13 @@
-import type { RequestHandler } from 'express';
+import type { Handler } from 'hono';
 import { jwtDecode } from 'jwt-decode';
 import { getAuthToken } from '#server/utils/auth/common.ts';
 
-export const fodselsNrHandler: RequestHandler = (req, res) => {
-	const token = getAuthToken(req.headers.authorization);
+export const fodselsNrHandler: Handler = (c) => {
+	const token = getAuthToken(c.req.header('authorization'));
 
 	if (!token) {
-		return res.status(401).send();
+		return c.body(null, 401);
 	}
 
-	return res.send({ fodselsnr: jwtDecode<{ pid: string }>(token).pid });
+	return c.json({ fodselsnr: jwtDecode<{ pid: string }>(token).pid });
 };

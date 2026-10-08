@@ -19,7 +19,7 @@ describe('routing edge cases', () => {
 		const res = await server.fetch('/finnes-ikke');
 
 		expect(res.status).toBe(404);
-		expect(res.headers.get('content-type')).toBe('text/html; charset=utf-8');
+		expect(res.headers.get('content-type')).toBe('text/html; charset=UTF-8');
 		expect(await res.text()).toBe(NOT_FOUND_HTML);
 	});
 
@@ -27,18 +27,21 @@ describe('routing edge cases', () => {
 		const res = await server.fetch(`${API}/finnes-ikke`);
 
 		expect(res.status).toBe(200);
-		expect(res.headers.get('content-type')).toBe('text/html; charset=utf-8');
+		expect(res.headers.get('content-type')).toBe('text/html; charset=UTF-8');
 	});
 
 	test('an unknown page is rendered with status 200', async () => {
 		const res = await server.fetch(`${BASE}/nb/tilbakemeldinger/finnes-ikke`);
 
 		expect(res.status).toBe(200);
-		expect(res.headers.get('content-type')).toBe('text/html; charset=utf-8');
+		expect(res.headers.get('content-type')).toBe('text/html; charset=UTF-8');
 	});
 
-	test('a POST to a page that has not been rendered yet gets the 404 page with CSP', async () => {
-		const res = await server.fetch(`${BASE}/nb/tilbakemeldinger/serviceklage?post=uncached`, { method: 'POST' });
+	test('a POST to a page gets the 404 page with CSP, also when the page is cached', async () => {
+		const url = `${BASE}/nb/tilbakemeldinger/serviceklage?post=cached`;
+		expect((await server.fetch(url)).status).toBe(200);
+
+		const res = await server.fetch(url, { method: 'POST' });
 
 		expect(res.status).toBe(404);
 		expect(res.headers.get('content-security-policy')).toBeTruthy();
@@ -68,18 +71,19 @@ describe('routing edge cases', () => {
 		expect(res.headers.get('cache-control')).toBe('public, max-age=31536000');
 	});
 
-	// Express-specific behavior, pinned so a framework change shows up as a test diff
-	test('answers OPTIONS automatically', async () => {
+	// Framework-specific behavior, pinned so a framework change shows up as a test diff
+	test('does not answer OPTIONS', async () => {
 		const res = await server.fetch(`${API}/internal/isAlive`, { method: 'OPTIONS' });
 
-		expect(res.status).toBe(200);
-		expect(res.headers.get('allow')).toBe('GET, HEAD');
+		expect(res.status).toBe(404);
+		expect(await res.text()).toBe(NOT_FOUND_HTML);
 	});
 
-	test('matches routes case-insensitively', async () => {
+	test('matches routes case-sensitively', async () => {
 		const res = await server.fetch(`${API}/internal/ISALIVE`);
 
+		// Not the probe, so it falls through to a rendered page
 		expect(res.status).toBe(200);
-		expect(await res.json()).toEqual({ message: 'I am alive!' });
+		expect(res.headers.get('content-type')).toBe('text/html; charset=UTF-8');
 	});
 });

@@ -1,4 +1,4 @@
-import type { RequestHandler } from 'express';
+import type { Handler } from 'hono';
 import { URLs } from '#server/urls.ts';
 import type { Enhet } from '#shared/enhet.ts';
 
@@ -11,7 +11,7 @@ const transformEnhet = (enhetRaw: Record<string, unknown> & Enhet): Enhet => ({
 	type: enhetRaw.type,
 });
 
-export const enheterHandler: RequestHandler = async (req, res) => {
+export const enheterHandler: Handler = async (c) => {
 	const enheter = await fetch(NORG2_API_URL)
 		.then((norgRes) => norgRes.json())
 		.catch((e) => {
@@ -20,8 +20,8 @@ export const enheterHandler: RequestHandler = async (req, res) => {
 		});
 
 	if (!enheter || !Array.isArray(enheter)) {
-		return res.status(500).send('Lasting av enheter feilet');
+		return c.text('Lasting av enheter feilet', 500);
 	}
 
-	return res.send(enheter.map(transformEnhet));
+	return c.json(enheter.map(transformEnhet));
 };

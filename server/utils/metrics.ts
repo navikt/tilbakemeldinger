@@ -1,5 +1,7 @@
-import type { RequestHandler, Response } from 'express';
+import type { Context, Handler } from 'hono';
+import { createMiddleware } from 'hono/factory';
 import { Counter, register } from '@prometheus-io/client';
+import type { AppEnv } from '#server/types.ts';
 
 // The kinds of feedback /mottak/:path accepts
 const feedbackTypes = ['serviceklage', 'feil-og-mangler', 'ros'] as const;
@@ -24,35 +26,34 @@ for (const type of feedbackTypes) {
 }
 
 // Handlers call this before sending a failure response, so the metric can tell failures apart
-export const setFailureReason = (res: Response, reason: FailureReason) => {
-	res.locals.failureReason = reason;
+export const setFailureReason = (c: Context<AppEnv>, reason: FailureReason) => {
+	c.set('failureReason', reason);
 };
 
-const reasonFor = (res: Response): FailureReason => {
-	if (res.locals.failureReason) {
-		return res.locals.failureReason;
+const reasonFor = (c: Context<AppEnv>): FailureReason => {
+	const reason = c.get('failureReason');
+	if (reason) {
+		return reason;
 	}
 	// Rate limiters reply on their own, without going through the handler
-	return res.statusCode === 429 ? 'rate_limit' : 'unknown';
+	return c.res.status === 429 ? 'rate_limit' : 'unknown';
 };
 
 // Goes before the rate limiters, so submissions they reject count as failures too.
 // Unknown paths aren't counted, which keeps the label values to a fixed set.
-export const countSubmission: RequestHandler = (req, res, next) => {
-	const type = req.params.path;
-	if (isFeedbackType(type)) {
-		res.on('finish', () => {
-			if (res.statusCode < 300) {
-				submissions.inc({ type, result: 'success', reason: 'none' });
-			} else {
-				submissions.inc({ type, result: 'failure', reason: reasonFor(res) });
-			}
-		});
-	}
-	next();
-};
+export const countSubmission = createMiddleware<AppEnv>(async (c, next) => {
+	await next();
 
-export const metricsHandler: RequestHandler = async (req, res) => {
-	res.set('Content-Type', register.contentType);
-	res.send(await register.metrics());
+	const type = c.req.param('path');
+	if (isFeedbackType(type)) {
+		if (c.res.status < 300) {
+			submissions.inc({ type, result: 'success', reason: 'none' });
+		} else {
+			submissions.inc({ type, result: 'failure', reason: reasonFor(c) });
+		}
+	}
+});
+
+export const metricsHandler: Handler = async (c) => {
+	return c.body(await register.metrics(), 200, { 'Content-Type': register.contentType });
 };

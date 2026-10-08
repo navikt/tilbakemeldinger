@@ -30,7 +30,7 @@ describe('rate limiting of mottak', () => {
 		const res = await post(server);
 
 		expect(res.status).toBe(429);
-		expect(res.headers.get('content-type')).toBe('text/html; charset=utf-8');
+		expect(res.headers.get('content-type')).toBe('text/plain; charset=UTF-8');
 		expect(res.headers.get('ratelimit-limit')).toBe('5');
 		expect(await res.text()).toBe('Rate limit IP');
 	});
