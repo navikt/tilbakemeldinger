@@ -3,13 +3,13 @@ import { fileURLToPath } from 'node:url';
 import { type HtmlRenderer, createProdRender, devRender } from './ssr/htmlRenderer.ts';
 import { createCacheMiddleware } from '#server/utils/cacheMiddleware.ts';
 import { createCspMiddleware } from '#server/utils/cspMiddleware.ts';
-import { isLocal } from '#server/utils/environment.ts';
+import { env, isLocal } from '#server/utils/environment.ts';
 
-const { VITE_APP_BASEPATH, VITE_EDITORIAL_FRONTPAGE_ORIGIN } = process.env;
+const { VITE_APP_BASEPATH, VITE_EDITORIAL_FRONTPAGE_ORIGIN } = env;
 
 const assetsDir = fileURLToPath(import.meta.resolve('#dist/client/assets'));
 
-const isProd = process.env.NODE_ENV !== 'development';
+const isProd = env.NODE_ENV !== 'development';
 
 // Helper function to extract locale from the URL
 const extractLocale = (url: string) => {

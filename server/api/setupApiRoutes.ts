@@ -21,7 +21,9 @@ const globalRateLimit = rateLimit({
 	max: 100,
 	standardHeaders: true,
 	keyGenerator: async (req): Promise<string> => {
-		const accessToken = await getAccessToken(req);
+		// Only used on /mottak/:path, so the param is a single string
+		const path = req.params.path as string;
+		const accessToken = await getAccessToken({ authHeader: req.headers.authorization, path });
 		if (!accessToken) {
 			return 'unauthenticated';
 		}

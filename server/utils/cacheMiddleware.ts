@@ -1,5 +1,6 @@
 import { LRUCache } from 'lru-cache';
 import type { RequestHandler } from 'express';
+import { env } from './environment.ts';
 
 type CacheMiddlewareOptions = {
 	cacheOnErrors?: boolean;
@@ -17,7 +18,7 @@ export const createCacheMiddleware = ({
 	ttlSec,
 	maxSize,
 }: CacheMiddlewareOptions): RequestHandler => {
-	if (process.env.NODE_ENV === 'development') {
+	if (env.NODE_ENV === 'development') {
 		return (req, res, next) => {
 			next();
 		};
