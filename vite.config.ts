@@ -1,12 +1,9 @@
 /// <reference types="vitest/config" />
-import { fileURLToPath } from 'node:url';
 import { defineConfig, loadEnv } from 'vite';
 import preact from '@preact/preset-vite';
+import devServer, { defaultOptions } from '@hono/vite-dev-server';
 import { visualizer } from 'rollup-plugin-visualizer';
 import NavBrowserTargets from '@navikt/browserslist-config/vite';
-
-// Paths outside Vite's root (client/), from the repo root where this file lives
-const fromRepoRoot = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
 export default defineConfig(({ mode, isSsrBuild }) => {
 	process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
@@ -14,20 +11,27 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 	process.env.VITE_ENV = process.env.ENV;
 
 	return {
-		// index.html and the client entries live in client/
-		root: 'client',
-		// .env is written to the repo root (by CI, and by `pnpm dev`)
-		envDir: fromRepoRoot('.'),
+		// `pnpm dev`: the whole app on the app's own port
+		server: {
+			port: Number(process.env.APP_PORT) || undefined,
+			strictPort: true,
+		},
 		plugins: [
 			NavBrowserTargets(),
 			preact(),
+			// In development, Vite serves the app: the server (server/app.ts) answers every
+			// request except Vite's own endpoints and the client code it serves
+			devServer({
+				entry: './server/app.ts',
+				exclude: [new RegExp(`^${process.env.VITE_APP_BASEPATH}/@`), /\.(scss|json)$/, ...defaultOptions.exclude],
+				// The page renderer runs transformIndexHtml, which adds Vite's client
+				injectClientScript: false,
+			}),
 			...(process.env.ANALYZE ? [visualizer({ gzipSize: true, open: true, sourcemap: true })] : []),
 		],
 		build: {
 			sourcemap: true,
-			outDir: fromRepoRoot(isSsrBuild ? 'dist/ssr' : 'dist/client'),
-			// outDir is outside root, which Vite otherwise refuses to empty
-			emptyOutDir: true,
+			outDir: isSsrBuild ? 'dist/ssr' : 'dist/client',
 		},
 		ssr: {
 			// Dependencies containing React components must not be externalized
@@ -51,7 +55,7 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 			// from noExternal, so convert it up front. Without this, rendering throws
 			// "getAnalyticsInstance is not a function".
 			optimizeDeps: {
-				include: ['@navikt/nav-dekoratoren-moduler'],
+				include: ['@navikt/nav-dekoratoren-moduler', '@navikt/nav-dekoratoren-moduler/ssr/index.js'],
 			},
 		},
 		base: process.env.CDN_BASE || process.env.VITE_APP_BASEPATH,
@@ -65,8 +69,6 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 			},
 		},
 		test: {
-			// Tests live in client/, shared/, server/ and test/, not only under Vite's root
-			root: fromRepoRoot('.'),
 			environment: 'node',
 			clearMocks: true,
 			setupFiles: ['./test/setup.ts'],

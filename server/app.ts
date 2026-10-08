@@ -1,39 +1,33 @@
 import { Hono } from 'hono';
 import { compress } from 'hono/compress';
-import type { ViteDevServer } from 'vite';
-import { setupSiteRoutes } from './site/setupSiteRoutes.ts';
-import { setupApiRoutes } from './api/setupApiRoutes.ts';
+import { api } from './api/api.ts';
+import { createSite } from './site/site.ts';
 import { setupErrorHandlers } from './utils/errorHandlers.ts';
 import { env, isLocal } from './utils/environment.ts';
 import { metricsHandler } from './utils/metrics.ts';
 import type { AppEnv } from './types.ts';
 
-// In development, pass the Vite dev server that serves the client code
-export const createApp = async (vite?: ViteDevServer) => {
-	// strict: false lets a route match with or without a trailing slash
-	const app = new Hono<AppEnv>({ strict: false });
-	app.use(compress());
+const { VITE_APP_BASEPATH } = env;
 
-	// Scraped by NAIS straight from the pod (see .nais/config.yml). It's outside the
-	// base path, so the ingress never exposes it
-	app.get('/internal/metrics', metricsHandler);
+// strict: false lets a route match with or without a trailing slash
+const app = new Hono<AppEnv>({ strict: false });
+app.use(compress());
 
-	// Redirect from root to basepath in local development environments
-	if (isLocal() && env.VITE_APP_BASEPATH !== '/') {
-		app.get('/', (c) => c.redirect(`${env.VITE_APP_BASEPATH}/tilbakemeldinger`));
-	}
+// Scraped by NAIS straight from the pod (see .nais/config.yml). It's outside the
+// base path, so the ingress never exposes it
+app.get('/internal/metrics', metricsHandler);
 
-	const siteRouter = new Hono<AppEnv>();
-	const apiRouter = new Hono<AppEnv>();
+// Redirect from root to basepath in local development environments
+if (isLocal() && VITE_APP_BASEPATH !== '/') {
+	app.get('/', (c) => c.redirect(`${VITE_APP_BASEPATH}/tilbakemeldinger`));
+}
 
-	// Routes are matched in the order they're added, so API paths go first and
-	// unknown ones fall through to the site routes
-	await setupApiRoutes(apiRouter);
-	siteRouter.route('/tilbakemeldinger/api', apiRouter);
-	await setupSiteRoutes(siteRouter, vite);
-	app.route(env.VITE_APP_BASEPATH, siteRouter);
+// Routes match in the order they're added
+// The API is first so unknown API paths fall through to pages
+app.route(`${VITE_APP_BASEPATH}/tilbakemeldinger/api`, api);
+app.route(VITE_APP_BASEPATH, await createSite());
 
-	await setupErrorHandlers(app);
+await setupErrorHandlers(app);
 
-	return app;
-};
+// Served by server.ts in production, and by the Vite dev server in development (see vite.config.ts)
+export default app;

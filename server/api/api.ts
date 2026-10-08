@@ -1,5 +1,5 @@
 import { isIPv6 } from 'node:net';
-import type { Context, Hono } from 'hono';
+import { Hono, type Context } from 'hono';
 import { bodyLimit } from 'hono/body-limit';
 import { rateLimiter } from 'hono-rate-limiter';
 import { Address6 } from 'ip-address';
@@ -12,24 +12,6 @@ import { enheterHandler } from './routes/enheter/enheterHandler.ts';
 import { countSubmission } from '#server/utils/metrics.ts';
 import { jsonBody } from '#server/utils/jsonBody.ts';
 import type { AppEnv } from '#server/types.ts';
-
-export const setupApiRoutes = async (router: Hono<AppEnv>) => {
-	router.get('/internal/isAlive', isAliveHandler);
-	router.get('/internal/isReady', isReadyHandler);
-	router.get('/fodselsnr', fodselsNrHandler);
-	router.post(
-		'/mottak/:path',
-		// The body is read before the rate limiters, so a request that's too large or isn't
-		// valid JSON doesn't count against them
-		bodyLimit({ maxSize: 100 * 1024 }),
-		jsonBody,
-		countSubmission,
-		sustainedRateLimit,
-		burstRateLimit,
-		postToTilbakemeldingsmottakHandler
-	);
-	router.get('/enheter', enheterHandler);
-};
 
 // Requests come in through the ingress (HAProxy), which appends the client address to
 // X-Forwarded-For, and then the ID-porten sidecar (Wonderwall), which passes the header on
@@ -66,3 +48,20 @@ const burstRateLimit = rateLimiter<AppEnv>({
 	keyGenerator: clientKey,
 	message: 'Rate limit IP',
 });
+
+export const api = new Hono<AppEnv>()
+	.get('/internal/isAlive', isAliveHandler)
+	.get('/internal/isReady', isReadyHandler)
+	.get('/fodselsnr', fodselsNrHandler)
+	.get('/enheter', enheterHandler)
+	.post(
+		'/mottak/:path',
+		// The body is read before the rate limiters, so a request that's too large or isn't
+		// valid JSON doesn't count against them
+		bodyLimit({ maxSize: 100 * 1024 }),
+		jsonBody,
+		countSubmission,
+		sustainedRateLimit,
+		burstRateLimit,
+		postToTilbakemeldingsmottakHandler
+	);

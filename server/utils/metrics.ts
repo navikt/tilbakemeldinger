@@ -1,6 +1,6 @@
 import type { Context, Handler } from 'hono';
 import { createMiddleware } from 'hono/factory';
-import { Counter, register } from '@prometheus-io/client';
+import { Counter, Registry } from '@prometheus-io/client';
 import type { AppEnv } from '#server/types.ts';
 
 // The kinds of feedback /mottak/:path accepts
@@ -11,10 +11,15 @@ export type FailureReason = (typeof failureReasons)[number];
 const isFeedbackType = (path: unknown): path is (typeof feedbackTypes)[number] =>
 	typeof path === 'string' && (feedbackTypes as readonly string[]).includes(path);
 
+// Use our own registry here because Vite's dev-loop re-runs this module
+// If we use the one baked into the Prom client, metric registrations clash when this module is re-run
+const registry = new Registry();
+
 const submissions = new Counter({
 	name: 'tilbakemeldinger_submissions_total',
 	help: 'Feedback submitted, by type. result is success when tilbakemeldingsmottak-api accepted it (2xx). reason says why a submission failed, and is none on success',
 	labelNames: ['type', 'result', 'reason'] as const,
+	registers: [registry],
 });
 
 // Every series exists from startup, so rates and alerts work before the first submission
@@ -55,5 +60,5 @@ export const countSubmission = createMiddleware<AppEnv>(async (c, next) => {
 });
 
 export const metricsHandler: Handler = async (c) => {
-	return c.body(await register.metrics(), 200, { 'Content-Type': register.contentType });
+	return c.body(await registry.metrics(), 200, { 'Content-Type': registry.contentType });
 };

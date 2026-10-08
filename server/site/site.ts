@@ -1,8 +1,7 @@
-import type { Hono } from 'hono';
+import { Hono, type Context } from 'hono';
 import { serveStatic } from '@hono/node-server/serve-static';
-import type { ViteDevServer } from 'vite';
 import { fileURLToPath } from 'node:url';
-import { type HtmlRenderer, createProdRender, devRender } from './ssr/htmlRenderer.ts';
+import { createProdRender, devRender } from './ssr/htmlRenderer.ts';
 import { createCspMiddleware } from '#server/utils/cspMiddleware.ts';
 import { env, isLocal } from '#server/utils/environment.ts';
 import type { AppEnv } from '#server/types.ts';
@@ -21,19 +20,22 @@ const extractLocale = (url: string) => {
 const isPathToFrontPage = (url: string) =>
 	new RegExp(`^${VITE_APP_BASEPATH}(?:/(nb|nn|en|se))?/tilbakemeldinger$`).test(url);
 
-export const setupSiteRoutes = async (router: Hono<AppEnv>, vite?: ViteDevServer) => {
-	let render: HtmlRenderer;
+// The pages and their assets
+export const createSite = async () => {
+	const site = new Hono<AppEnv>();
+	let render: (url: string, c: Context<AppEnv>) => Promise<string>;
 
-	if (vite) {
+	if (env.NODE_ENV === 'development') {
 		console.log('Configuring site endpoints for development mode');
 
-		render = devRender(vite);
+		// With the Vite dev server that serves the app (see vite.config.ts)
+		render = (url, c) => devRender(c.env.vite, url);
 	} else {
 		console.log(`Configuring site endpoints for production mode - Using assets dir ${assetsDir}`);
 
 		render = await createProdRender();
 
-		router.get(
+		site.get(
 			'/assets/*',
 			serveStatic({
 				root: assetsDir,
@@ -45,9 +47,9 @@ export const setupSiteRoutes = async (router: Hono<AppEnv>, vite?: ViteDevServer
 		);
 	}
 
-	router.use(await createCspMiddleware());
+	site.use(await createCspMiddleware());
 
-	router.get('*', async (c) => {
+	site.get('*', async (c) => {
 		// The URL as the client sent it, path and query
 		const originalUrl = c.env.incoming.url ?? c.req.path;
 
@@ -58,6 +60,8 @@ export const setupSiteRoutes = async (router: Hono<AppEnv>, vite?: ViteDevServer
 			return c.redirect(redirectUrl, 301);
 		}
 
-		return c.html(await render(originalUrl));
+		return c.html(await render(originalUrl, c));
 	});
+
+	return site;
 };

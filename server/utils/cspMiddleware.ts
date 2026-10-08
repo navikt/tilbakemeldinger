@@ -2,7 +2,6 @@ import type { MiddlewareHandler } from 'hono';
 import Cache from 'node-cache';
 import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import { decoratorEnvProps } from './decorator.ts';
-import { env } from './environment.ts';
 import { type CSPDirectives, DATA, SELF } from 'csp-header';
 
 /*
@@ -10,15 +9,13 @@ import { type CSPDirectives, DATA, SELF } from 'csp-header';
  * Refresh every 10 minutes to ensure we stay in sync with nav-dekoratoren
  * */
 
-const HMR_HOST = 'localhost:24678';
-
 const myDirectives: Partial<CSPDirectives> = {
 	'script-src': [SELF],
 	'script-src-elem': [SELF],
 	'style-src': [SELF],
 	'style-src-elem': [SELF],
 	'img-src': [SELF, DATA],
-	'connect-src': [SELF, ...(env.NODE_ENV === 'development' ? [`ws://${HMR_HOST}`, `http://${HMR_HOST}`] : [])],
+	'connect-src': [SELF],
 };
 
 const cache = new Cache({ deleteOnExpire: false, stdTTL: 600 });
