@@ -8,6 +8,14 @@ import { metricsHandler } from './utils/metrics.ts';
 
 export const createApp = async () => {
 	const app = express();
+
+	// Requests come in through the ingress (HAProxy), which appends the client address to
+	// X-Forwarded-For, and then the ID-porten sidecar (Wonderwall), which passes the header on
+	// unchanged and connects over loopback. Trusting only internal addresses makes req.ip the
+	// right-most X-Forwarded-For entry that isn't ours, so entries a client adds on the left are
+	// ignored. 100.64.0.0/10 covers clusters that put pods in the shared address space.
+	// Without this, req.ip is the sidecar and every user shares one rate limit.
+	app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal', '100.64.0.0/10']);
 	app.use(compression());
 	app.use(express.json());
 
