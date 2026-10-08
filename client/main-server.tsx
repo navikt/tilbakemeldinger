@@ -2,13 +2,14 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { AppRoot } from './index';
-import { HelmetProvider, HelmetServerState } from 'react-helmet-async';
+import { HelmetProvider, type HelmetServerState } from 'react-helmet-async';
+import type { SsrRender } from '#shared/types/ssr.ts';
 
 type HelmetContext = {
 	helmet?: HelmetServerState;
 };
 
-export const render = (url: string) => {
+export const render: SsrRender = (url) => {
 	const helmetContext: HelmetContext = {};
 
 	const html = renderToString(
