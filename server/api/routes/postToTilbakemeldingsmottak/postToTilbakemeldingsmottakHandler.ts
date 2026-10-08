@@ -4,6 +4,7 @@ import { serviceKlageSchema } from '#shared/schema/ServiceKlage.ts';
 import { feilOgManglerSchema } from '#shared/schema/FeilOgMangler.ts';
 import { rosTilNavSchema } from '#shared/schema/RosTilNav.ts';
 import { setFailureReason } from '#server/utils/metrics.ts';
+import { env } from '#server/utils/environment.ts';
 
 const deriveSchemaFromPath = (path: string) => {
 	switch (path) {
@@ -18,9 +19,9 @@ const deriveSchemaFromPath = (path: string) => {
 	}
 };
 
-export const postToTilbakemeldingsmottakHandler: RequestHandler = async (req, res) => {
+export const postToTilbakemeldingsmottakHandler: RequestHandler<{ path: string }> = async (req, res) => {
 	const path = req.params.path;
-	const accessToken = await getAccessToken(req);
+	const accessToken = await getAccessToken({ authHeader: req.headers.authorization, path });
 	const body = req.body;
 
 	if (path !== 'ros' && path !== 'serviceklage' && path !== 'feil-og-mangler') {
@@ -42,7 +43,7 @@ export const postToTilbakemeldingsmottakHandler: RequestHandler = async (req, re
 
 	try {
 		const apiPath = path === 'serviceklage' ? `/rest/v2/${path}` : `/rest/${path}`;
-		const response = await fetch(`${process.env.API_URL}${apiPath}`, {
+		const response = await fetch(`${env.API_URL}${apiPath}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

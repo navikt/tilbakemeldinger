@@ -1,25 +1,25 @@
 import * as client from 'openid-client';
 import { importJWK } from 'jose';
+import { env } from '#server/utils/environment.ts';
 
 let _config: client.Configuration | undefined;
 
 function jwk() {
-	if (!process.env.TOKEN_X_PRIVATE_JWK) throw new TypeError('Miljøvariabelen "TOKEN_X_PRIVATE_JWK må være satt');
-	return JSON.parse(process.env.TOKEN_X_PRIVATE_JWK);
+	if (!env.TOKEN_X_PRIVATE_JWK) throw new TypeError('Miljøvariabelen "TOKEN_X_PRIVATE_JWK må være satt');
+	return JSON.parse(env.TOKEN_X_PRIVATE_JWK);
 }
 
 async function config() {
 	if (_config === undefined) {
-		if (!process.env.TOKEN_X_WELL_KNOWN_URL)
-			throw new TypeError('Miljøvariabelen "TOKEN_X_WELL_KNOWN_URL må være satt');
-		if (!process.env.TOKEN_X_CLIENT_ID) throw new TypeError('Miljøvariabelen "TOKEN_X_CLIENT_ID må være satt');
+		if (!env.TOKEN_X_WELL_KNOWN_URL) throw new TypeError('Miljøvariabelen "TOKEN_X_WELL_KNOWN_URL må være satt');
+		if (!env.TOKEN_X_CLIENT_ID) throw new TypeError('Miljøvariabelen "TOKEN_X_CLIENT_ID må være satt');
 
 		const _jwk = jwk();
 		const privateKey = await importJWK(_jwk, _jwk.alg ?? 'RS256');
 
 		_config = await client.discovery(
-			new URL(process.env.TOKEN_X_WELL_KNOWN_URL),
-			process.env.TOKEN_X_CLIENT_ID,
+			new URL(env.TOKEN_X_WELL_KNOWN_URL),
+			env.TOKEN_X_CLIENT_ID,
 			{ token_endpoint_auth_method: 'private_key_jwt' },
 			client.PrivateKeyJwt(
 				{ key: privateKey as CryptoKey, kid: _jwk.kid },

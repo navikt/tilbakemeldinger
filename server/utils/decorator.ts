@@ -3,8 +3,9 @@ import {
 	type DecoratorParams,
 	type DecoratorEnvProps,
 } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
+import { env } from './environment.ts';
 
-const DECORATOR_ENV = process.env.ENV;
+const DECORATOR_ENV = env.ENV;
 const DECORATOR_LOCAL_URL = 'https://www.nav.no/dekoratoren';
 
 export const decoratorEnvProps: DecoratorEnvProps =

@@ -1,5 +1,6 @@
 import * as querystring from 'querystring';
 import Cache from 'node-cache';
+import { env } from '#server/utils/environment.ts';
 
 const cacheKey = 'authHeader';
 
@@ -7,7 +8,7 @@ const cache = new Cache({
 	deleteOnExpire: true,
 });
 
-const azureAdTokenApi = `https://login.microsoftonline.com/${process.env.AZURE_APP_TENANT_ID}/oauth2/v2.0/token`;
+const azureAdTokenApi = `https://login.microsoftonline.com/${env.AZURE_APP_TENANT_ID}/oauth2/v2.0/token`;
 
 type TokenResponse = {
 	token_type: 'Bearer';
@@ -26,8 +27,8 @@ const fetchAccessToken = async (scope: string): Promise<TokenResponse | null> =>
 		},
 		body: querystring.stringify({
 			grant_type: 'client_credentials',
-			client_id: process.env.AZURE_APP_CLIENT_ID,
-			client_secret: process.env.AZURE_APP_CLIENT_SECRET,
+			client_id: env.AZURE_APP_CLIENT_ID,
+			client_secret: env.AZURE_APP_CLIENT_SECRET,
 			scope: scope,
 		}),
 	});
