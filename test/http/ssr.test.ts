@@ -78,6 +78,11 @@ describe('server-side rendered pages', () => {
 				`${APP_ORIGIN}${BASE}/${locale}${page.path}`
 			);
 			expect(doc.querySelector('#maincontent h1')?.textContent).toBe(t[page.h1]);
+			// Only the app's elements, no whitespace around them: React 19 hydration
+			// treats stray text nodes as a mismatch
+			const main = doc.querySelector('#maincontent');
+			expect([...(main?.childNodes ?? [])].map((n) => n.nodeType)).toEqual([...(main?.children ?? [])].map(() => 1));
+			expect(main?.children.length).toBeGreaterThan(0);
 
 			// Decorator injected server-side
 			expect(doc.head.querySelector('[data-stub="head-assets"]')).not.toBeNull();

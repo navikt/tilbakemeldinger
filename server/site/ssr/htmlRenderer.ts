@@ -4,20 +4,23 @@ import { fileURLToPath } from 'node:url';
 import { buildHtmlTemplate, getTemplateWithDecorator } from './templateBuilder.ts';
 import type { ViteDevServer } from 'vite';
 import type { HelmetServerState } from 'react-helmet-async';
+import type { SsrRender } from '#shared/types/ssr.ts';
 
 export type HtmlRenderer = (url: string) => Promise<string>;
 
-// the shape build:ssr produces from src/main-server.tsx
-type SsrModule = {
-	render: (url: string) => { html: string; helmet?: HelmetServerState };
-};
+type SsrModule = { render: SsrRender };
 
 const processTemplate = async (templateHtml: string, appHtml: string, helmet?: HelmetServerState) => {
-	return templateHtml
-		.replace('<!--ssr-app-html-->', appHtml)
-		.replace('<title>%%TITLE%%</title>', helmet?.title.toString() ?? '')
-		.replace('<template>%%DESCRIPTION%%</template>', helmet?.meta.toString() ?? '')
-		.replace('<template>%%CANONICAL%%</template>', helmet?.link.toString() ?? '');
+	return (
+		templateHtml
+			// Ensure we replace the line and indentation markers
+			// <main> must contain only the app's elements
+			// otherwise hydration sees text nodes that the client never renders
+			.replace(/\s*<!--ssr-app-html-->\s*/, () => appHtml)
+			.replace('<title>%%TITLE%%</title>', helmet?.title.toString() ?? '')
+			.replace('<template>%%DESCRIPTION%%</template>', helmet?.meta.toString() ?? '')
+			.replace('<template>%%CANONICAL%%</template>', helmet?.link.toString() ?? '')
+	);
 };
 
 const prodTemplatePath = fileURLToPath(import.meta.resolve('#dist/client/index.html'));

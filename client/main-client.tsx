@@ -23,10 +23,10 @@ const AppWithContext = () => {
 const renderOrHydrate = () => {
 	const rootElement = document.getElementById('maincontent') as HTMLElement;
 
-	// We should only attempt to hydrate if the root element has child elements
-	// to hydrate. Also, hydration causes glitches with our HMR workaround
-	// below, used in dev mode.
-	if (rootElement.hasChildNodes() && import.meta.env.PROD) {
+	// Hydrate only when the server rendered the app (an element, not just
+	// whitespace or nothing). Not in dev: hydration glitches with our HMR
+	// workaround below.
+	if (rootElement.firstElementChild && import.meta.env.PROD) {
 		ReactDOM.hydrateRoot(rootElement, <AppWithContext />);
 	} else {
 		console.log('Rendering!');
