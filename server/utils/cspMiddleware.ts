@@ -1,8 +1,7 @@
-import type { RequestHandler } from 'express';
+import type { MiddlewareHandler } from 'hono';
 import Cache from 'node-cache';
 import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import { decoratorEnvProps } from './decorator.ts';
-import { env } from './environment.ts';
 import { type CSPDirectives, DATA, SELF } from 'csp-header';
 
 /*
@@ -10,15 +9,13 @@ import { type CSPDirectives, DATA, SELF } from 'csp-header';
  * Refresh every 10 minutes to ensure we stay in sync with nav-dekoratoren
  * */
 
-const HMR_HOST = 'localhost:24678';
-
 const myDirectives: Partial<CSPDirectives> = {
 	'script-src': [SELF],
 	'script-src-elem': [SELF],
 	'style-src': [SELF],
 	'style-src-elem': [SELF],
 	'img-src': [SELF, DATA],
-	'connect-src': [SELF, ...(env.NODE_ENV === 'development' ? [`ws://${HMR_HOST}`, `http://${HMR_HOST}`] : [])],
+	'connect-src': [SELF],
 };
 
 const cache = new Cache({ deleteOnExpire: false, stdTTL: 600 });
@@ -33,17 +30,17 @@ const buildAndCache = async () => {
 
 cache.on('expired', buildAndCache);
 
-export const createCspMiddleware = async (): Promise<RequestHandler> => {
+export const createCspMiddleware = async (): Promise<MiddlewareHandler> => {
 	await buildAndCache();
 
-	return (req, res, next) => {
+	return async (c, next) => {
 		const csp = cache.get<string>(cacheKey);
 		if (!csp) {
 			console.error('CSP header value not available!');
 			return next();
 		}
 
-		res.setHeader('Content-Security-Policy', csp);
-		next();
+		c.header('Content-Security-Policy', csp);
+		await next();
 	};
 };

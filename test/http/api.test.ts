@@ -15,16 +15,13 @@ describe('GET endpoints', () => {
 		await server.stop();
 	});
 
-	test.each([
-		['isAlive', { message: 'I am alive!' }],
-		['isReady', { message: 'I am ready!' }],
-	])('%s', async (probe, body) => {
+	test.each(['isAlive', 'isReady'])('%s', async (probe) => {
 		const res = await server.fetch(`${API}/internal/${probe}`);
 
 		expect(res.status).toBe(200);
-		expect(res.headers.get('content-type')).toBe('application/json; charset=utf-8');
+		expect(res.headers.get('content-type')).toBe('text/plain; charset=UTF-8');
 		expect(res.headers.get('content-security-policy')).toBeNull();
-		expect(await res.json()).toEqual(body);
+		expect(await res.text()).toBe('OK');
 	});
 
 	test('enheter returns the norg2 units with four fields', async () => {

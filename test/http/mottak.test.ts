@@ -76,7 +76,7 @@ describe('forwarding to tilbakemeldingsmottak-api', () => {
 		const res = await postJson(server, `${API}/mottak/ros-til-nav`, ROS);
 
 		expect(res.status).toBe(404);
-		expect(res.headers.get('content-type')).toBe('text/html; charset=utf-8');
+		expect(res.headers.get('content-type')).toBe('text/plain; charset=UTF-8');
 		expect(await res.text()).toBe('Path not found');
 	});
 });
@@ -105,16 +105,16 @@ describe('errors from tilbakemeldingsmottak-api and invalid input', () => {
 		const res = await postJson(server, `${API}/mottak/ros`, ROS);
 
 		expect(res.status).toBe(400);
-		expect(res.headers.get('content-type')).toBe('application/json; charset=utf-8');
+		expect(res.headers.get('content-type')).toBe('application/json');
 		expect(await res.json()).toEqual({ errorCode: 'EREG_NOT_FOUND' });
 	});
 
-	test('passes a text error through as HTML', async () => {
+	test('passes a text error through', async () => {
 		upstreamReplies(() => ({ status: 502, headers: { 'content-type': 'text/plain' }, body: 'Bad gateway' }));
 		const res = await postJson(server, `${API}/mottak/ros`, ROS);
 
 		expect(res.status).toBe(502);
-		expect(res.headers.get('content-type')).toBe('text/html; charset=utf-8');
+		expect(res.headers.get('content-type')).toBe('text/plain; charset=UTF-8');
 		expect(await res.text()).toBe('Bad gateway');
 	});
 
@@ -130,7 +130,7 @@ describe('errors from tilbakemeldingsmottak-api and invalid input', () => {
 		const res = await postJson(server, `${API}/mottak/ros`, { hvemRoses: 'NAV_KONTAKTSENTER', melding: '   ' });
 
 		expect(res.status).toBe(400);
-		expect(res.headers.get('content-type')).toBe('text/html; charset=utf-8');
+		expect(res.headers.get('content-type')).toBe('text/plain; charset=UTF-8');
 		expect(await res.text()).toBe('Feil i validering av skjema');
 	});
 
