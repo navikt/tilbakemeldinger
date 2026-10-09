@@ -21,7 +21,7 @@ const fetchNotFoundHtml = () =>
 export const setupErrorHandlers = async (app: Hono<AppEnv>) => {
 	const notFoundHtml = await fetchNotFoundHtml();
 
-	app.notFound((c) => c.html(notFoundHtml, 404));
+	app.notFound((c) => c.html(notFoundHtml, { status: 404 }));
 
 	app.onError((err, c) => {
 		const { path } = c.req;
@@ -30,11 +30,11 @@ export const setupErrorHandlers = async (app: Hono<AppEnv>) => {
 
 		if (statusCode < 500) {
 			console.log(`Invalid request to ${path}: ${statusCode} ${msg}`);
-			return c.html(notFoundHtml, 404);
+			return c.html(notFoundHtml, { status: 404 });
 		}
 
 		console.error(`Server error on ${path}: ${statusCode} ${msg}`);
 
-		return c.body(null, statusCode);
+		return c.body(null, { status: statusCode });
 	});
 };

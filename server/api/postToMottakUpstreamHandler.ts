@@ -1,5 +1,7 @@
-import type { Handler } from 'hono';
+import { createFactory } from 'hono/factory';
+import { validator } from 'hono/validator';
 import type { ContentfulStatusCode } from 'hono/utils/http-status';
+import type { ZodType } from 'zod';
 import { getAccessToken } from '#server/utils/auth/common.ts';
 import { serviceKlageSchema } from '#shared/schema/ServiceKlage.ts';
 import { feilOgManglerSchema } from '#shared/schema/FeilOgMangler.ts';
@@ -8,39 +10,39 @@ import { setFailureReason } from '#server/utils/metrics.ts';
 import { env } from '#server/utils/environment.ts';
 import type { AppEnv } from '#server/types.ts';
 
-const deriveSchemaFromPath = (path: string) => {
-	switch (path) {
-		case 'ros':
-			return rosTilNavSchema;
-		case 'serviceklage':
-			return serviceKlageSchema;
-		case 'feil-og-mangler':
-			return feilOgManglerSchema;
-		default:
-			throw new Error(`Unknown path: ${path}`);
-	}
-};
+const schemas = new Map<string, ZodType>([
+	['ros', rosTilNavSchema],
+	['serviceklage', serviceKlageSchema],
+	['feil-og-mangler', feilOgManglerSchema],
+]);
 
-export const postToTilbakemeldingsmottakHandler: Handler<AppEnv, '/mottak/:path'> = async (c) => {
+// Checks the body against the schema for :path. A body that isn't valid JSON is a 400 from
+// Hono, which gets the 404 page (see errorHandlers); any other content type is validated as {}.
+// The raw body is passed on, not the parsed one, so what's forwarded is what the client sent.
+const validateFeedback = validator('json', (value: unknown, c) => {
+	const schema = schemas.get(c.req.param('path') ?? '');
+	if (!schema) {
+		return c.text('Path not found', { status: 404 });
+	}
+
+	if (!schema.safeParse(value).success) {
+		setFailureReason(c, 'validation');
+		return c.text('Feil i validering av skjema', { status: 400 });
+	}
+
+	return value;
+});
+
+const factory = createFactory<AppEnv, '/mottak/:path'>();
+
+export const postToMottakUpstreamHandler = factory.createHandlers(validateFeedback, async (c) => {
 	const path = c.req.param('path');
+	const body = c.req.valid('json');
 	const accessToken = await getAccessToken({ authHeader: c.req.header('authorization'), path });
-	const body = c.get('body');
-
-	if (path !== 'ros' && path !== 'serviceklage' && path !== 'feil-og-mangler') {
-		return c.text('Path not found', 404);
-	}
 
 	if (!accessToken) {
 		setFailureReason(c, 'auth');
-		return c.text('Failed to populate auth header', 500);
-	}
-
-	const schema = deriveSchemaFromPath(path);
-
-	const validationResult = schema.safeParse(body);
-	if (!validationResult.success) {
-		setFailureReason(c, 'validation');
-		return c.text('Feil i validering av skjema', 400);
+		return c.text('Failed to populate auth header', { status: 500 });
 	}
 
 	try {
@@ -66,18 +68,18 @@ export const postToTilbakemeldingsmottakHandler: Handler<AppEnv, '/mottak/:path'
 			// Try to parse as JSON, otherwise return the raw text
 			try {
 				const errorJson = JSON.parse(errorText);
-				return c.json(errorJson, status);
+				return c.json(errorJson, { status });
 			} catch {
 				console.error(`Kunne ikke parse feilmelding fra tilbakemeldingsmottak-api som JSON: ${errorText}`);
-				return c.text(errorText, status);
+				return c.text(errorText, { status });
 			}
 		}
 
 		const responseData = await response.json();
-		return c.json(responseData, response.status as ContentfulStatusCode);
+		return c.json(responseData, { status: response.status as ContentfulStatusCode });
 	} catch (error) {
 		console.error(`Feil i postToTilbakemeldingsmottakHandler: ${error}`);
 		setFailureReason(c, 'internal');
-		return c.text('Internal server error', 500);
+		return c.text('Internal server error', { status: 500 });
 	}
-};
+});

@@ -9,12 +9,14 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 	process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
 	process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 	process.env.VITE_ENV = process.env.ENV;
+	const basepath = process.env.VITE_APP_BASEPATH;
 
 	return {
 		// `pnpm dev`: the whole app on the app's own port
 		server: {
 			port: Number(process.env.APP_PORT) || undefined,
 			strictPort: true,
+			open: `${basepath}/tilbakemeldinger`,
 		},
 		plugins: [
 			NavBrowserTargets(),
@@ -23,7 +25,7 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 			// request except Vite's own endpoints and the client code it serves
 			devServer({
 				entry: './server/app.ts',
-				exclude: [new RegExp(`^${process.env.VITE_APP_BASEPATH}/@`), /\.(scss|json)$/, ...defaultOptions.exclude],
+				exclude: [new RegExp(`^${basepath}/@`), /\.(scss|json)$/, ...defaultOptions.exclude],
 				// The page renderer runs transformIndexHtml, which adds Vite's client
 				injectClientScript: false,
 			}),
@@ -58,7 +60,7 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 				include: ['@navikt/nav-dekoratoren-moduler', '@navikt/nav-dekoratoren-moduler/ssr/index.js'],
 			},
 		},
-		base: process.env.CDN_BASE || process.env.VITE_APP_BASEPATH,
+		base: process.env.CDN_BASE || basepath,
 		css: {
 			modules: {
 				// Create stable (but verbose!) classnames in dev mode, in order

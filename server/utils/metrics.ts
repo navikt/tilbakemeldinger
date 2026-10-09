@@ -60,5 +60,5 @@ export const countSubmission = createMiddleware<AppEnv>(async (c, next) => {
 });
 
 export const metricsHandler: Handler = async (c) => {
-	return c.body(await registry.metrics(), 200, { 'Content-Type': registry.contentType });
+	return c.body(await registry.metrics(), { headers: { 'Content-Type': registry.contentType } });
 };

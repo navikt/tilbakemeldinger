@@ -8,8 +8,6 @@ export type AppEnv = {
 	// that serves the app (see vite.config.ts)
 	Bindings: HttpBindings & { vite?: ViteDevServer };
 	Variables: {
-		// The parsed JSON request body (see jsonBody)
-		body?: unknown;
 		// Why a submission failed (see metrics)
 		failureReason?: FailureReason;
 	};

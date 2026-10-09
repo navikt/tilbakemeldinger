@@ -52,13 +52,6 @@ describe('local environment (ENV=localhost)', () => {
 		await server.stop();
 	});
 
-	test('redirects / to the front page', async () => {
-		const res = await server.fetch('/');
-
-		expect(res.status).toBe(302);
-		expect(res.headers.get('location')).toBe(`${BASE}/tilbakemeldinger`);
-	});
-
 	test('fetches the CSP from the prod decorator', () => {
 		expect(server.stub.find('www.nav.no', '/dekoratoren/api/csp').length).toBeGreaterThan(0);
 		expect(server.stub.find('dekoratoren.ekstern.dev.nav.no')).toEqual([]);

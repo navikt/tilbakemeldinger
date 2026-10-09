@@ -20,7 +20,7 @@ export const enheterHandler: Handler = async (c) => {
 		});
 
 	if (!enheter || !Array.isArray(enheter)) {
-		return c.text('Lasting av enheter feilet', 500);
+		return c.text('Lasting av enheter feilet', { status: 500 });
 	}
 
 	return c.json(enheter.map(transformEnhet));

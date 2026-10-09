@@ -8,8 +8,6 @@ import type { AppEnv } from '#server/types.ts';
 
 const { VITE_APP_BASEPATH, VITE_EDITORIAL_FRONTPAGE_ORIGIN } = env;
 
-const assetsDir = fileURLToPath(import.meta.resolve('#dist/client/assets'));
-
 // Helper function to extract locale from the URL
 const extractLocale = (url: string) => {
 	const localeMatch = url.match(new RegExp(`^${VITE_APP_BASEPATH}/(nb|nn|en|se)/`));
@@ -31,15 +29,21 @@ export const createSite = async () => {
 		// With the Vite dev server that serves the app (see vite.config.ts)
 		render = (url, c) => devRender(c.env.vite, url);
 	} else {
-		console.log(`Configuring site endpoints for production mode - Using assets dir ${assetsDir}`);
-
 		render = await createProdRender();
+
+		// GET /person/kontakt-oss/assets/index-abc.js -> dist/client/assets/index-abc.js
+		const clientDir = fileURLToPath(import.meta.resolve('#dist/client'));
+		// serveStatic looks files up by the full request path, base path included, even though this app is mounted under it
+		const withoutBasePath = (path: string) => path.slice(VITE_APP_BASEPATH.length);
+
+		console.log(`Configuring site endpoints for production mode - Serving assets from ${clientDir}`);
 
 		site.get(
 			'/assets/*',
 			serveStatic({
-				root: assetsDir,
-				rewriteRequestPath: (path) => path.slice(`${VITE_APP_BASEPATH}/assets`.length),
+				root: clientDir,
+				rewriteRequestPath: withoutBasePath,
+				// File names contain a content hash, so a file never changes
 				onFound: (_, c) => {
 					c.header('Cache-Control', 'public, max-age=31536000');
 				},
