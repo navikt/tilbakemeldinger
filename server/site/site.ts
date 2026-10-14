@@ -1,7 +1,7 @@
 import { Hono, type Context, type Handler } from 'hono';
 import { serveStatic } from '@hono/node-server/serve-static';
 import { fileURLToPath } from 'node:url';
-import { joinURL, parseURL, withoutBase } from 'ufo';
+import { joinURL, parseURL, withoutBase, withTrailingSlash } from 'ufo';
 import { localFrontPage } from './localFrontPage.ts';
 import { createProdRender, devRender } from './ssr/htmlRenderer.ts';
 import { createCspMiddleware } from '#server/utils/cspMiddleware.ts';
@@ -49,7 +49,7 @@ export const createSite = async () => {
 	// Redirect to editorial frontpage when deployed
 	if (FRONTPAGE_URL && !isLocal()) {
 		const toFrontPage: Handler<AppEnv> = (c) =>
-			c.redirect(c.req.param('locale') === 'en' ? joinURL(FRONTPAGE_URL, 'en') : FRONTPAGE_URL, 301);
+			c.redirect(c.req.param('locale') === 'en' ? joinURL(FRONTPAGE_URL, 'en') : withTrailingSlash(FRONTPAGE_URL), 301);
 		site.get('/tilbakemeldinger', toFrontPage);
 		site.get('/:locale{nb|nn|en}/tilbakemeldinger', toFrontPage);
 	} else {
