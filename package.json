@@ -78,7 +78,7 @@
 		"@testing-library/user-event": "14.6.7",
 		"@types/fetch-mock": "7.3.8",
 		"@types/jsdom": "30.0.0",
-		"@types/node": "25.9.1",
+		"@types/node": "26.6.3",
 		"@types/proxy-addr": "2.0.3",
 		"@types/react": "19.2.15",
 		"@types/react-dom": "18.3.5",
