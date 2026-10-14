@@ -1,16 +1,12 @@
-import { createApp } from './app.ts';
+import { serve } from '@hono/node-server';
+import app from './app.ts';
 import { env } from './utils/environment.ts';
 
 const { APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV } = env;
 
 console.log('env:', APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV);
 
-const app = await createApp().catch((e) => {
-	console.error(`Error occured while initializing server! - ${e}`);
-	throw e;
-});
-
-const server = app.listen(APP_PORT, () => {
+const server = serve({ fetch: app.fetch, port: APP_PORT }, () => {
 	console.log(`Server starting on port ${APP_PORT}`);
 });
 

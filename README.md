@@ -11,14 +11,15 @@ Applikasjonen er en full-stack Node.js-løsning med server-side rendering (SSR) 
 ### Teknisk stack
 
 - **Frontend**: Preact
-- **Backend**: Express.js
+- **Backend**: Hono (Node.js)
 - **Språk**: TypeScript
 - **Byggverktøy**: Vite
 
 ### Struktur
 
-- `client/` - Frontend-kode (Preact-komponenter, utilities, entry points, `index.html`)
-- `server/` - Backend-kode (Express-server, API-ruter, SSR-logikk). Node kjører TypeScript-filene direkte (type stripping), uten eget byggesteg.
+- `index.html` - HTML-malen for klienten og server-side rendering
+- `client/` - Frontend-kode (Preact-komponenter, utilities, entry points)
+- `server/` - Backend-kode (Hono-server, API-ruter, SSR-logikk). Node kjører TypeScript-filene direkte (type stripping), uten eget byggesteg.
 - `shared/` - Delt kode mellom frontend og backend (lokalisering, skjemaer, typer)
 - `dist/` - Bygget klient (`dist/client`) og SSR-bundle (`dist/ssr`)
 

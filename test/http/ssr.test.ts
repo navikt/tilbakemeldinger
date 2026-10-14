@@ -65,7 +65,7 @@ describe('server-side rendered pages', () => {
 			const res = await server.fetch(`${BASE}/${locale}${page.path}`);
 
 			expect(res.status).toBe(200);
-			expect(res.headers.get('content-type')).toBe('text/html; charset=utf-8');
+			expect(res.headers.get('content-type')).toBe('text/html; charset=UTF-8');
 			expect(res.headers.get('content-encoding')).toBe('gzip');
 			expect(res.headers.get('content-security-policy')).toContain('https://stub.test');
 
@@ -132,7 +132,7 @@ describe('server-side rendered pages', () => {
 		const res = await server.fetch(`${BASE}/nb/tilbakemeldinger/serviceklage?method=head`, { method: 'HEAD' });
 
 		expect(res.status).toBe(200);
-		expect(res.headers.get('content-type')).toBe('text/html; charset=utf-8');
+		expect(res.headers.get('content-type')).toBe('text/html; charset=UTF-8');
 		expect(await res.text()).toBe('');
 	});
 

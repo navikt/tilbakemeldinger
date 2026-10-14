@@ -13,4 +13,4 @@ ENV NODE_ENV=production
 EXPOSE 9001
 ENTRYPOINT ["node"]
 # Node runs the server's TypeScript directly (type stripping)
-CMD ["--env-file=.env", "server/server.ts"]
+CMD ["--env-file=.env", "server/prod-server.ts"]

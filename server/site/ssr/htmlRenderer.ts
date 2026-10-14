@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { LRUCache } from 'lru-cache';
 import { buildHtmlTemplate, getTemplateWithDecorator } from './templateBuilder.ts';
 import type { ViteDevServer } from 'vite';
 import type { HelmetServerState } from 'react-helmet-async';
@@ -32,9 +33,16 @@ export const createProdRender = async (): Promise<HtmlRenderer> => {
 	// this is a variable instead of a literal in 'import'
 	// because TS is crazy and tries to resolve it immediately
 	const ssrEntry = '#dist/ssr/main-server.js';
-	const { render }: SsrModule = await import(ssrEntry);
+	const { render }: SsrModule = await import(/* @vite-ignore */ ssrEntry);
 
-	return (url) => prodRender(render, url);
+	// Rendered pages by URL (path and query), for 10 minutes
+	const cache = new LRUCache<string, string>({
+		ttl: 600 * 1000,
+		max: 100,
+		fetchMethod: (url) => prodRender(render, url),
+	});
+
+	return (url) => cache.forceFetch(url);
 };
 
 const prodRender = async (render: SsrModule['render'], url: string) => {
@@ -63,20 +71,22 @@ const devErrorHtml = (e: Error) => {
 // because <link> is a void element. The decorator may inject these in dev.
 const stripVoidElementClosingTags = (html: string) => html.replace(/<\/link>/gi, '');
 
-export const devRender =
-	(vite: ViteDevServer): HtmlRenderer =>
-	async (url) => {
-		const template = await buildHtmlTemplate(path.join(vite.config.root, 'index.html'));
-		const html = await vite.transformIndexHtml(url, stripVoidElementClosingTags(template));
+export const devRender = async (vite: ViteDevServer | undefined, url: string) => {
+	if (!vite) {
+		throw new Error('NODE_ENV=development runs under the Vite dev server: use `pnpm dev`');
+	}
 
-		try {
-			const { render } = (await vite.ssrLoadModule('/main-server.tsx')) as SsrModule;
-			const { html: appHtml, helmet } = render(url);
-			return processTemplate(html, appHtml, helmet);
-		} catch (e) {
-			const error = e instanceof Error ? e : new Error(String(e));
-			vite.ssrFixStacktrace(error);
-			console.error(`Dev render error: ${error} \n ${error.stack}`);
-			return processTemplate(html, devErrorHtml(error));
-		}
-	};
+	const template = await buildHtmlTemplate(path.join(vite.config.root, 'index.html'));
+	const html = await vite.transformIndexHtml(url, stripVoidElementClosingTags(template));
+
+	try {
+		const { render } = (await vite.ssrLoadModule('/client/main-server.tsx')) as SsrModule;
+		const { html: appHtml, helmet } = render(url);
+		return processTemplate(html, appHtml, helmet);
+	} catch (e) {
+		const error = e instanceof Error ? e : new Error(String(e));
+		vite.ssrFixStacktrace(error);
+		console.error(`Dev render error: ${error} \n ${error.stack}`);
+		return processTemplate(html, devErrorHtml(error));
+	}
+};
