@@ -38,6 +38,17 @@ jobs:
       vars: .nais/vars-prod.yml
       var: image=${{ needs.build.outputs.image }}
 
+  # Separate from the app deploy, so a rollback (which only applies config.yml) isn't tied to it
+  alerts:
+    needs: build
+    uses: navikt/navno-ci/.github/workflows/nais-deploy.yml@v1
+    permissions:
+      contents: read
+      id-token: write
+    with:
+      cluster: prod-gcp
+      resource: .nais/alerts.yml
+
   release:
     needs: deploy
     uses: navikt/navno-ci/.github/workflows/release.yml@v1

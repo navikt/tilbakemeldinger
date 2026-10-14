@@ -1,0 +1,26 @@
+# Positive-only alert: fires when we stop receiving feedback from users.
+# Deployed by deploy.prod.yml. No double curly braces in this file, not even in comments: nais deploy templates every resource with Handlebars.
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: tilbakemeldinger-alerts
+  namespace: navno
+  labels:
+    team: navno
+spec:
+  groups:
+    - name: tilbakemeldinger
+      rules:
+        # "or vector(0)" covers the series not existing at all. hour() is UTC, so 06-16 is roughly 08-18 Oslo-time.
+        - alert: TilbakemeldingerNoSuccessfulSubmissions
+          expr: |
+            (sum(increase(tilbakemeldinger_submissions_total{result="success"}[6h])) or vector(0)) == 0
+            and on() hour() >= 6 and on() hour() < 16
+          for: 30m
+          annotations:
+            summary: No feedback has been successfully submitted in tilbakemeldinger for over 6 hours during the day
+            consequence: The service may be down, unreachable or broken for users, or tilbakemeldingsmottak-api rejects everything. Failure alerts can't fire without traffic.
+            action: Check that the pods are running and being scraped, and look at the reason label on tilbakemeldinger_submissions_total{result="failure"}. Then try submitting at https://www.nav.no/person/kontakt-oss/tilbakemeldinger yourself.
+          labels:
+            namespace: navno
+            severity: warning
