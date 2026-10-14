@@ -1,29 +1,18 @@
-import { paths } from './paths.ts';
+import { appPath, parseAppPath } from './appPath.ts';
 import { type Locale, translate } from './locale.ts';
 
 export const getBreadcrumbsFromPathname = (url: string, locale: Locale) => {
-	const basePathFilter = new RegExp(`${paths.kontaktOss.forside}/(nb|nn|en)?`, 'i');
-
-	const basePath = `${paths.kontaktOss.forside}/${locale === 'nn' ? 'nb' : locale}`;
-
 	const baseBreadcrumb = {
-		url: basePath,
+		url: appPath(locale === 'nn' ? 'nb' : locale),
 		title: translate(locale, 'breadcrumb.base'),
 		handleInApp: false,
 	};
 
-	const internalBreadcrumbs = url
-		.replace(basePathFilter, '')
-		.split('/')
-		.filter((pathSegment) => pathSegment !== '')
-		.map((pathSegment, index, pathSegmentArray) => {
-			const subPath = pathSegmentArray.slice(0, index + 1).join('/');
-			return {
-				url: `${paths.kontaktOss.forside}/${locale}/${subPath}`,
-				title: translate(locale, `breadcrumb.${pathSegment}`),
-				handleInApp: true,
-			};
-		});
+	const internalBreadcrumbs = parseAppPath(url).segments.map((segment, index, segments) => ({
+		url: appPath(locale, segments.slice(0, index + 1).join('/')),
+		title: translate(locale, `breadcrumb.${segment}`),
+		handleInApp: false,
+	}));
 
 	return [baseBreadcrumb, ...internalBreadcrumbs];
 };

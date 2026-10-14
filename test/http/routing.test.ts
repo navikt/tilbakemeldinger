@@ -1,4 +1,5 @@
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import nb from '#shared/language/nb.ts';
 import { API, BASE, parseHtml, postJson, startServer, type TestServer } from './harness';
 import { NOT_FOUND_HTML } from './stub';
 import { expectNoUnexpectedHosts } from './fixtures';
@@ -23,18 +24,26 @@ describe('routing edge cases', () => {
 		expect(await res.text()).toBe(NOT_FOUND_HTML);
 	});
 
-	test('an unknown GET under the API falls through to a rendered page', async () => {
-		const res = await server.fetch(`${API}/finnes-ikke`);
+	test('a path under the base path outside the pages gets the nav.no 404 page', async () => {
+		const res = await server.fetch(`${BASE}/finnes-ikke`);
 
-		expect(res.status).toBe(200);
-		expect(res.headers.get('content-type')).toBe('text/html; charset=UTF-8');
+		expect(res.status).toBe(404);
+		expect(await res.text()).toBe(NOT_FOUND_HTML);
 	});
 
-	test('an unknown page is rendered with status 200', async () => {
+	test('an unknown GET under the API gets the nav.no 404 page', async () => {
+		const res = await server.fetch(`${API}/finnes-ikke`);
+
+		expect(res.status).toBe(404);
+		expect(await res.text()).toBe(NOT_FOUND_HTML);
+	});
+
+	test('an unknown page renders the not found page, with status 200', async () => {
 		const res = await server.fetch(`${BASE}/nb/tilbakemeldinger/finnes-ikke`);
 
 		expect(res.status).toBe(200);
 		expect(res.headers.get('content-type')).toBe('text/html; charset=UTF-8');
+		expect(parseHtml(await res.text()).querySelector('#maincontent h2')?.textContent).toBe(nb['feil.404']);
 	});
 
 	test('a POST to a page gets the 404 page with CSP, also when the page is cached', async () => {
@@ -82,8 +91,8 @@ describe('routing edge cases', () => {
 	test('matches routes case-sensitively', async () => {
 		const res = await server.fetch(`${API}/internal/ISALIVE`);
 
-		// Not the probe, so it falls through to a rendered page
-		expect(res.status).toBe(200);
-		expect(res.headers.get('content-type')).toBe('text/html; charset=UTF-8');
+		// Not the probe
+		expect(res.status).toBe(404);
+		expect(await res.text()).toBe(NOT_FOUND_HTML);
 	});
 });

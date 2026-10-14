@@ -3,7 +3,8 @@ import { injectWithDecorator } from '#server/utils/decorator.ts';
 import { injectDecoratorServerSide, type DecoratorEnvProps } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import type { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { getBreadcrumbsFromPathname } from '#shared/breadcrumbs.ts';
-import { type Locale, defaultLocale, isLocale } from '#shared/locale.ts';
+import { type Locale } from '#shared/locale.ts';
+import { getLocaleFromUrl } from '#shared/appPath.ts';
 
 export const buildHtmlTemplate = async (templatePath: string) => {
 	const templateWithDecorator = await injectWithDecorator(templatePath);
@@ -31,9 +32,7 @@ const decoratorEnv = 'prod';
 const envProps: DecoratorEnvProps = { env: decoratorEnv };
 
 export const getTemplateWithDecorator = async (url: string, templatePath: string) => {
-	const locale = url.split('/')[3] as Locale;
-
-	const params = getDecoratorParams(isLocale(locale) ? locale : defaultLocale, url);
+	const params = getDecoratorParams(getLocaleFromUrl(url), url);
 
 	return injectDecoratorServerSide({
 		...envProps,

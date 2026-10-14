@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { localePath } from '#client/utils/locale.ts';
+import { appPath } from '#shared/appPath.ts';
 import { useIntl } from 'react-intl';
 import { useStore } from '#client/providers/Provider.tsx';
 import Environment from '#client/Environments.ts';
 import { logPageview } from '#client/utils/analytics.ts';
 import { Helmet } from 'react-helmet-async';
-import { paths } from '#shared/paths.ts';
+import { joinURL } from 'ufo';
 import type { ReactNode } from 'react';
 
 type Props = {
@@ -29,9 +29,7 @@ export const MetaTags = ({ path, titleId, descriptionId, children }: Props) => {
 		<Helmet>
 			{titleId && <title>{`${title} - www.nav.no`}</title>}
 			{descriptionId && <meta name="description" content={intl.formatMessage({ id: descriptionId })} />}
-			{(path || path === '') && (
-				<link rel="canonical" href={`${baseUrl}${paths.kontaktOss.forside}${localePath(path, locale)}`} />
-			)}
+			{(path || path === '') && <link rel="canonical" href={joinURL(baseUrl, appPath(locale, path))} />}
 			{children}
 		</Helmet>
 	);

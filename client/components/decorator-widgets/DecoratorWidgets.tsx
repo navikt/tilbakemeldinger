@@ -1,62 +1,41 @@
 import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { useStore } from '#client/providers/Provider.tsx';
 import { setNewLocale } from '#client/utils/locale.ts';
 import { Locale } from '#shared/locale.ts';
-import { paths } from '#shared/paths.ts';
-import {
-	onBreadcrumbClick,
-	onLanguageSelect,
-	setAvailableLanguages,
-	setBreadcrumbs,
-} from '@navikt/nav-dekoratoren-moduler';
+import { appPath, parseAppPath } from '#shared/appPath.ts';
+import { onLanguageSelect, setAvailableLanguages, setBreadcrumbs, setParams } from '@navikt/nav-dekoratoren-moduler';
 import { getBreadcrumbsFromPathname } from '#shared/breadcrumbs.ts';
 
+const languages: Locale[] = ['nb', 'nn', 'en'];
+
 export const DecoratorWidgets = () => {
-	const { pathname } = useLocation();
-	const pathnamePrefixed = `${paths.kontaktOss.forside}${pathname}`;
-	const navigate = useNavigate();
 	const [{ locale }, dispatch] = useStore();
 
 	useEffect(() => {
 		onLanguageSelect((breadcrumb) => {
 			setNewLocale(breadcrumb.locale as Locale, dispatch);
 		});
-
-		onBreadcrumbClick((breadcrumb) => {
-			navigate(breadcrumb.url.replace(paths.kontaktOss.forside, ''));
-		});
 	}, []);
+
+	// Back/forward after a language switch changes the locale without the decorator
+	// knowing. After the decorator's own language switch, this changes nothing.
+	useEffect(() => {
+		setParams({ language: locale });
+	}, [locale]);
 
 	// Set languages in decorator
 	useEffect(() => {
-		const subPath = pathnamePrefixed.replace(`${paths.kontaktOss.forside}/${locale}`, '');
+		const { page } = parseAppPath(window.location.pathname);
 
-		setAvailableLanguages([
-			{
-				locale: 'nb',
-				url: `${paths.kontaktOss.forside}/nb/${subPath}`,
-				handleInApp: true,
-			},
-			{
-				locale: 'nn',
-				url: `${paths.kontaktOss.forside}/nn/${subPath}`,
-				handleInApp: true,
-			},
-			{
-				locale: 'en',
-				url: `${paths.kontaktOss.forside}/en/${subPath}`,
-				handleInApp: true,
-			},
-		]);
-	}, [pathnamePrefixed, locale]);
+		setAvailableLanguages(languages.map((locale) => ({ locale, url: appPath(locale, page), handleInApp: true })));
+	}, [locale]);
 
 	// Set breadcrumbs in decorator
 	useEffect(() => {
-		const breadcrumbs = getBreadcrumbsFromPathname(pathnamePrefixed, locale);
+		const breadcrumbs = getBreadcrumbsFromPathname(window.location.pathname, locale);
 
 		setBreadcrumbs([...breadcrumbs]);
-	}, [pathnamePrefixed, locale]);
+	}, [locale]);
 
 	return null;
 };

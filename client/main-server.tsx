@@ -1,6 +1,5 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router';
 import { AppRoot } from './index';
 import { HelmetProvider, type HelmetServerState } from 'react-helmet-async';
 import type { SsrRender } from '#shared/types/ssr.ts';
@@ -14,9 +13,7 @@ export const render: SsrRender = (url) => {
 
 	const html = renderToString(
 		<HelmetProvider context={helmetContext}>
-			<StaticRouter basename={import.meta.env.VITE_APP_BASEPATH} location={url}>
-				<AppRoot url={url} />
-			</StaticRouter>
+			<AppRoot url={url} />
 		</HelmetProvider>
 	);
 

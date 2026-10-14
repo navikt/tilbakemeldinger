@@ -17,7 +17,7 @@ jobs:
         ENV=dev
         VITE_APP_BASEPATH=/person/kontakt-oss
         VITE_APP_ORIGIN=https://www.ansatt.dev.nav.no
-        VITE_EDITORIAL_FRONTPAGE_ORIGIN=https://www.ansatt.dev.nav.no/tilbakemelding
+        VITE_EDITORIAL_FRONTPAGE_ORIGIN=https://www.ansatt.dev.nav.no/tilbakemeldinger
         VITE_TELEMETRY_URL=https://telemetry.ekstern.dev.nav.no/collect
         APP_PORT=9001
         API_URL=http://tilbakemeldingsmottak-api.teamserviceklage

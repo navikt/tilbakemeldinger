@@ -44,8 +44,6 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 				'@navikt/aksel-icons',
 				'@navikt/nav-dekoratoren-moduler',
 				'@radix-ui/*',
-				'react-router',
-				'react-router-dom',
 				'react-intl',
 				'react-helmet-async',
 				'react-hook-form',
@@ -88,10 +86,6 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 			projects: [
 				{
 					extends: true,
-					// Resolve packages like Node does. Otherwise Vite picks the CJS build of
-					// react-router while react-router-dom loads the ESM one, and the app ends
-					// up with two router contexts
-					resolve: { conditions: ['module-sync'] },
 					test: {
 						name: 'unit',
 						include: ['{client,shared,server}/**/*.test.{ts,tsx}'],
