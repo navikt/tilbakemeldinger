@@ -6,9 +6,9 @@ import { type Locale, defaultLocale, isLocale } from './locale.ts';
 // Ignores case, the query, the hash and extra or trailing slashes.
 export const parseAppPath = (url: string) => {
 	const { pathname } = parseURL(cleanDoubleSlashes(url.toLowerCase()));
-	const [first, ...rest] = withoutBase(pathname, paths.kontaktOss.forside).split('/').filter(Boolean);
-	const locale = isLocale(first) ? first : undefined;
-	const segments = locale ? rest : first === undefined ? [] : [first, ...rest];
+	const parts = withoutBase(pathname, paths.kontaktOss.forside).split('/').filter(Boolean);
+	const locale = isLocale(parts[0]) ? parts[0] : undefined;
+	const segments = locale ? parts.slice(1) : parts;
 
 	return { locale, segments, page: `/${segments.join('/')}` };
 };
