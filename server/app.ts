@@ -14,7 +14,7 @@ app.use(compress());
 app.get('/internal/metrics', metricsHandler);
 
 // Routes match in the order they're added
-// The API is first so unknown API paths fall through to pages
+// The API is first, since the pages' /tilbakemeldinger/* also matches /tilbakemeldinger/api/*
 const base = app.basePath(env.VITE_APP_BASEPATH);
 base.route('/tilbakemeldinger/api', api);
 base.route('/', await createSite());

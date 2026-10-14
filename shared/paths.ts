@@ -3,7 +3,6 @@ export const paths = {
 		forside: '/person/kontakt-oss',
 	},
 	tilbakemeldinger: {
-		forside: '/tilbakemeldinger',
 		serviceklage: {
 			form: '/tilbakemeldinger/serviceklage',
 		},

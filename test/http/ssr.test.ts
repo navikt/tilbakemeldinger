@@ -11,12 +11,6 @@ const locales = ['nb', 'nn', 'en'] as const;
 // h1 is not always the same text as <title>
 const pages = [
 	{
-		path: '/tilbakemeldinger',
-		title: 'tilbakemeldinger.tilbakemeldinger.sidetittel',
-		description: 'seo.tilbakemeldinger.description',
-		h1: 'tilbakemeldinger.tilbakemeldinger.sidetittel',
-	},
-	{
 		path: '/tilbakemeldinger/serviceklage',
 		title: 'tilbakemeldinger.serviceklage.sidetittel',
 		description: 'seo.serviceklage.description',
@@ -106,15 +100,28 @@ describe('server-side rendered pages', () => {
 		});
 	});
 
+	// The decorator follows the breadcrumb links itself (handleInApp: false)
 	test('nn breadcrumbs link the base crumb to nb', () => {
 		const decorator = decoratorRequests(server).find(
 			(d) => d.breadcrumbs?.at(-1)?.url === `${BASE}/nn/tilbakemeldinger/serviceklage`
 		);
 		expect(decorator?.breadcrumbs).toEqual([
 			{ url: `${BASE}/nb`, title: 'Kontakt oss', handleInApp: false },
-			{ url: `${BASE}/nn/tilbakemeldinger`, title: 'Tilbakemelding', handleInApp: true },
-			{ url: `${BASE}/nn/tilbakemeldinger/serviceklage`, title: 'Klage på service', handleInApp: true },
+			{ url: `${BASE}/nn/tilbakemeldinger`, title: 'Tilbakemelding', handleInApp: false },
+			{ url: `${BASE}/nn/tilbakemeldinger/serviceklage`, title: 'Klage på service', handleInApp: false },
 		]);
+	});
+
+	test('finds the page ignoring case, the query and a trailing slash', async () => {
+		const res = await server.fetch(`${BASE}/nb/tilbakemeldinger/SERVICEKLAGE/?utm_source=test`);
+
+		expect(res.status).toBe(200);
+
+		const doc = parseHtml(await res.text());
+		expect(doc.querySelector('#maincontent h1')?.textContent).toBe(nb['tilbakemeldinger.serviceklage.sidetittel']);
+		expect(doc.head.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+			`${APP_ORIGIN}${BASE}/nb/tilbakemeldinger/serviceklage`
+		);
 	});
 
 	test('serves a repeated request (cache hit) with the same body and CSP', async () => {
@@ -136,23 +143,10 @@ describe('server-side rendered pages', () => {
 		expect(await res.text()).toBe('');
 	});
 
-	test('renders an empty app for a URL without locale (the client redirects)', async () => {
+	test('redirects a URL without locale to nb, keeping the query', async () => {
 		const res = await server.fetch(`${BASE}/tilbakemeldinger/serviceklage?locale=none`);
 
-		expect(res.status).toBe(200);
-		expect(res.headers.get('content-security-policy')).toBeTruthy();
-
-		const doc = parseHtml(await res.text());
-		const main = doc.querySelector('#maincontent');
-		expect(main?.children.length).toBe(0);
-		expect(main?.textContent?.trim()).toBe('');
-		expect(doc.head.querySelector('title')?.textContent).toBe('');
-		expect(doc.head.querySelector('meta[name="description"]')).toBeNull();
-		expect(doc.head.querySelector('link[rel="canonical"]')).toBeNull();
-
-		const decorator = decoratorRequests(server).find((d) =>
-			d.breadcrumbs?.at(-1)?.url.startsWith(`${BASE}/nb/tilbakemeldinger/serviceklage?locale=none`)
-		);
-		expect(decorator?.language).toBe('nb');
+		expect(res.status).toBe(302);
+		expect(res.headers.get('location')).toBe(`${BASE}/nb/tilbakemeldinger/serviceklage?locale=none`);
 	});
 });

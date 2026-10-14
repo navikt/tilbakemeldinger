@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { StoreProvider, useStore } from '#client/providers/Provider.tsx';
 import { initialState, reducer } from '#client/providers/Store.ts';
-import { getLocaleFromUrl, setLocaleFromUrl } from '#client/utils/locale.ts';
+import { setLocaleFromUrl } from '#client/utils/locale.ts';
+import { getLocaleFromUrl } from '#shared/appPath.ts';
 import { defaultLocale } from '#shared/locale.ts';
 import { App } from './App';
 
@@ -46,6 +47,11 @@ const RenderApp = ({ url }: Props) => {
 
 	useEffect(() => {
 		setLocaleFromUrl(dispatch);
+
+		// A language switch adds a history entry, so back/forward changes the locale
+		const onPopState = () => setLocaleFromUrl(dispatch);
+		window.addEventListener('popstate', onPopState);
+		return () => window.removeEventListener('popstate', onPopState);
 	}, []);
 
 	useEffect(() => {

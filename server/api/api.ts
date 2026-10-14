@@ -21,3 +21,5 @@ api.post(
 	...rateLimit,
 	...postToMottakUpstreamHandler
 );
+// Unknown API paths end here, instead of in the pages' redirect to a locale
+api.all('*', (c) => c.notFound());

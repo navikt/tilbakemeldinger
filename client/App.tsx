@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
 import { captureException, init as apmInit } from '@nais/apm';
-import Tilbakemeldinger from '#client/pages/tilbakemeldinger/Tilbakemeldinger.tsx';
 import Ros from '#client/pages/tilbakemeldinger/ros-til-nav/Ros.tsx';
 import PageNotFound from '#client/pages/404/404.tsx';
 import FeilOgMangler from '#client/pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler.tsx';
@@ -12,12 +10,16 @@ import { HTTPError } from '#client/types/errors.ts';
 import ServiceKlage from '#client/pages/tilbakemeldinger/service-klage/ServiceKlage.tsx';
 import { KontaktInfo } from '#client/types/kontaktInfo.ts';
 import { Fodselsnr } from '#client/types/fodselsnr.ts';
-import ScrollToTop from '#client/components/scroll-to-top/ScrollToTop.tsx';
 import { paths } from '#shared/paths.ts';
-import { localePath } from '#client/utils/locale.ts';
-import { defaultLocale, validLocales } from '#shared/locale.ts';
+import { parseAppPath } from '#shared/appPath.ts';
 import { DecoratorWidgets } from '#client/components/decorator-widgets/DecoratorWidgets.tsx';
 import '@navikt/ds-css';
+
+const pages: Record<string, React.ComponentType> = {
+	[paths.tilbakemeldinger.serviceklage.form]: ServiceKlage,
+	[paths.tilbakemeldinger.feilogmangler]: FeilOgMangler,
+	[paths.tilbakemeldinger.rostilnav]: Ros,
+};
 
 type Props = {
 	url?: string;
@@ -25,6 +27,9 @@ type Props = {
 
 export const App = ({ url }: Props) => {
 	const [{ auth }, dispatch] = useStore();
+	// A language switch changes the locale in the URL, never the page
+	const [{ locale, page }] = useState(() => parseAppPath(url ?? window.location.pathname));
+	const Page = (locale && pages[page]) || PageNotFound;
 
 	useEffect(() => {
 		apmInit({
@@ -91,54 +96,10 @@ export const App = ({ url }: Props) => {
 			});
 	}, [auth.authenticated, dispatch]);
 
-	let key = 0;
-
 	return (
 		<>
 			<DecoratorWidgets />
-			<ScrollToTop>
-				<Routes>
-					{validLocales.flatMap((locale) => [
-						<Route
-							path={localePath(paths.tilbakemeldinger.forside, locale)}
-							element={<Tilbakemeldinger />}
-							key={key++}
-						/>,
-						<Route
-							path={localePath(paths.tilbakemeldinger.serviceklage.form, locale)}
-							element={<ServiceKlage />}
-							key={key++}
-						/>,
-						<Route path={localePath(paths.tilbakemeldinger.rostilnav, locale)} element={<Ros />} key={key++} />,
-						<Route
-							path={localePath(paths.tilbakemeldinger.feilogmangler, locale)}
-							element={<FeilOgMangler />}
-							key={key++}
-						/>,
-					])}
-					<Route path="*" element={<RedirectToLocaleOrError url={url} />} />
-				</Routes>
-			</ScrollToTop>
+			<Page />
 		</>
 	);
-};
-
-const RedirectToLocaleOrError = ({ url }: Props) => {
-	const [isReadyToRedirect, setIsReadyToRedirect] = useState(false);
-	const currentUrl = url ?? window.location.pathname;
-	const isLocaleUrl = currentUrl.split('/').some((segment) => validLocales.some((locale) => segment === locale));
-
-	useEffect(() => {
-		setIsReadyToRedirect(true);
-	}, []);
-
-	if (!isReadyToRedirect) {
-		return null;
-	}
-
-	if (!isLocaleUrl) {
-		const subPath = currentUrl.split(paths.kontaktOss.forside)[1];
-		return <Navigate to={localePath(subPath || '', defaultLocale)} replace={true} />;
-	}
-	return <PageNotFound />;
 };

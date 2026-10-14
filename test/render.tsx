@@ -5,7 +5,6 @@ import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter } from 'react-router-dom';
 import { getGlobalDispatcher, MockAgent, setGlobalDispatcher } from 'undici';
 import { afterEach, expect, vi } from 'vitest';
 import { AppRoot } from '#client/index.tsx';
@@ -87,7 +86,6 @@ export type Post = { path: string; body: unknown };
 // answered from `api`
 export const renderApp = (path: string, api: Api = {}) => {
 	window.history.replaceState(null, '', `${BASE}${path}`);
-	window.scrollTo = () => {};
 
 	// Provided by the decorator
 	Object.assign(window, { dekoratorenAnalytics: () => Promise.resolve() });
@@ -123,9 +121,7 @@ export const renderApp = (path: string, api: Api = {}) => {
 	render(
 		<React.StrictMode>
 			<HelmetProvider>
-				<BrowserRouter basename={BASE}>
-					<AppRoot />
-				</BrowserRouter>
+				<AppRoot />
 			</HelmetProvider>
 		</React.StrictMode>
 	);
