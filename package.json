@@ -48,7 +48,7 @@
 		"downshift": "9.3.3",
 		"hono": "4.13.13",
 		"hono-rate-limiter": "0.5.4",
-		"ip-address": "10.7.0",
+		"ip-address": "10.7.1",
 		"jose": "6.2.3",
 		"jwt-decode": "4.0.0",
 		"lru-cache": "11.5.0",
