@@ -63,7 +63,7 @@
 		"react-hook-form": "7.76.1",
 		"react-intl": "10.1.8",
 		"ufo": "^1.6.4",
-		"zod": "4.4.3"
+		"zod": "4.6.6"
 	},
 	"devDependencies": {
 		"@eslint-react/eslint-plugin": "5.11.2",
