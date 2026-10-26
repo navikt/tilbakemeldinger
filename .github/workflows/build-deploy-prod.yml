@@ -1,0 +1,39 @@
+# Builds main and deploys it to prod - shared by deploy.prod.yml and base-image-refresh.yml
+# Callers need `permissions: { contents: read, id-token: write }` and `secrets: inherit`.
+name: Build and deploy to prod
+on: workflow_call
+
+jobs:
+  build:
+    uses: navikt/navno-ci/.github/workflows/node-build.yml@v1
+    permissions:
+      contents: read
+      id-token: write
+    with:
+      image-suffix: release-${{ github.ref_name }}
+      cdn-source: ./dist/client/assets
+      cdn-destination: tilbakemeldinger/prod
+      prune-remove: node_modules
+      env-file: |
+        ENV=prod
+        VITE_APP_BASEPATH=/person/kontakt-oss
+        VITE_APP_ORIGIN=https://www.nav.no
+        VITE_EDITORIAL_FRONTPAGE_ORIGIN=https://www.nav.no/tilbakemeldinger
+        VITE_TELEMETRY_URL=https://telemetry.nav.no/collect
+        APP_PORT=9001
+        API_URL=http://tilbakemeldingsmottak-api.teamserviceklage
+        NORG2_ORIGIN=https://norg2.prod-fss-pub.nais.io
+        CDN_BASE=https://cdn.nav.no/navno/tilbakemeldinger/prod
+    secrets: inherit
+
+  deploy:
+    needs: build
+    uses: navikt/navno-ci/.github/workflows/nais-deploy.yml@v1
+    permissions:
+      contents: read
+      id-token: write
+    with:
+      cluster: prod-gcp
+      resource: .nais/config.yml
+      vars: .nais/vars-prod.yml
+      var: image=${{ needs.build.outputs.image }}
