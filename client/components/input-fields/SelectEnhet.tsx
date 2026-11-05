@@ -50,6 +50,7 @@ const SelectEnhet = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
 		'TILTAK',
 		'YTA',
 		'OPPFUTLAND',
+		'KONTAKT',
 	];
 
 	useEffect(() => {
@@ -90,11 +91,16 @@ const SelectEnhet = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
 					onChange={onChange}
 					value={value}
 					data={enheter.data
-						.filter((e) => e.enhetNr !== '0000' && relevanteEnheter.includes(e.type))
+						.filter(
+							(e) =>
+								e.enhetNr !== '0000' &&
+								relevanteEnheter.includes(e.type) &&
+								(e.type !== 'KONTAKT' || e.enhetNr === '4100')
+						)
 						.sort((a, b) => (a.navn < b.navn ? -1 : 1))
 						.map((enhet) => ({
 							value: enhet.enhetNr,
-							label: `${enhet.navn}`,
+							label: enhet.enhetNr === '4100' ? 'Nav kontaktsenter' : enhet.navn,
 						}))}
 				/>
 			) : (
