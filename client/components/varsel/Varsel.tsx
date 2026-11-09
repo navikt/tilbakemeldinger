@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Alert, AlertProps } from '@navikt/ds-react';
 import style from './Varsel.module.scss';

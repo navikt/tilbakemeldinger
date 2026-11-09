@@ -17,12 +17,6 @@
 		"noEmit": true,
 		"allowImportingTsExtensions": true,
 		"jsx": "react-jsx",
-		"jsxImportSource": "preact",
-		// These go away with the switch to React 19.
-		"paths": {
-			"react": ["./node_modules/preact/compat"],
-			"react-dom": ["./node_modules/preact/compat"]
-		},
 		"types": ["node", "vite/client"]
 	},
 	"include": ["client", "shared", "test"],

@@ -1,4 +1,4 @@
-import React, { ForwardedRef, useState } from 'react';
+import { useState, type ReactElement, type Ref } from 'react';
 import { useCombobox } from 'downshift';
 import { useIntl } from 'react-intl';
 import { ExpandIcon } from '@navikt/aksel-icons';
@@ -13,13 +13,14 @@ interface Option {
 interface Props {
 	data: Option[];
 	harFeil: boolean;
-	label: React.ReactElement;
+	label: ReactElement;
 	onChange: (value?: Option) => void;
 	value?: Option;
+	ref?: Ref<HTMLInputElement>;
 }
 
-const Combobox = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
-	const { data, harFeil, label, onChange } = props;
+const Combobox = (props: Props) => {
+	const { data, harFeil, label, onChange, ref } = props;
 	const [inputItems, setInputItems] = useState(data);
 	const intl = useIntl();
 
@@ -89,4 +90,4 @@ const Combobox = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
 	);
 };
 
-export default React.forwardRef(Combobox);
+export default Combobox;

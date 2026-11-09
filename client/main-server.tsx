@@ -1,4 +1,3 @@
-import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { AppRoot } from './index';
 import { findPage, notFoundHead, pageHead } from '#client/pages/pages.ts';

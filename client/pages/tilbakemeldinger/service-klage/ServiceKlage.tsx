@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useStore } from '#client/providers/Provider.tsx';
 import { captureException } from '@nais/apm';
 import { postServiceKlage } from '#client/clients/apiClient.ts';

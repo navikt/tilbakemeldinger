@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import FeilOgManglerEpost from './FeilOgManglerEpost';
 import { Radio, RadioGroup } from '@navikt/ds-react';

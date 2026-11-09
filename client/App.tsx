@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { captureException, init as apmInit } from '@nais/apm';
+import { useEffect, useState } from 'react';
+import { captureException } from '@nais/apm';
 import PageNotFound from '#client/pages/404/404.tsx';
 import { findPage } from '#client/pages/pages.ts';
 import { fetchAuthInfo, fetchFodselsnr, fetchKontaktInfo } from '#client/clients/apiClient.ts';
@@ -21,14 +21,6 @@ export const App = ({ url }: Props) => {
 	// A language switch changes the locale in the URL, never the page
 	const [page] = useState(() => findPage(url ?? window.location.pathname));
 	const Page = page?.component ?? PageNotFound;
-
-	useEffect(() => {
-		apmInit({
-			namespace: 'navno',
-			app: 'tilbakemeldinger',
-			telemetryUrl: import.meta.env.VITE_TELEMETRY_URL,
-		});
-	}, []);
 
 	useEffect(() => {
 		if (auth.authenticated) {

@@ -10,14 +10,14 @@ This is a "frackend" application (frontend + backend) for collecting feedback to
 
 ### Tech Stack
 
-- **Frontend**: Preact with React components
+- **Frontend**: React
 - **Backend**: Hono (Node.js)
 - **Language**: TypeScript
-- **Architecture Pattern**: Hono server renders the Preact frontend AND acts as an API proxy to internal services. The frontend's scripts and styles are uploaded to and served from the CDN
+- **Architecture Pattern**: Hono server renders the React frontend AND acts as an API proxy to internal services. The frontend's scripts and styles are uploaded to and served from the CDN
 
 ### Key Components
 
-1. **Preact Frontend**: User-facing feedback forms
+1. **React Frontend**: User-facing feedback forms
 2. **Hono Backend**:
    - Renders the pages server-side
    - Exposes three API endpoints (see below)
@@ -56,11 +56,11 @@ Type definitions are the source of truth for data contracts between frontend, ba
 - **Validation**: Validate incoming data against type definitions before forwarding
 - **Keep to the scope:** When fixing bugs or errors, stick to the task. Do not introduce new features or improve parts of the code unrelated to the bug or error being fixed.
 
-### Frontend (Preact)
+### Frontend (React)
 
 - Use functional components with hooks
 - Keep components small and focused
-- Follow Preact best practices (similar to React but lighter)
+- Follow React best practices
 - Consider accessibility (a11y) for all form inputs
 
 ### Backend (Hono)

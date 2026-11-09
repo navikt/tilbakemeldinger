@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { captureException } from '@nais/apm';
 import { postFeilOgMangler } from '#client/clients/apiClient.ts';
 import { ErrorResponse } from '#client/types/errors.ts';

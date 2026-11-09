@@ -1,6 +1,6 @@
 /// <reference types="vitest/config" />
 import { defineConfig, loadEnv } from 'vite';
-import preact from '@preact/preset-vite';
+import react from '@vitejs/plugin-react';
 import devServer, { defaultOptions } from '@hono/vite-dev-server';
 import { visualizer } from 'rollup-plugin-visualizer';
 import NavBrowserTargets from '@navikt/browserslist-config/vite';
@@ -22,13 +22,13 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 		},
 		plugins: [
 			NavBrowserTargets(),
-			preact(),
+			react(),
 			// In development, Vite serves the app: the server (server/app.ts) answers every
 			// request except Vite's own endpoints and the client code it serves
 			devServer({
 				entry: './server/app.ts',
 				exclude: [new RegExp(`^${basepath}/@`), /\.(scss|json)$/, ...defaultOptions.exclude],
-				// The pages load Vite's client themselves. The plugin's is an inline script, which the CSP blocks
+				// The pages load Vite's client themselves (server/site/page.ts)
 				injectClientScript: false,
 			}),
 			...(process.env.ANALYZE ? [visualizer({ gzipSize: true, open: true, sourcemap: true })] : []),
@@ -38,28 +38,6 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 			outDir: isSsrBuild ? 'dist/ssr' : 'dist/client',
 			// The client build: the manifest tells the server which files the page loads
 			...(!isSsrBuild && { manifest: true, rolldownOptions: { input: 'client/main-client.tsx' } }),
-		},
-		ssr: {
-			// Dependencies containing React components must not be externalized
-			// from the SSR bundle, in order to work with preact/compat. This
-			// list must also include transitive dependencies.
-			noExternal: [
-				'@navikt/ds-react',
-				'@navikt/aksel-icons',
-				'@navikt/nav-dekoratoren-moduler',
-				'@radix-ui/*',
-				'react-intl',
-				'react-hook-form',
-			],
-			resolve: {
-				conditions: ['import', 'module', 'default'],
-			},
-			// Dev only (no effect on builds): the dev SSR runner can't load UMD/CommonJS
-			// from noExternal, so convert it up front. Without this, rendering throws
-			// "getAnalyticsInstance is not a function".
-			optimizeDeps: {
-				include: ['@navikt/nav-dekoratoren-moduler', '@navikt/nav-dekoratoren-moduler/ssr/index.js'],
-			},
 		},
 		base: process.env.CDN_BASE || basepath,
 		css: {

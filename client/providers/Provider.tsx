@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, Reducer, Dispatch } from 'react';
+import { createContext, use, useReducer, Reducer, Dispatch } from 'react';
 import type { ReactNode } from 'react';
 import { Action, Store } from './Store';
 
@@ -11,6 +11,6 @@ interface Props {
 // @ts-expect-error Store type is missing definition
 export const StoreContext = createContext([{}, () => {}] as [Store, Dispatch<Action>]);
 export const StoreProvider = ({ reducer, initialState, children }: Props) => (
-	<StoreContext.Provider value={useReducer(reducer, initialState)}>{children}</StoreContext.Provider>
+	<StoreContext value={useReducer(reducer, initialState)}>{children}</StoreContext>
 );
-export const useStore = () => useContext(StoreContext);
+export const useStore = () => use(StoreContext);
