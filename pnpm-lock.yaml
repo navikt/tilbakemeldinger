@@ -173,6 +173,9 @@ importers:
       '@hono/node-server':
         specifier: 2.1.3
         version: 2.1.3(hono@4.13.13)
+      '@itsy/html':
+        specifier: 1.2.0
+        version: 1.2.0
       '@nais/apm':
         specifier: 0.4.0
         version: 0.4.0(@grafana/faro-react@2.12.1(@preact/compat@18.3.2(preact@10.29.8))(@preact/compat@18.3.2(preact@10.29.8))(react-router-dom@7.18.2(@preact/compat@18.3.2(preact@10.29.8))(@preact/compat@18.3.2(preact@10.29.8)))(react-router@7.18.2(@preact/compat@18.3.2(preact@10.29.8))(@preact/compat@18.3.2(preact@10.29.8)))(supports-color@7.2.0))(@preact/compat@18.3.2(preact@10.29.8))(@preact/compat@18.3.2(preact@10.29.8))(react-router-dom@7.18.2(@preact/compat@18.3.2(preact@10.29.8))(@preact/compat@18.3.2(preact@10.29.8)))(react-router@7.18.2(@preact/compat@18.3.2(preact@10.29.8))(@preact/compat@18.3.2(preact@10.29.8)))(supports-color@7.2.0)
@@ -245,9 +248,6 @@ importers:
       react-dom:
         specifier: npm:@preact/compat@18.3.2
         version: '@preact/compat@18.3.2(preact@10.29.8)'
-      react-helmet-async:
-        specifier: 3.0.0
-        version: 3.0.0(@preact/compat@18.3.2(preact@10.29.8))
       react-hook-form:
         specifier: 7.76.1
         version: 7.76.1(@preact/compat@18.3.2(preact@10.29.8))
@@ -807,6 +807,10 @@ packages:
   '@humanwhocodes/retry@0.4.3':
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
+
+  '@itsy/html@1.2.0':
+    resolution: {integrity: sha512-qWSaGyIGNM9oWazBU+r1LEcntTF3DhjgZMd2gneEots6L+g45UF2lagVQJ/tJvNZXq2X6b6tBA/GwcVptJrmFA==}
+    engines: {node: '>=18.17'}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -2362,9 +2366,6 @@ packages:
   intl-messageformat@11.2.6:
     resolution: {integrity: sha512-afAN2yNN7zjB77G1ZC5L8GtLrEshyBvOQXz88flxCO/ocTIQist98gu0r/O6H/SSiQhQsOOtWPxmCEvtDABXXQ==}
 
-  invariant@2.2.4:
-    resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
-
   ip-address@10.7.0:
     resolution: {integrity: sha512-BGFsyJd5mpXp3rK6jIdADLNgpJUK1jnjzvYF8lK+VyDab9JAmqN0YOKDdP17HlgKb2+ehPgDc8EtnRLbGCAMhA==}
     engines: {node: '>= 12'}
@@ -2994,14 +2995,6 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
 
-  react-fast-compare@3.2.2:
-    resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
-
-  react-helmet-async@3.0.0:
-    resolution: {integrity: sha512-nA3IEZfXiclgrz4KLxAhqJqIfFDuvzQwlKwpdmzZIuC1KNSghDEIXmyU0TKtbM+NafnkICcwx8CECFrZ/sL/1w==}
-    peerDependencies:
-      react: ^16.6.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-
   react-hook-form@7.76.1:
     resolution: {integrity: sha512-rYM7tPiWlu3nZchkR/ex7piyzui2vFPyaLnXnI/RnblB/L4qfMmyses8llJVtF1NpE9WBBsJlGtcSZzPCXW1qQ==}
     engines: {node: '>=18.0.0'}
@@ -3137,9 +3130,6 @@ packages:
   set-function-name@2.0.2:
     resolution: {integrity: sha512-7PGFlmtwsEADb0WYyvCMa1t+yke6daIG4Wirafur5kcf+MhUnPms1UeR0CKQdTZD81yESwMHbtn+TR+dMviakQ==}
     engines: {node: '>= 0.4'}
-
-  shallowequal@1.1.0:
-    resolution: {integrity: sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==}
 
   shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
@@ -4098,6 +4088,8 @@ snapshots:
   '@humanwhocodes/module-importer@1.0.1': {}
 
   '@humanwhocodes/retry@0.4.3': {}
+
+  '@itsy/html@1.2.0': {}
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
@@ -5650,10 +5642,6 @@ snapshots:
       '@formatjs/fast-memoize': 3.1.5
       '@formatjs/icu-messageformat-parser': 3.5.9
 
-  invariant@2.2.4:
-    dependencies:
-      loose-envify: 1.4.0
-
   ip-address@10.7.0: {}
 
   ipaddr.js@1.9.1: {}
@@ -6123,15 +6111,6 @@ snapshots:
       date-fns-jalali: 4.1.0-0
       react: '@preact/compat@18.3.2(preact@10.29.8)'
 
-  react-fast-compare@3.2.2: {}
-
-  react-helmet-async@3.0.0(@preact/compat@18.3.2(preact@10.29.8)):
-    dependencies:
-      invariant: 2.2.4
-      react: '@preact/compat@18.3.2(preact@10.29.8)'
-      react-fast-compare: 3.2.2
-      shallowequal: 1.1.0
-
   react-hook-form@7.76.1(@preact/compat@18.3.2(preact@10.29.8)):
     dependencies:
       react: '@preact/compat@18.3.2(preact@10.29.8)'
@@ -6275,8 +6254,6 @@ snapshots:
       es-errors: 1.3.0
       functions-have-names: 1.2.3
       has-property-descriptors: 1.0.2
-
-  shallowequal@1.1.0: {}
 
   shebang-command@2.0.0:
     dependencies:

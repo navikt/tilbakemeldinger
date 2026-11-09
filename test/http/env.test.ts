@@ -17,7 +17,7 @@ describe('environment variables', () => {
 		await expect(startServer({ env: { API_URL: undefined } })).rejects.toThrow(/exited during startup[\s\S]*API_URL/);
 	});
 
-	// pnpm dev and start-local have no upstream variables
+	// pnpm dev has no upstream variables
 	test('a local server starts without the upstream ones', async () => {
 		const server = await startServer({ env: { ENV: 'localhost', ...UPSTREAM_ENV } });
 

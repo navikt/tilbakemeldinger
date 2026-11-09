@@ -1,3 +1,5 @@
+// Vite adds this to an HTML entry by itself. Here the server writes the page (server/site/page.ts)
+import 'vite/modulepreload-polyfill';
 // Import global style early to ensure the later component-level imports
 // gets higher specificity
 import './App.scss';
@@ -5,14 +7,11 @@ import './App.scss';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { AppRoot } from './index';
-import { HelmetProvider } from 'react-helmet-async';
 
 const AppWithContext = () => {
 	return (
 		<React.StrictMode>
-			<HelmetProvider>
-				<AppRoot />
-			</HelmetProvider>
+			<AppRoot />
 		</React.StrictMode>
 	);
 };

@@ -13,13 +13,13 @@ This is a "frackend" application (frontend + backend) for collecting feedback to
 - **Frontend**: Preact with React components
 - **Backend**: Hono (Node.js)
 - **Language**: TypeScript
-- **Architecture Pattern**: Hono server serves the Preact frontend, artifacts AND acts as an API proxy to internal services
+- **Architecture Pattern**: Hono server renders the Preact frontend AND acts as an API proxy to internal services. The frontend's scripts and styles are uploaded to and served from the CDN
 
 ### Key Components
 
 1. **Preact Frontend**: User-facing feedback forms
 2. **Hono Backend**:
-   - Serves static frontend assets
+   - Renders the pages server-side
    - Exposes three API endpoints (see below)
    - Proxies certain API requests to internal `tilbakemeldingsmottak-api`.
 

@@ -1,25 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { captureException, init as apmInit } from '@nais/apm';
-import Ros from '#client/pages/tilbakemeldinger/ros-til-nav/Ros.tsx';
 import PageNotFound from '#client/pages/404/404.tsx';
-import FeilOgMangler from '#client/pages/tilbakemeldinger/feil-og-mangler/FeilOgMangler.tsx';
+import { findPage } from '#client/pages/pages.ts';
 import { fetchAuthInfo, fetchFodselsnr, fetchKontaktInfo } from '#client/clients/apiClient.ts';
 import { useStore } from '#client/providers/Provider.tsx';
 import { AuthInfo } from '#client/types/authInfo.ts';
 import { HTTPError } from '#client/types/errors.ts';
-import ServiceKlage from '#client/pages/tilbakemeldinger/service-klage/ServiceKlage.tsx';
 import { KontaktInfo } from '#client/types/kontaktInfo.ts';
 import { Fodselsnr } from '#client/types/fodselsnr.ts';
-import { paths } from '#shared/paths.ts';
-import { parseAppPath } from '#shared/appPath.ts';
 import { DecoratorWidgets } from '#client/components/decorator-widgets/DecoratorWidgets.tsx';
+import { MetaTags } from '#client/components/metatags/MetaTags.tsx';
 import '@navikt/ds-css';
-
-const pages: Record<string, React.ComponentType> = {
-	[paths.tilbakemeldinger.serviceklage.form]: ServiceKlage,
-	[paths.tilbakemeldinger.feilogmangler]: FeilOgMangler,
-	[paths.tilbakemeldinger.rostilnav]: Ros,
-};
 
 type Props = {
 	url?: string;
@@ -28,8 +19,8 @@ type Props = {
 export const App = ({ url }: Props) => {
 	const [{ auth }, dispatch] = useStore();
 	// A language switch changes the locale in the URL, never the page
-	const [{ locale, page }] = useState(() => parseAppPath(url ?? window.location.pathname));
-	const Page = (locale && pages[page]) || PageNotFound;
+	const [page] = useState(() => findPage(url ?? window.location.pathname));
+	const Page = page?.component ?? PageNotFound;
 
 	useEffect(() => {
 		apmInit({
@@ -99,6 +90,7 @@ export const App = ({ url }: Props) => {
 	return (
 		<>
 			<DecoratorWidgets />
+			{page && <MetaTags page={page} />}
 			<Page />
 		</>
 	);

@@ -4,7 +4,6 @@ import { cleanup, render } from '@testing-library/preact';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { HelmetProvider } from 'react-helmet-async';
 import { getGlobalDispatcher, MockAgent, setGlobalDispatcher } from 'undici';
 import { afterEach, expect, vi } from 'vitest';
 import { AppRoot } from '#client/index.tsx';
@@ -86,9 +85,12 @@ export type Post = { path: string; body: unknown };
 // answered from `api`
 export const renderApp = (path: string, api: Api = {}) => {
 	window.history.replaceState(null, '', `${BASE}${path}`);
+	// The tags the server writes into <head> (client/main-server.tsx), which the app keeps up to date
+	document.head.innerHTML = '<title></title><meta name="description"><link rel="canonical">';
 
 	// Provided by the decorator
-	Object.assign(window, { dekoratorenAnalytics: () => Promise.resolve() });
+	const analytics = vi.fn((_event: { eventName: string; eventData?: Record<string, unknown> }) => Promise.resolve());
+	Object.assign(window, { dekoratorenAnalytics: analytics });
 
 	const posts: Post[] = [];
 	const served = new Set<Endpoint>();
@@ -120,9 +122,7 @@ export const renderApp = (path: string, api: Api = {}) => {
 
 	render(
 		<React.StrictMode>
-			<HelmetProvider>
-				<AppRoot />
-			</HelmetProvider>
+			<AppRoot />
 		</React.StrictMode>
 	);
 
@@ -134,5 +134,5 @@ export const renderApp = (path: string, api: Api = {}) => {
 		await new Promise((resolve) => setTimeout(resolve, 0));
 	};
 
-	return { user: userEvent.setup(), posts, settled };
+	return { user: userEvent.setup(), posts, settled, analytics };
 };

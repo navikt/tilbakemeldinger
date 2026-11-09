@@ -17,9 +17,8 @@ Applikasjonen er en full-stack Node.js-løsning med server-side rendering (SSR) 
 
 ### Struktur
 
-- `index.html` - HTML-malen for klienten og server-side rendering
 - `client/` - Frontend-kode (Preact-komponenter, utilities, entry points)
-- `server/` - Backend-kode (Hono-server, API-ruter, SSR-logikk). Node kjører TypeScript-filene direkte (type stripping), uten eget byggesteg.
+- `server/` - Backend-kode (Hono-server, API-ruter, SSR-logikk). Node kjører TypeScript-filene direkte (type stripping), uten eget byggesteg. Serveren skriver hele HTML-dokumentet (`server/site/page.ts`): appen rendret på serveren, dekoratøren, og script og stiler fra Vite-manifestet.
 - `shared/` - Delt kode mellom frontend og backend (lokalisering, skjemaer, typer)
 - `dist/` - Bygget klient (`dist/client`) og SSR-bundle (`dist/ssr`)
 

@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import nb from '#shared/language/nb.ts';
-import { API, BASE, parseHtml, postJson, startServer, type TestServer } from './harness';
+import { API, BASE, CDN_BASE, parseHtml, postJson, startServer, type TestServer } from './harness';
 import { NOT_FOUND_HTML } from './stub';
 import { expectNoUnexpectedHosts } from './fixtures';
 
@@ -43,7 +43,13 @@ describe('routing edge cases', () => {
 
 		expect(res.status).toBe(200);
 		expect(res.headers.get('content-type')).toBe('text/html; charset=UTF-8');
-		expect(parseHtml(await res.text()).querySelector('#maincontent h2')?.textContent).toBe(nb['feil.404']);
+
+		const doc = parseHtml(await res.text());
+		expect(doc.querySelector('#maincontent h2')?.textContent).toBe(nb['feil.404']);
+		expect(doc.head.querySelector('title')?.textContent).toBe(`${nb['feil.404']} - www.nav.no`);
+		expect(doc.head.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe('noindex');
+		expect(doc.head.querySelector('meta[name="description"]')).toBeNull();
+		expect(doc.head.querySelector('link[rel="canonical"]')).toBeNull();
 	});
 
 	test('a POST to a page gets the 404 page with CSP, also when the page is cached', async () => {
@@ -68,16 +74,17 @@ describe('routing edge cases', () => {
 		expect(await res.text()).toBe(NOT_FOUND_HTML);
 	});
 
-	test('serves the built assets with a one year max-age', async () => {
+	test('pages load their script and stylesheet from the CDN, not from the server', async () => {
 		const page = await server.fetch(`${BASE}/nb/tilbakemeldinger/serviceklage?assets=1`);
-		const src = parseHtml(await page.text())
-			.querySelector('script[type="module"]')
-			?.getAttribute('src');
-		expect(src).toMatch(new RegExp(`^${BASE}/assets/.+\\.js$`));
+		const doc = parseHtml(await page.text());
 
-		const res = await server.fetch(src!);
-		expect(res.status).toBe(200);
-		expect(res.headers.get('cache-control')).toBe('public, max-age=31536000');
+		const script = doc.querySelector('script[type="module"]')?.getAttribute('src');
+		const stylesheet = doc.querySelector('link[rel="stylesheet"]')?.getAttribute('href');
+		expect(script).toMatch(new RegExp(`^${CDN_BASE}/assets/.+\\.js$`));
+		expect(stylesheet).toMatch(new RegExp(`^${CDN_BASE}/assets/.+\\.css$`));
+
+		// Where the server used to serve it
+		expect((await server.fetch(`${BASE}${script!.slice(CDN_BASE.length)}`)).status).toBe(404);
 	});
 
 	// Framework-specific behavior, pinned so a framework change shows up as a test diff

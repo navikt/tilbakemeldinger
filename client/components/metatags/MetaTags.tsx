@@ -1,36 +1,25 @@
-import React, { useEffect } from 'react';
-import { appPath } from '#shared/appPath.ts';
-import { useIntl } from 'react-intl';
+import { useEffect } from 'react';
 import { useStore } from '#client/providers/Provider.tsx';
-import Environment from '#client/Environments.ts';
 import { logPageview } from '#client/utils/analytics.ts';
-import { Helmet } from 'react-helmet-async';
-import { joinURL } from 'ufo';
-import type { ReactNode } from 'react';
+import { type Page, pageHead } from '#client/pages/pages.ts';
+import { translate } from '#shared/locale.ts';
 
-type Props = {
-	path: string;
-	titleId: string;
-	descriptionId?: string;
-	children?: ReactNode;
-};
-
-export const MetaTags = ({ path, titleId, descriptionId, children }: Props) => {
-	const intl = useIntl();
+// The server writes the page's <head> (client/main-server.tsx). A language switch changes the
+// locale in the browser, and the title, description and canonical follow it here.
+export const MetaTags = ({ page }: { page: Page }) => {
 	const [{ locale }] = useStore();
-	const baseUrl = Environment().baseUrl;
-	const title = intl.formatMessage({ id: titleId });
+	const { title, description, canonical } = pageHead(page, locale);
+	const pageTitle = translate(locale, page.titleId);
 
 	useEffect(() => {
-		logPageview(title);
-	}, [title]);
+		logPageview(pageTitle);
+	}, [pageTitle]);
 
-	return (
-		<Helmet>
-			{titleId && <title>{`${title} - www.nav.no`}</title>}
-			{descriptionId && <meta name="description" content={intl.formatMessage({ id: descriptionId })} />}
-			{(path || path === '') && <link rel="canonical" href={joinURL(baseUrl, appPath(locale, path))} />}
-			{children}
-		</Helmet>
-	);
+	useEffect(() => {
+		document.title = title;
+		document.head.querySelector('meta[name="description"]')?.setAttribute('content', description);
+		document.head.querySelector('link[rel="canonical"]')?.setAttribute('href', canonical);
+	}, [title, description, canonical]);
+
+	return null;
 };

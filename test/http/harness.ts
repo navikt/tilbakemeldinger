@@ -16,6 +16,7 @@ export const API = `${BASE}/tilbakemeldinger/api`;
 
 // Baked into the client/SSR bundles by `pretest:http` in package.json
 export const APP_ORIGIN = 'https://www.nav.test';
+export const CDN_BASE = 'https://cdn.nav.test/tilbakemeldinger';
 
 const { privateKey } = generateKeyPairSync('rsa', { modulusLength: 2048 });
 const tokenxJwk = { ...privateKey.export({ format: 'jwk' }), kid: 'test-kid', alg: 'RS256' };

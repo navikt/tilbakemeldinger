@@ -54,7 +54,7 @@ describe('front page without an editorial page to redirect to', () => {
 	let server: TestServer;
 
 	beforeAll(async () => {
-		server = await startServer({ env: { ENV: 'localhost' } });
+		server = await startServer({ env: { VITE_EDITORIAL_FRONTPAGE_ORIGIN: undefined } });
 	});
 
 	afterAll(async () => {

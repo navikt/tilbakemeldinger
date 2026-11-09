@@ -1,8 +1,12 @@
 import type { MiddlewareHandler } from 'hono';
 import Cache from 'node-cache';
-import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
-import { decoratorEnvProps } from './decorator.ts';
+import { buildCspHeader, type DecoratorEnvProps } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import { type CSPDirectives, DATA, SELF } from 'csp-header';
+import { env } from './environment.ts';
+
+// The decorator for this environment. Locally, production's
+const decoratorEnvProps: DecoratorEnvProps =
+	env.ENV === 'localhost' ? { env: 'localhost', localUrl: 'https://www.nav.no/dekoratoren' } : { env: env.ENV };
 
 /*
  * This middleware sets a CSP-header compatible with nav-dekoratoren

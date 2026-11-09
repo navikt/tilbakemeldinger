@@ -12,6 +12,8 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 	const basepath = process.env.VITE_APP_BASEPATH;
 
 	return {
+		// No HTML entry: the server writes the pages (server/site/page.ts)
+		appType: 'custom',
 		// `pnpm dev`: the whole app on the app's own port
 		server: {
 			port: Number(process.env.APP_PORT) || undefined,
@@ -26,7 +28,7 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 			devServer({
 				entry: './server/app.ts',
 				exclude: [new RegExp(`^${basepath}/@`), /\.(scss|json)$/, ...defaultOptions.exclude],
-				// The page renderer runs transformIndexHtml, which adds Vite's client
+				// The pages load Vite's client themselves. The plugin's is an inline script, which the CSP blocks
 				injectClientScript: false,
 			}),
 			...(process.env.ANALYZE ? [visualizer({ gzipSize: true, open: true, sourcemap: true })] : []),
@@ -34,6 +36,8 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 		build: {
 			sourcemap: true,
 			outDir: isSsrBuild ? 'dist/ssr' : 'dist/client',
+			// The client build: the manifest tells the server which files the page loads
+			...(!isSsrBuild && { manifest: true, rolldownOptions: { input: 'client/main-client.tsx' } }),
 		},
 		ssr: {
 			// Dependencies containing React components must not be externalized
@@ -45,7 +49,6 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 				'@navikt/nav-dekoratoren-moduler',
 				'@radix-ui/*',
 				'react-intl',
-				'react-helmet-async',
 				'react-hook-form',
 			],
 			resolve: {

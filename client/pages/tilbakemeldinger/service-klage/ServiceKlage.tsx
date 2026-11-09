@@ -6,7 +6,6 @@ import { ErrorResponse } from '#client/types/errors.ts';
 import { ON_BEHALF_OF, ServiceKlageBase, ServiceKlageFragment } from '#shared/types/ServiceKlage.ts';
 import Header from '#client/components/header/Header.tsx';
 import { vars } from '#client/Config.ts';
-import { paths } from '#shared/paths.ts';
 import { FormattedMessage, useIntl } from 'react-intl';
 import ServiceKlagePrivatperson from './ServiceKlagePrivatperson';
 import ServiceKlageForAnnenPerson from './ServiceKlageAnnenPerson';
@@ -14,7 +13,6 @@ import ServiceKlageForBedrift from './ServiceKlageBedrift';
 import Takk from '#client/components/takk/Takk.tsx';
 import { triggerHotjar } from '#client/utils/hotjar.ts';
 import ServiceKlageOnskerAaKontaktes from './ServiceKlageOnskerAaKontaktes';
-import { MetaTags } from '#client/components/metatags/MetaTags.tsx';
 import LoginModal from './login-modal/LoginModal';
 import { Alert, Box, Button, GuidePanel, Radio, RadioGroup, Textarea } from '@navikt/ds-react';
 import { Controller, FieldValues, FormProvider, useForm } from 'react-hook-form';
@@ -157,11 +155,6 @@ const ServiceKlageComponent = () => {
 
 	return (
 		<div className={appStyle.pageContent}>
-			<MetaTags
-				titleId={'tilbakemeldinger.serviceklage.sidetittel'}
-				descriptionId={'seo.serviceklage.description'}
-				path={paths.tilbakemeldinger.serviceklage.form}
-			/>
 			<Header
 				title={formatMessage({
 					id: 'tilbakemeldinger.serviceklage.sidetittel',
