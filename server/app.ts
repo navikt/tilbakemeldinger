@@ -5,10 +5,13 @@ import { createSite } from './site/site.ts';
 import { setupErrorHandlers } from './utils/errorHandlers.ts';
 import { env } from './utils/environment.ts';
 import { metricsHandler } from './utils/metrics.ts';
+import { debugClientIp } from './utils/debugClientIp.ts';
 import type { AppEnv } from './types.ts';
 
 // strict: false matches routes with/without trailing slash
 const app = new Hono<AppEnv>({ strict: false });
+// TEMP debug: remove after checking the proxy chain
+app.use(debugClientIp);
 app.use(compress());
 
 app.get('/internal/metrics', metricsHandler);
