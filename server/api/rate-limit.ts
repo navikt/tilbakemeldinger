@@ -17,7 +17,7 @@ const trustProxy = proxyaddr.compile(['loopback', 'linklocal', 'uniquelocal', '1
 // Both limits are per client IP. IPv6 addresses are grouped by their /56 subnet, so one client
 // can't rotate through its range, and IPv4-mapped ones count as IPv4.
 // State is in memory, so each pod counts on its own.
-const clientKey = (c: Context<AppEnv>) => {
+export const clientKey = (c: Context<AppEnv>) => {
 	const ip = proxyaddr(c.env.incoming, trustProxy);
 	if (!isIPv6(ip)) {
 		return ip;
