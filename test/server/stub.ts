@@ -78,10 +78,21 @@ const defaultRoutes: StubRoute[] = [
 	{ host: 'tilbakemeldingsmottak-api.test', path: /^\/rest\//, method: 'POST', reply: () => json({}) },
 ];
 
+const pathMatches = (pattern: string | RegExp, path: string) =>
+	typeof pattern === 'string' ? pattern === path : pattern.test(path);
+
+const toBody = (body: unknown): string | null => {
+	if (typeof body === 'string') {
+		return body;
+	}
+	if (body === undefined) {
+		return null;
+	}
+	return JSON.stringify(body);
+};
+
 const matches = (route: StubRoute, req: StubRequest) =>
-	route.host === req.host &&
-	(!route.method || route.method === req.method) &&
-	(typeof route.path === 'string' ? route.path === req.path : route.path.test(req.path));
+	route.host === req.host && (!route.method || route.method === req.method) && pathMatches(route.path, req.path);
 
 export const createStub = (extraRoutes: StubRoute[] = []): Stub => {
 	const routes = [...extraRoutes, ...defaultRoutes];
@@ -113,10 +124,7 @@ export const createStub = (extraRoutes: StubRoute[] = []): Stub => {
 		}
 
 		const { status = 200, headers = {}, body } = reply;
-		return new Response(typeof body === 'string' ? body : body === undefined ? null : JSON.stringify(body), {
-			status,
-			headers,
-		});
+		return new Response(toBody(body), { status, headers });
 	};
 
 	return {
@@ -125,9 +133,6 @@ export const createStub = (extraRoutes: StubRoute[] = []): Stub => {
 		unexpected,
 		route: (route) => routes.unshift(route),
 		find: (host, path) =>
-			requests.filter(
-				(r) =>
-					r.host === host && (path === undefined || (typeof path === 'string' ? r.path === path : path.test(r.path)))
-			),
+			requests.filter((r) => r.host === host && (path === undefined || pathMatches(path, r.path))),
 	};
 };
