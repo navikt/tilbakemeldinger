@@ -1,79 +1,57 @@
+// Vite adds these to an HTML entry by itself. Here the server writes the page (server/site/page.ts).
+// The preamble sets up React Fast Refresh in development, and is empty in builds
+import '@vitejs/plugin-react/preamble';
+import 'vite/modulepreload-polyfill';
 // Import global style early to ensure the later component-level imports
 // gets higher specificity
 import './App.scss';
 
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { StrictMode } from 'react';
+import { createRoot, hydrateRoot, type ErrorInfo } from 'react-dom/client';
+import { captureException, init as apmInit } from '@nais/apm';
 import { AppRoot } from './index';
-import { HelmetProvider } from 'react-helmet-async';
 
-const AppWithContext = () => {
-	return (
-		<React.StrictMode>
-			<HelmetProvider>
-				<AppRoot />
-			</HelmetProvider>
-		</React.StrictMode>
-	);
+// Before React renders, so that the errors it reports below reach APM
+apmInit({
+	namespace: 'navno',
+	app: 'tilbakemeldinger',
+	telemetryUrl: import.meta.env.VITE_TELEMETRY_URL,
+});
+
+// Locally, mock data answers the app's calls to the APIs. Set up once per page load, not in an effect, which
+// StrictMode runs twice in development, and before rendering, so that the first calls are answered too
+if (import.meta.env.VITE_ENV === 'localhost') {
+	const { setUpMock } = await import('./clients/apiMock');
+	setUpMock();
+}
+
+// Errors React recovers from (after a hydration mismatch it renders on the client instead), and errors caught by an
+// error boundary. Uncaught errors keep React's default: it reports them as global errors, which APM already picks up
+// (window.onerror), so forwarding them as well would report them twice
+const reportTo =
+	(fingerprint: string) =>
+	(error: unknown, { componentStack }: ErrorInfo) => {
+		captureException(error, { fingerprint, context: { componentStack } });
+		// Still in the console, where React's default handlers print them. As a warning: APM reports every console.error
+		console.warn(error);
+	};
+
+const options = {
+	onRecoverableError: reportTo('root.recoverable-error'),
+	onCaughtError: reportTo('root.caught-error'),
 };
 
-const renderOrHydrate = () => {
-	const rootElement = document.getElementById('maincontent') as HTMLElement;
+const rootElement = document.getElementById('maincontent') as HTMLElement;
+const app = (
+	<StrictMode>
+		<AppRoot />
+	</StrictMode>
+);
 
-	// Hydrate only when the server rendered the app (an element, not just
-	// whitespace or nothing). Not in dev: hydration glitches with our HMR
-	// workaround below.
-	if (rootElement.firstElementChild && import.meta.env.PROD) {
-		ReactDOM.hydrateRoot(rootElement, <AppWithContext />);
-	} else {
-		console.log('Rendering!');
-		const root = ReactDOM.createRoot(rootElement);
-		root.render(<AppWithContext />);
-	}
-};
-
-renderOrHydrate();
-
-if (import.meta.hot) {
-	/*
-	 * Workaround for HMR not triggering module updates for some reason!
-	 * We do a full re-render of the component tree, which is at least better
-	 * than doing a full page reload. This will be tree-shaken away in
-	 * production mode (see Vite docs)
-	 * */
-
-	const { pathname } = new URL(import.meta.url);
-
-	import.meta.hot.on('vite:beforeUpdate', (payload) => {
-		if (!payload) {
-			console.log('"payload" was not defined');
-			return;
-		}
-
-		console.log('Update payload: ', payload);
-
-		const { type, updates } = payload;
-		if (type !== 'update') {
-			console.log(`"type" was not "update" ("${type}")`);
-			return;
-		}
-		if (!updates) {
-			console.log('"updates" was not defined');
-			return;
-		}
-
-		const hasJsUpdate = updates.some((update) => {
-			const { type, path } = update;
-			if (type !== 'js-update') {
-				console.log(`"type" was not "js-update" ("${type}")`);
-				return false;
-			}
-			console.log(`Updating for "${path}"!`);
-			return true;
-		});
-
-		if (hasJsUpdate) {
-			import(/* @vite-ignore */ `${pathname}?t=${Date.now()}`);
-		}
-	});
+// Hydrate only when the server rendered the app (an element, not just whitespace or nothing)
+if (rootElement.firstElementChild) {
+	hydrateRoot(rootElement, app, options);
+} else {
+	console.log('Rendering!');
+	createRoot(rootElement, options).render(app);
 }

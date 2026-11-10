@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { useStore } from '#client/providers/Provider.tsx';
 import { useFormContext } from 'react-hook-form';

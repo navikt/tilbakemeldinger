@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import SelectEnhet from '#client/components/input-fields/SelectEnhet.tsx';
 import { Controller, useFormContext } from 'react-hook-form';

@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { captureException } from '@nais/apm';
 import { postFeilOgMangler } from '#client/clients/apiClient.ts';
 import { ErrorResponse } from '#client/types/errors.ts';
 import Header from '#client/components/header/Header.tsx';
 import { vars } from '#client/Config.ts';
-import { paths } from '#shared/paths.ts';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Takk from '#client/components/takk/Takk.tsx';
 import FeilgOgManglerOnskerAaKontaktes from './FeilOgManglerOnskerAaKontaktes';
 import { triggerHotjar } from '#client/utils/hotjar.ts';
-import { MetaTags } from '#client/components/metatags/MetaTags.tsx';
 import { Alert, Box, Button, GuidePanel, Radio, RadioGroup, Textarea } from '@navikt/ds-react';
 import { Controller, FieldValues, FormProvider, useForm } from 'react-hook-form';
 import { resolveErrorCode } from '#client/utils/errorCodes.ts';
@@ -77,11 +75,6 @@ const FOM = () => {
 
 	return (
 		<div className={appStyle.pageContent}>
-			<MetaTags
-				titleId={'tilbakemeldinger.feil-og-mangler.sidetittel'}
-				descriptionId={'seo.feil-og-mangler.description'}
-				path={paths.tilbakemeldinger.feilogmangler}
-			/>
 			<Header
 				title={formatMessage({
 					id: 'tilbakemeldinger.feilogmangler.form.tittel',

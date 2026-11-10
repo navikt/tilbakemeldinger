@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { captureException } from '@nais/apm';
 import { postRosTilNav } from '#client/clients/apiClient.ts';
 import { ErrorResponse } from '#client/types/errors.ts';
 import Header from '#client/components/header/Header.tsx';
 import { vars } from '#client/Config.ts';
-import { paths } from '#shared/paths.ts';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Takk from '#client/components/takk/Takk.tsx';
 import { triggerHotjar } from '#client/utils/hotjar.ts';
 import SelectEnhet from '#client/components/input-fields/SelectEnhet.tsx';
-import { MetaTags } from '#client/components/metatags/MetaTags.tsx';
 import { Alert, Box, Button, GuidePanel, Radio, RadioGroup, Textarea } from '@navikt/ds-react';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { RosTilNav } from '#shared/types/RosTilNav.ts';
@@ -79,11 +77,6 @@ const Ros = () => {
 
 	return (
 		<div className={appStyle.pageContent}>
-			<MetaTags
-				titleId={'tilbakemeldinger.ros-til-nav.sidetittel'}
-				descriptionId={'seo.ros-til-nav.description'}
-				path={paths.tilbakemeldinger.rostilnav}
-			/>
 			<Header
 				title={formatMessage({
 					id: 'tilbakemeldinger.ros.form.tittel',

@@ -1,10 +1,7 @@
-// The only file that knows which renderer the app uses. The React 19 swap
-// changes the import below to @testing-library/react and nothing else.
-import { cleanup, render } from '@testing-library/preact';
+// The only file that knows which renderer the app uses
+import { cleanup, render } from '@testing-library/react';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
-import { HelmetProvider } from 'react-helmet-async';
 import { getGlobalDispatcher, MockAgent, setGlobalDispatcher } from 'undici';
 import { afterEach, expect, vi } from 'vitest';
 import { AppRoot } from '#client/index.tsx';
@@ -12,7 +9,7 @@ import Environment from '#client/Environments.ts';
 import nb from '#shared/language/nb.ts';
 
 // Faro patches fetch and ships telemetry; not something the forms depend on
-vi.mock('@nais/apm', () => ({ init: vi.fn(), captureException: vi.fn() }));
+vi.mock('@nais/apm', () => ({ captureException: vi.fn() }));
 
 // The app's fetch runs on Node's built-in undici; the mock replaces the network under it
 const realDispatcher = getGlobalDispatcher();
@@ -81,14 +78,16 @@ const readBody = async (body: unknown) => {
 
 export type Post = { path: string; body: unknown };
 
-// Renders the whole app at `path` the way main-client.tsx does, with the
-// browser's calls to our API, the decorator auth API and personopplysninger
-// answered from `api`
-export const renderApp = (path: string, api: Api = {}) => {
+// Puts the browser at `path`, with the browser's calls to our API, the decorator
+// auth API and personopplysninger answered from `api`
+const openPage = (path: string, api: Api) => {
 	window.history.replaceState(null, '', `${BASE}${path}`);
+	// The tags the server writes into <head> (client/main-server.tsx), which the app keeps up to date
+	document.head.innerHTML = '<title></title><meta name="description"><link rel="canonical">';
 
 	// Provided by the decorator
-	Object.assign(window, { dekoratorenAnalytics: () => Promise.resolve() });
+	const analytics = vi.fn((_event: { eventName: string; eventData?: Record<string, unknown> }) => Promise.resolve());
+	Object.assign(window, { dekoratorenAnalytics: analytics });
 
 	const posts: Post[] = [];
 	const served = new Set<Endpoint>();
@@ -118,14 +117,6 @@ export const renderApp = (path: string, api: Api = {}) => {
 			.persist();
 	}
 
-	render(
-		<React.StrictMode>
-			<HelmetProvider>
-				<AppRoot />
-			</HelmetProvider>
-		</React.StrictMode>
-	);
-
 	// Waits until these endpoints have answered the app, plus a timer tick for
 	// it to read and apply the data, e.g. fodselsnr/kontaktinfo before the user
 	// starts filling in
@@ -134,5 +125,26 @@ export const renderApp = (path: string, api: Api = {}) => {
 		await new Promise((resolve) => setTimeout(resolve, 0));
 	};
 
-	return { user: userEvent.setup(), posts, settled };
+	return { posts, settled, analytics };
+};
+
+// The app as main-client.tsx renders it, minus StrictMode: in development it runs every effect twice on
+// mount, which production never does, and the tests count what effects do (one pageview per title)
+const app = <AppRoot />;
+
+// Renders the whole app at `path`
+export const renderApp = (path: string, api: Api = {}) => {
+	const page = openPage(path, api);
+	render(app);
+
+	return { user: userEvent.setup(), ...page };
+};
+
+// Hydrates the server-rendered app in `main` at `path`, the way main-client.tsx does
+export const hydrateApp = (path: string, main: HTMLElement, api: Api = {}) => {
+	const page = openPage(path, api);
+	const onRecoverableError = vi.fn();
+	render(app, { container: main, hydrate: true, onRecoverableError });
+
+	return { onRecoverableError, ...page };
 };

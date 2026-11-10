@@ -1,23 +1,18 @@
-import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { AppRoot } from './index';
-import { HelmetProvider, type HelmetServerState } from 'react-helmet-async';
+import { findPage, notFoundHead, pageHead } from '#client/pages/pages.ts';
+import { getLocaleFromUrl } from '#shared/appPath.ts';
 import type { SsrRender } from '#shared/types/ssr.ts';
 
-type HelmetContext = {
-	helmet?: HelmetServerState;
-};
+// Where the client build's files are served from (the CDN when deployed), for the page's script and style tags
+export const base = import.meta.env.BASE_URL;
 
-export const render: SsrRender = (url) => {
-	const helmetContext: HelmetContext = {};
+export const render: SsrRender = (path) => {
+	const page = findPage(path);
+	const locale = getLocaleFromUrl(path);
 
-	const html = renderToString(
-		<HelmetProvider context={helmetContext}>
-			<AppRoot url={url} />
-		</HelmetProvider>
-	);
-
-	const { helmet } = helmetContext;
-
-	return { html, helmet };
+	return {
+		html: renderToString(<AppRoot url={path} />),
+		head: page ? pageHead(page, locale) : notFoundHead(locale),
+	};
 };

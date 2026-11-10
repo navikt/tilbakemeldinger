@@ -66,6 +66,7 @@ describe('server-side rendered pages', () => {
 			const doc = parseHtml(await res.text());
 			const t = translations[locale];
 
+			expect(doc.documentElement.getAttribute('lang')).toBe(locale);
 			expect(doc.head.querySelector('title')?.textContent).toBe(`${t[page.title]} - www.nav.no`);
 			expect(doc.head.querySelector('meta[name="description"]')?.getAttribute('content')).toBe(t[page.description]);
 			expect(doc.head.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
@@ -110,6 +111,17 @@ describe('server-side rendered pages', () => {
 			{ url: `${BASE}/nn/tilbakemeldinger`, title: 'Tilbakemelding', handleInApp: false },
 			{ url: `${BASE}/nn/tilbakemeldinger/serviceklage`, title: 'Klage på service', handleInApp: false },
 		]);
+	});
+
+	// The decorator library caches per set of breadcrumbs, so made-up paths must not make new ones
+	test('a made-up page only gets the base breadcrumb', async () => {
+		const res = await server.fetch(`${BASE}/en/tilbakemeldinger/made-up/page`);
+
+		expect(res.status).toBe(200);
+		expect(decoratorRequests(server).filter((d) => d.language === 'en' && d.breadcrumbs?.length === 1)).toEqual([
+			expect.objectContaining({ breadcrumbs: [{ url: `${BASE}/en`, title: 'Contact us', handleInApp: false }] }),
+		]);
+		expect(JSON.stringify(decoratorRequests(server))).not.toContain('made-up');
 	});
 
 	test('finds the page ignoring case, the query and a trailing slash', async () => {

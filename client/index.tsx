@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { StoreProvider, useStore } from '#client/providers/Provider.tsx';
 import { initialState, reducer } from '#client/providers/Store.ts';
@@ -22,12 +22,6 @@ type Props = {
 };
 
 export const AppRoot = ({ url }: Props) => {
-	useEffect(() => {
-		if (import.meta.env.VITE_ENV === 'localhost') {
-			import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
-		}
-	}, []);
-
 	const locale = url ? getLocaleFromUrl(url) : getLocaleFromUrl(window?.location?.pathname);
 
 	const initialStateWithLocale = {

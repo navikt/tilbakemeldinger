@@ -1,4 +1,4 @@
-import React, { ForwardedRef, useEffect } from 'react';
+import { useEffect, type Ref } from 'react';
 import { useStore } from '#client/providers/Provider.tsx';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { captureException } from '@nais/apm';
@@ -23,10 +23,11 @@ interface Props {
 	label: string;
 	submitted: boolean;
 	value?: Option;
+	ref?: Ref<HTMLInputElement>;
 }
 
-const SelectEnhet = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
-	const { submitted, error, label, onChange, value, triggerValidation } = props;
+const SelectEnhet = (props: Props) => {
+	const { submitted, error, label, onChange, value, triggerValidation, ref } = props;
 
 	// Trigger validering etter mount dersom form er submitted
 	useEffect(() => {
@@ -113,4 +114,4 @@ const SelectEnhet = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
 	);
 };
 
-export default React.forwardRef(SelectEnhet);
+export default SelectEnhet;
