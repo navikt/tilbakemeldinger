@@ -307,8 +307,8 @@ importers:
         specifier: 19.2.15
         version: 19.2.15
       '@types/react-dom':
-        specifier: 18.3.5
-        version: 18.3.5(@types/react@19.2.15)
+        specifier: 19.3.0
+        version: 19.3.0(@types/react@19.2.15)
       '@typescript-eslint/eslint-plugin':
         specifier: 8.60.0
         version: 8.60.0(@typescript-eslint/parser@8.60.0(eslint@10.8.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.8.0(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
@@ -1519,10 +1519,10 @@ packages:
   '@types/proxy-addr@2.0.3':
     resolution: {integrity: sha512-TgAHHO4tNG3HgLTUhB+hM4iwW6JUNeQHCLnF1DjaDA9c69PN+IasoFu2MYDhubFc+ZIw5c5t9DMtjvrD6R3Egg==}
 
-  '@types/react-dom@18.3.5':
-    resolution: {integrity: sha512-P4t6saawp+b/dFrUr2cvkVsfvPguwsxtH6dNIYRllMsefqFzkZk5UIjzyDOv5g1dXIPdG4Sp1yCR4Z6RCUsG/Q==}
+  '@types/react-dom@19.3.0':
+    resolution: {integrity: sha512-ZI7bU42mZXXKHn/qNLEw2IrbiINU7X5+vfgdixBHkCNpYWXjKgfQ/P+uyGb5CjOLB9UcnTeg3rylQtV2hym44Q==}
     peerDependencies:
-      '@types/react': ^18.0.0
+      '@types/react': ^19.3.0
 
   '@types/react@19.2.15':
     resolution: {integrity: sha512-eRwcGNHve+E8qtEQSSRl6urh+rFop4v8gm6O8rGv25CodbvFdLjA1vVQ1KkiFE0w0UPOnb8tDiFKL5lp0rtY5Q==}
@@ -4736,7 +4736,7 @@ snapshots:
     dependencies:
       '@types/node': 26.6.5
 
-  '@types/react-dom@18.3.5(@types/react@19.2.15)':
+  '@types/react-dom@19.3.0(@types/react@19.2.15)':
     dependencies:
       '@types/react': 19.2.15
 
