@@ -132,7 +132,6 @@ export const createStub = (extraRoutes: StubRoute[] = []): Stub => {
 		requests,
 		unexpected,
 		route: (route) => routes.unshift(route),
-		find: (host, path) =>
-			requests.filter((r) => r.host === host && (path === undefined || pathMatches(path, r.path))),
+		find: (host, path) => requests.filter((r) => r.host === host && (path === undefined || pathMatches(path, r.path))),
 	};
 };
