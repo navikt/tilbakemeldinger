@@ -78,7 +78,7 @@ export const reducer = (state: Store, action: Action) => {
 		case 'SETT_KONTAKT_INFO_RESULT':
 			return {
 				...state,
-				kontaktInfo: action.payload as KontaktInfo,
+				kontaktInfo: action.payload,
 			};
 		case 'SETT_LOCALE':
 			return {

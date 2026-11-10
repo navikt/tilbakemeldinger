@@ -78,7 +78,7 @@ export const postToMottakUpstreamHandler = factory.createHandlers(validateFeedba
 		const responseData = await response.json();
 		return c.json(responseData, { status: response.status as ContentfulStatusCode });
 	} catch (error) {
-		console.error(`Feil i postToTilbakemeldingsmottakHandler: ${error}`);
+		console.error(`Feil i postToTilbakemeldingsmottakHandler: ${String(error)}`);
 		setFailureReason(c, 'internal');
 		return c.text('Internal server error', { status: 500 });
 	}

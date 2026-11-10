@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { startServer } from './server';
+import { API, startServer } from './server';
 import { expectNoUnexpectedHosts } from './fixtures';
 
 const UPSTREAM_ENV = {
@@ -23,6 +23,7 @@ describe('environment variables', () => {
 	test('a local server starts without the upstream ones', async () => {
 		const server = await startServer({ env: { ENV: 'localhost', ...UPSTREAM_ENV } });
 
+		expect((await server.fetch(`${API}/internal/isReady`)).status).toBe(200);
 		expectNoUnexpectedHosts(server);
 		await server.stop();
 	});

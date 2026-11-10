@@ -46,9 +46,23 @@ Bygg lokalt med testverdier for miljøvariablene:
 pnpm run build:local
 ```
 
-## Formatering og git blame
+## Lint og formatering
 
-Prosjektet bruker **oxfmt** for formatering, konfigurert i `oxfmt.config.ts`.
+Prosjektet bruker **oxfmt** for formatering (`oxfmt.config.ts`) og **oxlint** for lint (`oxlint.config.ts`).
+
+Sjekk formatering, lint og typer (kjøres også før hver commit):
+
+```
+pnpm run lint
+```
+
+Formater koden:
+
+```
+pnpm run format
+```
+
+## Git blame
 
 Kodebasen ble reformatert i én egen commit. For at `git blame` skal hoppe over denne
 commiten og vise den opprinnelige forfatteren, kjør følgende én gang per klone:

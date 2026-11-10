@@ -127,7 +127,7 @@ export const createStub = (extraRoutes: StubRoute[] = []): Stub => {
 	};
 
 	return {
-		fetch: stubFetch as typeof fetch,
+		fetch: stubFetch,
 		requests,
 		unexpected,
 		route: (route) => routes.unshift(route),

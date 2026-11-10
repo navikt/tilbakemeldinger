@@ -26,41 +26,42 @@ interface Props {
 	ref?: Ref<HTMLInputElement>;
 }
 
+// The kinds of office that can get feedback
+const relevanteEnheter = new Set([
+	'ALS',
+	'ARK',
+	'FPY',
+	'FYLKE',
+	'HMS',
+	'INTRO',
+	'KLAGE',
+	'KONTROLL',
+	'LOKAL',
+	'OKONOMI',
+	'TILTAK',
+	'YTA',
+	'OPPFUTLAND',
+]);
+
 const SelectEnhet = (props: Props) => {
 	const { submitted, error, label, onChange, value, triggerValidation, ref } = props;
 
 	// Trigger validering etter mount dersom form er submitted
 	useEffect(() => {
-		submitted && triggerValidation();
+		if (submitted) {
+			triggerValidation();
+		}
 	}, [triggerValidation, submitted]);
 
 	const [{ enheter }, dispatch] = useStore();
 	const intl = useIntl();
 
-	const relevanteEnheter = [
-		'ALS',
-		'ARK',
-		'FPY',
-		'FYLKE',
-		'HMS',
-		'INTRO',
-		'KLAGE',
-		'KONTROLL',
-		'LOKAL',
-		'OKONOMI',
-		'TILTAK',
-		'YTA',
-		'OPPFUTLAND',
-	];
-
 	useEffect(() => {
 		fetchEnheter()
-			.then((enheter: Enhet[]) => {
-				dispatch({ type: 'SETT_ENHETER_RESULT', payload: enheter });
-			})
-			.catch((error: HTTPError) => {
-				dispatch({ type: 'SETT_ENHETER_ERROR', payload: error });
-				captureException(error, {
+			.then((data: Enhet[]) => dispatch({ type: 'SETT_ENHETER_RESULT', payload: data }))
+			.catch((e: HTTPError) => {
+				dispatch({ type: 'SETT_ENHETER_ERROR', payload: e });
+				captureException(e, {
 					fingerprint: 'select-enhet.fetch-enheter',
 					context: {
 						component: 'SelectEnhet',
@@ -68,7 +69,7 @@ const SelectEnhet = (props: Props) => {
 					},
 				});
 			});
-	}, []);
+	}, [dispatch]);
 
 	const comboBoxLabel = () => (
 		<div className={`${cssPrefix}__label aksel-label`}>
@@ -95,7 +96,7 @@ const SelectEnhet = (props: Props) => {
 					onChange={onChange}
 					value={value}
 					data={enheter.data
-						.filter((e) => (e.enhetNr !== '0000' && relevanteEnheter.includes(e.type)) || ekstraEnheter[e.enhetNr])
+						.filter((e) => (e.enhetNr !== '0000' && relevanteEnheter.has(e.type)) || ekstraEnheter[e.enhetNr])
 						.map((e) => ({
 							value: e.enhetNr,
 							label: ekstraEnheter[e.enhetNr] ?? e.navn,

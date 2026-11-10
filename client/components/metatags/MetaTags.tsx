@@ -12,7 +12,7 @@ export const MetaTags = ({ page }: { page: Page }) => {
 	const pageTitle = translate(locale, page.titleId);
 
 	useEffect(() => {
-		logPageview(pageTitle);
+		void logPageview(pageTitle);
 	}, [pageTitle]);
 
 	useEffect(() => {

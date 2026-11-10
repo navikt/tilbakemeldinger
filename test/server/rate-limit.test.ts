@@ -1,3 +1,4 @@
+// oxlint-disable no-await-in-loop -- the limiters count requests in the order they arrive
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import { API, postJson, startServer, type TestServer } from './server';
 import { expectNoUnexpectedHosts } from './fixtures';

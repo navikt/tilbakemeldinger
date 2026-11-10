@@ -19,7 +19,9 @@ const ServiceKlageTelefon = () => {
 
 	// Trigger validering etter mount dersom form er submitted
 	useEffect(() => {
-		isSubmitted && trigger();
+		if (isSubmitted) {
+			void trigger();
+		}
 	}, [isSubmitted, trigger]);
 
 	return (

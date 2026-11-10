@@ -46,7 +46,7 @@ const RenderApp = ({ url }: Props) => {
 		const onPopState = () => setLocaleFromUrl(dispatch);
 		window.addEventListener('popstate', onPopState);
 		return () => window.removeEventListener('popstate', onPopState);
-	}, []);
+	}, [dispatch]);
 
 	useEffect(() => {
 		document.documentElement.setAttribute('lang', locale);

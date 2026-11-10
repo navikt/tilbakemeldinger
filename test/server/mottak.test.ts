@@ -32,11 +32,12 @@ describe('forwarding to tilbakemeldingsmottak-api', () => {
 		await server.stop();
 	});
 
+	// Upstream status and JSON body are passed through
 	test.each([
-		['ros', '/rest/ros', ROS],
-		['feil-og-mangler', '/rest/feil-og-mangler', FEIL_OG_MANGLER],
-		['serviceklage', '/rest/v2/serviceklage', SERVICEKLAGE],
-	])('%s → %s with the Azure AD token and the raw body', async (path, upstreamPath, body) => {
+		['ros', '/rest/ros', ROS, 201, { id: 'kvittering-1' }],
+		['feil-og-mangler', '/rest/feil-og-mangler', FEIL_OG_MANGLER, 200, {}],
+		['serviceklage', '/rest/v2/serviceklage', SERVICEKLAGE, 200, {}],
+	])('%s → %s with the Azure AD token and the raw body', async (path, upstreamPath, body, status, answer) => {
 		const res = await postJson(server, `${API}/mottak/${path}`, body);
 
 		const upstream = server.stub.find(UPSTREAM, upstreamPath);
@@ -44,15 +45,8 @@ describe('forwarding to tilbakemeldingsmottak-api', () => {
 		expect(upstream[0].headers.authorization).toBe('Bearer azure-token');
 		expect(upstream[0].headers['content-type']).toBe('application/json');
 		expect(JSON.parse(upstream[0].body)).toEqual(body);
-
-		// Upstream status and JSON body are passed through
-		if (path === 'ros') {
-			expect(res.status).toBe(201);
-			expect(await res.json()).toEqual({ id: 'kvittering-1' });
-		} else {
-			expect(res.status).toBe(200);
-			expect(await res.json()).toEqual({});
-		}
+		expect(res.status).toBe(status);
+		expect(await res.json()).toEqual(answer);
 	});
 
 	test('serviceklage from a logged-in user uses a TokenX token', async () => {

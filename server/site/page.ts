@@ -75,7 +75,7 @@ const renderOrEmpty = (render: SsrRender, path: string): Rendered => {
 	try {
 		return render(path);
 	} catch (e) {
-		console.error(`Rendering ${path} failed: ${e instanceof Error ? e.stack : e}`);
+		console.error(`Rendering ${path} failed: ${e instanceof Error ? (e.stack ?? e.message) : String(e)}`);
 		return { html: '', head: { title: 'www.nav.no' } };
 	}
 };

@@ -12,29 +12,31 @@ export const DecoratorWidgets = () => {
 	const [{ locale }, dispatch] = useStore();
 
 	useEffect(() => {
-		onLanguageSelect((breadcrumb) => {
-			setNewLocale(breadcrumb.locale as Locale, dispatch);
+		onLanguageSelect((language) => {
+			setNewLocale(language.locale as Locale, dispatch);
 		});
-	}, []);
+	}, [dispatch]);
 
 	// Back/forward after a language switch changes the locale without the decorator
 	// knowing. After the decorator's own language switch, this changes nothing.
 	useEffect(() => {
-		setParams({ language: locale });
+		void setParams({ language: locale });
 	}, [locale]);
 
-	// Set languages in decorator
+	// Set languages in decorator. The page never changes, so neither do they
 	useEffect(() => {
 		const { page } = parseAppPath(window.location.pathname);
 
-		setAvailableLanguages(languages.map((locale) => ({ locale, url: appPath(locale, page), handleInApp: true })));
-	}, [locale]);
+		void setAvailableLanguages(
+			languages.map((language) => ({ locale: language, url: appPath(language, page), handleInApp: true }))
+		);
+	}, []);
 
 	// Set breadcrumbs in decorator
 	useEffect(() => {
 		const breadcrumbs = getBreadcrumbsFromPathname(window.location.pathname, locale);
 
-		setBreadcrumbs([...breadcrumbs]);
+		void setBreadcrumbs([...breadcrumbs]);
 	}, [locale]);
 
 	return null;

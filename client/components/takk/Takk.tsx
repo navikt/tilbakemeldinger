@@ -3,6 +3,8 @@ import { Alert, Button, Link } from '@navikt/ds-react';
 import Environment from '#client/Environments.ts';
 import appStyle from '#client/App.module.scss';
 
+const { baseUrl } = Environment();
+
 interface Props {
 	melding?: string;
 }
@@ -12,7 +14,7 @@ const Takk = (props: Props) => (
 		<Alert variant="success">
 			{props.melding ? <span>{props.melding}</span> : <FormattedMessage id="takk.melding" />}
 		</Alert>
-		<Button variant="secondary" as={Link} href={Environment().baseUrl}>
+		<Button variant="secondary" as={Link} href={baseUrl}>
 			<FormattedMessage id="takk.knapp" />
 		</Button>
 	</div>
