@@ -4,11 +4,11 @@ import { paths } from './paths.ts';
 
 // The decorator library caches its HTML per set of breadcrumbs, with no limit. So only the forms
 // get their own, and a made-up path can't add another
-const forms = [
+const forms = new Set<string>([
 	paths.tilbakemeldinger.serviceklage.form,
 	paths.tilbakemeldinger.feilogmangler,
 	paths.tilbakemeldinger.rostilnav,
-];
+]);
 
 export const getBreadcrumbsFromPathname = (url: string, locale: Locale) => {
 	const baseBreadcrumb = {
@@ -18,7 +18,7 @@ export const getBreadcrumbsFromPathname = (url: string, locale: Locale) => {
 	};
 
 	const { page, segments } = parseAppPath(url);
-	if (!forms.includes(page)) {
+	if (!forms.has(page)) {
 		return [baseBreadcrumb];
 	}
 

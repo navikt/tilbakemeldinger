@@ -19,9 +19,10 @@ apmInit({
 });
 
 // Locally, mock data answers the app's calls to the APIs. Set up once per page load, not in an effect, which
-// StrictMode runs twice in development
+// StrictMode runs twice in development, and before rendering, so that the first calls are answered too
 if (import.meta.env.VITE_ENV === 'localhost') {
-	import('./clients/apiMock').then(({ setUpMock }) => setUpMock());
+	const { setUpMock } = await import('./clients/apiMock');
+	setUpMock();
 }
 
 // Errors React recovers from (after a hydration mismatch it renders on the client instead), and errors caught by an
