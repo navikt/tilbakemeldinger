@@ -106,6 +106,8 @@ const nb: ITranslation = {
 	'felter.hvemroses.navkontor.velg': 'Velg Nav-enhet',
 	'felter.klagerpa.navkontor.velg': 'Hvilken enhet i Nav gjelder klagen?',
 	'felter.hvemroses.navkontor.skrivinn': 'Søk eller velg med piltast',
+	'felter.navkontor.lastefeil': 'Vi klarte ikke å hente listen over Nav-kontorer.',
+	'felter.navkontor.provigjen': 'Prøv igjen',
 	'felter.combobox.knapp.beskrivelse': 'Åpne lista',
 	'felter.hvemfra': 'Hvem skriver du på vegne av?',
 	'felter.hvemfra.megselv': 'Meg selv som privatperson',

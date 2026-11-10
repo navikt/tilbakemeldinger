@@ -1,3 +1,4 @@
+import { corgi, isHttpError } from '@itsy/corgi';
 import { createFactory } from 'hono/factory';
 import { validator } from 'hono/validator';
 import type { ContentfulStatusCode } from 'hono/utils/http-status';
@@ -30,8 +31,11 @@ const validateFeedback = validator('json', (value: unknown, c) => {
 		return c.text('Feil i validering av skjema', { status: 400 });
 	}
 
-	return value;
+	// The schemas are all objects
+	return value as object;
 });
+
+const tilbakemeldingsmottak = corgi.create({ baseURL: env.API_URL });
 
 const factory = createFactory<AppEnv, '/mottak/:path'>();
 
@@ -45,39 +49,29 @@ export const postToMottakUpstreamHandler = factory.createHandlers(validateFeedba
 		return c.text('Failed to populate auth header', { status: 500 });
 	}
 
-	try {
-		const apiPath = path === 'serviceklage' ? `/rest/v2/${path}` : `/rest/${path}`;
-		const response = await fetch(`${env.API_URL}${apiPath}`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${accessToken}`,
-			},
-			body: JSON.stringify(body),
-		});
+	const apiPath = path === 'serviceklage' ? `/rest/v2/${path}` : `/rest/${path}`;
 
-		if (!response.ok) {
+	try {
+		const data = await tilbakemeldingsmottak.post(apiPath, {
+			headers: { authorization: `Bearer ${accessToken}` },
+			body,
+		});
+		return c.json(data ?? {});
+	} catch (error) {
+		if (isHttpError(error)) {
 			setFailureReason(c, 'upstream');
-			const status = response.status as ContentfulStatusCode;
-			const errorText = await response.text();
+			const status = error.status as ContentfulStatusCode;
+			const { data } = error;
+			const text = typeof data === 'string' ? data : data === undefined ? '' : JSON.stringify(data);
 
 			// Log error because validation should have been done both frontend and further up,
 			// so something is wrong at this point
-			console.error(`Feil i kall til tilbakemeldingsmottak-api: ${errorText}`);
+			console.error(`Feil i kall til tilbakemeldingsmottak-api: ${error.status} ${text}`);
 
-			// Try to parse as JSON, otherwise return the raw text
-			try {
-				const errorJson = JSON.parse(errorText);
-				return c.json(errorJson, { status });
-			} catch {
-				console.error(`Kunne ikke parse feilmelding fra tilbakemeldingsmottak-api som JSON: ${errorText}`);
-				return c.text(errorText, { status });
-			}
+			// Passed on as it came: JSON (like the errorCode of an error the user can fix) as JSON, anything else as text
+			return typeof data === 'object' && data !== null ? c.json(data, status) : c.text(text, status);
 		}
 
-		const responseData = await response.json();
-		return c.json(responseData, { status: response.status as ContentfulStatusCode });
-	} catch (error) {
 		console.error(`Feil i postToTilbakemeldingsmottakHandler: ${String(error)}`);
 		setFailureReason(c, 'internal');
 		return c.text('Internal server error', { status: 500 });

@@ -1,7 +1,6 @@
 import { AuthInfo } from '#client/types/authInfo.ts';
 import { KontaktInfo } from '#client/types/kontaktInfo.ts';
-import { Enhet, FetchEnheter } from '#client/types/enheter.ts';
-import { HTTPError } from '#client/types/errors.ts';
+import { FetchEnheter } from '#client/types/enheter.ts';
 import { Locale } from '#shared/locale.ts';
 
 export const initialState = {
@@ -21,12 +20,8 @@ export interface Store {
 
 export type Action =
 	| {
-			type: 'SETT_ENHETER_RESULT';
-			payload: Enhet[];
-	  }
-	| {
-			type: 'SETT_ENHETER_ERROR';
-			payload: HTTPError;
+			type: 'SETT_ENHETER';
+			payload: FetchEnheter;
 	  }
 	| {
 			type: 'SETT_AUTH_RESULT';
@@ -54,21 +49,10 @@ export const reducer = (state: Store, action: Action) => {
 				...state,
 				auth: { ...action.payload, loaded: true } as AuthInfo,
 			};
-		case 'SETT_ENHETER_RESULT':
+		case 'SETT_ENHETER':
 			return {
 				...state,
-				enheter: {
-					status: 'RESULT',
-					data: action.payload,
-				} as FetchEnheter,
-			};
-		case 'SETT_ENHETER_ERROR':
-			return {
-				...state,
-				enheter: {
-					status: 'ERROR',
-					error: action.payload,
-				} as FetchEnheter,
+				enheter: action.payload,
 			};
 		case 'SETT_FODSELSNR':
 			return {

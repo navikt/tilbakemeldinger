@@ -1,4 +1,4 @@
-import * as querystring from 'querystring';
+import { corgi, isHttpError } from '@itsy/corgi';
 import Cache from 'node-cache';
 import { env } from '#server/utils/environment.ts';
 
@@ -19,28 +19,24 @@ type TokenResponse = {
 const fetchAccessToken = async (scope: string): Promise<TokenResponse | null> => {
 	console.log('Refreshing access token...');
 
-	const response = await fetch(azureAdTokenApi, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded',
-			accept: 'application/json',
-		},
-		body: querystring.stringify({
-			grant_type: 'client_credentials',
-			client_id: env.AZURE_APP_CLIENT_ID,
-			client_secret: env.AZURE_APP_CLIENT_SECRET,
-			scope: scope,
-		}),
-	});
-
-	const responseJson = await response.json();
-
-	if (!response.ok) {
-		console.error('Bad response from token service', responseJson);
-		return null;
+	try {
+		return await corgi.post<TokenResponse>(azureAdTokenApi, {
+			headers: { accept: 'application/json' },
+			// Sent form-encoded. The variables are only optional locally (environment.ts), where submissions use MOCK_ACCESS_TOKEN
+			body: new URLSearchParams({
+				grant_type: 'client_credentials',
+				client_id: env.AZURE_APP_CLIENT_ID ?? '',
+				client_secret: env.AZURE_APP_CLIENT_SECRET ?? '',
+				scope,
+			}),
+		});
+	} catch (error) {
+		if (isHttpError(error)) {
+			console.error('Bad response from token service', error.data);
+			return null;
+		}
+		throw error;
 	}
-
-	return responseJson;
 };
 
 export const getAzureadToken = async (scope: string) => {

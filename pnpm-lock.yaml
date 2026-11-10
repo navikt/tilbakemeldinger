@@ -173,6 +173,9 @@ importers:
       '@hono/node-server':
         specifier: 2.1.3
         version: 2.1.3(hono@4.13.13)
+      '@itsy/corgi':
+        specifier: 1.4.1
+        version: 1.4.1
       '@itsy/html':
         specifier: 1.2.0
         version: 1.2.0
@@ -533,6 +536,10 @@ packages:
         optional: true
       wrangler:
         optional: true
+
+  '@itsy/corgi@1.4.1':
+    resolution: {integrity: sha512-ksGP31gWh5eQ9AO7JFxOCx8g/FPSukw5d1AJJp7Ls3RgXVhPm1xf/uYwAo+8CT97RRIX53/aHNWd9F0nfFbenA==}
+    engines: {node: '>=18.17'}
 
   '@itsy/html@1.2.0':
     resolution: {integrity: sha512-qWSaGyIGNM9oWazBU+r1LEcntTF3DhjgZMd2gneEots6L+g45UF2lagVQJ/tJvNZXq2X6b6tBA/GwcVptJrmFA==}
@@ -2704,6 +2711,8 @@ snapshots:
       '@hono/node-server': 1.19.17(hono@4.13.13)
       hono: 4.13.13
       minimatch: 9.0.9
+
+  '@itsy/corgi@1.4.1': {}
 
   '@itsy/html@1.2.0': {}
 

@@ -69,6 +69,12 @@
 .selectEnhet__spinner {
 	margin: 0 1rem;
 }
+.selectEnhet__lastefeil {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--ax-space-8);
+}
 .selectEnhet__navkontor {
 	max-width: 500px;
 	position: relative;

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useStore } from '#client/providers/Provider.tsx';
 import { captureException } from '@nais/apm';
 import { postServiceKlage } from '#client/clients/apiClient.ts';
-import { ErrorResponse } from '#client/types/errors.ts';
+import { errorContext } from '#client/types/errors.ts';
 import { ON_BEHALF_OF, ServiceKlageBase, ServiceKlageFragment } from '#shared/types/ServiceKlage.ts';
 import Header from '#client/components/header/Header.tsx';
 import { vars } from '#client/Config.ts';
@@ -16,7 +16,7 @@ import ServiceKlageOnskerAaKontaktes from './ServiceKlageOnskerAaKontaktes';
 import LoginModal from './login-modal/LoginModal';
 import { Alert, Box, Button, GuidePanel, Radio, RadioGroup, Textarea } from '@navikt/ds-react';
 import { Controller, FieldValues, FormProvider, useForm } from 'react-hook-form';
-import { resolveErrorCode } from '#client/utils/errorCodes.ts';
+import { submitErrorMessage } from '#client/utils/errorCodes.ts';
 import appStyle from '#client/App.module.scss';
 
 export interface ServiceklageFormFields {
@@ -56,7 +56,8 @@ const ServiceKlageComponent = () => {
 	const [{ auth, fodselsnr }] = useStore();
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
-	const [submitError, setSubmitError] = useState<ErrorResponse>();
+	// The message id for why sending failed
+	const [submitError, setSubmitError] = useState<string>();
 	const [loginClosed, setLoginClosed] = useState(false);
 	const [isClient, setIsClient] = useState(false);
 
@@ -133,14 +134,13 @@ const ServiceKlageComponent = () => {
 			setSuccess(true);
 			triggerHotjar('serviceklage');
 		} catch (e) {
-			const error = e as ErrorResponse;
-			setSubmitError(error);
-			captureException(error, {
+			setSubmitError(submitErrorMessage(e));
+			captureException(e, {
 				fingerprint: 'service-klage.post-service-klage',
 				context: {
 					component: 'ServiceKlage',
 					action: 'postServiceKlage',
-					errorCode: error?.errorCode,
+					...errorContext(e),
 				},
 			});
 		}
@@ -245,7 +245,7 @@ const ServiceKlageComponent = () => {
 							)}
 							{submitError && (
 								<Alert variant={'error'}>
-									<FormattedMessage id={resolveErrorCode(submitError.errorCode)} />
+									<FormattedMessage id={submitError} />
 								</Alert>
 							)}
 							<Button
