@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest';
 import { API, postJson, startServer, type TestServer } from './server';
 import { expectNoUnexpectedHosts, FEIL_OG_MANGLER, ROS, SERVICEKLAGE, unsignedJwt } from './fixtures';
 
@@ -168,5 +168,31 @@ describe('without an access token', () => {
 		expect(res.status).toBe(500);
 		expect(await res.text()).toBe('Failed to populate auth header');
 		expect(server.stub.find(UPSTREAM)).toEqual([]);
+	});
+});
+
+describe('when tilbakemeldingsmottak-api does not answer', () => {
+	let server: TestServer;
+
+	beforeAll(async () => {
+		server = await startServer({ routes: [{ host: UPSTREAM, path: '/rest/ros', reply: () => 'hang' }] });
+	});
+
+	afterAll(async () => {
+		vi.useRealTimers();
+		expectNoUnexpectedHosts(server);
+		await server.stop();
+	});
+
+	test('answers 504 after 30 seconds', async () => {
+		vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+		const pending = postJson(server, `${API}/mottak/ros`, ROS);
+		await vi.waitFor(() => expect(server.stub.find(UPSTREAM, '/rest/ros')).toHaveLength(1));
+
+		await vi.advanceTimersByTimeAsync(30_000);
+		const res = await pending;
+
+		expect(res.status).toBe(504);
+		expect(await res.text()).toBe('Gateway timeout');
 	});
 });

@@ -46,7 +46,6 @@
 		"jose": "6.2.3",
 		"jwt-decode": "4.0.0",
 		"lru-cache": "11.5.0",
-		"node-cache": "5.1.2",
 		"openid-client": "6.8.4",
 		"proxy-addr": "2.0.8",
 		"react": "19.3.1",

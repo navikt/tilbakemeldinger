@@ -1,4 +1,5 @@
-import { corgi, isHttpError } from '@itsy/corgi';
+import { corgi, isHttpError, isTimeoutError } from '@itsy/corgi';
+import { withTimeout } from '@itsy/corgi/timeout';
 import { createFactory } from 'hono/factory';
 import { validator } from 'hono/validator';
 import type { ContentfulStatusCode } from 'hono/utils/http-status';
@@ -35,7 +36,7 @@ const validateFeedback = validator('json', (value: unknown, c) => {
 	return value as object;
 });
 
-const tilbakemeldingsmottak = corgi.create({ baseURL: env.API_URL });
+const tilbakemeldingsmottak = corgi.create({ baseURL: env.API_URL, plugins: [withTimeout(30_000)] });
 
 const factory = createFactory<AppEnv, '/mottak/:path'>();
 
@@ -70,6 +71,12 @@ export const postToMottakUpstreamHandler = factory.createHandlers(validateFeedba
 
 			// Passed on as it came: JSON (like the errorCode of an error the user can fix) as JSON, anything else as text
 			return typeof data === 'object' && data !== null ? c.json(data, status) : c.text(text, status);
+		}
+
+		if (isTimeoutError(error)) {
+			setFailureReason(c, 'upstream');
+			console.error('tilbakemeldingsmottak-api did not answer within 30 seconds');
+			return c.text('Gateway timeout', { status: 504 });
 		}
 
 		console.error(`Feil i postToTilbakemeldingsmottakHandler: ${String(error)}`);

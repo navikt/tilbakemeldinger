@@ -14,7 +14,7 @@ export type StubRequest = {
 };
 
 // 'destroy' fails the request the way a broken connection does
-export type StubReply = { status?: number; headers?: Record<string, string>; body?: unknown } | 'destroy';
+export type StubReply = { status?: number; headers?: Record<string, string>; body?: unknown } | 'destroy' | 'hang';
 
 export type StubRoute = {
 	host: string;
@@ -121,6 +121,14 @@ export const createStub = (extraRoutes: StubRoute[] = []): Stub => {
 		const reply = route.reply(req);
 		if (reply === 'destroy') {
 			throw new TypeError('fetch failed');
+		}
+		if (reply === 'hang') {
+			// Never answers: the request ends when the caller's signal aborts. Not request.signal, which follows
+			// the caller's through a WeakRef in undici, so it never aborts once garbage collection has run
+			const signal = init?.signal ?? (input instanceof Request ? input.signal : undefined);
+			return new Promise<Response>((_, reject) => {
+				signal?.addEventListener('abort', () => reject(signal.reason));
+			});
 		}
 
 		const { status = 200, headers = {}, body } = reply;

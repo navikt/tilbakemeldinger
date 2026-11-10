@@ -1,5 +1,5 @@
 import type { MiddlewareHandler } from 'hono';
-import Cache from 'node-cache';
+import { LRUCache } from 'lru-cache';
 import { buildCspHeader, type DecoratorEnvProps } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import { type CSPDirectives, DATA, SELF } from 'csp-header';
 import { env } from './environment.ts';
@@ -10,7 +10,6 @@ const decoratorEnvProps: DecoratorEnvProps =
 
 /*
  * This middleware sets a CSP-header compatible with nav-dekoratoren
- * Refresh every 10 minutes to ensure we stay in sync with nav-dekoratoren
  * */
 
 const myDirectives: Partial<CSPDirectives> = {
@@ -22,29 +21,40 @@ const myDirectives: Partial<CSPDirectives> = {
 	'connect-src': [SELF],
 };
 
-const cache = new Cache({ deleteOnExpire: false, stdTTL: 600 });
-const cacheKey = 'csp';
+// buildCspHeader doesn't fail: when the decorator doesn't answer, it gives permissive fallback directives instead,
+// which leave out ours
+const isFromDecorator = (csp: string) => csp.includes('script-src');
 
-const buildAndCache = async () => {
-	console.log('Building CSP header');
-
-	const csp = await buildCspHeader(myDirectives, decoratorEnvProps);
-	cache.set(cacheKey, csp);
-};
-
-cache.on('expired', buildAndCache);
+// Refreshed every 10 minutes to stay in sync with the decorator, while requests get the current header. A refresh
+// the decorator doesn't answer keeps the current header (the fallback, until the decorator first answers), and the
+// decorator is asked again a minute later
+const cache = new LRUCache<'csp', string>({
+	max: 1,
+	ttl: 10 * 60 * 1000,
+	allowStale: true,
+	allowStaleOnFetchRejection: true,
+	// The clock is looked up on each call, so tests can fake it
+	perf: { now: () => performance.now() },
+	fetchMethod: async (_key, current, { options }) => {
+		console.log('Building CSP header');
+		const csp = await buildCspHeader(myDirectives, decoratorEnvProps);
+		if (isFromDecorator(csp)) {
+			return csp;
+		}
+		options.ttl = 60 * 1000;
+		return current ?? csp;
+	},
+});
 
 export const createCspMiddleware = async (): Promise<MiddlewareHandler> => {
-	await buildAndCache();
+	// The first header, before the server takes traffic
+	await cache.fetch('csp');
 
 	return async (c, next) => {
-		const csp = cache.get<string>(cacheKey);
-		if (!csp) {
-			console.error('CSP header value not available!');
-			return next();
+		const csp = await cache.fetch('csp');
+		if (csp) {
+			c.header('Content-Security-Policy', csp);
 		}
-
-		c.header('Content-Security-Policy', csp);
 		await next();
 	};
 };
