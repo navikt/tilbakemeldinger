@@ -55,7 +55,7 @@
 		"react": "19.3.1",
 		"react-dom": "19.3.1",
 		"react-hook-form": "7.76.1",
-		"react-intl": "10.1.8",
+		"react-intl": "12.1.5",
 		"ufo": "^1.6.4",
 		"zod": "4.4.3"
 	},
