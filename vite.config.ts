@@ -64,6 +64,8 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 		test: {
 			environment: 'node',
 			clearMocks: true,
+			// Many tests hit error paths on purpose, which will log, this shows only logs for tests that fail
+			silent: 'passed-only',
 			setupFiles: ['./test/setup.ts'],
 			// Pinned so a local .env (e.g. ENV=localhost, which points the app at localhost)
 			// can't change behavior or API URLs under test
