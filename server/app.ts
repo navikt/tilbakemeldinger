@@ -14,6 +14,12 @@ const app = new Hono<AppEnv>({ strict: false });
 app.use(debugClientIp);
 app.use(compress());
 
+// Before the API, which has its own /fodselsnr
+if (env.ENV === 'localhost') {
+	const { devMocks } = await import('./dev/mocks.ts');
+	app.route('/', devMocks);
+}
+
 app.get('/internal/metrics', metricsHandler);
 
 // Routes match in the order they're added

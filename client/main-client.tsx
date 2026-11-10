@@ -18,13 +18,6 @@ apmInit({
 	telemetryUrl: import.meta.env.VITE_TELEMETRY_URL,
 });
 
-// Locally, mock data answers the app's calls to the APIs. Set up once per page load, not in an effect, which
-// StrictMode runs twice in development, and before rendering, so that the first calls are answered too
-if (import.meta.env.VITE_ENV === 'localhost') {
-	const { setUpMock } = await import('./clients/apiMock');
-	setUpMock();
-}
-
 // Errors React recovers from (after a hydration mismatch it renders on the client instead), and errors caught by an
 // error boundary. Uncaught errors keep React's default: it reports them as global errors, which APM already picks up
 // (window.onerror), so forwarding them as well would report them twice

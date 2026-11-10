@@ -5,8 +5,19 @@ import devServer, { defaultOptions } from '@hono/vite-dev-server';
 import { visualizer } from 'rollup-plugin-visualizer';
 import NavBrowserTargets from '@navikt/browserslist-config/vite';
 
-export default defineConfig(({ mode, isSsrBuild }) => {
+// What a build bakes into the app. The workflows write them to .env (their env-file), and pretest:http sets test values
+const buildEnv = ['ENV', 'VITE_APP_BASEPATH', 'VITE_APP_ORIGIN', 'VITE_TELEMETRY_URL'];
+
+export default defineConfig(({ command, mode, isSsrBuild }) => {
 	process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
+
+	const missing = buildEnv.filter((name) => !process.env[name]);
+	if (command === 'build' && missing.length > 0) {
+		throw new Error(
+			`Missing ${missing.join(', ')}. CI writes them to .env before building. To build locally with test values, run \`pnpm run pretest:http\``
+		);
+	}
+
 	process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 	process.env.VITE_ENV = process.env.ENV;
 	const basepath = process.env.VITE_APP_BASEPATH;
@@ -53,7 +64,7 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 			environment: 'node',
 			clearMocks: true,
 			setupFiles: ['./test/setup.ts'],
-			// Pinned so a local .env (e.g. ENV=localhost, which enables fetch-mock)
+			// Pinned so a local .env (e.g. ENV=localhost, which points the app at localhost)
 			// can't change behavior or API URLs under test
 			env: {
 				VITE_APP_BASEPATH: '/person/kontakt-oss',
