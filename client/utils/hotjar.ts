@@ -1,7 +1,6 @@
 declare global {
 	interface Window {
-		// eslint-disable-next-line
-		hj: any;
+		hj?: (command: string, id: string) => void;
 	}
 }
 export const triggerHotjar = (id: string) => {

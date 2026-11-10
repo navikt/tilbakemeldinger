@@ -5,8 +5,8 @@ import { LRUCache } from 'lru-cache';
 import { raw } from '@itsy/html';
 import { frame, type FramePart } from '@itsy/html/frame';
 import { fetchDecoratorHtml, type DecoratorElements } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
-import { joinURL } from 'ufo';
 import type { ViteDevServer } from 'vite';
+import { devAssets, entry, manifestAssets, type Manifest } from './assets.ts';
 import { env } from '#server/utils/environment.ts';
 import { getBreadcrumbsFromPathname } from '#shared/breadcrumbs.ts';
 import type { Locale } from '#shared/locale.ts';
@@ -18,36 +18,6 @@ import type { AppEnv } from '#server/types.ts';
 type SsrModule = { render: SsrRender; base: string };
 type Rendered = ReturnType<SsrRender>;
 type Renderer = { render: SsrRender; assets: FramePart[] };
-type Manifest = Record<string, { file: string; css?: string[]; imports?: string[] }>;
-
-// The client build's entry (vite.config.ts)
-const entry = 'client/main-client.tsx';
-
-// The client entry's styles and script, and its imported chunks, the way Vite writes them into an HTML entry
-const manifestAssets = (manifest: Manifest, base: string): FramePart[] => {
-	const chunks = new Set<string>();
-	const collect = (key: string) => {
-		if (!chunks.has(key)) {
-			chunks.add(key);
-			manifest[key].imports?.forEach(collect);
-		}
-	};
-	collect(entry);
-	const imports = [...chunks].filter((key) => key !== entry);
-	const css = new Set([...chunks].flatMap((key) => manifest[key].css ?? []));
-
-	return [
-		...[...css].map((file) => ({
-			tag: 'link',
-			attrs: { rel: 'stylesheet', crossorigin: true, href: joinURL(base, file) },
-		})),
-		{ tag: 'script', attrs: { type: 'module', crossorigin: true, src: joinURL(base, manifest[entry].file) } },
-		...imports.map((key) => ({
-			tag: 'link',
-			attrs: { rel: 'modulepreload', crossorigin: true, href: joinURL(base, manifest[key].file) },
-		})),
-	];
-};
 
 // In production: the built SSR bundle, and the client build's manifest. A missing one stops the server at startup
 const createProdRenderer = async (): Promise<Renderer> => {
@@ -96,21 +66,18 @@ const devRenderer = async (vite: ViteDevServer | undefined): Promise<Renderer> =
 				throw e;
 			}
 		},
-		// Vite's client reloads the code on changes
-		assets: [
-			{ tag: 'script', attrs: { type: 'module', src: joinURL(base, '@vite/client') } },
-			{ tag: 'script', attrs: { type: 'module', src: joinURL(base, entry) } },
-		],
+		assets: devAssets(base),
 	};
 };
 
-// When rendering fails, the page goes out without the app, and the browser renders it (main-client.tsx)
+// When rendering fails, the page goes out without the app, and the browser renders it (main-client.tsx).
+// The path may well be a page, so it isn't a 404
 const renderOrEmpty = (render: SsrRender, path: string): Rendered => {
 	try {
 		return render(path);
 	} catch (e) {
-		console.error(`Rendering ${path} failed: ${e instanceof Error ? e.stack : e}`);
-		return { html: '', head: { title: 'www.nav.no' } };
+		console.error(`Rendering ${path} failed: ${e instanceof Error ? (e.stack ?? e.message) : String(e)}`);
+		return { html: '', head: { title: 'www.nav.no' }, status: 200 };
 	}
 };
 
@@ -173,6 +140,6 @@ export const createPageHandler = async (): Promise<Handler<AppEnv>> => {
 		const app = renderOrEmpty(render, path);
 		const decorator = await decorate(path, locale);
 
-		return c.html(pageDocument(locale, app, assets, decorator));
+		return c.html(pageDocument(locale, app, assets, decorator), app.status);
 	};
 };

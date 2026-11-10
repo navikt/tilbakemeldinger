@@ -36,10 +36,10 @@ async function config() {
 }
 
 export async function getTokenxToken(subject_token: string, audience: string) {
-	const _config = await config();
+	const configuration = await config();
 
 	try {
-		const tokens = await client.genericGrantRequest(_config, 'urn:ietf:params:oauth:grant-type:token-exchange', {
+		const tokens = await client.genericGrantRequest(configuration, 'urn:ietf:params:oauth:grant-type:token-exchange', {
 			subject_token_type: 'urn:ietf:params:oauth:token-type:jwt',
 			audience,
 			subject_token,

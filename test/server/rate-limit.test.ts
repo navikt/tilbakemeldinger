@@ -1,9 +1,10 @@
+// oxlint-disable no-await-in-loop -- the limiters count requests in the order they arrive
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
-import { API, postJson, startServer, type TestServer } from './harness';
+import { API, postJson, startServer, type TestServer } from './server';
 import { expectNoUnexpectedHosts } from './fixtures';
 
-// The test server listens on 127.0.0.1, so it plays the role of the ingress and the
-// sidecar: X-Forwarded-For says who the client is, just like in the cluster.
+// Requests reach the test server from 127.0.0.1 (server.ts), which plays the role of the ingress
+// and the sidecar: X-Forwarded-For says who the client is, just like in the cluster.
 // An empty body fails validation (400), which still counts against the limits.
 
 const post = (server: TestServer, forwardedFor?: string) =>

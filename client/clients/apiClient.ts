@@ -31,7 +31,7 @@ export const fetchEnheter = () => hentJson(`${API_URL}/enheter`);
 
 export const fetchFodselsnr = () => hentJson(`${API_URL}/fodselsnr`);
 
-export const fetchAuthInfo = () => hentJson(`${authUrl}`);
+export const fetchAuthInfo = () => hentJson(authUrl);
 
 export const fetchKontaktInfo = () => hentJson(`${personInfoApiUrl}/kontaktinformasjon`);
 

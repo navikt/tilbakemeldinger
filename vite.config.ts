@@ -5,8 +5,19 @@ import devServer, { defaultOptions } from '@hono/vite-dev-server';
 import { visualizer } from 'rollup-plugin-visualizer';
 import NavBrowserTargets from '@navikt/browserslist-config/vite';
 
-export default defineConfig(({ mode, isSsrBuild }) => {
+// What a build bakes into the app. The workflows write them to .env (their env-file), and build:local sets test values
+const buildEnv = ['ENV', 'VITE_APP_BASEPATH', 'VITE_APP_ORIGIN', 'VITE_TELEMETRY_URL'];
+
+export default defineConfig(({ command, mode, isSsrBuild }) => {
 	process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
+
+	const missing = buildEnv.filter((name) => !process.env[name]);
+	if (command === 'build' && missing.length > 0) {
+		throw new Error(
+			`Missing ${missing.join(', ')}. CI writes them to .env before building. To build locally with test values, run \`pnpm run build:local\``
+		);
+	}
+
 	process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 	process.env.VITE_ENV = process.env.ENV;
 	const basepath = process.env.VITE_APP_BASEPATH;
@@ -31,7 +42,8 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 				// The pages load Vite's client themselves (server/site/page.ts)
 				injectClientScript: false,
 			}),
-			...(process.env.ANALYZE ? [visualizer({ gzipSize: true, open: true, sourcemap: true })] : []),
+			// The client bundle only (analyze-bundle)
+			...(process.env.ANALYZE && !isSsrBuild ? [visualizer({ gzipSize: true, open: true, sourcemap: true })] : []),
 		],
 		build: {
 			sourcemap: true,
@@ -52,8 +64,10 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 		test: {
 			environment: 'node',
 			clearMocks: true,
+			// Many tests hit error paths on purpose, which will log, this shows only logs for tests that fail
+			silent: 'passed-only',
 			setupFiles: ['./test/setup.ts'],
-			// Pinned so a local .env (e.g. ENV=localhost, which enables fetch-mock)
+			// Pinned so a local .env (e.g. ENV=localhost, which points the app at localhost)
 			// can't change behavior or API URLs under test
 			env: {
 				VITE_APP_BASEPATH: '/person/kontakt-oss',
@@ -61,32 +75,11 @@ export default defineConfig(({ mode, isSsrBuild }) => {
 				VITE_ENV: 'dev',
 				VITE_TELEMETRY_URL: 'http://localhost:9001/collect',
 			},
+			// test/server: the server, in process (test/server/server.ts)
+			include: ['{client,shared,server}/**/*.test.{ts,tsx}', 'test/server/**/*.test.ts'],
 			coverage: {
 				include: ['client/**/*.{ts,tsx}', 'shared/**/*.ts', 'server/**/*.ts'],
 			},
-			projects: [
-				{
-					extends: true,
-					test: {
-						name: 'unit',
-						include: ['{client,shared,server}/**/*.test.{ts,tsx}'],
-					},
-				},
-				{
-					extends: true,
-					test: {
-						// Black-box tests against the built server. `pnpm run test:http`
-						// first rebuilds the app with a pinned env (`pretest:http`), so it
-						// must never be part of `pnpm test`: CI deploys run `test` between
-						// the real build and the CDN upload/Docker build. To rerun against
-						// the existing build: `pnpm exec vitest run --project http`
-						name: 'http',
-						include: ['test/http/**/*.test.ts'],
-						hookTimeout: 30_000,
-						testTimeout: 30_000,
-					},
-				},
-			],
 		},
 	};
 });

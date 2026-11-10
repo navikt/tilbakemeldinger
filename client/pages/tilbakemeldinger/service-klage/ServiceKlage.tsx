@@ -56,7 +56,7 @@ const ServiceKlageComponent = () => {
 	const [{ auth, fodselsnr }] = useStore();
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
-	const [error, setError] = useState<ErrorResponse>();
+	const [submitError, setSubmitError] = useState<ErrorResponse>();
 	const [loginClosed, setLoginClosed] = useState(false);
 	const [isClient, setIsClient] = useState(false);
 
@@ -67,7 +67,7 @@ const ServiceKlageComponent = () => {
 
 	const closeModal = () => setLoginClosed(true);
 
-	const send = (values: FieldValues) => {
+	const send = async (values: FieldValues) => {
 		const outboundBase: ServiceKlageBase = {
 			klagetekst: values.klagetekst,
 			oenskerAaKontaktes: values.oenskerAaKontaktes,
@@ -128,25 +128,23 @@ const ServiceKlageComponent = () => {
 		};
 
 		setLoading(true);
-		postServiceKlage(outbound)
-			.then(() => {
-				setSuccess(true);
-				triggerHotjar('serviceklage');
-			})
-			.catch((error: ErrorResponse) => {
-				setError(error);
-				captureException(error, {
-					fingerprint: 'service-klage.post-service-klage',
-					context: {
-						component: 'ServiceKlage',
-						action: 'postServiceKlage',
-						errorCode: error?.errorCode,
-					},
-				});
-			})
-			.then(() => {
-				setLoading(false);
+		try {
+			await postServiceKlage(outbound);
+			setSuccess(true);
+			triggerHotjar('serviceklage');
+		} catch (e) {
+			const error = e as ErrorResponse;
+			setSubmitError(error);
+			captureException(error, {
+				fingerprint: 'service-klage.post-service-klage',
+				context: {
+					component: 'ServiceKlage',
+					action: 'postServiceKlage',
+					errorCode: error?.errorCode,
+				},
 			});
+		}
+		setLoading(false);
 	};
 
 	useEffect(() => {
@@ -245,9 +243,9 @@ const ServiceKlageComponent = () => {
 							{(watch().paaVegneAv !== 'ANNEN_PERSON' || watch().innmelderHarFullmakt !== false) && (
 								<ServiceKlageOnskerAaKontaktes innmelderNavn={innmelderNavn} />
 							)}
-							{error && (
+							{submitError && (
 								<Alert variant={'error'}>
-									<FormattedMessage id={resolveErrorCode(error.errorCode)} />
+									<FormattedMessage id={resolveErrorCode(submitError.errorCode)} />
 								</Alert>
 							)}
 							<Button

@@ -107,7 +107,7 @@ const openPage = (path: string, api: Api) => {
 				status,
 				async (opts) => {
 					if (method === 'POST') {
-						posts.push({ path: String(opts.path), body: JSON.parse(await readBody(opts.body)) });
+						posts.push({ path: opts.path, body: JSON.parse(await readBody(opts.body)) });
 					}
 					served.add(name);
 					return body === undefined ? '' : JSON.stringify(body);

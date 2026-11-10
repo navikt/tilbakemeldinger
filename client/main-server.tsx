@@ -14,5 +14,6 @@ export const render: SsrRender = (path) => {
 	return {
 		html: renderToString(<AppRoot url={path} />),
 		head: page ? pageHead(page, locale) : notFoundHead(locale),
+		status: page ? 200 : 404,
 	};
 };

@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
-import { BASE, startServer, type TestServer } from './harness';
+import { BASE, startServer, type TestServer } from './server';
 import { expectNoUnexpectedHosts } from './fixtures';
 
 const EDITORIAL_ORIGIN = 'https://www.nav.test/tilbakemeldinger';

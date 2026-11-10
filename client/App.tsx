@@ -27,56 +27,30 @@ export const App = ({ url }: Props) => {
 			return;
 		}
 
-		fetchAuthInfo()
-			.then((authInfo: AuthInfo) => {
-				dispatch({ type: 'SETT_AUTH_RESULT', payload: authInfo });
-				if (!authInfo.authenticated) {
-					return;
-				}
+		const report = (fingerprint: string, action: string) => (error: HTTPError) => {
+			console.error(error);
+			captureException(error, { fingerprint, context: { source: 'App', action } });
+		};
 
+		const loadUser = async () => {
+			const authInfo: AuthInfo = await fetchAuthInfo();
+			dispatch({ type: 'SETT_AUTH_RESULT', payload: authInfo });
+			if (!authInfo.authenticated) {
+				return;
+			}
+
+			// One failing doesn't stop the other
+			await Promise.all([
 				fetchFodselsnr()
-					.then((fodselsnr: Fodselsnr) =>
-						dispatch({
-							type: 'SETT_FODSELSNR',
-							payload: fodselsnr,
-						})
-					)
-					.catch((error: HTTPError) => {
-						console.error(error);
-						captureException(error, {
-							fingerprint: 'app.fetch-fodselsnr',
-							context: {
-								source: 'App',
-								action: 'fetchFodselsnr',
-							},
-						});
-					});
-
+					.then((fodselsnr: Fodselsnr) => dispatch({ type: 'SETT_FODSELSNR', payload: fodselsnr }))
+					.catch(report('app.fetch-fodselsnr', 'fetchFodselsnr')),
 				fetchKontaktInfo()
-					.then((kontaktInfo: KontaktInfo) =>
-						dispatch({
-							type: 'SETT_KONTAKT_INFO_RESULT',
-							payload: kontaktInfo,
-						})
-					)
-					.catch((error: HTTPError) => {
-						console.error(error);
-						captureException(error, {
-							fingerprint: 'app.fetch-kontakt-info',
-							context: {
-								source: 'App',
-								action: 'fetchKontaktInfo',
-							},
-						});
-					});
-			})
-			.catch((error: HTTPError) => {
-				console.error(error);
-				captureException(error, {
-					fingerprint: 'app.fetch-auth-info',
-					context: { source: 'App', action: 'fetchAuthInfo' },
-				});
-			});
+					.then((kontaktInfo: KontaktInfo) => dispatch({ type: 'SETT_KONTAKT_INFO_RESULT', payload: kontaktInfo }))
+					.catch(report('app.fetch-kontakt-info', 'fetchKontaktInfo')),
+			]);
+		};
+
+		loadUser().catch(report('app.fetch-auth-info', 'fetchAuthInfo'));
 	}, [auth.authenticated, dispatch]);
 
 	return (

@@ -33,11 +33,13 @@ const Combobox = (props: Props) => {
 					setInputItems(data.filter((item) => item.label.toLowerCase().includes(inputValue.toLowerCase())));
 				} else {
 					setInputItems(data);
-					onChange && onChange(undefined);
+					onChange?.(undefined);
 				}
 			},
 			onSelectedItemChange: (value) => {
-				value.selectedItem && onChange(value.selectedItem);
+				if (value.selectedItem) {
+					onChange(value.selectedItem);
+				}
 			},
 			stateReducer: (state, actionAndChanges) => {
 				const { type, changes } = actionAndChanges;

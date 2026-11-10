@@ -27,12 +27,44 @@ pnpm install
 Start applikasjonen lokalt:
 
 ```
-pnpm run dev
+pnpm dev
 ```
 
-## Formatering og git blame
+`pnpm dev` bruker mocks i stedet for tjenestene appen snakker med på NAIS (`server/dev/mocks.ts`). For å prøve skjemaene som innlogget, sett `"authenticated"` til `true` i `server/dev/data/authInfo.json`.
 
-Prosjektet bruker **oxfmt** for formatering, konfigurert i `oxfmt.config.ts`.
+## Test og bygg
+
+Kjør testene (client, shared og serveren i prosess):
+
+```
+pnpm test
+```
+
+Bygg lokalt med testverdier for miljøvariablene:
+
+```
+pnpm run build:local
+```
+
+## Lint og formatering
+
+Prosjektet bruker **oxfmt** for formatering (`oxfmt.config.ts`) og **oxlint** for lint (`oxlint.config.ts`).
+
+Sjekk formatering, lint og typer (kjøres også i CI):
+
+```
+pnpm run lint
+```
+
+Formater koden:
+
+```
+pnpm run format
+```
+
+Git-hooks er satt opp med **lefthook** (`lefthook.yml`) og installeres av `pnpm install`. Før hver commit fikses filene som er staget med oxlint og oxfmt, og typene sjekkes. Før hver push kjøres testene.
+
+## Git blame
 
 Kodebasen ble reformatert i én egen commit. For at `git blame` skal hoppe over denne
 commiten og vise den opprinnelige forfatteren, kjør følgende én gang per klone:

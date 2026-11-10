@@ -5,6 +5,9 @@ import { withQuery } from 'ufo';
 
 const { loginUrl } = Environment();
 
+// For the <br> tags in the translation
+const lineBreaks = { br: () => <br /> };
+
 type Props = {
 	open: boolean;
 	closeFunc: () => void;
@@ -27,7 +30,7 @@ const LoginModal = ({ open, closeFunc }: Props) => {
 		>
 			<Modal.Body>
 				<BodyLong>
-					<FormattedMessage id="tilbakemeldinger.serviceklage.login.beskrivelse" values={{ br: () => <br /> }} />
+					<FormattedMessage id="tilbakemeldinger.serviceklage.login.beskrivelse" values={lineBreaks} />
 				</BodyLong>
 			</Modal.Body>
 			<Modal.Footer>

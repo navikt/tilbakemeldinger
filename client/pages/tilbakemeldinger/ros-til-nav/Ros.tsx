@@ -39,10 +39,10 @@ const Ros = () => {
 
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
-	const [error, setError] = useState<ErrorResponse>();
+	const [submitError, setSubmitError] = useState<ErrorResponse>();
 	const { formatMessage } = useIntl();
 
-	const send = (values: FieldValues) => {
+	const send = async (values: FieldValues) => {
 		const { melding, hvemRoses, navKontor } = values;
 
 		const outbound = {
@@ -54,25 +54,23 @@ const Ros = () => {
 		} as RosTilNav;
 
 		setLoading(true);
-		postRosTilNav(outbound)
-			.then(() => {
-				setSuccess(true);
-				triggerHotjar('rosnav');
-			})
-			.catch((error: ErrorResponse) => {
-				setError(error);
-				captureException(error, {
-					fingerprint: 'ros.post-ros-til-nav',
-					context: {
-						component: 'Ros',
-						action: 'postRosTilNav',
-						errorCode: error?.errorCode,
-					},
-				});
-			})
-			.then(() => {
-				setLoading(false);
+		try {
+			await postRosTilNav(outbound);
+			setSuccess(true);
+			triggerHotjar('rosnav');
+		} catch (e) {
+			const error = e as ErrorResponse;
+			setSubmitError(error);
+			captureException(error, {
+				fingerprint: 'ros.post-ros-til-nav',
+				context: {
+					component: 'Ros',
+					action: 'postRosTilNav',
+					errorCode: error?.errorCode,
+				},
 			});
+		}
+		setLoading(false);
 	};
 
 	return (
@@ -172,9 +170,9 @@ const Ros = () => {
 							/>
 						</div>
 
-						{error && (
+						{submitError && (
 							<Alert variant={'error'}>
-								<FormattedMessage id={resolveErrorCode(error.errorCode)} />
+								<FormattedMessage id={resolveErrorCode(submitError.errorCode)} />
 							</Alert>
 						)}
 						<Button

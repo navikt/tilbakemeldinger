@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
-import { API, postJson, startServer, type TestServer } from './harness';
+import { API, postJson, startServer, type TestServer } from './server';
 import { expectNoUnexpectedHosts, FEIL_OG_MANGLER, ROS, SERVICEKLAGE } from './fixtures';
 
 const UPSTREAM = 'tilbakemeldingsmottak-api.test';
@@ -8,9 +8,8 @@ const types = ['serviceklage', 'feil-og-mangler', 'ros'];
 const reasons = ['validation', 'rate_limit', 'auth', 'upstream', 'internal', 'unknown'];
 
 // Every series at 0, keyed "<type> <result> <reason>"
-const zero = Object.fromEntries(
-	types.flatMap((type) => [[`${type} success none`, 0], ...reasons.map((reason) => [`${type} failure ${reason}`, 0])])
-);
+const outcomes = ['success none', ...reasons.map((reason) => `failure ${reason}`)];
+const zero = Object.fromEntries(types.flatMap((type) => outcomes.map((outcome) => [`${type} ${outcome}`, 0])));
 
 describe('submission metrics', () => {
 	let server: TestServer;

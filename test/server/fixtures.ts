@@ -1,5 +1,5 @@
 import { expect } from 'vitest';
-import type { TestServer } from './harness';
+import type { TestServer } from './server';
 
 // Schema-valid bodies, with padding and an unknown key to show that the raw
 // body (not the zod-parsed one) is what gets forwarded upstream

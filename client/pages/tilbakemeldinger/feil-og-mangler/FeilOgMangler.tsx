@@ -36,10 +36,10 @@ const FOM = () => {
 
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
-	const [error, setError] = useState<ErrorResponse>();
+	const [submitError, setSubmitError] = useState<ErrorResponse>();
 	const { formatMessage } = useIntl();
 
-	const send = (values: FieldValues) => {
+	const send = async (values: FieldValues) => {
 		const { onskerKontakt, feiltype, melding, epost } = values;
 
 		const outbound = {
@@ -52,25 +52,23 @@ const FOM = () => {
 		};
 
 		setLoading(true);
-		postFeilOgMangler(outbound)
-			.then(() => {
-				setSuccess(true);
-				triggerHotjar('feilogmangler');
-			})
-			.catch((error: ErrorResponse) => {
-				setError(error);
-				captureException(error, {
-					fingerprint: 'feil-og-mangler.post-feil-og-mangler',
-					context: {
-						component: 'FeilOgMangler',
-						action: 'postFeilOgMangler',
-						errorCode: error?.errorCode,
-					},
-				});
-			})
-			.then(() => {
-				setLoading(false);
+		try {
+			await postFeilOgMangler(outbound);
+			setSuccess(true);
+			triggerHotjar('feilogmangler');
+		} catch (e) {
+			const error = e as ErrorResponse;
+			setSubmitError(error);
+			captureException(error, {
+				fingerprint: 'feil-og-mangler.post-feil-og-mangler',
+				context: {
+					component: 'FeilOgMangler',
+					action: 'postFeilOgMangler',
+					errorCode: error?.errorCode,
+				},
 			});
+		}
+		setLoading(false);
 	};
 
 	return (
@@ -152,9 +150,9 @@ const FOM = () => {
 
 							<FeilgOgManglerOnskerAaKontaktes />
 
-							{error && (
+							{submitError && (
 								<Alert variant={'error'}>
-									<FormattedMessage id={resolveErrorCode(error.errorCode)} />
+									<FormattedMessage id={resolveErrorCode(submitError.errorCode)} />
 								</Alert>
 							)}
 							<Button

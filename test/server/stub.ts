@@ -1,10 +1,7 @@
-import http from 'node:http';
-import type { AddressInfo } from 'node:net';
-
 /*
  * Stand-in for every service outside the app (decorator, nav.no, Azure AD,
- * TokenX, norg2, tilbakemeldingsmottak-api). The server's outbound fetches are
- * rerouted here by preload.ts, with the original host in the Host header.
+ * TokenX, norg2, tilbakemeldingsmottak-api). It replaces the global fetch that
+ * the server, and the libraries it uses, call (see server.ts).
  */
 
 export type StubRequest = {
@@ -12,10 +9,11 @@ export type StubRequest = {
 	method: string;
 	path: string;
 	query: URLSearchParams;
-	headers: http.IncomingHttpHeaders;
+	headers: Record<string, string>;
 	body: string;
 };
 
+// 'destroy' fails the request the way a broken connection does
 export type StubReply = { status?: number; headers?: Record<string, string>; body?: unknown } | 'destroy';
 
 export type StubRoute = {
@@ -26,13 +24,12 @@ export type StubRoute = {
 };
 
 export type Stub = {
-	origin: string;
+	fetch: typeof fetch;
 	requests: StubRequest[];
 	unexpected: StubRequest[];
 	// Routes added later take precedence over the defaults
 	route: (route: StubRoute) => void;
 	find: (host: string, path?: string | RegExp) => StubRequest[];
-	close: () => Promise<void>;
 };
 
 export const DECORATOR_MARKERS = {
@@ -41,8 +38,6 @@ export const DECORATOR_MARKERS = {
 	footer: '<div data-stub="decorator-footer"></div>',
 	scripts: '<script src="https://stub.test/decorator.js" data-stub="decorator-scripts"></script>',
 };
-
-export const NOT_FOUND_HTML = '<html><body><h1 data-stub="nav-404">Fant ikke siden</h1></body></html>';
 
 export const CSP_DIRECTIVES = { 'script-src': ['https://stub.test'] };
 
@@ -62,11 +57,6 @@ const defaultRoutes: StubRoute[] = [
 	{ host: 'www.nav.no', path: '/dekoratoren/api/csp', reply: () => json(CSP_DIRECTIVES) },
 	{ host: 'www.nav.no', path: '/dekoratoren/api/version', reply: () => json({ latestVersion: '1' }) },
 	{ host: 'www.nav.no', path: '/dekoratoren/ssr', reply: () => json({ ...DECORATOR_MARKERS, versionId: '1' }) },
-	{
-		host: 'www.nav.no',
-		path: '/404',
-		reply: () => ({ status: 404, headers: { 'content-type': 'text/html' }, body: NOT_FOUND_HTML }),
-	},
 	{
 		host: 'login.microsoftonline.com',
 		path: /\/oauth2\/v2\.0\/token$/,
@@ -88,70 +78,60 @@ const defaultRoutes: StubRoute[] = [
 	{ host: 'tilbakemeldingsmottak-api.test', path: /^\/rest\//, method: 'POST', reply: () => json({}) },
 ];
 
-const matches = (route: StubRoute, req: StubRequest) =>
-	route.host === req.host &&
-	(!route.method || route.method === req.method) &&
-	(typeof route.path === 'string' ? route.path === req.path : route.path.test(req.path));
+const pathMatches = (pattern: string | RegExp, path: string) =>
+	typeof pattern === 'string' ? pattern === path : pattern.test(path);
 
-export const startStub = async (extraRoutes: StubRoute[] = []): Promise<Stub> => {
+const toBody = (body: unknown): string | null => {
+	if (typeof body === 'string') {
+		return body;
+	}
+	if (body === undefined) {
+		return null;
+	}
+	return JSON.stringify(body);
+};
+
+const matches = (route: StubRoute, req: StubRequest) =>
+	route.host === req.host && (!route.method || route.method === req.method) && pathMatches(route.path, req.path);
+
+export const createStub = (extraRoutes: StubRoute[] = []): Stub => {
 	const routes = [...extraRoutes, ...defaultRoutes];
 	const requests: StubRequest[] = [];
 	const unexpected: StubRequest[] = [];
 
-	const server = http.createServer(async (incoming, res) => {
-		const chunks: Buffer[] = [];
-		for await (const chunk of incoming) {
-			chunks.push(chunk as Buffer);
-		}
-
-		const url = new URL(incoming.url ?? '/', 'http://stub');
+	const stubFetch = async (input: string | URL | Request, init?: RequestInit) => {
+		const request = new Request(input, init);
+		const url = new URL(request.url);
 		const req: StubRequest = {
-			host: incoming.headers.host ?? '',
-			method: incoming.method ?? 'GET',
+			host: url.host,
+			method: request.method,
 			path: url.pathname,
 			query: url.searchParams,
-			headers: incoming.headers,
-			body: Buffer.concat(chunks).toString('utf-8'),
+			headers: Object.fromEntries(request.headers),
+			body: await request.text(),
 		};
 		requests.push(req);
 
 		const route = routes.find((r) => matches(r, req));
 		if (!route) {
 			unexpected.push(req);
-			res.writeHead(502, { 'content-type': 'text/plain' }).end(`No stub for ${req.method} ${req.host}${req.path}`);
-			return;
+			return new Response(`No stub for ${req.method} ${req.host}${req.path}`, { status: 502 });
 		}
 
 		const reply = route.reply(req);
 		if (reply === 'destroy') {
-			res.socket?.destroy();
-			return;
+			throw new TypeError('fetch failed');
 		}
 
 		const { status = 200, headers = {}, body } = reply;
-		res
-			.writeHead(status, headers)
-			.end(typeof body === 'string' ? body : body === undefined ? '' : JSON.stringify(body));
-	});
-	server.keepAliveTimeout = 60_000;
-
-	await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
-	const { port } = server.address() as AddressInfo;
+		return new Response(toBody(body), { status, headers });
+	};
 
 	return {
-		origin: `http://127.0.0.1:${port}`,
+		fetch: stubFetch,
 		requests,
 		unexpected,
 		route: (route) => routes.unshift(route),
-		find: (host, path) =>
-			requests.filter(
-				(r) =>
-					r.host === host && (path === undefined || (typeof path === 'string' ? r.path === path : path.test(r.path)))
-			),
-		close: () =>
-			new Promise<void>((resolve) => {
-				server.closeAllConnections();
-				server.close(() => resolve());
-			}),
+		find: (host, path) => requests.filter((r) => r.host === host && (path === undefined || pathMatches(path, r.path))),
 	};
 };

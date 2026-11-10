@@ -38,7 +38,7 @@ const nn: ITranslation = {
 	'tilbakemeldinger.serviceklage.login.knapp': 'Logg inn',
 	'tilbakemeldinger.serviceklage.login.knapp.fortsettuten': 'Fortsett utan å logge inn',
 	'tilbakemeldinger.serviceklage.form.veileder':
-		'Her kan du klage på servicen du har fått. Du vil få svar innan 3 veker. ' + 'Alle felt må fyllast ut.',
+		'Her kan du klage på servicen du har fått. Du vil få svar innan 3 veker. Alle felt må fyllast ut.',
 	'tilbakemeldinger.serviceklage.sidetittel': 'Klage på service',
 	'tilbakemeldinger.serviceklage.form.overskrift': 'Send inn klage på service',
 	'tilbakemeldinger.serviceklage.form.onskersvar': 'Ønsker du eit svar fra oss på serviceklagen?',

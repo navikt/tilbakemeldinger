@@ -17,7 +17,7 @@ const schemas = new Map<string, ZodType>([
 ]);
 
 // Checks the body against the schema for :path. A body that isn't valid JSON is a 400 from
-// Hono, which gets the 404 page (see errorHandlers); any other content type is validated as {}.
+// Hono (see app.ts); any other content type is validated as {}.
 // The raw body is passed on, not the parsed one, so what's forwarded is what the client sent.
 const validateFeedback = validator('json', (value: unknown, c) => {
 	const schema = schemas.get(c.req.param('path') ?? '');
@@ -78,7 +78,7 @@ export const postToMottakUpstreamHandler = factory.createHandlers(validateFeedba
 		const responseData = await response.json();
 		return c.json(responseData, { status: response.status as ContentfulStatusCode });
 	} catch (error) {
-		console.error(`Feil i postToTilbakemeldingsmottakHandler: ${error}`);
+		console.error(`Feil i postToTilbakemeldingsmottakHandler: ${String(error)}`);
 		setFailureReason(c, 'internal');
 		return c.text('Internal server error', { status: 500 });
 	}
