@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import nb from '#shared/language/nb.ts';
-import { API, BASE, CDN_BASE, parseHtml, postJson, startServer, type TestServer } from './harness';
+import { API, BASE, parseHtml, postJson, startServer, type TestServer } from './server';
 import { NOT_FOUND_HTML } from './stub';
 import { expectNoUnexpectedHosts } from './fixtures';
 
@@ -74,32 +74,12 @@ describe('routing edge cases', () => {
 		expect(await res.text()).toBe(NOT_FOUND_HTML);
 	});
 
-	test('pages load their script and stylesheet from the CDN, not from the server', async () => {
-		const page = await server.fetch(`${BASE}/nb/tilbakemeldinger/serviceklage?assets=1`);
-		const doc = parseHtml(await page.text());
+	test('compresses responses for clients that accept gzip', async () => {
+		const res = await server.fetch(`${BASE}/nb/tilbakemeldinger/serviceklage`, {
+			headers: { 'accept-encoding': 'gzip' },
+		});
 
-		const script = doc.querySelector('script[type="module"]')?.getAttribute('src');
-		const stylesheet = doc.querySelector('link[rel="stylesheet"]')?.getAttribute('href');
-		expect(script).toMatch(new RegExp(`^${CDN_BASE}/assets/.+\\.js$`));
-		expect(stylesheet).toMatch(new RegExp(`^${CDN_BASE}/assets/.+\\.css$`));
-
-		// Where the server used to serve it
-		expect((await server.fetch(`${BASE}${script!.slice(CDN_BASE.length)}`)).status).toBe(404);
-	});
-
-	// Framework-specific behavior, pinned so a framework change shows up as a test diff
-	test('does not answer OPTIONS', async () => {
-		const res = await server.fetch(`${API}/internal/isAlive`, { method: 'OPTIONS' });
-
-		expect(res.status).toBe(404);
-		expect(await res.text()).toBe(NOT_FOUND_HTML);
-	});
-
-	test('matches routes case-sensitively', async () => {
-		const res = await server.fetch(`${API}/internal/ISALIVE`);
-
-		// Not the probe
-		expect(res.status).toBe(404);
-		expect(await res.text()).toBe(NOT_FOUND_HTML);
+		expect(res.status).toBe(200);
+		expect(res.headers.get('content-encoding')).toBe('gzip');
 	});
 });

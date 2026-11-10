@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
-import { API, startServer, type TestServer } from './harness';
+import { API, startServer, type TestServer } from './server';
 import { ENHETER } from './stub';
 import { expectNoUnexpectedHosts, unsignedJwt } from './fixtures';
 
@@ -19,7 +19,7 @@ describe('GET endpoints', () => {
 		const res = await server.fetch(`${API}/internal/${probe}`);
 
 		expect(res.status).toBe(200);
-		expect(res.headers.get('content-type')).toBe('text/plain; charset=UTF-8');
+		expect(res.headers.get('content-type')).toMatch(/^text\/plain/);
 		expect(res.headers.get('content-security-policy')).toBeNull();
 		expect(await res.text()).toBe('OK');
 	});

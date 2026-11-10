@@ -1,6 +1,6 @@
 # Tilbakemeldinger
 
-![Deploy to prod](https://github.com/navikt/tilbakemeldinger/workflows/Deploy%20to%20prod/badge.svg) | ![Deploy to dev](https://github.com/navikt/tilbakemeldinger/workflows/Deploy%20to%20dev/badge.svg)
+[![Deploy til prod](https://github.com/navikt/tilbakemeldinger/actions/workflows/deploy.prod.yml/badge.svg)](https://github.com/navikt/tilbakemeldinger/actions/workflows/deploy.prod.yml) [![Deploy til dev](https://github.com/navikt/tilbakemeldinger/actions/workflows/deploy.dev.yml/badge.svg)](https://github.com/navikt/tilbakemeldinger/actions/workflows/deploy.dev.yml) [![Oppdater base image](https://github.com/navikt/tilbakemeldinger/actions/workflows/base-image-refresh.yml/badge.svg)](https://github.com/navikt/tilbakemeldinger/actions/workflows/base-image-refresh.yml)
 
 Frackend for innsending av tilbakemeldinger til NAV: Klage, ros og tekniske feil og mangler.
 
@@ -10,29 +10,33 @@ Applikasjonen er en full-stack Node.js-løsning med server-side rendering (SSR) 
 
 ### Teknisk stack
 
-- **Frontend**: React
-- **Backend**: Hono (Node.js)
+- **Frontend**: React 19
+- **Backend**: Hono på Node 26. Node kjører TypeScript-filene direkte (type stripping), uten eget byggesteg
 - **Språk**: TypeScript
 - **Byggverktøy**: Vite
 
 ### Struktur
 
 - `client/` - Frontend-kode (React-komponenter, utilities, entry points)
-- `server/` - Backend-kode (Hono-server, API-ruter, SSR-logikk). Node kjører TypeScript-filene direkte (type stripping), uten eget byggesteg. Serveren skriver hele HTML-dokumentet (`server/site/page.ts`): appen rendret på serveren, dekoratøren, og script og stiler fra Vite-manifestet.
+- `server/` - Backend-kode (Hono-server, API-ruter, SSR). Serveren skriver hele HTML-dokumentet (`server/site/page.ts`): appen rendret på serveren, dekoratøren, og script og stiler fra Vite-manifestet. På NAIS lastes script og stiler fra CDN-et (`CDN_BASE`). Med `pnpm dev` serverer Vite dem.
+- `server/dev/` - Mocks for `pnpm dev` (`server/dev/mocks.ts`): dekoratørens innloggingsstatus, kontaktinformasjon, fødselsnummer, norg2 og tilbakemeldingsmottak-api
 - `shared/` - Delt kode mellom frontend og backend (lokalisering, skjemaer, typer)
+- `test/` - Testoppsett, og testene av serveren i prosess (`test/server`). `pnpm test` kjører testene i `client/`, `shared/`, `server/` og `test/server/`
 - `dist/` - Bygget klient (`dist/client`) og SSR-bundle (`dist/ssr`)
 
 ### Endepunkter
 
 #### API-endepunkter
 
-Disse endepunktene fungerer som proxy mellom frontend-klienten og [tilbakemeldingsmottak-api](https://github.com/navikt/tilbakemeldingsmottak-api).
+Under `/person/kontakt-oss/tilbakemeldinger/api`. `/mottak/*` validerer innsendingen og videresender den til [tilbakemeldingsmottak-api](https://github.com/navikt/tilbakemeldingsmottak-api).
 
-| Endepunkt               | Metode | Beskrivelse                                                                                                                          |
-| ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| /mottak/serviceklage    | POST   | Mottar object fra klienten. Videresender til tilbakemeldingmsottak-api. [Typedefinisjon](shared/types/ServiceKlage.ts) for payload.  |
-| /mottak/feil-og-mangler | POST   | Mottar object fra klienten. Videresender til tilbakemeldingmsottak-api. [Typedefinisjon](shared/types/FeilOgMangler.ts) for payload. |
-| /mottak/ros-til-nav     | POST   | Mottar object fra klienten. Videresender til tilbakemeldingmsottak-api [Typedefinisjon](shared/types/RosTilNav.ts) for payload.      |
+| Endepunkt               | Metode | Beskrivelse                                                                   |
+| ----------------------- | ------ | ----------------------------------------------------------------------------- |
+| /mottak/serviceklage    | POST   | Serviceklage. [Typedefinisjon](shared/types/ServiceKlage.ts) for payload.     |
+| /mottak/feil-og-mangler | POST   | Feil og mangler. [Typedefinisjon](shared/types/FeilOgMangler.ts) for payload. |
+| /mottak/ros             | POST   | Ros til Nav. [Typedefinisjon](shared/types/RosTilNav.ts) for payload.         |
+| /fodselsnr              | GET    | Fødselsnummeret fra brukerens token                                           |
+| /enheter                | GET    | Aktive Nav-enheter fra norg2, til nedtrekkslisten                             |
 
 ### Side-endepunkter
 

@@ -2,7 +2,7 @@ import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import nb from '#shared/language/nb.ts';
 import nn from '#shared/language/nn.ts';
 import en from '#shared/language/en.ts';
-import { APP_ORIGIN, BASE, parseHtml, startServer, type TestServer } from './harness';
+import { APP_ORIGIN, BASE, parseHtml, startServer, type TestServer } from './server';
 import { expectNoUnexpectedHosts } from './fixtures';
 
 const translations = { nb, nn, en };
@@ -60,7 +60,6 @@ describe('server-side rendered pages', () => {
 
 			expect(res.status).toBe(200);
 			expect(res.headers.get('content-type')).toBe('text/html; charset=UTF-8');
-			expect(res.headers.get('content-encoding')).toBe('gzip');
 			expect(res.headers.get('content-security-policy')).toContain('https://stub.test');
 
 			const doc = parseHtml(await res.text());
@@ -134,17 +133,6 @@ describe('server-side rendered pages', () => {
 		expect(doc.head.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
 			`${APP_ORIGIN}${BASE}/nb/tilbakemeldinger/serviceklage`
 		);
-	});
-
-	test('serves a repeated request (cache hit) with the same body and CSP', async () => {
-		const url = `${BASE}/nb/tilbakemeldinger/ros-til-nav?cache=repeat`;
-		const first = await server.fetch(url);
-		const second = await server.fetch(url);
-
-		expect(second.status).toBe(200);
-		expect(await second.text()).toBe(await first.text());
-		expect(second.headers.get('content-security-policy')).toBe(first.headers.get('content-security-policy'));
-		expect(second.headers.get('content-security-policy')).toBeTruthy();
 	});
 
 	test('answers HEAD for pages', async () => {

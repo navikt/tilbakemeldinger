@@ -5,7 +5,7 @@ import devServer, { defaultOptions } from '@hono/vite-dev-server';
 import { visualizer } from 'rollup-plugin-visualizer';
 import NavBrowserTargets from '@navikt/browserslist-config/vite';
 
-// What a build bakes into the app. The workflows write them to .env (their env-file), and pretest:http sets test values
+// What a build bakes into the app. The workflows write them to .env (their env-file), and build:local sets test values
 const buildEnv = ['ENV', 'VITE_APP_BASEPATH', 'VITE_APP_ORIGIN', 'VITE_TELEMETRY_URL'];
 
 export default defineConfig(({ command, mode, isSsrBuild }) => {
@@ -14,7 +14,7 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 	const missing = buildEnv.filter((name) => !process.env[name]);
 	if (command === 'build' && missing.length > 0) {
 		throw new Error(
-			`Missing ${missing.join(', ')}. CI writes them to .env before building. To build locally with test values, run \`pnpm run pretest:http\``
+			`Missing ${missing.join(', ')}. CI writes them to .env before building. To build locally with test values, run \`pnpm run build:local\``
 		);
 	}
 
@@ -42,7 +42,8 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 				// The pages load Vite's client themselves (server/site/page.ts)
 				injectClientScript: false,
 			}),
-			...(process.env.ANALYZE ? [visualizer({ gzipSize: true, open: true, sourcemap: true })] : []),
+			// The client bundle only (analyze-bundle)
+			...(process.env.ANALYZE && !isSsrBuild ? [visualizer({ gzipSize: true, open: true, sourcemap: true })] : []),
 		],
 		build: {
 			sourcemap: true,
@@ -72,32 +73,11 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 				VITE_ENV: 'dev',
 				VITE_TELEMETRY_URL: 'http://localhost:9001/collect',
 			},
+			// test/server: the server, in process (test/server/server.ts)
+			include: ['{client,shared,server}/**/*.test.{ts,tsx}', 'test/server/**/*.test.ts'],
 			coverage: {
 				include: ['client/**/*.{ts,tsx}', 'shared/**/*.ts', 'server/**/*.ts'],
 			},
-			projects: [
-				{
-					extends: true,
-					test: {
-						name: 'unit',
-						include: ['{client,shared,server}/**/*.test.{ts,tsx}'],
-					},
-				},
-				{
-					extends: true,
-					test: {
-						// Black-box tests against the built server. `pnpm run test:http`
-						// first rebuilds the app with a pinned env (`pretest:http`), so it
-						// must never be part of `pnpm test`: CI deploys run `test` between
-						// the real build and the CDN upload/Docker build. To rerun against
-						// the existing build: `pnpm exec vitest run --project http`
-						name: 'http',
-						include: ['test/http/**/*.test.ts'],
-						hookTimeout: 30_000,
-						testTimeout: 30_000,
-					},
-				},
-			],
 		},
 	};
 });

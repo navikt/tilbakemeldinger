@@ -27,7 +27,23 @@ pnpm install
 Start applikasjonen lokalt:
 
 ```
-pnpm run dev
+pnpm dev
+```
+
+`pnpm dev` bruker mocks i stedet for tjenestene appen snakker med på NAIS (`server/dev/mocks.ts`). For å prøve skjemaene som innlogget, sett `"authenticated"` til `true` i `server/dev/data/authInfo.json`.
+
+## Test og bygg
+
+Kjør testene (client, shared og serveren i prosess):
+
+```
+pnpm test
+```
+
+Bygg lokalt med testverdier for miljøvariablene:
+
+```
+pnpm run build:local
 ```
 
 ## Formatering og git blame

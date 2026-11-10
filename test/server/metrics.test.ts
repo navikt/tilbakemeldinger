@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
-import { API, postJson, startServer, type TestServer } from './harness';
+import { API, postJson, startServer, type TestServer } from './server';
 import { expectNoUnexpectedHosts, FEIL_OG_MANGLER, ROS, SERVICEKLAGE } from './fixtures';
 
 const UPSTREAM = 'tilbakemeldingsmottak-api.test';

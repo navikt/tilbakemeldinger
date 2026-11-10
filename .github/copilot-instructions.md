@@ -20,18 +20,18 @@ This is a "frackend" application (frontend + backend) for collecting feedback to
 1. **React Frontend**: User-facing feedback forms
 2. **Hono Backend**:
    - Renders the pages server-side
-   - Exposes three API endpoints (see below)
+   - Exposes the API endpoints below
    - Proxies certain API requests to internal `tilbakemeldingsmottak-api`.
 
 ## API Endpoints
 
-All proxying endpoints are POST methods that receive typed payloads from the client and forward them to the tilbakemeldingsmottak-api.
+The endpoints are under `/person/kontakt-oss/tilbakemeldinger/api` (`server/api/api.ts`). The proxying endpoints are POST methods that validate the payload against its zod schema in `shared/schema/` and forward it to the tilbakemeldingsmottak-api.
 
 | Endpoint                  | Method | Type Definition                 | Purpose                                                                                      |
 | ------------------------- | ------ | ------------------------------- | -------------------------------------------------------------------------------------------- |
 | `/mottak/serviceklage`    | POST   | `shared/types/ServiceKlage.ts`  | Send service complaints object to tilbakemeldingsmottak-api                                  |
 | `/mottak/feil-og-mangler` | POST   | `shared/types/FeilOgMangler.ts` | Send technical issues and bugs to tilbakemeldingsmottak-api                                  |
-| `/mottak/ros-til-nav`     | POST   | `shared/types/RosTilNav.ts`     | Send compliments to NAV to tilbakemeldingsmottak-api                                         |
+| `/mottak/ros`             | POST   | `shared/types/RosTilNav.ts`     | Send compliments to NAV to tilbakemeldingsmottak-api                                         |
 | `/fodselsnr`              | GET    |                                 | Takes the user token, and pulls out the fødselsnummer in order to display frontend in forms  |
 | `/enheter`                | GET    |                                 | Fetches list of Nav-kontore from internal API for populating dropdowns in the frontend forms |
 
@@ -73,6 +73,7 @@ Type definitions are the source of truth for data contracts between frontend, ba
 ### File Structure
 
 - Type definitions: `shared/types/`
+- Validation schemas (zod): `shared/schema/`
 - Shared code should be in `shared/` to be accessible by both frontend and backend
 
 ## Environment-Specific Behavior
@@ -104,7 +105,7 @@ When adding or modifying code:
 ## Deployment
 
 - Automated via GitHub Actions
-- Workflows: "Deploy to dev" and "Deploy to prod"
+- Workflows: "Deploy to dev" (manual) and "Build and deploy to prod and create a new release" (on push to main)
 - The workflows are thin callers of the shared `navikt/navno-ci` reusable workflows (build → deploy → release); build steps and action versions live there, per-environment values (`.env` lines, CDN path, NAIS vars file) live here.
 - Deploys to Nais. See [Nais documentation](https://nais.io/docs/) for details when troubleshooting.
 - See workflows in `.github/workflows/`

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { startServer } from './harness';
+import { startServer } from './server';
 import { expectNoUnexpectedHosts } from './fixtures';
 
 const UPSTREAM_ENV = {
@@ -14,7 +14,9 @@ const UPSTREAM_ENV = {
 
 describe('environment variables', () => {
 	test('a deployed server does not start when one is missing', async () => {
-		await expect(startServer({ env: { API_URL: undefined } })).rejects.toThrow(/exited during startup[\s\S]*API_URL/);
+		await expect(startServer({ env: { API_URL: undefined } })).rejects.toThrow(
+			/Invalid environment variables[\s\S]*API_URL/
+		);
 	});
 
 	// pnpm dev has no upstream variables
