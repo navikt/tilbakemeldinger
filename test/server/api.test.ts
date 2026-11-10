@@ -70,6 +70,6 @@ describe('GET endpoints', () => {
 		const res = await server.fetch(`${API}/fodselsnr`, { headers: { authorization: 'Bearer garbage' } });
 
 		expect(res.status).toBe(500);
-		expect(await res.text()).toBe('');
+		expect(await res.text()).toBe('Internal Server Error');
 	});
 });

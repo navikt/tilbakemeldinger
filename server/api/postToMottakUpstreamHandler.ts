@@ -17,7 +17,7 @@ const schemas = new Map<string, ZodType>([
 ]);
 
 // Checks the body against the schema for :path. A body that isn't valid JSON is a 400 from
-// Hono, which gets the 404 page (see errorHandlers); any other content type is validated as {}.
+// Hono (see app.ts); any other content type is validated as {}.
 // The raw body is passed on, not the parsed one, so what's forwarded is what the client sent.
 const validateFeedback = validator('json', (value: unknown, c) => {
 	const schema = schemas.get(c.req.param('path') ?? '');

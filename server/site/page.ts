@@ -70,13 +70,14 @@ const devRenderer = async (vite: ViteDevServer | undefined): Promise<Renderer> =
 	};
 };
 
-// When rendering fails, the page goes out without the app, and the browser renders it (main-client.tsx)
+// When rendering fails, the page goes out without the app, and the browser renders it (main-client.tsx).
+// The path may well be a page, so it isn't a 404
 const renderOrEmpty = (render: SsrRender, path: string): Rendered => {
 	try {
 		return render(path);
 	} catch (e) {
 		console.error(`Rendering ${path} failed: ${e instanceof Error ? (e.stack ?? e.message) : String(e)}`);
-		return { html: '', head: { title: 'www.nav.no' } };
+		return { html: '', head: { title: 'www.nav.no' }, status: 200 };
 	}
 };
 
@@ -139,6 +140,6 @@ export const createPageHandler = async (): Promise<Handler<AppEnv>> => {
 		const app = renderOrEmpty(render, path);
 		const decorator = await decorate(path, locale);
 
-		return c.html(pageDocument(locale, app, assets, decorator));
+		return c.html(pageDocument(locale, app, assets, decorator), app.status);
 	};
 };

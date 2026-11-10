@@ -116,7 +116,7 @@ describe('server-side rendered pages', () => {
 	test('a made-up page only gets the base breadcrumb', async () => {
 		const res = await server.fetch(`${BASE}/en/tilbakemeldinger/made-up/page`);
 
-		expect(res.status).toBe(200);
+		expect(res.status).toBe(404);
 		expect(decoratorRequests(server).filter((d) => d.language === 'en' && d.breadcrumbs?.length === 1)).toEqual([
 			expect.objectContaining({ breadcrumbs: [{ url: `${BASE}/en`, title: 'Contact us', handleInApp: false }] }),
 		]);

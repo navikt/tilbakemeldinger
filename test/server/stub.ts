@@ -39,8 +39,6 @@ export const DECORATOR_MARKERS = {
 	scripts: '<script src="https://stub.test/decorator.js" data-stub="decorator-scripts"></script>',
 };
 
-export const NOT_FOUND_HTML = '<html><body><h1 data-stub="nav-404">Fant ikke siden</h1></body></html>';
-
 export const CSP_DIRECTIVES = { 'script-src': ['https://stub.test'] };
 
 export const ENHETER = [
@@ -59,11 +57,6 @@ const defaultRoutes: StubRoute[] = [
 	{ host: 'www.nav.no', path: '/dekoratoren/api/csp', reply: () => json(CSP_DIRECTIVES) },
 	{ host: 'www.nav.no', path: '/dekoratoren/api/version', reply: () => json({ latestVersion: '1' }) },
 	{ host: 'www.nav.no', path: '/dekoratoren/ssr', reply: () => json({ ...DECORATOR_MARKERS, versionId: '1' }) },
-	{
-		host: 'www.nav.no',
-		path: '/404',
-		reply: () => ({ status: 404, headers: { 'content-type': 'text/html' }, body: NOT_FOUND_HTML }),
-	},
 	{
 		host: 'login.microsoftonline.com',
 		path: /\/oauth2\/v2\.0\/token$/,

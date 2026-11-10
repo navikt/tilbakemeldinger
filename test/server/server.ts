@@ -51,7 +51,7 @@ export type TestServer = {
 type Options = {
 	// Merged over the defaults; undefined removes a variable
 	env?: Record<string, string | undefined>;
-	// Stub routes that must be in place before startup (CSP, 404 page, TokenX config)
+	// Stub routes that must be in place before startup (CSP, TokenX config)
 	routes?: StubRoute[];
 };
 
