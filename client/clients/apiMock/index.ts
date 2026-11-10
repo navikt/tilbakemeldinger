@@ -13,7 +13,7 @@ const mockFodselsnr = true;
 const mockKontaktInfo = true;
 const mockEnheter = true;
 
-export const setUpMock = async () => {
+export const setUpMock = () => {
 	mockAuthInfo &&
 		fetchMock.get(
 			`${authUrl}`,
