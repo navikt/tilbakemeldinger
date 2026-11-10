@@ -50,7 +50,7 @@ pnpm run build:local
 
 Prosjektet bruker **oxfmt** for formatering (`oxfmt.config.ts`) og **oxlint** for lint (`oxlint.config.ts`).
 
-Sjekk formatering, lint og typer (kjøres også før hver commit):
+Sjekk formatering, lint og typer (kjøres også i CI):
 
 ```
 pnpm run lint
@@ -61,6 +61,8 @@ Formater koden:
 ```
 pnpm run format
 ```
+
+Git-hooks er satt opp med **lefthook** (`lefthook.yml`) og installeres av `pnpm install`. Før hver commit fikses filene som er staget med oxlint og oxfmt, og typene sjekkes. Før hver push kjøres testene.
 
 ## Git blame
 
