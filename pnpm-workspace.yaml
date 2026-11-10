@@ -6,7 +6,7 @@ allowBuilds:
   '@parcel/watcher': true
   esbuild: true
   unrs-resolver: true
-minimumReleaseAge: 5760
+minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - '@navikt/*'
   - '@nais/*'
