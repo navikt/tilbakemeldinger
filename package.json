@@ -24,7 +24,8 @@
 		"dev": "vite",
 		"test": "vitest run",
 		"test:watch": "vitest",
-		"test:coverage": "vitest run --coverage"
+		"test:coverage": "vitest run --coverage",
+		"hooks:fix": "lefthook install --reset-hooks-path"
 	},
 	"dependencies": {
 		"@hono/node-server": "2.1.3",
