@@ -50,7 +50,6 @@ const SelectEnhet = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
 		'TILTAK',
 		'YTA',
 		'OPPFUTLAND',
-		'KONTAKT',
 	];
 
 	useEffect(() => {
@@ -81,6 +80,10 @@ const SelectEnhet = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
 		</div>
 	);
 
+	const ekstraEnheter: Record<string, string> = {
+		'4100': 'Nav kontaktsenter', // "Nav Styringsenhet kontaktsenter" i norg2
+	};
+
 	return (
 		<div className={`${cssPrefix}__navkontor`}>
 			{enheter.status === 'RESULT' ? (
@@ -91,17 +94,12 @@ const SelectEnhet = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
 					onChange={onChange}
 					value={value}
 					data={enheter.data
-						.filter(
-							(e) =>
-								e.enhetNr !== '0000' &&
-								relevanteEnheter.includes(e.type) &&
-								(e.type !== 'KONTAKT' || e.enhetNr === '4100')
-						)
-						.sort((a, b) => (a.navn < b.navn ? -1 : 1))
-						.map((enhet) => ({
-							value: enhet.enhetNr,
-							label: enhet.enhetNr === '4100' ? 'Nav kontaktsenter' : enhet.navn,
-						}))}
+						.filter((e) => (e.enhetNr !== '0000' && relevanteEnheter.includes(e.type)) || ekstraEnheter[e.enhetNr])
+						.map((e) => ({
+							value: e.enhetNr,
+							label: ekstraEnheter[e.enhetNr] ?? e.navn,
+						}))
+						.sort((a, b) => a.label.localeCompare(b.label, 'nb'))}
 				/>
 			) : (
 				<div className={`${cssPrefix}__spinner`}>
