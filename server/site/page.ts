@@ -9,7 +9,7 @@ import { json } from '@itsy/html/util';
 import { fetchDecoratorHtml, type DecoratorElements } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import type { ViteDevServer } from 'vite';
 import { devAssets, entry, manifestAssets, type Manifest } from './assets.ts';
-import { env } from '#server/utils/environment.ts';
+import { env } from '#server/env.ts';
 import { getBreadcrumbsFromPathname } from '#shared/breadcrumbs.ts';
 import type { Locale } from '#shared/locale.ts';
 import { APP_CONFIG_ID, type AppConfig } from '#shared/types/appConfig.ts';

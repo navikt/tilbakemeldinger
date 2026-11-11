@@ -1,7 +1,7 @@
 import * as client from 'openid-client';
 import { logger } from '@navikt/navno-logger';
 import { importJWK } from 'jose';
-import { env } from '#server/utils/environment.ts';
+import { env } from '#server/env.ts';
 
 let _config: client.Configuration | undefined;
 

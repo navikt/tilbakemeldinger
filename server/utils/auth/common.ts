@@ -1,7 +1,7 @@
 import { logger } from '@navikt/navno-logger';
 import { getTokenxToken } from './tokenx.ts';
 import { getAzureadToken } from './azuread.ts';
-import { env } from '#server/utils/environment.ts';
+import { env } from '#server/env.ts';
 
 export const getAuthToken = (authHeader: string | undefined) => authHeader?.split('Bearer ')[1];
 

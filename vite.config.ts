@@ -56,7 +56,7 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 					rolldownOptions: {
 						// The server, and the app's renderer, which server/site/page.ts imports at startup. Their shared
 						// dependencies go in shared chunks, so the server and the renderer use the same copies
-						input: { 'prod-server': 'server/prod-server.ts', 'main-server': 'client/main-server.tsx' },
+						input: { main: 'server/main.ts', 'main-server': 'client/main-server.tsx' },
 						// That import goes through package.json `imports`, to the renderer built next to the server
 						external: [/^#dist\//],
 					},

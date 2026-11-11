@@ -3,7 +3,7 @@ import { joinURL, parseURL, withoutBase, withTrailingSlash } from 'ufo';
 import { localFrontPage } from './localFrontPage.ts';
 import { createPageHandler } from './page.ts';
 import { createCspMiddleware } from '#server/utils/cspMiddleware.ts';
-import { env } from '#server/utils/environment.ts';
+import { env } from '#server/env.ts';
 import { defaultLocale } from '#shared/locale.ts';
 import type { AppEnv } from '#server/types.ts';
 

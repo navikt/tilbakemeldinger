@@ -3,7 +3,7 @@ import './utils/console.ts';
 import { serve } from '@hono/node-server';
 import { logger } from '@navikt/navno-logger';
 import app from './app.ts';
-import { env } from './utils/environment.ts';
+import { env } from './env.ts';
 
 const { APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV } = env;
 

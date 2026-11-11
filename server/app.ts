@@ -5,8 +5,8 @@ import { routePath } from 'hono/route';
 import { logger, traceRoute } from '@navikt/navno-logger';
 import { api } from './api/api.ts';
 import { createSite } from './site/site.ts';
-import { env } from './utils/environment.ts';
-import { metricsHandler } from './utils/metrics.ts';
+import { env } from './env.ts';
+import { metricsHandler } from './metrics.ts';
 import type { AppEnv } from './types.ts';
 
 // strict: false matches routes with/without trailing slash
@@ -43,5 +43,5 @@ app.onError((err, c) => {
 	return c.text('Internal Server Error', 500);
 });
 
-// Served by prod-server.ts in production, and by Vite in dev
+// Served by main.ts in production, and by Vite in dev
 export default app;

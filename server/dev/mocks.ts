@@ -3,7 +3,7 @@ import authInfo from './data/authInfo.json' with { type: 'json' };
 import enheter from './data/enheter.json' with { type: 'json' };
 import fodselsnr from './data/fodselsnr.json' with { type: 'json' };
 import kontaktInfo from './data/kontaktInfo.json' with { type: 'json' };
-import { env } from '#server/utils/environment.ts';
+import { env } from '#server/env.ts';
 import type { AppEnv } from '#server/types.ts';
 
 // Locally (ENV=localhost), stand-ins for what the app talks to on NAIS, at the URLs that .env.development and
