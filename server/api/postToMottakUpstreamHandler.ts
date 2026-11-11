@@ -1,4 +1,5 @@
 import { corgi, isHttpError, isTimeoutError } from '@itsy/corgi';
+import { logger } from '@navikt/navno-logger';
 import { withTimeout } from '@itsy/corgi/timeout';
 import type { Context } from 'hono';
 import { createFactory } from 'hono/factory';
@@ -56,19 +57,20 @@ const handleUpstreamError = (c: Context<AppEnv>, error: unknown) => {
 		const text = stringifyData(data);
 
 		// Logging here because validation is done in both frontend and further up,
-		// so something is actually wrong at this point
-		console.error(`Feil i kall til tilbakemeldingsmottak-api: ${error.status} ${text}`);
+		// so something is actually wrong at this point. Not the body, which can repeat what the user wrote
+		const errorCode = typeof data === 'object' && data !== null && 'errorCode' in data ? data.errorCode : undefined;
+		logger.error('tilbakemeldingsmottak-api answered with an error', { status: error.status, errorCode });
 
 		return typeof data === 'object' && data !== null ? c.json(data, status) : c.text(text, status);
 	}
 
 	if (isTimeoutError(error)) {
 		setFailureReason(c, 'upstream');
-		console.error('tilbakemeldingsmottak-api did not answer within 30 seconds');
+		logger.error('tilbakemeldingsmottak-api did not answer in time', { timeoutSeconds: 30 });
 		return c.text('Gateway timeout', { status: 504 });
 	}
 
-	console.error(`Feil i postToTilbakemeldingsmottakHandler: ${String(error)}`);
+	logger.error('Forwarding to tilbakemeldingsmottak-api failed', error);
 	setFailureReason(c, 'internal');
 	return c.text('Internal server error', { status: 500 });
 };

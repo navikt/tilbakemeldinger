@@ -1,3 +1,4 @@
+import { logger } from '@navikt/navno-logger';
 import { getTokenxToken } from './tokenx.ts';
 import { getAzureadToken } from './azuread.ts';
 import { env } from '#server/utils/environment.ts';
@@ -21,7 +22,7 @@ export const getAccessToken = async ({ authHeader, path }: AccessTokenRequest): 
 		try {
 			return await getTokenxToken(authToken, `${env.ENV}-gcp:teamserviceklage:tilbakemeldingsmottak-api`);
 		} catch {
-			console.log('Failed to fetch tokenx token, fetching Azure AD token as fallback');
+			logger.warn('TokenX token exchange failed, using an Azure AD token instead');
 		}
 	}
 

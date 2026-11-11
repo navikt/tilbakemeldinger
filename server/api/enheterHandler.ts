@@ -1,5 +1,6 @@
 import type { Handler } from 'hono';
 import { corgi } from '@itsy/corgi';
+import { logger } from '@navikt/navno-logger';
 import { swr } from '@itsy/corgi/swr';
 import { withTimeout } from '@itsy/corgi/timeout';
 import { URLs } from '#server/urls.ts';
@@ -24,7 +25,7 @@ const norg2 = corgi.create({
 			accept: async (res) => res.ok && Array.isArray(await res.json()),
 			// A refresh that failed, or that norg2 answered without a list
 			onError: ({ error, response }) =>
-				console.error('Error refreshing enheter from norg2', error ?? `(${String(response?.status)} without a list)`),
+				logger.error('Refreshing enheter from norg2 failed', error ?? { status: response?.status, reason: 'no list' }),
 		}),
 		withTimeout(10_000),
 	],
@@ -36,9 +37,9 @@ export const enheterHandler: Handler = async (c) => {
 		if (Array.isArray(enheter)) {
 			return c.json(enheter.map(transformEnhet));
 		}
-		console.error('Error fetching enheter from norg2 - no list');
+		logger.error('norg2 answered without a list of enheter');
 	} catch (e) {
-		console.error(`Error fetching enheter from norg2 - ${String(e)}`);
+		logger.error('Fetching enheter from norg2 failed', e);
 	}
 
 	return c.text('Lasting av enheter feilet', { status: 500 });

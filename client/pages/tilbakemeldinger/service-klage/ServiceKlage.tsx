@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useStore } from '#client/providers/Provider.tsx';
-import { captureException } from '@nais/apm';
+import { captureException } from '#client/utils/apm.ts';
 import { postServiceKlage } from '#client/clients/apiClient.ts';
 import { errorContext } from '#client/types/errors.ts';
 import { ON_BEHALF_OF, ServiceKlageBase, ServiceKlageFragment } from '#shared/types/ServiceKlage.ts';

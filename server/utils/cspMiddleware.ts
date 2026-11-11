@@ -1,5 +1,6 @@
 import type { MiddlewareHandler } from 'hono';
 import { LRUCache } from 'lru-cache';
+import { logger } from '@navikt/navno-logger';
 import { buildCspHeader, type DecoratorEnvProps } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import { type CSPDirectives, DATA, SELF } from 'csp-header';
 import { env } from './environment.ts';
@@ -36,7 +37,7 @@ const cache = new LRUCache<'csp', string>({
 	// The clock is looked up on each call, so tests can fake it
 	perf: { now: () => performance.now() },
 	fetchMethod: async (_key, current, { options }) => {
-		console.log('Building CSP header');
+		logger.info('Building CSP header');
 		const csp = await buildCspHeader(myDirectives, decoratorEnvProps);
 		if (isFromDecorator(csp)) {
 			return csp;

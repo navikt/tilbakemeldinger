@@ -105,7 +105,6 @@ const en: ITranslation = {
 	'felter.hvemroses.digitaletjenester': 'Navs digital services',
 	'felter.hvemroses.navkontor': 'Nav office',
 	'felter.hvemroses.navkontor.velg': 'Choose Nav unit',
-	'felter.combobox.knapp.beskrivelse': 'Open list',
 	'felter.klagerpa.navkontor.velg': 'Which Nav department does the complaint relate to?',
 	'felter.hvemroses.navkontor.skrivinn': 'Search or select using arrow keys',
 	'felter.navkontor.lastefeil': "We couldn't load the list of Nav offices.",

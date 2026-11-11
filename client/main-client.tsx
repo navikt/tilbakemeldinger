@@ -8,15 +8,11 @@ import './App.scss';
 
 import { StrictMode } from 'react';
 import { createRoot, hydrateRoot, type ErrorInfo } from 'react-dom/client';
-import { captureException, init as apmInit } from '@nais/apm';
+import { captureException, loadApm } from '#client/utils/apm.ts';
 import { AppRoot } from './index';
 
-// Before React renders, so that the errors it reports below reach APM
-apmInit({
-	namespace: 'navno',
-	app: 'tilbakemeldinger',
-	telemetryUrl: import.meta.env.VITE_TELEMETRY_URL,
-});
+// Before React renders, so it loads while the page hydrates. Errors reported before it has loaded wait for it
+loadApm();
 
 // Errors React recovers from (after a hydration mismatch it renders on the client instead), and errors caught by an
 // error boundary. Uncaught errors keep React's default: it reports them as global errors, which APM already picks up

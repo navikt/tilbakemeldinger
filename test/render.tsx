@@ -8,9 +8,6 @@ import { AppRoot } from '#client/index.tsx';
 import Environment from '#client/Environments.ts';
 import nb from '#shared/language/nb.ts';
 
-// Faro patches fetch and ships telemetry; not something the forms depend on
-vi.mock('@nais/apm', () => ({ captureException: vi.fn() }));
-
 // The app's fetch runs on Node's built-in undici; the mock replaces the network under it
 const realDispatcher = getGlobalDispatcher();
 let agent: MockAgent | undefined;

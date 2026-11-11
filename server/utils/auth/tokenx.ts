@@ -1,4 +1,5 @@
 import * as client from 'openid-client';
+import { logger } from '@navikt/navno-logger';
 import { importJWK } from 'jose';
 import { env } from '#server/utils/environment.ts';
 
@@ -47,12 +48,11 @@ export async function getTokenxToken(subject_token: string, audience: string) {
 		return tokens.access_token;
 	} catch (err) {
 		if (err instanceof client.ResponseBodyError) {
-			console.error(
-				`Noe gikk galt med token exchange mot TokenX.
-      Feilmelding fra openid-client: (${err.error}).
-      HTTP Status fra TokenX: (${err.status})
-      Beskrivelse fra TokenX: (${err.error_description})`
-			);
+			logger.error('TokenX token exchange failed', {
+				status: err.status,
+				error: err.error,
+				description: err.error_description,
+			});
 		}
 		throw err;
 	}
