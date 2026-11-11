@@ -43,6 +43,8 @@ describe('forwarding to tilbakemeldingsmottak-api', () => {
 		const upstream = server.stub.find(UPSTREAM, upstreamPath);
 		expect(upstream).toHaveLength(1);
 		expect(upstream[0].headers.authorization).toBe('Bearer azure-token');
+		const tokenRequest = new URLSearchParams(server.stub.find('login.microsoftonline.com', /\/token$/).at(-1)?.body);
+		expect(tokenRequest.get('scope')).toBe('api://dev-gcp.teamserviceklage.tilbakemeldingsmottak-api/.default');
 		expect(upstream[0].headers['content-type']).toBe('application/json');
 		expect(JSON.parse(upstream[0].body)).toEqual(body);
 		expect(res.status).toBe(200);

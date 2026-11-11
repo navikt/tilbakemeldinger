@@ -8,6 +8,7 @@ import { createSite } from './site/site.ts';
 import { env } from './env.ts';
 import { metricsHandler } from './metrics.ts';
 import type { AppEnv } from './types.ts';
+import { BASE_PATH } from '#shared/paths.ts';
 
 // strict: false matches routes with/without trailing slash
 const app = new Hono<AppEnv>({ strict: false });
@@ -29,7 +30,7 @@ app.get('/internal/metrics', metricsHandler);
 
 // Routes match in the order they're added
 // The API is first, since the pages' /tilbakemeldinger/* also matches /tilbakemeldinger/api/*
-const base = app.basePath(env.VITE_APP_BASEPATH);
+const base = app.basePath(BASE_PATH);
 base.route('/tilbakemeldinger/api', api);
 base.route('/', await createSite());
 

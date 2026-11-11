@@ -2,7 +2,16 @@ import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import nb from '#shared/language/nb.ts';
 import nn from '#shared/language/nn.ts';
 import en from '#shared/language/en.ts';
-import { APP_ORIGIN, BASE, parseHtml, startServer, TELEMETRY_URL, type TestServer } from './server';
+import {
+	APP_ORIGIN,
+	AUTH_URL,
+	BASE,
+	LOGIN_URL,
+	parseHtml,
+	startServer,
+	TELEMETRY_URL,
+	type TestServer,
+} from './server';
 import { expectNoUnexpectedHosts } from './fixtures';
 
 const translations = { nb, nn, en };
@@ -105,8 +114,9 @@ describe('server-side rendered pages', () => {
 		const doc = parseHtml(await res.text());
 
 		expect(JSON.parse(doc.querySelector('script#app-config')?.textContent ?? 'null')).toEqual({
-			env: 'dev',
 			origin: APP_ORIGIN,
+			authUrl: AUTH_URL,
+			loginUrl: LOGIN_URL,
 			telemetryUrl: TELEMETRY_URL,
 		});
 	});
@@ -176,8 +186,9 @@ describe('a server started with another origin', () => {
 			`${origin}${BASE}/nb/tilbakemeldinger/serviceklage`
 		);
 		expect(JSON.parse(doc.querySelector('script#app-config')?.textContent ?? 'null')).toEqual({
-			env: 'dev',
 			origin,
+			authUrl: AUTH_URL,
+			loginUrl: LOGIN_URL,
 			telemetryUrl,
 		});
 		await server.stop();

@@ -2,15 +2,10 @@ import Environment from '#client/Environments.ts';
 
 // A function, since the app gets its config before it renders, after this has loaded
 export const urls = () => {
-	const { klageUrl, klageUrlEn, baseUrl: navUrl } = Environment();
+	const { baseUrl: navUrl } = Environment();
 
 	return {
 		tilbakemeldinger: {
-			klagepavedtak: {
-				nb: klageUrl,
-				nn: klageUrl,
-				en: klageUrlEn,
-			},
 			klagerettigheter: {
 				nb: `${navUrl}/klagerettigheter`,
 				en: `${navUrl}/klagerettigheter/en`,

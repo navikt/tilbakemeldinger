@@ -23,7 +23,12 @@ type Rendered = ReturnType<SsrRender>;
 type Renderer = { render: (path: string) => Rendered; assets: FramePart[] };
 
 // What the app is told about where it runs: the renderer gets it here, and the browser gets it in the page
-const appConfig: AppConfig = { env: env.ENV, origin: env.APP_ORIGIN, telemetryUrl: env.TELEMETRY_URL };
+const appConfig: AppConfig = {
+	origin: env.APP_ORIGIN,
+	authUrl: env.AUTH_URL,
+	loginUrl: env.LOGIN_URL,
+	telemetryUrl: env.TELEMETRY_URL,
+};
 
 // In production: the app's renderer, built next to the server (vite.config.ts), and the client build's manifest.
 // A missing one stops the server at startup

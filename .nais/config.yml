@@ -37,14 +37,23 @@ spec:
     # The port above
     - name: APP_PORT
       value: '9001'
-    # The server hands these two to the browser as well, in the page (server/site/page.ts)
+    # The server hands these four to the browser as well, in the page (server/site/page.ts)
     - name: APP_ORIGIN
       value: {{appOrigin}}
+    - name: AUTH_URL
+      value: {{authUrl}}
+    - name: LOGIN_URL
+      value: {{loginUrl}}
     - name: TELEMETRY_URL
       value: {{telemetryUrl}}
-    # Through service discovery, so the same in both clusters
+    # tilbakemeldingsmottak-api: through service discovery, so the same in both clusters, and who its tokens
+    # are for in this cluster
     - name: API_URL
       value: http://tilbakemeldingsmottak-api.teamserviceklage
+    - name: API_TOKENX_AUDIENCE
+      value: {{environment}}-gcp:teamserviceklage:tilbakemeldingsmottak-api
+    - name: API_AZURE_SCOPE
+      value: api://{{environment}}-gcp.teamserviceklage.tilbakemeldingsmottak-api/.default
     - name: NORG2_ORIGIN
       value: https://{{norg2Host}}
     - name: VITE_EDITORIAL_FRONTPAGE_ORIGIN

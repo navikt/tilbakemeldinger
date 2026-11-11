@@ -40,7 +40,7 @@ Kjør testene (client, shared og serveren i prosess):
 pnpm test
 ```
 
-Bygg lokalt med testverdier for miljøvariablene:
+Bygg lokalt med en testverdi for `CDN_BASE`:
 
 ```
 pnpm run build:local

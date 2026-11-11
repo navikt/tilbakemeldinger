@@ -1,6 +1,8 @@
 norg2Host: norg2.dev-fss-pub.nais.io
 environment: dev
 appOrigin: https://www.ansatt.dev.nav.no
+authUrl: https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth
+loginUrl: https://login.ekstern.dev.nav.no/oauth2/login
 telemetryUrl: https://telemetry.ekstern.dev.nav.no/collect
 ingresses:
   - https://www.ansatt.dev.nav.no/person/kontakt-oss/nn/tilbakemeldinger

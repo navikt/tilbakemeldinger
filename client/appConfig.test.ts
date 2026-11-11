@@ -8,7 +8,12 @@ afterEach(() => {
 });
 
 test('reads the config the server wrote into the page', () => {
-	const config = { env: 'prod', origin: 'https://www.nav.no', telemetryUrl: 'https://telemetry.nav.no/collect' };
+	const config = {
+		origin: 'https://www.nav.no',
+		authUrl: 'https://www.nav.no/person/nav-dekoratoren-api/auth',
+		loginUrl: 'https://login.nav.no/oauth2/login',
+		telemetryUrl: 'https://telemetry.nav.no/collect',
+	};
 	const script = document.createElement('script');
 	script.type = 'application/json';
 	script.id = APP_CONFIG_ID;

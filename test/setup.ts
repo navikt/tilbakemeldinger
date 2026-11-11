@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom/vitest';
 import { setConfig } from '#client/appConfig.ts';
-import type { AppConfig } from '#shared/types/appConfig.ts';
 
 // The app is handed its config before it renders (client/main-client.tsx), so the tests that render it hand it
 // one too. The values are pinned in vite.config.ts (test.env)
 setConfig({
-	env: process.env.ENV as AppConfig['env'],
 	origin: process.env.APP_ORIGIN as string,
+	authUrl: process.env.AUTH_URL as string,
+	loginUrl: process.env.LOGIN_URL as string,
 	telemetryUrl: process.env.TELEMETRY_URL,
 });
 

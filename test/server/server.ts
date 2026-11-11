@@ -11,6 +11,8 @@ export const API = `${BASE}/tilbakemeldinger/api`;
 
 // What the server is started with, and so what it tells the app (server/site/page.ts)
 export const APP_ORIGIN = 'http://localhost:9001';
+export const AUTH_URL = 'https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth';
+export const LOGIN_URL = 'https://login.ekstern.dev.nav.no/oauth2/login';
 export const TELEMETRY_URL = 'http://localhost:9001/collect';
 
 const { privateKey } = generateKeyPairSync('rsa', { modulusLength: 2048 });
@@ -23,9 +25,12 @@ const defaultEnv = (): Record<string, string | undefined> => ({
 	NODE_ENV: 'development',
 	APP_PORT: '9001',
 	APP_ORIGIN,
+	AUTH_URL,
+	LOGIN_URL,
 	TELEMETRY_URL,
-	VITE_APP_BASEPATH: BASE,
 	API_URL: 'http://tilbakemeldingsmottak-api.test',
+	API_TOKENX_AUDIENCE: 'dev-gcp:teamserviceklage:tilbakemeldingsmottak-api',
+	API_AZURE_SCOPE: 'api://dev-gcp.teamserviceklage.tilbakemeldingsmottak-api/.default',
 	NORG2_ORIGIN: 'http://norg2.test',
 	AZURE_APP_TENANT_ID: 'test-tenant',
 	AZURE_APP_CLIENT_ID: 'test-client',

@@ -17,6 +17,5 @@ jobs:
       sbom-from-lockfile: true
       # What the build bakes into the app (vite.config.ts), with dev's values
       env-file: |
-        VITE_APP_BASEPATH=/person/kontakt-oss
         CDN_BASE=https://cdn.nav.no/navno/tilbakemeldinger/dev
     secrets: inherit

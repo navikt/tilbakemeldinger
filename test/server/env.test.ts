@@ -4,6 +4,8 @@ import { expectNoUnexpectedHosts } from './fixtures';
 
 const UPSTREAM_ENV = {
 	API_URL: undefined,
+	API_TOKENX_AUDIENCE: undefined,
+	API_AZURE_SCOPE: undefined,
 	AZURE_APP_TENANT_ID: undefined,
 	AZURE_APP_CLIENT_ID: undefined,
 	AZURE_APP_CLIENT_SECRET: undefined,
@@ -13,7 +15,15 @@ const UPSTREAM_ENV = {
 };
 
 describe('environment variables', () => {
-	test.each(['API_URL', 'APP_ORIGIN', 'TELEMETRY_URL'])('a deployed server does not start without %s', async (name) => {
+	test.each([
+		'API_URL',
+		'API_TOKENX_AUDIENCE',
+		'API_AZURE_SCOPE',
+		'APP_ORIGIN',
+		'AUTH_URL',
+		'LOGIN_URL',
+		'TELEMETRY_URL',
+	])('a deployed server does not start without %s', async (name) => {
 		await expect(startServer({ env: { [name]: undefined } })).rejects.toThrow(
 			new RegExp(`Invalid environment variables[\\s\\S]*${name}`)
 		);
