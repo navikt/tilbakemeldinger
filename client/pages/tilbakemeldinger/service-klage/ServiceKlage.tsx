@@ -16,6 +16,7 @@ import ServiceKlageOnskerAaKontaktes from './ServiceKlageOnskerAaKontaktes';
 import LoginModal from './login-modal/LoginModal';
 import { Alert, Box, Button, GuidePanel, Radio, RadioGroup, Textarea } from '@navikt/ds-react';
 import { Controller, FieldValues, FormProvider, useForm } from 'react-hook-form';
+import { useRevalidateOnLocaleChange } from '#client/utils/useRevalidateOnLocaleChange.ts';
 import { submitErrorMessage } from '#client/utils/errorCodes.ts';
 import appStyle from '#client/App.module.scss';
 
@@ -43,6 +44,8 @@ const ServiceKlageComponent = () => {
 		reValidateMode: 'onChange',
 		shouldUnregister: true,
 	});
+
+	useRevalidateOnLocaleChange(methods);
 
 	const {
 		register,
