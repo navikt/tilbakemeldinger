@@ -1,6 +1,7 @@
 import { corgi, isHttpError } from '@itsy/corgi';
 import { withTimeout } from '@itsy/corgi/timeout';
 import { LRUCache } from 'lru-cache';
+import { logger } from '@navikt/navno-logger';
 import { env } from '#server/utils/environment.ts';
 
 const azureAdTokenApi = `https://login.microsoftonline.com/${env.AZURE_APP_TENANT_ID}/oauth2/v2.0/token`;
@@ -18,7 +19,7 @@ type TokenResponse = {
 const tokens = new LRUCache<string, string>({
 	max: 10,
 	fetchMethod: async (scope, _expired, { options }) => {
-		console.log('Refreshing access token...');
+		logger.info('Refreshing Azure AD token');
 
 		try {
 			const token = await azureAd.post<TokenResponse>(azureAdTokenApi, {
@@ -34,7 +35,11 @@ const tokens = new LRUCache<string, string>({
 			options.ttl = Math.max(token.expires_in - 60, 1) * 1000;
 			return token.access_token;
 		} catch (error) {
-			console.error('Failed to get a token from Azure AD', isHttpError(error) ? error.data : error);
+			// Azure AD's error answer has the OAuth error and its description, nothing about the user
+			logger.error(
+				'Failed to get a token from Azure AD',
+				isHttpError(error) ? { status: error.status, response: error.data } : error
+			);
 			return undefined;
 		}
 	},

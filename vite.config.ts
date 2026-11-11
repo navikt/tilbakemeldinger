@@ -70,6 +70,8 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 			// Pinned so a local .env (e.g. ENV=localhost, which points the app at localhost)
 			// can't change behavior or API URLs under test
 			env: {
+				// The server's logger writes straight to stdout, past the `silent` above. To see its logs: LOG_LEVEL=info pnpm test
+				LOG_LEVEL: process.env.LOG_LEVEL ?? 'silent',
 				VITE_APP_BASEPATH: '/person/kontakt-oss',
 				VITE_APP_ORIGIN: 'http://localhost:9001',
 				VITE_ENV: 'dev',

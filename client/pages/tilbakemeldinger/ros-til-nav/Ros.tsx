@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { captureException } from '@nais/apm';
+import { captureException } from '#client/utils/apm.ts';
 import { postRosTilNav } from '#client/clients/apiClient.ts';
 import { errorContext } from '#client/types/errors.ts';
 import Header from '#client/components/header/Header.tsx';

@@ -1,5 +1,8 @@
 import { Hono } from 'hono';
 import { compress } from 'hono/compress';
+import { HTTPException } from 'hono/http-exception';
+import { routePath } from 'hono/route';
+import { logger, traceRoute } from '@navikt/navno-logger';
 import { api } from './api/api.ts';
 import { createSite } from './site/site.ts';
 import { env } from './utils/environment.ts';
@@ -8,6 +11,12 @@ import type { AppEnv } from './types.ts';
 
 // strict: false matches routes with/without trailing slash
 const app = new Hono<AppEnv>({ strict: false });
+
+// Make OTel in Nais work
+app.use(async (c, next) => {
+	await next();
+	traceRoute(routePath(c));
+});
 app.use(compress());
 
 // Before the API, which has its own /fodselsnr
@@ -24,8 +33,15 @@ const base = app.basePath(env.VITE_APP_BASEPATH);
 base.route('/tilbakemeldinger/api', api);
 base.route('/', await createSite());
 
-// Hono's own handlers answer the rest: 404 Not Found, an HTTPException's own response
-// (400 for malformed JSON, 413 for a body over the limit), and 500 for anything else, with the error logged
+// Hono's own 404 Not Found answers the rest.
+app.onError((err, c) => {
+	if (err instanceof HTTPException) {
+		const res = err.getResponse();
+		return c.newResponse(res.body, res);
+	}
+	logger.error('Request failed', { method: c.req.method, path: c.req.path }, err);
+	return c.text('Internal Server Error', 500);
+});
 
 // Served by prod-server.ts in production, and by Vite in dev
 export default app;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { captureException } from '@nais/apm';
+import { captureException } from '#client/utils/apm.ts';
 import PageNotFound from '#client/pages/404/404.tsx';
 import { findPage } from '#client/pages/pages.ts';
 import { fetchAuthInfo, fetchFodselsnr, fetchKontaktInfo } from '#client/clients/apiClient.ts';

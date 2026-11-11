@@ -108,7 +108,6 @@ const nn: ITranslation = {
 	'felter.hvemroses.navkontor.skrivinn': 'Søk eller vel med piltast',
 	'felter.navkontor.lastefeil': 'Vi klarte ikkje å hente lista over Nav-kontor.',
 	'felter.navkontor.provigjen': 'Prøv igjen',
-	'felter.combobox.knapp.beskrivelse': 'Opne lista',
 	'felter.hvemfra': 'Kven skriv du på vegne av?',
 	'felter.hvemfra.megselv': 'Meg sjølv som privatperson',
 	'felter.hvemfra.enannen': 'På vegne av ein annan privatperson',

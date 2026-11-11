@@ -1,11 +1,10 @@
-import { useCallback, useEffect, type ReactNode, type Ref } from 'react';
+import { useCallback, useEffect, useMemo, type ReactNode, type Ref } from 'react';
 import { useStore } from '#client/providers/Provider.tsx';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { captureException } from '@nais/apm';
+import { useIntl } from 'react-intl';
+import { captureException } from '#client/utils/apm.ts';
 import { fetchEnheter } from '#client/clients/apiClient.ts';
 import { errorContext } from '#client/types/errors.ts';
-import Combobox from './EnhetCombobox';
-import { Button, ErrorMessage, InlineMessage, Loader } from '@navikt/ds-react';
+import { Button, ErrorMessage, InlineMessage, Loader, UNSAFE_Combobox } from '@navikt/ds-react';
 import './SelectEnhet.scss';
 
 const cssPrefix = 'selectEnhet';
@@ -41,6 +40,11 @@ const relevanteEnheter = new Set([
 	'YTA',
 	'OPPFUTLAND',
 ]);
+
+// Offices outside those kinds that can get feedback too, with the name to show
+const ekstraEnheter: Record<string, string> = {
+	'4100': 'Nav kontaktsenter', // "Nav Styringsenhet kontaktsenter" i norg2
+};
 
 const SelectEnhet = (props: Props) => {
 	const { submitted, error, label, onChange, value, triggerValidation, ref } = props;
@@ -78,37 +82,30 @@ const SelectEnhet = (props: Props) => {
 		load();
 	};
 
-	const comboBoxLabel = () => (
-		<div className={`${cssPrefix}__label aksel-label`}>
-			<FormattedMessage id={label} />
-			<span className={`${cssPrefix}__hjelpetekst`}>
-				{`- ${intl.formatMessage({
-					id: 'felter.hvemroses.navkontor.skrivinn',
-				})}`}
-			</span>
-		</div>
+	const options = useMemo(
+		() =>
+			enheter.status === 'RESULT'
+				? enheter.data
+						.filter((e) => (e.enhetNr !== '0000' && relevanteEnheter.has(e.type)) || ekstraEnheter[e.enhetNr])
+						.map((e) => ({ value: e.enhetNr, label: ekstraEnheter[e.enhetNr] ?? e.navn }))
+						.sort((a, b) => a.label.localeCompare(b.label, 'nb'))
+				: [],
+		[enheter]
 	);
-
-	const ekstraEnheter: Record<string, string> = {
-		'4100': 'Nav kontaktsenter', // "Nav Styringsenhet kontaktsenter" i norg2
-	};
 
 	let content: ReactNode;
 	if (enheter.status === 'RESULT') {
 		content = (
-			<Combobox
+			<UNSAFE_Combobox
 				ref={ref}
-				harFeil={!!(submitted && error)}
-				label={comboBoxLabel()}
-				onChange={onChange}
-				value={value}
-				data={enheter.data
-					.filter((e) => (e.enhetNr !== '0000' && relevanteEnheter.has(e.type)) || ekstraEnheter[e.enhetNr])
-					.map((e) => ({
-						value: e.enhetNr,
-						label: ekstraEnheter[e.enhetNr] ?? e.navn,
-					}))
-					.sort((a, b) => a.label.localeCompare(b.label, 'nb'))}
+				label={intl.formatMessage({ id: label })}
+				description={intl.formatMessage({ id: 'felter.hvemroses.navkontor.skrivinn' })}
+				options={options}
+				selectedOptions={value ? [value] : []}
+				onToggleSelected={(option, isSelected) =>
+					onChange(isSelected ? options.find((o) => o.value === option) : undefined)
+				}
+				error={submitted ? error : undefined}
 			/>
 		);
 	} else if (enheter.status === 'ERROR') {
@@ -131,8 +128,9 @@ const SelectEnhet = (props: Props) => {
 	return (
 		<div className={`${cssPrefix}__navkontor`}>
 			{content}
-			{submitted && error && (
-				<ErrorMessage className={`${cssPrefix}__feilmelding`}>{intl.formatMessage({ id: error })}</ErrorMessage>
+			{/* The combobox shows the error itself. Without one (loading, or the list failed), it goes here */}
+			{submitted && error && enheter.status !== 'RESULT' && (
+				<ErrorMessage className={`${cssPrefix}__feilmelding`}>{error}</ErrorMessage>
 			)}
 		</div>
 	);

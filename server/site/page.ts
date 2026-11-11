@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import type { Handler } from 'hono';
 import { LRUCache } from 'lru-cache';
+import { logger } from '@navikt/navno-logger';
 import { raw } from '@itsy/html';
 import { frame, type FramePart } from '@itsy/html/frame';
 import { fetchDecoratorHtml, type DecoratorElements } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
@@ -76,7 +77,7 @@ const renderOrEmpty = (render: SsrRender, path: string): Rendered => {
 	try {
 		return render(path);
 	} catch (e) {
-		console.error(`Rendering ${path} failed: ${e instanceof Error ? (e.stack ?? e.message) : String(e)}`);
+		logger.error('Rendering failed', { path }, e);
 		return { html: '', head: { title: 'www.nav.no' }, status: 200 };
 	}
 };
