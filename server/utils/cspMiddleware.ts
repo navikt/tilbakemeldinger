@@ -3,7 +3,7 @@ import { LRUCache } from 'lru-cache';
 import { logger } from '@navikt/navno-logger';
 import { buildCspHeader, type DecoratorEnvProps } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import { type CSPDirectives, DATA, SELF } from 'csp-header';
-import { env } from './environment.ts';
+import { env } from '#server/env.ts';
 
 // The decorator for this environment. Locally, production's
 const decoratorEnvProps: DecoratorEnvProps =

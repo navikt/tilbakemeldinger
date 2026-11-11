@@ -1,4 +1,9 @@
 norg2Host: norg2.prod-fss-pub.nais.io
+environment: prod
+appOrigin: https://www.nav.no
+authUrl: https://www.nav.no/person/nav-dekoratoren-api/auth
+loginUrl: https://login.nav.no/oauth2/login
+telemetryUrl: https://telemetry.nav.no/collect
 ingresses:
   - https://www.nav.no/person/kontakt-oss/nb/tilbakemeldinger
   - https://www.nav.no/person/kontakt-oss/nn/tilbakemeldinger
@@ -9,7 +14,7 @@ replicas:
   max: 4
 resources:
   requests:
-    cpu: 200m
+    cpu: 50m
     memory: 128Mi
   limits:
-    memory: 512Mi
+    memory: 160Mi

@@ -5,12 +5,14 @@ import { LRUCache } from 'lru-cache';
 import { logger } from '@navikt/navno-logger';
 import { raw } from '@itsy/html';
 import { frame, type FramePart } from '@itsy/html/frame';
+import { json } from '@itsy/html/util';
 import { fetchDecoratorHtml, type DecoratorElements } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import type { ViteDevServer } from 'vite';
 import { devAssets, entry, manifestAssets, type Manifest } from './assets.ts';
-import { env } from '#server/utils/environment.ts';
+import { env } from '#server/env.ts';
 import { getBreadcrumbsFromPathname } from '#shared/breadcrumbs.ts';
 import type { Locale } from '#shared/locale.ts';
+import { APP_CONFIG_ID, type AppConfig } from '#shared/types/appConfig.ts';
 import type { SsrRender } from '#shared/types/ssr.ts';
 import type { AppEnv } from '#server/types.ts';
 
@@ -18,7 +20,15 @@ import type { AppEnv } from '#server/types.ts';
 
 type SsrModule = { render: SsrRender; base: string };
 type Rendered = ReturnType<SsrRender>;
-type Renderer = { render: SsrRender; assets: FramePart[] };
+type Renderer = { render: (path: string) => Rendered; assets: FramePart[] };
+
+// What the app is told about where it runs: the renderer gets it here, and the browser gets it in the page
+const appConfig: AppConfig = {
+	origin: env.APP_ORIGIN,
+	authUrl: env.AUTH_URL,
+	loginUrl: env.LOGIN_URL,
+	telemetryUrl: env.TELEMETRY_URL,
+};
 
 // In production: the app's renderer, built next to the server (vite.config.ts), and the client build's manifest.
 // A missing one stops the server at startup
@@ -42,7 +52,7 @@ const createProdRenderer = async (): Promise<Renderer> => {
 			if (cached) {
 				return cached;
 			}
-			const rendered = render(path);
+			const rendered = render(path, appConfig);
 			cache.set(path, rendered);
 			return rendered;
 		},
@@ -60,7 +70,7 @@ const devRenderer = async (vite: ViteDevServer | undefined): Promise<Renderer> =
 	return {
 		render: (path) => {
 			try {
-				return render(path);
+				return render(path, appConfig);
 			} catch (e) {
 				if (e instanceof Error) {
 					vite.ssrFixStacktrace(e);
@@ -74,7 +84,7 @@ const devRenderer = async (vite: ViteDevServer | undefined): Promise<Renderer> =
 
 // When rendering fails, the page goes out without the app, and the browser renders it (main-client.tsx).
 // The path may well be a page, so it isn't a 404
-const renderOrEmpty = (render: SsrRender, path: string): Rendered => {
+const renderOrEmpty = (render: Renderer['render'], path: string): Rendered => {
 	try {
 		return render(path);
 	} catch (e) {
@@ -127,7 +137,9 @@ const pageDocument = (locale: Locale, { html, head }: Rendered, assets: FramePar
 		content: raw(html),
 		attrs: { main: { class: 'tilbakemeldingerApp' } },
 		footer: raw(decorator.DECORATOR_FOOTER),
-		scripts: raw(decorator.DECORATOR_SCRIPTS),
+		// For the browser, which reads it before the app renders (client/main-client.tsx). The app's script waits
+		// for the whole page, so this is there when it runs
+		scripts: [json(appConfig, { id: APP_CONFIG_ID }), raw(decorator.DECORATOR_SCRIPTS)],
 	}).markup;
 
 export const createPageHandler = async (): Promise<Handler<AppEnv>> => {

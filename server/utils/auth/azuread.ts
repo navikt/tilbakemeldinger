@@ -2,7 +2,7 @@ import { corgi, isHttpError } from '@itsy/corgi';
 import { withTimeout } from '@itsy/corgi/timeout';
 import { LRUCache } from 'lru-cache';
 import { logger } from '@navikt/navno-logger';
-import { env } from '#server/utils/environment.ts';
+import { env } from '#server/env.ts';
 
 const azureAdTokenApi = `https://login.microsoftonline.com/${env.AZURE_APP_TENANT_ID}/oauth2/v2.0/token`;
 
@@ -24,7 +24,7 @@ const tokens = new LRUCache<string, string>({
 		try {
 			const token = await azureAd.post<TokenResponse>(azureAdTokenApi, {
 				headers: { accept: 'application/json' },
-				// Sent form-encoded. The variables are only optional locally (environment.ts), where submissions use MOCK_ACCESS_TOKEN
+				// Sent form-encoded. The variables are only optional locally (server/env.ts), where submissions use MOCK_ACCESS_TOKEN
 				body: new URLSearchParams({
 					grant_type: 'client_credentials',
 					client_id: env.AZURE_APP_CLIENT_ID ?? '',

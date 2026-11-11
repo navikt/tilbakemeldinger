@@ -1,11 +1,14 @@
+// First, so that what the app logs while it loads goes through the logger too
+import './utils/console.ts';
 import { serve } from '@hono/node-server';
 import { logger } from '@navikt/navno-logger';
 import app from './app.ts';
-import { env } from './utils/environment.ts';
+import { env } from './env.ts';
+import { BASE_PATH } from '#shared/paths.ts';
 
-const { APP_PORT, VITE_APP_BASEPATH, ENV, NODE_ENV } = env;
+const { APP_PORT, ENV, NODE_ENV } = env;
 
-logger.info('Starting server', { port: APP_PORT, basePath: VITE_APP_BASEPATH, env: ENV, nodeEnv: NODE_ENV });
+logger.info('Starting server', { port: APP_PORT, basePath: BASE_PATH, env: ENV, nodeEnv: NODE_ENV });
 
 const server = serve({ fetch: app.fetch, port: APP_PORT }, () => {
 	logger.info('Server listening', { port: APP_PORT });

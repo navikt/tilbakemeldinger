@@ -4,7 +4,7 @@ import { rateLimit } from './rate-limit.ts';
 import { fodselsNrHandler } from './fodselsNrHandler.ts';
 import { postToMottakUpstreamHandler } from './postToMottakUpstreamHandler.ts';
 import { enheterHandler } from './enheterHandler.ts';
-import { countSubmission } from '#server/utils/metrics.ts';
+import { countSubmission } from '#server/metrics.ts';
 import type { AppEnv } from '#server/types.ts';
 
 export const api = new Hono<AppEnv>();

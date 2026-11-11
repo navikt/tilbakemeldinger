@@ -1,7 +1,7 @@
 import { logger } from '@navikt/navno-logger';
 import { getTokenxToken } from './tokenx.ts';
 import { getAzureadToken } from './azuread.ts';
-import { env } from '#server/utils/environment.ts';
+import { env } from '#server/env.ts';
 
 export const getAuthToken = (authHeader: string | undefined) => authHeader?.split('Bearer ')[1];
 
@@ -20,11 +20,11 @@ export const getAccessToken = async ({ authHeader, path }: AccessTokenRequest): 
 
 	if (path === 'serviceklage' && authToken) {
 		try {
-			return await getTokenxToken(authToken, `${env.ENV}-gcp:teamserviceklage:tilbakemeldingsmottak-api`);
+			return await getTokenxToken(authToken, env.API_TOKENX_AUDIENCE);
 		} catch {
 			logger.warn('TokenX token exchange failed, using an Azure AD token instead');
 		}
 	}
 
-	return await getAzureadToken(`api://${env.ENV}-gcp.teamserviceklage.tilbakemeldingsmottak-api/.default`);
+	return await getAzureadToken(env.API_AZURE_SCOPE);
 };

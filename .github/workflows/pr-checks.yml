@@ -15,14 +15,7 @@ jobs:
       # The same checks as the deploys, so a failure shows up before the merge
       post-build-commands: pnpm run test:dist
       sbom-from-lockfile: true
+      # What the build bakes into the app (vite.config.ts), with dev's values
       env-file: |
-        ENV=dev
-        VITE_APP_BASEPATH=/person/kontakt-oss
-        VITE_APP_ORIGIN=https://www.ansatt.dev.nav.no
-        VITE_EDITORIAL_FRONTPAGE_ORIGIN=https://www.ansatt.dev.nav.no/tilbakemelding
-        VITE_TELEMETRY_URL=https://telemetry.ekstern.dev.nav.no/collect
-        APP_PORT=9001
-        API_URL=http://tilbakemeldingsmottak-api.teamserviceklage
-        NORG2_ORIGIN=https://norg2.dev-fss-pub.nais.io
         CDN_BASE=https://cdn.nav.no/navno/tilbakemeldinger/dev
     secrets: inherit

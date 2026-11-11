@@ -5,9 +5,10 @@ import { routePath } from 'hono/route';
 import { logger, traceRoute } from '@navikt/navno-logger';
 import { api } from './api/api.ts';
 import { createSite } from './site/site.ts';
-import { env } from './utils/environment.ts';
-import { metricsHandler } from './utils/metrics.ts';
+import { env } from './env.ts';
+import { metricsHandler } from './metrics.ts';
 import type { AppEnv } from './types.ts';
+import { BASE_PATH } from '#shared/paths.ts';
 
 // strict: false matches routes with/without trailing slash
 const app = new Hono<AppEnv>({ strict: false });
@@ -29,7 +30,7 @@ app.get('/internal/metrics', metricsHandler);
 
 // Routes match in the order they're added
 // The API is first, since the pages' /tilbakemeldinger/* also matches /tilbakemeldinger/api/*
-const base = app.basePath(env.VITE_APP_BASEPATH);
+const base = app.basePath(BASE_PATH);
 base.route('/tilbakemeldinger/api', api);
 base.route('/', await createSite());
 
@@ -43,5 +44,5 @@ app.onError((err, c) => {
 	return c.text('Internal Server Error', 500);
 });
 
-// Served by prod-server.ts in production, and by Vite in dev
+// Served by main.ts in production, and by Vite in dev
 export default app;

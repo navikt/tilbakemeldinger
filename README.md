@@ -22,11 +22,15 @@ Applikasjonen er en full-stack Node.js-løsning med server-side rendering (SSR) 
 - `server/dev/` - Mocks for `pnpm dev` (`server/dev/mocks.ts`): dekoratørens innloggingsstatus, kontaktinformasjon, fødselsnummer, norg2 og tilbakemeldingsmottak-api
 - `shared/` - Delt kode mellom frontend og backend (lokalisering, skjemaer, typer)
 - `test/` - Testoppsett, og testene av serveren i prosess (`test/server`). `pnpm test` kjører testene i `client/`, `shared/`, `server/` og `test/server/`. `test/dist-smoke.ts` kjører bygget (`pnpm test:dist`)
-- `dist/` - Bygget klient (`dist/client`) og server (`dist/server`): `prod-server.js` er serveren, og `main-server.js` er appen rendret på serveren, som `server/site/page.ts` laster ved oppstart
+- `dist/` - Bygget klient (`dist/client`) og server (`dist/server`): `main.js` er serveren, og `main-server.js` er appen rendret på serveren, som `server/site/page.ts` laster ved oppstart
 
 ### Bygg og SBOM
 
-Serverbygget pakker inn alle avhengighetene, så imaget har bare `dist/server`, manifestet til klientbygget, `package.json` og `.env`, uten `node_modules`. Derfor lager CI SBOM-en fra `pnpm-lock.yaml` (`sbom-from-lockfile` i navno-ci) i stedet for fra imaget. Det som havner i bygget, hører hjemme i `dependencies`, ikke i `devDependencies`.
+Serverbygget pakker inn alle avhengighetene, så imaget har bare `dist/server`, manifestet til klientbygget og `package.json`, uten `node_modules` og uten `.env`. Derfor lager CI SBOM-en fra `pnpm-lock.yaml` (`sbom-from-lockfile` i navno-ci) i stedet for fra imaget. Det som havner i bygget, hører hjemme i `dependencies`, ikke i `devDependencies`.
+
+### Konfigurasjon
+
+Serveren leser konfigurasjonen når den starter: fra `env` i `.nais/config.yml` i podden, med verdiene per miljø i `.nais/vars-*.yml`, og fra `.env.development` lokalt. Det nettleseren trenger å vite om miljøet, skriver serveren inn i hver side (`server/site/page.ts`), så det ikke bakes inn i bygget. Bare `CDN_BASE` bakes inn; arbeidsflytene setter den i `env-file`. Base path er en konstant (`shared/paths.ts`).
 
 ### Endepunkter
 

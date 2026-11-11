@@ -8,24 +8,26 @@ import type { RosTilNav } from '#shared/types/RosTilNav.ts';
 import type { FeilOgMangler } from '#shared/types/FeilOgMangler.ts';
 import type { ServiceKlage } from '#shared/types/ServiceKlage.ts';
 
-const { appUrl, personInfoApiUrl, authUrl } = Environment();
+let client: ReturnType<typeof corgi.create> | undefined;
 
-const api = corgi.create({
-	baseURL: `${appUrl}/api`,
-	headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-	credentials: 'include',
-});
+// Made on the first call: its URL comes from the app's config, which the app gets after this has loaded
+const api = () =>
+	(client ??= corgi.create({
+		baseURL: `${Environment().appUrl}/api`,
+		headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+		credentials: 'include',
+	}));
 
-export const fetchEnheter = () => api.get<Enhet[]>('/enheter');
+export const fetchEnheter = () => api().get<Enhet[]>('/enheter');
 
-export const fetchFodselsnr = () => api.get<Fodselsnr>('/fodselsnr');
+export const fetchFodselsnr = () => api().get<Fodselsnr>('/fodselsnr');
 
-export const fetchAuthInfo = () => api.get<AuthInfo>(authUrl);
+export const fetchAuthInfo = () => api().get<AuthInfo>(Environment().authUrl);
 
-export const fetchKontaktInfo = () => api.get<KontaktInfo>(`${personInfoApiUrl}/kontaktinformasjon`);
+export const fetchKontaktInfo = () => api().get<KontaktInfo>(`${Environment().personInfoApiUrl}/kontaktinformasjon`);
 
-export const postRosTilNav = (data: RosTilNav) => api.post('/mottak/ros', { body: data });
+export const postRosTilNav = (data: RosTilNav) => api().post('/mottak/ros', { body: data });
 
-export const postServiceKlage = (data: ServiceKlage) => api.post('/mottak/serviceklage', { body: data });
+export const postServiceKlage = (data: ServiceKlage) => api().post('/mottak/serviceklage', { body: data });
 
-export const postFeilOgMangler = (data: FeilOgMangler) => api.post('/mottak/feil-og-mangler', { body: data });
+export const postFeilOgMangler = (data: FeilOgMangler) => api().post('/mottak/feil-og-mangler', { body: data });

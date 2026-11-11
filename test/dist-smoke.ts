@@ -86,7 +86,7 @@ before(async () => {
 	const { privateKey } = generateKeyPairSync('rsa', { modulusLength: 2048 });
 	const port = await freePort();
 	origin = `http://127.0.0.1:${port}`;
-	app = spawn(process.execPath, ['dist/server/prod-server.js'], {
+	app = spawn(process.execPath, ['dist/server/main.js'], {
 		cwd: dir,
 		// What NAIS gives the pod in dev, with norg2 and tilbakemeldingsmottak-api here
 		env: {
@@ -94,9 +94,14 @@ before(async () => {
 			NODE_ENV: 'production',
 			ENV: 'dev',
 			APP_PORT: String(port),
-			VITE_APP_BASEPATH: BASE,
+			APP_ORIGIN: 'https://www.nav.test',
+			AUTH_URL: 'https://www.nav.test/person/nav-dekoratoren-api/auth',
+			LOGIN_URL: 'https://login.nav.test/oauth2/login',
+			TELEMETRY_URL: 'https://telemetry.test/collect',
 			NORG2_ORIGIN: upstreamOrigin,
 			API_URL: upstreamOrigin,
+			API_TOKENX_AUDIENCE: 'dev-gcp:teamserviceklage:tilbakemeldingsmottak-api',
+			API_AZURE_SCOPE: 'api://dev-gcp.teamserviceklage.tilbakemeldingsmottak-api/.default',
 			AZURE_APP_TENANT_ID: 'test-tenant',
 			AZURE_APP_CLIENT_ID: 'test-client',
 			AZURE_APP_CLIENT_SECRET: 'test-secret',
@@ -155,6 +160,12 @@ test('a page renders the app, with the client build’s script', async () => {
 	);
 	assert.match(html, /<main[^>]*class="tilbakemeldingerApp"[^>]*><\w/, withOutput('The page is missing the app'));
 	assert.ok(html.includes(script), withOutput(`The page is missing ${script}`));
+	// Where the app runs, from the environment above and not from the build
+	assert.match(
+		html,
+		/id="app-config"[^>]*>[^<]*"origin":"https:\/\/www\.nav\.test"/,
+		withOutput('The page is missing its config')
+	);
 });
 
 test('an unknown page gets the 404 page', async () => {

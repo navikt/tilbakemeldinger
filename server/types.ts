@@ -1,6 +1,6 @@
 import type { HttpBindings } from '@hono/node-server';
 import type { ViteDevServer } from 'vite';
-import type { FailureReason } from './utils/metrics.ts';
+import type { FailureReason } from './metrics.ts';
 
 // What every Hono app and handler in the server sees on its context
 export type AppEnv = {

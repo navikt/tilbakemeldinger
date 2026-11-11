@@ -8,8 +8,12 @@ import './App.scss';
 
 import { StrictMode } from 'react';
 import { createRoot, hydrateRoot, type ErrorInfo } from 'react-dom/client';
+import { configFromPage, setConfig } from '#client/appConfig.ts';
 import { captureException, loadApm } from '#client/utils/apm.ts';
 import { AppRoot } from './index';
+
+// First: what the server told the page about where the app runs
+setConfig(configFromPage());
 
 // Before React renders, so it loads while the page hydrates. Errors reported before it has loaded wait for it
 loadApm();

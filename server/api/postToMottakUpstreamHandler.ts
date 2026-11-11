@@ -10,8 +10,8 @@ import { getAccessToken } from '#server/utils/auth/common.ts';
 import { serviceKlageSchema } from '#shared/schema/ServiceKlage.ts';
 import { feilOgManglerSchema } from '#shared/schema/FeilOgMangler.ts';
 import { rosTilNavSchema } from '#shared/schema/RosTilNav.ts';
-import { setFailureReason } from '#server/utils/metrics.ts';
-import { env } from '#server/utils/environment.ts';
+import { setFailureReason } from '#server/metrics.ts';
+import { env } from '#server/env.ts';
 import type { AppEnv } from '#server/types.ts';
 
 const schemas = new Map<string, ZodType>([

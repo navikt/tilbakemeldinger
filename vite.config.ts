@@ -5,22 +5,22 @@ import devServer, { defaultOptions } from '@hono/vite-dev-server';
 import { visualizer } from 'rollup-plugin-visualizer';
 import NavBrowserTargets from '@navikt/browserslist-config/vite';
 
-// What a build bakes into the app. The workflows write them to .env (their env-file), and build:local sets test values
-const buildEnv = ['ENV', 'VITE_APP_BASEPATH', 'VITE_APP_ORIGIN', 'VITE_TELEMETRY_URL'];
+// The same as BASE_PATH in shared/paths.ts. Not imported from there: this file is type-checked as a project
+// of its own (tsconfig.node.json), which can't reach into the app's
+const BASE_PATH = '/person/kontakt-oss';
 
 export default defineConfig(({ command, mode, isSsrBuild }) => {
 	process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
 
-	const missing = buildEnv.filter((name) => !process.env[name]);
-	if (command === 'build' && missing.length > 0) {
+	// The one thing a build bakes into the app: where its scripts and styles are served from. The workflows write
+	// it to .env (their env-file). Everything else is read when the server runs (.nais/config.yml)
+	if (command === 'build' && !process.env.CDN_BASE) {
 		throw new Error(
-			`Missing ${missing.join(', ')}. CI writes them to .env before building. To build locally with test values, run \`pnpm run build:local\``
+			'Missing CDN_BASE. CI writes it to .env before building. To build locally with a test value, run `pnpm run build:local`'
 		);
 	}
 
 	process.env.NODE_ENV = process.env.NODE_ENV || 'production';
-	process.env.VITE_ENV = process.env.ENV;
-	const basepath = process.env.VITE_APP_BASEPATH;
 
 	return {
 		// No HTML entry: the server writes the pages (server/site/page.ts)
@@ -29,7 +29,7 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 		server: {
 			port: Number(process.env.APP_PORT) || undefined,
 			strictPort: true,
-			open: `${basepath}/tilbakemeldinger`,
+			open: `${BASE_PATH}/tilbakemeldinger`,
 		},
 		plugins: [
 			NavBrowserTargets(),
@@ -38,7 +38,7 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 			// request except Vite's own endpoints and the client code it serves
 			devServer({
 				entry: './server/app.ts',
-				exclude: [new RegExp(`^${basepath}/@`), /\.(scss|json)$/, ...defaultOptions.exclude],
+				exclude: [new RegExp(`^${BASE_PATH}/@`), /\.(scss|json)$/, ...defaultOptions.exclude],
 				// The pages load Vite's client themselves (server/site/page.ts)
 				injectClientScript: false,
 			}),
@@ -56,7 +56,7 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 					rolldownOptions: {
 						// The server, and the app's renderer, which server/site/page.ts imports at startup. Their shared
 						// dependencies go in shared chunks, so the server and the renderer use the same copies
-						input: { 'prod-server': 'server/prod-server.ts', 'main-server': 'client/main-server.tsx' },
+						input: { main: 'server/main.ts', 'main-server': 'client/main-server.tsx' },
 						// That import goes through package.json `imports`, to the renderer built next to the server
 						external: [/^#dist\//],
 					},
@@ -68,7 +68,7 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 					manifest: true,
 					rolldownOptions: { input: 'client/main-client.tsx' },
 				},
-		base: process.env.CDN_BASE || basepath,
+		base: process.env.CDN_BASE || BASE_PATH,
 		css: {
 			modules: {
 				// Create stable (but verbose!) classnames in dev mode, in order
@@ -89,10 +89,12 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 			env: {
 				// The server's logger writes straight to stdout, past the `silent` above. To see its logs: LOG_LEVEL=info pnpm test
 				LOG_LEVEL: process.env.LOG_LEVEL ?? 'silent',
-				VITE_APP_BASEPATH: '/person/kontakt-oss',
-				VITE_APP_ORIGIN: 'http://localhost:9001',
-				VITE_ENV: 'dev',
-				VITE_TELEMETRY_URL: 'http://localhost:9001/collect',
+				// What the app is told about where it runs. test/setup.ts hands these to the app, and
+				// test/server/server.ts starts the server with them
+				APP_ORIGIN: 'http://localhost:9001',
+				AUTH_URL: 'https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth',
+				LOGIN_URL: 'https://login.ekstern.dev.nav.no/oauth2/login',
+				TELEMETRY_URL: 'http://localhost:9001/collect',
 			},
 			// test/server: the server, in process (test/server/server.ts)
 			include: ['{client,shared,server}/**/*.test.{ts,tsx}', 'test/server/**/*.test.ts'],

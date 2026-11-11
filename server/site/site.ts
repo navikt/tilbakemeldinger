@@ -3,11 +3,12 @@ import { joinURL, parseURL, withoutBase, withTrailingSlash } from 'ufo';
 import { localFrontPage } from './localFrontPage.ts';
 import { createPageHandler } from './page.ts';
 import { createCspMiddleware } from '#server/utils/cspMiddleware.ts';
-import { env } from '#server/utils/environment.ts';
+import { env } from '#server/env.ts';
 import { defaultLocale } from '#shared/locale.ts';
+import { BASE_PATH } from '#shared/paths.ts';
 import type { AppEnv } from '#server/types.ts';
 
-const { VITE_APP_BASEPATH, VITE_EDITORIAL_FRONTPAGE_ORIGIN: FRONTPAGE_URL } = env;
+const { VITE_EDITORIAL_FRONTPAGE_ORIGIN: FRONTPAGE_URL } = env;
 
 // The pages. Their scripts and styles are served from the CDN (CDN_BASE in vite.config.ts)
 export const createSite = async () => {
@@ -28,10 +29,7 @@ export const createSite = async () => {
 	// No locale in the URL -> use defaults, while keeping the query
 	site.get('/tilbakemeldinger/*', (c) => {
 		const { pathname, search } = parseURL(c.req.url);
-		return c.redirect(
-			joinURL(VITE_APP_BASEPATH, defaultLocale, withoutBase(pathname, VITE_APP_BASEPATH)) + search,
-			302
-		);
+		return c.redirect(joinURL(BASE_PATH, defaultLocale, withoutBase(pathname, BASE_PATH)) + search, 302);
 	});
 
 	// The app picks the page from the URL (client/App.tsx)

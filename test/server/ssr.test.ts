@@ -2,7 +2,16 @@ import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import nb from '#shared/language/nb.ts';
 import nn from '#shared/language/nn.ts';
 import en from '#shared/language/en.ts';
-import { APP_ORIGIN, BASE, parseHtml, startServer, type TestServer } from './server';
+import {
+	APP_ORIGIN,
+	AUTH_URL,
+	BASE,
+	LOGIN_URL,
+	parseHtml,
+	startServer,
+	TELEMETRY_URL,
+	type TestServer,
+} from './server';
 import { expectNoUnexpectedHosts } from './fixtures';
 
 const translations = { nb, nn, en };
@@ -100,6 +109,18 @@ describe('server-side rendered pages', () => {
 		});
 	});
 
+	test('tells the browser where the app runs', async () => {
+		const res = await server.fetch(`${BASE}/nb/tilbakemeldinger/serviceklage`);
+		const doc = parseHtml(await res.text());
+
+		expect(JSON.parse(doc.querySelector('script#app-config')?.textContent ?? 'null')).toEqual({
+			origin: APP_ORIGIN,
+			authUrl: AUTH_URL,
+			loginUrl: LOGIN_URL,
+			telemetryUrl: TELEMETRY_URL,
+		});
+	});
+
 	// The decorator follows the breadcrumb links itself (handleInApp: false)
 	test('nn breadcrumbs link the base crumb to nb', () => {
 		const decorator = decoratorRequests(server).find(
@@ -148,5 +169,28 @@ describe('server-side rendered pages', () => {
 
 		expect(res.status).toBe(302);
 		expect(res.headers.get('location')).toBe(`${BASE}/nb/tilbakemeldinger/serviceklage?locale=none`);
+	});
+});
+
+// The same build runs in every environment: what differs comes from the environment the server starts in
+describe('a server started with another origin', () => {
+	test('renders with it, and tells the browser', async () => {
+		const origin = 'https://www.nav.test';
+		const telemetryUrl = 'https://telemetry.test/collect';
+		const server = await startServer({ env: { APP_ORIGIN: origin, TELEMETRY_URL: telemetryUrl } });
+
+		const res = await server.fetch(`${BASE}/nb/tilbakemeldinger/serviceklage`);
+		const doc = parseHtml(await res.text());
+
+		expect(doc.head.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+			`${origin}${BASE}/nb/tilbakemeldinger/serviceklage`
+		);
+		expect(JSON.parse(doc.querySelector('script#app-config')?.textContent ?? 'null')).toEqual({
+			origin,
+			authUrl: AUTH_URL,
+			loginUrl: LOGIN_URL,
+			telemetryUrl,
+		});
+		await server.stop();
 	});
 });
