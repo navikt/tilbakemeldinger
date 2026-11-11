@@ -1,6 +1,6 @@
 {
-	// Type-check only: Node runs the server's .ts files directly (type stripping),
-	// so imports use .ts extensions and type-only imports must say `import type`
+	// Type-check only: Vite bundles the server (vite.config.ts). The settings keep it runnable by Node's type
+	// stripping too, so imports use .ts extensions and type-only imports must say `import type`
 	"compilerOptions": {
 		"noEmit": true,
 		"allowImportingTsExtensions": true,

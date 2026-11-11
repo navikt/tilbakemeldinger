@@ -46,6 +46,12 @@ Bygg lokalt med testverdier for miljøvariablene:
 pnpm run build:local
 ```
 
+Kjør bygget uten `node_modules`, slik imaget gjør, og sjekk sidene, API-et og probene (CI kjører den etter bygget):
+
+```
+pnpm run test:dist
+```
+
 ## Lint og formatering
 
 Prosjektet bruker **oxfmt** for formatering (`oxfmt.config.ts`) og **oxlint** for lint (`oxlint.config.ts`).
