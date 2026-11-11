@@ -45,12 +45,29 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 			// The client bundle only (analyze-bundle)
 			...(process.env.ANALYZE && !isSsrBuild ? [visualizer({ gzipSize: true, open: true, sourcemap: true })] : []),
 		],
-		build: {
-			sourcemap: true,
-			outDir: isSsrBuild ? 'dist/ssr' : 'dist/client',
-			// The client build: the manifest tells the server which files the page loads
-			...(!isSsrBuild && { manifest: true, rolldownOptions: { input: 'client/main-client.tsx' } }),
-		},
+		// The server build bundles every dependency, so the image needs no node_modules. The image scan can't see
+		// bundled packages, so the SBOM comes from pnpm-lock.yaml instead (sbom-from-lockfile in the workflows)
+		ssr: command === 'build' ? { noExternal: true } : undefined,
+		// Otherwise React's development and production builds are both bundled, and picked between at runtime
+		define: isSsrBuild ? { 'process.env.NODE_ENV': JSON.stringify('production') } : undefined,
+		build: isSsrBuild
+			? {
+					outDir: 'dist/server',
+					rolldownOptions: {
+						// The server, and the app's renderer, which server/site/page.ts imports at startup. Their shared
+						// dependencies go in shared chunks, so the server and the renderer use the same copies
+						input: { 'prod-server': 'server/prod-server.ts', 'main-server': 'client/main-server.tsx' },
+						// That import goes through package.json `imports`, to the renderer built next to the server
+						external: [/^#dist\//],
+					},
+				}
+			: {
+					sourcemap: true,
+					outDir: 'dist/client',
+					// The manifest tells the server which files the page loads
+					manifest: true,
+					rolldownOptions: { input: 'client/main-client.tsx' },
+				},
 		base: process.env.CDN_BASE || basepath,
 		css: {
 			modules: {

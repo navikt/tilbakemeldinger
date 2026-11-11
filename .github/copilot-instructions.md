@@ -107,6 +107,8 @@ When adding or modifying code:
 - Automated via GitHub Actions
 - Workflows: "Deploy to dev" (manual) and "Build and deploy to prod and create a new release" (on push to main)
 - The workflows are thin callers of the shared `navikt/navno-ci` reusable workflows (build → deploy → release); build steps and action versions live there, per-environment values (`.env` lines, CDN path, NAIS vars file) live here.
+- The server build (`vite build --ssr`, vite.config.ts) bundles every dependency, and the image has no node_modules, so the SBOM comes from `pnpm-lock.yaml` (`sbom-from-lockfile`): anything that ends up in `dist` belongs in `dependencies`, not `devDependencies`
+- `pnpm test:dist` runs the build without node_modules, as the image does (after `pnpm run build:local`); CI runs it after the build
 - Deploys to Nais. See [Nais documentation](https://nais.io/docs/) for details when troubleshooting.
 - See workflows in `.github/workflows/`
 

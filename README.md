@@ -11,7 +11,7 @@ Applikasjonen er en full-stack Node.js-løsning med server-side rendering (SSR) 
 ### Teknisk stack
 
 - **Frontend**: React 19
-- **Backend**: Hono på Node 26. Node kjører TypeScript-filene direkte (type stripping), uten eget byggesteg
+- **Backend**: Hono på Node 26. Vite bygger serveren sammen med alle avhengighetene, så imaget har ingen `node_modules`
 - **Språk**: TypeScript
 - **Byggverktøy**: Vite
 
@@ -21,8 +21,12 @@ Applikasjonen er en full-stack Node.js-løsning med server-side rendering (SSR) 
 - `server/` - Backend-kode (Hono-server, API-ruter, SSR). Serveren skriver hele HTML-dokumentet (`server/site/page.ts`): appen rendret på serveren, dekoratøren, og script og stiler fra Vite-manifestet. På NAIS lastes script og stiler fra CDN-et (`CDN_BASE`). Med `pnpm dev` serverer Vite dem.
 - `server/dev/` - Mocks for `pnpm dev` (`server/dev/mocks.ts`): dekoratørens innloggingsstatus, kontaktinformasjon, fødselsnummer, norg2 og tilbakemeldingsmottak-api
 - `shared/` - Delt kode mellom frontend og backend (lokalisering, skjemaer, typer)
-- `test/` - Testoppsett, og testene av serveren i prosess (`test/server`). `pnpm test` kjører testene i `client/`, `shared/`, `server/` og `test/server/`
-- `dist/` - Bygget klient (`dist/client`) og SSR-bundle (`dist/ssr`)
+- `test/` - Testoppsett, og testene av serveren i prosess (`test/server`). `pnpm test` kjører testene i `client/`, `shared/`, `server/` og `test/server/`. `test/dist-smoke.ts` kjører bygget (`pnpm test:dist`)
+- `dist/` - Bygget klient (`dist/client`) og server (`dist/server`): `prod-server.js` er serveren, og `main-server.js` er appen rendret på serveren, som `server/site/page.ts` laster ved oppstart
+
+### Bygg og SBOM
+
+Serverbygget pakker inn alle avhengighetene, så imaget har bare `dist/server`, manifestet til klientbygget, `package.json` og `.env`, uten `node_modules`. Derfor lager CI SBOM-en fra `pnpm-lock.yaml` (`sbom-from-lockfile` i navno-ci) i stedet for fra imaget. Det som havner i bygget, hører hjemme i `dependencies`, ikke i `devDependencies`.
 
 ### Endepunkter
 

@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import { captureException } from '#client/utils/apm.ts';
 import { fetchEnheter } from '#client/clients/apiClient.ts';
 import { errorContext } from '#client/types/errors.ts';
-import { Button, ErrorMessage, InlineMessage, Loader, UNSAFE_Combobox } from '@navikt/ds-react';
+import { Button, ErrorMessage, InlineMessage, Loader, UNSAFE_Combobox as Combobox } from '@navikt/ds-react';
 import './SelectEnhet.scss';
 
 const cssPrefix = 'selectEnhet';
@@ -96,7 +96,7 @@ const SelectEnhet = (props: Props) => {
 	let content: ReactNode;
 	if (enheter.status === 'RESULT') {
 		content = (
-			<UNSAFE_Combobox
+			<Combobox
 				ref={ref}
 				label={intl.formatMessage({ id: label })}
 				description={intl.formatMessage({ id: 'felter.hvemroses.navkontor.skrivinn' })}

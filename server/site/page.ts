@@ -20,7 +20,8 @@ type SsrModule = { render: SsrRender; base: string };
 type Rendered = ReturnType<SsrRender>;
 type Renderer = { render: SsrRender; assets: FramePart[] };
 
-// In production: the built SSR bundle, and the client build's manifest. A missing one stops the server at startup
+// In production: the app's renderer, built next to the server (vite.config.ts), and the client build's manifest.
+// A missing one stops the server at startup
 const createProdRenderer = async (): Promise<Renderer> => {
 	const manifestPath = fileURLToPath(import.meta.resolve('#dist/client/.vite/manifest.json'));
 	const manifest: Manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
@@ -29,7 +30,7 @@ const createProdRenderer = async (): Promise<Renderer> => {
 	}
 	// this is a variable instead of a literal in 'import'
 	// because TS is crazy and tries to resolve it immediately
-	const ssrEntry = '#dist/ssr/main-server.js';
+	const ssrEntry = '#dist/server/main-server.js';
 	const { render, base }: SsrModule = await import(/* @vite-ignore */ ssrEntry);
 
 	// The app's HTML depends only on the path. A failed render throws, so it isn't cached
