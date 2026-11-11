@@ -30,6 +30,18 @@ spec:
     autoInstrumentation:
       enabled: true
       runtime: nodejs
+  # What only the server reads. What the build bakes into the app is in the workflows' env-file
+  env:
+    # The port above
+    - name: APP_PORT
+      value: '9001'
+    # Through service discovery, so the same in both clusters
+    - name: API_URL
+      value: http://tilbakemeldingsmottak-api.teamserviceklage
+    - name: NORG2_ORIGIN
+      value: https://{{norg2Host}}
+    - name: VITE_EDITORIAL_FRONTPAGE_ORIGIN
+      value: {{editorialFrontPage}}
   azure:
     application:
       enabled: true

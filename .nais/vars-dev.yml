@@ -1,4 +1,5 @@
 norg2Host: norg2.dev-fss-pub.nais.io
+editorialFrontPage: https://www.ansatt.dev.nav.no/tilbakemeldinger
 ingresses:
   - https://www.ansatt.dev.nav.no/person/kontakt-oss/nn/tilbakemeldinger
   - https://www.ansatt.dev.nav.no/person/kontakt-oss/nb/tilbakemeldinger

@@ -1,4 +1,5 @@
 norg2Host: norg2.prod-fss-pub.nais.io
+editorialFrontPage: https://www.nav.no/tilbakemeldinger
 ingresses:
   - https://www.nav.no/person/kontakt-oss/nb/tilbakemeldinger
   - https://www.nav.no/person/kontakt-oss/nn/tilbakemeldinger
