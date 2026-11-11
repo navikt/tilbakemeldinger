@@ -1,4 +1,4 @@
-import { useCallback, useEffect, type Ref } from 'react';
+import { useCallback, useEffect, type ReactNode, type Ref } from 'react';
 import { useStore } from '#client/providers/Provider.tsx';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { captureException } from '@nais/apm';
@@ -93,35 +93,44 @@ const SelectEnhet = (props: Props) => {
 		'4100': 'Nav kontaktsenter', // "Nav Styringsenhet kontaktsenter" i norg2
 	};
 
+	let content: ReactNode;
+	if (enheter.status === 'RESULT') {
+		content = (
+			<Combobox
+				ref={ref}
+				harFeil={!!(submitted && error)}
+				label={comboBoxLabel()}
+				onChange={onChange}
+				value={value}
+				data={enheter.data
+					.filter((e) => (e.enhetNr !== '0000' && relevanteEnheter.has(e.type)) || ekstraEnheter[e.enhetNr])
+					.map((e) => ({
+						value: e.enhetNr,
+						label: ekstraEnheter[e.enhetNr] ?? e.navn,
+					}))
+					.sort((a, b) => a.label.localeCompare(b.label, 'nb'))}
+			/>
+		);
+	} else if (enheter.status === 'ERROR') {
+		content = (
+			<div className={`${cssPrefix}__lastefeil`}>
+				<InlineMessage status="error">{intl.formatMessage({ id: 'felter.navkontor.lastefeil' })}</InlineMessage>
+				<Button type="button" variant="secondary" size="small" onClick={retry}>
+					{intl.formatMessage({ id: 'felter.navkontor.provigjen' })}
+				</Button>
+			</div>
+		);
+	} else {
+		content = (
+			<div className={`${cssPrefix}__spinner`}>
+				<Loader size={'small'} />
+			</div>
+		);
+	}
+
 	return (
 		<div className={`${cssPrefix}__navkontor`}>
-			{enheter.status === 'RESULT' ? (
-				<Combobox
-					ref={ref}
-					harFeil={!!(submitted && error)}
-					label={comboBoxLabel()}
-					onChange={onChange}
-					value={value}
-					data={enheter.data
-						.filter((e) => (e.enhetNr !== '0000' && relevanteEnheter.has(e.type)) || ekstraEnheter[e.enhetNr])
-						.map((e) => ({
-							value: e.enhetNr,
-							label: ekstraEnheter[e.enhetNr] ?? e.navn,
-						}))
-						.sort((a, b) => a.label.localeCompare(b.label, 'nb'))}
-				/>
-			) : enheter.status === 'ERROR' ? (
-				<div className={`${cssPrefix}__lastefeil`}>
-					<InlineMessage status="error">{intl.formatMessage({ id: 'felter.navkontor.lastefeil' })}</InlineMessage>
-					<Button type="button" variant="secondary" size="small" onClick={retry}>
-						{intl.formatMessage({ id: 'felter.navkontor.provigjen' })}
-					</Button>
-				</div>
-			) : (
-				<div className={`${cssPrefix}__spinner`}>
-					<Loader size={'small'} />
-				</div>
-			)}
+			{content}
 			{submitted && error && (
 				<ErrorMessage className={`${cssPrefix}__feilmelding`}>{intl.formatMessage({ id: error })}</ErrorMessage>
 			)}
