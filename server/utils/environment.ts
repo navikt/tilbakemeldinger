@@ -3,6 +3,8 @@ import { z } from 'zod';
 const common = {
 	NODE_ENV: z.enum(['development', 'production']).default('production'),
 	APP_PORT: z.coerce.number().int(),
+	// The app gets this and TELEMETRY_URL from the server (server/site/page.ts)
+	APP_ORIGIN: z.url(),
 	VITE_APP_BASEPATH: z.string().startsWith('/'),
 	VITE_EDITORIAL_FRONTPAGE_ORIGIN: z.url().optional(),
 	NORG2_ORIGIN: z.url(),
@@ -21,10 +23,11 @@ const upstream = z.object({
 });
 
 const schema = z.discriminatedUnion('ENV', [
-	z.object({ ENV: z.enum(['prod', 'dev']), ...common, ...upstream.shape }),
-	// Locally, submissions use MOCK_ACCESS_TOKEN, so the upstream variables are optional
+	z.object({ ENV: z.enum(['prod', 'dev']), TELEMETRY_URL: z.url(), ...common, ...upstream.shape }),
+	// Locally, submissions use MOCK_ACCESS_TOKEN, so the upstream variables are optional, and there's no telemetry
 	z.object({
 		ENV: z.literal('localhost'),
+		TELEMETRY_URL: z.url().optional(),
 		MOCK_ACCESS_TOKEN: z.string().optional(),
 		...common,
 		...upstream.partial().shape,

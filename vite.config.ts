@@ -5,8 +5,9 @@ import devServer, { defaultOptions } from '@hono/vite-dev-server';
 import { visualizer } from 'rollup-plugin-visualizer';
 import NavBrowserTargets from '@navikt/browserslist-config/vite';
 
-// What a build bakes into the app. The workflows write them to .env (their env-file), and build:local sets test values
-const buildEnv = ['ENV', 'VITE_APP_BASEPATH', 'VITE_APP_ORIGIN', 'VITE_TELEMETRY_URL'];
+// What a build bakes into the app, besides CDN_BASE. The workflows write them to .env (their env-file), and
+// build:local sets test values. Everything else is read when the server runs (.nais/config.yml)
+const buildEnv = ['VITE_APP_BASEPATH'];
 
 export default defineConfig(({ command, mode, isSsrBuild }) => {
 	process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
@@ -19,7 +20,6 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 	}
 
 	process.env.NODE_ENV = process.env.NODE_ENV || 'production';
-	process.env.VITE_ENV = process.env.ENV;
 	const basepath = process.env.VITE_APP_BASEPATH;
 
 	return {
@@ -90,9 +90,11 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 				// The server's logger writes straight to stdout, past the `silent` above. To see its logs: LOG_LEVEL=info pnpm test
 				LOG_LEVEL: process.env.LOG_LEVEL ?? 'silent',
 				VITE_APP_BASEPATH: '/person/kontakt-oss',
-				VITE_APP_ORIGIN: 'http://localhost:9001',
-				VITE_ENV: 'dev',
-				VITE_TELEMETRY_URL: 'http://localhost:9001/collect',
+				// What the app is told about where it runs. test/setup.ts hands these to the app, and
+				// test/server/server.ts starts the server with them
+				ENV: 'dev',
+				APP_ORIGIN: 'http://localhost:9001',
+				TELEMETRY_URL: 'http://localhost:9001/collect',
 			},
 			// test/server: the server, in process (test/server/server.ts)
 			include: ['{client,shared,server}/**/*.test.{ts,tsx}', 'test/server/**/*.test.ts'],

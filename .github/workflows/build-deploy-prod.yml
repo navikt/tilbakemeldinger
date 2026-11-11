@@ -20,10 +20,7 @@ jobs:
       sbom-from-lockfile: true
       # What the build bakes into the app (vite.config.ts). What only the server reads is in .nais/config.yml
       env-file: |
-        ENV=prod
         VITE_APP_BASEPATH=/person/kontakt-oss
-        VITE_APP_ORIGIN=https://www.nav.no
-        VITE_TELEMETRY_URL=https://telemetry.nav.no/collect
         CDN_BASE=https://cdn.nav.no/navno/tilbakemeldinger/prod
     secrets: inherit
 

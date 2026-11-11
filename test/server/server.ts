@@ -9,8 +9,9 @@ import { createStub, type Stub, type StubRoute } from './stub';
 export const BASE = '/person/kontakt-oss';
 export const API = `${BASE}/tilbakemeldinger/api`;
 
-// The client's build-time origin, pinned in vite.config.ts (test.env)
-export const APP_ORIGIN = import.meta.env.VITE_APP_ORIGIN;
+// What the server is started with, and so what it tells the app (server/site/page.ts)
+export const APP_ORIGIN = 'http://localhost:9001';
+export const TELEMETRY_URL = 'http://localhost:9001/collect';
 
 const { privateKey } = generateKeyPairSync('rsa', { modulusLength: 2048 });
 const tokenxJwk = { ...privateKey.export({ format: 'jwk' }), kid: 'test-kid', alg: 'RS256' };
@@ -21,6 +22,8 @@ const defaultEnv = (): Record<string, string | undefined> => ({
 	// Vite (see `vite` below). Rendering the production way needs a build. Nothing else depends on NODE_ENV
 	NODE_ENV: 'development',
 	APP_PORT: '9001',
+	APP_ORIGIN,
+	TELEMETRY_URL,
 	VITE_APP_BASEPATH: BASE,
 	API_URL: 'http://tilbakemeldingsmottak-api.test',
 	NORG2_ORIGIN: 'http://norg2.test',

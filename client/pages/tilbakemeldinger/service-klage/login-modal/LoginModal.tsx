@@ -1,9 +1,7 @@
-import Environment from '#client/Environments.ts';
+import environment from '#client/Environments.ts';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { BodyLong, Button, Modal } from '@navikt/ds-react';
 import { withQuery } from 'ufo';
-
-const { loginUrl } = Environment();
 
 // For the <br> tags in the translation
 const lineBreaks = { br: () => <br /> };
@@ -34,7 +32,7 @@ const LoginModal = ({ open, closeFunc }: Props) => {
 				</BodyLong>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="primary" as="a" href={withQuery(loginUrl, { redirect: currentUrl })}>
+				<Button variant="primary" as="a" href={withQuery(environment().loginUrl, { redirect: currentUrl })}>
 					<FormattedMessage id="tilbakemeldinger.serviceklage.login.knapp" />
 				</Button>
 				<Button

@@ -1,5 +1,7 @@
 norg2Host: norg2.dev-fss-pub.nais.io
-editorialFrontPage: https://www.ansatt.dev.nav.no/tilbakemeldinger
+environment: dev
+appOrigin: https://www.ansatt.dev.nav.no
+telemetryUrl: https://telemetry.ekstern.dev.nav.no/collect
 ingresses:
   - https://www.ansatt.dev.nav.no/person/kontakt-oss/nn/tilbakemeldinger
   - https://www.ansatt.dev.nav.no/person/kontakt-oss/nb/tilbakemeldinger
@@ -10,7 +12,7 @@ replicas:
   max: 1
 resources:
   requests:
-    cpu: 50m
+    cpu: 25m
     memory: 96Mi
   limits:
-    memory: 512Mi
+    memory: 128Mi

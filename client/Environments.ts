@@ -1,7 +1,9 @@
+import { getConfig } from '#client/appConfig.ts';
+
 const Environment = () => {
-	const isLocal = import.meta.env.VITE_ENV === 'localhost';
-	const isDev = import.meta.env.VITE_ENV === 'dev';
-	const origin = import.meta.env.VITE_APP_ORIGIN;
+	const { env, origin } = getConfig();
+	const isLocal = env === 'localhost';
+	const isDev = env === 'dev';
 
 	const commonUrls = {
 		baseUrl: origin,

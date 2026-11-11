@@ -6,7 +6,7 @@ import nb from '#shared/language/nb.ts';
 import en from '#shared/language/en.ts';
 
 const PAGE = '/tilbakemeldinger/feil-og-mangler';
-const ORIGIN = 'http://localhost:9001'; // VITE_APP_ORIGIN as pinned in vite.config.ts
+const ORIGIN = 'http://localhost:9001'; // APP_ORIGIN as pinned in vite.config.ts
 
 const head = () => ({
 	title: document.title,

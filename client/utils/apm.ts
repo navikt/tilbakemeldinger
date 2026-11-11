@@ -1,4 +1,5 @@
 import type { CaptureExceptionOptions } from '@nais/apm';
+import { getConfig } from '#client/appConfig.ts';
 
 // @nais/apm (Grafana Faro) is one of the biggest parts of the bundle, and nothing on the page needs it to render,
 // so it's loaded in its own chunk while the page hydrates
@@ -11,7 +12,7 @@ export const loadApm = () => {
 		module.init({
 			namespace: 'navno',
 			app: 'tilbakemeldinger',
-			telemetryUrl: import.meta.env.VITE_TELEMETRY_URL,
+			telemetryUrl: getConfig().telemetryUrl,
 		});
 		return module;
 	});

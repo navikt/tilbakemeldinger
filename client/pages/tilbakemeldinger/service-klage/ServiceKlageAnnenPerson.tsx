@@ -12,7 +12,7 @@ interface Props {
 }
 
 const FullmaktskjemaLenke = (children: ReactNode[]) => (
-	<Link href={urls.tilbakemeldinger.serviceklage.fullmaktskjema} rel="noopener noreferrer" target="_blank">
+	<Link href={urls().tilbakemeldinger.serviceklage.fullmaktskjema} rel="noopener noreferrer" target="_blank">
 		{children}
 	</Link>
 );

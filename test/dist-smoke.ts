@@ -94,6 +94,8 @@ before(async () => {
 			NODE_ENV: 'production',
 			ENV: 'dev',
 			APP_PORT: String(port),
+			APP_ORIGIN: 'https://www.nav.test',
+			TELEMETRY_URL: 'https://telemetry.test/collect',
 			VITE_APP_BASEPATH: BASE,
 			NORG2_ORIGIN: upstreamOrigin,
 			API_URL: upstreamOrigin,
@@ -155,6 +157,12 @@ test('a page renders the app, with the client build’s script', async () => {
 	);
 	assert.match(html, /<main[^>]*class="tilbakemeldingerApp"[^>]*><\w/, withOutput('The page is missing the app'));
 	assert.ok(html.includes(script), withOutput(`The page is missing ${script}`));
+	// Where the app runs, from the environment above and not from the build
+	assert.match(
+		html,
+		/id="app-config"[^>]*>[^<]*"origin":"https:\/\/www\.nav\.test"/,
+		withOutput('The page is missing its config')
+	);
 });
 
 test('an unknown page gets the 404 page', async () => {

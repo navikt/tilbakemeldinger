@@ -17,7 +17,7 @@
 		"build": "pnpm run build:client && pnpm run build:ssr",
 		"build:client": "vite build",
 		"build:ssr": "vite build --ssr",
-		"build:local": "cross-env NODE_ENV=production ENV=dev VITE_APP_BASEPATH=/person/kontakt-oss VITE_APP_ORIGIN=https://www.nav.test VITE_TELEMETRY_URL=https://telemetry.test/collect CDN_BASE=https://cdn.nav.test/tilbakemeldinger pnpm run build",
+		"build:local": "cross-env NODE_ENV=production VITE_APP_BASEPATH=/person/kontakt-oss CDN_BASE=https://cdn.nav.test/tilbakemeldinger pnpm run build",
 		"analyze-bundle": "cross-env ANALYZE=true pnpm run build:local",
 		"lint": "oxfmt --check && oxlint && tsc --noEmit && tsc --noEmit -p server",
 		"format": "oxfmt",

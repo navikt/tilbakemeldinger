@@ -28,6 +28,10 @@ Applikasjonen er en full-stack Node.js-løsning med server-side rendering (SSR) 
 
 Serverbygget pakker inn alle avhengighetene, så imaget har bare `dist/server`, manifestet til klientbygget, `package.json` og `.env`, uten `node_modules`. Derfor lager CI SBOM-en fra `pnpm-lock.yaml` (`sbom-from-lockfile` i navno-ci) i stedet for fra imaget. Det som havner i bygget, hører hjemme i `dependencies`, ikke i `devDependencies`.
 
+### Konfigurasjon
+
+Serveren leser konfigurasjonen når den starter: fra `env` i `.nais/config.yml` i podden, med verdiene per miljø i `.nais/vars-*.yml`, og fra `.env.development` lokalt. Det nettleseren trenger å vite om miljøet, skriver serveren inn i hver side (`server/site/page.ts`), så det ikke bakes inn i bygget. Bare `VITE_APP_BASEPATH` og `CDN_BASE` bakes inn; arbeidsflytene setter dem i `env-file`.
+
 ### Endepunkter
 
 #### API-endepunkter

@@ -13,15 +13,15 @@ const UPSTREAM_ENV = {
 };
 
 describe('environment variables', () => {
-	test('a deployed server does not start when one is missing', async () => {
-		await expect(startServer({ env: { API_URL: undefined } })).rejects.toThrow(
-			/Invalid environment variables[\s\S]*API_URL/
+	test.each(['API_URL', 'APP_ORIGIN', 'TELEMETRY_URL'])('a deployed server does not start without %s', async (name) => {
+		await expect(startServer({ env: { [name]: undefined } })).rejects.toThrow(
+			new RegExp(`Invalid environment variables[\\s\\S]*${name}`)
 		);
 	});
 
-	// pnpm dev has no upstream variables
+	// pnpm dev has no upstream variables, and no telemetry
 	test('a local server starts without the upstream ones', async () => {
-		const server = await startServer({ env: { ENV: 'localhost', ...UPSTREAM_ENV } });
+		const server = await startServer({ env: { ENV: 'localhost', TELEMETRY_URL: undefined, ...UPSTREAM_ENV } });
 
 		expect((await server.fetch(`${API}/internal/isReady`)).status).toBe(200);
 		expectNoUnexpectedHosts(server);

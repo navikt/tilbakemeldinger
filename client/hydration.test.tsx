@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { expect, test, vi } from 'vitest';
 import { BASE, hydrateApp } from '#test/render.tsx';
+import { getConfig } from '#client/appConfig.ts';
 import { render as renderOnServer } from '#client/main-server.tsx';
 import { paths } from '#shared/paths.ts';
 
@@ -21,7 +22,8 @@ test.each(pages)('hydrates the server-rendered %s as is', (path) => {
 	// The server's HTML in <main>, with nothing around it (server/site/page.ts)
 	const main = document.createElement('main');
 	main.id = 'maincontent';
-	main.innerHTML = renderOnServer(`${BASE}${path}`).html;
+	// With the config the browser gets, as the server hands both the same one
+	main.innerHTML = renderOnServer(`${BASE}${path}`, getConfig()).html;
 	document.body.append(main);
 	const serverElements = [...main.querySelectorAll('*')];
 	// React reports mismatched attributes in the console only
