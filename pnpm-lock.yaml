@@ -173,6 +173,9 @@ importers:
       '@hono/node-server':
         specifier: 2.1.3
         version: 2.1.3(hono@4.13.13)
+      '@itsy/corgi':
+        specifier: 1.4.1
+        version: 1.4.1
       '@itsy/html':
         specifier: 1.2.0
         version: 1.2.0
@@ -221,9 +224,6 @@ importers:
       lru-cache:
         specifier: 11.5.0
         version: 11.5.0
-      node-cache:
-        specifier: 5.1.2
-        version: 5.1.2
       openid-client:
         specifier: 6.8.4
         version: 6.8.4
@@ -533,6 +533,10 @@ packages:
         optional: true
       wrangler:
         optional: true
+
+  '@itsy/corgi@1.4.1':
+    resolution: {integrity: sha512-ksGP31gWh5eQ9AO7JFxOCx8g/FPSukw5d1AJJp7Ls3RgXVhPm1xf/uYwAo+8CT97RRIX53/aHNWd9F0nfFbenA==}
+    engines: {node: '>=18.17'}
 
   '@itsy/html@1.2.0':
     resolution: {integrity: sha512-qWSaGyIGNM9oWazBU+r1LEcntTF3DhjgZMd2gneEots6L+g45UF2lagVQJ/tJvNZXq2X6b6tBA/GwcVptJrmFA==}
@@ -1419,10 +1423,6 @@ packages:
     resolution: {integrity: sha512-k7ndgKhwoQveBL+/1tqGJYNz097I7WOvwbmmU2AR5+magtbjPWQTS1C5vzGkBC8Ym8UWRzfKUzUUqFLypY4Q+w==}
     engines: {node: '>=20'}
 
-  clone@2.1.2:
-    resolution: {integrity: sha512-3Pe/CF1Nn94hyhIYpjtiLhdCoEoz0DqQ+988E9gmeEdQZlojxnOb74wctFyuwWQHzqyf9X7C7MG8juUpqBJT8w==}
-    engines: {node: '>=0.8'}
-
   compute-scroll-into-view@3.1.1:
     resolution: {integrity: sha512-VRhuHOLoKYOy4UbilLbUzbYg93XLjv2PncJC50EuTWPA3gaja1UjBsUP/D/9/juV3vQFr6XBEzn9KCAHdUvOHw==}
 
@@ -1881,10 +1881,6 @@ packages:
 
   node-addon-api@7.1.1:
     resolution: {integrity: sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ==}
-
-  node-cache@5.1.2:
-    resolution: {integrity: sha512-t1QzWwnk4sjLWaQAS8CHgOJ+RAfmHpxFWmc36IWTiWHQfs0w5JDMBS1b1ZxQteo0vVVuWJvIUKHDkkeK7vIGCg==}
-    engines: {node: '>= 8.0.0'}
 
   node@runtime:26.13.0:
     resolution:
@@ -2705,6 +2701,8 @@ snapshots:
       hono: 4.13.13
       minimatch: 9.0.9
 
+  '@itsy/corgi@1.4.1': {}
+
   '@itsy/html@1.2.0': {}
 
   '@jridgewell/resolve-uri@3.1.2': {}
@@ -3392,8 +3390,6 @@ snapshots:
       strip-ansi: 7.2.0
       wrap-ansi: 9.0.2
 
-  clone@2.1.2: {}
-
   compute-scroll-into-view@3.1.1: {}
 
   cookie@1.1.1: {}
@@ -3771,10 +3767,6 @@ snapshots:
 
   node-addon-api@7.1.1:
     optional: true
-
-  node-cache@5.1.2:
-    dependencies:
-      clone: 2.1.2
 
   node@runtime:26.13.0: {}
 

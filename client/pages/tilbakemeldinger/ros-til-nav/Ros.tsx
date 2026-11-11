@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { captureException } from '@nais/apm';
 import { postRosTilNav } from '#client/clients/apiClient.ts';
-import { ErrorResponse } from '#client/types/errors.ts';
+import { errorContext } from '#client/types/errors.ts';
 import Header from '#client/components/header/Header.tsx';
 import { vars } from '#client/Config.ts';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -11,7 +11,7 @@ import SelectEnhet from '#client/components/input-fields/SelectEnhet.tsx';
 import { Alert, Box, Button, GuidePanel, Radio, RadioGroup, Textarea } from '@navikt/ds-react';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { RosTilNav } from '#shared/types/RosTilNav.ts';
-import { resolveErrorCode } from '#client/utils/errorCodes.ts';
+import { submitErrorMessage } from '#client/utils/errorCodes.ts';
 import appStyle from '#client/App.module.scss';
 
 type HVEM_ROSES = 'NAV_KONTAKTSENTER' | 'NAV_DIGITALE_TJENESTER' | 'NAV_KONTOR';
@@ -39,7 +39,8 @@ const Ros = () => {
 
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
-	const [submitError, setSubmitError] = useState<ErrorResponse>();
+	// The message id for why sending failed
+	const [submitError, setSubmitError] = useState<string>();
 	const { formatMessage } = useIntl();
 
 	const send = async (values: FieldValues) => {
@@ -59,14 +60,13 @@ const Ros = () => {
 			setSuccess(true);
 			triggerHotjar('rosnav');
 		} catch (e) {
-			const error = e as ErrorResponse;
-			setSubmitError(error);
-			captureException(error, {
+			setSubmitError(submitErrorMessage(e));
+			captureException(e, {
 				fingerprint: 'ros.post-ros-til-nav',
 				context: {
 					component: 'Ros',
 					action: 'postRosTilNav',
-					errorCode: error?.errorCode,
+					...errorContext(e),
 				},
 			});
 		}
@@ -172,7 +172,7 @@ const Ros = () => {
 
 						{submitError && (
 							<Alert variant={'error'}>
-								<FormattedMessage id={resolveErrorCode(submitError.errorCode)} />
+								<FormattedMessage id={submitError} />
 							</Alert>
 						)}
 						<Button

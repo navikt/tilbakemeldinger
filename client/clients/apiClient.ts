@@ -1,84 +1,31 @@
+import { corgi } from '@itsy/corgi';
 import Environment from '#client/Environments.ts';
-import { BadRequest, HTTPError } from '#client/types/errors.ts';
-import { RosTilNav } from '#shared/types/RosTilNav.ts';
-import { FeilOgMangler } from '#shared/types/FeilOgMangler.ts';
-import { ServiceKlage } from '#shared/types/ServiceKlage.ts';
+import type { AuthInfo } from '#client/types/authInfo.ts';
+import type { Enhet } from '#client/types/enheter.ts';
+import type { Fodselsnr } from '#client/types/fodselsnr.ts';
+import type { KontaktInfo } from '#client/types/kontaktInfo.ts';
+import type { RosTilNav } from '#shared/types/RosTilNav.ts';
+import type { FeilOgMangler } from '#shared/types/FeilOgMangler.ts';
+import type { ServiceKlage } from '#shared/types/ServiceKlage.ts';
 
 const { appUrl, personInfoApiUrl, authUrl } = Environment();
 
-const API_URL = `${appUrl}/api`;
+const api = corgi.create({
+	baseURL: `${appUrl}/api`,
+	headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+	credentials: 'include',
+});
 
-/*
-    GET
- */
+export const fetchEnheter = () => api.get<Enhet[]>('/enheter');
 
-const hentJson = (url: string) =>
-	fetch(url, {
-		method: 'GET',
-		headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-		credentials: 'include',
-	})
-		.then((response) => sjekkForFeil(url, response))
-		.then(parseJson)
-		.catch((err: string & HTTPError) => {
-			throw {
-				code: err.code || 404,
-				text: err.text || err,
-			};
-		});
+export const fetchFodselsnr = () => api.get<Fodselsnr>('/fodselsnr');
 
-export const fetchEnheter = () => hentJson(`${API_URL}/enheter`);
+export const fetchAuthInfo = () => api.get<AuthInfo>(authUrl);
 
-export const fetchFodselsnr = () => hentJson(`${API_URL}/fodselsnr`);
+export const fetchKontaktInfo = () => api.get<KontaktInfo>(`${personInfoApiUrl}/kontaktinformasjon`);
 
-export const fetchAuthInfo = () => hentJson(authUrl);
+export const postRosTilNav = (data: RosTilNav) => api.post('/mottak/ros', { body: data });
 
-export const fetchKontaktInfo = () => hentJson(`${personInfoApiUrl}/kontaktinformasjon`);
+export const postServiceKlage = (data: ServiceKlage) => api.post('/mottak/serviceklage', { body: data });
 
-/*
-    POST
- */
-
-type Payload = RosTilNav | FeilOgMangler | ServiceKlage;
-
-const sendJson = async (url: string, data: Payload) => {
-	const res = await fetch(url, {
-		method: 'POST',
-		body: JSON.stringify(data),
-		headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-		credentials: 'include',
-	});
-	const json = await res.json();
-	if (res.ok) {
-		return json;
-	} else {
-		throw json;
-	}
-};
-
-export const postRosTilNav = (data: RosTilNav) => sendJson(`${API_URL}/mottak/ros`, data);
-
-export const postServiceKlage = (data: ServiceKlage) => sendJson(`${API_URL}/mottak/serviceklage`, data);
-
-export const postFeilOgMangler = (data: FeilOgMangler) => sendJson(`${API_URL}/mottak/feil-og-mangler`, data);
-
-/*
-    Utils
- */
-
-const parseJson = (data: Response) => data.json();
-
-const sjekkForFeil = async (url: string, response: Response) => {
-	if (response.ok) {
-		return response;
-	} else {
-		const error = {
-			code: response.status,
-			text:
-				response.status === 400
-					? await parseJson(response).then((data: BadRequest) => data.message)
-					: response.statusText,
-		};
-		throw error;
-	}
-};
+export const postFeilOgMangler = (data: FeilOgMangler) => api.post('/mottak/feil-og-mangler', { body: data });

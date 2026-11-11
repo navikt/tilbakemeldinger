@@ -5,7 +5,7 @@ import { findPage } from '#client/pages/pages.ts';
 import { fetchAuthInfo, fetchFodselsnr, fetchKontaktInfo } from '#client/clients/apiClient.ts';
 import { useStore } from '#client/providers/Provider.tsx';
 import { AuthInfo } from '#client/types/authInfo.ts';
-import { HTTPError } from '#client/types/errors.ts';
+import { errorContext } from '#client/types/errors.ts';
 import { KontaktInfo } from '#client/types/kontaktInfo.ts';
 import { Fodselsnr } from '#client/types/fodselsnr.ts';
 import { DecoratorWidgets } from '#client/components/decorator-widgets/DecoratorWidgets.tsx';
@@ -27,9 +27,9 @@ export const App = ({ url }: Props) => {
 			return;
 		}
 
-		const report = (fingerprint: string, action: string) => (error: HTTPError) => {
+		const report = (fingerprint: string, action: string) => (error: unknown) => {
 			console.error(error);
-			captureException(error, { fingerprint, context: { source: 'App', action } });
+			captureException(error, { fingerprint, context: { source: 'App', action, ...errorContext(error) } });
 		};
 
 		const loadUser = async () => {

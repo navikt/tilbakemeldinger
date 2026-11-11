@@ -24,3 +24,4 @@ pre-push:
   jobs:
     - name: test
       run: pnpm run test
+      interactive: true

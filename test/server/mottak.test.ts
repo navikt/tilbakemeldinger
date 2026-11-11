@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest';
 import { API, postJson, startServer, type TestServer } from './server';
 import { expectNoUnexpectedHosts, FEIL_OG_MANGLER, ROS, SERVICEKLAGE, unsignedJwt } from './fixtures';
 
@@ -32,12 +32,12 @@ describe('forwarding to tilbakemeldingsmottak-api', () => {
 		await server.stop();
 	});
 
-	// Upstream status and JSON body are passed through
+	// The upstream's JSON body is passed through, as a 200 for any success (ros' upstream answers 201)
 	test.each([
-		['ros', '/rest/ros', ROS, 201, { id: 'kvittering-1' }],
-		['feil-og-mangler', '/rest/feil-og-mangler', FEIL_OG_MANGLER, 200, {}],
-		['serviceklage', '/rest/v2/serviceklage', SERVICEKLAGE, 200, {}],
-	])('%s → %s with the Azure AD token and the raw body', async (path, upstreamPath, body, status, answer) => {
+		['ros', '/rest/ros', ROS, { id: 'kvittering-1' }],
+		['feil-og-mangler', '/rest/feil-og-mangler', FEIL_OG_MANGLER, {}],
+		['serviceklage', '/rest/v2/serviceklage', SERVICEKLAGE, {}],
+	])('%s → %s with the Azure AD token and the raw body', async (path, upstreamPath, body, answer) => {
 		const res = await postJson(server, `${API}/mottak/${path}`, body);
 
 		const upstream = server.stub.find(UPSTREAM, upstreamPath);
@@ -45,7 +45,7 @@ describe('forwarding to tilbakemeldingsmottak-api', () => {
 		expect(upstream[0].headers.authorization).toBe('Bearer azure-token');
 		expect(upstream[0].headers['content-type']).toBe('application/json');
 		expect(JSON.parse(upstream[0].body)).toEqual(body);
-		expect(res.status).toBe(status);
+		expect(res.status).toBe(200);
 		expect(await res.json()).toEqual(answer);
 	});
 
@@ -168,5 +168,31 @@ describe('without an access token', () => {
 		expect(res.status).toBe(500);
 		expect(await res.text()).toBe('Failed to populate auth header');
 		expect(server.stub.find(UPSTREAM)).toEqual([]);
+	});
+});
+
+describe('when tilbakemeldingsmottak-api does not answer', () => {
+	let server: TestServer;
+
+	beforeAll(async () => {
+		server = await startServer({ routes: [{ host: UPSTREAM, path: '/rest/ros', reply: () => 'hang' }] });
+	});
+
+	afterAll(async () => {
+		vi.useRealTimers();
+		expectNoUnexpectedHosts(server);
+		await server.stop();
+	});
+
+	test('answers 504 after 30 seconds', async () => {
+		vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+		const pending = postJson(server, `${API}/mottak/ros`, ROS);
+		await vi.waitFor(() => expect(server.stub.find(UPSTREAM, '/rest/ros')).toHaveLength(1));
+
+		await vi.advanceTimersByTimeAsync(30_000);
+		const res = await pending;
+
+		expect(res.status).toBe(504);
+		expect(await res.text()).toBe('Gateway timeout');
 	});
 });

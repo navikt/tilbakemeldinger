@@ -29,6 +29,7 @@
 	},
 	"dependencies": {
 		"@hono/node-server": "2.1.3",
+		"@itsy/corgi": "1.4.1",
 		"@itsy/html": "1.2.0",
 		"@nais/apm": "0.4.0",
 		"@navikt/aksel-icons": "8.22.1",
@@ -45,7 +46,6 @@
 		"jose": "6.2.3",
 		"jwt-decode": "4.0.0",
 		"lru-cache": "11.5.0",
-		"node-cache": "5.1.2",
 		"openid-client": "6.8.4",
 		"proxy-addr": "2.0.8",
 		"react": "19.3.1",

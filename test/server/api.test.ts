@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest';
 import { API, startServer, type TestServer } from './server';
 import { ENHETER } from './stub';
 import { expectNoUnexpectedHosts, unsignedJwt } from './fixtures';
@@ -35,16 +35,12 @@ describe('GET endpoints', () => {
 		expect(server.stub.find('norg2.test', '/norg2/api/v1/enhet').at(-1)?.query.get('enhetStatusListe')).toBe('AKTIV');
 	});
 
-	test('enheter answers 500 when norg2 does not return a list', async () => {
-		server.stub.route({
-			host: 'norg2.test',
-			path: '/norg2/api/v1/enhet',
-			reply: () => ({ headers: { 'content-type': 'application/json' }, body: '{}' }),
-		});
+	test('enheter asks norg2 once, and answers from its cache after that', async () => {
+		await server.fetch(`${API}/enheter`);
 		const res = await server.fetch(`${API}/enheter`);
 
-		expect(res.status).toBe(500);
-		expect(await res.text()).toBe('Lasting av enheter feilet');
+		expect(res.status).toBe(200);
+		expect(server.stub.find('norg2.test', '/norg2/api/v1/enhet')).toHaveLength(1);
 	});
 
 	test.each([
@@ -71,5 +67,62 @@ describe('GET endpoints', () => {
 
 		expect(res.status).toBe(500);
 		expect(await res.text()).toBe('Internal Server Error');
+	});
+});
+
+describe('enheter when norg2 fails', () => {
+	let server: TestServer;
+
+	beforeAll(async () => {
+		server = await startServer({
+			routes: [
+				{
+					host: 'norg2.test',
+					path: '/norg2/api/v1/enhet',
+					reply: () => ({ headers: { 'content-type': 'application/json' }, body: '{}' }),
+				},
+			],
+		});
+	});
+
+	afterAll(async () => {
+		expectNoUnexpectedHosts(server);
+		await server.stop();
+	});
+
+	test('answers 500 when norg2 does not return a list', async () => {
+		const res = await server.fetch(`${API}/enheter`);
+
+		expect(res.status).toBe(500);
+		expect(await res.text()).toBe('Lasting av enheter feilet');
+	});
+});
+
+describe('enheter when norg2 starts failing', () => {
+	let server: TestServer;
+
+	beforeAll(async () => {
+		server = await startServer();
+	});
+
+	afterAll(async () => {
+		vi.useRealTimers();
+		expectNoUnexpectedHosts(server);
+		await server.stop();
+	});
+
+	test('keeps answering with the last list, and refreshes it in the background', async () => {
+		const norg2Requests = () => server.stub.find('norg2.test', '/norg2/api/v1/enhet').length;
+		expect((await server.fetch(`${API}/enheter`)).status).toBe(200);
+		server.stub.route({ host: 'norg2.test', path: '/norg2/api/v1/enhet', reply: () => ({ status: 503 }) });
+
+		// Past the hour the list is fresh for
+		vi.useFakeTimers({ toFake: ['Date'] });
+		vi.setSystemTime(Date.now() + 2 * 60 * 60 * 1000);
+		const res = await server.fetch(`${API}/enheter`);
+
+		expect(res.status).toBe(200);
+		expect(await res.json()).toHaveLength(ENHETER.length);
+		await vi.waitFor(() => expect(norg2Requests()).toBe(2));
 	});
 });

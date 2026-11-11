@@ -108,6 +108,8 @@ const en: ITranslation = {
 	'felter.combobox.knapp.beskrivelse': 'Open list',
 	'felter.klagerpa.navkontor.velg': 'Which Nav department does the complaint relate to?',
 	'felter.hvemroses.navkontor.skrivinn': 'Search or select using arrow keys',
+	'felter.navkontor.lastefeil': "We couldn't load the list of Nav offices.",
+	'felter.navkontor.provigjen': 'Try again',
 	'felter.hvemfra': 'Who are you writing on behalf of?',
 	'felter.hvemfra.megselv': 'Myself as a private individual',
 	'felter.hvemfra.enannen': 'On behalf of another private individual',

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { captureException } from '@nais/apm';
 import { postFeilOgMangler } from '#client/clients/apiClient.ts';
-import { ErrorResponse } from '#client/types/errors.ts';
+import { errorContext } from '#client/types/errors.ts';
 import Header from '#client/components/header/Header.tsx';
 import { vars } from '#client/Config.ts';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -10,7 +10,7 @@ import FeilgOgManglerOnskerAaKontaktes from './FeilOgManglerOnskerAaKontaktes';
 import { triggerHotjar } from '#client/utils/hotjar.ts';
 import { Alert, Box, Button, GuidePanel, Radio, RadioGroup, Textarea } from '@navikt/ds-react';
 import { Controller, FieldValues, FormProvider, useForm } from 'react-hook-form';
-import { resolveErrorCode } from '#client/utils/errorCodes.ts';
+import { submitErrorMessage } from '#client/utils/errorCodes.ts';
 import appStyle from '#client/App.module.scss';
 import { FEIL_OG_MANGLER_TYPE } from '#shared/types/FeilOgMangler.ts';
 
@@ -36,7 +36,8 @@ const FOM = () => {
 
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
-	const [submitError, setSubmitError] = useState<ErrorResponse>();
+	// The message id for why sending failed
+	const [submitError, setSubmitError] = useState<string>();
 	const { formatMessage } = useIntl();
 
 	const send = async (values: FieldValues) => {
@@ -57,14 +58,13 @@ const FOM = () => {
 			setSuccess(true);
 			triggerHotjar('feilogmangler');
 		} catch (e) {
-			const error = e as ErrorResponse;
-			setSubmitError(error);
-			captureException(error, {
+			setSubmitError(submitErrorMessage(e));
+			captureException(e, {
 				fingerprint: 'feil-og-mangler.post-feil-og-mangler',
 				context: {
 					component: 'FeilOgMangler',
 					action: 'postFeilOgMangler',
-					errorCode: error?.errorCode,
+					...errorContext(e),
 				},
 			});
 		}
@@ -152,7 +152,7 @@ const FOM = () => {
 
 							{submitError && (
 								<Alert variant={'error'}>
-									<FormattedMessage id={resolveErrorCode(submitError.errorCode)} />
+									<FormattedMessage id={submitError} />
 								</Alert>
 							)}
 							<Button

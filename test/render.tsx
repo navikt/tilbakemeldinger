@@ -38,13 +38,13 @@ export const ENHETER = [
 type Reply = { status?: number; body?: unknown };
 
 // Replies per endpoint the browser talks to. With the network disabled, any
-// other request fails.
+// other request fails. A list answers one request per reply, and its last reply keeps answering.
 type Api = {
-	auth?: Reply;
-	fodselsnr?: Reply;
-	kontaktinformasjon?: Reply;
-	enheter?: Reply;
-	mottak?: Reply;
+	auth?: Reply | Reply[];
+	fodselsnr?: Reply | Reply[];
+	kontaktinformasjon?: Reply | Reply[];
+	enheter?: Reply | Reply[];
+	mottak?: Reply | Reply[];
 };
 
 type Endpoint = keyof Api;
@@ -98,23 +98,27 @@ const openPage = (path: string, api: Api) => {
 
 	for (const [name, { url, method }] of Object.entries(endpoints) as [Endpoint, (typeof endpoints)[Endpoint]][]) {
 		const { origin, pathname } = new URL(url);
-		const { status = 200, body } = api[name] ?? defaults[name];
+		const replies = [api[name] ?? defaults[name]].flat();
 
-		agent
-			.get(origin)
-			.intercept({ path: name === 'mottak' ? (p) => p.startsWith(pathname) : pathname, method })
-			.reply(
-				status,
-				async (opts) => {
-					if (method === 'POST') {
-						posts.push({ path: opts.path, body: JSON.parse(await readBody(opts.body)) });
-					}
-					served.add(name);
-					return body === undefined ? '' : JSON.stringify(body);
-				},
-				{ headers: { 'content-type': 'application/json' } }
-			)
-			.persist();
+		for (const [i, { status = 200, body }] of replies.entries()) {
+			const scope = agent
+				.get(origin)
+				.intercept({ path: name === 'mottak' ? (p) => p.startsWith(pathname) : pathname, method })
+				.reply(
+					status,
+					async (opts) => {
+						if (method === 'POST') {
+							posts.push({ path: opts.path, body: JSON.parse(await readBody(opts.body)) });
+						}
+						served.add(name);
+						return body === undefined ? '' : JSON.stringify(body);
+					},
+					{ headers: { 'content-type': 'application/json' } }
+				);
+			if (i === replies.length - 1) {
+				scope.persist();
+			}
+		}
 	}
 
 	// Waits until these endpoints have answered the app, plus a timer tick for

@@ -1,14 +1,11 @@
-import * as querystring from 'querystring';
-import Cache from 'node-cache';
+import { corgi, isHttpError } from '@itsy/corgi';
+import { withTimeout } from '@itsy/corgi/timeout';
+import { LRUCache } from 'lru-cache';
 import { env } from '#server/utils/environment.ts';
 
-const cacheKey = 'authHeader';
-
-const cache = new Cache({
-	deleteOnExpire: true,
-});
-
 const azureAdTokenApi = `https://login.microsoftonline.com/${env.AZURE_APP_TENANT_ID}/oauth2/v2.0/token`;
+
+const azureAd = corgi.create({ plugins: [withTimeout(10_000)] });
 
 type TokenResponse = {
 	token_type: 'Bearer';
@@ -16,44 +13,31 @@ type TokenResponse = {
 	access_token: string;
 };
 
-const fetchAccessToken = async (scope: string): Promise<TokenResponse | null> => {
-	console.log('Refreshing access token...');
+// A token per scope, until a minute before it expires. Requests at the same time share one token request,
+// and a request that fails isn't kept
+const tokens = new LRUCache<string, string>({
+	max: 10,
+	fetchMethod: async (scope, _expired, { options }) => {
+		console.log('Refreshing access token...');
 
-	const response = await fetch(azureAdTokenApi, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded',
-			accept: 'application/json',
-		},
-		body: querystring.stringify({
-			grant_type: 'client_credentials',
-			client_id: env.AZURE_APP_CLIENT_ID,
-			client_secret: env.AZURE_APP_CLIENT_SECRET,
-			scope: scope,
-		}),
-	});
+		try {
+			const token = await azureAd.post<TokenResponse>(azureAdTokenApi, {
+				headers: { accept: 'application/json' },
+				// Sent form-encoded. The variables are only optional locally (environment.ts), where submissions use MOCK_ACCESS_TOKEN
+				body: new URLSearchParams({
+					grant_type: 'client_credentials',
+					client_id: env.AZURE_APP_CLIENT_ID ?? '',
+					client_secret: env.AZURE_APP_CLIENT_SECRET ?? '',
+					scope,
+				}),
+			});
+			options.ttl = Math.max(token.expires_in - 60, 1) * 1000;
+			return token.access_token;
+		} catch (error) {
+			console.error('Failed to get a token from Azure AD', isHttpError(error) ? error.data : error);
+			return undefined;
+		}
+	},
+});
 
-	const responseJson = await response.json();
-
-	if (!response.ok) {
-		console.error('Bad response from token service', responseJson);
-		return null;
-	}
-
-	return responseJson;
-};
-
-export const getAzureadToken = async (scope: string) => {
-	if (cache.has(cacheKey)) {
-		return cache.get<string>(cacheKey);
-	}
-
-	const accessToken = await fetchAccessToken(scope);
-	if (!accessToken) {
-		return undefined;
-	}
-
-	cache.set(cacheKey, accessToken.access_token, accessToken.expires_in - 60);
-
-	return accessToken.access_token;
-};
+export const getAzureadToken = (scope: string) => tokens.fetch(scope);

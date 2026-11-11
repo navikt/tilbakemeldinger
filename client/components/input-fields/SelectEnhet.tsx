@@ -1,12 +1,11 @@
-import { useEffect, type Ref } from 'react';
+import { useCallback, useEffect, type ReactNode, type Ref } from 'react';
 import { useStore } from '#client/providers/Provider.tsx';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { captureException } from '@nais/apm';
 import { fetchEnheter } from '#client/clients/apiClient.ts';
-import { Enhet } from '#client/types/enheter.ts';
-import { HTTPError } from '#client/types/errors.ts';
+import { errorContext } from '#client/types/errors.ts';
 import Combobox from './EnhetCombobox';
-import { ErrorMessage, Loader } from '@navikt/ds-react';
+import { Button, ErrorMessage, InlineMessage, Loader } from '@navikt/ds-react';
 import './SelectEnhet.scss';
 
 const cssPrefix = 'selectEnhet';
@@ -56,20 +55,28 @@ const SelectEnhet = (props: Props) => {
 	const [{ enheter }, dispatch] = useStore();
 	const intl = useIntl();
 
-	useEffect(() => {
+	const load = useCallback(() => {
 		fetchEnheter()
-			.then((data: Enhet[]) => dispatch({ type: 'SETT_ENHETER_RESULT', payload: data }))
-			.catch((e: HTTPError) => {
-				dispatch({ type: 'SETT_ENHETER_ERROR', payload: e });
+			.then((data) => dispatch({ type: 'SETT_ENHETER', payload: { status: 'RESULT', data } }))
+			.catch((e: unknown) => {
+				dispatch({ type: 'SETT_ENHETER', payload: { status: 'ERROR' } });
 				captureException(e, {
 					fingerprint: 'select-enhet.fetch-enheter',
 					context: {
 						component: 'SelectEnhet',
 						action: 'fetchEnheter',
+						...errorContext(e),
 					},
 				});
 			});
 	}, [dispatch]);
+
+	useEffect(load, [load]);
+
+	const retry = () => {
+		dispatch({ type: 'SETT_ENHETER', payload: { status: 'LOADING' } });
+		load();
+	};
 
 	const comboBoxLabel = () => (
 		<div className={`${cssPrefix}__label aksel-label`}>
@@ -86,28 +93,44 @@ const SelectEnhet = (props: Props) => {
 		'4100': 'Nav kontaktsenter', // "Nav Styringsenhet kontaktsenter" i norg2
 	};
 
+	let content: ReactNode;
+	if (enheter.status === 'RESULT') {
+		content = (
+			<Combobox
+				ref={ref}
+				harFeil={!!(submitted && error)}
+				label={comboBoxLabel()}
+				onChange={onChange}
+				value={value}
+				data={enheter.data
+					.filter((e) => (e.enhetNr !== '0000' && relevanteEnheter.has(e.type)) || ekstraEnheter[e.enhetNr])
+					.map((e) => ({
+						value: e.enhetNr,
+						label: ekstraEnheter[e.enhetNr] ?? e.navn,
+					}))
+					.sort((a, b) => a.label.localeCompare(b.label, 'nb'))}
+			/>
+		);
+	} else if (enheter.status === 'ERROR') {
+		content = (
+			<div className={`${cssPrefix}__lastefeil`}>
+				<InlineMessage status="error">{intl.formatMessage({ id: 'felter.navkontor.lastefeil' })}</InlineMessage>
+				<Button type="button" variant="secondary" size="small" onClick={retry}>
+					{intl.formatMessage({ id: 'felter.navkontor.provigjen' })}
+				</Button>
+			</div>
+		);
+	} else {
+		content = (
+			<div className={`${cssPrefix}__spinner`}>
+				<Loader size={'small'} />
+			</div>
+		);
+	}
+
 	return (
 		<div className={`${cssPrefix}__navkontor`}>
-			{enheter.status === 'RESULT' ? (
-				<Combobox
-					ref={ref}
-					harFeil={!!(submitted && error)}
-					label={comboBoxLabel()}
-					onChange={onChange}
-					value={value}
-					data={enheter.data
-						.filter((e) => (e.enhetNr !== '0000' && relevanteEnheter.has(e.type)) || ekstraEnheter[e.enhetNr])
-						.map((e) => ({
-							value: e.enhetNr,
-							label: ekstraEnheter[e.enhetNr] ?? e.navn,
-						}))
-						.sort((a, b) => a.label.localeCompare(b.label, 'nb'))}
-				/>
-			) : (
-				<div className={`${cssPrefix}__spinner`}>
-					<Loader size={'small'} />
-				</div>
-			)}
+			{content}
 			{submitted && error && (
 				<ErrorMessage className={`${cssPrefix}__feilmelding`}>{intl.formatMessage({ id: error })}</ErrorMessage>
 			)}
