@@ -10,6 +10,7 @@ import FeilgOgManglerOnskerAaKontaktes from './FeilOgManglerOnskerAaKontaktes';
 import { triggerHotjar } from '#client/utils/hotjar.ts';
 import { Alert, Box, Button, GuidePanel, Radio, RadioGroup, Textarea } from '@navikt/ds-react';
 import { Controller, FieldValues, FormProvider, useForm } from 'react-hook-form';
+import { useRevalidateOnLocaleChange } from '#client/utils/useRevalidateOnLocaleChange.ts';
 import { submitErrorMessage } from '#client/utils/errorCodes.ts';
 import appStyle from '#client/App.module.scss';
 import { FEIL_OG_MANGLER_TYPE } from '#shared/types/FeilOgMangler.ts';
@@ -25,6 +26,8 @@ const FOM = () => {
 	const methods = useForm<FeilOgManglerFields>({
 		reValidateMode: 'onChange',
 	});
+
+	useRevalidateOnLocaleChange(methods);
 
 	const {
 		register,
