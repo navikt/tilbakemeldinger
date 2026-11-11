@@ -14,9 +14,7 @@ const transformEnhet = (enhetRaw: Record<string, unknown> & Enhet): Enhet => ({
 	type: enhetRaw.type,
 });
 
-// The offices rarely change. Once norg2 has given a list, requests never wait for it again: for an hour it isn't
-// asked at all, after that the list is refreshed in the background. A failed refresh keeps the last list, and
-// norg2 is given a minute before the next try. The timeout keeps a refresh that hangs from blocking the next ones
+// The offices rarely change, so they're highly cacheable.
 const norg2 = corgi.create({
 	plugins: [
 		swr({

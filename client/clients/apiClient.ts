@@ -10,7 +10,6 @@ import type { ServiceKlage } from '#shared/types/ServiceKlage.ts';
 
 const { appUrl, personInfoApiUrl, authUrl } = Environment();
 
-// An answer that isn't 2xx throws corgi's HttpError, with its body in `data` (client/types/errors.ts)
 const api = corgi.create({
 	baseURL: `${appUrl}/api`,
 	headers: { 'Content-Type': 'application/json;charset=UTF-8' },
@@ -21,7 +20,6 @@ export const fetchEnheter = () => api.get<Enhet[]>('/enheter');
 
 export const fetchFodselsnr = () => api.get<Fodselsnr>('/fodselsnr');
 
-// Absolute URLs, which bypass the base URL
 export const fetchAuthInfo = () => api.get<AuthInfo>(authUrl);
 
 export const fetchKontaktInfo = () => api.get<KontaktInfo>(`${personInfoApiUrl}/kontaktinformasjon`);
