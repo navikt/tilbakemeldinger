@@ -18,7 +18,7 @@ export default defineConfig({
 		'vitest/require-mock-type-parameters': 'off',
 		// It would flag every deliberate cast, like document.activeElement as HTMLElement
 		'typescript/no-unsafe-type-assertion': 'off',
-		// toSorted() needs Chrome 110, and @navikt/browserslist-config goes back to Chrome 108
+		// toSorted() needs Chrome 110, and @navikt/browserslist-config-public goes back to Chrome 108
 		'unicorn/no-array-sort': 'off',
 		// A React Compiler rule (react-hook-form's watch()), and we don't use the compiler
 		'react/incompatible-library': 'off',

@@ -3,7 +3,7 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import devServer, { defaultOptions } from '@hono/vite-dev-server';
 import { visualizer } from 'rollup-plugin-visualizer';
-import NavBrowserTargets from '@navikt/browserslist-config/vite';
+import NavBrowserTargets from '@navikt/browserslist-config-public/vite';
 
 // The same as BASE_PATH in shared/paths.ts. Not imported from there: this file is type-checked as a project
 // of its own (tsconfig.node.json), which can't reach into the app's
@@ -56,7 +56,7 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
 					rolldownOptions: {
 						// The server, and the app's renderer, which server/site/page.ts imports at startup. Their shared
 						// dependencies go in shared chunks, so the server and the renderer use the same copies
-						input: { main: 'server/main.ts', 'main-server': 'client/main-server.tsx' },
+						input: { 'prod-server': 'server/prod-server.ts', 'main-server': 'client/main-server.tsx' },
 						// That import goes through package.json `imports`, to the renderer built next to the server
 						external: [/^#dist\//],
 					},

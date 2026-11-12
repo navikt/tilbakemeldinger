@@ -44,5 +44,5 @@ app.onError((err, c) => {
 	return c.text('Internal Server Error', 500);
 });
 
-// Served by main.ts in production, and by Vite in dev
+// Served by prod-server.ts in production, and by Vite in dev
 export default app;

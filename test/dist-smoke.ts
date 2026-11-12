@@ -86,7 +86,7 @@ before(async () => {
 	const { privateKey } = generateKeyPairSync('rsa', { modulusLength: 2048 });
 	const port = await freePort();
 	origin = `http://127.0.0.1:${port}`;
-	app = spawn(process.execPath, ['dist/server/main.js'], {
+	app = spawn(process.execPath, ['dist/server/prod-server.js'], {
 		cwd: dir,
 		// What NAIS gives the pod in dev, with norg2 and tilbakemeldingsmottak-api here
 		env: {
