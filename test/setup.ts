@@ -13,8 +13,10 @@ setConfig({
 // The decorator client re-posts "ready" every 50 ms until the decorator answers.
 // No decorator runs in tests, so the timer would outlive the jsdom environment
 // and crash with "window is not defined". Answer it like the decorator does.
+// jsdom's postMessage only delivers to its own origin but leaves event.origin empty.
 if (typeof window !== 'undefined') {
 	window.addEventListener('message', (msg) => {
+		if (msg.origin !== '' && msg.origin !== window.location.origin) return;
 		if (msg.data?.source !== 'decoratorClient' || msg.data?.event !== 'ready') return;
 		window.dispatchEvent(
 			new MessageEvent('message', {
