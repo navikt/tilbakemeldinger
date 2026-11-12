@@ -1,5 +1,6 @@
 import type { Handler } from 'hono';
-import { html } from 'hono/html';
+import { html } from '@itsy/html';
+import { frame } from '@itsy/html/frame';
 import { appPath } from '#shared/appPath.ts';
 import { type Locale, translate } from '#shared/locale.ts';
 import { paths } from '#shared/paths.ts';
@@ -19,17 +20,14 @@ export const localFrontPage: Handler<AppEnv> = (c) => {
 		({ titleId, page }) => html`<li><a href="${appPath(locale, page)}">${translate(locale, titleId)}</a></li>`
 	);
 
-	return c.html(html`<!doctype html>
-		<html lang="${locale}">
-			<head>
-				<meta charset="utf-8" />
-				<title>${title}</title>
-			</head>
-			<body>
-				<h1>${title}</h1>
+	return c.html(
+		frame({
+			lang: locale,
+			title,
+			content: html`<h1>${title}</h1>
 				<ul>
 					${renderedLinks}
-				</ul>
-			</body>
-		</html>`);
+				</ul>`,
+		}).markup
+	);
 };

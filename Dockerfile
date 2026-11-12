@@ -14,4 +14,4 @@ ENV NODE_ENV=production
 
 EXPOSE 9001
 ENTRYPOINT ["node"]
-CMD ["dist/server/main.js"]
+CMD ["dist/server/prod-server.js"]

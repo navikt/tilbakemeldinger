@@ -1,5 +1,5 @@
 import type { Handler } from 'hono';
-import { jwtDecode } from 'jwt-decode';
+import { decodeJwt } from 'jose';
 import { getAuthToken } from '#server/utils/auth/common.ts';
 
 export const fodselsNrHandler: Handler = (c) => {
@@ -9,5 +9,5 @@ export const fodselsNrHandler: Handler = (c) => {
 		return c.body(null, { status: 401 });
 	}
 
-	return c.json({ fodselsnr: jwtDecode<{ pid: string }>(token).pid });
+	return c.json({ fodselsnr: decodeJwt<{ pid: string }>(token).pid });
 };

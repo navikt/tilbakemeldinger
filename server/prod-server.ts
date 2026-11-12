@@ -1,4 +1,4 @@
-// First, so that what the app logs while it loads goes through the logger too
+// This is first so we get console.log patched as soon as possible
 import './utils/console.ts';
 import { serve } from '@hono/node-server';
 import { logger } from '@navikt/navno-logger';

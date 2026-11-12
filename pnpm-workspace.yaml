@@ -2,6 +2,9 @@ packages: []
 overrides:
   shell-quote: '>=1.8.5'
   postcss: '>=8.5.18'
+  # GitHub Packages leaves peerDependenciesMeta out of its metadata, so pnpm sees this optional peer as
+  # required and installs Astro. The package has no runtime import of it: https://github.com/orgs/community/discussions/51104
+  '@navikt/browserslist-config-public>astro:peer': '-'
 allowBuilds:
   '@parcel/watcher': true
   esbuild: true
