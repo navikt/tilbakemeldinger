@@ -1,4 +1,4 @@
-# Positive-only alert: fires when we stop receiving feedback from users.
+# Two alerts: one for when no feedback gets through at all, and one for when too much of it fails.
 # Deployed by deploy.prod.yml. No double curly braces in this file, not even in comments: nais deploy templates every resource with Handlebars.
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
@@ -24,3 +24,45 @@ spec:
           labels:
             namespace: navno
             severity: warning
+
+        # Two levels for failing submissions, both daytime only like the alert above.
+        # validation and rate_limit are left out on both sides: they are users and bots being turned away, not us failing.
+        # A failure ratio alone also fires on one-off blips: a single burst (25 failures in 5 minutes on 2026-10-17) or a
+        # lone failure in a quiet hour stays in a 1h window for the whole hour. So both also require failures in several
+        # separate 5-minute slots, which is what tells a lasting problem from a blip. Backtested over 30 days, the only
+        # day either would have fired is 2026-11-13, when tilbakemeldingsmottak-api started timing out.
+        - alert: TilbakemeldingerSubmissionsFailing
+          expr: |
+            (
+              sum(increase(tilbakemeldinger_submissions_total{result="failure",reason!~"validation|rate_limit"}[1h]))
+              /
+              sum(increase(tilbakemeldinger_submissions_total{reason!~"validation|rate_limit"}[1h]))
+            ) > 0.1
+            and on() count_over_time((sum(increase(tilbakemeldinger_submissions_total{result="failure",reason!~"validation|rate_limit"}[5m])) > 0)[1h:5m]) >= 4
+            and on() hour() >= 6 and on() hour() < 16
+          for: 10m
+          annotations:
+            summary: Feedback submissions to tilbakemeldinger keep failing, more than 10% over the last hour
+            consequence: Some users get an error when they send feedback, and what they wrote is lost unless they try again.
+            action: Split tilbakemeldinger_submissions_total{result="failure"} by reason and type. upstream means tilbakemeldingsmottak-api failed or timed out, so check its health and contact teamserviceklage. auth points at TokenX or Azure AD, internal and unknown at our own logs in Loki.
+          labels:
+            namespace: navno
+            severity: warning
+
+        - alert: TilbakemeldingerSubmissionsFailingBig
+          expr: |
+            (
+              sum(increase(tilbakemeldinger_submissions_total{result="failure",reason!~"validation|rate_limit"}[30m]))
+              /
+              sum(increase(tilbakemeldinger_submissions_total{reason!~"validation|rate_limit"}[30m]))
+            ) > 0.5
+            and on() count_over_time((sum(increase(tilbakemeldinger_submissions_total{result="failure",reason!~"validation|rate_limit"}[5m])) > 0)[30m:5m]) >= 4
+            and on() hour() >= 6 and on() hour() < 16
+          for: 10m
+          annotations:
+            summary: Most feedback submissions to tilbakemeldinger fail, more than half over the last 30 minutes
+            consequence: Most users can't send feedback, and what they wrote is lost unless they try again.
+            action: Split tilbakemeldinger_submissions_total{result="failure"} by reason and type. upstream means tilbakemeldingsmottak-api failed or timed out, so check its health and contact teamserviceklage. auth points at TokenX or Azure AD, internal and unknown at our own logs in Loki.
+          labels:
+            namespace: navno
+            severity: critical
