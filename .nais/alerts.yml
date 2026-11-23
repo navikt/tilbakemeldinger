@@ -11,14 +11,15 @@ spec:
   groups:
     - name: tilbakemeldinger
       rules:
-        # "or vector(0)" covers the series not existing at all. hour() is UTC, so 06-16 is roughly 08-18 Oslo-time.
+        # "or vector(0)" covers the series not existing at all. hour() and day_of_week() are UTC, so 06-16 is roughly 08-18 Oslo-time, and day_of_week() 1-5 is Monday to Friday.
         - alert: TilbakemeldingerNoSuccessfulSubmissions
           expr: |
             (sum(increase(tilbakemeldinger_submissions_total{result="success"}[6h])) or vector(0)) == 0
             and on() hour() >= 6 and on() hour() < 16
+            and on() day_of_week() > 0 and on() day_of_week() < 6
           for: 30m
           annotations:
-            summary: No feedback has been successfully submitted in tilbakemeldinger for over 6 hours during the day
+            summary: No feedback has been successfully submitted in tilbakemeldinger for over 6 hours
             consequence: The service may be down, unreachable or broken for users, or tilbakemeldingsmottak-api rejects everything. Failure alerts can't fire without traffic.
             action: Check that the pods are running and being scraped, and look at the reason label on tilbakemeldinger_submissions_total{result="failure"}. Then try submitting at https://www.nav.no/person/kontakt-oss/tilbakemeldinger yourself.
           labels:
