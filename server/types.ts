@@ -1,4 +1,5 @@
 import type { HttpBindings } from '@hono/node-server';
+import type { ClientIpVariables } from '@navikt/client-ip/hono';
 import type { ViteDevServer } from 'vite';
 import type { FailureReason } from './metrics.ts';
 
@@ -7,7 +8,8 @@ export type AppEnv = {
 	// The Node request and response behind each request, and in development the Vite dev server
 	// that serves the app (see vite.config.ts)
 	Bindings: HttpBindings & { vite?: ViteDevServer };
-	Variables: {
+	// clientIp is set by the rate limiter (see api/rate-limit.ts)
+	Variables: ClientIpVariables & {
 		// Why a submission failed (see metrics)
 		failureReason?: FailureReason;
 	};
